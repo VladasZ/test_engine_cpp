@@ -13,7 +13,7 @@ class UIWorld {
     
     var view: UIView
     var world: World
-    var testUIViews: [TestUIView] = [TestUIView]()
+    var testViews: [TestView] = [TestView]()
     
     init(world: World, view: UIView) {
         
@@ -24,15 +24,25 @@ class UIWorld {
     
     func addEntity(_ entity: Entity) {
         
-        let testView = TestUIView(entity: entity)
-        testUIViews.append(testView)
-        view.addSubview(testView)
+        var testView: TestView
+        
+        if let entity = entity as? Polygon {
+            
+            testView = TestPolygonView(polygon: entity)
+        }
+        else {
+         
+            testView = TestUIImageView(entity: entity)
+        }
+                
+        testViews.append(testView)
+        view.addSubview(testView as! UIView)
     }
     
     func update() {
         
         world.update()
-        testUIViews.forEach { $0.update() }
+        testViews.forEach { $0.update() }
     }
 }
 
@@ -45,8 +55,8 @@ extension UIWorld : WorldDelegate {
     
     func worldDidRemove(_ entity: Entity) {
         
-        guard let view = (testUIViews.filter { $0.entity === entity }).first else { Log.error(); return }
-        view.removeFromSuperview()
-        testUIViews = testUIViews.filter { $0 !== view }
+        guard let view = (testViews.filter { $0.entity === entity }).first else { Log.error(); return }
+        view.kill()
+        testViews = testViews.filter { $0 !== view }
     }
 }

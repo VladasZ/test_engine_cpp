@@ -38,7 +38,7 @@ class Bullet : Movable {
         
         let nextPosition = position + velocity
         
-        if nextPosition.x < player.position.x + player.radius &&
+        if  nextPosition.x < player.position.x + player.radius &&
             nextPosition.x > player.position.x - player.radius &&
             nextPosition.y < player.position.y + player.radius &&
             nextPosition.y > player.position.y - player.radius {

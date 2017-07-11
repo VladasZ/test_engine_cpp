@@ -7,18 +7,28 @@
 //
 
 import Foundation
+import SwiftyTools
 
 class Player : Movable {
     
     var world: World?
     let radius = 20.0
     
+    var circle: Circle { return Circle(origin: position, radius: radius) }
+    
     override func update() {
         
         let nextPosition = position + velocity
         
         if nextPosition.x - radius < 0 || nextPosition.x + radius > 600 { velocity.x = 0 }
-        if nextPosition.y - radius < 0 || nextPosition.y + radius > 300 { velocity.y = 0 }
+        if nextPosition.y - radius < 0 || nextPosition.y + radius > 400 { velocity.y = 0 }
+        
+        if let collisionEdge = polygon.intersectsCircle(Circle(origin: nextPosition, radius: radius)) {
+            
+            let edgeVector = collisionEdge.vector
+            let projection = velocity.projectionTo(edgeVector)
+            velocity = edgeVector.withLength(projection)            
+        }
         
         position += velocity
     }

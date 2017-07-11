@@ -1,5 +1,5 @@
 //
-//  TestUIView.swift
+//  TestUIImageView.swift
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 7/3/17.
@@ -10,15 +10,15 @@ import UIKit
 import iOSTools
 import SwiftyTools
 
-class TestUIView : UIImageView {
+class TestUIImageView : UIImageView, TestView {
     
-    var entity: Entity!
+    var _entity: Entity
+    var entity: Entity { get { return _entity } set { _entity = newValue } }
     
     init(entity: Entity) {
         
+        _entity = entity
         super.init(frame: CGRect.zero)
-        
-        self.entity = entity
         
         if entity is Shooter {
             
@@ -30,6 +30,7 @@ class TestUIView : UIImageView {
             image = #imageLiteral(resourceName: "bullet")
             frame = CGRect(width: 10, height: 50)
         }
+
         else {
             
             image = #imageLiteral(resourceName: "smile")
@@ -42,6 +43,11 @@ class TestUIView : UIImageView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func kill() {
+        
+        removeFromSuperview()
     }
     
     func update() {

@@ -22,17 +22,23 @@ class Polygon : Entity {
         super.init()
     }
     
-    func intersectsCircle(_ circle: Circle) -> LineSegment? {
+    func intersectsCircle(_ circle: Circle) -> [LineSegment]? {
         
         let edges = self.edges
         let circle = Circle(origin: circle.origin - position, radius: circle.radius)
+        var segments: [LineSegment]?
+        
         
         for edge in edges {
             
-            if edge.distanceTo(circle.origin) < circle.radius { return edge }
+            if edge.distanceTo(circle.origin) < circle.radius {
+                
+                if segments == nil { segments = [edge] }
+                else               { segments?.append(edge) }
+            }
         }
         
-        return nil
+        return segments
     }
     
     private func calculateEdges() -> [LineSegment] {

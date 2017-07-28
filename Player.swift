@@ -18,16 +18,31 @@ class Player : Movable {
     
     override func update() {
         
-        let nextPosition = position + velocity
+        var nextPosition = position + velocity
         
         if nextPosition.x - radius < 0 || nextPosition.x + radius > 600 { velocity.x = 0 }
         if nextPosition.y - radius < 0 || nextPosition.y + radius > 400 { velocity.y = 0 }
         
-        if let collisionEdge = polygon.intersectsCircle(Circle(origin: nextPosition, radius: radius)) {
+        if let collisionEdges = polygon.intersectsCircle(Circle(origin: nextPosition, radius: radius)) {
             
-            let edgeVector = collisionEdge.vector
-            let projection = velocity.projectionTo(edgeVector)
-            velocity = edgeVector.withLength(projection)            
+            if collisionEdges.count > 1 {
+            
+                let edgeVector = collisionEdges.first!.vector
+                let projection = velocity.projectionTo(edgeVector)
+                velocity = edgeVector.withLength(projection * 0.75)
+                nextPosition = position + velocity
+                
+                if polygon.intersectsCircle(Circle(origin: nextPosition, radius: radius)) != nil {
+                    return
+                }
+            
+            }
+            else {
+                
+                let edgeVector = collisionEdges.first!.vector
+                let projection = velocity.projectionTo(edgeVector)
+                velocity = edgeVector.withLength(projection * 0.75)
+            }
         }
         
         position += velocity

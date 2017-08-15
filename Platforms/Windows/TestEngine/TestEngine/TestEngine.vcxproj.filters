@@ -13,24 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Sources">
+      <UniqueIdentifier>{100a2dbd-8169-406c-aee0-be766cafda5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\Tools">
+      <UniqueIdentifier>{823a3f36-3ec8-4760-aa3f-99e3cecfbcb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\..\..\Sources\Tools\StringTools.cpp">
+      <Filter>Source Files\Sources\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Tools\Log.hpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Tools\STL.h">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Tools\Tools.hpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

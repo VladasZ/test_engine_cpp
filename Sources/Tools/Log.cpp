@@ -6,9 +6,17 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Log.hpp"
+#include "Tools.hpp"
 
-#include "StringTools.hpp"
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+
+#define INFO_ICON "♥"
+
+#else
+
+#define INFO_ICON "💚"
+
+#endif
 
 enum LogType {
     
@@ -20,7 +28,7 @@ enum LogType {
 string logTypeString(LogType type) {
     
     switch (type) {
-        case LogTypeInfo:    return "💚 INFO 💚";
+        case LogTypeInfo:    return "INFO";
         case LogTypeWarning: return "💛 WARNING 💛";
         case LogTypeError:   return "❤️ ERROR ❤️";
     }

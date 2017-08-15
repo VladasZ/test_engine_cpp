@@ -6,11 +6,15 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "StringTools.hpp"
+#include "Tools.hpp"
 
 string StringTools::fileName(string path) {
     
-    auto lastSlash = path.rfind('/');
+#ifdef WINDOWS
+	auto lastSlash = path.rfind('\\');
+#else
+	auto lastSlash = path.rfind('/');
+#endif
     
     if(string::npos != lastSlash) {
         return removeExtension(path.substr(lastSlash + 1, path.size()));
@@ -23,9 +27,6 @@ string StringTools::removeExtension(string source) {
     
     auto dot = source.rfind('.');
     
-    if(string::npos != dot) {
-        return source.substr(0, dot);
-    } else {
-        return source;
-    }
+    if(string::npos != dot) { return source.substr(0, dot); }
+	else { return source; }
 }

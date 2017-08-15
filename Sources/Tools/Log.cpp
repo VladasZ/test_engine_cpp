@@ -8,14 +8,10 @@
 
 #include "Tools.hpp"
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-
-#define INFO_ICON "♥"
-
+#ifdef WINDOWS
+#define INFO_ICON "HEARTH"
 #else
-
 #define INFO_ICON "💚"
-
 #endif
 
 enum LogType {
@@ -28,7 +24,7 @@ enum LogType {
 string logTypeString(LogType type) {
     
     switch (type) {
-        case LogTypeInfo:    return "INFO";
+        case LogTypeInfo:    return INFO_ICON + string(" INFO ") + INFO_ICON;
         case LogTypeWarning: return "💛 WARNING 💛";
         case LogTypeError:   return "❤️ ERROR ❤️";
     }

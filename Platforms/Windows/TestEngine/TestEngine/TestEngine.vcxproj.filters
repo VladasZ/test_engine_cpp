@@ -25,6 +25,9 @@
     <Filter Include="Source Files\libs\glfw">
       <UniqueIdentifier>{3e0ea53f-9f0f-4eee-92aa-65c55bf33e07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libs\glew">
+      <UniqueIdentifier>{5bd2311b-c95f-47c4-8a52-40bf37a34c9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,6 +58,18 @@
     </ClInclude>
     <ClInclude Include="libs\glfw\include\glfw3native.h">
       <Filter>Source Files\libs\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glew\include\GL\glxew.h">
+      <Filter>Source Files\libs\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glew\include\GL\wglew.h">
+      <Filter>Source Files\libs\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glew\include\GL\eglew.h">
+      <Filter>Source Files\libs\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glew\include\GL\glew.h">
+      <Filter>Source Files\libs\glew</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

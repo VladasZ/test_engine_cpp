@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Sources\Tools">
       <UniqueIdentifier>{823a3f36-3ec8-4760-aa3f-99e3cecfbcb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libs">
+      <UniqueIdentifier>{7543dc92-af36-4959-909e-11f4cb8404f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\glfw">
+      <UniqueIdentifier>{3e0ea53f-9f0f-4eee-92aa-65c55bf33e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Tools\Tools.hpp">
       <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glfw\include\glfw3.h">
+      <Filter>Source Files\libs\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\glfw\include\glfw3native.h">
+      <Filter>Source Files\libs\glfw</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

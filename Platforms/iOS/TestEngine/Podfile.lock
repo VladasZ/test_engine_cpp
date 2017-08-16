@@ -1,0 +1,15 @@
+PODS:
+  - iOSTools (0.4.2):
+    - SwiftyTools
+  - SwiftyTools (0.8.21)
+
+DEPENDENCIES:
+  - iOSTools
+
+SPEC CHECKSUMS:
+  iOSTools: d5088013ec52471976ab46593bb7c1bacb22cd5b
+  SwiftyTools: ef9ad493bc62cae954e3b5f494ff5e001b3a55c0
+
+PODFILE CHECKSUM: 467e080aa2f8585d6b39116ef4055dc69c3e5b80
+
+COCOAPODS: 1.2.1

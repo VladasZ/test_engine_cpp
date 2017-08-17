@@ -6,10 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#ifndef StringTools_hpp
-#define StringTools_hpp
+#pragma once
 
-#include "STL.h"
+#include "STL.hpp"
 
 class StringTools {
     
@@ -19,5 +18,3 @@ public:
     static string removeExtension(string source);
 
 };
-
-#endif /* StringTools_hpp */

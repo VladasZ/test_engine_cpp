@@ -6,10 +6,10 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#ifndef Log_hpp
-#define Log_hpp
+#pragma once
 
-#include "STL.h"
+#include <iostream>
+using namespace std;
 
 #define Info(message)    Log::info   ((message), __FILE__ , __func__, __LINE__)
 #define Warning(message) Log::warning((message), __FILE__ , __func__, __LINE__)
@@ -24,4 +24,3 @@ public:
     static void error  (string message, string file, string function, int line);
 };
 
-#endif /* Log_hpp */

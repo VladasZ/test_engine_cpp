@@ -6,8 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#ifndef STL_h
-#define STL_h
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -15,5 +14,3 @@
 
 using namespace std;
 
-
-#endif /* STL_h */

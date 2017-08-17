@@ -6,6 +6,6 @@
 #define WINDOWS
 #endif
 
-#include "STL.h"
+#include "STL.hpp"
 #include "Log.hpp"
 #include "StringTools.hpp"

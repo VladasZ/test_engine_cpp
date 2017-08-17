@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D86EA38FFA2069D1C9FB9AA /* Pods_TestEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1DE70EA06DE2F164A1F25F /* Pods_TestEngine.framework */; };
+		822C11F21F44840500A2213A /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C11F01F44840500A2213A /* Point.cpp */; };
 		82DF66DF1F443AE600A54CCE /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DF66DA1F443AE600A54CCE /* Log.cpp */; };
 		82DF66E01F443AE600A54CCE /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DF66DD1F443AE600A54CCE /* StringTools.cpp */; };
 		82E4439E1F443972000D156F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82E4439C1F443972000D156F /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		372E051460D02B0086589F64 /* Pods-TestEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngine/Pods-TestEngine.release.xcconfig"; sourceTree = "<group>"; };
 		7F1DE70EA06DE2F164A1F25F /* Pods_TestEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		822C11F01F44840500A2213A /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		822C11F11F44840500A2213A /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		82DF66DA1F443AE600A54CCE /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		82DF66DB1F443AE600A54CCE /* Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		82DF66DC1F443AE600A54CCE /* STL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STL.h; sourceTree = "<group>"; };
@@ -109,9 +112,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		822C11EE1F4483F000A2213A /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				822C11EF1F4483F000A2213A /* Primitives */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		822C11EF1F4483F000A2213A /* Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				822C11F11F44840500A2213A /* Point.hpp */,
+				822C11F01F44840500A2213A /* Point.cpp */,
+			);
+			path = Primitives;
+			sourceTree = "<group>";
+		};
 		82DF66D81F443AE600A54CCE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				822C11EE1F4483F000A2213A /* Geometry */,
 				82DF66D91F443AE600A54CCE /* Tools */,
 			);
 			name = Sources;
@@ -339,6 +360,7 @@
 				82E443D61F4439D4000D156F /* Player.swift in Sources */,
 				82E443DF1F4439D4000D156F /* UIView.swift in Sources */,
 				82E443CC1F4439D4000D156F /* Bullet.swift in Sources */,
+				822C11F21F44840500A2213A /* Point.cpp in Sources */,
 				82E443DA1F4439D4000D156F /* Shooter.swift in Sources */,
 				82E443CF1F4439D4000D156F /* CPPBridge.mm in Sources */,
 				82E443DB1F4439D4000D156F /* Size.swift in Sources */,

@@ -28,6 +28,15 @@
     <Filter Include="Source Files\libs\glew">
       <UniqueIdentifier>{5bd2311b-c95f-47c4-8a52-40bf37a34c9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sources\GL">
+      <UniqueIdentifier>{35094d43-27f8-4051-a2b1-bbaaa1db5919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\GL\Shaders">
+      <UniqueIdentifier>{fd856b0d-b275-45ad-90f8-371c706dc20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\System">
+      <UniqueIdentifier>{a19f1d37-d3ad-4390-bf45-42597af12ef5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp">
       <Filter>Source Files\Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\shader.cpp">
+      <Filter>Source Files\Sources\GL\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\System\FileManager.cpp">
+      <Filter>Source Files\Sources\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,5 +86,22 @@
     <ClInclude Include="libs\glew\include\GL\glew.h">
       <Filter>Source Files\libs\glew</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp">
+      <Filter>Source Files\Sources\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\shader.hpp">
+      <Filter>Source Files\Sources\GL\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\System\FileManager.hpp">
+      <Filter>Source Files\Sources\System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Sources\GL\Shaders\vert.vert">
+      <Filter>Source Files\Sources\GL\Shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\Sources\GL\Shaders\frag.frag">
+      <Filter>Source Files\Sources\GL\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

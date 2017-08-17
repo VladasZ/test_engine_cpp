@@ -1,10 +1,11 @@
 #define GLEW_STATIC
 
-#include <iostream>
 #include <Windows.h>
 #include <Tools\Tools.hpp>
-#include "glew.h"
-#include "glfw3.h"
+
+#include "GL.hpp"
+
+
 
 
 using namespace std;
@@ -59,9 +60,13 @@ int main() {
 	// Give our vertices to OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+	auto shader = compileShaders();
+
 	for (;;) {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glUseProgram(shader);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);

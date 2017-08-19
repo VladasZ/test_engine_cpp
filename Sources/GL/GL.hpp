@@ -8,6 +8,23 @@
 
 #pragma once
 
-#include <glew.h>
-#include "glfw3.h"
+#import "Tools.hpp"
+
+#ifdef WINDOWS
+    #include <glew.h>
+    #include "glfw3.h"
+#endif
+
+
+#ifdef IPHONE
+    #import <OpenGLES/ES3/gl.h>
+#endif
+
+
+#ifdef MAC_OS
+    #include <glew.h>
+    #include "glfw3.h"
+#endif
+
+
 #include "shader.hpp"

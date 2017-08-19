@@ -18,7 +18,8 @@ using namespace std;
 
 int main() {
     
-    Info("rglooooorglak!");
+    
+    Info(FileManager::workDirectory());
     
     glfwInit();
     

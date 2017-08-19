@@ -46,11 +46,12 @@
 /* Begin PBXFileReference section */
 		372E051460D02B0086589F64 /* Pods-TestEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngine/Pods-TestEngine.release.xcconfig"; sourceTree = "<group>"; };
 		7F1DE70EA06DE2F164A1F25F /* Pods_TestEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		821DAD061F45C3A900BC6A4F /* STL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = STL.hpp; sourceTree = "<group>"; };
+		821DAD071F45C3A900BC6A4F /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		822C11F01F44840500A2213A /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		822C11F11F44840500A2213A /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		82DF66DA1F443AE600A54CCE /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		82DF66DB1F443AE600A54CCE /* Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
-		82DF66DC1F443AE600A54CCE /* STL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STL.h; sourceTree = "<group>"; };
 		82DF66DD1F443AE600A54CCE /* StringTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTools.cpp; sourceTree = "<group>"; };
 		82DF66DE1F443AE600A54CCE /* StringTools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		82E443951F443972000D156F /* TestEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,8 +145,9 @@
 			children = (
 				82DF66DA1F443AE600A54CCE /* Log.cpp */,
 				82DF66DB1F443AE600A54CCE /* Log.hpp */,
-				82DF66DC1F443AE600A54CCE /* STL.h */,
 				82DF66DD1F443AE600A54CCE /* StringTools.cpp */,
+				821DAD061F45C3A900BC6A4F /* STL.hpp */,
+				821DAD071F45C3A900BC6A4F /* Tools.hpp */,
 				82DF66DE1F443AE600A54CCE /* StringTools.hpp */,
 			);
 			path = Tools;

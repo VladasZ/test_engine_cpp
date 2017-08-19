@@ -7,7 +7,7 @@
 //
 
 #include "CPPTestClass.hpp"
-#include "STL.h"
+#include "STL.hpp"
 #include "Log.hpp"
 
 void CPPTestClass::hello() {

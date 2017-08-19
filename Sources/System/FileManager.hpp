@@ -6,5 +6,6 @@ class FileManager {
 
 public:
 
-	static string assetsDirectory();
+	static const string assetsDirectory();
+    static const string workDirectory();
 };

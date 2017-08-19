@@ -1,4 +1,6 @@
 #pragma once
 
+#include "GL.hpp"
+
 GLuint compileShaders();
-GLuint compileShaders(const char * vertex_file_path,const char * fragment_file_path);
+GLuint compileShaders(const string &vertex_file_path, const string &fragment_file_path);

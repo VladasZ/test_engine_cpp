@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2A41F486B76000A8E14 /* FileManager.cpp */; };
+		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
+		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
+		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
 		824681AC1F458D5D003BA5F3 /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681AB1F458D5D003BA5F3 /* libglfw3.3.2.dylib */; };
 		824681B41F458D7F003BA5F3 /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681AE1F458D72003BA5F3 /* libGLEW.2.0.0.dylib */; };
 		824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681B71F458F9C003BA5F3 /* OpenGL.framework */; };
@@ -20,16 +24,26 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		8266A8011F45867000C55472 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
+				8208E2C61F48899B000A8E14 /* Assets in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8208E2A41F486B76000A8E14 /* FileManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
+		8208E2A51F486B76000A8E14 /* FileManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
+		8208E2A61F486BFB000A8E14 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
+		8208E2B31F488098000A8E14 /* OBJBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJBridge.h; sourceTree = "<group>"; };
+		8208E2B41F488098000A8E14 /* OBJBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJBridge.m; sourceTree = "<group>"; };
+		8208E2B61F48814E000A8E14 /* CallObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallObj.m; sourceTree = "<group>"; };
+		8208E2B71F48814E000A8E14 /* CallObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallObj.h; sourceTree = "<group>"; };
+		8208E2B91F488219000A8E14 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8208E2C51F488998000A8E14 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../../Assets; sourceTree = "<group>"; };
 		824681AB1F458D5D003BA5F3 /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
 		824681AE1F458D72003BA5F3 /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
 		824681AF1F458D72003BA5F3 /* libGLEW.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.0.dylib; sourceTree = "<group>"; };
@@ -38,10 +52,8 @@
 		824681B31F458D72003BA5F3 /* glew.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glew.pc; sourceTree = "<group>"; };
 		824681B51F458F73003BA5F3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../../../usr/local/Cellar/glfw/3.2.1/README.md; sourceTree = "<group>"; };
 		824681B71F458F9C003BA5F3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		824681BB1F4590BD003BA5F3 /* frag.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = frag.frag; sourceTree = "<group>"; };
 		824681BC1F4590BD003BA5F3 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
 		824681BD1F4590BD003BA5F3 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
-		824681BE1F4590BD003BA5F3 /* vert.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vert.vert; sourceTree = "<group>"; };
 		824681BF1F459108003BA5F3 /* GL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GL.hpp; sourceTree = "<group>"; };
 		8266A8031F45867000C55472 /* TestEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		8266A8061F45867000C55472 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -71,6 +83,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8208E2A31F486B76000A8E14 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				8208E2B21F488068000A8E14 /* iOS */,
+				8208E2A61F486BFB000A8E14 /* System.hpp */,
+				8208E2A51F486B76000A8E14 /* FileManager.hpp */,
+				8208E2A41F486B76000A8E14 /* FileManager.cpp */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		8208E2B21F488068000A8E14 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8208E2B71F48814E000A8E14 /* CallObj.h */,
+				8208E2B61F48814E000A8E14 /* CallObj.m */,
+				8208E2B31F488098000A8E14 /* OBJBridge.h */,
+				8208E2B41F488098000A8E14 /* OBJBridge.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		824681AD1F458D72003BA5F3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +138,6 @@
 		824681BA1F4590BD003BA5F3 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				824681BE1F4590BD003BA5F3 /* vert.vert */,
-				824681BB1F4590BD003BA5F3 /* frag.frag */,
 				824681BD1F4590BD003BA5F3 /* shader.hpp */,
 				824681BC1F4590BD003BA5F3 /* shader.cpp */,
 			);
@@ -132,6 +164,7 @@
 		8266A8051F45867000C55472 /* TestEngine */ = {
 			isa = PBXGroup;
 			children = (
+				8208E2C51F488998000A8E14 /* Assets */,
 				8266A81F1F4588FB00C55472 /* Sources */,
 				8266A8061F45867000C55472 /* main.cpp */,
 			);
@@ -141,6 +174,7 @@
 		8266A8191F45879500C55472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8208E2B91F488219000A8E14 /* Foundation.framework */,
 				824681B71F458F9C003BA5F3 /* OpenGL.framework */,
 				824681B51F458F73003BA5F3 /* README.md */,
 				824681AD1F458D72003BA5F3 /* lib */,
@@ -154,6 +188,7 @@
 		8266A81F1F4588FB00C55472 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8208E2A31F486B76000A8E14 /* System */,
 				824681B91F4590BD003BA5F3 /* GL */,
 				8266A8201F4588FB00C55472 /* Geometry */,
 				8266A8241F4588FB00C55472 /* Tools */,
@@ -250,6 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
+				8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */,
+				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				824681C01F459233003BA5F3 /* shader.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,
@@ -353,8 +391,9 @@
 		8266A80B1F45867000C55472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glew/2.0.0/include/**",
@@ -372,8 +411,9 @@
 		8266A80C1F45867000C55472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glew/2.0.0/include/**",

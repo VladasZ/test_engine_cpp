@@ -95,6 +95,12 @@
     <ClInclude Include="..\..\..\..\Sources\System\FileManager.hpp">
       <Filter>Source Files\Sources\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\System\System.hpp">
+      <Filter>Source Files\Sources\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\System\Platform.h">
+      <Filter>Source Files\Sources\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Sources\GL\Shaders\vert.vert">

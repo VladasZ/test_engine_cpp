@@ -1,18 +1,23 @@
+//
+//  main.cpp
+//  TestEngine
+//
+//  Created by Vladas Zakrevskis on 8/17/17.
+//  Copyright © 2017 VladasZ. All rights reserved.
+//
+
 #define GLEW_STATIC
 
-#include <Windows.h>
-#include <Tools\Tools.hpp>
-
+#include "Tools.hpp"
 #include "GL.hpp"
-
-
 
 
 using namespace std;
 
 int main() {
 
-	Info("rglooooorglak!");
+
+	Info(FileManager::workDirectory());
 
 	glfwInit();
 
@@ -42,7 +47,7 @@ int main() {
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
-	//glBindVertexArray(VertexArrayID);
+	glBindVertexArray(VertexArrayID);
 
 	// An array of 3 vectors which represents 3 vertices
 	static const GLfloat g_vertex_buffer_data[] =
@@ -62,10 +67,11 @@ int main() {
 
 	auto shader = compileShaders();
 
+
+
 	for (;;) {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		glUseProgram(shader);
 
 		// 1rst attribute buffer : vertices
@@ -83,13 +89,12 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 		glDisableVertexAttribArray(0);
 
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		Sleep(100);
 	}
 
 
-	Sleep(1000000);
+	Sleep(10000);
 	return 0;
 }

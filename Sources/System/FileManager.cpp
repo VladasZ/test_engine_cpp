@@ -12,19 +12,15 @@ const string FileManager::assetsDirectory() {
     return workDirectory() + string("/Assets/");
 #endif
     
-    Error("Not implemented");
-    return "";
+    return "../../../../Assets/";
 }
 
 const string FileManager::workDirectory() {
     
-    
-    
-    char buffer[10000];
-    char *answer = getcwd(buffer, sizeof(buffer));
-    string s_cwd;
-    if (answer) { s_cwd = answer; }
-    else { Error(""); }
+#ifdef WINDOWS
+	char result[MAX_PATH];
+	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
+#endif
 
-    return s_cwd;
+    return "";
 }

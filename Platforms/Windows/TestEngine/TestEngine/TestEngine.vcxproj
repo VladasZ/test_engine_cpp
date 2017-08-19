@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\GL\Shaders;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\GL;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\System;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\Tools;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\GL\Shaders;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources\GL;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glew;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glfw;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -134,6 +134,8 @@
     <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp" />
     <ClInclude Include="..\..\..\..\Sources\GL\Shaders\shader.hpp" />
     <ClInclude Include="..\..\..\..\Sources\System\FileManager.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\System\Platform.h" />
+    <ClInclude Include="..\..\..\..\Sources\System\System.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Tools\Log.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Tools\STL.h" />
     <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp" />

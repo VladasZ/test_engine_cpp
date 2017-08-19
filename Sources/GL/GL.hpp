@@ -8,7 +8,7 @@
 
 #pragma once
 
-#import "Tools.hpp"
+#include "Platform.h"
 
 #ifdef WINDOWS
     #include <glew.h>
@@ -25,6 +25,5 @@
     #include <glew.h>
     #include "glfw3.h"
 #endif
-
 
 #include "shader.hpp"

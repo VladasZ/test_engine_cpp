@@ -7,3 +7,7 @@
 #include "STL.hpp"
 #include "Log.hpp"
 #include "StringTools.hpp"
+
+#ifdef WINDOWS
+#include <windows.h>
+#endif

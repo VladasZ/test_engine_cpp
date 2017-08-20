@@ -19,6 +19,8 @@
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
+		82E76BF11F49A140009E2420 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF01F49A140009E2420 /* System.cpp */; };
+		82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF71F49AB6A009E2420 /* Debug.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		8208E2A41F486B76000A8E14 /* FileManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		8208E2A51F486B76000A8E14 /* FileManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
-		8208E2A61F486BFB000A8E14 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		8208E2B31F488098000A8E14 /* OBJBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJBridge.h; sourceTree = "<group>"; };
 		8208E2B41F488098000A8E14 /* OBJBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJBridge.m; sourceTree = "<group>"; };
 		8208E2B61F48814E000A8E14 /* CallObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallObj.m; sourceTree = "<group>"; };
@@ -67,6 +68,13 @@
 		8266A8281F4588FB00C55472 /* StringTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringTools.cpp; sourceTree = "<group>"; };
 		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
+		82E76BEE1F499FFC009E2420 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
+		82E76BEF1F499FFC009E2420 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
+		82E76BF01F49A140009E2420 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
+		82E76BF21F49A67D009E2420 /* TestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEngine.h; sourceTree = "<group>"; };
+		82E76BF31F49A8DE009E2420 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		82E76BF71F49AB6A009E2420 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		82E76BF81F49AB6A009E2420 /* Debug.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				8208E2B21F488068000A8E14 /* iOS */,
-				8208E2A61F486BFB000A8E14 /* System.hpp */,
+				82E76BEE1F499FFC009E2420 /* Platform.h */,
+				82E76BF31F49A8DE009E2420 /* Types.h */,
+				82E76BEF1F499FFC009E2420 /* System.hpp */,
+				82E76BF01F49A140009E2420 /* System.cpp */,
 				8208E2A51F486B76000A8E14 /* FileManager.hpp */,
 				8208E2A41F486B76000A8E14 /* FileManager.cpp */,
 			);
@@ -188,6 +199,7 @@
 		8266A81F1F4588FB00C55472 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				82E76BF21F49A67D009E2420 /* TestEngine.h */,
 				8208E2A31F486B76000A8E14 /* System */,
 				824681B91F4590BD003BA5F3 /* GL */,
 				8266A8201F4588FB00C55472 /* Geometry */,
@@ -218,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				8266A82A1F4588FB00C55472 /* Tools.hpp */,
+				82E76BF81F49AB6A009E2420 /* Debug.hpp */,
+				82E76BF71F49AB6A009E2420 /* Debug.cpp */,
 				8266A8261F4588FB00C55472 /* Log.hpp */,
 				8266A8251F4588FB00C55472 /* Log.cpp */,
 				8266A8271F4588FB00C55472 /* STL.hpp */,
@@ -286,8 +300,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
+				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
 				8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
+				82E76BF11F49A140009E2420 /* System.cpp in Sources */,
 				824681C01F459233003BA5F3 /* shader.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,

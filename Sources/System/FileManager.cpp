@@ -1,6 +1,8 @@
 
+#include "Platform.h"
 #include "FileManager.hpp"
-#include "Tools.hpp"
+#include "Log.hpp"
+#include "Debug.hpp"
 
 #ifdef MAC_OS
 #include "CallObj.h"
@@ -9,10 +11,14 @@
 const string FileManager::assetsDirectory() {
     
 #ifdef MAC_OS
-    return workDirectory() + string("/Assets/");
+    return workDirectoryPath() + string("/Assets/");
 #endif
     
+#ifdef WINDOWS
     return "../../../../Assets/";
+#endif
+    
+    NOT_IMPLEMENTED;
 }
 
 const string FileManager::workDirectory() {
@@ -22,5 +28,6 @@ const string FileManager::workDirectory() {
 	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
 #endif
 
+    NOT_IMPLEMENTED;
     return "";
 }

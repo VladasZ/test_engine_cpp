@@ -14,7 +14,7 @@ using namespace std;
 
 #include "GL.hpp"
 #include "Tools.hpp"
-
+#include "TestEngine.h"
 
 GLuint compileShaders() {
         

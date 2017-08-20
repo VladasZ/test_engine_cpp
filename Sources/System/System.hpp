@@ -6,5 +6,15 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Platform.h"
-#include "FileManager.hpp"
+#pragma once
+
+#include "Types.h"
+
+class System {
+    
+public:
+    
+    static void sleep(double interval);
+    static UInt random();
+    static UInt random(Int range);
+};

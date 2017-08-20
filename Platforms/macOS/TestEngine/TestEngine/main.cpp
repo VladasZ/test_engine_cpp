@@ -8,18 +8,9 @@
 
 #define GLEW_STATIC
 
-#include "Tools.hpp"
-#include "GL.hpp"
-
-
-#include <unistd.h>
-
-using namespace std;
+#include "TestEngine.h"
 
 int main() {
-    
-    
-    Info(FileManager::workDirectory());
     
     glfwInit();
     

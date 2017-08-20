@@ -30,24 +30,24 @@ string logTypeString(LogType type) {
     }
 }
 
-void log(string message, string file, string function, int line, LogType type) {
+void log(string message, LOCATION_INPUT, LogType type) {
     
     auto fileName = StringTools::fileName(file);
     
     cout << "[" << logTypeString(type) << "] [" << fileName << "::" << function << " - " << line << "] " << message << endl;
 }
 
-void Log::info(string message, string file, string function, int line) {
+void Log::info(string message, LOCATION_INPUT) {
         
-    log(message, file, function, line, LogTypeInfo);
+    log(message, LOCATION_PARAMETERS, LogTypeInfo);
 }
 
-void Log::warning(string message, string file, string function, int line) {
+void Log::warning(string message, LOCATION_INPUT) {
     
-    log(message, file, function, line, LogTypeWarning);
+    log(message, LOCATION_PARAMETERS, LogTypeWarning);
 }
 
-void Log::error(string message, string file, string function, int line) {
+void Log::error(string message, LOCATION_INPUT) {
     
-    log(message, file, function, line, LogTypeError);
+    log(message, LOCATION_PARAMETERS, LogTypeError);
 }

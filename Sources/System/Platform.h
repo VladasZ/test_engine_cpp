@@ -6,6 +6,7 @@
 #endif
 
 #ifdef __APPLE__
+#define APPLE
 #if  TARGET_OS_IPHONE
 #define IPHONE
 #else

@@ -11,16 +11,20 @@
 #include <iostream>
 using namespace std;
 
-#define Info(message)    Log::info   ((message), __FILE__ , __func__, __LINE__)
-#define Warning(message) Log::warning((message), __FILE__ , __func__, __LINE__)
-#define Error(message)   Log::error  ((message), __FILE__ , __func__, __LINE__)
+#define LOCATION __FILE__ , __func__, __LINE__
+#define LOCATION_INPUT string file, string function, int line
+#define LOCATION_PARAMETERS file, function, line
+
+#define Info(message)    Log::info   ((message), LOCATION)
+#define Warning(message) Log::warning((message), LOCATION)
+#define Error(message)   Log::error  ((message), LOCATION)
 
 class Log {
     
 public:
     
-    static void info   (string message, string file, string function, int line);
-    static void warning(string message, string file, string function, int line);
-    static void error  (string message, string file, string function, int line);
+    static void info   (string message, LOCATION_INPUT);
+    static void warning(string message, LOCATION_INPUT);
+    static void error  (string message, LOCATION_INPUT);
 };
 

@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Size.hpp"
+#include "Geometry/Primitives/Size.hpp"
 
-class GLFWwindow;
+struct GLFWwindow;
 
 class Window {
     

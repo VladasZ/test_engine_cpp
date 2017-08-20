@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "Platform.h"
-#include "System.hpp"
-#include "GL.hpp"
-#include "Tools.hpp"
-#include "UI.hpp"
+#include "System/Platform.h"
+#include "System/System.hpp"
+#include "GL/GL.hpp"
+#include "Tools/Tools.hpp"
+#include "UI/UI.hpp"
 
 #ifdef WINDOWS
 #include <windows.h>

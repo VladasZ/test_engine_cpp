@@ -6,10 +6,10 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Platform.h"
-#include "System.hpp"
-#include "Log.hpp"
-#include "Debug.hpp"
+#include "System/Platform.h"
+#include "System/System.hpp"
+#include "Tools/Log.hpp"
+#include "Tools/Debug.hpp"
 
 #ifdef APPLE
 #include <unistd.h>

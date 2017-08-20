@@ -15,34 +15,7 @@ using namespace std;
 
 int main() {
 
-
-	Info(FileManager::workDirectory());
-
-	glfwInit();
-
-	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
-
-	auto window = glfwCreateWindow(1000, 1000, "Elite Engine", NULL, NULL);
-
-	if (window == nullptr) {
-
-		Error("kriglisalko");
-	}
-
-	glfwMakeContextCurrent(window);
-
-
-	glewExperimental = true;
-
-	auto err = glewInit();
-
-	cout << err << endl;
-
-
+	Window::initialize();
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
@@ -86,9 +59,11 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 		glDisableVertexAttribArray(0);
 
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(Window::window);
 		glfwPollEvents();
-		System::sleep(1);
+
+		Info("Frame");
+		cout << System::random() << endl;
 	}
 
 

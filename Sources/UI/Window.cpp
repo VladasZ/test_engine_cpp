@@ -6,9 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Window.hpp"
-#include "GL.hpp"
-#include "Log.hpp"
+#include "UI/Window.hpp"
+#include "GL/GL.hpp"
+#include "Tools/Log.hpp"
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 

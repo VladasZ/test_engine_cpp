@@ -1,7 +1,7 @@
 #pragma once
 
-#include "STL.hpp"
-#include "Types.h"
+#include "Tools/STL.hpp"
+#include "System/Types.h"
 
 class ShaderManager {
     

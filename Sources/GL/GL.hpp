@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Platform.h"
+#include "System/Platform.h"
 
 #ifdef WINDOWS
     #include <glew.h>
@@ -22,4 +22,4 @@
     #include "glfw3.h"
 #endif
 
-#include "ShaderManager.hpp"
+#include "GL/Shaders/ShaderManager.hpp"

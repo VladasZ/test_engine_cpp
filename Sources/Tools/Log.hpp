@@ -8,8 +8,7 @@
 
 #pragma once
 
-#include <iostream>
-using namespace std;
+#include "STL.hpp"
 
 #define LOCATION __FILE__ , __func__, __LINE__
 #define LOCATION_INPUT string file, string function, int line

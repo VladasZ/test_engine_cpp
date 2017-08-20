@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2A41F486B76000A8E14 /* FileManager.cpp */; };
 		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
 		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
 		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
@@ -19,6 +18,9 @@
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
+		82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E2221E1F4A2746002C1F17 /* FileManager.cpp */; };
+		82E222231F4A2806002C1F17 /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E222211F4A2806002C1F17 /* Size.cpp */; };
+		82E222281F4A296D002C1F17 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E222261F4A296D002C1F17 /* Window.cpp */; };
 		82E76BF11F49A140009E2420 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF01F49A140009E2420 /* System.cpp */; };
 		82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF71F49AB6A009E2420 /* Debug.cpp */; };
 /* End PBXBuildFile section */
@@ -37,8 +39,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8208E2A41F486B76000A8E14 /* FileManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
-		8208E2A51F486B76000A8E14 /* FileManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
 		8208E2B31F488098000A8E14 /* OBJBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJBridge.h; sourceTree = "<group>"; };
 		8208E2B41F488098000A8E14 /* OBJBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJBridge.m; sourceTree = "<group>"; };
 		8208E2B61F48814E000A8E14 /* CallObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallObj.m; sourceTree = "<group>"; };
@@ -68,6 +68,14 @@
 		8266A8281F4588FB00C55472 /* StringTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringTools.cpp; sourceTree = "<group>"; };
 		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
+		82E2221E1F4A2746002C1F17 /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
+		82E2221F1F4A2746002C1F17 /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
+		82E222211F4A2806002C1F17 /* Size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Size.cpp; sourceTree = "<group>"; };
+		82E222221F4A2806002C1F17 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Size.hpp; sourceTree = "<group>"; };
+		82E222241F4A28CC002C1F17 /* Primitives.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Primitives.hpp; sourceTree = "<group>"; };
+		82E222261F4A296D002C1F17 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		82E222271F4A296D002C1F17 /* Window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
+		82E222291F4A2988002C1F17 /* UI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UI.hpp; sourceTree = "<group>"; };
 		82E76BEE1F499FFC009E2420 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		82E76BEF1F499FFC009E2420 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		82E76BF01F49A140009E2420 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
@@ -99,8 +107,6 @@
 				82E76BF31F49A8DE009E2420 /* Types.h */,
 				82E76BEF1F499FFC009E2420 /* System.hpp */,
 				82E76BF01F49A140009E2420 /* System.cpp */,
-				8208E2A51F486B76000A8E14 /* FileManager.hpp */,
-				8208E2A41F486B76000A8E14 /* FileManager.cpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 				8208E2A31F486B76000A8E14 /* System */,
 				824681B91F4590BD003BA5F3 /* GL */,
 				8266A8201F4588FB00C55472 /* Geometry */,
+				82E222251F4A294D002C1F17 /* UI */,
 				8266A8241F4588FB00C55472 /* Tools */,
 			);
 			name = Sources;
@@ -220,8 +227,11 @@
 		8266A8211F4588FB00C55472 /* Primitives */ = {
 			isa = PBXGroup;
 			children = (
-				8266A8221F4588FB00C55472 /* Point.cpp */,
+				82E222241F4A28CC002C1F17 /* Primitives.hpp */,
 				8266A8231F4588FB00C55472 /* Point.hpp */,
+				8266A8221F4588FB00C55472 /* Point.cpp */,
+				82E222221F4A2806002C1F17 /* Size.hpp */,
+				82E222211F4A2806002C1F17 /* Size.cpp */,
 			);
 			path = Primitives;
 			sourceTree = "<group>";
@@ -229,6 +239,8 @@
 		8266A8241F4588FB00C55472 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				82E2221E1F4A2746002C1F17 /* FileManager.cpp */,
+				82E2221F1F4A2746002C1F17 /* FileManager.hpp */,
 				8266A82A1F4588FB00C55472 /* Tools.hpp */,
 				82E76BF81F49AB6A009E2420 /* Debug.hpp */,
 				82E76BF71F49AB6A009E2420 /* Debug.cpp */,
@@ -239,6 +251,16 @@
 				8266A8281F4588FB00C55472 /* StringTools.cpp */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		82E222251F4A294D002C1F17 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				82E222291F4A2988002C1F17 /* UI.hpp */,
+				82E222271F4A296D002C1F17 /* Window.hpp */,
+				82E222261F4A296D002C1F17 /* Window.cpp */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,14 +323,16 @@
 			files = (
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
-				8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
+				82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */,
 				82E76BF11F49A140009E2420 /* System.cpp in Sources */,
 				824681C01F459233003BA5F3 /* ShadetManager.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
+				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,
 				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,
 				8266A8071F45867000C55472 /* main.cpp in Sources */,
+				82E222231F4A2806002C1F17 /* Size.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +431,8 @@
 		8266A80B1F45867000C55472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
 				HEADER_SEARCH_PATHS = (
@@ -427,8 +451,8 @@
 		8266A80C1F45867000C55472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
 				HEADER_SEARCH_PATHS = (

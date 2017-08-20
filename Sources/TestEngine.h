@@ -12,6 +12,7 @@
 #include "System.hpp"
 #include "GL.hpp"
 #include "Tools.hpp"
+#include "UI.hpp"
 
 #ifdef WINDOWS
 #include <windows.h>

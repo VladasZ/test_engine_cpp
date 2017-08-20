@@ -6,6 +6,8 @@
 
 #ifdef APPLE
 #include "CallObj.h"
+#elif WINDOWS
+#include <Windows.h>
 #endif
 
 const string FileManager::assetsDirectory() {

@@ -10,7 +10,6 @@
 
 #include "Platform.h"
 #include "System.hpp"
-#include "FileManager.hpp"
 #include "GL.hpp"
 #include "Tools.hpp"
 

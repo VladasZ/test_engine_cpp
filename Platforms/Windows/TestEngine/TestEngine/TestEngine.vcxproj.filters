@@ -48,11 +48,17 @@
     <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp">
       <Filter>Source Files\Sources\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\shader.cpp">
+    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\ShadetManager.cpp">
       <Filter>Source Files\Sources\GL\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Sources\System\FileManager.cpp">
+    <ClCompile Include="..\..\..\..\Sources\System\System.cpp">
       <Filter>Source Files\Sources\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Tools\FileManager.cpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Tools\Debug.cpp">
+      <Filter>Source Files\Sources\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,25 +95,26 @@
     <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp">
       <Filter>Source Files\Sources\GL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\shader.hpp">
-      <Filter>Source Files\Sources\GL\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Sources\System\FileManager.hpp">
-      <Filter>Source Files\Sources\System</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\System\System.hpp">
       <Filter>Source Files\Sources\System</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\System\Platform.h">
       <Filter>Source Files\Sources\System</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Sources\GL\Shaders\vert.vert">
+    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.hpp">
       <Filter>Source Files\Sources\GL\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\Sources\GL\Shaders\frag.frag">
-      <Filter>Source Files\Sources\GL\Shaders</Filter>
-    </None>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\System\Types.h">
+      <Filter>Source Files\Sources\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Tools\FileManager.hpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Tools\Debug.hpp">
+      <Filter>Source Files\Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\TestEngine.h">
+      <Filter>Source Files\Sources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

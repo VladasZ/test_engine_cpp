@@ -9,6 +9,7 @@
 #include "Platform.h"
 #include "System.hpp"
 #include "Log.hpp"
+#include "Debug.hpp"
 
 #ifdef APPLE
 #include <unistd.h>
@@ -32,7 +33,7 @@ UInt System::random() {
 #endif
     
 #ifdef WINDOWS
-    NOT_IMPLEMENTED
+	NOT_IMPLEMENTED;
     return 0;
 #endif
 }
@@ -44,7 +45,7 @@ UInt System::random(Int range) {
 #endif
     
 #ifdef WINDOWS
-    NOT_IMPLEMENTED
+	NOT_IMPLEMENTED;
     return 0;
 #endif
 }

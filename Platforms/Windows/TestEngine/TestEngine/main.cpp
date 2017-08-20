@@ -8,8 +8,7 @@
 
 #define GLEW_STATIC
 
-#include "Tools.hpp"
-#include "GL.hpp"
+#include "TestEngine.h"
 
 
 using namespace std;
@@ -65,9 +64,7 @@ int main() {
 	// Give our vertices to OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-	auto shader = compileShaders();
-
-
+	auto shader = ShaderManager::compileShaders();
 
 	for (;;) {
 
@@ -91,10 +88,10 @@ int main() {
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-		Sleep(100);
+		System::sleep(1);
 	}
 
 
-	Sleep(10000);
+	System::sleep(1);
 	return 0;
 }

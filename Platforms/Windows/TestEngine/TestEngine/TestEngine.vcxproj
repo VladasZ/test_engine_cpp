@@ -124,18 +124,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\shader.cpp" />
-    <ClCompile Include="..\..\..\..\Sources\System\FileManager.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\ShadetManager.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\System\System.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\Tools\Debug.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\Tools\FileManager.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\StringTools.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp" />
-    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\shader.hpp" />
-    <ClInclude Include="..\..\..\..\Sources\System\FileManager.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.hpp" />
     <ClInclude Include="..\..\..\..\Sources\System\Platform.h" />
     <ClInclude Include="..\..\..\..\Sources\System\System.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\System\Types.h" />
+    <ClInclude Include="..\..\..\..\Sources\TestEngine.h" />
+    <ClInclude Include="..\..\..\..\Sources\Tools\Debug.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\Tools\FileManager.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Tools\Log.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Tools\STL.h" />
     <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp" />
@@ -146,10 +151,6 @@
     <ClInclude Include="libs\glew\include\GL\wglew.h" />
     <ClInclude Include="libs\glfw\include\glfw3.h" />
     <ClInclude Include="libs\glfw\include\glfw3native.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Sources\GL\Shaders\frag.frag" />
-    <None Include="..\..\..\..\Sources\GL\Shaders\vert.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

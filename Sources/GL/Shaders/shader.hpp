@@ -1,6 +1,7 @@
 #pragma once
 
-#include "GL.hpp"
+#include "STL.hpp"
+#include "Types.h"
 
-GLuint compileShaders();
-GLuint compileShaders(const string &vertex_file_path, const string &fragment_file_path);
+UInt compileShaders();
+UInt compileShaders(const string &vertex_file_path, const string &fragment_file_path);

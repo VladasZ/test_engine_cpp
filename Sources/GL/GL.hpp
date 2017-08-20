@@ -13,15 +13,11 @@
 #ifdef WINDOWS
     #include <glew.h>
     #include "glfw3.h"
-#endif
 
-
-#ifdef IPHONE
+#elif IOS
     #import <OpenGLES/ES3/gl.h>
-#endif
 
-
-#ifdef MAC_OS
+#elif MAC_OS
     #include <glew.h>
     #include "glfw3.h"
 #endif

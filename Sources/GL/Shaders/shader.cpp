@@ -1,20 +1,17 @@
 #include <stdio.h>
-#include <string>
-#include <vector>
-#include <iostream>
 #include <fstream>
 #include <algorithm>
-using namespace std;
 
 #include <stdlib.h>
 #include <string.h>
 
-#include "shader.hpp"-
+#include "shader.hpp"
 
 
 #include "GL.hpp"
 #include "Tools.hpp"
 #include "TestEngine.h"
+#include "STL.hpp"
 
 GLuint compileShaders() {
         

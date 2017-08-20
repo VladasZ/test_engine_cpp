@@ -1,16 +1,26 @@
 
 #pragma once
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#ifdef _WIN32
+
 #define WINDOWS
-#endif
 
-#ifdef __APPLE__
+#elif __APPLE__
+#include "TargetConditionals.h"
 #define APPLE
-#if  TARGET_OS_IPHONE
-#define IPHONE
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#define IOS true
+#elif TARGET_OS_MAC
+#define MAC_OS true
 #else
-#define MAC_OS
+#   error "Unknown Apple platform"
 #endif
-
+#elif __linux__
+// linux
+#elif __unix__ // all unices not caught above
+// Unix
+#elif defined(_POSIX_VERSION)
+// POSIX
+#else
+#   error "Unknown compiler"
 #endif

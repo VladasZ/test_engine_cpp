@@ -4,13 +4,13 @@
 #include "Log.hpp"
 #include "Debug.hpp"
 
-#ifdef MAC_OS
+#ifdef APPLE
 #include "CallObj.h"
 #endif
 
 const string FileManager::assetsDirectory() {
     
-#ifdef MAC_OS
+#ifdef APPLE
     return workDirectoryPath() + string("/Assets/");
 #endif
     
@@ -19,6 +19,7 @@ const string FileManager::assetsDirectory() {
 #endif
     
     NOT_IMPLEMENTED;
+    return "";
 }
 
 const string FileManager::workDirectory() {

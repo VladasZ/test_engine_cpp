@@ -43,8 +43,7 @@ GLuint shader;
     // Give our vertices to OpenGL.
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
     
-    shader = compileShaders();
-    
+    shader = ShaderManager::compileShaders();
 }
 
 - (void)update {
@@ -70,7 +69,7 @@ GLuint shader;
 
 - (void)setup {
     
-    self.preferredFramesPerSecond = 60;
+    self.preferredFramesPerSecond = 1;
     
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     

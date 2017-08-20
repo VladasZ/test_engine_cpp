@@ -14,7 +14,7 @@
 		824681AC1F458D5D003BA5F3 /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681AB1F458D5D003BA5F3 /* libglfw3.3.2.dylib */; };
 		824681B41F458D7F003BA5F3 /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681AE1F458D72003BA5F3 /* libGLEW.2.0.0.dylib */; };
 		824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681B71F458F9C003BA5F3 /* OpenGL.framework */; };
-		824681C01F459233003BA5F3 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824681BC1F4590BD003BA5F3 /* shader.cpp */; };
+		824681C01F459233003BA5F3 /* ShadetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824681BC1F4590BD003BA5F3 /* ShadetManager.cpp */; };
 		8266A8071F45867000C55472 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8061F45867000C55472 /* main.cpp */; };
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
@@ -53,8 +53,8 @@
 		824681B31F458D72003BA5F3 /* glew.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glew.pc; sourceTree = "<group>"; };
 		824681B51F458F73003BA5F3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../../../usr/local/Cellar/glfw/3.2.1/README.md; sourceTree = "<group>"; };
 		824681B71F458F9C003BA5F3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		824681BC1F4590BD003BA5F3 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		824681BD1F4590BD003BA5F3 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		824681BC1F4590BD003BA5F3 /* ShadetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShadetManager.cpp; sourceTree = "<group>"; };
+		824681BD1F4590BD003BA5F3 /* ShaderManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderManager.hpp; sourceTree = "<group>"; };
 		824681BF1F459108003BA5F3 /* GL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GL.hpp; sourceTree = "<group>"; };
 		8266A8031F45867000C55472 /* TestEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		8266A8061F45867000C55472 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 		824681BA1F4590BD003BA5F3 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				824681BD1F4590BD003BA5F3 /* shader.hpp */,
-				824681BC1F4590BD003BA5F3 /* shader.cpp */,
+				824681BD1F4590BD003BA5F3 /* ShaderManager.hpp */,
+				824681BC1F4590BD003BA5F3 /* ShadetManager.cpp */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 				8208E2A71F486D94000A8E14 /* FileManager.cpp in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				82E76BF11F49A140009E2420 /* System.cpp in Sources */,
-				824681C01F459233003BA5F3 /* shader.cpp in Sources */,
+				824681C01F459233003BA5F3 /* ShadetManager.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,
 				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,

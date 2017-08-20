@@ -1,7 +1,7 @@
-uniform mat4 uMVP;
+layout(location = 0) in vec3 vertexPosition_modelspace;
 
-attribute vec3 aPosition;
-
-void main() {
-    gl_Position = vec4(aPosition, 1.0);
+void main(){
+    
+    gl_Position.xyz = vertexPosition_modelspace;
+    gl_Position.w = 1.0;
 }

@@ -10,7 +10,6 @@
 		822C501D1F49B0440097ECEA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822C501C1F49B0440097ECEA /* GLKit.framework */; };
 		822C501F1F49B0480097ECEA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822C501E1F49B0480097ECEA /* OpenGLES.framework */; };
 		822C50411F49B3A40097ECEA /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C50241F49B3A40097ECEA /* Point.cpp */; };
-		822C50421F49B3A40097ECEA /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C50291F49B3A40097ECEA /* shader.cpp */; };
 		822C50431F49B3A40097ECEA /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C502C1F49B3A40097ECEA /* FileManager.cpp */; };
 		822C50441F49B3A40097ECEA /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C50301F49B3A40097ECEA /* CallObj.m */; };
 		822C50451F49B3A40097ECEA /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C50321F49B3A40097ECEA /* OBJBridge.m */; };
@@ -19,6 +18,7 @@
 		822C50481F49B3A40097ECEA /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C503B1F49B3A40097ECEA /* Log.cpp */; };
 		822C50491F49B3A40097ECEA /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822C503E1F49B3A40097ECEA /* StringTools.cpp */; };
 		82937D4A1F49C244005539CD /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 82937D491F49C244005539CD /* Assets */; };
+		82C882841F4A10D3009B7204 /* ShadetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82C882831F4A10D3009B7204 /* ShadetManager.cpp */; };
 		82CA7D681F49B02000B0CD46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CA7D671F49B02000B0CD46 /* main.m */; };
 		82CA7D6B1F49B02000B0CD46 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CA7D6A1F49B02000B0CD46 /* AppDelegate.m */; };
 		82CA7D6E1F49B02000B0CD46 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 82CA7D6D1F49B02000B0CD46 /* ViewController.mm */; };
@@ -33,8 +33,6 @@
 		822C50241F49B3A40097ECEA /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		822C50251F49B3A40097ECEA /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		822C50271F49B3A40097ECEA /* GL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GL.hpp; sourceTree = "<group>"; };
-		822C50291F49B3A40097ECEA /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		822C502A1F49B3A40097ECEA /* shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		822C502C1F49B3A40097ECEA /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManager.cpp; sourceTree = "<group>"; };
 		822C502D1F49B3A40097ECEA /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
 		822C502F1F49B3A40097ECEA /* CallObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallObj.h; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		822C503F1F49B3A40097ECEA /* StringTools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		822C50401F49B3A40097ECEA /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		82937D491F49C244005539CD /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../../Assets; sourceTree = "<group>"; };
+		82C882821F4A10D3009B7204 /* ShaderManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderManager.hpp; sourceTree = "<group>"; };
+		82C882831F4A10D3009B7204 /* ShadetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShadetManager.cpp; sourceTree = "<group>"; };
 		82CA7D631F49B02000B0CD46 /* TestEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CA7D671F49B02000B0CD46 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82CA7D691F49B02000B0CD46 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,8 +145,8 @@
 		822C50281F49B3A40097ECEA /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				822C502A1F49B3A40097ECEA /* shader.hpp */,
-				822C50291F49B3A40097ECEA /* shader.cpp */,
+				82C882821F4A10D3009B7204 /* ShaderManager.hpp */,
+				82C882831F4A10D3009B7204 /* ShadetManager.cpp */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -301,9 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				822C50421F49B3A40097ECEA /* shader.cpp in Sources */,
 				822C50481F49B3A40097ECEA /* Log.cpp in Sources */,
 				822C50471F49B3A40097ECEA /* Debug.cpp in Sources */,
+				82C882841F4A10D3009B7204 /* ShadetManager.cpp in Sources */,
 				822C50411F49B3A40097ECEA /* Point.cpp in Sources */,
 				82CA7D6E1F49B02000B0CD46 /* ViewController.mm in Sources */,
 				822C50461F49B3A40097ECEA /* System.cpp in Sources */,

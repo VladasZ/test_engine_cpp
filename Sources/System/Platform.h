@@ -3,7 +3,7 @@
 
 #ifdef _WIN32
 
-#define WINDOWS
+#define WINDOWS true
 
 #elif __APPLE__
 #include "TargetConditionals.h"

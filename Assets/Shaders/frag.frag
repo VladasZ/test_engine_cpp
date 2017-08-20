@@ -1,5 +1,9 @@
-precision mediump float;
+precision highp float;
+
+//line
+out vec3 color;
 
 void main() {
-    gl_FragColor = vec4(1,1,0,1);
-} 
+    
+    color = vec3(1,1,0);
+}

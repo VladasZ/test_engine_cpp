@@ -22,4 +22,4 @@
     #include "glfw3.h"
 #endif
 
-#include "shader.hpp"
+#include "ShaderManager.hpp"

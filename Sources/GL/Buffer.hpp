@@ -8,13 +8,15 @@
 
 #pragma once
 
+#include "Types.h"
+
 class Buffer {
     
 public:
     
     int id;
     
-    Buffer(const int &size, const void *data);
+    Buffer(const int &size, const void *data, UInt type);
     
     void setVertexPointer(const int &location) const;
     void setColorPointer(const int &location) const;

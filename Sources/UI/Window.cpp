@@ -11,6 +11,8 @@
 #include "Log.hpp"
 #include "Platform.h"
 #include "Buffer.hpp"
+#include "Cube.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 
@@ -48,6 +50,8 @@ void Window::initialize(int width, int height) {
     
 #endif
     
+    glEnable(GL_DEPTH_TEST);
+    
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
@@ -57,27 +61,49 @@ void Window::initialize(int width, int height) {
 
 void Window::sendData() {
     
-    static const GLfloat triangleData[] = {
-        
-        -1.0f, -1.0f, 0.0f,
-        1.0f, 0.0f, 0.0f, 1.0f,
-        1.0f, -1.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 1.0f,
-        0.0f,  1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 1.0f
-    };
+    Cube cube;
     
-    Buffer(sizeof(triangleData), triangleData);
-
+    auto vertexBuffer = Buffer(cube.vertexBufferSize,
+                               cube.vertexBuffer,
+                               GL_ARRAY_BUFFER);
+    
+    vertexBuffer.setVertexPointer(0);
+    vertexBuffer.setColorPointer(1);
+    
+    auto indexBuffer = Buffer(cube.indexBufferSize,
+                              cube.indexBuffer,
+                              GL_ELEMENT_ARRAY_BUFFER);
     
     shader = ShaderManager::compileShaders();
     glUseProgram(shader);
+    
+
+
 }
 
 void Window::update() {
     
+    static float rotationX = 0.f;
+    static float rotationY = 0.f;
+    static float fieldOfView = 100.0f;
+    
+    static float nearPlane = 1.0f;
+    static float farPlane = 5.0f;
+    
+    rotationY += 0.5f;
+    
+    mat4 projection = perspective(fieldOfView, size.width / size.height , nearPlane, farPlane);
+    mat4 translationProjection = translate(projection, vec3(0, 0, -3.0f));
+    mat4 fullTranslation = rotate(translationProjection, rotationX , vec3(1.0f, 0.0f, 0.0f));
+    fullTranslation = rotate(fullTranslation, rotationY , vec3(0.0f, 1.0f, 0.0f));
+    
+    
+    GLint transformLocation = glGetUniformLocation(shader, "transformMatrix");
+    
+    glUniformMatrix4fv(transformLocation, 1, false, &fullTranslation[0][0]);
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawElements(GL_TRIANGLES, 73, GL_UNSIGNED_SHORT, 0);
 }
 
 #ifndef IOS

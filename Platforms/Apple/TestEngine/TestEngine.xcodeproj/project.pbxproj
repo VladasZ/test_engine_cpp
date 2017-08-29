@@ -44,6 +44,10 @@
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
 		82A78F641F4A41A1001BAD46 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderManager.cpp */; };
+		82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
+		82BE33141F5619C000AD91AC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE33111F5619C000AD91AC /* Cube.cpp */; };
+		82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
+		82BE33161F561E0800AD91AC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE33111F5619C000AD91AC /* Cube.cpp */; };
 		82D4521D1F545D730086772F /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4521B1F545D730086772F /* View.cpp */; };
 		82D452201F545DAB0086772F /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4521E1F545DAB0086772F /* Rect.cpp */; };
 		82D452231F545F620086772F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D452211F545F620086772F /* Color.cpp */; };
@@ -115,6 +119,12 @@
 		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		82A78F631F4A41A1001BAD46 /* ShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderManager.cpp; sourceTree = "<group>"; };
+		82BE330C1F5619C000AD91AC /* 2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2D.h; sourceTree = "<group>"; };
+		82BE330D1F5619C000AD91AC /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		82BE330E1F5619C000AD91AC /* Triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
+		82BE33101F5619C000AD91AC /* 3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 3D.h; sourceTree = "<group>"; };
+		82BE33111F5619C000AD91AC /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		82BE33121F5619C000AD91AC /* Cube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cube.hpp; sourceTree = "<group>"; };
 		82D4521B1F545D730086772F /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
 		82D4521C1F545D730086772F /* View.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
 		82D4521E1F545DAB0086772F /* Rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rect.cpp; sourceTree = "<group>"; };
@@ -366,6 +376,26 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		82BE330B1F5619C000AD91AC /* 2D */ = {
+			isa = PBXGroup;
+			children = (
+				82BE330C1F5619C000AD91AC /* 2D.h */,
+				82BE330E1F5619C000AD91AC /* Triangle.hpp */,
+				82BE330D1F5619C000AD91AC /* Triangle.cpp */,
+			);
+			path = 2D;
+			sourceTree = "<group>";
+		};
+		82BE330F1F5619C000AD91AC /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				82BE33101F5619C000AD91AC /* 3D.h */,
+				82BE33111F5619C000AD91AC /* Cube.cpp */,
+				82BE33121F5619C000AD91AC /* Cube.hpp */,
+			);
+			path = 3D;
+			sourceTree = "<group>";
+		};
 		82E222251F4A294D002C1F17 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +410,8 @@
 				82D452241F54663F0086772F /* Vertex.cpp */,
 				82D452281F5466BF0086772F /* Polygon.hpp */,
 				82D452271F5466BF0086772F /* Polygon.cpp */,
+				82BE330B1F5619C000AD91AC /* 2D */,
+				82BE330F1F5619C000AD91AC /* 3D */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -535,12 +567,14 @@
 				824B9E031F55F5BA00C39543 /* ShaderManager.cpp in Sources */,
 				824B9E011F55F5BA00C39543 /* System.cpp in Sources */,
 				824B9DF51F55F5AA00C39543 /* StringTools.cpp in Sources */,
+				82BE33141F5619C000AD91AC /* Cube.cpp in Sources */,
 				824B9DF41F55F5A800C39543 /* Log.cpp in Sources */,
 				824B9E041F55F5BA00C39543 /* Point.cpp in Sources */,
 				824B9E061F55F5BA00C39543 /* Rect.cpp in Sources */,
 				824B9E071F55F5BA00C39543 /* Window.cpp in Sources */,
 				824B9DDF1F55F25B00C39543 /* ViewController.mm in Sources */,
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
+				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
 				824B9E0A1F55F5BA00C39543 /* Vertex.cpp in Sources */,
 				824B9E081F55F5BA00C39543 /* View.cpp in Sources */,
@@ -562,6 +596,7 @@
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */,
+				82BE33161F561E0800AD91AC /* Cube.cpp in Sources */,
 				82A78F641F4A41A1001BAD46 /* ShaderManager.cpp in Sources */,
 				82D452201F545DAB0086772F /* Rect.cpp in Sources */,
 				82E76BF11F49A140009E2420 /* System.cpp in Sources */,
@@ -572,6 +607,7 @@
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,
+				82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,
 				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,
 				8266A8071F45867000C55472 /* main.cpp in Sources */,

@@ -8,12 +8,14 @@
 
 #pragma once
 
+#include "Types.h"
+
 class Size {
     
 public:
     
-    double width = 0, height = 0;
+    Float width = 0, height = 0;
     
     Size() = default;
-    Size(double width, double height);
+    Size(Float width, Float height);
 };

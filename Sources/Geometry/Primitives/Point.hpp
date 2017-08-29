@@ -6,7 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#pragma mark
+#pragma once
+
+#include "Types.h"
 
 class Point {
     
@@ -14,24 +16,24 @@ public:
     
 #pragma mark - Properties
     
-    double x = 0, y = 0;
+    Float x = 0, y = 0;
     
 #pragma mark - Initialization
     
     Point() = default;
-    Point(double x, double y);
+    Point(Float x, Float y);
 
 #pragma mark - Getters
     
-    double angle() const;
+    Float angle() const;
     bool isZero() const;
-    double length() const;
+    Float length() const;
     
     Point normalized() const;
-    double distanceTo(const Point &point) const;
-    Point withLength(double length) const;
-    double angleWith(const Point &point) const;
-    double projectionTo(const Point &point) const;
+    Float distanceTo(const Point &point) const;
+    Point withLength(Float length) const;
+    Float angleWith(const Point &point) const;
+    Float projectionTo(const Point &point) const;
     
 #pragma mark - Static properties
     

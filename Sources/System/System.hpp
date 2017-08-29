@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include "System/Types.h"
+#include "Types.h"
 
 class System {
     
 public:
     
-    static void sleep(double interval);
+    static void sleep(Float interval);
     static UInt random();
     static UInt random(Int range);
 };

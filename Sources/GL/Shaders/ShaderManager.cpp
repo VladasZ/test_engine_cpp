@@ -6,13 +6,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Gl/Shaders/ShaderManager.hpp"
+#include "ShaderManager.hpp"
 
-#include "GL/GL.hpp"
-#include "Tools/STL.hpp"
-#include "Tools/FileManager.hpp"
-#include "System/Platform.h"
-#include "Tools/Debug.hpp"
+#include "GL.hpp"
+#include "STL.hpp"
+#include "FileManager.hpp"
+#include "Platform.h"
+#include "Debug.hpp"
 
 string ShaderManager::shaderVersion() {
     

@@ -8,6 +8,6 @@
 
 #include "Size.hpp"
 
-Size::Size(double width, double height) : width(width), height(height) {
+Size::Size(Float width, Float height) : width(width), height(height) {
     
 }

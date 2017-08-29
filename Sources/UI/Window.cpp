@@ -6,9 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "UI/Window.hpp"
-#include "GL/GL.hpp"
-#include "Tools/Log.hpp"
+#include "Window.hpp"
+#include "GL.hpp"
+#include "Log.hpp"
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 
@@ -36,10 +36,38 @@ void Window::initialize(int width, int height) {
     
     glewExperimental = true;
     if (glewInit()) { Error("Glew initialization failed"); }
+    
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
 }
 
 void windowSizeChanged(GLFWwindow* window, int width, int height) {
     
     Window::size.width  = width;
     Window::size.height = height;
+}
+
+Float Window::pixelToGLX(Float x) {
+    
+    Float pixel = 2 / size.width;
+    return -1 + x * pixel;
+}
+
+Float Window::pixelToGLY(Float y) {
+    
+    Float pixel = 2 / size.height;
+    return -1 + y * pixel;
+}
+
+Float Window::pixelFromGLX(Float x) {
+    
+    Float pixel = 2 / size.width;
+    return (x + 1) / pixel;
+}
+
+Float Window::pixelFromGLY(Float y) {
+    
+    Float pixel = 2 / size.height;
+    return (y + 1) / pixel;
 }

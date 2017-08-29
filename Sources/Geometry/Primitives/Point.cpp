@@ -7,3 +7,7 @@
 //
 
 #include "Point.hpp"
+
+Point::Point(Float x, Float y) : x(x), y(y) {
+    
+}

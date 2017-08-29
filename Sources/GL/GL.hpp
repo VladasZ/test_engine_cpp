@@ -8,7 +8,10 @@
 
 #pragma once
 
-#include "System/Platform.h"
+#include "Platform.h"
+
+#include <glm.hpp>
+using namespace glm;
 
 #ifdef WINDOWS
     #include <glew.h>
@@ -22,4 +25,4 @@
     #include "glfw3.h"
 #endif
 
-#include "GL/Shaders/ShaderManager.hpp"
+#include "ShaderManager.hpp"

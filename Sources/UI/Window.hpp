@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include "Geometry/Primitives/Size.hpp"
+#include "Size.hpp"
+#include "Types.h"
 
 struct GLFWwindow;
 
@@ -20,4 +21,9 @@ public:
     static GLFWwindow *window;
     
     static void initialize(int width = 1000, int height = 1000);
+    
+    static Float pixelToGLX(Float x);
+    static Float pixelToGLY(Float y);
+    static Float pixelFromGLX(Float x);
+    static Float pixelFromGLY(Float y);
 };

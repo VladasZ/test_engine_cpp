@@ -9,6 +9,7 @@
 #include "Window.hpp"
 #include "GL.hpp"
 #include "Log.hpp"
+#include "Platform.h"
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 
@@ -18,6 +19,8 @@ GLFWwindow * Window::window;
 void Window::initialize(int width, int height) {
     
     size = Size(width, height);
+    
+#ifndef IOS
     
     glfwInit();
     
@@ -36,6 +39,8 @@ void Window::initialize(int width, int height) {
     
     glewExperimental = true;
     if (glewInit()) { Error("Glew initialization failed"); }
+    
+#endif
     
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);

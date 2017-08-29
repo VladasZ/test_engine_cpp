@@ -21,9 +21,9 @@ GLuint shader;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     [self setup];
-
+    
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);

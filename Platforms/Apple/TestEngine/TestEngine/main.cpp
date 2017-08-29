@@ -14,10 +14,6 @@ int main() {
     
     Window::initialize();
     
-    GLuint VertexArrayID;
-    glGenVertexArrays(1, &VertexArrayID);
-    glBindVertexArray(VertexArrayID);
-    
     // An array of 3 vectors which represents 3 vertices
     static const GLfloat g_vertex_buffer_data[] =
     {
@@ -37,7 +33,13 @@ int main() {
     auto shader = ShaderManager::compileShaders();
     
     
-    for (;;) {
+    do {
+        
+        Double x, y;
+        
+        glfwGetCursorPos(Window::window, &x, &y);
+        
+        cout << x << " " << y << endl;
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glUseProgram(shader);
@@ -59,9 +61,9 @@ int main() {
         
         glfwSwapBuffers(Window::window);
         glfwPollEvents();
-        System::sleep(1);
     }
-    
+    while (glfwGetKey(Window::window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+           glfwWindowShouldClose(Window::window) == 0);
     
     return 0;
 }

@@ -10,17 +10,28 @@
 
 #include "Size.hpp"
 #include "Types.h"
+#include "Platform.h"
 
 struct GLFWwindow;
 
 class Window {
     
+    static UInt vertexbuffer;
+    static UInt shader;
+    
 public:
     
-    static Size size;
+    static TestEngine::Size size;
+    
+#ifndef IOS
     static GLFWwindow *window;
+#endif
     
     static void initialize(int width = 1000, int height = 1000);
+    
+    static void update();
+    
+    static void sendData();
     
     static Float pixelToGLX(Float x);
     static Float pixelToGLY(Float y);

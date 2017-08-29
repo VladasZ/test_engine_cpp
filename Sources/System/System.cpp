@@ -13,6 +13,7 @@
 
 #ifdef APPLE
 #include <unistd.h>
+#include "CallObj.h"
 #endif
 
 void System::sleep(Float interval) {
@@ -49,3 +50,4 @@ UInt System::random(Int range) {
     return 0;
 #endif
 }
+

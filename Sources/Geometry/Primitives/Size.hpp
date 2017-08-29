@@ -10,12 +10,17 @@
 
 #include "Types.h"
 
-class Size {
+namespace TestEngine {
     
-public:
-    
-    Float width = 0, height = 0;
-    
-    Size() = default;
-    Size(Float width, Float height);
-};
+    class Size {
+        
+    public:
+        
+        Float width = 0, height = 0;
+        
+        Size() = default;
+        Size(Float width, Float height);
+    };
+}
+
+using namespace TestEngine;

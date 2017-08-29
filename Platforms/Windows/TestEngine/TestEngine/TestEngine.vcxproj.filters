@@ -78,6 +78,9 @@
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Point.cpp">
       <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Buffer.cpp">
+      <Filter>Source Files\Sources\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Point.hpp">
       <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Buffer.hpp">
+      <Filter>Source Files\Sources\GL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

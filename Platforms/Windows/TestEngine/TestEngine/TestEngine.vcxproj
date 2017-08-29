@@ -90,10 +90,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\GitHub\TestEngine\Sources;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glm;C:\Users\Vladas\Documents\dev\Sources\GL\Shaders;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry\Primitives;C:\Users\Vladas\Documents\dev\Sources\UI;C:\Users\Vladas\Documents\dev\Sources\Tools;C:\Users\Vladas\Documents\dev\Sources\System;C:\Users\Vladas\Documents\dev\Sources\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry;C:\Users\Vladas\Documents\dev\Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glew;C:\Users\Vladas\Documents\GitHub\TestEngine\Platforms\Windows\TestEngine\TestEngine\libs\glfw;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glew;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glfw;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Point.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Size.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\GL\Buffer.cpp" />
     <ClCompile Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.cpp" />
     <ClCompile Include="..\..\..\..\Sources\System\System.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Debug.cpp" />
@@ -139,6 +141,7 @@
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Point.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Primitives.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Size.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\GL\Buffer.hpp" />
     <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp" />
     <ClInclude Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.hpp" />
     <ClInclude Include="..\..\..\..\Sources\System\Platform.h" />

@@ -1,9 +1,9 @@
 precision highp float;
 
-//line
-out vec3 color;
+out vec4 color;
+in vec4 theColor;
 
 void main() {
     
-    color = vec3(1,1,0);
+    color = theColor;
 }

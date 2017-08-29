@@ -7,8 +7,39 @@
 //
 
 #include "Buffer.hpp"
+#include "GL.hpp"
 
 Buffer::Buffer(const int &size, const void *data) {
     
+    GLuint triangleBufferID;
+    glGenBuffers(1, &triangleBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, triangleBufferID);
+    glBufferData(GL_ARRAY_BUFFER, size,
+                 data, GL_STATIC_DRAW);
     
+    setVertexPointer(0);
+    setColorPointer(1);
+}
+
+
+void Buffer::setVertexPointer(const int &location) const {
+    
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location,
+                          3,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          7 * sizeof(GLfloat),
+                          0);
+}
+
+void Buffer::setColorPointer(const int &location) const {
+    
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location,
+                          4,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          7 * sizeof(GLfloat),
+                          (void *)(sizeof(GLfloat) * 3));
 }

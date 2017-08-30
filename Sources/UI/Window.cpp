@@ -13,6 +13,8 @@
 #include "Buffer.hpp"
 #include "Cube.hpp"
 #include "View.hpp"
+#include "Color.hpp"
+#include "Triangle.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
@@ -63,7 +65,7 @@ void Window::initialize(int width, int height) {
 
 void Window::sendData() {
     
-    Cube cube;
+    Triangle cube;
     
     auto vertexBuffer = Buffer(cube.vertexBufferSize,
                                cube.vertexBuffer,
@@ -76,8 +78,43 @@ void Window::sendData() {
                               cube.indexBuffer,
                               GL_ELEMENT_ARRAY_BUFFER);
     
+    Shader::colorVertices.use();
     
-    Shader::simple.use();
+//    Rect rect(0, 0, 1, 1);
+//    
+//    Shader::simple.use();
+//    
+//    float vertices[4 * 3] = { rect.origin.x, rect.origin.y, 0,
+//        rect.origin.x + rect.size.width, rect.origin.y, 0,
+//        rect.origin.x, rect.origin.y + rect.size.height, 0,
+//        rect.origin.x + rect.size.width, rect.origin.y + rect.size.height, 0};
+//    
+//    static GLushort indices[] = { 0, 1, 2, 3 };
+//    
+//    
+//    GLuint bufferID;
+//    glGenBuffers(1, &bufferID);
+//    glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 4 * 3,
+//                 vertices, GL_STATIC_DRAW);
+//    
+//    GLuint bufferID2;
+//    glGenBuffers(1, &bufferID2);
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferID2);
+//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort) * 4,
+//                 indices, GL_STATIC_DRAW);
+//    
+//    glEnableVertexAttribArray(0);
+//    glVertexAttribPointer(0,
+//                          3,
+//                          GL_FLOAT,
+//                          GL_FALSE,
+//                          3 * sizeof(float),
+//                          0);
+//    
+//    
+//    Color::blue.setToUniform(Shader::simple.uniformColor);
+
 }
 
 void Window::didTouch(const int &x, const int &y) {
@@ -86,6 +123,9 @@ void Window::didTouch(const int &x, const int &y) {
 }
 
 void Window::update() {
+    
+   // glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, 0);
+
     
     static float rotationX = 0.f;
     static float rotationY = 0.f;
@@ -102,12 +142,12 @@ void Window::update() {
     fullTranslation = rotate(fullTranslation, rotationY , vec3(0.0f, 1.0f, 0.0f));
     
     
-    GLint transformLocation = glGetUniformLocation(Shader::simple.program, "transformMatrix");
+    GLint transformLocation = glGetUniformLocation(Shader::colorVertices.program, "transformMatrix");
     
     glUniformMatrix4fv(transformLocation, 1, false, &fullTranslation[0][0]);
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glDrawElements(GL_TRIANGLES, 73, GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
 }
 
 #ifndef IOS

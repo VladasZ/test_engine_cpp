@@ -43,6 +43,8 @@
 		824FFB001F574414000C58DA /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824FFAFD1F57415B000C58DA /* Input.cpp */; };
 		824FFB031F574E4E000C58DA /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824FFB011F574E4E000C58DA /* Shader.cpp */; };
 		824FFB041F575110000C58DA /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824FFB011F574E4E000C58DA /* Shader.cpp */; };
+		824FFB071F575617000C58DA /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824FFB051F575617000C58DA /* Draw.cpp */; };
+		824FFB081F575661000C58DA /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824FFB051F575617000C58DA /* Draw.cpp */; };
 		8266A8071F45867000C55472 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8061F45867000C55472 /* main.cpp */; };
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
@@ -114,6 +116,8 @@
 		824FFAFE1F57415B000C58DA /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Input.hpp; sourceTree = "<group>"; };
 		824FFB011F574E4E000C58DA /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		824FFB021F574E4E000C58DA /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		824FFB051F575617000C58DA /* Draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
+		824FFB061F575617000C58DA /* Draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
 		8266A8031F45867000C55472 /* TestEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		8266A8061F45867000C55472 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8266A81A1F45879500C55472 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -246,6 +250,8 @@
 				824681BF1F459108003BA5F3 /* GL.hpp */,
 				82D4522B1F546B8E0086772F /* Buffer.hpp */,
 				82D4522A1F546B8E0086772F /* Buffer.cpp */,
+				824FFB061F575617000C58DA /* Draw.hpp */,
+				824FFB051F575617000C58DA /* Draw.cpp */,
 				824681BA1F4590BD003BA5F3 /* Shaders */,
 			);
 			path = GL;
@@ -589,6 +595,7 @@
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
+				824FFB081F575661000C58DA /* Draw.cpp in Sources */,
 				824B9E0A1F55F5BA00C39543 /* Vertex.cpp in Sources */,
 				824B9E081F55F5BA00C39543 /* View.cpp in Sources */,
 				824B9DF31F55F5A500C39543 /* Debug.cpp in Sources */,
@@ -617,6 +624,7 @@
 				82E76BF11F49A140009E2420 /* System.cpp in Sources */,
 				82D4522C1F546B8E0086772F /* Buffer.cpp in Sources */,
 				82D452231F545F620086772F /* Color.cpp in Sources */,
+				824FFB071F575617000C58DA /* Draw.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
 				82D452291F5466BF0086772F /* Polygon.cpp in Sources */,
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,

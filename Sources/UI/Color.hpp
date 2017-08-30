@@ -33,6 +33,8 @@ public:
     
     static Color random();
     
+    void setToUniform(UInt uniform) const;
+    
     string toString() const;
     
     static const Color black;

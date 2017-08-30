@@ -19,10 +19,13 @@ class Shader {
 public:
     
     static Shader simple;
+    static Shader colorVertices;
     
     static void initialize();
     
     UInt program = -1;
     
-    void use();
+    UInt uniformColor = -1;
+    
+    void use() const;
 };

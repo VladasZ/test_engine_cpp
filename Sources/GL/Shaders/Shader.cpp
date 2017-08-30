@@ -12,19 +12,25 @@
 #include "GL.hpp"
 
 Shader Shader::simple;
+Shader Shader::colorVertices;
 
 Shader::Shader(const string &vertexPath, const string &fragmentPath) {
     
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
+    
+    uniformColor = glGetUniformLocation(program, "uniformColor");
 }
 
-void Shader::use() {
+void Shader::use() const {
     
     glUseProgram(program);
 }
 
 void Shader::initialize() {
     
-    simple = Shader(FileManager::assetsDirectory() + "Shaders/vert.vert",
-                    FileManager::assetsDirectory() + "Shaders/frag.frag");
+    simple = Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
+                    FileManager::assetsDirectory() + "Shaders/simple.frag");
+    
+    colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
+                           FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
 }

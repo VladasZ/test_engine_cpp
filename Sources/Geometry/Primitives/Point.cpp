@@ -11,3 +11,8 @@
 Point::Point(Float x, Float y) : x(x), y(y) {
     
 }
+
+string Point::toString() const {
+    
+    return to_string(x) + " " + to_string(y);
+}

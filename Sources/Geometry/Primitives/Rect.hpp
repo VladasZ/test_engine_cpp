@@ -19,5 +19,6 @@ public:
     Size size;
     
     Rect() = default;
+    Rect(Float width, Float height);
     Rect(Float x, Float y, Float width, Float height);
 };

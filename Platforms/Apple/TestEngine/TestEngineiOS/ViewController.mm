@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #include "Window.hpp"
+#include "Input.hpp"
+#include "STL.hpp"
 
 @interface ViewController ()
 
@@ -41,6 +43,26 @@
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+  
+    UITouch *touch = [touches anyObject];
+    CGPoint position = [touch locationInView:self.view];
+    Input::touchBegan(position.x, position.y);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
 }
 
 @end

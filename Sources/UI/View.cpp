@@ -7,3 +7,16 @@
 //
 
 #include "View.hpp"
+
+View::View(Float width, Float height) : frame(Rect(width, height)) {
+    
+    
+}
+
+void View::draw() {
+    
+}
+
+void View::layout() {
+    
+}

@@ -25,4 +25,4 @@ using namespace glm;
     #include "glfw3.h"
 #endif
 
-#include "ShaderManager.hpp"
+#include "Shader.hpp"

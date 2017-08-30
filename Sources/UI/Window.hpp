@@ -9,15 +9,21 @@
 #pragma once
 
 #include "Size.hpp"
+#include "Point.hpp"
 #include "Types.h"
 #include "Platform.h"
+#include "Input.hpp"
 
+class View;
 struct GLFWwindow;
 
 class Window {
     
-    static UInt vertexbuffer;
-    static UInt shader;
+    friend Input;
+    
+    static View *rootView;
+    
+    static void touchBegan(const TestEngine::Point &position);
     
 public:
     
@@ -32,6 +38,8 @@ public:
     static void update();
     
     static void sendData();
+    
+    static void didTouch(const int &x, const int &y);
     
     static Float pixelToGLX(Float x);
     static Float pixelToGLY(Float y);

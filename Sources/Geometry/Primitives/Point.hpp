@@ -9,33 +9,41 @@
 #pragma once
 
 #include "Types.h"
+#include "STL.hpp"
 
-class Point {
+namespace TestEngine {
     
-public:
-    
+    class Point {
+        
+    public:
+        
 #pragma mark - Properties
-    
-    Float x = 0, y = 0;
-    
+        
+        Float x = 0, y = 0;
+        
 #pragma mark - Initialization
-    
-    Point() = default;
-    Point(Float x, Float y);
-
+        
+        Point() = default;
+        Point(Float x, Float y);
+        
 #pragma mark - Getters
-    
-    Float angle() const;
-    bool isZero() const;
-    Float length() const;
-    
-    Point normalized() const;
-    Float distanceTo(const Point &point) const;
-    Point withLength(Float length) const;
-    Float angleWith(const Point &point) const;
-    Float projectionTo(const Point &point) const;
-    
+        
+        Float angle() const;
+        bool isZero() const;
+        Float length() const;
+        
+        Point normalized() const;
+        Float distanceTo(const Point &point) const;
+        Point withLength(Float length) const;
+        Float angleWith(const Point &point) const;
+        Float projectionTo(const Point &point) const;
+        
+        string toString() const;
+        
 #pragma mark - Static properties
-    
-    static const Point one;
-};
+        
+        static const Point one;
+    };
+}
+
+using namespace TestEngine;

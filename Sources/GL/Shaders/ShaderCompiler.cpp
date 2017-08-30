@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ShaderManager.hpp"
+#include "ShaderCompiler.hpp"
 
 #include "GL.hpp"
 #include "STL.hpp"
@@ -14,7 +14,7 @@
 #include "Platform.h"
 #include "Debug.hpp"
 
-string ShaderManager::shaderVersion() {
+string ShaderCompiler::shaderVersion() {
     
 #if WINDOWS || MAC_OS
     return "#version 330 core";
@@ -26,13 +26,7 @@ string ShaderManager::shaderVersion() {
 #endif
 }
 
-GLuint ShaderManager::compileShaders() {
-        
-    return compileShaders(FileManager::assetsDirectory() + "Shaders/vert.vert",
-                          FileManager::assetsDirectory() + "Shaders/frag.frag");
-}
-
-GLuint ShaderManager::compileShaders(const string &vertexPath, const string &fragmentPath)
+GLuint ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath)
 {
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);

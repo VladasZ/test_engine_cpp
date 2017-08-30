@@ -12,17 +12,17 @@
 #include "Platform.h"
 #include "Buffer.hpp"
 #include "Cube.hpp"
+#include "View.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 
-UInt Window::shader;
-UInt Window::vertexbuffer;
-Size Window::size;
-
 #ifndef IOS
 GLFWwindow * Window::window;
 #endif
+
+Size Window::size;
+
 
 void Window::initialize(int width, int height) {
     
@@ -56,6 +56,8 @@ void Window::initialize(int width, int height) {
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
+    Shader::initialize();
+    
     sendData();
 }
 
@@ -74,11 +76,13 @@ void Window::sendData() {
                               cube.indexBuffer,
                               GL_ELEMENT_ARRAY_BUFFER);
     
-    shader = ShaderManager::compileShaders();
-    glUseProgram(shader);
     
+    Shader::simple.use();
+}
 
-
+void Window::didTouch(const int &x, const int &y) {
+    
+    cout << x << " " << y << endl;
 }
 
 void Window::update() {
@@ -98,7 +102,7 @@ void Window::update() {
     fullTranslation = rotate(fullTranslation, rotationY , vec3(0.0f, 1.0f, 0.0f));
     
     
-    GLint transformLocation = glGetUniformLocation(shader, "transformMatrix");
+    GLint transformLocation = glGetUniformLocation(Shader::simple.program, "transformMatrix");
     
     glUniformMatrix4fv(transformLocation, 1, false, &fullTranslation[0][0]);
     
@@ -138,4 +142,11 @@ Float Window::pixelFromGLY(Float y) {
     
     Float pixel = 2 / size.height;
     return (y + 1) / pixel;
+}
+
+#pragma mark - Touches
+
+void Window::touchBegan(const TestEngine::Point &position) {
+    
+    cout << position.toString() << endl;
 }

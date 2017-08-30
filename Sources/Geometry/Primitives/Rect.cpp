@@ -8,7 +8,15 @@
 
 #include "Rect.hpp"
 
+Rect::Rect(Float width, Float height)
+: size(Size(width, height))
+{
+    
+}
+
+
 Rect::Rect(Float x, Float y, Float width, Float height)
-: origin(Point(x, y)), size(Size(width, height)) {
+: origin(Point(x, y)), size(Size(width, height))
+{
     
 }

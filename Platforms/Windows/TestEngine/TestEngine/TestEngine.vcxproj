@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glm;C:\Users\Vladas\Documents\dev\Sources\GL\Shaders;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry\Primitives;C:\Users\Vladas\Documents\dev\Sources\UI;C:\Users\Vladas\Documents\dev\Sources\Tools;C:\Users\Vladas\Documents\dev\Sources\System;C:\Users\Vladas\Documents\dev\Sources\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry;C:\Users\Vladas\Documents\dev\Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Vladas\Documents\dev\Sources\UI\3D;C:\Users\Vladas\Documents\dev\Sources\UI\2D;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glm\gtc;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glm;C:\Users\Vladas\Documents\dev\Sources\GL\Shaders;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glfw\include;C:\Users\Vladas\Documents\dev\Platforms\Windows\TestEngine\TestEngine\libs\glew\include\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry\Primitives;C:\Users\Vladas\Documents\dev\Sources\UI;C:\Users\Vladas\Documents\dev\Sources\Tools;C:\Users\Vladas\Documents\dev\Sources\System;C:\Users\Vladas\Documents\dev\Sources\GL;C:\Users\Vladas\Documents\dev\Sources\Geometry;C:\Users\Vladas\Documents\dev\Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -126,24 +126,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Point.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Rect.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Size.cpp" />
     <ClCompile Include="..\..\..\..\Sources\GL\Buffer.cpp" />
-    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\Shader.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\GL\Shaders\ShaderCompiler.cpp" />
     <ClCompile Include="..\..\..\..\Sources\System\System.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Debug.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\FileManager.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\StringTools.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\UI\2D\Triangle.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\UI\3D\Cube.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\UI\Color.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\UI\Polygon.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\UI\Vertex.cpp" />
     <ClCompile Include="..\..\..\..\Sources\UI\Window.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Point.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Primitives.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Rect.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Size.hpp" />
     <ClInclude Include="..\..\..\..\Sources\GL\Buffer.hpp" />
     <ClInclude Include="..\..\..\..\Sources\GL\GL.hpp" />
-    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\ShaderManager.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\Shader.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\GL\Shaders\ShaderCompiler.hpp" />
     <ClInclude Include="..\..\..\..\Sources\System\Platform.h" />
     <ClInclude Include="..\..\..\..\Sources\System\System.hpp" />
     <ClInclude Include="..\..\..\..\Sources\System\Types.h" />
@@ -154,7 +163,14 @@
     <ClInclude Include="..\..\..\..\Sources\Tools\STL.h" />
     <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp" />
     <ClInclude Include="..\..\..\..\Sources\Tools\Tools.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\UI\2D\2D.h" />
+    <ClInclude Include="..\..\..\..\Sources\UI\2D\Triangle.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\UI\3D\3D.h" />
+    <ClInclude Include="..\..\..\..\Sources\UI\3D\Cube.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\UI\Color.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\UI\Polygon.hpp" />
     <ClInclude Include="..\..\..\..\Sources\UI\UI.hpp" />
+    <ClInclude Include="..\..\..\..\Sources\UI\Vertex.hpp" />
     <ClInclude Include="..\..\..\..\Sources\UI\Window.hpp" />
     <ClInclude Include="libs\glew\include\GL\eglew.h" />
     <ClInclude Include="libs\glew\include\GL\glew.h" />

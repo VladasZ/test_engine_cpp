@@ -16,6 +16,10 @@
 #include "CallObj.h"
 #endif
 
+#ifdef WINDOWS
+#include <Windows.h>
+#endif
+
 void System::sleep(Float interval) {
     
 #ifdef APPLE
@@ -23,7 +27,7 @@ void System::sleep(Float interval) {
 #endif
     
 #ifdef WINDOWS
-    NOT_IMPLEMENTED
+	Sleep(interval * 1000);
 #endif
 }
 

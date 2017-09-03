@@ -8,6 +8,7 @@
 
 #include "Color.hpp"
 #include "GL.hpp"
+#include "System.hpp"
 
 Color::Color(Color const &obj) : Color() {
     
@@ -53,7 +54,7 @@ Color Color::random() {
         Color::turquoise
     };
     
-    return colors[arc4random_uniform((int)colors.size())];
+    return colors[System::random((int)colors.size())];
 }
 
 string Color::toString() const {

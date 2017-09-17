@@ -12,6 +12,7 @@
 #include "Color.hpp"
 #include "Types.h"
 #include "Window.hpp"
+#include "STL.hpp"
 
 enum ViewAutolayoutMask {
     
@@ -41,7 +42,10 @@ public:
     Rect frame;
     Color color;
     ViewAutolayoutMask autolayoutMask = ViewAutolayoutMaskNone;
+    vector<View *> subviews;
     
     View() = default;
     View(Float width, Float height);
+    
+    void addSubview(View *view);
 };

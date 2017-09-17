@@ -20,6 +20,9 @@
 #include "Time.hpp"
 #include "System.hpp"
 #include <glm/gtc/matrix_transform.hpp>
+#include "Shader.hpp"
+#include "UI.hpp"
+#include "Buffer.hpp"
 
 void windowSizeChanged(GLFWwindow* window, int width, int height);
 
@@ -61,10 +64,6 @@ void Window::initialize(int width, int height) {
     
     glEnable(GL_DEPTH_TEST);
     
-    GLuint VAO;
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-    
     Shader::initialize();
     
     setup();
@@ -77,6 +76,7 @@ void Window::didTouch(const int &x, const int &y) {
 
 Buffer *triangleBuffer;
 Buffer *secondTriangleBuffer;
+Buffer *rectangleBuffer;
 
 void Window::setup() {
     
@@ -91,7 +91,15 @@ void Window::setup() {
         0.9f, -0.5f, 0.0f,  // Right
         0.45f, 0.5f, 0.0f   // Top
     };
+    
 
+    Rect rect(50, 50, 100, 100);
+    
+    
+    rectangleBuffer = new Buffer(rect.getData());
+    rectangleBuffer->drawMode = GL_TRIANGLE_STRIP;
+    
+    
     triangleBuffer = new Buffer(firstTriangle, sizeof(firstTriangle));
     secondTriangleBuffer = new Buffer(secondTriangle, sizeof(secondTriangle));
     
@@ -108,6 +116,9 @@ void Window::update() {
     
     Shader::simple.setUniformColor(Color::yellow);
     triangleBuffer->draw();
+    
+    Shader::simple.setUniformColor(Color::orange);
+    rectangleBuffer->draw();
 }
 
 
@@ -132,7 +143,7 @@ Float Window::pixelToGLX(Float x) {
 Float Window::pixelToGLY(Float y) {
     
     Float pixel = 2 / size.height;
-    return -1 + y * pixel;
+    return 1 - y * pixel;
 }
 
 Float Window::pixelFromGLX(Float x) {

@@ -24,6 +24,3 @@ using namespace glm;
     #include <glew.h>
     #include "glfw3.h"
 #endif
-
-#include "Shader.hpp"
-#include "Draw.hpp"

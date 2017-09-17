@@ -9,50 +9,59 @@
 #include "Buffer.hpp"
 #include "Debug.hpp"
 
-Buffer::Buffer(GLfloat *vertData, GLuint vertSize)
-:
-vertData(vertData), vertSize(vertSize)
-{
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+Buffer::Buffer(const BufferData &data) : data(data) {
     
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertSize, vertData, GL_STATIC_DRAW);
+    
+    glGenVertexArrays(1, &vertexArrayObject);
+    glGenBuffers(1, &vertexBufferObject);
+    glGenBuffers(1, &indexBufferObject);
+    
+    glBindVertexArray(vertexArrayObject);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
+    glBufferData(GL_ARRAY_BUFFER, data.vertSize, data.vertData, GL_STATIC_DRAW);
     glVertexAttribPointer(0,
                           3,
                           GL_FLOAT,
                           GL_FALSE,
                           3 * sizeof(GLfloat),
                           NULL);
-
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, data.indSize, data.indData, GL_STATIC_DRAW);
+    
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
 }
 
-Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
-       GLushort *indData,  GLuint indSize)
-:
-vertData(vertData), vertSize(vertSize),
-indData(indData), indSize(indSize)
-{
+Buffer::Buffer(GLfloat *vertData, GLuint vertSize) : Buffer(BufferData(vertData, vertSize)) {
+    
+}
 
-    NOT_IMPLEMENTED;
+Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
+               GLushort *indData,  GLuint indSize) : Buffer(BufferData(vertData, vertSize, indData, indSize)) {
+    
+}
+
+Buffer::~Buffer() {
+    
+    glDeleteVertexArrays(1, &vertexArrayObject);
+    glDeleteBuffers(1, &vertexBufferObject);
+    if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
 }
 
 void Buffer::draw() const {
  
-    glBindVertexArray(VAO);
+    glBindVertexArray(vertexArrayObject);
     
-    if (indSize == 0) {
+    if (data.indSize == 0) {
         
-        glDrawArrays(drawMode, 0, 3);
+        glDrawArrays(drawMode, 0, data.vertSize);
     }
     else {
         
-        NOT_IMPLEMENTED;
+        glDrawElements(drawMode, data.indSize, GL_UNSIGNED_SHORT, 0);
     }
     
     glBindVertexArray(0);
-
 }

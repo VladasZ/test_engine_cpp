@@ -10,26 +10,28 @@
 
 #include "Types.h"
 #include "GL.hpp"
+#include "BufferData.hpp"
 
 class Buffer {
     
-    GLfloat *vertData = nullptr;
-    GLuint vertSize = 0;
+    BufferData data;
     
-    GLushort *indData = nullptr;
-    GLuint indSize = 0;
-    
-    GLuint VBO;
-    GLuint VAO;
+    GLuint vertexArrayObject = 0;
+    GLuint vertexBufferObject = 0;
+    GLuint indexBufferObject = 0;
     
 public:
     
     GLenum drawMode = GL_TRIANGLES;
     
+    Buffer(const BufferData &data);
+    
     Buffer(GLfloat *vertData, GLuint vertSize);
     
     Buffer(GLfloat *vertData, GLuint vertSize,
            GLushort *indData,  GLuint indSize);
+
+    ~Buffer();
 
     void draw() const;
 };

@@ -9,15 +9,20 @@
 #include "Buffer.hpp"
 #include "GL.hpp"
 
-Buffer::Buffer(const int &size, const void *data, UInt type) {
+Buffer::Buffer(const int &size, const void *data, UInt type) : type(type) {
     
-    GLuint triangleBufferID;
-    glGenBuffers(1, &triangleBufferID);
-    glBindBuffer(type, triangleBufferID);
+    this->data = data;
+    
+    glGenBuffers(1, &id);
+    glBindBuffer(type, id);
     glBufferData(type, size,
                  data, GL_STATIC_DRAW);
 }
 
+void Buffer::bind() {
+    
+    glBindBuffer(type, id);
+}
 
 void Buffer::setVertexPointer(const int &location) const {
     

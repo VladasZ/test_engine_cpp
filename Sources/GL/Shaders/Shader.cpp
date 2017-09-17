@@ -34,3 +34,9 @@ void Shader::initialize() {
     colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
                            FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
 }
+
+void Shader::setUniformColor(const Color &color) const {
+    
+    color.setToUniform(uniformColor);
+}
+

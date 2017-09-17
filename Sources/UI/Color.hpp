@@ -9,8 +9,10 @@
 #pragma once
 
 #include "STL.hpp"
-#include "GL.hpp"
 #include "Types.h"
+#include <glm.hpp>
+
+using namespace glm;
 
 class Color {
     

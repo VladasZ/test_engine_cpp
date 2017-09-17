@@ -13,6 +13,7 @@
 #include "GL/GL.hpp"
 #include "Tools/Tools.hpp"
 #include "UI/UI.hpp"
+#include "Time.hpp"
 
 #ifdef WINDOWS
 #include <windows.h>

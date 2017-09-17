@@ -9,16 +9,21 @@
 #define GLEW_STATIC
 
 #include "TestEngine.h"
+#include <unistd.h>
 
 int main() {
     
     Window::initialize();
     
     do {
+        glfwPollEvents();
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
         Window::update();
         
+        
         glfwSwapBuffers(Window::window);
-        glfwPollEvents();
     }
     while (glfwGetKey(Window::window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
            glfwWindowShouldClose(Window::window) == 0);

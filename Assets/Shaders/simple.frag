@@ -1,11 +1,11 @@
 precision highp float;
 
-out vec4 color;
+out vec3 color;
 //in vec4 theColor;
 
 uniform vec4 uniformColor;
 
 void main() {
     
-    color = uniformColor;
+    color = vec3(1, 1, 1);
 }

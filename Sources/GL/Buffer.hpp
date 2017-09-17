@@ -12,11 +12,16 @@
 
 class Buffer {
     
+    const void *data = nullptr;
+    const UInt type;
+    UInt id;
+    
 public:
     
-    int id;
     
     Buffer(const int &size, const void *data, UInt type);
+    
+    void bind();
     
     void setVertexPointer(const int &location) const;
     void setColorPointer(const int &location) const;

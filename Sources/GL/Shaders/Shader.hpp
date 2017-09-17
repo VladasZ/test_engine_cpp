@@ -10,6 +10,7 @@
 
 #include "STL.hpp"
 #include "Types.h"
+#include "Color.hpp"
 
 class Shader {
     
@@ -28,4 +29,5 @@ public:
     UInt uniformColor = -1;
     
     void use() const;
+    void setUniformColor(const Color &color) const;
 };

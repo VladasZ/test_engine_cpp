@@ -33,12 +33,12 @@ public:
     static GLFWwindow *window;
 #endif
     
-    static void initialize(int width = 1000, int height = 1000);
+    static void initialize(int width = 500, int height = 500);
+    
+    static void setup();
     
     static void update();
-    
-    static void sendData();
-    
+        
     static void didTouch(const int &x, const int &y);
     
     static Float pixelToGLX(Float x);

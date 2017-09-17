@@ -8,6 +8,7 @@
 
 #include "Rect.hpp"
 #include "Window.hpp"
+#include "BufferData.hpp"
 
 Rect::Rect(Float width, Float height)
 : size(Size(width, height))
@@ -22,7 +23,7 @@ Rect::Rect(Float x, Float y, Float width, Float height)
     
 }
 
-BufferData Rect::getData() const {
+BufferData * Rect::getData() const {
     
     GLfloat rect[] = {
         Window::pixelToGLX(origin.x),              Window::pixelToGLY(origin.y),               0.0f,
@@ -33,6 +34,6 @@ BufferData Rect::getData() const {
     
     GLushort indices[] = { 0, 1, 2, 3 };
     
-    return BufferData(rect,    sizeof(rect),
-                      indices, sizeof(indices));
+    return new BufferData(rect,    sizeof(rect),
+                         indices, sizeof(indices));
 }

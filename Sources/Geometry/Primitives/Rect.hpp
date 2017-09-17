@@ -10,7 +10,8 @@
 
 #include "Point.hpp"
 #include "Size.hpp"
-#include "BufferData.hpp"
+
+class BufferData;
 
 class Rect {
     
@@ -23,5 +24,5 @@ public:
     Rect(Float width, Float height);
     Rect(Float x, Float y, Float width, Float height);
     
-    BufferData getData() const;
+    BufferData *getData() const;
 };

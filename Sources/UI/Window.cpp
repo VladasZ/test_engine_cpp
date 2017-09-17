@@ -31,6 +31,7 @@ GLFWwindow * Window::window;
 #endif
 
 Size Window::size;
+View * Window::rootView;
 
 void Window::initialize(int width, int height) {
     
@@ -74,36 +75,21 @@ void Window::didTouch(const int &x, const int &y) {
     cout << x << " " << y << endl;
 }
 
-Buffer *triangleBuffer;
-Buffer *secondTriangleBuffer;
-Buffer *rectangleBuffer;
 
 void Window::setup() {
-    
-    GLfloat firstTriangle[] = {
-        -0.9f, -0.5f, 0.0f,  // Left
-        -0.0f, -0.5f, 0.0f,  // Right
-        -0.45f, 0.5f, 0.0f,  // Top
-    };
-    
-    GLfloat secondTriangle[] = {
-        0.0f, -0.5f, 0.0f,  // Left
-        0.9f, -0.5f, 0.0f,  // Right
-        0.45f, 0.5f, 0.0f   // Top
-    };
-    
+   
+    rootView = new View(size.width, size.height);
+    rootView->color = Color::white;
 
-    Rect rect(50, 50, 100, 100);
+
+    View *view1 = new View(100, 100);
+    view1->color = Color::orange;
     
+    View *view2 = new View(200, 200, 10, 10);
+    view2->color = Color::red;
     
-    rectangleBuffer = new Buffer(rect.getData());
-    rectangleBuffer->drawMode = GL_TRIANGLE_STRIP;
-    
-    
-    triangleBuffer = new Buffer(firstTriangle, sizeof(firstTriangle));
-    secondTriangleBuffer = new Buffer(secondTriangle, sizeof(secondTriangle));
-    
-    Shader::simple.use();
+    rootView->addSubview(view1);
+    rootView->addSubview(view2);
 
 }
 
@@ -111,14 +97,7 @@ void Window::update() {
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    Shader::simple.setUniformColor(Color::green);
-    secondTriangleBuffer->draw();
-    
-    Shader::simple.setUniformColor(Color::yellow);
-    triangleBuffer->draw();
-    
-    Shader::simple.setUniformColor(Color::orange);
-    rectangleBuffer->draw();
+    rootView->draw();
 }
 
 

@@ -26,11 +26,15 @@ enum ViewAutolayoutMask {
     ViewAutolayoutMaskCenterVertically   = 1 >> 6
 };
 
+class Buffer;
+
 class View {
     
 private:
     
     friend Window;
+    
+    Buffer *buffer;
     
     void draw();
     void layout();
@@ -45,6 +49,7 @@ public:
     vector<View *> subviews;
     
     View() = default;
+    View(Float x, Float y, Float width, Float height);
     View(Float width, Float height);
     
     void addSubview(View *view);

@@ -18,10 +18,7 @@ int main() {
     do {
         glfwPollEvents();
         
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
         Window::update();
-        
         
         glfwSwapBuffers(Window::window);
     }

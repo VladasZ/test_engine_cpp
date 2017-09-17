@@ -75,43 +75,25 @@ void Window::didTouch(const int &x, const int &y) {
     cout << x << " " << y << endl;
 }
 
-GLuint VBOs[2], VAOs[2];
-
+Buffer *triangleBuffer;
+Buffer *secondTriangleBuffer;
 
 void Window::setup() {
     
-    // Set up vertex data (and buffer(s)) and attribute pointers
-    // We add a new set of vertices to form a second triangle (a total of 6 vertices); the vertex attribute configuration remains the same (still one 3-float position vector per vertex)
     GLfloat firstTriangle[] = {
         -0.9f, -0.5f, 0.0f,  // Left
         -0.0f, -0.5f, 0.0f,  // Right
         -0.45f, 0.5f, 0.0f,  // Top
     };
+    
     GLfloat secondTriangle[] = {
         0.0f, -0.5f, 0.0f,  // Left
         0.9f, -0.5f, 0.0f,  // Right
         0.45f, 0.5f, 0.0f   // Top
     };
-    glGenVertexArrays(2, VAOs);
-    glGenBuffers(2, VBOs);
-    // ================================
-    // First Triangle setup
-    // ===============================
-    glBindVertexArray(VAOs[0]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);	// Vertex attributes stay the same
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
-    // ================================
-    // Second Triangle setup
-    // ===============================
-    glBindVertexArray(VAOs[1]);	// Note that we bind to a different VAO now
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);	// And a different VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0); // Because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out.
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
+
+    triangleBuffer = new Buffer(firstTriangle, sizeof(firstTriangle));
+    secondTriangleBuffer = new Buffer(secondTriangle, sizeof(secondTriangle));
     
     Shader::simple.use();
 
@@ -119,14 +101,13 @@ void Window::setup() {
 
 void Window::update() {
     
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
     Shader::simple.setUniformColor(Color::green);
-    glBindVertexArray(VAOs[0]);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    secondTriangleBuffer->draw();
     
     Shader::simple.setUniformColor(Color::yellow);
-    glBindVertexArray(VAOs[1]);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
+    triangleBuffer->draw();
 }
 
 

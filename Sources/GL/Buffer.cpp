@@ -7,41 +7,52 @@
 //
 
 #include "Buffer.hpp"
-#include "GL.hpp"
+#include "Debug.hpp"
 
-Buffer::Buffer(const int &size, const void *data, UInt type) : type(type) {
+Buffer::Buffer(GLfloat *vertData, GLuint vertSize)
+:
+vertData(vertData), vertSize(vertSize)
+{
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
     
-    this->data = data;
-    
-    glGenBuffers(1, &id);
-    glBindBuffer(type, id);
-    glBufferData(type, size,
-                 data, GL_STATIC_DRAW);
-}
-
-void Buffer::bind() {
-    
-    glBindBuffer(type, id);
-}
-
-void Buffer::setVertexPointer(const int &location) const {
-    
-    glEnableVertexAttribArray(location);
-    glVertexAttribPointer(location,
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertSize, vertData, GL_STATIC_DRAW);
+    glVertexAttribPointer(0,
                           3,
                           GL_FLOAT,
                           GL_FALSE,
-                          7 * sizeof(GLfloat),
-                          0);
+                          3 * sizeof(GLfloat),
+                          NULL);
+
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
 }
 
-void Buffer::setColorPointer(const int &location) const {
+Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
+       GLushort *indData,  GLuint indSize)
+:
+vertData(vertData), vertSize(vertSize),
+indData(indData), indSize(indSize)
+{
+
+    NOT_IMPLEMENTED;
+}
+
+void Buffer::draw() const {
+ 
+    glBindVertexArray(VAO);
     
-    glEnableVertexAttribArray(location);
-    glVertexAttribPointer(location,
-                          4,
-                          GL_FLOAT,
-                          GL_FALSE,
-                          7 * sizeof(GLfloat),
-                          (void *)(sizeof(GLfloat) * 3));
+    if (indSize == 0) {
+        
+        glDrawArrays(drawMode, 0, 3);
+    }
+    else {
+        
+        NOT_IMPLEMENTED;
+    }
+    
+    glBindVertexArray(0);
+
 }

@@ -9,20 +9,27 @@
 #pragma once
 
 #include "Types.h"
+#include "GL.hpp"
 
 class Buffer {
     
-    const void *data = nullptr;
-    const UInt type;
-    UInt id;
+    GLfloat *vertData = nullptr;
+    GLuint vertSize = 0;
+    
+    GLushort *indData = nullptr;
+    GLuint indSize = 0;
+    
+    GLuint VBO;
+    GLuint VAO;
     
 public:
     
+    GLenum drawMode = GL_TRIANGLES;
     
-    Buffer(const int &size, const void *data, UInt type);
+    Buffer(GLfloat *vertData, GLuint vertSize);
     
-    void bind();
-    
-    void setVertexPointer(const int &location) const;
-    void setColorPointer(const int &location) const;
+    Buffer(GLfloat *vertData, GLuint vertSize,
+           GLushort *indData,  GLuint indSize);
+
+    void draw() const;
 };

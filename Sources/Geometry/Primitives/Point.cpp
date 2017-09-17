@@ -16,3 +16,14 @@ string Point::toString() const {
     
     return to_string(x) + " " + to_string(y);
 }
+
+Point Point::operator +(const Point &point) const {
+    
+    return Point(x + point.x, y + point.y);
+}
+
+void Point::operator +=(const Point &point) {
+    
+    x += point.x;
+    y += point.y;
+}

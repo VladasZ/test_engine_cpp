@@ -40,6 +40,9 @@ namespace TestEngine {
         
         string toString() const;
         
+        Point operator +(const Point &point) const;
+        void operator +=(const Point &point);
+        
 #pragma mark - Static properties
         
         static const Point one;

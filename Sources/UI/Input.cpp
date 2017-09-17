@@ -17,6 +17,7 @@ void Input::touchBegan(double x, double y) {
 
 void Input::touchMoved(double x, double y) {
     
+    Window::touchMoved(Point(x, y));
 }
 
 void Input::touchEnded(double x, double y) {

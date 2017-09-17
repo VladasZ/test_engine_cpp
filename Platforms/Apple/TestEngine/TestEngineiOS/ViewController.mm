@@ -30,6 +30,12 @@
     Window::update();
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    Window::sizeChanged(0, self.view.frame.size.width, self.view.frame.size.height);
+}
+
 - (void)setup {
     
     self.preferredFramesPerSecond = 60;
@@ -63,6 +69,9 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    UITouch *touch = [touches anyObject];
+    CGPoint position = [touch locationInView:self.view];
+    Input::touchMoved(position.x, position.y);
 }
 
 @end

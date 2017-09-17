@@ -24,7 +24,7 @@
 #include "UI.hpp"
 #include "Buffer.hpp"
 
-void windowSizeChanged(GLFWwindow* window, int width, int height);
+void sizeChanged(GLFWwindow* window, int width, int height);
 
 #ifndef IOS
 GLFWwindow * Window::window;
@@ -56,7 +56,7 @@ void Window::initialize(int width, int height) {
     if (window == nullptr) { Error("GLFW window creation failed"); return; }
     
     glfwMakeContextCurrent(window);
-    glfwSetWindowSizeCallback(window, windowSizeChanged);
+    glfwSetWindowSizeCallback(window, sizeChanged);
     
     glewExperimental = GL_TRUE;
     if (glewInit()) { Error("Glew initialization failed"); }
@@ -76,42 +76,48 @@ void Window::didTouch(const int &x, const int &y) {
 }
 
 
+View *view;
+View *view2;
+View *view3;
+
 void Window::setup() {
+    
+    view = new View(100, 100);
+    view->color = Color::green;
+    view->autolayoutMask = ViewAutolayoutMaskStickToRight | ViewAutolayoutMaskStickToBottom;
+    view->layout();
    
-    rootView = new View(size.width, size.height);
-    rootView->color = Color::white;
-
-
-    View *view1 = new View(100, 100);
-    view1->color = Color::orange;
+    view2 = new View(100, 100);
+    view2->color = Color::yellow;
+    view2->autolayoutMask = ViewAutolayoutMaskStickToBottom | ViewAutolayoutMaskCenterHorizontally;
+    view2->layout();
     
-    View *view2 = new View(200, 200, 10, 10);
-    view2->color = Color::red;
-    
-    rootView->addSubview(view1);
-    rootView->addSubview(view2);
-
+    view3 = new View(100, 100);
+    view3->color = Color::purple;
+    view3->autolayoutMask = ViewAutolayoutMaskStickToLeft | ViewAutolayoutMaskStickToBottom;
+    view3->layout();
 }
 
 void Window::update() {
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    rootView->draw();
+    view->draw();
+    view2->draw();
+    view3->draw();
+    
+    view->layout();
+    view2->layout();
+    view3->layout();
 }
 
-
-#ifndef IOS
-
-void windowSizeChanged(GLFWwindow* window, int width, int height) {
+void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     
     cout << "Window size changed to: " << width << " " << height << endl;
     
     Window::size.width  = width;
     Window::size.height = height;
 }
-
-#endif
 
 Float Window::pixelToGLX(Float x) {
     
@@ -141,5 +147,10 @@ Float Window::pixelFromGLY(Float y) {
 
 void Window::touchBegan(const TestEngine::Point &position) {
     
+    
     cout << position.toString() << endl;
+}
+
+void Window::touchMoved(const TestEngine::Point &position) {
+    
 }

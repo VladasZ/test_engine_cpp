@@ -32,6 +32,8 @@ public:
            GLushort *indData,  GLuint indSize);
 
     ~Buffer();
+    
+    void setData(const BufferData &data);
 
     void draw() const;
 };

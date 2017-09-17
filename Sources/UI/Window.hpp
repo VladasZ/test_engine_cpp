@@ -24,6 +24,7 @@ class Window {
     static View *rootView;
     
     static void touchBegan(const TestEngine::Point &position);
+    static void touchMoved(const TestEngine::Point &position);
     
 public:
     
@@ -40,6 +41,8 @@ public:
     static void update();
         
     static void didTouch(const int &x, const int &y);
+    
+    static void sizeChanged(GLFWwindow* window, int width, int height);
     
     static Float pixelToGLX(Float x);
     static Float pixelToGLY(Float y);

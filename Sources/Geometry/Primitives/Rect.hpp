@@ -10,6 +10,7 @@
 
 #include "Point.hpp"
 #include "Size.hpp"
+#include "STL.hpp"
 
 class BufferData;
 
@@ -23,6 +24,8 @@ public:
     Rect() = default;
     Rect(Float width, Float height);
     Rect(Float x, Float y, Float width, Float height);
+    
+    string toString() const;
     
     BufferData *getData() const;
 };

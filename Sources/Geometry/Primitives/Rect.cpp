@@ -37,3 +37,10 @@ BufferData * Rect::getData() const {
     return new BufferData(rect,    sizeof(rect),
                          indices, sizeof(indices));
 }
+
+string Rect::toString() const {
+    
+    return "x: " + to_string(origin.x) + " y: " + to_string(origin.y) +
+    " width: " + to_string(size.width) + " height: " + to_string(size.width);
+}
+

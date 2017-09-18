@@ -43,9 +43,4 @@ public:
     static void didTouch(const int &x, const int &y);
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
-    
-    static Float pixelToGLX(Float x);
-    static Float pixelToGLY(Float y);
-    static Float pixelFromGLX(Float x);
-    static Float pixelFromGLY(Float y);
 };

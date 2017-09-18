@@ -26,8 +26,8 @@ void View::draw() {
     for (int i = (int)subviews.size() - 1; i >= 0; i--)
         subviews[i]->draw();
     
-    Shader::simple.use();
-    Shader::simple.setUniformColor(color);
+    Shader::ui.use();
+    Shader::ui.setUniformColor(color);
     buffer->draw();
 }
 

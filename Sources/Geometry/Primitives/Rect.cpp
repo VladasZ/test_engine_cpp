@@ -26,10 +26,10 @@ Rect::Rect(Float x, Float y, Float width, Float height)
 BufferData * Rect::getData() const {
     
     GLfloat rect[] = {
-        Window::pixelToGLX(origin.x),              Window::pixelToGLY(origin.y),               0.0f,
-        Window::pixelToGLX(origin.x),              Window::pixelToGLY(size.height + origin.y), 0.0f,
-        Window::pixelToGLX(size.width + origin.x), Window::pixelToGLY(size.height + origin.y), 0.0f,
-        Window::pixelToGLX(size.width + origin.x), Window::pixelToGLY(origin.y),               0.0f
+        origin.x,              origin.y,               0.0f,
+        origin.x,              size.height + origin.y, 0.0f,
+        size.width + origin.x, size.height + origin.y, 0.0f,
+        size.width + origin.x, origin.y,               0.0f
     };
     
     GLushort indices[] = { 0, 1, 2, 3 };

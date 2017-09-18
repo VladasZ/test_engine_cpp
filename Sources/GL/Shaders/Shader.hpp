@@ -20,6 +20,7 @@ class Shader {
 public:
     
     static Shader simple;
+    static Shader ui;
     static Shader colorVertices;
     
     static void initialize();
@@ -27,7 +28,10 @@ public:
     UInt program = -1;
     
     UInt uniformColor = -1;
+    UInt uniformProjection = -1;
     
     void use() const;
+    static void setupUiTranslation();
     void setUniformColor(const Color &color) const;
+    void setUniformProjectionMatrix(const mat4 &projection) const;
 };

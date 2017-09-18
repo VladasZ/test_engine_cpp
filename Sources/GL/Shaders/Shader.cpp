@@ -10,8 +10,13 @@
 #include "FileManager.hpp"
 #include "ShaderCompiler.hpp"
 #include "GL.hpp"
+#include "Window.hpp"
+#include "Log.hpp"
+#include <glm/gtc/matrix_transform.hpp>
+
 
 Shader Shader::simple;
+Shader Shader::ui;
 Shader Shader::colorVertices;
 
 Shader::Shader(const string &vertexPath, const string &fragmentPath) {
@@ -19,6 +24,7 @@ Shader::Shader(const string &vertexPath, const string &fragmentPath) {
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
     
     uniformColor = glGetUniformLocation(program, "uniformColor");
+    uniformProjection = glGetUniformLocation(program, "uniformProjection");
 }
 
 void Shader::use() const {
@@ -31,12 +37,27 @@ void Shader::initialize() {
     simple = Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
                     FileManager::assetsDirectory() + "Shaders/simple.frag");
     
+    ui = Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
+                FileManager::assetsDirectory() + "Shaders/ui.frag");
+    
     colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
                            FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
+}
+
+void Shader::setupUiTranslation() {
+    
+    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
+    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
+    Shader::ui.setUniformProjectionMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) const {
     
     color.setToUniform(uniformColor);
+}
+
+void Shader::setUniformProjectionMatrix(const mat4 &projection) const {
+    
+    glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]);
 }
 

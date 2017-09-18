@@ -96,6 +96,9 @@ void Window::setup() {
     view3->color = Color::purple;
     view3->autolayoutMask = ViewAutolayoutMaskStickToLeft | ViewAutolayoutMaskStickToBottom;
     view3->layout();
+    
+    Shader::ui.use();
+    Shader::setupUiTranslation();
 }
 
 void Window::update() {
@@ -117,30 +120,8 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     
     Window::size.width  = width;
     Window::size.height = height;
-}
-
-Float Window::pixelToGLX(Float x) {
     
-    Float pixel = 2 / size.width;
-    return -1 + x * pixel;
-}
-
-Float Window::pixelToGLY(Float y) {
-    
-    Float pixel = 2 / size.height;
-    return 1 - y * pixel;
-}
-
-Float Window::pixelFromGLX(Float x) {
-    
-    Float pixel = 2 / size.width;
-    return (x + 1) / pixel;
-}
-
-Float Window::pixelFromGLY(Float y) {
-    
-    Float pixel = 2 / size.height;
-    return (y + 1) / pixel;
+    Shader::setupUiTranslation();
 }
 
 #pragma mark - Touches

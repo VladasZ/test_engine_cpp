@@ -29,15 +29,19 @@ class Buffer;
 class Window;
 
 class View {
-    
-private:
-    
+        
     friend Window;
+    
+protected:
     
     Buffer *buffer;
     
-    void draw();
+    void drawSubviews() const;
+    virtual void draw() const;
     void layout();
+    
+    virtual BufferData getBufferData();
+    virtual void setupBuffer();
     
 public:
     

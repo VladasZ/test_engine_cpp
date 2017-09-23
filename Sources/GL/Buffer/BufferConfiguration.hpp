@@ -28,8 +28,6 @@ class BufferConfiguration {
 public:
     
     BufferConfiguration(UInt firstParam, UInt secondParam = 0, UInt thirdParam = 0);
-    ~BufferConfiguration();
-    
-    
+    ~BufferConfiguration();    
 };
 

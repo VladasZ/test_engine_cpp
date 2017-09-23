@@ -29,7 +29,8 @@ public:
     static Shader ui;
     static Shader colorVertices;
     static Shader texture;
-    
+    static Shader uiTexture;
+
     static void initialize();
     
     UInt program = -1;

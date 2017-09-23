@@ -38,10 +38,10 @@ UInt BufferConfiguration::strideForIndex(int index) const {
     
     UInt stride = vertexSize;
     
-    for (int i = size - index - 1; i >= 0; i--)
+    for (int i = size - 1; i >= index; i--)
         stride -= configuration[i];
     
-    return stride + 1;
+    return stride;
 }
 
 void BufferConfiguration::setPointers() const {
@@ -49,9 +49,7 @@ void BufferConfiguration::setPointers() const {
     for (int i = 0; i < size; i++) {
         
         UInt attribureSize = configuration[i];
-        
-        cout << strideForIndex(i) << " in poi" << endl;
-        
+                
         glVertexAttribPointer(i,
                               attribureSize,
                               GL_FLOAT,

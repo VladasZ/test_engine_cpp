@@ -13,31 +13,37 @@
 
 View::View(Float x, Float y, Float width, Float height) : frame(Rect(x, y, width, height)) {
     
-    buffer = new Buffer(*frame.getData(), BufferConfiguration(3));
-    buffer->drawMode = GL_TRIANGLE_STRIP;
+    setupBuffer();
 }
 
 View::View(Float width, Float height) : View(0, 0, width, height) {
     
 }
 
-void View::draw() {
+BufferData View::getBufferData() {
+    
+    return *frame.getData();
+}
+
+void View::setupBuffer() {
+    
+    buffer = new Buffer(getBufferData(), BufferConfiguration(2));
+}
+
+void View::drawSubviews() const {
     
     for (int i = (int)subviews.size() - 1; i >= 0; i--)
         subviews[i]->draw();
+}
+
+void View::draw() const {
+    
+    drawSubviews();
         
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
     buffer->draw();
 }
-
-//AutolayoutStickToLeft        = 1 >> 0,
-//AutolayoutStickToRight       = 1 >> 1,
-//AutolayoutStickToTop         = 1 >> 2,
-//AutolayoutStickToBottom      = 1 >> 3,
-//AutolayoutCenter             = 1 >> 4,
-//AutolayoutCenterHorizontally = 1 >> 5,
-//AutolayoutCenterVertically   = 1 >> 6
 
 void View::layout() {
     
@@ -73,13 +79,16 @@ void View::layout() {
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
 
     this->frame = layoutFrame;
-    buffer->setData(*layoutFrame.getData());
+    
+    setupBuffer();
+    
+    //buffer->setData(getBufferData());
 }
 
 void View::setFrame(const Rect &frame) {
     
     this->frame = frame;
-    buffer->setData(*frame.getData());
+    buffer->setData(getBufferData());
     layout();
 }
 

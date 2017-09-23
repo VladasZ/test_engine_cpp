@@ -62,6 +62,7 @@
 		82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		82B5A0561F76AC9D00226B0F /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0541F76AC9D00226B0F /* Image.cpp */; };
 		82B5A05A1F76C45000226B0F /* BufferConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */; };
+		82B5A05E1F76DE4500226B0F /* ImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A05C1F76DE4500226B0F /* ImageView.cpp */; };
 		82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
 		82BE33141F5619C000AD91AC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE33111F5619C000AD91AC /* Cube.cpp */; };
 		82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
@@ -163,6 +164,8 @@
 		82B5A0551F76AC9D00226B0F /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BufferConfiguration.cpp; sourceTree = "<group>"; };
 		82B5A0591F76C45000226B0F /* BufferConfiguration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BufferConfiguration.hpp; sourceTree = "<group>"; };
+		82B5A05C1F76DE4500226B0F /* ImageView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageView.cpp; sourceTree = "<group>"; };
+		82B5A05D1F76DE4500226B0F /* ImageView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageView.hpp; sourceTree = "<group>"; };
 		82BE330C1F5619C000AD91AC /* 2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2D.h; sourceTree = "<group>"; };
 		82BE330D1F5619C000AD91AC /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
 		82BE330E1F5619C000AD91AC /* Triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
@@ -466,6 +469,17 @@
 			path = Buffer;
 			sourceTree = "<group>";
 		};
+		82B5A05B1F76DE2F00226B0F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82D4521C1F545D730086772F /* View.hpp */,
+				82D4521B1F545D730086772F /* View.cpp */,
+				82B5A05D1F76DE4500226B0F /* ImageView.hpp */,
+				82B5A05C1F76DE4500226B0F /* ImageView.cpp */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		82BE330B1F5619C000AD91AC /* 2D */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,13 +505,12 @@
 		82E222251F4A294D002C1F17 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				82B5A05B1F76DE2F00226B0F /* Views */,
 				82E222291F4A2988002C1F17 /* UI.hpp */,
 				82E222271F4A296D002C1F17 /* Window.hpp */,
 				82E222261F4A296D002C1F17 /* Window.cpp */,
 				824FFAFE1F57415B000C58DA /* Input.hpp */,
 				824FFAFD1F57415B000C58DA /* Input.cpp */,
-				82D4521C1F545D730086772F /* View.hpp */,
-				82D4521B1F545D730086772F /* View.cpp */,
 				82D452221F545F620086772F /* Color.hpp */,
 				82D452211F545F620086772F /* Color.cpp */,
 				82D452251F54663F0086772F /* Vertex.hpp */,
@@ -711,6 +724,7 @@
 				82B5A05A1F76C45000226B0F /* BufferConfiguration.cpp in Sources */,
 				82D452291F5466BF0086772F /* Polygon.cpp in Sources */,
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
+				82B5A05E1F76DE4500226B0F /* ImageView.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,

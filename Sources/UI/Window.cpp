@@ -22,6 +22,7 @@
 #include "Buffer.hpp"
 #include "Image.hpp"
 #include "FileManager.hpp"
+#include "ImageView.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -76,6 +77,8 @@ void Window::didTouch(const int &x, const int &y) {
 }
 
 View *view;
+ImageView *imageView;
+
 GLuint texture;
 
 Buffer *image;
@@ -83,11 +86,11 @@ Buffer *image;
 void Window::setup() {
     
     GLfloat vertices[] = {
-        // Positions          // Colors           // Texture Coords
-         0.5f,  0.5f, 0.0f,    1.0f, 0.0f, 0.0f,   1.0f, 0.0f, // Top Right
-         0.5f, -0.5f, 0.0f,    0.0f, 1.0f, 0.0f,   1.0f, 1.0f, // Bottom Right
-        -0.5f, -0.5f, 0.0f,    0.0f, 0.0f, 1.0f,   0.0f, 1.0f, // Bottom Left
-        -0.5f,  0.5f, 0.0f,    1.0f, 1.0f, 0.0f,   0.0f, 0.0f  // Top Left
+        // Positions           // Texture Coords
+         0.5f,  0.5f, 0.0f,     1.0f, 0.0f, // Top Right
+         0.5f, -0.5f, 0.0f,     1.0f, 1.0f, // Bottom Right
+        -0.5f, -0.5f, 0.0f,     0.0f, 1.0f, // Bottom Left
+        -0.5f,  0.5f, 0.0f,     0.0f, 0.0f  // Top Left
     };
     
     GLushort indices[] = {  // Note that we start from 0!
@@ -96,9 +99,13 @@ void Window::setup() {
     
     image = new Buffer(vertices, sizeof(vertices),
                        indices, sizeof(indices),
-                       BufferConfiguration(3, 3, 2));
+                       BufferConfiguration(3, 2));
     
     view = new View(0, 0, 100, 100);
+    
+    imageView = new ImageView(200, 0, 100, 100);
+    imageView->setImage(&Image::test);
+    
 }
 
 void Window::update() {
@@ -113,6 +120,8 @@ void Window::update() {
     Shader::texture.use();
 
     image->draw();
+    imageView->draw();
+
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

@@ -19,8 +19,10 @@ class Image {
     
 public:
     
+    static Image cat;
+    static Image slow;
     static Image test;
-    
+
     static void initialize();
   
     int width, height;
@@ -28,4 +30,5 @@ public:
     Image(const string& file);
     
     void bind() const;
+    void unbind() const;
 };

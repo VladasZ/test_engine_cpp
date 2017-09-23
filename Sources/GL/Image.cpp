@@ -10,6 +10,8 @@
 #include "SOIL.h"
 #include "FileManager.hpp"
 
+Image Image::cat;
+Image Image::slow;
 Image Image::test;
 
 Image::Image(const string &file) {
@@ -41,7 +43,14 @@ void Image::bind() const {
     glBindTexture(GL_TEXTURE_2D, id);
 }
 
+void Image::unbind() const {
+    
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void Image::initialize() {
     
+    cat  = Image("cat.jpg");
+    slow = Image("slow.jpg");
     test = Image("test.png");
 }

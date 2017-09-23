@@ -12,16 +12,23 @@
 #include "Types.h"
 #include "Color.hpp"
 
+class Window;
+
 class Shader {
     
     Shader() = default;
     Shader(const string &vertexPath, const string &fragmentPath);
+    
+    static void setupUiTranslation();
+    
+    friend Window;
     
 public:
     
     static Shader simple;
     static Shader ui;
     static Shader colorVertices;
+    static Shader texture;
     
     static void initialize();
     
@@ -31,7 +38,6 @@ public:
     UInt uniformProjection = -1;
     
     void use() const;
-    static void setupUiTranslation();
     void setUniformColor(const Color &color) const;
     void setUniformProjectionMatrix(const mat4 &projection) const;
 };

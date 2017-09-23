@@ -13,16 +13,16 @@
 #include "Types.h"
 #include "STL.hpp"
 
-enum ViewAutolayoutMask {
+enum Autolayout {
     
-    ViewAutolayoutMaskNone               = 0,
-    ViewAutolayoutMaskStickToLeft        = 1 << 0,
-    ViewAutolayoutMaskStickToRight       = 1 << 1,
-    ViewAutolayoutMaskStickToTop         = 1 << 2,
-    ViewAutolayoutMaskStickToBottom      = 1 << 3,
-    ViewAutolayoutMaskCenter             = 1 << 4,
-    ViewAutolayoutMaskCenterHorizontally = 1 << 5,
-    ViewAutolayoutMaskCenterVertically   = 1 << 6
+   None               = 0,
+   StickToLeft        = 1 << 0,
+   StickToRight       = 1 << 1,
+   StickToTop         = 1 << 2,
+   StickToBottom      = 1 << 3,
+   Center             = 1 << 4,
+   CenterHorizontally = 1 << 5,
+   CenterVertically   = 1 << 6
 };
 
 class Buffer;
@@ -45,7 +45,7 @@ public:
     
     Rect frame;
     Color color;
-    int autolayoutMask = ViewAutolayoutMaskNone;
+    int autolayoutMask = None;
     vector<View *> subviews;
     
     View() = default;

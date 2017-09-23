@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CA7D7FB1F7018C500113190 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
+		7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
+		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */; };
 		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
 		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
 		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
 		821B20B61F582E5700933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
 		821B20B71F582F1A00933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
-		8222478B1F6E954300A1B769 /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */; };
 		8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		8222478F1F6F021200A1B769 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681B71F458F9C003BA5F3 /* OpenGL.framework */; };
@@ -54,6 +56,11 @@
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
 		82A78F641F4A41A1001BAD46 /* ShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */; };
+		82B5A0401F7696CC00226B0F /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */; };
+		82B5A0431F7696E300226B0F /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
+		82B5A0441F7696E300226B0F /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
+		82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
+		82B5A0561F76AC9D00226B0F /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0541F76AC9D00226B0F /* Image.cpp */; };
 		82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
 		82BE33141F5619C000AD91AC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE33111F5619C000AD91AC /* Cube.cpp */; };
 		82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
@@ -88,6 +95,15 @@
 /* Begin PBXFileReference section */
 		0ABEB404302B410C6CE9086F /* Pods-TestEngineiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngineiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngineiOS/Pods-TestEngineiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		67F89D7B13B8DB03686B464F /* libPods-TestEngineiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestEngineiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CA7D7F21F7018C500113190 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
+		7CA7D7F31F7018C500113190 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
+		7CA7D7F41F7018C500113190 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_helper.h; sourceTree = "<group>"; };
+		7CA7D7F51F7018C500113190 /* SOIL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SOIL.c; sourceTree = "<group>"; };
+		7CA7D7F61F7018C500113190 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOIL.h; sourceTree = "<group>"; };
+		7CA7D7F71F7018C500113190 /* stb_image_aug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image_aug.c; sourceTree = "<group>"; };
+		7CA7D7F81F7018C500113190 /* stb_image_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_aug.h; sourceTree = "<group>"; };
+		7CA7D7F91F7018C500113190 /* stbi_DDS_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_DDS_aug.h; sourceTree = "<group>"; };
+		7CA7D7FA1F7018C500113190 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_DDS_aug_c.h; sourceTree = "<group>"; };
 		7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		7CA90BF81F6970DB007FE954 /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
 		8208E2B31F488098000A8E14 /* OBJBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJBridge.h; sourceTree = "<group>"; };
@@ -142,6 +158,8 @@
 		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderCompiler.cpp; sourceTree = "<group>"; };
+		82B5A0541F76AC9D00226B0F /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		82B5A0551F76AC9D00226B0F /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		82BE330C1F5619C000AD91AC /* 2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2D.h; sourceTree = "<group>"; };
 		82BE330D1F5619C000AD91AC /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
 		82BE330E1F5619C000AD91AC /* Triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
@@ -193,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8222478B1F6E954300A1B769 /* libglfw3.3.2.dylib in Frameworks */,
+				82B5A0401F7696CC00226B0F /* libglfw3.3.2.dylib in Frameworks */,
 				7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */,
 				824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */,
 			);
@@ -209,6 +227,30 @@
 				E2C45F2D8CAD19EA439497BA /* Pods-TestEngineiOS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7CA7D7D01F70137000113190 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				7CA7D7F11F7018C500113190 /* SOIL */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		7CA7D7F11F7018C500113190 /* SOIL */ = {
+			isa = PBXGroup;
+			children = (
+				7CA7D7F21F7018C500113190 /* image_DXT.h */,
+				7CA7D7F31F7018C500113190 /* image_helper.c */,
+				7CA7D7F41F7018C500113190 /* image_helper.h */,
+				7CA7D7F51F7018C500113190 /* SOIL.c */,
+				7CA7D7F61F7018C500113190 /* SOIL.h */,
+				7CA7D7F71F7018C500113190 /* stb_image_aug.c */,
+				7CA7D7F81F7018C500113190 /* stb_image_aug.h */,
+				7CA7D7F91F7018C500113190 /* stbi_DDS_aug.h */,
+				7CA7D7FA1F7018C500113190 /* stbi_DDS_aug_c.h */,
+			);
+			path = SOIL;
 			sourceTree = "<group>";
 		};
 		8208E2A31F486B76000A8E14 /* System */ = {
@@ -265,6 +307,8 @@
 				8222478C1F6EF80F00A1B769 /* BufferData.cpp */,
 				82D4522B1F546B8E0086772F /* Buffer.hpp */,
 				82D4522A1F546B8E0086772F /* Buffer.cpp */,
+				82B5A0551F76AC9D00226B0F /* Image.hpp */,
+				82B5A0541F76AC9D00226B0F /* Image.cpp */,
 				824681BA1F4590BD003BA5F3 /* Shaders */,
 			);
 			path = GL;
@@ -359,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				82E76BF21F49A67D009E2420 /* TestEngine.h */,
+				7CA7D7D01F70137000113190 /* Libs */,
 				8208E2A31F486B76000A8E14 /* System */,
 				824681B91F4590BD003BA5F3 /* GL */,
 				8266A8201F4588FB00C55472 /* Geometry */,
@@ -599,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */,
 				824DABA01F5C03FE007E1568 /* Time.cpp in Sources */,
 				824B9E051F55F5BA00C39543 /* Size.cpp in Sources */,
 				824B9E031F55F5BA00C39543 /* ShaderCompiler.cpp in Sources */,
@@ -616,8 +662,10 @@
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
 				824B9E0A1F55F5BA00C39543 /* Vertex.cpp in Sources */,
+				7CA7D7FB1F7018C500113190 /* image_helper.c in Sources */,
 				824B9E081F55F5BA00C39543 /* View.cpp in Sources */,
 				824B9DF31F55F5A500C39543 /* Debug.cpp in Sources */,
+				7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */,
 				824B9DDC1F55F25B00C39543 /* AppDelegate.m in Sources */,
 				824B9E0B1F55F5BA00C39543 /* Polygon.cpp in Sources */,
 				824B9DD91F55F25B00C39543 /* main.m in Sources */,
@@ -635,6 +683,7 @@
 			files = (
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
+				82B5A0441F7696E300226B0F /* SOIL.c in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				824FFAFF1F57415B000C58DA /* Input.cpp in Sources */,
 				82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */,
@@ -652,9 +701,12 @@
 				8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,
 				82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */,
+				82B5A0431F7696E300226B0F /* image_helper.c in Sources */,
 				824DAB9F1F5C0353007E1568 /* Time.cpp in Sources */,
 				8266A82C1F45899300C55472 /* Log.cpp in Sources */,
+				82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */,
 				824FFB031F574E4E000C58DA /* Shader.cpp in Sources */,
+				82B5A0561F76AC9D00226B0F /* Image.cpp in Sources */,
 				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,
 				8266A8071F45867000C55472 /* main.cpp in Sources */,
 				82E222231F4A2806002C1F17 /* Size.cpp in Sources */,

@@ -25,23 +25,23 @@ void View::draw() {
     
     for (int i = (int)subviews.size() - 1; i >= 0; i--)
         subviews[i]->draw();
-    
+        
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
     buffer->draw();
 }
 
-//ViewAutolayoutMaskStickToLeft        = 1 >> 0,
-//ViewAutolayoutMaskStickToRight       = 1 >> 1,
-//ViewAutolayoutMaskStickToTop         = 1 >> 2,
-//ViewAutolayoutMaskStickToBottom      = 1 >> 3,
-//ViewAutolayoutMaskCenter             = 1 >> 4,
-//ViewAutolayoutMaskCenterHorizontally = 1 >> 5,
-//ViewAutolayoutMaskCenterVertically   = 1 >> 6
+//AutolayoutStickToLeft        = 1 >> 0,
+//AutolayoutStickToRight       = 1 >> 1,
+//AutolayoutStickToTop         = 1 >> 2,
+//AutolayoutStickToBottom      = 1 >> 3,
+//AutolayoutCenter             = 1 >> 4,
+//AutolayoutCenterHorizontally = 1 >> 5,
+//AutolayoutCenterVertically   = 1 >> 6
 
 void View::layout() {
     
-    if (autolayoutMask == ViewAutolayoutMaskNone) return;
+    if (autolayoutMask == Autolayout::None) return;
     
     Rect parentFrame;
     Rect layoutFrame = frame;
@@ -49,27 +49,27 @@ void View::layout() {
     if (superview == nullptr) parentFrame = Rect(Window::size.width, Window::size.height);
     else parentFrame = superview->frame;
     
-    if (autolayoutMask & ViewAutolayoutMaskStickToLeft)
+    if (autolayoutMask & Autolayout::StickToLeft)
         layoutFrame.origin.x = 0;
     
-    if (autolayoutMask & ViewAutolayoutMaskStickToRight)
+    if (autolayoutMask & Autolayout::StickToRight)
         layoutFrame.origin.x = parentFrame.size.width - frame.size.width;
     
-    if (autolayoutMask & ViewAutolayoutMaskStickToTop)
+    if (autolayoutMask & Autolayout::StickToTop)
         layoutFrame.origin.y = 0;
     
-    if (autolayoutMask & ViewAutolayoutMaskStickToBottom)
+    if (autolayoutMask & Autolayout::StickToBottom)
         layoutFrame.origin.y = parentFrame.size.height - frame.size.height;
 
-    if (autolayoutMask & ViewAutolayoutMaskCenter) {
+    if (autolayoutMask & Autolayout::Center) {
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
     }
     
-    if (autolayoutMask & ViewAutolayoutMaskCenterHorizontally)
+    if (autolayoutMask & Autolayout::CenterHorizontally)
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
 
-    if (autolayoutMask & ViewAutolayoutMaskCenterVertically)
+    if (autolayoutMask & Autolayout::CenterVertically)
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
 
     this->frame = layoutFrame;

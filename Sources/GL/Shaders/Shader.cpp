@@ -18,6 +18,7 @@
 Shader Shader::simple;
 Shader Shader::ui;
 Shader Shader::colorVertices;
+Shader Shader::texture;
 
 Shader::Shader(const string &vertexPath, const string &fragmentPath) {
     
@@ -40,12 +41,18 @@ void Shader::initialize() {
     ui = Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
                 FileManager::assetsDirectory() + "Shaders/ui.frag");
     
+    ui.setupUiTranslation();
+    
     colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
                            FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
+    
+    texture = Shader(FileManager::assetsDirectory() + "Shaders/texture.vert",
+                     FileManager::assetsDirectory() + "Shaders/texture.frag");
 }
 
 void Shader::setupUiTranslation() {
     
+    Shader::ui.use();
     mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
     uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
     Shader::ui.setUniformProjectionMatrix(uiProjection);

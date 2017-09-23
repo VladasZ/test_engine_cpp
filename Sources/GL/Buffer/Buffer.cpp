@@ -9,7 +9,7 @@
 #include "Buffer.hpp"
 #include "Debug.hpp"
 
-Buffer::Buffer(const BufferData &data) : data(data) {
+Buffer::Buffer(const BufferData &data, const BufferConfiguration &configuration) : data(data) {
     
     glGenVertexArrays(1, &vertexArrayObject);
     glBindVertexArray(vertexArrayObject);
@@ -30,16 +30,23 @@ Buffer::Buffer(const BufferData &data) : data(data) {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, data.indSize, data.indData, GL_STATIC_DRAW);
     }
     
+    configuration.setPointers();
+    
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
 }
 
-Buffer::Buffer(GLfloat *vertData, GLuint vertSize) : Buffer(BufferData(vertData, vertSize)) {
+Buffer::Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration)
+:
+Buffer(BufferData(vertData, vertSize), configuration) {
     
 }
 
 Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
-               GLushort *indData,  GLuint indSize) : Buffer(BufferData(vertData, vertSize, indData, indSize)) {
+               GLushort *indData,  GLuint indSize,
+               const BufferConfiguration &configuration)
+:
+Buffer(BufferData(vertData, vertSize, indData, indSize), configuration) {
     
 }
 
@@ -48,6 +55,14 @@ Buffer::~Buffer() {
     glDeleteVertexArrays(1, &vertexArrayObject);
     glDeleteBuffers(1, &vertexBufferObject);
     if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
+}
+
+void Buffer::setPointers(UInt firstParam, UInt secondParam, UInt thirdParam) const {
+    
+    glBindVertexArray(vertexArrayObject);
+    BufferConfiguration conf(firstParam, secondParam, thirdParam);
+    conf.setPointers();
+    glBindVertexArray(0);
 }
 
 void Buffer::setData(const BufferData &data) {

@@ -13,7 +13,7 @@
 
 View::View(Float x, Float y, Float width, Float height) : frame(Rect(x, y, width, height)) {
     
-    buffer = new Buffer(*frame.getData());
+    buffer = new Buffer(*frame.getData(), BufferConfiguration(3));
     buffer->drawMode = GL_TRIANGLE_STRIP;
 }
 

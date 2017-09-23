@@ -77,7 +77,8 @@ void Window::didTouch(const int &x, const int &y) {
 
 View *view;
 GLuint texture;
-GLuint VBO, VAO, EBO;
+
+Buffer *image;
 
 void Window::setup() {
     
@@ -89,33 +90,13 @@ void Window::setup() {
         -0.5f,  0.5f, 0.0f,    1.0f, 1.0f, 0.0f,   0.0f, 0.0f  // Top Left
     };
     
-    GLuint indices[] = {  // Note that we start from 0!
+    GLushort indices[] = {  // Note that we start from 0!
         0, 1, 3, 2  // Second Triangle
     };
     
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-    
-    glBindVertexArray(VAO);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-    // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    // Color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-    // TexCoord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(2);
-    
-    glBindVertexArray(0); // Unbind VAO
+    image = new Buffer(vertices, sizeof(vertices),
+                       indices, sizeof(indices),
+                       BufferConfiguration(3, 3, 2));
     
     view = new View(0, 0, 100, 100);
 }
@@ -131,9 +112,7 @@ void Window::update() {
     Image::test.bind();
     Shader::texture.use();
 
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    image->draw();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

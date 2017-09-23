@@ -11,6 +11,7 @@
 #include "Types.h"
 #include "GL.hpp"
 #include "BufferData.hpp"
+#include "BufferConfiguration.hpp"
 
 class Buffer {
     
@@ -22,18 +23,21 @@ class Buffer {
     
 public:
     
-    GLenum drawMode = GL_TRIANGLES;
+    GLenum drawMode = GL_TRIANGLE_STRIP;
     
-    Buffer(const BufferData &data);
+    Buffer(const BufferData &data, const BufferConfiguration &configuration);
     
-    Buffer(GLfloat *vertData, GLuint vertSize);
+    Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration);
     
     Buffer(GLfloat *vertData, GLuint vertSize,
-           GLushort *indData,  GLuint indSize);
+           GLushort *indData,  GLuint indSize,
+           const BufferConfiguration &configuration);
 
     ~Buffer();
     
+    void setPointers(UInt firstParam, UInt secondParam = 0, UInt thirdParam = 0) const;
     void setData(const BufferData &data);
+    
 
     void draw() const;
 };

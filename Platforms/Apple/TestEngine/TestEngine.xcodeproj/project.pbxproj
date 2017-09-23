@@ -61,6 +61,7 @@
 		82B5A0441F7696E300226B0F /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
 		82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		82B5A0561F76AC9D00226B0F /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0541F76AC9D00226B0F /* Image.cpp */; };
+		82B5A05A1F76C45000226B0F /* BufferConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */; };
 		82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
 		82BE33141F5619C000AD91AC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE33111F5619C000AD91AC /* Cube.cpp */; };
 		82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82BE330D1F5619C000AD91AC /* Triangle.cpp */; };
@@ -160,6 +161,8 @@
 		82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderCompiler.cpp; sourceTree = "<group>"; };
 		82B5A0541F76AC9D00226B0F /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		82B5A0551F76AC9D00226B0F /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
+		82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BufferConfiguration.cpp; sourceTree = "<group>"; };
+		82B5A0591F76C45000226B0F /* BufferConfiguration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BufferConfiguration.hpp; sourceTree = "<group>"; };
 		82BE330C1F5619C000AD91AC /* 2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2D.h; sourceTree = "<group>"; };
 		82BE330D1F5619C000AD91AC /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
 		82BE330E1F5619C000AD91AC /* Triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
@@ -302,11 +305,8 @@
 		824681B91F4590BD003BA5F3 /* GL */ = {
 			isa = PBXGroup;
 			children = (
+				82B5A0571F76C43000226B0F /* Buffer */,
 				824681BF1F459108003BA5F3 /* GL.hpp */,
-				8222478D1F6EF80F00A1B769 /* BufferData.hpp */,
-				8222478C1F6EF80F00A1B769 /* BufferData.cpp */,
-				82D4522B1F546B8E0086772F /* Buffer.hpp */,
-				82D4522A1F546B8E0086772F /* Buffer.cpp */,
 				82B5A0551F76AC9D00226B0F /* Image.hpp */,
 				82B5A0541F76AC9D00226B0F /* Image.cpp */,
 				824681BA1F4590BD003BA5F3 /* Shaders */,
@@ -451,6 +451,19 @@
 				8266A8281F4588FB00C55472 /* StringTools.cpp */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		82B5A0571F76C43000226B0F /* Buffer */ = {
+			isa = PBXGroup;
+			children = (
+				8222478D1F6EF80F00A1B769 /* BufferData.hpp */,
+				8222478C1F6EF80F00A1B769 /* BufferData.cpp */,
+				82D4522B1F546B8E0086772F /* Buffer.hpp */,
+				82D4522A1F546B8E0086772F /* Buffer.cpp */,
+				82B5A0591F76C45000226B0F /* BufferConfiguration.hpp */,
+				82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */,
+			);
+			path = Buffer;
 			sourceTree = "<group>";
 		};
 		82BE330B1F5619C000AD91AC /* 2D */ = {
@@ -695,6 +708,7 @@
 				82D452231F545F620086772F /* Color.cpp in Sources */,
 				821B20B61F582E5700933EC4 /* Rectangle.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
+				82B5A05A1F76C45000226B0F /* BufferConfiguration.cpp in Sources */,
 				82D452291F5466BF0086772F /* Polygon.cpp in Sources */,
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,

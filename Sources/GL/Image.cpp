@@ -43,5 +43,5 @@ void Image::bind() const {
 
 void Image::initialize() {
     
-    test = Image("cat.jpg");
+    test = Image("test.png");
 }

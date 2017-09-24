@@ -141,6 +141,9 @@
     <ClCompile Include="..\..\..\..\Sources\GL\Buffer\Buffer.cpp">
       <Filter>Source Files\Sources\GL\Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\TestEngine.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Sources\Tools\StringTools.hpp">

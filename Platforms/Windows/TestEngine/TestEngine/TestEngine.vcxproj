@@ -138,6 +138,7 @@
     <ClCompile Include="..\..\..\..\Sources\Libs\SOIL\SOIL.c" />
     <ClCompile Include="..\..\..\..\Sources\Libs\SOIL\stb_image_aug.c" />
     <ClCompile Include="..\..\..\..\Sources\System\System.cpp" />
+    <ClCompile Include="..\..\..\..\Sources\TestEngine.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Debug.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\FileManager.cpp" />
     <ClCompile Include="..\..\..\..\Sources\Tools\Log.cpp" />

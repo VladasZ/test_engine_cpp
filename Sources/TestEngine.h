@@ -8,13 +8,4 @@
 
 #pragma once
 
-#include "System/Platform.h"
-#include "System/System.hpp"
-#include "GL/GL.hpp"
-#include "Tools/Tools.hpp"
-#include "UI/UI.hpp"
-#include "Time.hpp"
-
-#ifdef WINDOWS
-#include <windows.h>
-#endif
+void runTestEngine();

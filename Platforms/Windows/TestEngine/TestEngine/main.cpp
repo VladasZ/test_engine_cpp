@@ -10,14 +10,5 @@
 
 int main() {
 
-	Window::initialize();
-
-	for (;;) {
-
-		Window::update();
-		glfwSwapBuffers(Window::window);
-		glfwPollEvents();
-	}
-
-	return 0;
+	runTestEngine();
 }

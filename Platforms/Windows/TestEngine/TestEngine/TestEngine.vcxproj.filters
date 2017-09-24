@@ -40,17 +40,26 @@
     <Filter Include="Source Files\Sources\UI">
       <UniqueIdentifier>{1269677c-75be-492f-8347-fe01fbce40ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Sources\GL\Geometry">
-      <UniqueIdentifier>{a79109e7-715f-42d1-b49f-e9b5faca7355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Sources\GL\Geometry\Primitives">
-      <UniqueIdentifier>{b0a50a11-399c-4271-95c2-e3029c91acb8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Sources\UI\2D">
       <UniqueIdentifier>{32c8bbf1-b339-49f7-b7e6-def06f237e4e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Sources\UI\3D">
       <UniqueIdentifier>{e83878d2-674b-4ef1-8bd0-f98af49df60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\Geometry">
+      <UniqueIdentifier>{a79109e7-715f-42d1-b49f-e9b5faca7355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\Geometry\Primitives">
+      <UniqueIdentifier>{b0a50a11-399c-4271-95c2-e3029c91acb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\GL\Buffer">
+      <UniqueIdentifier>{115a3368-2742-43f3-a7ea-e6d962033726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources\UI\Views">
+      <UniqueIdentifier>{f5382932-af68-41a2-86f3-ccca1774fc56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\SOIL">
+      <UniqueIdentifier>{1c8710cb-65bc-4d47-ae05-e15e5e5b4e26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,13 +85,10 @@
       <Filter>Source Files\Sources\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Size.cpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Point.cpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Sources\GL\Buffer.cpp">
-      <Filter>Source Files\Sources\GL</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Sources\UI\2D\Triangle.cpp">
       <Filter>Source Files\Sources\UI\2D</Filter>
@@ -106,7 +112,34 @@
       <Filter>Source Files\Sources\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Sources\Geometry\Primitives\Rect.cpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Image.cpp">
+      <Filter>Source Files\Sources\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Buffer\BufferConfiguration.cpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Buffer\BufferData.cpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\UI\Views\ImageView.cpp">
+      <Filter>Source Files\Sources\UI\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\UI\Views\View.cpp">
+      <Filter>Source Files\Sources\UI\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Libs\SOIL\SOIL.c">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Libs\SOIL\stb_image_aug.c">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\Libs\SOIL\image_helper.c">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Sources\GL\Buffer\Buffer.cpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,16 +201,13 @@
       <Filter>Source Files\Sources\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Primitives.hpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Size.hpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Point.hpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Sources\GL\Buffer.hpp">
-      <Filter>Source Files\Sources\GL</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\UI\2D\Triangle.hpp">
       <Filter>Source Files\Sources\UI\2D</Filter>
@@ -207,7 +237,43 @@
       <Filter>Source Files\Sources\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Sources\Geometry\Primitives\Rect.hpp">
-      <Filter>Source Files\Sources\GL\Geometry\Primitives</Filter>
+      <Filter>Source Files\Sources\Geometry\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Buffer.hpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Image.hpp">
+      <Filter>Source Files\Sources\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Buffer\BufferConfiguration.hpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\GL\Buffer\BufferData.hpp">
+      <Filter>Source Files\Sources\GL\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\UI\Views\View.hpp">
+      <Filter>Source Files\Sources\UI\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\UI\Views\ImageView.hpp">
+      <Filter>Source Files\Sources\UI\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\SOIL.h">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\stb_image_aug.h">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\stbi_DDS_aug.h">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\stbi_DDS_aug_c.h">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\image_DXT.h">
+      <Filter>Source Files\libs\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Sources\Libs\SOIL\image_helper.h">
+      <Filter>Source Files\libs\SOIL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

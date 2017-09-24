@@ -16,18 +16,12 @@ namespace TestEngine {
     class Point {
         
     public:
-        
-#pragma mark - Properties
-        
+                
         Float x = 0, y = 0;
-        
-#pragma mark - Initialization
-        
+                
         Point() = default;
         Point(Float x, Float y);
-        
-#pragma mark - Getters
-        
+                
         Float angle() const;
         bool isZero() const;
         Float length() const;
@@ -42,9 +36,7 @@ namespace TestEngine {
         
         Point operator +(const Point &point) const;
         void operator +=(const Point &point);
-        
-#pragma mark - Static properties
-        
+                
         static const Point one;
     };
 }

@@ -16,7 +16,8 @@
 #include "System.hpp"
 #include "Time.hpp"
 #include "System.hpp"
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+#include <matrix_transform.hpp>
 #include "Shader.hpp"
 #include "UI.hpp"
 #include "Buffer.hpp"
@@ -133,8 +134,6 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     
     Shader::setupUiTranslation();
 }
-
-#pragma mark - Touches
 
 void Window::touchBegan(const TestEngine::Point &position) {
     

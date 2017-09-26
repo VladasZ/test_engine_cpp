@@ -11,6 +11,13 @@
 #include "Platform.h"
 
 #include <glm.hpp>
+
+#if APPLE
+    #include <glm/gtc/matrix_transform.hpp>
+#else
+    #include <matrix_transform.hpp>
+#endif
+
 using namespace glm;
 
 #ifdef WINDOWS

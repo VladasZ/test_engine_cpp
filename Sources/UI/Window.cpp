@@ -16,8 +16,6 @@
 #include "System.hpp"
 #include "Time.hpp"
 #include "System.hpp"
-//#include <glm/gtc/matrix_transform.hpp>
-#include <matrix_transform.hpp>
 #include "Shader.hpp"
 #include "UI.hpp"
 #include "Buffer.hpp"
@@ -79,6 +77,7 @@ void Window::didTouch(const int &x, const int &y) {
 
 View *view;
 ImageView *imageView;
+ImageView *imageView2;
 
 GLuint texture;
 
@@ -106,6 +105,11 @@ void Window::setup() {
     
     imageView = new ImageView(200, 0, 100, 100);
     imageView->setImage(&Image::test);
+    imageView->autolayoutMask = StickToTop | CenterHorizontally;
+    
+    imageView2 = new ImageView(400, 0, 110, 150);
+    imageView2->setImage(&Image::cat);
+    imageView2->autolayoutMask = StickToRight | StickToBottom;
     
 }
 
@@ -122,6 +126,10 @@ void Window::update() {
 
     image->draw();
     imageView->draw();
+    imageView->layout();
+    
+    imageView2->draw();
+    imageView2->layout();
 
 }
 

@@ -12,9 +12,9 @@
 #include "Window.hpp"
 
 
-void runTestEngine() {
+void testEngineMain() {
 
-	Window::initialize();
+	Window::initialize(500, 500);
 
 	do {
 		glfwPollEvents();

@@ -8,4 +8,4 @@
 
 #pragma once
 
-void runTestEngine();
+void testEngineMain();

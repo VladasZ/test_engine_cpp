@@ -20,7 +20,7 @@ class ImageView : public View {
     virtual void setupBuffer();
     virtual void draw() const;
     
-    Image *image;
+    Image *image = nullptr;
     
 public:
     

@@ -7,7 +7,7 @@
 
 #elif __APPLE__
 #include "TargetConditionals.h"
-#   define APPLE
+#   define APPLE true
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #define IOS true
 #elif TARGET_OS_MAC

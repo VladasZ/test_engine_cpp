@@ -43,6 +43,11 @@ void ImageView::setupBuffer() {
 
 void ImageView::draw() const {
     
+    if (image == nullptr) {
+        View::draw();
+        return;
+    }
+    
     View::drawSubviews();
     
     image->bind();

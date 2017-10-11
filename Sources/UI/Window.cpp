@@ -22,6 +22,7 @@
 #include "Image.hpp"
 #include "FileManager.hpp"
 #include "ImageView.hpp"
+#include "Font.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -63,9 +64,13 @@ void Window::initialize(int width, int height) {
 #endif
     
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     Shader::initialize();
     Image::initialize();
+    
+    glClearColor(0.5, 0.5, 0.5, 1);
     
     setup();
 }
@@ -74,6 +79,8 @@ void Window::didTouch(const int &x, const int &y) {
     
     cout << x << " " << y << endl;
 }
+
+Font *testFont;
 
 View *view;
 ImageView *imageView;
@@ -84,6 +91,8 @@ GLuint texture;
 Buffer *image;
 
 void Window::setup() {
+    
+    testFont = new Font("Fonts/OpenSans.ttf");
     
     GLfloat vertices[] = {
         // Positions           // Texture Coords
@@ -103,12 +112,12 @@ void Window::setup() {
     
     view = new View(0, 0, 100, 100);
     
-    imageView = new ImageView(200, 0, 100, 100);
-    imageView->setImage(&Image::test);
+    imageView = new ImageView(200, 0, 100, 150);
+    imageView->setImage(testFont->image);
     imageView->autolayoutMask = StickToTop | CenterHorizontally;
     
     imageView2 = new ImageView(400, 0, 110, 150);
-    imageView2->setImage(&Image::cat);
+    imageView2->setImage(Image::cat);
     imageView2->autolayoutMask = StickToRight | StickToBottom;
     
 }
@@ -121,7 +130,7 @@ void Window::update() {
     
     glBindTexture(GL_TEXTURE_2D, texture);
     
-    Image::test.bind();
+    Image::test->bind();
     Shader::texture.use();
 
     image->draw();

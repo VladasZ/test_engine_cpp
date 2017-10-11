@@ -30,6 +30,7 @@ public:
     static Shader colorVertices;
     static Shader texture;
     static Shader uiTexture;
+    static Shader uiMonochrome;
 
     static void initialize();
     

@@ -9,38 +9,65 @@
 #include "Image.hpp"
 #include "SOIL.h"
 #include "FileManager.hpp"
+#include "Log.hpp"
+#include "Shader.hpp"
 
-Image Image::cat;
-Image Image::slow;
-Image Image::test;
+Image *Image::cat;
+Image *Image::slow;
+Image *Image::test;
 
-Image::Image(const string &file) {
+void Image::init(const UInt &width, const UInt &height, void *data, const UInt &channels) {
     
-    glGenTextures(1, &id);
-    glBindTexture(GL_TEXTURE_2D, id);
+    this->width = width;
+    this->height = height;
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    SAFE(glGenTextures(1, &id));
+    SAFE(glBindTexture(GL_TEXTURE_2D, id));
+//    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+//    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     
-    int channels;
+    if (channels == 1) {
+         //SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
+         SAFE(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+    }
+    else {
+         SAFE(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+    }
+    
+     SAFE(glGenerateMipmap(GL_TEXTURE_2D));
+     SAFE(glBindTexture(GL_TEXTURE_2D, 0));
+}
+
+Image::Image(const UInt &width, const UInt &height, void *data, const UInt &channels)
+:
+monochrome(channels == 1)
+{
+    init(width, height, data, channels);
+}
+
+Image::Image(const string &file)
+:
+monochrome(false)
+{
+    Int channels;
     
     unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,
                                            &height,
                                            &channels,
                                            SOIL_LOAD_RGBA);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
+    init(width, height, image, channels);
     SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Image::bind() const {
     
     glBindTexture(GL_TEXTURE_2D, id);
+    
+    if (monochrome) Shader::uiMonochrome.use();
+    else Shader::uiTexture.use();
 }
 
 void Image::unbind() const {
@@ -50,7 +77,7 @@ void Image::unbind() const {
 
 void Image::initialize() {
     
-    cat  = Image("cat.jpg");
-    slow = Image("slow.jpg");
-    test = Image("test.png");
+    cat  = new Image("cat.jpg");
+    slow = new Image("slow.jpg");
+    test = new Image("test.png");
 }

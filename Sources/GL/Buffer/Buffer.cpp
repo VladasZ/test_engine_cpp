@@ -81,11 +81,9 @@ void Buffer::draw() const {
     glBindVertexArray(vertexArrayObject);
     
     if (data.indSize == 0) {
-        
         glDrawArrays(drawMode, 0, data.vertSize);
     }
     else {
-        
         glDrawElements(drawMode, data.indSize, GL_UNSIGNED_SHORT, 0);
     }
     

@@ -17,6 +17,13 @@
 #define Info(message)    Log::info   ((message), LOCATION)
 #define Warning(message) Log::warning((message), LOCATION)
 #define Error(message)   Log::error  ((message), LOCATION)
+#define Check(value)     Log::check  ((value)  , LOCATION)
+
+#define SAFE(X) \
+{\
+(X);      \
+CheckGLError(__FILE__, __LINE__); \
+}
 
 class Log {
     
@@ -25,5 +32,8 @@ public:
     static void info   (string message, LOCATION_INPUT);
     static void warning(string message, LOCATION_INPUT);
     static void error  (string message, LOCATION_INPUT);
+    static void check  (long     value, LOCATION_INPUT);
 };
+
+void CheckGLError(const char* file, unsigned line);
 

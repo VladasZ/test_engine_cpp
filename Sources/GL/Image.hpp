@@ -10,23 +10,28 @@
 
 #include "STL.hpp"
 #include "GL.hpp"
+#include "Types.h"
 
 class Image {
     
-    GLuint id;
+    GLuint id = 0;
+    
+    void init(const UInt &width, const UInt &height, void *data, const UInt &channels);
     
     Image() = default;
     
 public:
     
-    static Image cat;
-    static Image slow;
-    static Image test;
+    static Image *cat;
+    static Image *slow;
+    static Image *test;
 
     static void initialize();
   
     int width, height;
+    const bool monochrome;
     
+    Image(const UInt &width, const UInt &height, void *data, const UInt &channels = 4);
     Image(const string& file);
     
     void bind() const;

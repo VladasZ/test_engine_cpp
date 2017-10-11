@@ -7,6 +7,7 @@
 //
 
 #include "Tools.hpp"
+#include "GL.hpp"
 
 #ifdef WINDOWS
 #define INFO_ICON "HEARTH"
@@ -50,4 +51,40 @@ void Log::warning(string message, LOCATION_INPUT) {
 void Log::error(string message, LOCATION_INPUT) {
     
     log(message, LOCATION_PARAMETERS, LogTypeError);
+}
+
+void Log::check (long value, LOCATION_INPUT) {
+    if (value != 0) {
+        log("", LOCATION_PARAMETERS, LogTypeError);
+    }
+}
+
+void CheckGLError(const char* file, unsigned line) {
+    GLenum err = glGetError();
+    while(err != GL_NO_ERROR) {
+        char* error = new char[255];
+        switch(err) {
+            case GL_INVALID_OPERATION:
+                strcpy(error, "INVALID_OPERATION");
+                break;
+            case GL_INVALID_ENUM:
+                strcpy(error, "INVALID_ENUM");
+                break;
+            case GL_INVALID_VALUE:
+                strcpy(error, "INVALID_VALUE");
+                break;
+            case GL_OUT_OF_MEMORY:
+                strcpy(error, "OUT_OF_MEMORY");
+                break;
+            case GL_INVALID_FRAMEBUFFER_OPERATION:
+                strcpy(error, "INVALID_FRAMEBUFFER_OPERATION");
+                break;
+            default:
+                strcpy(error, "Unknown error");
+                break;
+        }
+        //CROSS_ASSERT(false, "Rendering error number: %s in %s : %d", error, file, line);
+        delete[] error;
+        err = glGetError();
+    }
 }

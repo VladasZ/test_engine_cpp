@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C3F77FB1F8E0583004A4854 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3F77F51F8E0578004A4854 /* libglfw.3.2.dylib */; };
+		7C3F77FC1F8E058F004A4854 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */; };
+		7C7307EF1F8D1E2900C5DDFF /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */; };
 		7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		7C80A28E1F7A4DF00042A1A1 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4522A1F546B8E0086772F /* Buffer.cpp */; };
 		7C80A28F1F7A4DF00042A1A1 /* BufferConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */; };
 		7C80A2911F7A4DFC0042A1A1 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4521B1F545D730086772F /* View.cpp */; };
 		7C80A2921F7A4DFC0042A1A1 /* ImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A05C1F76DE4500226B0F /* ImageView.cpp */; };
 		7C80A2931F7A4E090042A1A1 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0541F76AC9D00226B0F /* Image.cpp */; };
+		7C80A29C1F7A527F0042A1A1 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A29A1F7A527F0042A1A1 /* Font.cpp */; };
+		7C80A29D1F7A52990042A1A1 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A29A1F7A527F0042A1A1 /* Font.cpp */; };
+		7C80A35E1F7A577F0042A1A1 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A35C1F7A577F0042A1A1 /* File.cpp */; };
+		7C80A35F1F7A579C0042A1A1 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A35C1F7A577F0042A1A1 /* File.cpp */; };
 		7CA7D7FB1F7018C500113190 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
 		7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
 		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
@@ -60,7 +67,6 @@
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
 		829985071F77F6A4002B7E75 /* TestEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829985061F77F6A4002B7E75 /* TestEngine.cpp */; };
 		82A78F641F4A41A1001BAD46 /* ShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */; };
-		82B5A0401F7696CC00226B0F /* libglfw3.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */; };
 		82B5A0431F7696E300226B0F /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
 		82B5A0441F7696E300226B0F /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
 		82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
@@ -101,6 +107,64 @@
 /* Begin PBXFileReference section */
 		0ABEB404302B410C6CE9086F /* Pods-TestEngineiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngineiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngineiOS/Pods-TestEngineiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		67F89D7B13B8DB03686B464F /* libPods-TestEngineiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestEngineiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3F77E71F8E0578004A4854 /* glfw.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glfw.rb; sourceTree = "<group>"; };
+		7C3F77E81F8E0578004A4854 /* COPYING.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		7C3F77EB1F8E0578004A4854 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
+		7C3F77EC1F8E0578004A4854 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
+		7C3F77ED1F8E0578004A4854 /* INSTALL_RECEIPT.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = INSTALL_RECEIPT.json; sourceTree = "<group>"; };
+		7C3F77F11F8E0578004A4854 /* glfw3Config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3Config.cmake; sourceTree = "<group>"; };
+		7C3F77F21F8E0578004A4854 /* glfw3ConfigVersion.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3ConfigVersion.cmake; sourceTree = "<group>"; };
+		7C3F77F31F8E0578004A4854 /* glfw3Targets-release.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "glfw3Targets-release.cmake"; sourceTree = "<group>"; };
+		7C3F77F41F8E0578004A4854 /* glfw3Targets.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3Targets.cmake; sourceTree = "<group>"; };
+		7C3F77F51F8E0578004A4854 /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.3.2.dylib; sourceTree = "<group>"; };
+		7C3F77F61F8E0578004A4854 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.3.dylib; sourceTree = "<group>"; };
+		7C3F77F71F8E0578004A4854 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.dylib; sourceTree = "<group>"; };
+		7C3F77F91F8E0578004A4854 /* glfw3.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3.pc; sourceTree = "<group>"; };
+		7C3F77FA1F8E0578004A4854 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.8.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		7C80A2941F7A52370042A1A1 /* libftgl.2.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftgl.2.1.3.dylib; path = "../../../../../../../../../../../usr/local/Cellar/ftgl/2.1.3-rc5/lib/libftgl.2.1.3.dylib"; sourceTree = "<group>"; };
+		7C80A29A1F7A527F0042A1A1 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		7C80A29B1F7A527F0042A1A1 /* Font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
+		7C80A32B1F7A56A90042A1A1 /* glew.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glew.rb; sourceTree = "<group>"; };
+		7C80A32D1F7A56A90042A1A1 /* glewinfo */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = glewinfo; sourceTree = "<group>"; };
+		7C80A32E1F7A56A90042A1A1 /* visualinfo */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = visualinfo; sourceTree = "<group>"; };
+		7C80A3311F7A56A90042A1A1 /* glew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glew.h; sourceTree = "<group>"; };
+		7C80A3321F7A56A90042A1A1 /* glxew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glxew.h; sourceTree = "<group>"; };
+		7C80A3331F7A56A90042A1A1 /* wglew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wglew.h; sourceTree = "<group>"; };
+		7C80A3341F7A56A90042A1A1 /* INSTALL_RECEIPT.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = INSTALL_RECEIPT.json; sourceTree = "<group>"; };
+		7C80A3381F7A56A90042A1A1 /* CopyImportedTargetProperties.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = CopyImportedTargetProperties.cmake; sourceTree = "<group>"; };
+		7C80A3391F7A56A90042A1A1 /* glew-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "glew-config.cmake"; sourceTree = "<group>"; };
+		7C80A33A1F7A56A90042A1A1 /* glew-targets-release.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "glew-targets-release.cmake"; sourceTree = "<group>"; };
+		7C80A33B1F7A56A90042A1A1 /* glew-targets.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "glew-targets.cmake"; sourceTree = "<group>"; };
+		7C80A33C1F7A56A90042A1A1 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
+		7C80A33D1F7A56A90042A1A1 /* libGLEW.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.1.dylib; sourceTree = "<group>"; };
+		7C80A33E1F7A56A90042A1A1 /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLEW.a; sourceTree = "<group>"; };
+		7C80A33F1F7A56A90042A1A1 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.dylib; sourceTree = "<group>"; };
+		7C80A3411F7A56A90042A1A1 /* glew.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glew.pc; sourceTree = "<group>"; };
+		7C80A3421F7A56A90042A1A1 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		7C80A3431F7A56A90042A1A1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7C80A3471F7A56A90042A1A1 /* advanced.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = advanced.html; sourceTree = "<group>"; };
+		7C80A3481F7A56A90042A1A1 /* basic.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = basic.html; sourceTree = "<group>"; };
+		7C80A3491F7A56A90042A1A1 /* build.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = build.html; sourceTree = "<group>"; };
+		7C80A34A1F7A56A90042A1A1 /* credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
+		7C80A34B1F7A56A90042A1A1 /* github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github.png; sourceTree = "<group>"; };
+		7C80A34C1F7A56A90042A1A1 /* glew.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = glew.css; sourceTree = "<group>"; };
+		7C80A34D1F7A56A90042A1A1 /* glew.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = glew.html; sourceTree = "<group>"; };
+		7C80A34E1F7A56A90042A1A1 /* glew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glew.png; sourceTree = "<group>"; };
+		7C80A34F1F7A56A90042A1A1 /* glew.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = glew.txt; sourceTree = "<group>"; };
+		7C80A3501F7A56A90042A1A1 /* glxew.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = glxew.html; sourceTree = "<group>"; };
+		7C80A3511F7A56A90042A1A1 /* gpl.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
+		7C80A3521F7A56A90042A1A1 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7C80A3531F7A56A90042A1A1 /* install.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = install.html; sourceTree = "<group>"; };
+		7C80A3541F7A56A90042A1A1 /* khronos.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = khronos.txt; sourceTree = "<group>"; };
+		7C80A3551F7A56A90042A1A1 /* log.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = log.html; sourceTree = "<group>"; };
+		7C80A3561F7A56A90042A1A1 /* mesa.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = mesa.txt; sourceTree = "<group>"; };
+		7C80A3571F7A56A90042A1A1 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
+		7C80A3581F7A56A90042A1A1 /* ogl_sm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ogl_sm.jpg; sourceTree = "<group>"; };
+		7C80A3591F7A56A90042A1A1 /* travis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travis.png; sourceTree = "<group>"; };
+		7C80A35A1F7A56A90042A1A1 /* wglew.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = wglew.html; sourceTree = "<group>"; };
+		7C80A35C1F7A577F0042A1A1 /* File.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
+		7C80A35D1F7A577F0042A1A1 /* File.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = File.hpp; sourceTree = "<group>"; };
 		7CA7D7F21F7018C500113190 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
 		7CA7D7F31F7018C500113190 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
 		7CA7D7F41F7018C500113190 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_helper.h; sourceTree = "<group>"; };
@@ -204,6 +268,7 @@
 		82E76BF31F49A8DE009E2420 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		82E76BF71F49AB6A009E2420 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		82E76BF81F49AB6A009E2420 /* Debug.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
+		82F64B851F8D5A3600192E92 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.7/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		E2C45F2D8CAD19EA439497BA /* Pods-TestEngineiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngineiOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngineiOS/Pods-TestEngineiOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C7307EF1F8D1E2900C5DDFF /* libfreetype.6.dylib in Frameworks */,
 				824B9DF11F55F43000C39543 /* GLKit.framework in Frameworks */,
 				824B9DED1F55F2D900C39543 /* OpenGLES.framework in Frameworks */,
 				9B8D864C3BD4155DC4898353 /* libPods-TestEngineiOS.a in Frameworks */,
@@ -222,7 +288,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82B5A0401F7696CC00226B0F /* libglfw3.3.2.dylib in Frameworks */,
+				7C3F77FC1F8E058F004A4854 /* libfreetype.6.dylib in Frameworks */,
+				7C3F77FB1F8E0583004A4854 /* libglfw.3.2.dylib in Frameworks */,
 				7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */,
 				824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */,
 			);
@@ -238,6 +305,235 @@
 				E2C45F2D8CAD19EA439497BA /* Pods-TestEngineiOS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C3F77E51F8E0578004A4854 /* 3.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77E61F8E0578004A4854 /* .brew */,
+				7C3F77E81F8E0578004A4854 /* COPYING.txt */,
+				7C3F77E91F8E0578004A4854 /* include */,
+				7C3F77ED1F8E0578004A4854 /* INSTALL_RECEIPT.json */,
+				7C3F77EE1F8E0578004A4854 /* lib */,
+				7C3F77FA1F8E0578004A4854 /* README.md */,
+			);
+			name = 3.2.1;
+			path = ../../../../../../../../../../../usr/local/Cellar/glfw/3.2.1;
+			sourceTree = "<group>";
+		};
+		7C3F77E61F8E0578004A4854 /* .brew */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77E71F8E0578004A4854 /* glfw.rb */,
+			);
+			path = .brew;
+			sourceTree = "<group>";
+		};
+		7C3F77E91F8E0578004A4854 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77EA1F8E0578004A4854 /* GLFW */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7C3F77EA1F8E0578004A4854 /* GLFW */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77EB1F8E0578004A4854 /* glfw3.h */,
+				7C3F77EC1F8E0578004A4854 /* glfw3native.h */,
+			);
+			path = GLFW;
+			sourceTree = "<group>";
+		};
+		7C3F77EE1F8E0578004A4854 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77EF1F8E0578004A4854 /* cmake */,
+				7C3F77F51F8E0578004A4854 /* libglfw.3.2.dylib */,
+				7C3F77F61F8E0578004A4854 /* libglfw.3.dylib */,
+				7C3F77F71F8E0578004A4854 /* libglfw.dylib */,
+				7C3F77F81F8E0578004A4854 /* pkgconfig */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7C3F77EF1F8E0578004A4854 /* cmake */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77F01F8E0578004A4854 /* glfw3 */,
+			);
+			path = cmake;
+			sourceTree = "<group>";
+		};
+		7C3F77F01F8E0578004A4854 /* glfw3 */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77F11F8E0578004A4854 /* glfw3Config.cmake */,
+				7C3F77F21F8E0578004A4854 /* glfw3ConfigVersion.cmake */,
+				7C3F77F31F8E0578004A4854 /* glfw3Targets-release.cmake */,
+				7C3F77F41F8E0578004A4854 /* glfw3Targets.cmake */,
+			);
+			path = glfw3;
+			sourceTree = "<group>";
+		};
+		7C3F77F81F8E0578004A4854 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F77F91F8E0578004A4854 /* glfw3.pc */,
+			);
+			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		7C80A2961F7A52570042A1A1 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A29B1F7A527F0042A1A1 /* Font.hpp */,
+				7C80A29A1F7A527F0042A1A1 /* Font.cpp */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		7C80A3281F7A56A90042A1A1 /* glew */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3291F7A56A90042A1A1 /* 2.1.0 */,
+			);
+			name = glew;
+			path = ../../../../../../../../../../../usr/local/Cellar/glew;
+			sourceTree = "<group>";
+		};
+		7C80A3291F7A56A90042A1A1 /* 2.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A32A1F7A56A90042A1A1 /* .brew */,
+				7C80A32C1F7A56A90042A1A1 /* bin */,
+				7C80A32F1F7A56A90042A1A1 /* include */,
+				7C80A3341F7A56A90042A1A1 /* INSTALL_RECEIPT.json */,
+				7C80A3351F7A56A90042A1A1 /* lib */,
+				7C80A3421F7A56A90042A1A1 /* LICENSE.txt */,
+				7C80A3431F7A56A90042A1A1 /* README.md */,
+				7C80A3441F7A56A90042A1A1 /* share */,
+			);
+			path = 2.1.0;
+			sourceTree = "<group>";
+		};
+		7C80A32A1F7A56A90042A1A1 /* .brew */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A32B1F7A56A90042A1A1 /* glew.rb */,
+			);
+			path = .brew;
+			sourceTree = "<group>";
+		};
+		7C80A32C1F7A56A90042A1A1 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A32D1F7A56A90042A1A1 /* glewinfo */,
+				7C80A32E1F7A56A90042A1A1 /* visualinfo */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		7C80A32F1F7A56A90042A1A1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3301F7A56A90042A1A1 /* GL */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7C80A3301F7A56A90042A1A1 /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3311F7A56A90042A1A1 /* glew.h */,
+				7C80A3321F7A56A90042A1A1 /* glxew.h */,
+				7C80A3331F7A56A90042A1A1 /* wglew.h */,
+			);
+			path = GL;
+			sourceTree = "<group>";
+		};
+		7C80A3351F7A56A90042A1A1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3361F7A56A90042A1A1 /* cmake */,
+				7C80A33C1F7A56A90042A1A1 /* libGLEW.2.1.0.dylib */,
+				7C80A33D1F7A56A90042A1A1 /* libGLEW.2.1.dylib */,
+				7C80A33E1F7A56A90042A1A1 /* libGLEW.a */,
+				7C80A33F1F7A56A90042A1A1 /* libGLEW.dylib */,
+				7C80A3401F7A56A90042A1A1 /* pkgconfig */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7C80A3361F7A56A90042A1A1 /* cmake */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3371F7A56A90042A1A1 /* glew */,
+			);
+			path = cmake;
+			sourceTree = "<group>";
+		};
+		7C80A3371F7A56A90042A1A1 /* glew */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3381F7A56A90042A1A1 /* CopyImportedTargetProperties.cmake */,
+				7C80A3391F7A56A90042A1A1 /* glew-config.cmake */,
+				7C80A33A1F7A56A90042A1A1 /* glew-targets-release.cmake */,
+				7C80A33B1F7A56A90042A1A1 /* glew-targets.cmake */,
+			);
+			path = glew;
+			sourceTree = "<group>";
+		};
+		7C80A3401F7A56A90042A1A1 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3411F7A56A90042A1A1 /* glew.pc */,
+			);
+			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		7C80A3441F7A56A90042A1A1 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3451F7A56A90042A1A1 /* doc */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
+		7C80A3451F7A56A90042A1A1 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3461F7A56A90042A1A1 /* glew */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		7C80A3461F7A56A90042A1A1 /* glew */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A3471F7A56A90042A1A1 /* advanced.html */,
+				7C80A3481F7A56A90042A1A1 /* basic.html */,
+				7C80A3491F7A56A90042A1A1 /* build.html */,
+				7C80A34A1F7A56A90042A1A1 /* credits.html */,
+				7C80A34B1F7A56A90042A1A1 /* github.png */,
+				7C80A34C1F7A56A90042A1A1 /* glew.css */,
+				7C80A34D1F7A56A90042A1A1 /* glew.html */,
+				7C80A34E1F7A56A90042A1A1 /* glew.png */,
+				7C80A34F1F7A56A90042A1A1 /* glew.txt */,
+				7C80A3501F7A56A90042A1A1 /* glxew.html */,
+				7C80A3511F7A56A90042A1A1 /* gpl.txt */,
+				7C80A3521F7A56A90042A1A1 /* index.html */,
+				7C80A3531F7A56A90042A1A1 /* install.html */,
+				7C80A3541F7A56A90042A1A1 /* khronos.txt */,
+				7C80A3551F7A56A90042A1A1 /* log.html */,
+				7C80A3561F7A56A90042A1A1 /* mesa.txt */,
+				7C80A3571F7A56A90042A1A1 /* new.png */,
+				7C80A3581F7A56A90042A1A1 /* ogl_sm.jpg */,
+				7C80A3591F7A56A90042A1A1 /* travis.png */,
+				7C80A35A1F7A56A90042A1A1 /* wglew.html */,
+			);
+			path = glew;
 			sourceTree = "<group>";
 		};
 		7CA7D7D01F70137000113190 /* Libs */ = {
@@ -274,6 +570,8 @@
 				82E76BF01F49A140009E2420 /* System.cpp */,
 				824DAB9E1F5C0353007E1568 /* Time.hpp */,
 				824DAB9D1F5C0353007E1568 /* Time.cpp */,
+				7C80A35D1F7A577F0042A1A1 /* File.hpp */,
+				7C80A35C1F7A577F0042A1A1 /* File.cpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -390,6 +688,11 @@
 		8266A8191F45879500C55472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C3F77E51F8E0578004A4854 /* 3.2.1 */,
+				7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */,
+				82F64B851F8D5A3600192E92 /* libfreetype.6.dylib */,
+				7C80A3281F7A56A90042A1A1 /* glew */,
+				7C80A2941F7A52370042A1A1 /* libftgl.2.1.3.dylib */,
 				8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */,
 				7CA90BF81F6970DB007FE954 /* libglfw.3.2.dylib */,
 				7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */,
@@ -511,6 +814,7 @@
 		82E222251F4A294D002C1F17 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7C80A2961F7A52570042A1A1 /* Font */,
 				82B5A05B1F76DE2F00226B0F /* Views */,
 				82E222291F4A2988002C1F17 /* UI.hpp */,
 				82E222271F4A296D002C1F17 /* Window.hpp */,
@@ -690,6 +994,7 @@
 				824B9E061F55F5BA00C39543 /* Rect.cpp in Sources */,
 				824B9E071F55F5BA00C39543 /* Window.cpp in Sources */,
 				7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */,
+				7C80A29D1F7A52990042A1A1 /* Font.cpp in Sources */,
 				824B9DDF1F55F25B00C39543 /* ViewController.mm in Sources */,
 				824FFB041F575110000C58DA /* Shader.cpp in Sources */,
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
@@ -709,6 +1014,7 @@
 				7C80A2931F7A4E090042A1A1 /* Image.cpp in Sources */,
 				824FFB001F574414000C58DA /* Input.cpp in Sources */,
 				824B9DF21F55F59300C39543 /* FileManager.cpp in Sources */,
+				7C80A35F1F7A579C0042A1A1 /* File.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +1028,7 @@
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				824FFAFF1F57415B000C58DA /* Input.cpp in Sources */,
 				82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */,
+				7C80A29C1F7A527F0042A1A1 /* Font.cpp in Sources */,
 				82BE33161F561E0800AD91AC /* Cube.cpp in Sources */,
 				82A78F641F4A41A1001BAD46 /* ShaderCompiler.cpp in Sources */,
 				82D452201F545DAB0086772F /* Rect.cpp in Sources */,
@@ -748,6 +1055,7 @@
 				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,
 				8266A8071F45867000C55472 /* main.cpp in Sources */,
 				82E222231F4A2806002C1F17 /* Size.cpp in Sources */,
+				7C80A35E1F7A577F0042A1A1 /* File.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +1095,20 @@
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
+					/usr/local/Cellar/freetype/2.8.1/lib,
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/glm\"",
+					"-I/usr/local/opt/freetype/include/freetype2",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = VladasZ.TestEngineiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -808,6 +1130,20 @@
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
+					/usr/local/Cellar/freetype/2.8.1/lib,
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/glm\"",
+					"-I/usr/local/opt/freetype/include/freetype2",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = VladasZ.TestEngineiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -916,13 +1252,18 @@
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",
 					"/usr/local/Cellar/glm/**",
+					"/usr/local/opt/freetype/include/freetype2/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/glew/2.1.0/lib,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/lib",
+					/usr/local/Cellar/freetype/2.8.1/lib,
+					/usr/local/Cellar/freetype/2.7/lib,
 				);
+				OTHER_CFLAGS = "-I/usr/local/opt/freetype/include/freetype2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -934,17 +1275,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",
 					"/usr/local/Cellar/glm/**",
+					"/usr/local/opt/freetype/include/freetype2/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/glew/2.1.0/lib,
+					"/usr/local/Cellar/ftgl/2.1.3-rc5/lib",
+					/usr/local/Cellar/freetype/2.8.1/lib,
+					/usr/local/Cellar/freetype/2.7/lib,
 				);
+				OTHER_CFLAGS = "-I/usr/local/opt/freetype/include/freetype2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

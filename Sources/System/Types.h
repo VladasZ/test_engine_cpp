@@ -12,3 +12,4 @@ typedef int Int;
 typedef unsigned int UInt;
 typedef float Float;
 typedef double Double;
+typedef unsigned char Byte;

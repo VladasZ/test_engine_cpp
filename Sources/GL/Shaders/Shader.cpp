@@ -20,6 +20,7 @@ Shader Shader::ui;
 Shader Shader::colorVertices;
 Shader Shader::texture;
 Shader Shader::uiTexture;
+Shader Shader::uiMonochrome;
 
 Shader::Shader(const string &vertexPath, const string &fragmentPath) {
     
@@ -45,6 +46,8 @@ void Shader::initialize() {
     uiTexture = Shader(FileManager::assetsDirectory() + "Shaders/uiTexture.vert",
                        FileManager::assetsDirectory() + "Shaders/uiTexture.frag");
     
+    uiMonochrome = Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
+                          FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
     
     colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
                            FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
@@ -57,13 +60,17 @@ void Shader::initialize() {
 
 void Shader::setupUiTranslation() {
     
-    Shader::ui.use();
     mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
     uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
+    
+    Shader::ui.use();
     Shader::ui.setUniformProjectionMatrix(uiProjection);
     
     Shader::uiTexture.use();
     Shader::uiTexture.setUniformProjectionMatrix(uiProjection);
+    
+    Shader::uiMonochrome.use();
+    Shader::uiMonochrome.setUniformProjectionMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) const {

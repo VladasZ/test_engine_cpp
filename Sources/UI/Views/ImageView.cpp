@@ -51,7 +51,6 @@ void ImageView::draw() const {
     View::drawSubviews();
     
     image->bind();
-    Shader::uiTexture.use();
     buffer->draw();
     image->unbind();
 }

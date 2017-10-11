@@ -34,3 +34,9 @@ const string FileManager::workDirectory() {
     NOT_IMPLEMENTED;
     return "";
 }
+
+const string FileManager::assetsPathWithFileName(const string& fileName) {
+    
+    return assetsDirectory() + fileName;
+}
+

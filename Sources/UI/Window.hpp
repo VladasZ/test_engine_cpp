@@ -10,7 +10,6 @@
 
 #include "Size.hpp"
 #include "Point.hpp"
-#include "Types.h"
 #include "Platform.h"
 #include "Input.hpp"
 

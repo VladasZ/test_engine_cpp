@@ -265,7 +265,6 @@
 		82E76BEF1F499FFC009E2420 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		82E76BF01F49A140009E2420 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
 		82E76BF21F49A67D009E2420 /* TestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEngine.h; sourceTree = "<group>"; };
-		82E76BF31F49A8DE009E2420 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		82E76BF71F49AB6A009E2420 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		82E76BF81F49AB6A009E2420 /* Debug.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
 		82F64B851F8D5A3600192E92 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.7/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -565,7 +564,6 @@
 			children = (
 				8208E2B21F488068000A8E14 /* iOS */,
 				82E76BEE1F499FFC009E2420 /* Platform.h */,
-				82E76BF31F49A8DE009E2420 /* Types.h */,
 				82E76BEF1F499FFC009E2420 /* System.hpp */,
 				82E76BF01F49A140009E2420 /* System.cpp */,
 				824DAB9E1F5C0353007E1568 /* Time.hpp */,
@@ -884,7 +882,7 @@
 				TargetAttributes = {
 					824B9DD41F55F25B00C39543 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2545JX4S8U;
+						DevelopmentTeam = 8CWQ8UK4G3;
 						ProvisioningStyle = Automatic;
 					};
 					8266A8021F45867000C55472 = {
@@ -949,13 +947,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestEngineiOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9D175F3A692D04B0F24D803F /* [CP] Copy Pods Resources */ = {
@@ -1087,9 +1088,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2545JX4S8U;
+				DEVELOPMENT_TEAM = 8CWQ8UK4G3;
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1122,9 +1123,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2545JX4S8U;
+				DEVELOPMENT_TEAM = 8CWQ8UK4G3;
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

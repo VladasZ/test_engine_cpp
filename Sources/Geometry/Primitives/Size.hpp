@@ -8,18 +8,16 @@
 
 #pragma once
 
-#include "Types.h"
-
 namespace TestEngine {
     
     class Size {
         
     public:
         
-        Float width = 0, height = 0;
+        float width = 0, height = 0;
         
         Size() = default;
-        Size(Float width, Float height);
+        Size(float width, float height);
     };
 }
 

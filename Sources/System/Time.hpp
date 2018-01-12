@@ -8,13 +8,11 @@
 
 #pragma once
 
-#include "Types.h"
-
 class Time {
     
 public:
     
     static long long now();
     
-    static UInt interval();
+    static int interval();
 };

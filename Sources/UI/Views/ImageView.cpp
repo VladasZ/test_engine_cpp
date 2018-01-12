@@ -12,12 +12,12 @@
 #include "Shader.hpp"
 #include "BufferData.hpp"
 
-ImageView::ImageView(Float x, Float y, Float width, Float height) : View(x, y, width, height) {
+ImageView::ImageView(float x, float y, float width, float height) : View(x, y, width, height) {
     
     setupBuffer();
 }
 
-ImageView::ImageView(Float width, Float height) : View(0, 0, width, height) {
+ImageView::ImageView(float width, float height) : View(0, 0, width, height) {
     
 }
 

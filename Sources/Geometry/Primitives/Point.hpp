@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "Types.h"
 #include "STL.hpp"
 
 namespace TestEngine {
@@ -17,20 +16,20 @@ namespace TestEngine {
         
     public:
                 
-        Float x = 0, y = 0;
+        float x = 0, y = 0;
                 
         Point() = default;
-        Point(Float x, Float y);
+        Point(float x, float y);
                 
-        Float angle() const;
+        float angle() const;
         bool isZero() const;
-        Float length() const;
+        float length() const;
         
         Point normalized() const;
-        Float distanceTo(const Point &point) const;
-        Point withLength(Float length) const;
-        Float angleWith(const Point &point) const;
-        Float projectionTo(const Point &point) const;
+        float distanceTo(const Point &point) const;
+        Point withLength(float length) const;
+        float angleWith(const Point &point) const;
+        float projectionTo(const Point &point) const;
         
         string toString() const;
         

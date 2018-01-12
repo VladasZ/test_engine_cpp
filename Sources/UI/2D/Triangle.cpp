@@ -11,7 +11,6 @@
 Triangle::Triangle() {
         
     vertices = {
-        
         Vertex(0 ,  1),
         Vertex(-1, -1),
         Vertex(1 , -1)

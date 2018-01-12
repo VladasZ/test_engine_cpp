@@ -26,7 +26,7 @@ string ShaderCompiler::shaderVersion() {
 #endif
 }
 
-GLuint ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath)
+int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath)
 {
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);

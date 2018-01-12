@@ -9,7 +9,6 @@
 #pragma once
 
 #include "STL.hpp"
-#include "Types.h"
 #include "Color.hpp"
 
 class Window;
@@ -34,10 +33,10 @@ public:
 
     static void initialize();
     
-    UInt program = -1;
+    int program = -1;
     
-    UInt uniformColor = -1;
-    UInt uniformProjection = -1;
+    int uniformColor = -1;
+    int uniformProjection = -1;
     
     void use() const;
     void setUniformColor(const Color &color) const;

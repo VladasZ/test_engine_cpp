@@ -9,7 +9,6 @@
 #pragma once
 
 #include "STL.hpp"
-#include "Types.h"
 #include <glm.hpp>
 
 using namespace glm;
@@ -20,22 +19,22 @@ public:
     
     vec4 data;
     
-    Float &r;
-    Float &g;
-    Float &b;
-    Float &a;
+    float &r;
+    float &g;
+    float &b;
+    float &a;
     
-    Float *dataBuffer;
+    float *dataBuffer;
     
     Color(Color const &obj);
     Color& operator=(Color const &obj);
     
     Color();
-    Color(Float r, Float g, Float b, Float a = 1);
+    Color(float r, float g, float b, float a = 1);
     
     static Color random();
     
-    void setToUniform(UInt uniform) const;
+    void setToUniform(int uniform) const;
     
     string toString() const;
     

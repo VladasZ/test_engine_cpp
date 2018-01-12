@@ -22,8 +22,8 @@ public:
     Size size;
     
     Rect() = default;
-    Rect(Float width, Float height);
-    Rect(Float x, Float y, Float width, Float height);
+    Rect(float width, float height);
+    Rect(float x, float y, float width, float height);
     
     string toString() const;
     

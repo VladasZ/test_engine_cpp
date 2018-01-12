@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include "Types.h"
+typedef unsigned char Byte;
+
 #include "STL.hpp"
 
 class File {

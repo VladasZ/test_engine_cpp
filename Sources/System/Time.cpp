@@ -18,12 +18,12 @@ long long Time::now() {
     return ms;
 }
 
-UInt Time::interval() {
+int Time::interval() {
     
-    static long long prevInterval = 1;
+    static long long previnterval = 1;
     
-    UInt result = UInt(now() - prevInterval);
-    prevInterval = now();
+    int result = int(now() - previnterval);
+    previnterval = now();
     
     if (result == 0) return 1;
     

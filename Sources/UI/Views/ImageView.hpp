@@ -25,8 +25,8 @@ class ImageView : public View {
 public:
     
     ImageView() = default;
-    ImageView(Float x, Float y, Float width, Float height);
-    ImageView(Float width, Float height);
+    ImageView(float x, float y, float width, float height);
+    ImageView(float width, float height);
     
     void setImage(Image *image);
     

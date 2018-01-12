@@ -20,7 +20,7 @@
 #include <Windows.h>
 #endif
 
-void System::sleep(Float interval) {
+void System::sleep(float interval) {
     
 #ifdef APPLE
     usleep(interval * 1000000);
@@ -31,7 +31,7 @@ void System::sleep(Float interval) {
 #endif
 }
 
-UInt System::random() {
+int System::random() {
     
 #ifdef APPLE
     return arc4random();
@@ -43,7 +43,7 @@ UInt System::random() {
 #endif
 }
 
-UInt System::random(Int range) {
+int System::random(int range) {
     
 #ifdef APPLE
     return arc4random_uniform(range);

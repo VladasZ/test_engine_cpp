@@ -9,7 +9,6 @@
 #include "Font.hpp"
 #include "File.hpp"
 #include "Log.hpp"
-#include "Types.h"
 #include "Window.hpp"
 #include "Image.hpp"
 
@@ -40,7 +39,7 @@ Font::Font(const string& fileName) {
                              0,
                              300));
     
-    Int glyphIndex = FT_Get_Char_Index(face, 'a');
+    int glyphIndex = FT_Get_Char_Index(face, 'a');
     
     Check(FT_Load_Glyph(face,
                         glyphIndex,

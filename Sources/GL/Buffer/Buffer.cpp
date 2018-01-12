@@ -57,7 +57,7 @@ Buffer::~Buffer() {
     if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
 }
 
-void Buffer::setPointers(UInt firstParam, UInt secondParam, UInt thirdParam) const {
+void Buffer::setPointers(int firstParam, int secondParam, int thirdParam) const {
     
     glBindVertexArray(vertexArrayObject);
     BufferConfiguration conf(firstParam, secondParam, thirdParam);

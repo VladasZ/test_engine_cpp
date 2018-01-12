@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "Types.h"
 #include "Platform.h"
 #include "Time.hpp"
 
@@ -16,7 +15,7 @@ class System {
     
 public:
     
-    static void sleep(Float interval);
-    static UInt random();
-    static UInt random(Int range);
+    static void sleep(float interval);
+    static int random();
+    static int random(int range);
 };

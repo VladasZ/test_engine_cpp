@@ -9,7 +9,6 @@
 #pragma once
 
 #include "GL.hpp"
-#include "Types.h"
 #include "Color.hpp"
 
 class Vertex {
@@ -20,7 +19,7 @@ public:
     Color color;
     
     Vertex();
-    Vertex(Float x, Float y, Float z = 0, Color color = Color::white);
+    Vertex(float x, float y, float z = 0, Color color = Color::white);
     Vertex(vec3 position, Color color = Color::white);
     
     string toString();

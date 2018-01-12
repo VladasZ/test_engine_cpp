@@ -10,13 +10,12 @@
 
 #include "STL.hpp"
 #include "GL.hpp"
-#include "Types.h"
 
 class Image {
     
     GLuint id = 0;
     
-    void init(const UInt &width, const UInt &height, void *data, const UInt &channels);
+    void init(const int &width, const int &height, void *data, const int &channels);
     
     Image() = default;
     
@@ -31,7 +30,7 @@ public:
     int width, height;
     const bool monochrome;
     
-    Image(const UInt &width, const UInt &height, void *data, const UInt &channels = 4);
+    Image(const int &width, const int &height, void *data, const int &channels = 4);
     Image(const string& file);
     
     void bind() const;

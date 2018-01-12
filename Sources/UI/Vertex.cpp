@@ -12,7 +12,7 @@ Vertex::Vertex() : position(vec3(0, 0, 0)), color(Color()) {
     
 }
 
-Vertex::Vertex(Float x, Float y, Float z, Color color) : position(vec3(x, y, z)), color(color) {
+Vertex::Vertex(float x, float y, float z, Color color) : position(vec3(x, y, z)), color(color) {
     
 }
 

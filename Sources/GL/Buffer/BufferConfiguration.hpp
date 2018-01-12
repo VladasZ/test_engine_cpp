@@ -8,18 +8,16 @@
 
 #pragma once
 
-#include "Types.h"
-
 class Buffer;
 
 class BufferConfiguration {
     
-    UInt *configuration = nullptr;
-    UInt size = 1;
+    int *configuration = nullptr;
+    int size = 1;
     
-    UInt vertexSize = 0;
+    int vertexSize = 0;
     
-    UInt strideForIndex(int index) const;
+    int strideForIndex(int index) const;
     
     void setPointers() const;
 
@@ -27,7 +25,7 @@ class BufferConfiguration {
     
 public:
     
-    BufferConfiguration(UInt firstParam, UInt secondParam = 0, UInt thirdParam = 0);
+    BufferConfiguration(int firstParam, int secondParam = 0, int thirdParam = 0);
     ~BufferConfiguration();    
 };
 

@@ -10,7 +10,6 @@
 
 #include "Primitives.hpp"
 #include "Color.hpp"
-#include "Types.h"
 #include "STL.hpp"
 
 enum Autolayout {
@@ -53,8 +52,8 @@ public:
     vector<View *> subviews;
     
     View() = default;
-    View(Float x, Float y, Float width, Float height);
-    View(Float width, Float height);
+    View(float x, float y, float width, float height);
+    View(float width, float height);
     
     void setFrame(const Rect &frame);
     void addSubview(View *view);

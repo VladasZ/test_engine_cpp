@@ -1,7 +1,6 @@
 #pragma once
 
 #include "STL.hpp"
-#include "Types.h"
 
 class ShaderCompiler {
     
@@ -11,6 +10,6 @@ private:
     
 public:
     
-    static UInt compile(const string &vertexPath, const string &fragmentPath);
+    static int compile(const string &vertexPath, const string &fragmentPath);
 };
 

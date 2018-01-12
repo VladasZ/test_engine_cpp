@@ -16,7 +16,7 @@ Image *Image::cat;
 Image *Image::slow;
 Image *Image::test;
 
-void Image::init(const UInt &width, const UInt &height, void *data, const UInt &channels) {
+void Image::init(const int &width, const int &height, void *data, const int &channels) {
     
     this->width = width;
     this->height = height;
@@ -40,7 +40,7 @@ void Image::init(const UInt &width, const UInt &height, void *data, const UInt &
      SAFE(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const UInt &width, const UInt &height, void *data, const UInt &channels)
+Image::Image(const int &width, const int &height, void *data, const int &channels)
 :
 monochrome(channels == 1)
 {
@@ -51,7 +51,7 @@ Image::Image(const string &file)
 :
 monochrome(false)
 {
-    Int channels;
+    int channels;
     
     unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,

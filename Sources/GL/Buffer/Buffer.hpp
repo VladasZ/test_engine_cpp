@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "Types.h"
 #include "GL.hpp"
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
@@ -35,7 +34,7 @@ public:
 
     ~Buffer();
     
-    void setPointers(UInt firstParam, UInt secondParam = 0, UInt thirdParam = 0) const;
+    void setPointers(int firstParam, int secondParam = 0, int thirdParam = 0) const;
     void setData(const BufferData &data);
     
 

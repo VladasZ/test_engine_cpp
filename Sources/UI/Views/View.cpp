@@ -11,12 +11,12 @@
 #include "Shader.hpp"
 #include "Window.hpp"
 
-View::View(Float x, Float y, Float width, Float height) : frame(Rect(x, y, width, height)) {
+View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) {
     
     setupBuffer();
 }
 
-View::View(Float width, Float height) : View(0, 0, width, height) {
+View::View(float width, float height) : View(0, 0, width, height) {
     
 }
 

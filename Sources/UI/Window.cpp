@@ -23,6 +23,7 @@
 #include "FileManager.hpp"
 #include "ImageView.hpp"
 #include "Font.hpp"
+#include "Glyph.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -91,7 +92,13 @@ ImageView *palmImageView;
 
 void Window::setup() {
     
-    testFont = new Font("Fonts/OpenSans.ttf");
+    testFont = new Font("Fonts/SF.otf");
+    
+    auto fontImage = testFont->glyphForChar('S')->image;
+    
+    Image::cat = testFont->glyphForChar('g')->image;
+    Image::palm = testFont->glyphForChar('T')->image;
+    Image::slow = testFont->glyphForChar('q')->image;
     
     view = new View(0, 0, 100, 100);
     view->color = Color::green;
@@ -108,8 +115,8 @@ void Window::setup() {
     slowImageView->setImage(Image::slow);
     slowImageView->autolayoutMask = StickToBottom | StickToLeft;
     
-    palmImageView = new ImageView(0, 0, 800, 800);
-    palmImageView->setImage(testFont->image);
+    palmImageView = new ImageView(0, 0, fontImage->width, fontImage->height);
+    palmImageView->setImage(fontImage);
     palmImageView->autolayoutMask = CenterVertically | CenterHorizontally;
     
 }

@@ -12,19 +12,19 @@
 
 class File;
 class Image;
+class Glyph;
 
 struct FT_FaceRec_;
 typedef struct FT_FaceRec_* FT_Face;
 
 class Font {
+    
+    vector<Glyph *> glyphs;
   
 public:
     
-    FT_Face face;
-    
-    File *file;
-    Image *image;
-    
     Font(const string& fileName);
+    
+    Glyph *glyphForChar(char ch);
     
 };

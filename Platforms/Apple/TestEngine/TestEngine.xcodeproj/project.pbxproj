@@ -10,6 +10,7 @@
 		7C3F77FB1F8E0583004A4854 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3F77F51F8E0578004A4854 /* libglfw.3.2.dylib */; };
 		7C3F77FC1F8E058F004A4854 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */; };
 		7C7307EF1F8D1E2900C5DDFF /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */; };
+		7C7C32D52010F6A200489969 /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C7C32D32010F6A200489969 /* Glyph.cpp */; };
 		7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		7C80A28E1F7A4DF00042A1A1 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4522A1F546B8E0086772F /* Buffer.cpp */; };
 		7C80A28F1F7A4DF00042A1A1 /* BufferConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82B5A0581F76C45000226B0F /* BufferConfiguration.cpp */; };
@@ -122,6 +123,8 @@
 		7C3F77F91F8E0578004A4854 /* glfw3.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3.pc; sourceTree = "<group>"; };
 		7C3F77FA1F8E0578004A4854 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.8.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		7C7C32D32010F6A200489969 /* Glyph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glyph.cpp; sourceTree = "<group>"; };
+		7C7C32D42010F6A200489969 /* Glyph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glyph.hpp; sourceTree = "<group>"; };
 		7C80A2941F7A52370042A1A1 /* libftgl.2.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftgl.2.1.3.dylib; path = "../../../../../../../../../../../usr/local/Cellar/ftgl/2.1.3-rc5/lib/libftgl.2.1.3.dylib"; sourceTree = "<group>"; };
 		7C80A29A1F7A527F0042A1A1 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		7C80A29B1F7A527F0042A1A1 /* Font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 			children = (
 				7C80A29B1F7A527F0042A1A1 /* Font.hpp */,
 				7C80A29A1F7A527F0042A1A1 /* Font.cpp */,
+				7C7C32D42010F6A200489969 /* Glyph.hpp */,
+				7C7C32D32010F6A200489969 /* Glyph.cpp */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -1037,6 +1042,7 @@
 				82D4522C1F546B8E0086772F /* Buffer.cpp in Sources */,
 				82D452231F545F620086772F /* Color.cpp in Sources */,
 				821B20B61F582E5700933EC4 /* Rectangle.cpp in Sources */,
+				7C7C32D52010F6A200489969 /* Glyph.cpp in Sources */,
 				8266A82B1F45899300C55472 /* Point.cpp in Sources */,
 				82B5A05A1F76C45000226B0F /* BufferConfiguration.cpp in Sources */,
 				82D452291F5466BF0086772F /* Polygon.cpp in Sources */,

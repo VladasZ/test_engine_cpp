@@ -14,7 +14,16 @@
 
 Image *Image::cat;
 Image *Image::slow;
-Image *Image::test;
+Image *Image::palm;
+
+int modeForChannels(const int &channels) {
+    switch (channels) {
+        case 1:  return GL_RED;  break;
+        //case 3:  return GL_RGBA; break;
+        //case 4:  return GL_RGBA; break;
+        default: return GL_RGBA; break;
+    }
+}
 
 void Image::init(const int &width, const int &height, void *data, const int &channels) {
     
@@ -23,19 +32,32 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
     
     SAFE(glGenTextures(1, &id));
     SAFE(glBindTexture(GL_TEXTURE_2D, id));
-//    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-//    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
-    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
     
+
+    cout << width << " : " << height << endl;
+
     if (channels == 1) {
-         //SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
-         SAFE(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
-    }
-    else {
-         SAFE(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+        cout << "1 channel" << endl;
+        SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
     }
     
+    SAFE(glTexImage2D(GL_TEXTURE_2D,
+                      0,
+                      modeForChannels(channels),
+                      width,
+                      height,
+                      0,
+                      modeForChannels(channels),
+                      GL_UNSIGNED_BYTE,
+                      data));
+    
+    //glTexEnvf(GL_TEXTURE_2D,GL_TEXTURE_ENV_MODE,GL_MODULATE);
+
+
      SAFE(glGenerateMipmap(GL_TEXTURE_2D));
      SAFE(glBindTexture(GL_TEXTURE_2D, 0));
 }
@@ -58,6 +80,8 @@ monochrome(false)
                                            &height,
                                            &channels,
                                            SOIL_LOAD_RGBA);
+    
+    cout << "Loading image: " << file << " channels: " << channels << endl;
     init(width, height, image, channels);
     SOIL_free_image_data(image);
 }
@@ -79,5 +103,5 @@ void Image::initialize() {
     
     cat  = new Image("cat.jpg");
     slow = new Image("slow.jpg");
-    test = new Image("test.png");
+    palm = new Image("palm.png");
 }

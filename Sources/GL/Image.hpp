@@ -23,7 +23,7 @@ public:
     
     static Image *cat;
     static Image *slow;
-    static Image *test;
+    static Image *palm;
 
     static void initialize();
   

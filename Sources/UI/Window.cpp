@@ -63,8 +63,9 @@ void Window::initialize(int width, int height) {
     
 #endif
     
-    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
+    glEnable(GL_ALPHA_TEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     Shader::initialize();
@@ -83,42 +84,33 @@ void Window::didTouch(const int &x, const int &y) {
 Font *testFont;
 
 View *view;
-ImageView *imageView;
-ImageView *imageView2;
-
-GLuint texture;
-
-Buffer *image;
+ImageView *fontImageView;
+ImageView *catImageView;
+ImageView *slowImageView;
+ImageView *palmImageView;
 
 void Window::setup() {
     
     testFont = new Font("Fonts/OpenSans.ttf");
     
-    GLfloat vertices[] = {
-        // Positions           // Texture Coords
-         0.5f,  0.5f, 0.0f,     1.0f, 0.0f, // Top Right
-         0.5f, -0.5f, 0.0f,     1.0f, 1.0f, // Bottom Right
-        -0.5f, -0.5f, 0.0f,     0.0f, 1.0f, // Bottom Left
-        -0.5f,  0.5f, 0.0f,     0.0f, 0.0f  // Top Left
-    };
-    
-    GLushort indices[] = {  // Note that we start from 0!
-        0, 1, 3, 2  // Second Triangle
-    };
-    
-    image = new Buffer(vertices, sizeof(vertices),
-                       indices, sizeof(indices),
-                       BufferConfiguration(3, 2));
-    
     view = new View(0, 0, 100, 100);
+    view->color = Color::green;
     
-    imageView = new ImageView(200, 0, 100, 150);
-    imageView->setImage(testFont->image);
-    imageView->autolayoutMask = StickToTop | CenterHorizontally;
+    fontImageView = new ImageView(200, 0, 100, 150);
+    fontImageView->setImage(Image::palm);
+    fontImageView->autolayoutMask = StickToTop | CenterHorizontally;
     
-    imageView2 = new ImageView(400, 0, 110, 150);
-    imageView2->setImage(Image::cat);
-    imageView2->autolayoutMask = StickToRight | StickToBottom;
+    catImageView = new ImageView(400, 0, 110, 150);
+    catImageView->setImage(Image::cat);
+    catImageView->autolayoutMask = StickToRight | StickToBottom;
+    
+    slowImageView = new ImageView(0, 0, 200, 200);
+    slowImageView->setImage(Image::slow);
+    slowImageView->autolayoutMask = StickToBottom | StickToLeft;
+    
+    palmImageView = new ImageView(0, 0, 800, 800);
+    palmImageView->setImage(testFont->image);
+    palmImageView->autolayoutMask = CenterVertically | CenterHorizontally;
     
 }
 
@@ -128,18 +120,17 @@ void Window::update() {
     
     view->draw();
     
-    glBindTexture(GL_TEXTURE_2D, texture);
+    fontImageView->draw();
+    fontImageView->layout();
     
-    Image::test->bind();
-    Shader::texture.use();
-
-    image->draw();
-    imageView->draw();
-    imageView->layout();
+    catImageView->draw();
+    catImageView->layout();
     
-    imageView2->draw();
-    imageView2->layout();
-
+    slowImageView->draw();
+    slowImageView->layout();
+    
+    palmImageView->draw();
+    palmImageView->layout();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

@@ -16,17 +16,15 @@ class ImageView : public View {
   
     friend Window;
     
-    virtual BufferData getBufferData();
-    virtual void setupBuffer();
-    virtual void draw() const;
+    BufferData *getBufferData() override;
+    void setupBuffer() override;
+    void draw() override;
     
     Image *image = nullptr;
     
 public:
     
-    ImageView() = default;
-    ImageView(float x, float y, float width, float height);
-    ImageView(float width, float height);
+    using View::View;
     
     void setImage(Image *image);
     

@@ -28,6 +28,6 @@ using namespace glm;
     #import <OpenGLES/ES3/gl.h>
 
 #elif MAC_OS
-    #include <glew.h>
+    #include "glew.h"
     #include "glfw3.h"
 #endif

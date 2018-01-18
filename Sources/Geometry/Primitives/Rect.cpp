@@ -35,7 +35,7 @@ BufferData * Rect::getData() const {
     GLushort indices[] = { 0, 1, 2, 3 };
     
     return new BufferData(rect,    sizeof(rect),
-                         indices, sizeof(indices));
+                          indices, sizeof(indices));
 }
 
 string Rect::toString() const {

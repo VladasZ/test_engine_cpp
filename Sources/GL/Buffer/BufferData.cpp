@@ -7,14 +7,13 @@
 //
 
 #include "BufferData.hpp"
-#include <string.h>
+#include "STL.hpp"
 
 BufferData::BufferData(GLfloat *vertData, GLuint vertSize)
 :
 vertSize(vertSize)
 {
     this->vertData = (GLfloat *)malloc(vertSize);
-    
     memcpy(this->vertData, vertData, vertSize);
 }
 
@@ -32,7 +31,6 @@ indData(indData), indSize(indSize)
 }
 
 BufferData::~BufferData() {
-    
-    free(vertData);
+    if (vertData != nullptr) free(vertData);
     if (indData != nullptr) free(indData);
 }

@@ -8,23 +8,24 @@
 
 #pragma once
 
+#include "Tools.hpp"
 #include "GL.hpp"
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
 
-class Buffer {
+class Buffer : public NonCopyable {
     
-    BufferData data;
+    BufferData *data;
     
     GLuint vertexArrayObject = 0;
     GLuint vertexBufferObject = 0;
     GLuint indexBufferObject = 0;
-    
+        
 public:
     
     GLenum drawMode = GL_TRIANGLE_STRIP;
     
-    Buffer(const BufferData &data, const BufferConfiguration &configuration);
+    Buffer(BufferData *data, const BufferConfiguration &configuration);
     
     Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration);
     
@@ -35,7 +36,7 @@ public:
     ~Buffer();
     
     void setPointers(int firstParam, int secondParam = 0, int thirdParam = 0) const;
-    void setData(const BufferData &data);
+    void setData(BufferData *data);
     
 
     void draw() const;

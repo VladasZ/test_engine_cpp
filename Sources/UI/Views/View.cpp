@@ -10,33 +10,29 @@
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "Window.hpp"
+#include "Tools.hpp"
 
-View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) {
-    
-    setupBuffer();
-}
+View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
+View::View(float width, float height) : View(0, 0, width, height) { }
 
-View::View(float width, float height) : View(0, 0, width, height) {
+BufferData * View::getBufferData() {
+    return frame.getData();
     
-}
-
-BufferData View::getBufferData() {
-    
-    return *frame.getData();
 }
 
 void View::setupBuffer() {
-    
+    delete buffer;
     buffer = new Buffer(getBufferData(), BufferConfiguration(2));
 }
 
 void View::drawSubviews() const {
-    
     for (int i = (int)subviews.size() - 1; i >= 0; i--)
         subviews[i]->draw();
 }
 
-void View::draw() const {
+void View::draw() {
+    
+    layout();
     
     drawSubviews();
         
@@ -47,7 +43,10 @@ void View::draw() const {
 
 void View::layout() {
     
-    if (autolayoutMask == Autolayout::None) return;
+    if (autolayoutMask == Autolayout::None) {
+        setupBuffer();
+        return;
+    }
     
     Rect parentFrame;
     Rect layoutFrame = frame;
@@ -80,9 +79,7 @@ void View::layout() {
 
     this->frame = layoutFrame;
     
-    setupBuffer();
-    
-    //buffer->setData(getBufferData());
+    setupBuffer();    
 }
 
 void View::setFrame(const Rect &frame) {

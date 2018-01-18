@@ -12,16 +12,7 @@
 #include "Shader.hpp"
 #include "BufferData.hpp"
 
-ImageView::ImageView(float x, float y, float width, float height) : View(x, y, width, height) {
-    
-    setupBuffer();
-}
-
-ImageView::ImageView(float width, float height) : View(0, 0, width, height) {
-    
-}
-
-BufferData ImageView::getBufferData() {
+BufferData * ImageView::getBufferData() {
     
     GLfloat vertices[] = {
         frame.origin.x,                    frame.origin.y,                     0.0f, 0.0f,
@@ -32,21 +23,23 @@ BufferData ImageView::getBufferData() {
     
     GLushort indices[] = { 0, 1, 2, 3 };
 
-    return BufferData(vertices, sizeof(vertices),
-                      indices,  sizeof(indices));
+    return new BufferData(vertices, sizeof(vertices),
+                          indices,  sizeof(indices));
 }
 
 void ImageView::setupBuffer() {
-    
+    delete buffer;
     buffer = new Buffer(getBufferData(), BufferConfiguration(2, 2));
 }
 
-void ImageView::draw() const {
+void ImageView::draw() {
     
     if (image == nullptr) {
         View::draw();
         return;
     }
+    
+    layout();
     
     View::drawSubviews();
     

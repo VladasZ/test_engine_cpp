@@ -36,10 +36,10 @@ protected:
     Buffer *buffer;
     
     void drawSubviews() const;
-    virtual void draw() const;
+    virtual void draw();
     void layout();
     
-    virtual BufferData getBufferData();
+    virtual BufferData *getBufferData();
     virtual void setupBuffer();
     
 public:

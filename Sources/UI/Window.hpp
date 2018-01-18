@@ -22,6 +22,8 @@ class Window {
     
     static View *rootView;
     
+    static int framesDrawn;
+    
     static void touchBegan(const TestEngine::Point &position);
     static void touchMoved(const TestEngine::Point &position);
     

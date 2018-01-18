@@ -37,13 +37,8 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
     SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST));
     SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     
-
-    cout << width << " : " << height << endl;
-
-    if (channels == 1) {
-        cout << "1 channel" << endl;
+    if (channels == 1)
         SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
-    }
     
     SAFE(glTexImage2D(GL_TEXTURE_2D,
                       0,

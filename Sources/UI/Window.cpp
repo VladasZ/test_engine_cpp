@@ -33,6 +33,7 @@ GLFWwindow * Window::window;
 
 Size Window::size;
 View * Window::rootView;
+int Window::framesDrawn = 0;
 
 void Window::initialize(int width, int height) {
     
@@ -128,16 +129,11 @@ void Window::update() {
     view->draw();
     
     fontImageView->draw();
-    fontImageView->layout();
-    
     catImageView->draw();
-    catImageView->layout();
-    
     slowImageView->draw();
-    slowImageView->layout();
-    
     palmImageView->draw();
-    palmImageView->layout();
+    
+    Window::framesDrawn++;
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

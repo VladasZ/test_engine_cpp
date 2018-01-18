@@ -9,10 +9,11 @@
 #pragma once
 
 #include "GL.hpp"
+#include "Tools.hpp"
 
 class Buffer;
 
-class BufferData {
+class BufferData : public NonCopyable {
     
     GLfloat *vertData = nullptr;
     GLuint vertSize = 0;
@@ -27,7 +28,7 @@ public:
     BufferData(GLfloat *vertData, GLuint vertSize);
     
     BufferData(GLfloat *vertData, GLuint vertSize,
-           GLushort *indData,  GLuint indSize);
+               GLushort *indData,  GLuint indSize);
     
     ~BufferData();
 };

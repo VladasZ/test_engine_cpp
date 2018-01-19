@@ -73,7 +73,7 @@ void Window::initialize(int width, int height) {
     
     //glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
-    glEnable(GL_ALPHA_TEST);
+    //glEnable(GL_ALPHA_TEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     Shader::initialize();
@@ -113,8 +113,8 @@ void Window::setup() {
     rootView->addSubview(greenView);
     
     
-    auto blueView = new View(200, 200);
-    blueView->color = Color::blue;
+    auto blueView = new ImageView(100, 100);
+    blueView->image = Image::cat;
     blueView->autolayoutMask = StickToBottom | StickToRight;
     
     
@@ -148,6 +148,7 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
 void Window::touchBegan(const TestEngine::Point &position) {
     
     cout << position.toString() << endl;
+    Window::didTouch(position.x, position.y);
 }
 
 void Window::touchMoved(const TestEngine::Point &position) {

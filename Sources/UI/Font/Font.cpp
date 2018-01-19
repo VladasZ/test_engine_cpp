@@ -47,7 +47,7 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
                            1);
     
     return new Glyph(image,
-                     face->glyph->metrics.horiAdvance / 64,
+                     (int)face->glyph->metrics.horiAdvance / 64,
                      Point(face->glyph->metrics.horiBearingX / 64,
                            face->glyph->metrics.horiBearingY / 64));
 }
@@ -80,26 +80,5 @@ void Font::initialize() {
     System   = SF;
 }
 
-//    cout << endl;
-//    cout << face->glyph->advance.x / 64 << " advance.x" << endl;
-//    cout << face->glyph->advance.y / 64 << " advance.y" << endl;
-//    cout << endl;
-//    cout << face->glyph->metrics.height / 64 << " metrics.height" << endl;
-//    cout << face->glyph->metrics.width / 64 << " metrics.width" << endl;
-//    cout << endl;
-//    cout << face->glyph->metrics.horiAdvance / 64 << " metrics.horiAdvance" << endl;
-//    cout << endl;
-//    cout << face->glyph->metrics.horiBearingX / 64 << " metrics.horiBearingX" << endl;
-//    cout << face->glyph->metrics.horiBearingY / 64 << " metrics.horiBearingY" << endl;
-//    cout << endl;
-//    cout << face->glyph->metrics.vertBearingX / 64 << " metrics.vertBearingX" << endl;
-//    cout << face->glyph->metrics.vertBearingY / 64 << " metrics.vertBearingY" << endl;
-//    cout << endl;
-//    cout << face->glyph->linearHoriAdvance / 64 << " linearHoriAdvance" << endl;
-//    cout << face->glyph->linearVertAdvance / 64 <<  " linearVertAdvance" << endl;
-//    cout << endl;
-//    cout << bitmapGlyhp->bitmap.width << " bitmap.width" << endl;
-//    cout << bitmapGlyhp->bitmap.rows << " bitmap.rows" << endl;
-//    cout << endl;
 
 

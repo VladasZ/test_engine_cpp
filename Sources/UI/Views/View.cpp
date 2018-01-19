@@ -31,7 +31,7 @@ Rect View::absoluteFrame() {
 }
 
 void View::setupBuffer() {
-    delete buffer;
+    if (buffer != nullptr) delete buffer;
     buffer = new Buffer(getBufferData(), BufferConfiguration(2));
 }
 

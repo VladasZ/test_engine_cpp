@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C147156201226F300494317 /* libFreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C147155201226F300494317 /* libFreetype2.a */; };
 		7C5876312012099A00094DF5 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58762F2012099A00094DF5 /* Label.cpp */; };
-		7C7307EF1F8D1E2900C5DDFF /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */; };
+		7C5876322012166900094DF5 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58762F2012099A00094DF5 /* Label.cpp */; };
+		7C5876332012166E00094DF5 /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C7C32D32010F6A200489969 /* Glyph.cpp */; };
+		7C58780B201218BA00094DF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C58780A201218BA00094DF5 /* OpenGLES.framework */; };
+		7C58780D201218D200094DF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C58780C201218D200094DF5 /* GLKit.framework */; };
 		7C7C32D52010F6A200489969 /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C7C32D32010F6A200489969 /* Glyph.cpp */; };
 		7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		7C80A28E1F7A4DF00042A1A1 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4522A1F546B8E0086772F /* Buffer.cpp */; };
@@ -37,8 +41,6 @@
 		824B9DE21F55F25B00C39543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824B9DE01F55F25B00C39543 /* Main.storyboard */; };
 		824B9DE41F55F25B00C39543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 824B9DE31F55F25B00C39543 /* Assets.xcassets */; };
 		824B9DE71F55F25B00C39543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824B9DE51F55F25B00C39543 /* LaunchScreen.storyboard */; };
-		824B9DED1F55F2D900C39543 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824B9DEC1F55F2D900C39543 /* OpenGLES.framework */; };
-		824B9DF11F55F43000C39543 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824B9DF01F55F43000C39543 /* GLKit.framework */; };
 		824B9DF21F55F59300C39543 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E2221E1F4A2746002C1F17 /* FileManager.cpp */; };
 		824B9DF31F55F5A500C39543 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF71F49AB6A009E2420 /* Debug.cpp */; };
 		824B9DF41F55F5A800C39543 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
@@ -109,6 +111,9 @@
 /* Begin PBXFileReference section */
 		0ABEB404302B410C6CE9086F /* Pods-TestEngineiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestEngineiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestEngineiOS/Pods-TestEngineiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		67F89D7B13B8DB03686B464F /* libPods-TestEngineiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestEngineiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C14714D20121BE500494317 /* libfreetype-arm64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfreetype-arm64.a"; path = "../../../../../../../../../Desktop/FreeType_iOS_Release/libfreetype-arm64.a"; sourceTree = "<group>"; };
+		7C14715120121CB000494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../../../../../../Desktop/FreeType_iOS_Release/libFreetype2.a; sourceTree = "<group>"; };
+		7C147155201226F300494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2.a; sourceTree = "<group>"; };
 		7C3F77E71F8E0578004A4854 /* glfw.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glfw.rb; sourceTree = "<group>"; };
 		7C3F77E81F8E0578004A4854 /* COPYING.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		7C3F77EB1F8E0578004A4854 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
@@ -125,6 +130,9 @@
 		7C3F77FA1F8E0578004A4854 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7C58762F2012099A00094DF5 /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
 		7C5876302012099A00094DF5 /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
+		7C5878082012189000094DF5 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../Cross/Demo/Projects/iOS/libFreetype2.a; sourceTree = "<group>"; };
+		7C58780A201218BA00094DF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
+		7C58780C201218D200094DF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.8.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		7C7C32D32010F6A200489969 /* Glyph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glyph.cpp; sourceTree = "<group>"; };
 		7C7C32D42010F6A200489969 /* Glyph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glyph.hpp; sourceTree = "<group>"; };
@@ -284,9 +292,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C7307EF1F8D1E2900C5DDFF /* libfreetype.6.dylib in Frameworks */,
-				824B9DF11F55F43000C39543 /* GLKit.framework in Frameworks */,
-				824B9DED1F55F2D900C39543 /* OpenGLES.framework in Frameworks */,
+				7C58780D201218D200094DF5 /* GLKit.framework in Frameworks */,
+				7C58780B201218BA00094DF5 /* OpenGLES.framework in Frameworks */,
+				7C147156201226F300494317 /* libFreetype2.a in Frameworks */,
 				9B8D864C3BD4155DC4898353 /* libPods-TestEngineiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,6 +556,7 @@
 		7CA7D7D01F70137000113190 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				7C147155201226F300494317 /* libFreetype2.a */,
 				7CA7D7F11F7018C500113190 /* SOIL */,
 			);
 			path = Libs;
@@ -696,6 +705,11 @@
 		8266A8191F45879500C55472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C14715120121CB000494317 /* libFreetype2.a */,
+				7C14714D20121BE500494317 /* libfreetype-arm64.a */,
+				7C58780C201218D200094DF5 /* GLKit.framework */,
+				7C58780A201218BA00094DF5 /* OpenGLES.framework */,
+				7C5878082012189000094DF5 /* libFreetype2.a */,
 				82DE6FB8201138D900A159E1 /* libfreetype.6.dylib */,
 				7C3F77E51F8E0578004A4854 /* 3.2.1 */,
 				7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */,
@@ -1013,6 +1027,7 @@
 				824B9DDF1F55F25B00C39543 /* ViewController.mm in Sources */,
 				824FFB041F575110000C58DA /* Shader.cpp in Sources */,
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
+				7C5876322012166900094DF5 /* Label.cpp in Sources */,
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
 				824B9E0A1F55F5BA00C39543 /* Vertex.cpp in Sources */,
@@ -1021,6 +1036,7 @@
 				7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */,
 				824B9DDC1F55F25B00C39543 /* AppDelegate.m in Sources */,
 				824B9E0B1F55F5BA00C39543 /* Polygon.cpp in Sources */,
+				7C5876332012166E00094DF5 /* Glyph.cpp in Sources */,
 				824B9DD91F55F25B00C39543 /* main.m in Sources */,
 				821B20B71F582F1A00933EC4 /* Rectangle.cpp in Sources */,
 				7C80A28F1F7A4DF00042A1A1 /* BufferConfiguration.cpp in Sources */,
@@ -1113,6 +1129,11 @@
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/freetype/2.8.1/lib,
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/Cross/Demo/Projects/iOS",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					/Users/vladas.zakrevskis/Desktop/FreeType_iOS_Release,
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1148,6 +1169,11 @@
 					/usr/local/Cellar/glfw/3.2.1/lib,
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/freetype/2.8.1/lib,
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/Cross/Demo/Projects/iOS",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					/Users/vladas.zakrevskis/Desktop/FreeType_iOS_Release,
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",

@@ -33,7 +33,7 @@ class View {
     
 protected:
     
-    Buffer *buffer;
+    Buffer *buffer = nullptr;
         
     void drawSubviews() const;
     virtual void draw();

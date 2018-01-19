@@ -25,7 +25,6 @@ void Label::setGlyphs() {
         imageView->setImage(glyph->image);
         addSubview(imageView);
         advance += glyph->advance;
-        cout << glyph->advance << endl;
     }
     
     layout();

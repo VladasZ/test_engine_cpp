@@ -30,7 +30,7 @@ BufferData * ImageView::getBufferData() {
 }
 
 void ImageView::setupBuffer() {
-    delete buffer;
+    if (buffer != nullptr) delete buffer;
     buffer = new Buffer(getBufferData(), BufferConfiguration(2, 2));
 }
 

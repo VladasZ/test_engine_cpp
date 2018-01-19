@@ -11,6 +11,7 @@
 #include "FileManager.hpp"
 #include "Log.hpp"
 #include "Shader.hpp"
+#include "Platform.h"
 
 Image *Image::cat;
 Image *Image::slow;
@@ -18,9 +19,13 @@ Image *Image::palm;
 
 static int modeForChannels(const int &channels) {
     switch (channels) {
-        case 1:  return GL_RED;  break;
-            //case 3:  return GL_RGBA; break;
-            //case 4:  return GL_RGBA; break;
+#if IOS
+        case 1: return GL_LUMINANCE;  break;
+#else
+        case 1: return GL_RED;  break;
+#endif
+        //case 3:  return GL_RGBA; break;
+        //case 4:  return GL_RGBA; break;
         default: return GL_RGBA; break;
     }
 }

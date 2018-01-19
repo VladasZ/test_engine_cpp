@@ -56,9 +56,11 @@ public:
     View() = default;
     View(float x, float y, float width, float height);
     View(float width, float height);
-    
+    View(const Size &size);
+
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
     
     void addSubview(View *view);
+    void removeAllSubviews();
 };

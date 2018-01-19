@@ -24,6 +24,7 @@ class Font : NonCopyable {
   
 public:
     
+    static Font *System;
     static Font *SF;
     static Font *OpenSans;
     

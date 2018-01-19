@@ -14,6 +14,7 @@
 
 View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
 View::View(float width, float height) : View(0, 0, width, height) { }
+View::View(const Size &size) : View(0, 0, size.width, size.height) { }
 
 BufferData * View::getBufferData() {
     return absoluteFrame().getData();
@@ -105,4 +106,8 @@ void View::setCenter(const Point &center) {
 void View::addSubview(View *view) {
     subviews.push_back(view);
     view->superview = this;
+}
+
+void View::removeAllSubviews() {
+    subviews.clear();
 }

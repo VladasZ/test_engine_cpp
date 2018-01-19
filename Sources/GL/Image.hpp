@@ -10,12 +10,13 @@
 
 #include "STL.hpp"
 #include "GL.hpp"
+#include "Size.hpp"
 
 class Image {
     
     GLuint id = 0;
     
-    void init(const int &width, const int &height, void *data, const int &channels, int filter);
+    void init(const Size &size, void *data, const int &channels, int filter);
     
     Image() = default;
     
@@ -34,10 +35,10 @@ public:
 
     static void initialize();
   
-    int width, height;
+    Size size;
     int channels;
     
-    Image(const int &width, const int &height, void *data, const int &channels, Filter filter = Filter::Linear);
+    Image(const Size &size, void *data, const int &channels, Filter filter = Filter::Linear);
     Image(const string& file, Filter filter = Filter::Linear);
     
     void bind() const;

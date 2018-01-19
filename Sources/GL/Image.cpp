@@ -25,11 +25,10 @@ static int modeForChannels(const int &channels) {
     }
 }
 
-void Image::init(const int &width, const int &height, void *data, const int &channels, int filter) {
+void Image::init(const Size &size, void *data, const int &channels, int filter) {
     
     this->channels = channels;
-    this->width = width;
-    this->height = height;
+    this->size = size;
     
     SAFE(glGenTextures(1, &id));
     SAFE(glBindTexture(GL_TEXTURE_2D, id));
@@ -44,8 +43,8 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
     SAFE(glTexImage2D(GL_TEXTURE_2D,
                       0,
                       modeForChannels(channels),
-                      width,
-                      height,
+                      size.width,
+                      size.height,
                       0,
                       modeForChannels(channels),
                       GL_UNSIGNED_BYTE,
@@ -61,11 +60,14 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
     SAFE(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const int &width, const int &height, void *data, const int &channels, Filter filter) {
-    init(width, height, data, channels, filter);
+Image::Image(const Size &size, void *data, const int &channels, Filter filter) {
+    init(size, data, channels, filter);
 }
 
 Image::Image(const string &file, Filter filter) {
+    
+    int width;
+    int height;
     
     unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,
@@ -73,8 +75,10 @@ Image::Image(const string &file, Filter filter) {
                                            &channels,
                                            SOIL_LOAD_RGBA);
     
+    size = Size(width, height);
+    
     cout << "Loading image: " << file << " channels: " << channels << endl;
-    init(width, height, image, channels, filter);
+    init(size, image, channels, filter);
     SOIL_free_image_data(image);
 }
 

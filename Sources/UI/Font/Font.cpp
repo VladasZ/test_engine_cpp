@@ -21,6 +21,7 @@ static FT_Library library = nullptr;
 
 Font * Font::SF;
 Font * Font::OpenSans;
+Font * Font::System;
 
 FT_Library ftLibrary() {
     if (library == nullptr) {
@@ -40,12 +41,15 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
     FT_BitmapGlyph bitmapGlyhp;
     Check(FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp));
     
-    auto image = new Image(bitmapGlyhp->bitmap.width,
-                           bitmapGlyhp->bitmap.rows,
-                           bitmapGlyhp->bitmap.buffer,
+    auto image = new Image(Size(bitmapGlyhp->bitmap.width,
+                                bitmapGlyhp->bitmap.rows),
+                                bitmapGlyhp->bitmap.buffer,
                            1);
     
-    return new Glyph(image, 0, 0);
+    return new Glyph(image,
+                     face->glyph->metrics.horiAdvance / 64,
+                     Point(face->glyph->metrics.horiBearingX / 64,
+                           face->glyph->metrics.horiBearingY / 64));
 }
 
 Font::Font(const string& fileName) {
@@ -61,7 +65,7 @@ Font::Font(const string& fileName) {
     
     Check(FT_Set_Pixel_Sizes(face,
                              0,
-                             800));
+                             50));
     
     FOR(128) { glyphs.push_back(renderGlyph(face, i)); }
 }
@@ -73,10 +77,8 @@ Glyph * Font::glyphForChar(char ch) {
 void Font::initialize() {
     SF       = new Font("Fonts/SF.otf");
     OpenSans = new Font("Fonts/OpenSans.ttf");
+    System   = SF;
 }
-
-
-
 
 //    cout << endl;
 //    cout << face->glyph->advance.x / 64 << " advance.x" << endl;

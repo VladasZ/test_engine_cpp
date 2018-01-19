@@ -9,7 +9,7 @@
 #include "Glyph.hpp"
 #include "Image.hpp"
 
-Glyph::Glyph(Image *image, int advance, int bearing)
+Glyph::Glyph(Image *image, int advance, const Point &bearing)
 : image(image), advance(advance), bearing(bearing)
 { }
 

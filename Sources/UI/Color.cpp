@@ -27,8 +27,7 @@ Color& Color::operator=(Color const &obj) {
 }
 
 Color::Color() : r(data.r), g(data.g), b(data.b), a(data.a), dataBuffer(&data[0]) {
-    
-    data = vec4(1, 1, 1, 1);
+    data = vec4(0, 0, 0, 0);
 }
 
 Color::Color(float r, float g, float b, float a) : Color() {

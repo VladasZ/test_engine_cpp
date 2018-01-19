@@ -24,6 +24,7 @@
 #include "ImageView.hpp"
 #include "Font.hpp"
 #include "Glyph.hpp"
+#include "Label.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -84,11 +85,9 @@ void Window::initialize(int width, int height) {
     setup();
 }
 
-auto greenView = new View(10, 10, 300, 300);
+auto greenView = new View(10, 10, 600, 400);
 
-void Window::didTouch(const int &x, const int &y) {
-    cout << x << " " << y << endl;
-    
+void Window::didTouch(const int &x, const int &y) {    
     greenView->setCenter(Point(x, y));
 }
 
@@ -101,7 +100,7 @@ void Window::setup() {
     greenView->color = Color::green;
     //testView->color.a = 0.5;
     
-    auto redView = new View(5, 5, 100, 100);
+    auto redView = new View(5, 200, 100, 100);
     redView->color = Color::red;
     greenView->addSubview(redView);
     
@@ -117,6 +116,11 @@ void Window::setup() {
     auto blueView = new View(200, 200);
     blueView->color = Color::blue;
     blueView->autolayoutMask = StickToBottom | StickToRight;
+    
+    
+    auto label = new Label(400, 30);
+    label->setText("Sm4uR@hn_plO.SHup");
+    greenView->addSubview(label);
     
     rootView->addSubview(blueView);
     

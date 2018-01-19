@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Primitives.hpp"
+
 class Image;
 
 class Glyph {
@@ -18,9 +20,9 @@ public:
     Image *image;
     
     const int advance;
-    const int bearing;
+    const Point bearing;
     
-    Glyph(Image *image, int advance, int bearing);
+    Glyph(Image *image, int advance, const Point &bearing);
     ~Glyph();
     
 };

@@ -16,17 +16,18 @@ Image *Image::cat;
 Image *Image::slow;
 Image *Image::palm;
 
-int modeForChannels(const int &channels) {
+static int modeForChannels(const int &channels) {
     switch (channels) {
         case 1:  return GL_RED;  break;
-        //case 3:  return GL_RGBA; break;
-        //case 4:  return GL_RGBA; break;
+            //case 3:  return GL_RGBA; break;
+            //case 4:  return GL_RGBA; break;
         default: return GL_RGBA; break;
     }
 }
 
-void Image::init(const int &width, const int &height, void *data, const int &channels) {
+void Image::init(const int &width, const int &height, void *data, const int &channels, int filter) {
     
+    this->channels = channels;
     this->width = width;
     this->height = height;
     
@@ -34,8 +35,8 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
     SAFE(glBindTexture(GL_TEXTURE_2D, id));
     //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
     //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST));
-    SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));// _MIPMAP_NEAREST));
+    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     
     if (channels == 1)
         SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
@@ -51,24 +52,20 @@ void Image::init(const int &width, const int &height, void *data, const int &cha
                       data));
     
     //glTexEnvf(GL_TEXTURE_2D,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-
-
-     SAFE(glGenerateMipmap(GL_TEXTURE_2D));
-     SAFE(glBindTexture(GL_TEXTURE_2D, 0));
+    
+    
+    SAFE(glGenerateMipmap(GL_TEXTURE_2D));
+    
+    setFilter((Filter)filter);
+    
+    SAFE(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const int &width, const int &height, void *data, const int &channels)
-:
-monochrome(channels == 1)
-{
-    init(width, height, data, channels);
+Image::Image(const int &width, const int &height, void *data, const int &channels, Filter filter) {
+    init(width, height, data, channels, filter);
 }
 
-Image::Image(const string &file)
-:
-monochrome(false)
-{
-    int channels;
+Image::Image(const string &file, Filter filter) {
     
     unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,
@@ -77,26 +74,50 @@ monochrome(false)
                                            SOIL_LOAD_RGBA);
     
     cout << "Loading image: " << file << " channels: " << channels << endl;
-    init(width, height, image, channels);
+    init(width, height, image, channels, filter);
     SOIL_free_image_data(image);
 }
 
 void Image::bind() const {
-    
     glBindTexture(GL_TEXTURE_2D, id);
-    
-    if (monochrome) Shader::uiMonochrome.use();
-    else Shader::uiTexture.use();
+    if (isMonochrome()) Shader::uiMonochrome.use();
+    else                Shader::uiTexture.use();
 }
 
 void Image::unbind() const {
-    
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Image::initialize() {
-    
     cat  = new Image("cat.jpg");
     slow = new Image("slow.jpg");
     palm = new Image("palm.png");
 }
+
+void Image::setFilter(Filter filter) {
+    switch(filter) {
+        case Nearest:
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+            break;
+        case Linear:
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            break;
+        case Bilinear:
+            //CROSS_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST));
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            break;
+        case Trilinear:
+            //CROSS_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            break;
+        default:
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+    }
+}
+
+bool Image::isMonochrome() const { return channels == 1; }

@@ -50,6 +50,7 @@ Buffer::~Buffer() {
     glDeleteVertexArrays(1, &vertexArrayObject);
     glDeleteBuffers(1, &vertexBufferObject);
     if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
+    delete data;
 }
 
 void Buffer::setPointers(int firstParam, int secondParam, int thirdParam) const {
@@ -60,6 +61,7 @@ void Buffer::setPointers(int firstParam, int secondParam, int thirdParam) const 
 }
 
 void Buffer::setData(BufferData *data) {
+    delete this->data;
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
     glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW);
     

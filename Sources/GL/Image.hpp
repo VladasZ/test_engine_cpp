@@ -15,11 +15,18 @@ class Image {
     
     GLuint id = 0;
     
-    void init(const int &width, const int &height, void *data, const int &channels);
+    void init(const int &width, const int &height, void *data, const int &channels, int filter);
     
     Image() = default;
     
 public:
+    
+    enum Filter {
+        Nearest,
+        Linear,
+        Bilinear,
+        Trilinear
+    };
     
     static Image *cat;
     static Image *slow;
@@ -28,11 +35,15 @@ public:
     static void initialize();
   
     int width, height;
-    const bool monochrome;
+    int channels;
     
-    Image(const int &width, const int &height, void *data, const int &channels = 4);
-    Image(const string& file);
+    Image(const int &width, const int &height, void *data, const int &channels, Filter filter = Filter::Linear);
+    Image(const string& file, Filter filter = Filter::Linear);
     
     void bind() const;
     void unbind() const;
+    
+    void setFilter(Filter filter);
+    
+    bool isMonochrome() const;
 };

@@ -14,7 +14,7 @@
 
 void testEngineMain() {
 
-	Window::initialize(1000, 1000);
+	Window::initialize(800, 800);
 
 	do {
 		glfwPollEvents();

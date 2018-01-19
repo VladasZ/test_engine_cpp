@@ -16,8 +16,17 @@ View::View(float x, float y, float width, float height) : frame(Rect(x, y, width
 View::View(float width, float height) : View(0, 0, width, height) { }
 
 BufferData * View::getBufferData() {
-    return frame.getData();
-    
+    return absoluteFrame().getData();
+}
+
+Rect View::absoluteFrame() {
+    Rect aFrame = frame;
+    View *superview = this->superview;
+    while (superview != nullptr) {
+        aFrame.origin += superview->frame.origin;
+        superview = superview->superview;
+    }
+    return aFrame;
 }
 
 void View::setupBuffer() {
@@ -26,25 +35,22 @@ void View::setupBuffer() {
 }
 
 void View::drawSubviews() const {
-    for (int i = (int)subviews.size() - 1; i >= 0; i--)
-        subviews[i]->draw();
+    if (subviews.empty()) return;
+    for (auto subview : subviews) subview->draw();
 }
 
 void View::draw() {
-    
-    layout();
-    
-    drawSubviews();
-        
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
     buffer->draw();
+    drawSubviews();
 }
 
 void View::layout() {
-    
+        
     if (autolayoutMask == Autolayout::None) {
         setupBuffer();
+        for (auto subview : subviews) subview->layout();
         return;
     }
     
@@ -79,17 +85,24 @@ void View::layout() {
 
     this->frame = layoutFrame;
     
-    setupBuffer();    
+    setupBuffer();
+    
+    for (auto subview : subviews) subview->layout();
 }
 
 void View::setFrame(const Rect &frame) {
-    
     this->frame = frame;
-    buffer->setData(getBufferData());
     layout();
 }
 
+void View::setCenter(const Point &center) {
+    setFrame(Rect(center.x - frame.size.width / 2,
+                  center.y - frame.size.height / 2,
+                  frame.size.width,
+                  frame.size.height));
+}
+
 void View::addSubview(View *view) {
-    
     subviews.push_back(view);
+    view->superview = this;
 }

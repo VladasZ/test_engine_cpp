@@ -9,6 +9,7 @@
 #pragma once
 
 #include "STL.hpp"
+#include "Tools.hpp"
 
 class File;
 class Image;
@@ -17,12 +18,17 @@ class Glyph;
 struct FT_FaceRec_;
 typedef struct FT_FaceRec_* FT_Face;
 
-class Font {
+class Font : NonCopyable {
     
     vector<Glyph *> glyphs;
   
 public:
     
+    static Font *SF;
+    static Font *OpenSans;
+    
+    static void initialize();
+
     Font(const string& fileName);
     
     Glyph *glyphForChar(char ch);

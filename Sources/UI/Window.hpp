@@ -20,7 +20,6 @@ class Window {
     
     friend Input;
     
-    static View *rootView;
     
     static int framesDrawn;
     
@@ -31,6 +30,8 @@ public:
     
     static TestEngine::Size size;
     
+    static View *rootView;
+
 #ifndef IOS
     static GLFWwindow *window;
 #endif

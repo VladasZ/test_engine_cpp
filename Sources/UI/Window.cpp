@@ -35,6 +35,10 @@ Size Window::size;
 View * Window::rootView;
 int Window::framesDrawn = 0;
 
+static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
+    Window::didTouch(xpos, ypos);
+}
+
 void Window::initialize(int width, int height) {
     
     size = Size(width, height);
@@ -59,6 +63,7 @@ void Window::initialize(int width, int height) {
     
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, sizeChanged);
+    glfwSetCursorPosCallback(window, cursor_position_callback);
     
     glewExperimental = GL_TRUE;
     if (glewInit()) { Error("Glew initialization failed"); }
@@ -72,67 +77,55 @@ void Window::initialize(int width, int height) {
     
     Shader::initialize();
     Image::initialize();
+    Font::initialize();
     
     glClearColor(0.5, 0.5, 0.5, 1);
     
     setup();
 }
 
+auto greenView = new View(10, 10, 300, 300);
+
 void Window::didTouch(const int &x, const int &y) {
-    
     cout << x << " " << y << endl;
+    
+    greenView->setCenter(Point(x, y));
 }
 
-Font *testFont;
 
-View *view;
-ImageView *fontImageView;
-ImageView *catImageView;
-ImageView *slowImageView;
-ImageView *palmImageView;
 
 void Window::setup() {
+    rootView = new View(0, 0, Window::size.width, Window::size.height);
     
-    testFont = new Font("Fonts/SF.otf");
     
-    auto fontImage = testFont->glyphForChar('S')->image;
+    greenView->color = Color::green;
+    //testView->color.a = 0.5;
     
-    Image::cat = testFont->glyphForChar('g')->image;
-    Image::palm = testFont->glyphForChar('T')->image;
-    Image::slow = testFont->glyphForChar('q')->image;
+    auto redView = new View(5, 5, 100, 100);
+    redView->color = Color::red;
+    greenView->addSubview(redView);
     
-    view = new View(0, 0, 100, 100);
-    view->color = Color::green;
+    auto purpleView = new View(20, 20);
+    purpleView->color = Color::purple;
+    purpleView->autolayoutMask = Center;
     
-    fontImageView = new ImageView(200, 0, 100, 150);
-    fontImageView->setImage(Image::palm);
-    fontImageView->autolayoutMask = StickToTop | CenterHorizontally;
+    redView->addSubview(purpleView);
     
-    catImageView = new ImageView(400, 0, 110, 150);
-    catImageView->setImage(Image::cat);
-    catImageView->autolayoutMask = StickToRight | StickToBottom;
+    rootView->addSubview(greenView);
     
-    slowImageView = new ImageView(0, 0, 200, 200);
-    slowImageView->setImage(Image::slow);
-    slowImageView->autolayoutMask = StickToBottom | StickToLeft;
     
-    palmImageView = new ImageView(0, 0, fontImage->width, fontImage->height);
-    palmImageView->setImage(fontImage);
-    palmImageView->autolayoutMask = CenterVertically | CenterHorizontally;
+    auto blueView = new View(200, 200);
+    blueView->color = Color::blue;
+    blueView->autolayoutMask = StickToBottom | StickToRight;
     
+    rootView->addSubview(blueView);
+    
+    rootView->layout();
 }
 
 void Window::update() {
-    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    view->draw();
-    
-    fontImageView->draw();
-    catImageView->draw();
-    slowImageView->draw();
-    palmImageView->draw();
-    
+    rootView->drawSubviews();
     Window::framesDrawn++;
 }
 
@@ -144,6 +137,8 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size.height = height;
     
     Shader::setupUiTranslation();
+    rootView->frame = Rect(width, height);
+    rootView->layout();
 }
 
 void Window::touchBegan(const TestEngine::Point &position) {

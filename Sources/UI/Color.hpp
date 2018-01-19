@@ -48,4 +48,5 @@ public:
     static const Color purple;
     static const Color turquoise;
     static const Color gray;
+    static const Color clear;
 };

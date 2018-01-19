@@ -19,6 +19,9 @@
 
 static FT_Library library = nullptr;
 
+Font * Font::SF;
+Font * Font::OpenSans;
+
 FT_Library ftLibrary() {
     if (library == nullptr) {
         Check(FT_Init_FreeType(&library));
@@ -67,7 +70,10 @@ Glyph * Font::glyphForChar(char ch) {
     return glyphs[ch];
 }
 
-
+void Font::initialize() {
+    SF       = new Font("Fonts/SF.otf");
+    OpenSans = new Font("Fonts/OpenSans.ttf");
+}
 
 
 

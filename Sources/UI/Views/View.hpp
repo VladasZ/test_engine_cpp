@@ -34,13 +34,15 @@ class View {
 protected:
     
     Buffer *buffer;
-    
+        
     void drawSubviews() const;
     virtual void draw();
     void layout();
     
     virtual BufferData *getBufferData();
     virtual void setupBuffer();
+    
+    Rect absoluteFrame();
     
 public:
     
@@ -56,5 +58,7 @@ public:
     View(float width, float height);
     
     void setFrame(const Rect &frame);
+    void setCenter(const Point &center);
+    
     void addSubview(View *view);
 };

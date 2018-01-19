@@ -72,3 +72,4 @@ const Color Color::orange    = Color(1, 0.5, 0);
 const Color Color::purple    = Color(1, 0, 1);
 const Color Color::turquoise = Color(0, 1, 1);
 const Color Color::gray      = Color(0.5, 0.5, 0.5);
+const Color Color::clear     = Color(0, 0, 0, 0);

@@ -56,9 +56,16 @@ Color Color::random() {
     return colors[System::random((int)colors.size())];
 }
 
+Color Color::withAlpha(float alpha) const {
+    return Color(r, g, b, alpha);
+}
+
 string Color::toString() const {
-    
     return "r: " + to_string(r) + " g: " + to_string(g) + " b: " + to_string(b) + " a: " + to_string(a);
+}
+
+bool Color::isTransparent() const {
+    return this->a <= 0.02;
 }
 
 const Color Color::black     = Color();

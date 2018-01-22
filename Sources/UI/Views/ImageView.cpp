@@ -36,10 +36,8 @@ void ImageView::setupBuffer() {
 
 void ImageView::draw() {
     
-    if (image == nullptr) {
-        View::draw();
-        return;
-    }
+    if (image == nullptr) { View::draw(); return; }
+    if (!color.isTransparent()) View::draw();
     
     layout();
     

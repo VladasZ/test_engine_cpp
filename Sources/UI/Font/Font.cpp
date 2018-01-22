@@ -65,7 +65,7 @@ Font::Font(const string& fileName) {
     
     Check(FT_Set_Pixel_Sizes(face,
                              0,
-                             50));
+                             80));
     
     FOR(128) { glyphs.push_back(renderGlyph(face, i)); }
 }

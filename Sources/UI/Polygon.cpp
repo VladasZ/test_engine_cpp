@@ -10,19 +10,15 @@
 
 //Public
 
-Polygon::Polygon() {
-    
-}
+Polygon::Polygon() { }
 
 Polygon::Polygon(vector<Vertex> vertices) : vertices(vertices) {
-    
     createBuffers();
 }
 
 //Private
 
 void Polygon::createBuffers() {
-    
     createVertexBuffer();
     createIndexBuffer();
 }
@@ -53,7 +49,6 @@ void Polygon::createVertexBuffer() {
 }
 
 void Polygon::createIndexBuffer() {
-    
     indexBuffer = indices.data();
     indexBufferSize = (int)indices.size() * sizeof(GLushort);
 }
@@ -61,14 +56,12 @@ void Polygon::createIndexBuffer() {
 void Polygon::printBuffers() {
     
     for(int i = 0; i < indices.size(); i++) {
-        
         cout << indexBuffer[i] << " ";
     }
     
     cout << endl;
     
     for(int i = 0; i < vertices.size() * Vertex::bufferSize; i++) {
-        
         cout << vertexBuffer[i] << " ";
     }
 }

@@ -34,9 +34,13 @@ public:
     
     static Color random();
     
+    Color withAlpha(float alpha) const;
+    
     void setToUniform(int uniform) const;
     
     string toString() const;
+    
+    bool isTransparent() const;
     
     static const Color black;
     static const Color white;

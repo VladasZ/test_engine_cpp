@@ -18,12 +18,22 @@ class Rect {
     
 public:
     
+    float &x;
+    float &y;
+    float &width;
+    float &height;
+    
     Point origin;
     Size size;
     
-    Rect() = default;
+    Rect();
     Rect(float width, float height);
     Rect(float x, float y, float width, float height);
+    
+    Rect& operator=(const Rect &r2);
+
+    float maxX() const;
+    float maxY() const;
     
     string toString() const;
     

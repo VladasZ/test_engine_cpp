@@ -85,10 +85,10 @@ void Window::initialize(int width, int height) {
     setup();
 }
 
-auto greenView = new View(10, 10, 600, 400);
+auto labelContentView = new View(10, 100, 600, 400);
 
 void Window::didTouch(const int &x, const int &y) {    
-    greenView->setCenter(Point(x, y));
+    //greenView->setCenter(Point(x, y));
 }
 
 
@@ -96,34 +96,15 @@ void Window::didTouch(const int &x, const int &y) {
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
     
-    
-    greenView->color = Color::green;
-    //testView->color.a = 0.5;
-    
-    auto redView = new View(5, 200, 100, 100);
-    redView->color = Color::red;
-    greenView->addSubview(redView);
-    
-    auto purpleView = new View(20, 20);
-    purpleView->color = Color::purple;
-    purpleView->autolayoutMask = Center;
-    
-    redView->addSubview(purpleView);
-    
-    rootView->addSubview(greenView);
-    
-    
-    auto blueView = new ImageView(100, 100);
-    blueView->image = Image::cat;
-    blueView->autolayoutMask = StickToBottom | StickToRight;
-    
+    labelContentView->color = Color::green;
     
     auto label = new Label(400, 30);
     label->setText("Sm4uR@hn_plO.SHup");
-    greenView->addSubview(label);
+    label->color = Color::blue;
     
-    rootView->addSubview(blueView);
+    labelContentView->addSubview(label);
     
+    rootView->addSubview(labelContentView);
     rootView->layout();
 }
 

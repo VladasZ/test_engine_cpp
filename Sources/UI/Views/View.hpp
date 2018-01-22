@@ -11,6 +11,7 @@
 #include "Primitives.hpp"
 #include "Color.hpp"
 #include "STL.hpp"
+#include "Tools.hpp"
 
 enum Autolayout {
     
@@ -27,7 +28,7 @@ enum Autolayout {
 class Buffer;
 class Window;
 
-class View {
+class View : NonCopyable {
         
     friend Window;
     
@@ -57,7 +58,7 @@ public:
     View(float x, float y, float width, float height);
     View(float width, float height);
     View(const Size &size);
-
+    
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
     

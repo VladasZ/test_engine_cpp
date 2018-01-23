@@ -46,7 +46,8 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
                                 bitmapGlyhp->bitmap.buffer,
                            1);
     
-    return new Glyph(image,
+    return new Glyph(ch,
+                     image,
                      (int)face->glyph->metrics.horiAdvance / 64,
                      Point(face->glyph->metrics.horiBearingX / 64,
                            face->glyph->metrics.horiBearingY / 64));
@@ -67,7 +68,42 @@ Font::Font(const string& fileName) {
                              0,
                              30));
     
-    FOR(128) { glyphs.push_back(renderGlyph(face, i)); }
+    int yMax = 0;
+    int yMin = 0;
+    
+    Glyph *maxGlyph;
+    Glyph *minGlyph;
+    
+    FOR(128) {
+        
+        auto glyph = renderGlyph(face, i);
+        
+        if (yMax < glyph->yMax()) {
+            yMax = glyph->yMax();
+            maxGlyph = glyph;
+        }
+        
+        if (yMin > glyph->yMin()) {
+            yMin = glyph->yMin();
+            minGlyph = glyph;
+        }
+        
+        glyphs.push_back(glyph);
+    }
+    
+    _height = yMax - yMin;
+    
+    float baselinePosition = abs(minGlyph->yMin());
+    
+    _baselineShift = _height / 2 - baselinePosition;
+}
+
+float Font::baselineShift() const {
+    return _baselineShift;
+}
+
+float Font::height() const {
+    return _height;
 }
 
 Glyph * Font::glyphForChar(char ch) {

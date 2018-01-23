@@ -20,6 +20,9 @@ typedef struct FT_FaceRec_* FT_Face;
 
 class Font : NonCopyable {
     
+    float _height;
+    float _baselineShift;
+    
     vector<Glyph *> glyphs;
   
 public:
@@ -31,6 +34,9 @@ public:
     static void initialize();
 
     Font(const string& fileName);
+    
+    float baselineShift() const;
+    float height() const;
     
     Glyph *glyphForChar(char ch);
     

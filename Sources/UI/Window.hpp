@@ -47,4 +47,5 @@ public:
     static void sizeChanged(GLFWwindow* window, int width, int height);
     
     static void onCharacterInput(const char &ch);
+    static void onKeyPressed(const int &key);
 };

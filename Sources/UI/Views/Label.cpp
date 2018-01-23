@@ -14,6 +14,8 @@
 
 void Label::setGlyphs() {
     
+    //frame.height = _font->height();
+    
     removeAllSubviews();
     if (_text.empty()) return;
     
@@ -23,30 +25,18 @@ void Label::setGlyphs() {
     
     for (auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);
-        auto imageView = new ImageView(glyph->image->size);
-        imageView->frame.origin = Point(advance + glyph->bearing.x, frame.size.height - glyph->bearing.y);
+        auto imageView = new ImageView(glyph->size());
+        imageView->frame.origin = Point(advance + glyph->bearing.x,
+                                        frame.height / 2 - glyph->bearing.y + _font->baselineShift());
         imageView->setImage(glyph->image);
         imageView->color = Color::purple.withAlpha(0.5);
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
     }
-    
-    auto minTopGlyph = MIN(views, [] (ImageView * v1, ImageView * v2) {
-        return v1 ->frame.y < v2 ->frame.y;
-    });
-    
-    auto maxBotGlyph = MAX(views, [] (ImageView *v1, ImageView *v2) {
-        return v1->frame.maxY() < v2->frame.maxY();
-    });
 
-    frame.height = abs(minTopGlyph->frame.y - maxBotGlyph->frame.maxY());
     frame.width = views.back()->frame.maxX();
     
-    auto shift = -minTopGlyph->frame.y;
-    
-    //Error("HEEELOOOOOOOOOO");
-    for (auto view : views) view->frame.y += shift;
     layout();
 }
 

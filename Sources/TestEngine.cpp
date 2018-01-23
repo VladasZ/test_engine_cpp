@@ -18,7 +18,7 @@ void test(ostream &stream) {
 
 void testEngineMain() {
     
-	Window::initialize(800, 800);
+	Window::initialize(1200, 800);
 
 	do {
 		glfwPollEvents();

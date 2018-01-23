@@ -13,16 +13,18 @@
 class Image;
 
 class Glyph {
-    
-    
+        
 public:
     
-    Image *image;
-    
+    const char ch;
     const int advance;
     const Point bearing;
+    Image * const image;
     
-    Glyph(Image *image, int advance, const Point &bearing);
+    Glyph(char ch, Image *image, int advance, const Point &bearing);
     ~Glyph();
     
+    Size size() const;
+    float yMax() const;
+    float yMin() const;
 };

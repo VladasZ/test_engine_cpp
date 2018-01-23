@@ -99,7 +99,7 @@ void Window::setup() {
     
     labelContentView->color = Color::green;
     
-    label = new Label(400, 5);
+    label = new Label(400, 200);
     label->setText("");
     label->color = Color::blue;
     
@@ -129,6 +129,14 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
 
 void Window::onCharacterInput(const char &ch) {
     label->setText(label->text() + ch);
+}
+
+void Window::onKeyPressed(const int &key) {
+    if (key == GLFW_KEY_BACKSPACE) {
+        auto string = label->text();
+        string.pop_back();
+        label->setText(string);
+    }
 }
 
 void Window::touchBegan(const TestEngine::Point &position) {

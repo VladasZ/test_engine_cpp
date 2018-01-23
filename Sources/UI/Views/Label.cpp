@@ -15,6 +15,7 @@
 void Label::setGlyphs() {
     
     removeAllSubviews();
+    if (_text.empty()) return;
     
     int advance = 0;
     
@@ -39,10 +40,10 @@ void Label::setGlyphs() {
         return v1->frame.maxY() < v2->frame.maxY();
     });
 
-    frame.height = abs(minTopGlyph->frame.y) + abs(maxBotGlyph->frame.maxY());
+    frame.height = abs(minTopGlyph->frame.y - maxBotGlyph->frame.maxY());
     frame.width = views.back()->frame.maxX();
     
-    auto shift = frame.height - maxBotGlyph->frame.maxY();
+    auto shift = -minTopGlyph->frame.y;
     
     //Error("HEEELOOOOOOOOOO");
     for (auto view : views) view->frame.y += shift;

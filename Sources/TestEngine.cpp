@@ -12,8 +12,12 @@
 #include "Window.hpp"
 
 
-void testEngineMain() {
+void test(ostream &stream) {
+    cout << &stream << endl;
+}
 
+void testEngineMain() {
+    
 	Window::initialize(800, 800);
 
 	do {

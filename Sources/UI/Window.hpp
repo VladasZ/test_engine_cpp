@@ -32,7 +32,7 @@ public:
     
     static View *rootView;
 
-#ifndef IOS
+#if GLFW
     static GLFWwindow *window;
 #endif
     
@@ -45,4 +45,6 @@ public:
     static void didTouch(const int &x, const int &y);
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
+    
+    static void onCharacterInput(const char &ch);
 };

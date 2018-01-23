@@ -24,3 +24,5 @@
 #else
 #   error "Unknown compiler"
 #endif
+
+#define GLFW MAC_OS || WINDOWS

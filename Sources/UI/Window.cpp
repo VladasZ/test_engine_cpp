@@ -28,7 +28,7 @@
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
-#ifndef IOS
+#if GLFW
 GLFWwindow * Window::window;
 #endif
 
@@ -44,7 +44,7 @@ void Window::initialize(int width, int height) {
     
     size = Size(width, height);
     
-#ifndef IOS
+#if GLFW
     
     glfwInit();
     
@@ -76,6 +76,7 @@ void Window::initialize(int width, int height) {
     //glEnable(GL_ALPHA_TEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
+    Input::initialize();
     Shader::initialize();
     Image::initialize();
     Font::initialize();
@@ -91,15 +92,15 @@ void Window::didTouch(const int &x, const int &y) {
     //greenView->setCenter(Point(x, y));
 }
 
-
+Label *label;
 
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
     
     labelContentView->color = Color::green;
     
-    auto label = new Label(400, 30);
-    label->setText("Sm4uR@hn_plO.SHup");
+    label = new Label(400, 5);
+    label->setText("");
     label->color = Color::blue;
     
     labelContentView->addSubview(label);
@@ -124,6 +125,10 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(width, height);
     rootView->layout();
+}
+
+void Window::onCharacterInput(const char &ch) {
+    label->setText(label->text() + ch);
 }
 
 void Window::touchBegan(const TestEngine::Point &position) {

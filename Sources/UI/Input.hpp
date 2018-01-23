@@ -12,6 +12,8 @@ class Input {
     
 public:
     
+    static void initialize();
+    
     static void touchBegan(double x, double y);
     static void touchMoved(double x, double y);
     static void touchEnded(double x, double y);

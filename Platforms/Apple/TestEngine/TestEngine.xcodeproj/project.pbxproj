@@ -67,7 +67,7 @@
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
 		8266A82C1F45899300C55472 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8251F4588FB00C55472 /* Log.cpp */; };
 		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
-		829985071F77F6A4002B7E75 /* TestEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829985061F77F6A4002B7E75 /* TestEngine.cpp */; };
+		829985071F77F6A4002B7E75 /* TestEngineMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829985061F77F6A4002B7E75 /* TestEngineMain.cpp */; };
 		82A78F641F4A41A1001BAD46 /* ShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */; };
 		82B5A0431F7696E300226B0F /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
 		82B5A0441F7696E300226B0F /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
@@ -133,6 +133,8 @@
 		7C5878082012189000094DF5 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../Cross/Demo/Projects/iOS/libFreetype2.a; sourceTree = "<group>"; };
 		7C58780A201218BA00094DF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
 		7C58780C201218D200094DF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
+		7C6696562018C96E00D67260 /* TestEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestEngine.hpp; sourceTree = "<group>"; };
+		7C6696582018C9AA00D67260 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.8.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		7C7C32D32010F6A200489969 /* Glyph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glyph.cpp; sourceTree = "<group>"; };
 		7C7C32D42010F6A200489969 /* Glyph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glyph.hpp; sourceTree = "<group>"; };
@@ -241,7 +243,7 @@
 		8266A8281F4588FB00C55472 /* StringTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringTools.cpp; sourceTree = "<group>"; };
 		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
-		829985061F77F6A4002B7E75 /* TestEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEngine.cpp; sourceTree = "<group>"; };
+		829985061F77F6A4002B7E75 /* TestEngineMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEngineMain.cpp; sourceTree = "<group>"; };
 		82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderCompiler.cpp; sourceTree = "<group>"; };
 		82B5A0541F76AC9D00226B0F /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		82B5A0551F76AC9D00226B0F /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
@@ -280,7 +282,7 @@
 		82E76BEE1F499FFC009E2420 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		82E76BEF1F499FFC009E2420 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		82E76BF01F49A140009E2420 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
-		82E76BF21F49A67D009E2420 /* TestEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEngine.h; sourceTree = "<group>"; };
+		82E76BF21F49A67D009E2420 /* TestEngineMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEngineMain.h; sourceTree = "<group>"; };
 		82E76BF71F49AB6A009E2420 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		82E76BF81F49AB6A009E2420 /* Debug.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
 		82F64B851F8D5A3600192E92 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.7/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -398,6 +400,17 @@
 				7C3F77F91F8E0578004A4854 /* glfw3.pc */,
 			);
 			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		7C6696592018CE8500D67260 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				7C80A35D1F7A577F0042A1A1 /* File.hpp */,
+				7C80A35C1F7A577F0042A1A1 /* File.cpp */,
+				82E2221F1F4A2746002C1F17 /* FileManager.hpp */,
+				82E2221E1F4A2746002C1F17 /* FileManager.cpp */,
+			);
+			path = FileManager;
 			sourceTree = "<group>";
 		};
 		7C80A2961F7A52570042A1A1 /* Font */ = {
@@ -582,13 +595,12 @@
 			isa = PBXGroup;
 			children = (
 				8208E2B21F488068000A8E14 /* iOS */,
+				7C6696592018CE8500D67260 /* FileManager */,
 				82E76BEE1F499FFC009E2420 /* Platform.h */,
 				82E76BEF1F499FFC009E2420 /* System.hpp */,
 				82E76BF01F49A140009E2420 /* System.cpp */,
 				824DAB9E1F5C0353007E1568 /* Time.hpp */,
 				824DAB9D1F5C0353007E1568 /* Time.cpp */,
-				7C80A35D1F7A577F0042A1A1 /* File.hpp */,
-				7C80A35C1F7A577F0042A1A1 /* File.cpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -736,10 +748,11 @@
 		8266A81F1F4588FB00C55472 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				82E76BF21F49A67D009E2420 /* TestEngine.h */,
-				829985061F77F6A4002B7E75 /* TestEngine.cpp */,
+				7C6696582018C9AA00D67260 /* PrefixHeader.pch */,
+				7C6696562018C96E00D67260 /* TestEngine.hpp */,
+				82E76BF21F49A67D009E2420 /* TestEngineMain.h */,
+				829985061F77F6A4002B7E75 /* TestEngineMain.cpp */,
 				7CA7D7D01F70137000113190 /* Libs */,
-				8208E2A31F486B76000A8E14 /* System */,
 				824681B91F4590BD003BA5F3 /* GL */,
 				8266A8201F4588FB00C55472 /* Geometry */,
 				82E222251F4A294D002C1F17 /* UI */,
@@ -774,8 +787,6 @@
 		8266A8241F4588FB00C55472 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				82E2221F1F4A2746002C1F17 /* FileManager.hpp */,
-				82E2221E1F4A2746002C1F17 /* FileManager.cpp */,
 				8266A82A1F4588FB00C55472 /* Tools.hpp */,
 				82E76BF81F49AB6A009E2420 /* Debug.hpp */,
 				82E76BF71F49AB6A009E2420 /* Debug.cpp */,
@@ -785,6 +796,7 @@
 				8266A8271F4588FB00C55472 /* STL.hpp */,
 				8266A8291F4588FB00C55472 /* StringTools.hpp */,
 				8266A8281F4588FB00C55472 /* StringTools.cpp */,
+				8208E2A31F486B76000A8E14 /* System */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1077,7 +1089,7 @@
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,
-				829985071F77F6A4002B7E75 /* TestEngine.cpp in Sources */,
+				829985071F77F6A4002B7E75 /* TestEngineMain.cpp in Sources */,
 				82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */,
 				82B5A0431F7696E300226B0F /* image_helper.c in Sources */,
 				824DAB9F1F5C0353007E1568 /* Time.cpp in Sources */,
@@ -1303,6 +1315,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
+				GCC_PREFIX_HEADER = ../../../Sources/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",
@@ -1332,6 +1345,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2545JX4S8U;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PREFIX_HEADER = ../../../Sources/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",

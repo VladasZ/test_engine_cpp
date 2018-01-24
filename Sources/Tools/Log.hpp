@@ -8,10 +8,8 @@
 
 #pragma once
 
-#include "STL.hpp"
-
 #define LOCATION __FILE__ , __func__, __LINE__
-#define LOCATION_INPUT string file, string function, int line
+#define LOCATION_INPUT const char* file, const char* function, int line
 #define LOCATION_PARAMETERS file, function, line
 
 #define Info(message)    Log::info   ((message), LOCATION)
@@ -29,9 +27,9 @@ class Log {
     
 public:
     
-    static void info   (string message, LOCATION_INPUT);
-    static void warning(string message, LOCATION_INPUT);
-    static void error  (string message, LOCATION_INPUT);
+    static void info   (const char*  message, LOCATION_INPUT);
+    static void warning(const char*  message, LOCATION_INPUT);
+    static void error  (const char*  message, LOCATION_INPUT);
     static void check  (long     value, LOCATION_INPUT);
 };
 

@@ -1,8 +1,4 @@
 
-#include "Platform.h"
-#include "FileManager.hpp"
-#include "Log.hpp"
-#include "Debug.hpp"
 
 #ifdef APPLE
 #include "CallObj.h"

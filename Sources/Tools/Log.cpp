@@ -6,7 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Tools.hpp"
 #include "GL.hpp"
 
 #ifdef WINDOWS
@@ -38,17 +37,17 @@ void log(string message, LOCATION_INPUT, LogType type) {
     cout << "[" << logTypeString(type) << "] [" << fileName << "::" << function << " - " << line << "] " << message << endl;
 }
 
-void Log::info(string message, LOCATION_INPUT) {
+void Log::info(const char* message, LOCATION_INPUT) {
         
     log(message, LOCATION_PARAMETERS, LogTypeInfo);
 }
 
-void Log::warning(string message, LOCATION_INPUT) {
+void Log::warning(const char* message, LOCATION_INPUT) {
     
     log(message, LOCATION_PARAMETERS, LogTypeWarning);
 }
 
-void Log::error(string message, LOCATION_INPUT) {
+void Log::error(const char* message, LOCATION_INPUT) {
     
     log(message, LOCATION_PARAMETERS, LogTypeError);
 }

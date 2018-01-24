@@ -10,7 +10,6 @@
 
 #include "Size.hpp"
 #include "Point.hpp"
-#include "Platform.h"
 #include "Input.hpp"
 
 class View;

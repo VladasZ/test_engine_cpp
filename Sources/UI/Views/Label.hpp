@@ -8,7 +8,6 @@
 
 #pragma mark
 
-#include "STL.hpp"
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"

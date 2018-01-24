@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include "Platform.h"
-
 #include <glm.hpp>
 
 #if APPLE
@@ -31,3 +29,5 @@ using namespace glm;
     #include "glew.h"
     #include "glfw3.h"
 #endif
+
+#include "Shader.hpp"

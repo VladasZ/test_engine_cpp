@@ -10,9 +10,6 @@
 #include "Point.hpp"
 #include "Window.hpp"
 #include "GL.hpp"
-#include "STL.hpp"
-#include "Platform.h"
-#include "Log.hpp"
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     Window::onKeyPressed(key);

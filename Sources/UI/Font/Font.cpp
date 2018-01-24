@@ -8,10 +8,8 @@
 
 #include "Font.hpp"
 #include "File.hpp"
-#include "Log.hpp"
 #include "Image.hpp"
 #include "Glyph.hpp"
-#include "Tools.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -107,6 +105,7 @@ float Font::height() const {
 }
 
 Glyph * Font::glyphForChar(char ch) {
+    if (ch >= 128) return glyphs['?'];
     return glyphs[ch];
 }
 

@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "STL.hpp"
 #include "GL.hpp"
 #include "Size.hpp"
 

@@ -9,3 +9,9 @@
 #pragma once
 
 #include "Window.hpp"
+#include "View.hpp"
+#include "ImageView.hpp"
+#include "Image.hpp"
+#include "Label.hpp"
+#include "Color.hpp"
+#include "Font.hpp"

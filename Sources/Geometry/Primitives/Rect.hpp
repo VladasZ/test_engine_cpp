@@ -10,7 +10,6 @@
 
 #include "Point.hpp"
 #include "Size.hpp"
-#include "STL.hpp"
 
 class BufferData;
 

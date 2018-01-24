@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "STL.hpp"
 #include <glm.hpp>
 
 using namespace glm;

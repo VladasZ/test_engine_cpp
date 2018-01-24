@@ -8,7 +8,6 @@
 
 #include "Color.hpp"
 #include "GL.hpp"
-#include "System.hpp"
 
 Color::Color(Color const &obj) : Color() {
     

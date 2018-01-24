@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "STL.hpp"
 #include "Color.hpp"
 
 class Window;

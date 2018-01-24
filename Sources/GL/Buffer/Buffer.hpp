@@ -30,7 +30,7 @@ public:
     Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration);
     
     Buffer(GLfloat *vertData, GLuint vertSize,
-           GLushort *indData,  GLuint indSize,
+           GLushort *indData, GLuint indSize,
            const BufferConfiguration &configuration);
 
     ~Buffer();

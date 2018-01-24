@@ -8,10 +8,7 @@
 
 #include "Image.hpp"
 #include "SOIL.h"
-#include "FileManager.hpp"
-#include "Log.hpp"
 #include "Shader.hpp"
-#include "Platform.h"
 
 Image *Image::cat;
 Image *Image::slow;

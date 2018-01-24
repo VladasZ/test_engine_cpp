@@ -7,12 +7,9 @@
 //
 
 #include "Shader.hpp"
-#include "FileManager.hpp"
 #include "ShaderCompiler.hpp"
 #include "GL.hpp"
 #include "Window.hpp"
-#include "Log.hpp"
-
 
 
 Shader Shader::simple;

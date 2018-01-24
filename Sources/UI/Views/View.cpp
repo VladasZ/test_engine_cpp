@@ -10,7 +10,6 @@
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "Window.hpp"
-#include "Tools.hpp"
 
 View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
 View::View(float width, float height) : View(0, 0, width, height) { }
@@ -109,5 +108,6 @@ void View::addSubview(View *view) {
 }
 
 void View::removeAllSubviews() {
+    for(auto view : subviews) delete view;
     subviews.clear();
 }

@@ -7,24 +7,8 @@
 //
 
 #include "Window.hpp"
-#include "GL.hpp"
-#include "Log.hpp"
-#include "Platform.h"
-#include "Buffer.hpp"
-#include "View.hpp"
-#include "Color.hpp"
-#include "System.hpp"
-#include "Time.hpp"
-#include "System.hpp"
-#include "Shader.hpp"
 #include "UI.hpp"
-#include "Buffer.hpp"
-#include "Image.hpp"
-#include "FileManager.hpp"
-#include "ImageView.hpp"
-#include "Font.hpp"
-#include "Glyph.hpp"
-#include "Label.hpp"
+#include "GL.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 

@@ -10,8 +10,6 @@
 
 #include "Primitives.hpp"
 #include "Color.hpp"
-#include "STL.hpp"
-#include "Tools.hpp"
 
 enum Autolayout {
     

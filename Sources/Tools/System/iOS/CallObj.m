@@ -11,6 +11,6 @@
 
 
 const char * workDirectoryPath() {
-    
     return [OBJBridge workDirectoryPath];
 }
+

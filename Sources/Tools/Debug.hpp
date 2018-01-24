@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include "Log.hpp"
-
 #ifdef DEBUG
 
 #define NOT_IMPLEMENTED Debug::notImplemented(LOCATION)

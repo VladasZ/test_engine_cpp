@@ -9,10 +9,6 @@
 #include "ShaderCompiler.hpp"
 
 #include "GL.hpp"
-#include "STL.hpp"
-#include "FileManager.hpp"
-#include "Platform.h"
-#include "Debug.hpp"
 
 string ShaderCompiler::shaderVersion() {
     

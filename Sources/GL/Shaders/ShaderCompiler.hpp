@@ -1,7 +1,5 @@
 #pragma once
 
-#include "STL.hpp"
-
 class ShaderCompiler {
     
 private:

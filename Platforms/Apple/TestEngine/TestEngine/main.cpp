@@ -6,7 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "TestEngine.h"
+#include "TestEngineMain.h"
 
 int main() {
     

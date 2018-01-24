@@ -1,5 +1,5 @@
 //
-//  TestEngine.h
+//  TestEngineMain.cpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 8/20/17.
@@ -7,7 +7,7 @@
 //
 
 
-#include "TestEngine.h"
+#include "TestEngineMain.h"
 #include "GL/GL.hpp"
 #include "Window.hpp"
 

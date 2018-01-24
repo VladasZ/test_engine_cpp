@@ -8,9 +8,6 @@
 
 #pragma once
 
-#include "STL.hpp"
-#include "Tools.hpp"
-
 class File;
 class Image;
 class Glyph;

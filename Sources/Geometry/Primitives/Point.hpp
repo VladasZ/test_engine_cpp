@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include "STL.hpp"
-
 namespace TestEngine {
     
     class Point {

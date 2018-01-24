@@ -10,7 +10,7 @@
 
 #include "Polygon.hpp"
 
-class Triangle : public Polygon {
+class Triangle : public Polygon _MEMORY_MANAGED(Triangle) {
     
 public:
     

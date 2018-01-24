@@ -11,7 +11,7 @@
 #include "GL.hpp"
 #include "Size.hpp"
 
-class Image {
+class Image MEMORY_MANAGED(Image) {
     
     GLuint id = 0;
     

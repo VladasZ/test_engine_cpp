@@ -20,6 +20,8 @@
 
 class Debug {
     
+    Debug();
+    
 public:
     
     static void notImplemented(LOCATION_INPUT);

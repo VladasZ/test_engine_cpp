@@ -12,7 +12,7 @@
 #include "View.hpp"
 #include "ImageView.hpp"
 
-class Label : public View {
+class Label : public View _MEMORY_MANAGED(Label) {
     
     string _text;
     Font *_font = Font::System;

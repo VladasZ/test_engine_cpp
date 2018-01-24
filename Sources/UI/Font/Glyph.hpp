@@ -12,7 +12,7 @@
 
 class Image;
 
-class Glyph {
+class Glyph MEMORY_MANAGED(Glyph) {
         
 public:
     

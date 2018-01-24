@@ -10,6 +10,8 @@
 
 class Time {
     
+    Time();
+    
 public:
     
     static long long now();

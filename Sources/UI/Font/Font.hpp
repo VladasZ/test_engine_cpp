@@ -15,7 +15,7 @@ class Glyph;
 struct FT_FaceRec_;
 typedef struct FT_FaceRec_* FT_Face;
 
-class Font : NonCopyable {
+class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     
     float _height;
     float _baselineShift;

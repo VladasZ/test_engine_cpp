@@ -10,7 +10,7 @@
 
 namespace TestEngine {
     
-    class Point {
+    class Point MEMORY_MANAGED(Point) {
         
     public:
                 

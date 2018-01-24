@@ -12,7 +12,7 @@
 
 class Window;
 
-class Shader {
+class Shader MEMORY_MANAGED(Shader) {
     
     Shader() = default;
     Shader(const string &vertexPath, const string &fragmentPath);

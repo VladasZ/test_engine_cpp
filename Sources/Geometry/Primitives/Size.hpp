@@ -10,7 +10,7 @@
 
 namespace TestEngine {
     
-    class Size {
+    class Size MEMORY_MANAGED(Size) {
         
     public:
         

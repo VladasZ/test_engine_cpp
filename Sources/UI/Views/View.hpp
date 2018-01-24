@@ -26,7 +26,7 @@ enum Autolayout {
 class Buffer;
 class Window;
 
-class View : NonCopyable {
+class View : public NonCopyable _MEMORY_MANAGED(View) {
         
     friend Window;
     

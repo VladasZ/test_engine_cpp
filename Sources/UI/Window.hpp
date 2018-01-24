@@ -15,7 +15,7 @@
 class View;
 struct GLFWwindow;
 
-class Window {
+class Window MEMORY_MANAGED(Window) {
     
     friend Input;
     

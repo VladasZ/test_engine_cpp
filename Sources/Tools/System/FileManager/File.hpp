@@ -12,7 +12,7 @@ typedef unsigned char Byte;
 
 #include "STL.hpp"
 
-class File {
+class File MEMORY_MANAGED(File) {
     
     size_t size;
     Byte *data;

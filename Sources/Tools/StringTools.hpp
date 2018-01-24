@@ -10,6 +10,8 @@
 
 class StringTools {
     
+    StringTools();
+    
 public:
     
     static string fileName(string path);

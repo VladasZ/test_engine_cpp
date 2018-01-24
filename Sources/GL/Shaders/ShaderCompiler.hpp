@@ -2,6 +2,8 @@
 
 class ShaderCompiler {
     
+    ShaderCompiler();
+    
 private:
     
     static string shaderVersion();

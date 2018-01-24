@@ -10,6 +10,8 @@
 
 class Input {
     
+    Input();
+    
 public:
     
     static void initialize();

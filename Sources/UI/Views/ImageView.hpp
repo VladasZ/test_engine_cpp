@@ -12,7 +12,7 @@
 class Image;
 class Window;
 
-class ImageView : public View {
+class ImageView : public View _MEMORY_MANAGED(ImageView) {
   
     friend Window;
     

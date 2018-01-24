@@ -25,6 +25,8 @@ CheckGLError(__FILE__, __LINE__); \
 
 class Log {
     
+    Log();
+    
 public:
     
     static void info   (const char*  message, LOCATION_INPUT);

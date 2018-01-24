@@ -13,6 +13,8 @@
 
 class System {
     
+    System();
+    
 public:
     
     static void sleep(float interval);

@@ -11,7 +11,7 @@
 #include "GL.hpp"
 #include "Vertex.hpp"
 
-class Polygon {
+class Polygon MEMORY_MANAGED(Polygon) {
     
 public:
     

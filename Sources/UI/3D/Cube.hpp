@@ -11,7 +11,7 @@
 
 #include "Polygon.hpp"
 
-class Cube : public Polygon {
+class Cube : public Polygon _MEMORY_MANAGED(Cube) {
     
 public:
     

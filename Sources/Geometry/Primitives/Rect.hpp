@@ -13,7 +13,7 @@
 
 class BufferData;
 
-class Rect {
+class Rect MEMORY_MANAGED(Rect) {
     
 public:
     

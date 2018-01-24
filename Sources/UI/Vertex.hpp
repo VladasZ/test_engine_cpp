@@ -11,7 +11,7 @@
 #include "GL.hpp"
 #include "Color.hpp"
 
-class Vertex {
+class Vertex MEMORY_MANAGED(Vertex) {
     
 public:
     

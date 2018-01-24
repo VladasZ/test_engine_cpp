@@ -12,7 +12,7 @@
 
 using namespace glm;
 
-class Color {
+class Color MEMORY_MANAGED(Color) {
     
 public:
     

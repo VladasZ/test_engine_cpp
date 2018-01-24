@@ -13,7 +13,7 @@
 
 class Buffer;
 
-class BufferData : public NonCopyable {
+class BufferData : public NonCopyable _MEMORY_MANAGED(BufferData) {
     
     GLfloat *vertData = nullptr;
     GLuint vertSize = 0;

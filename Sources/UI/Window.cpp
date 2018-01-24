@@ -18,6 +18,7 @@ GLFWwindow * Window::window;
 
 Size Window::size;
 View * Window::rootView;
+int Window::FPS = 0;
 int Window::framesDrawn = 0;
 
 static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
@@ -77,10 +78,20 @@ void Window::didTouch(const int &x, const int &y) {
 }
 
 Label *label;
+Label *fpsLabel;
+Label *allocatedLabel;
+Label *deletedLabel;
+Label *existsLabel;
+
 
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
     
+    fpsLabel       = new Label(0,  0, 0, 30);
+    allocatedLabel = new Label(0, 40, 0, 30);
+    deletedLabel   = new Label(0, 80, 0, 30);
+    existsLabel    = new Label(0, 120, 0, 30);
+
     labelContentView->color = Color::green;
     
     label = new Label(400, 200);
@@ -90,13 +101,31 @@ void Window::setup() {
     labelContentView->addSubview(label);
     
     rootView->addSubview(labelContentView);
+    rootView->addSubview(fpsLabel);
+    rootView->addSubview(allocatedLabel);
+    rootView->addSubview(deletedLabel);
+    rootView->addSubview(existsLabel);
     rootView->layout();
+    
+}
+
+void Window::on30FramesDrawn() {
+    fpsLabel->setText(string("FPS: ") + to_string(Window::FPS));
+    allocatedLabel->setText(string("Objects allocated: ") + to_string(MemoryManager::totalObjectsAllocated));
+    deletedLabel->setText(string("Objects deleted: ") + to_string(MemoryManager::totalObjectsDeleted));
+    existsLabel->setText(string("Objects exist: " + to_string(MemoryManager::totalObjectsExist())));
 }
 
 void Window::update() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     rootView->drawSubviews();
+    
+    FPS = 1000000000 / Time::interval();
+    
+    
     Window::framesDrawn++;
+    
+    if (Window::framesDrawn % 5 == 0) on30FramesDrawn();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
@@ -116,7 +145,8 @@ void Window::onCharacterInput(const char &ch) {
 }
 
 void Window::onKeyPressed(const int &key) {
-    if (key == GLFW_KEY_BACKSPACE) {
+    if (key == 259//GLFW_KEY_BACKSPACE
+        ) {
         auto string = label->text();
         string.pop_back();
         label->setText(string);

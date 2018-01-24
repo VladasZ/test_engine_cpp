@@ -27,7 +27,7 @@ void Input::initialize() {
     glfwSetCharCallback(Window::window, characterCallback);
     
 #else
-    UNIMPLEMENTED;
+    //UNIMPLEMENTED;
 #endif
 }
 

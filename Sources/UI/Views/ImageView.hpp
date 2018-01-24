@@ -26,6 +26,8 @@ public:
     
     using View::View;
     
+    ~ImageView() override;
+    
     void setImage(Image *image);
     
 };

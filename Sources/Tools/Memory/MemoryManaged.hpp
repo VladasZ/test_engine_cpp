@@ -8,47 +8,53 @@
 
 #pragma once
 
+#include "MemoryManager.hpp"
+#include "ClassMemoryInfo.hpp"
+
 #define  MEMORY_MANAGED(class) : public MemoryManaged<class>
 #define _MEMORY_MANAGED(class) , public MemoryManaged<class>
 
-class Hello {
-    
-    
-};
-
 template <class T>
 class MemoryManaged {
-public:
     
     static string className;
-    static int allocated;
-    static int deleted;
+    static int *allocated;
+    static int *deleted;
+    
+public:
     
     static int leaked() {
         return allocated - deleted;
     }
     
     MemoryManaged() {
-        cout << "Created: " << className << endl;
-        allocated++;
-        
+        if (allocated == nullptr) {
+            cout << "31 Initialized class: " << MemoryManaged<T>::className << endl;
+            return;
+        }
+        (*allocated)++;
+        MemoryManager::totalObjectsAllocated++;
     }
     
-    ~MemoryManaged() {
-        cout << "Deletet: " << className << endl;
-        deleted++;
+    virtual ~MemoryManaged() {
+        if (deleted == nullptr) return;
+        (*deleted)++;
+        MemoryManager::totalObjectsDeleted++;
     }
-    
 };
 
 template <class T>
 string MemoryManaged<T>::className = []() {
-    cout << "Initialized class: " << typeid(T).name() << endl;
-    return typeid(T).name();
+    auto info = new ClassMemoryInfo(typeid(T).name());
+    cout << "48 Initialized class: " << info->className << endl;
+    allocated = &info->allocated;
+    deleted = &info->deleted;
+    MemoryManager::info.push_back(info);
+    return info->className;
 }();
 
 template <class T>
-int MemoryManaged<T>::allocated = 0;
+int * MemoryManaged<T>::allocated;
 
 template <class T>
-int MemoryManaged<T>::deleted = 0;
+int * MemoryManaged<T>::deleted;

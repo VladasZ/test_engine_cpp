@@ -6,6 +6,8 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "StringTools.hpp"
+
 
 string StringTools::fileName(string path) {
     

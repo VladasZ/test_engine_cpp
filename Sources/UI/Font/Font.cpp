@@ -69,8 +69,8 @@ Font::Font(const string& fileName) {
     int yMax = 0;
     int yMin = 0;
     
-    Glyph *maxGlyph;
-    Glyph *minGlyph;
+    Glyph *maxGlyph = nullptr;
+    Glyph *minGlyph = nullptr;
     
     FOR(128) {
         

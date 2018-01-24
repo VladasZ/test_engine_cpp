@@ -12,7 +12,7 @@
 
 class Image;
 
-class Glyph MEMORY_MANAGED(Glyph) {
+class Glyph : public NonCopyable _MEMORY_MANAGED(Glyph) {
         
 public:
     

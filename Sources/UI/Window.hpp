@@ -19,11 +19,13 @@ class Window MEMORY_MANAGED(Window) {
     
     friend Input;
     
-    
+    static int FPS;
     static int framesDrawn;
     
     static void touchBegan(const TestEngine::Point &position);
     static void touchMoved(const TestEngine::Point &position);
+    
+    static void on30FramesDrawn();
     
 public:
     

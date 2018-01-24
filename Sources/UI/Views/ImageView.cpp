@@ -12,6 +12,10 @@
 #include "Shader.hpp"
 #include "BufferData.hpp"
 
+ImageView::~ImageView() {
+    //if (image != nullptr) delete image;
+}
+
 BufferData * ImageView::getBufferData() {
     
     Rect frame = absoluteFrame();

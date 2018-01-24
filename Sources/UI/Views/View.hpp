@@ -57,6 +57,8 @@ public:
     View(float width, float height);
     View(const Size &size);
     
+    virtual ~View();
+    
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
     

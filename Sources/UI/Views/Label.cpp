@@ -29,7 +29,7 @@ void Label::setGlyphs() {
         imageView->frame.origin = Point(advance + glyph->bearing.x,
                                         frame.height / 2 - glyph->bearing.y + _font->baselineShift());
         imageView->setImage(glyph->image);
-        imageView->color = Color::purple.withAlpha(0.5);
+        //imageView->color = Color::purple.withAlpha(0.5);
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;

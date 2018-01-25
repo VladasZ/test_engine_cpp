@@ -35,9 +35,9 @@ public:
             return;
         }
         
-        if (MemoryManager::printsEveryOperation) {
-            cout << MemoryManaged<T>::className << " allocated" << endl;
-        }
+#if FULL_MEMORY_OUTPUT
+        cout << MemoryManaged<T>::className << " allocated" << endl;
+#endif
         
         (*allocated)++;
         MemoryManager::totalObjectsAllocated++;
@@ -46,9 +46,9 @@ public:
     virtual ~MemoryManaged() {
         if (!MemoryManager::isTracking) return;
         if (deleted == nullptr) return;
-        if (MemoryManager::printsEveryOperation) {
-            cout << MemoryManaged<T>::className << " deleted" << endl;
-        }
+#if FULL_MEMORY_OUTPUT
+        cout << MemoryManaged<T>::className << " deleted" << endl;
+#endif
         (*deleted)++;
         MemoryManager::totalObjectsDeleted++;
     }

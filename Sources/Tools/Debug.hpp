@@ -11,7 +11,8 @@
 #include "MemoryTest.hpp"
 
 #define MEMORY_TEST false
-#define DEBUG_OUTPUT false
+#define DEBUG_OUTPUT true
+#define FULL_MEMORY_OUTPUT false
 
 #ifdef DEBUG
 

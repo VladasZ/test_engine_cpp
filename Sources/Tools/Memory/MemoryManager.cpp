@@ -12,7 +12,6 @@
 vector<ClassMemoryInfo *> MemoryManager::info;
 
 bool MemoryManager::isTracking = true;
-bool MemoryManager::printsEveryOperation = false;
 
 int MemoryManager::totalObjectsAllocated = 0;
 int MemoryManager::totalObjectsDeleted = 0;

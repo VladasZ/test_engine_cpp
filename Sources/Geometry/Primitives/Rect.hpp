@@ -28,6 +28,7 @@ public:
     
     Rect();
     Rect(float width, float height);
+    Rect(const Size &size);
     Rect(float x, float y, float width, float height);
     
     Rect& operator=(const Rect &r2);

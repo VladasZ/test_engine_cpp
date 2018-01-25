@@ -13,9 +13,12 @@
 Rect::Rect() : x(origin.x), y(origin.y), width(size.width), height(size.height) { }
 
 Rect::Rect(float width, float height)
-: size(Size(width, height)), x(origin.x), y(origin.y), width(size.width), height(size.height)
+: origin(Point(0, 0)), size(Size(width, height)), x(origin.x), y(origin.y), width(size.width), height(size.height)
 { }
 
+Rect::Rect(const Size &_size)
+: origin(Point(0, 0)), size(_size), x(origin.x), y(origin.y), width(size.width), height(size.height)
+{ }
 
 Rect::Rect(float x, float y, float width, float height)
 : origin(Point(x, y)), size(Size(width, height)), x(origin.x), y(origin.y), width(size.width), height(size.height)

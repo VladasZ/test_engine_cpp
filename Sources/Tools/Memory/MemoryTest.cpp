@@ -11,8 +11,6 @@
 #include "UI.hpp"
 
 void memoryTest() {
-
-    MemoryManager::printsEveryOperation = true;
     
     Color uu = Color::green;
     

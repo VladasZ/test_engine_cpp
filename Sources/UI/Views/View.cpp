@@ -115,3 +115,37 @@ void View::removeAllSubviews() {
     }
     subviews.clear();
 }
+
+
+void addTestViews(View *view) {
+    
+    if (view->subviews.empty()) {
+        
+        Size size = view->frame.size / 2.05;
+        Color color = Color::random();
+        
+        auto view1 = new View(size);
+        auto view2 = new View(size);
+        auto view3 = new View(size);
+        auto view4 = new View(size);
+        
+        view1->autolayoutMask = StickToTop | StickToLeft;
+        view2->autolayoutMask = StickToTop | StickToRight;
+        view3->autolayoutMask = StickToBottom | StickToLeft;
+        view4->autolayoutMask = StickToBottom | StickToRight;
+        
+        view1->color = color;
+        view2->color = color;
+        view3->color = color;
+        view4->color = color;
+        
+        view->addSubview(view1);
+        view->addSubview(view2);
+        view->addSubview(view3);
+        view->addSubview(view4);
+        return;
+    }
+    
+    for(auto view : view->subviews)
+        addTestViews(view);
+}

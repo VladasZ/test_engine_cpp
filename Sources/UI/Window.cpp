@@ -77,112 +77,21 @@ void Window::didTouch(const int &x, const int &y) {
     //greenView->setCenter(Point(x, y));
 }
 
-Label *label;
 
-#if DEBUG_OUTPUT
-
-Label *fpsLabel;
-Label *allocatedLabel;
-Label *deletedLabel;
-Label *existsLabel;
-
-void setupDebugOutput() {
-    
-    fpsLabel       = new Label(0,  0, 0, 30);
-    allocatedLabel = new Label(0, 40, 0, 30);
-    deletedLabel   = new Label(0, 80, 0, 30);
-    existsLabel    = new Label(0, 120, 0, 30);
-    
-    Window::rootView->addSubview(fpsLabel);
-    Window::rootView->addSubview(allocatedLabel);
-    Window::rootView->addSubview(deletedLabel);
-    Window::rootView->addSubview(existsLabel);
-}
-
-#endif
-
-void addTestViews(View *view) {
-    
-    if (view->subviews.empty()) {
-        
-        Size size = view->frame.size / 2.05;
-        Color color = Color::random();
-        
-        auto view1 = new View(size);
-        auto view2 = new View(size);
-        auto view3 = new View(size);
-        auto view4 = new View(size);
-        
-        view1->autolayoutMask = StickToTop | StickToLeft;
-        view2->autolayoutMask = StickToTop | StickToRight;
-        view3->autolayoutMask = StickToBottom | StickToLeft;
-        view4->autolayoutMask = StickToBottom | StickToRight;
-        
-        view1->color = color;
-        view2->color = color;
-        view3->color = color;
-        view4->color = color;
-        
-        view->addSubview(view1);
-        view->addSubview(view2);
-        view->addSubview(view3);
-        view->addSubview(view4);
-        return;
-    }
-    
-    for(auto view : view->subviews)
-        addTestViews(view);
-}
-
+DebugInfoView *debugInfoView;
 
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
+    debugInfoView = new DebugInfoView();
     
-
-    
-
-    labelContentView->color = Color::green;
-    
-    label = new Label(400, 200);
-    label->setText("");
-    label->color = Color::blue;
-    
-    labelContentView->addSubview(label);
-    
-    //rootView->addSubview(labelContentView);
-    
-#if DEBUG_OUTPUT
-    setupDebugOutput();
-#endif
+    rootView->addSubview(debugInfoView);
     
     rootView->layout();
 }
 
-void Window::on30FramesDrawn() {
+void Window::onDebugTick() {
     
-    addTestViews(rootView);
-    
-    static int iterations = 0;
-    
-    if (iterations == 6) {
-        iterations = 0;
-        rootView->removeAllSubviews();
-    }
-    
-    iterations++;
-    
-    rootView->layout();
-
-    
-    
-#if DEBUG_OUTPUT
-    MemoryManager::isTracking = false;
-    fpsLabel->setText(string("FPS: ") + to_string(Window::FPS));
-    allocatedLabel->setText(string("Objects allocated: ") + to_string(MemoryManager::totalObjectsAllocated));
-    deletedLabel->setText(string("Objects deleted: ") + to_string(MemoryManager::totalObjectsDeleted));
-    existsLabel->setText(string("Objects exist: " + to_string(MemoryManager::totalObjectsExist())));
-    MemoryManager::isTracking = true;
-#endif
+    debugInfoView->update();
 }
 
 void Window::update() {
@@ -191,39 +100,29 @@ void Window::update() {
     
     FPS = 1000000000 / Time::interval();
     
-    
     Window::framesDrawn++;
     
-    if (Window::framesDrawn % 1 == 0) on30FramesDrawn();
+    if (Window::framesDrawn % 10 == 0) onDebugTick();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
-    
-    cout << "Window size changed to: " << width << " " << height << endl;
-    
-    Window::size.width  = width;
-    Window::size.height = height;
-    
+    Window::size = Size(width, height);
     Shader::setupUiTranslation();
-    rootView->frame = Rect(width, height);
+    rootView->frame = Rect(Window::size);
     rootView->layout();
 }
 
 void Window::onCharacterInput(const char &ch) {
-    label->setText(label->text() + ch);
 }
 
 void Window::onKeyPressed(const int &key) {
     if (key == 259//GLFW_KEY_BACKSPACE
         ) {
-        auto string = label->text();
-        string.pop_back();
-        label->setText(string);
+
     }
 }
 
 void Window::touchBegan(const TestEngine::Point &position) {
-    
     cout << position.toString() << endl;
     Window::didTouch(position.x, position.y);
 }

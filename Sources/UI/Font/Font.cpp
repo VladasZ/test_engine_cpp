@@ -64,7 +64,7 @@ Font::Font(const string& fileName) {
     
     Check(FT_Set_Pixel_Sizes(face,
                              0,
-                             30));
+                             20));
     
     int yMax = 0;
     int yMin = 0;

@@ -17,7 +17,6 @@ class MemoryManager {
 public:
     
     static bool isTracking;
-    static bool printsEveryOperation;
     
     static vector<ClassMemoryInfo *> info;
     

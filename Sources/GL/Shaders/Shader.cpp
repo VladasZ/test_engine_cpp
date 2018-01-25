@@ -33,8 +33,8 @@ void Shader::use() const {
 
 void Shader::initialize() {
     
-    simple = Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
-                    FileManager::assetsDirectory() + "Shaders/simple.frag");
+    simple = move(Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
+                    FileManager::assetsDirectory() + "Shaders/simple.frag"));
     
     ui = Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
                 FileManager::assetsDirectory() + "Shaders/ui.frag");

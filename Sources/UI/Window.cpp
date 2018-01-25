@@ -78,19 +78,68 @@ void Window::didTouch(const int &x, const int &y) {
 }
 
 Label *label;
+
+#if DEBUG_OUTPUT
+
 Label *fpsLabel;
 Label *allocatedLabel;
 Label *deletedLabel;
 Label *existsLabel;
 
-
-void Window::setup() {
-    rootView = new View(0, 0, Window::size.width, Window::size.height);
+void setupDebugOutput() {
     
     fpsLabel       = new Label(0,  0, 0, 30);
     allocatedLabel = new Label(0, 40, 0, 30);
     deletedLabel   = new Label(0, 80, 0, 30);
     existsLabel    = new Label(0, 120, 0, 30);
+    
+    Window::rootView->addSubview(fpsLabel);
+    Window::rootView->addSubview(allocatedLabel);
+    Window::rootView->addSubview(deletedLabel);
+    Window::rootView->addSubview(existsLabel);
+}
+
+#endif
+
+void addTestViews(View *view) {
+    
+    if (view->subviews.empty()) {
+        
+        Size size = view->frame.size / 2.05;
+        Color color = Color::random();
+        
+        auto view1 = new View(size);
+        auto view2 = new View(size);
+        auto view3 = new View(size);
+        auto view4 = new View(size);
+        
+        view1->autolayoutMask = StickToTop | StickToLeft;
+        view2->autolayoutMask = StickToTop | StickToRight;
+        view3->autolayoutMask = StickToBottom | StickToLeft;
+        view4->autolayoutMask = StickToBottom | StickToRight;
+        
+        view1->color = color;
+        view2->color = color;
+        view3->color = color;
+        view4->color = color;
+        
+        view->addSubview(view1);
+        view->addSubview(view2);
+        view->addSubview(view3);
+        view->addSubview(view4);
+        return;
+    }
+    
+    for(auto view : view->subviews)
+        addTestViews(view);
+}
+
+
+void Window::setup() {
+    rootView = new View(0, 0, Window::size.width, Window::size.height);
+    
+
+    
 
     labelContentView->color = Color::green;
     
@@ -100,20 +149,40 @@ void Window::setup() {
     
     labelContentView->addSubview(label);
     
-    rootView->addSubview(labelContentView);
-    rootView->addSubview(fpsLabel);
-    rootView->addSubview(allocatedLabel);
-    rootView->addSubview(deletedLabel);
-    rootView->addSubview(existsLabel);
-    rootView->layout();
+    //rootView->addSubview(labelContentView);
     
+#if DEBUG_OUTPUT
+    setupDebugOutput();
+#endif
+    
+    rootView->layout();
 }
 
 void Window::on30FramesDrawn() {
+    
+    addTestViews(rootView);
+    
+    static int iterations = 0;
+    
+    if (iterations == 6) {
+        iterations = 0;
+        rootView->removeAllSubviews();
+    }
+    
+    iterations++;
+    
+    rootView->layout();
+
+    
+    
+#if DEBUG_OUTPUT
+    MemoryManager::isTracking = false;
     fpsLabel->setText(string("FPS: ") + to_string(Window::FPS));
     allocatedLabel->setText(string("Objects allocated: ") + to_string(MemoryManager::totalObjectsAllocated));
     deletedLabel->setText(string("Objects deleted: ") + to_string(MemoryManager::totalObjectsDeleted));
     existsLabel->setText(string("Objects exist: " + to_string(MemoryManager::totalObjectsExist())));
+    MemoryManager::isTracking = true;
+#endif
 }
 
 void Window::update() {
@@ -125,7 +194,7 @@ void Window::update() {
     
     Window::framesDrawn++;
     
-    if (Window::framesDrawn % 5 == 0) on30FramesDrawn();
+    if (Window::framesDrawn % 1 == 0) on30FramesDrawn();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

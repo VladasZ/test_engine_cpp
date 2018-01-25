@@ -19,6 +19,11 @@ namespace TestEngine {
         
         Size() = default;
         Size(float width, float height);
+                
+        template<class T>
+        Size operator /(const T &value) {
+            return Size(this->width / value, this->height / value);
+        }
     };
 }
 

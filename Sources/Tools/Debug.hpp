@@ -8,6 +8,11 @@
 
 #pragma once
 
+#include "MemoryTest.hpp"
+
+#define MEMORY_TEST false
+#define DEBUG_OUTPUT false
+
 #ifdef DEBUG
 
 #define NOT_IMPLEMENTED Debug::notImplemented(LOCATION)

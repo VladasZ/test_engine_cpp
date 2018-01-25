@@ -14,4 +14,5 @@ void ClassMemoryInfo::print() const {
     cout << "Class: " << className << endl;
     cout << "allocated: " << allocated << endl;
     cout << "deleted: " << deleted << endl;
+    cout << "exists: " << allocated - deleted << endl;
 }

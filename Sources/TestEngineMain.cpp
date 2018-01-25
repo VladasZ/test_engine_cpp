@@ -11,12 +11,13 @@
 #include "GL/GL.hpp"
 #include "Window.hpp"
 
-
-void test(ostream &stream) {
-    cout << &stream << endl;
-}
-
 void testEngineMain() {
+    
+#if MEMORY_TEST
+    memoryTest();
+    MemoryManager::printDump();
+    return;
+#endif
     
 	Window::initialize(1200, 800);
 

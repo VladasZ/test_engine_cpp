@@ -109,6 +109,9 @@ void View::addSubview(View *view) {
 }
 
 void View::removeAllSubviews() {
-    for(auto view : subviews) delete view;
+    for(auto view : subviews) {
+        view->removeAllSubviews();
+        delete view;
+    }
     subviews.clear();
 }

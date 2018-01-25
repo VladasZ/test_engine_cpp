@@ -21,6 +21,7 @@ class MemoryManaged {
     static int *allocated;
     static int *deleted;
     
+    
 public:
     
     static int leaked() {
@@ -28,16 +29,26 @@ public:
     }
     
     MemoryManaged() {
+        if (!MemoryManager::isTracking) return;
         if (allocated == nullptr) {
             cout << "31 Initialized class: " << MemoryManaged<T>::className << endl;
             return;
         }
+        
+        if (MemoryManager::printsEveryOperation) {
+            cout << MemoryManaged<T>::className << " allocated" << endl;
+        }
+        
         (*allocated)++;
         MemoryManager::totalObjectsAllocated++;
     }
     
     virtual ~MemoryManaged() {
+        if (!MemoryManager::isTracking) return;
         if (deleted == nullptr) return;
+        if (MemoryManager::printsEveryOperation) {
+            cout << MemoryManaged<T>::className << " deleted" << endl;
+        }
         (*deleted)++;
         MemoryManager::totalObjectsDeleted++;
     }

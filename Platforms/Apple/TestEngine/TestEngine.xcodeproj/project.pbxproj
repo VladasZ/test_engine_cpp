@@ -29,6 +29,7 @@
 		7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
 		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */; };
+		7CC68FEA201A01600016F226 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
 		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
 		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
 		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
@@ -199,6 +200,8 @@
 		7CA7D7FA1F7018C500113190 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_DDS_aug_c.h; sourceTree = "<group>"; };
 		7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		7CA90BF81F6970DB007FE954 /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
+		7CC68FE8201A01600016F226 /* MemoryTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryTest.cpp; sourceTree = "<group>"; };
+		7CC68FE9201A01600016F226 /* MemoryTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryTest.hpp; sourceTree = "<group>"; };
 		8208E2B31F488098000A8E14 /* OBJBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJBridge.h; sourceTree = "<group>"; };
 		8208E2B41F488098000A8E14 /* OBJBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJBridge.m; sourceTree = "<group>"; };
 		8208E2B61F48814E000A8E14 /* CallObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallObj.m; sourceTree = "<group>"; };
@@ -430,6 +433,8 @@
 				7C66965E2018D19700D67260 /* MemoryManager.cpp */,
 				8259AD06201932A5003DFF62 /* ClassMemoryInfo.hpp */,
 				8259AD05201932A5003DFF62 /* ClassMemoryInfo.cpp */,
+				7CC68FE9201A01600016F226 /* MemoryTest.hpp */,
+				7CC68FE8201A01600016F226 /* MemoryTest.cpp */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -1092,6 +1097,7 @@
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
 				82B5A0441F7696E300226B0F /* SOIL.c in Sources */,
+				7CC68FEA201A01600016F226 /* MemoryTest.cpp in Sources */,
 				8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */,
 				7C6696602018D19700D67260 /* MemoryManager.cpp in Sources */,
 				824FFAFF1F57415B000C58DA /* Input.cpp in Sources */,

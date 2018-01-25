@@ -11,6 +11,9 @@
 
 vector<ClassMemoryInfo *> MemoryManager::info;
 
+bool MemoryManager::isTracking = true;
+bool MemoryManager::printsEveryOperation = false;
+
 int MemoryManager::totalObjectsAllocated = 0;
 int MemoryManager::totalObjectsDeleted = 0;
 
@@ -24,4 +27,8 @@ void MemoryManager::printDump() {
         info->print();
         cout << endl;
     }
+    
+    cout << "Objects created: " << MemoryManager::totalObjectsAllocated << endl;
+    cout << "Objects deleted: " << MemoryManager::totalObjectsDeleted << endl;
+    cout << "Objects exist: " << MemoryManager::totalObjectsExist() << endl;
 }

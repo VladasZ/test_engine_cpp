@@ -42,9 +42,7 @@ void ImageView::draw() {
     
     if (image == nullptr) { View::draw(); return; }
     if (!color.isTransparent()) View::draw();
-    
-    layout();
-    
+        
     View::drawSubviews();
     
     image->bind();

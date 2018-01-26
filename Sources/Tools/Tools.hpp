@@ -9,7 +9,6 @@
 #include "System.hpp"
 #include "MemoryManaged.hpp"
 
-
 #define FOR(n) for (int i = 0; i < (n); i++)
 
 #define MAX(container, comp)  (*max_element((container).begin(), (container).end(), (comp)))

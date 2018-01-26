@@ -8,6 +8,8 @@
 
 #pragma once
 
+#if MEMORY_TRACKING
+
 class ClassMemoryInfo {
     
 public:
@@ -21,3 +23,5 @@ public:
     
     void print() const;
 };
+
+#endif

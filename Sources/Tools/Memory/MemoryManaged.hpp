@@ -8,11 +8,22 @@
 
 #pragma once
 
-#include "MemoryManager.hpp"
-#include "ClassMemoryInfo.hpp"
+#if MEMORY_TRACKING
 
 #define  MEMORY_MANAGED(class) : public MemoryManaged<class>
 #define _MEMORY_MANAGED(class) , public MemoryManaged<class>
+
+#else
+
+#define  MEMORY_MANAGED(class)
+#define _MEMORY_MANAGED(class)
+
+#endif
+
+#if MEMORY_TRACKING
+
+#include "MemoryManager.hpp"
+#include "ClassMemoryInfo.hpp"
 
 template <class T>
 class MemoryManaged {
@@ -69,3 +80,5 @@ int * MemoryManaged<T>::allocated;
 
 template <class T>
 int * MemoryManaged<T>::deleted;
+
+#endif

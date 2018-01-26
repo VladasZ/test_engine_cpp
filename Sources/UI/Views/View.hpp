@@ -64,4 +64,8 @@ public:
     
     void addSubview(View *view);
     void removeAllSubviews();
+    
+#if MEMORY_BENCHMARK
+    void addTestViews();
+#endif
 };

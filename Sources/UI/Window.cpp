@@ -77,32 +77,50 @@ void Window::didTouch(const int &x, const int &y) {
     //greenView->setCenter(Point(x, y));
 }
 
-
+#if DEBUG_OUTPUT
 DebugInfoView *debugInfoView;
+#endif
 
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
+    
+#if DEBUG_OUTPUT
     debugInfoView = new DebugInfoView();
-    
-    rootView->addSubview(debugInfoView);
-    
+    debugInfoView->layout();
+#endif
+
     rootView->layout();
 }
 
 void Window::onDebugTick() {
     
+#if MEMORY_BENCHMARK
+    static int counter = 0;
+    if (counter % 6 == 0) rootView->removeAllSubviews();    
+    rootView->addTestViews();
+    rootView->layout();
+    counter++;
+#endif
+    
+#if DEBUG_OUTPUT
     debugInfoView->update();
+#endif
+
 }
 
 void Window::update() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     rootView->drawSubviews();
     
+#if DEBUG_OUTPUT
+    debugInfoView->draw();
+#endif
+
     FPS = 1000000000 / Time::interval();
     
     Window::framesDrawn++;
     
-    if (Window::framesDrawn % 10 == 0) onDebugTick();
+    if (Window::framesDrawn % 1 == 0) onDebugTick();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

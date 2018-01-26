@@ -29,6 +29,7 @@ void testEngineMain() {
 		glfwSwapBuffers(Window::window);
 	} while (glfwGetKey(Window::window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(Window::window) == 0);
-    
+#if MEMORY_TRACKING
     MemoryManager::printDump();
+#endif
 }

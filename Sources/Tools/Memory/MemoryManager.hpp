@@ -8,6 +8,8 @@
 
 #pragma once
 
+#if MEMORY_TRACKING
+
 class ClassMemoryInfo;
 
 class MemoryManager {
@@ -28,3 +30,5 @@ public:
     static void printDump();
     
 };
+
+#endif

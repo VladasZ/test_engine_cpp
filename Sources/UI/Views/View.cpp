@@ -116,12 +116,12 @@ void View::removeAllSubviews() {
     subviews.clear();
 }
 
-
-void addTestViews(View *view) {
+#if MEMORY_BENCHMARK
+void View::addTestViews() {
     
-    if (view->subviews.empty()) {
+    if (subviews.empty()) {
         
-        Size size = view->frame.size / 2.05;
+        Size size = frame.size / 2.05;
         Color color = Color::random();
         
         auto view1 = new View(size);
@@ -139,13 +139,15 @@ void addTestViews(View *view) {
         view3->color = color;
         view4->color = color;
         
-        view->addSubview(view1);
-        view->addSubview(view2);
-        view->addSubview(view3);
-        view->addSubview(view4);
+        addSubview(view1);
+        addSubview(view2);
+        addSubview(view3);
+        addSubview(view4);
         return;
     }
     
-    for(auto view : view->subviews)
-        addTestViews(view);
+    for(auto view : subviews) {
+        view->addTestViews();
+    }
 }
+#endif

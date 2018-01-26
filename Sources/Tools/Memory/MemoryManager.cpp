@@ -6,6 +6,9 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#if MEMORY_TRACKING
+
+
 #include "MemoryManager.hpp"
 #include "ClassMemoryInfo.hpp"
 
@@ -31,3 +34,5 @@ void MemoryManager::printDump() {
     cout << "Objects deleted: " << MemoryManager::totalObjectsDeleted << endl;
     cout << "Objects exist: " << MemoryManager::totalObjectsExist() << endl;
 }
+
+#endif

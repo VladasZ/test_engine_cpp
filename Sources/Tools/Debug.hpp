@@ -10,9 +10,12 @@
 
 #include "MemoryTest.hpp"
 
+#define MEMORY_TRACKING true
+
 #define MEMORY_TEST false
-#define DEBUG_OUTPUT true
+#define MEMORY_BENCHMARK false
 #define FULL_MEMORY_OUTPUT false
+#define DEBUG_OUTPUT true
 
 #ifdef DEBUG
 

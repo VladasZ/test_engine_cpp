@@ -6,6 +6,8 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#if MEMORY_TRACKING
+
 #include "ClassMemoryInfo.hpp"
 
 ClassMemoryInfo::ClassMemoryInfo(const string &name) : className(name) { }
@@ -16,3 +18,5 @@ void ClassMemoryInfo::print() const {
     cout << "deleted: " << deleted << endl;
     cout << "exists: " << allocated - deleted << endl;
 }
+
+#endif

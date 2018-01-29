@@ -11,7 +11,7 @@
 #include "Primitives.hpp"
 #include "Color.hpp"
 
-enum Autolayout {
+enum Matolayout {
     
    None               = 0,
    StickToLeft        = 1 << 0,
@@ -49,7 +49,7 @@ public:
     
     Rect frame;
     Color color;
-    int autolayoutMask = None;
+    int matolayoutMask = None;
     vector<View *> subviews;
     
     View() = default;

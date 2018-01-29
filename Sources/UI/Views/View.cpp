@@ -49,7 +49,7 @@ void View::draw() {
 
 void View::layout() {
         
-    if (autolayoutMask == Autolayout::None) {
+    if (matolayoutMask == Matolayout::None) {
         setupBuffer();
         for (auto subview : subviews) subview->layout();
         return;
@@ -61,27 +61,27 @@ void View::layout() {
     if (superview == nullptr) parentFrame = Rect(Window::size.width, Window::size.height);
     else parentFrame = superview->frame;
     
-    if (autolayoutMask & Autolayout::StickToLeft)
+    if (matolayoutMask & Matolayout::StickToLeft)
         layoutFrame.origin.x = 0;
     
-    if (autolayoutMask & Autolayout::StickToRight)
+    if (matolayoutMask & Matolayout::StickToRight)
         layoutFrame.origin.x = parentFrame.size.width - frame.size.width;
     
-    if (autolayoutMask & Autolayout::StickToTop)
+    if (matolayoutMask & Matolayout::StickToTop)
         layoutFrame.origin.y = 0;
     
-    if (autolayoutMask & Autolayout::StickToBottom)
+    if (matolayoutMask & Matolayout::StickToBottom)
         layoutFrame.origin.y = parentFrame.size.height - frame.size.height;
 
-    if (autolayoutMask & Autolayout::Center) {
+    if (matolayoutMask & Matolayout::Center) {
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
     }
     
-    if (autolayoutMask & Autolayout::CenterHorizontally)
+    if (matolayoutMask & Matolayout::CenterHorizontally)
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
 
-    if (autolayoutMask & Autolayout::CenterVertically)
+    if (matolayoutMask & Matolayout::CenterVertically)
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
 
     this->frame = layoutFrame;
@@ -129,10 +129,10 @@ void View::addTestViews() {
         auto view3 = new View(size);
         auto view4 = new View(size);
         
-        view1->autolayoutMask = StickToTop | StickToLeft;
-        view2->autolayoutMask = StickToTop | StickToRight;
-        view3->autolayoutMask = StickToBottom | StickToLeft;
-        view4->autolayoutMask = StickToBottom | StickToRight;
+        view1->matolayoutMask = StickToTop | StickToLeft;
+        view2->matolayoutMask = StickToTop | StickToRight;
+        view3->matolayoutMask = StickToBottom | StickToLeft;
+        view4->matolayoutMask = StickToBottom | StickToRight;
         
         view1->color = color;
         view2->color = color;

@@ -12,7 +12,7 @@
 
 #define MEMORY_TRACKING true
 
-#define MEMORY_TEST false
+#define MEMORY_TEST true
 #define MEMORY_BENCHMARK false
 #define FULL_MEMORY_OUTPUT false
 #define DEBUG_OUTPUT true
@@ -33,5 +33,5 @@ class Debug {
     
 public:
     
-    static void notImplemented(LOCATION_INPUT);
+    //static void notImplemented(LOCATION_INPUT);
 };

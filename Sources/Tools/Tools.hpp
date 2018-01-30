@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Log.hpp"
+#include "String.hpp"
 #include "StringTools.hpp"
 #include "Debug.hpp"
 #include "FileManager.hpp"

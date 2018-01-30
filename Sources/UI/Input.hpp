@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Point.hpp"
+
 class Input {
     
     Input();
@@ -16,7 +18,8 @@ public:
     
     static void initialize();
     
-    static void touchBegan(double x, double y);
-    static void touchMoved(double x, double y);
-    static void touchEnded(double x, double y);
+    static void touchBegan(const Point &point);
+    static void touchMoved(const Point &point);
+    static void touchEnded(const Point &point);
+    static void pressedKey(const char &key);
 };

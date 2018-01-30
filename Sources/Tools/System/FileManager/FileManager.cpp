@@ -16,7 +16,7 @@ const string FileManager::assetsDirectory() {
     return "../../../../Assets/";
 #endif
     
-    NOT_IMPLEMENTED;
+    //NOT_IMPLEMENTED;
     return "";
 }
 
@@ -27,7 +27,7 @@ const string FileManager::workDirectory() {
 	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
 #endif
 
-    NOT_IMPLEMENTED;
+    //NOT_IMPLEMENTED;
     return "";
 }
 

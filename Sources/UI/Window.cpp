@@ -45,14 +45,19 @@ void Window::initialize(int width, int height) {
     
     window = glfwCreateWindow(width, height, "Test Engine", NULL, NULL);
     
-    if (window == nullptr) { Error("GLFW window creation failed"); return; }
+    if (window == nullptr) { //Error("GLFW window creation failed");
+        return;
+        
+    }
     
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, sizeChanged);
     glfwSetCursorPosCallback(window, cursor_position_callback);
     
     glewExperimental = GL_TRUE;
-    if (glewInit()) { Error("Glew initialization failed"); }
+    if (glewInit()) { //Error("Glew initialization failed");
+        
+    }
     
 #endif
     

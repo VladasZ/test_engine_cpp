@@ -23,7 +23,7 @@ Font * Font::System;
 
 FT_Library ftLibrary() {
     if (library == nullptr) {
-        Check(FT_Init_FreeType(&library));
+        FT_Init_FreeType(&library);
     }
     return library;
 }
@@ -32,16 +32,16 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
     
     int glyphIndex = FT_Get_Char_Index(face, ch);
     
-    Check(FT_Load_Glyph(face,
-                        glyphIndex,
-                        FT_LOAD_RENDER));
+    FT_Load_Glyph(face,
+                  glyphIndex,
+                  FT_LOAD_RENDER);
     
     FT_BitmapGlyph bitmapGlyhp;
-    Check(FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp));
+    FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
     
     auto image = new Image(Size(bitmapGlyhp->bitmap.width,
                                 bitmapGlyhp->bitmap.rows),
-                                bitmapGlyhp->bitmap.buffer,
+                           bitmapGlyhp->bitmap.buffer,
                            1);
     
     return new Glyph(ch,
@@ -56,15 +56,15 @@ Font::Font(const string& fileName) {
     auto file = new File(fileName);
     FT_Face face;
     
-    Check(FT_New_Memory_Face(ftLibrary(),
-                             file->getData(),
-                             file->getSize(),
-                             0,
-                             &face));
+    FT_New_Memory_Face(ftLibrary(),
+                       file->getData(),
+                       file->getSize(),
+                       0,
+                       &face);
     
-    Check(FT_Set_Pixel_Sizes(face,
-                             0,
-                             20));
+    FT_Set_Pixel_Sizes(face,
+                       0,
+                       20);
     
     int yMax = 0;
     int yMin = 0;

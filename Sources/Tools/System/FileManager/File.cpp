@@ -15,7 +15,7 @@ File::File(const string &path) {
     FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
     
     if (file == 0) {
-        Error("Failed to open a file");
+       // Error("Failed to open a file");
         return;
     }
     fseek(file, 0, SEEK_END);

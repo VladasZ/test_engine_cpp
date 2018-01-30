@@ -8,8 +8,8 @@
 
 #include "Debug.hpp"
 
-void Debug::notImplemented(LOCATION_INPUT) {
-    
-    Log::error("Not implemented", LOCATION_PARAMETERS);
-}
-
+//void Debug::notImplemented(LOCATION_INPUT) {
+//    
+//   // Log::error("Not implemented", LOCATION_PARAMETERS);
+//}
+//

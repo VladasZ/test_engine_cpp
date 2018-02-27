@@ -32,15 +32,15 @@ void Input::initialize() {
 }
 
 
-void Input::touchBegan(const Point &point) {
+void Input::touchBegan(INPUT_PARAMETERS) {
     
 }
 
-void Input::touchMoved(const Point &point) {
+void Input::touchMoved(INPUT_PARAMETERS) {
     
 }
 
-void Input::touchEnded(const Point &point) {
+void Input::touchEnded(INPUT_PARAMETERS) {
     
 }
 

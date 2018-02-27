@@ -6,8 +6,8 @@ class FileManager {
 
 public:
 
-	static const string assetsDirectory();
-    static const string workDirectory();
+	static const String assetsDirectory();
+    static const String workDirectory();
     
-    static const string assetsPathWithFileName(const string& fileName);
+    static const String assetsPathWithFileName(const String& fileName);
 };

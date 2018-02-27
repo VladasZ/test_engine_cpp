@@ -10,6 +10,8 @@
 
 #include "Point.hpp"
 
+#define INPUT_PARAMETERS float x, float y
+
 class Input {
     
     Input();
@@ -18,8 +20,8 @@ public:
     
     static void initialize();
     
-    static void touchBegan(const Point &point);
-    static void touchMoved(const Point &point);
-    static void touchEnded(const Point &point);
+    static void touchBegan(INPUT_PARAMETERS);
+    static void touchMoved(INPUT_PARAMETERS);
+    static void touchEnded(INPUT_PARAMETERS);
     static void pressedKey(const char &key);
 };

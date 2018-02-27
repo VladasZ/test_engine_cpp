@@ -33,23 +33,23 @@ void Shader::use() const {
 
 void Shader::initialize() {
     
-    simple = move(Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
-                    FileManager::assetsDirectory() + "Shaders/simple.frag"));
+    simple =        Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
+                           FileManager::assetsDirectory() + "Shaders/simple.frag");
     
-    ui = Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
-                FileManager::assetsDirectory() + "Shaders/ui.frag");
+    ui =            Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
+                           FileManager::assetsDirectory() + "Shaders/ui.frag");
     
-    uiTexture = Shader(FileManager::assetsDirectory() + "Shaders/uiTexture.vert",
-                       FileManager::assetsDirectory() + "Shaders/uiTexture.frag");
+    uiTexture =     Shader(FileManager::assetsDirectory() + "Shaders/uiTexture.vert",
+                           FileManager::assetsDirectory() + "Shaders/uiTexture.frag");
     
-    uiMonochrome = Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
-                          FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
+    uiMonochrome =  Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
+                           FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
     
     colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
                            FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
     
-    texture = Shader(FileManager::assetsDirectory() + "Shaders/texture.vert",
-                     FileManager::assetsDirectory() + "Shaders/texture.frag");
+    texture =       Shader(FileManager::assetsDirectory() + "Shaders/texture.vert",
+                           FileManager::assetsDirectory() + "Shaders/texture.frag");
     
     setupUiTranslation();
 }

@@ -34,6 +34,7 @@
 		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */; };
 		7CC68FEA201A01600016F226 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
+		7CF6A67D20458C53005D5E42 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* String.cpp */; };
 		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
 		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
 		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
@@ -1070,6 +1071,7 @@
 				7C80A2911F7A4DFC0042A1A1 /* View.cpp in Sources */,
 				824DABA01F5C03FE007E1568 /* Time.cpp in Sources */,
 				824B9E051F55F5BA00C39543 /* Size.cpp in Sources */,
+				7CF6A67D20458C53005D5E42 /* String.cpp in Sources */,
 				824B9E031F55F5BA00C39543 /* ShaderCompiler.cpp in Sources */,
 				824B9E011F55F5BA00C39543 /* System.cpp in Sources */,
 				824B9DF51F55F5AA00C39543 /* StringTools.cpp in Sources */,

@@ -71,7 +71,7 @@ Image::Image(const string &file, Filter filter) {
     int width;
     int height;
     
-    unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
+    unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).cStr(),
                                            &width,
                                            &height,
                                            &channels,

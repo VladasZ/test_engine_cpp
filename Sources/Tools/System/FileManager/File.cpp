@@ -12,7 +12,7 @@
 
 File::File(const string &path) {
     
-    FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
+    FILE* file = fopen(FileManager::assetsPathWithFileName(path).cStr(), "rb");
     
     if (file == 0) {
        // Error("Failed to open a file");

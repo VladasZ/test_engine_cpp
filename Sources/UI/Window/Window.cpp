@@ -16,14 +16,14 @@ void sizeChanged(GLFWwindow* window, int width, int height);
 GLFWwindow * Window::window;
 #endif
 
+#if DEBUG_OUTPUT
+DebugInfoView * Window::debugInfoView;
+#endif
+
 Size Window::size;
 View * Window::rootView;
 int Window::FPS = 0;
 int Window::framesDrawn = 0;
-
-static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
-    Window::didTouch(xpos, ypos);
-}
 
 void Window::initialize(int width, int height) {
     
@@ -47,12 +47,10 @@ void Window::initialize(int width, int height) {
     
     if (window == nullptr) { //Error("GLFW window creation failed");
         return;
-        
     }
     
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, sizeChanged);
-    glfwSetCursorPosCallback(window, cursor_position_callback);
     
     glewExperimental = GL_TRUE;
     if (glewInit()) { //Error("Glew initialization failed");
@@ -77,14 +75,6 @@ void Window::initialize(int width, int height) {
 }
 
 auto labelContentView = new View(10, 100, 600, 400);
-
-void Window::didTouch(const int &x, const int &y) {    
-    //greenView->setCenter(Point(x, y));
-}
-
-#if DEBUG_OUTPUT
-DebugInfoView *debugInfoView;
-#endif
 
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
@@ -133,23 +123,4 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
-}
-
-void Window::onCharacterInput(const char &ch) {
-}
-
-void Window::onKeyPressed(const int &key) {
-    if (key == 259//GLFW_KEY_BACKSPACE
-        ) {
-
-    }
-}
-
-void Window::touchBegan(const TestEngine::Point &position) {
-    cout << position.toString() << endl;
-    Window::didTouch(position.x, position.y);
-}
-
-void Window::touchMoved(const TestEngine::Point &position) {
-    
 }

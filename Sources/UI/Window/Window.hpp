@@ -15,14 +15,13 @@
 class View;
 struct GLFWwindow;
 
+#if DEBUG_OUTPUT
+class DebugInfoView;
+#endif
+
 class Window MEMORY_MANAGED(Window) {
     
     friend Input;
-    
-   
-    
-    static void touchBegan(const TestEngine::Point &position);
-    static void touchMoved(const TestEngine::Point &position);
     
     static void onDebugTick();
     
@@ -39,16 +38,15 @@ public:
     static GLFWwindow *window;
 #endif
     
+#if DEBUG_OUTPUT
+    static DebugInfoView *debugInfoView;
+#endif
+    
     static void initialize(int width, int height);
     
     static void setup();
     
     static void update();
-        
-    static void didTouch(const int &x, const int &y);
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
-    
-    static void onCharacterInput(const char &ch);
-    static void onKeyPressed(const int &key);
 };

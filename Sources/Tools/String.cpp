@@ -38,29 +38,29 @@ void String::print() const {
 }
 
 String String::operator +(const String &str) const {
-    cout << "operator +=" << endl;
+    //cout << "operator +=" << endl;
 
-    cout << endl << "STR in: " << *this << endl;
-    cout << "STR in2: " << str << endl;
+    //cout << endl << "STR in: " << *this << endl;
+    //cout << "STR in2: " << str << endl;
     
     long size = this->BUFFER_SIZE + str._size - 1;
     char *data = (char *)malloc(size);
     memcpy(data, this->data, this->_size);
     memcpy(data + this->_size, str.data, str.BUFFER_SIZE);
     
-    cout << "STR out: " << String(size, data) << endl << endl;;
+   // cout << "STR out: " << String(size, data) << endl << endl;;
     
     return String(size, data);
 }
 
 void String::operator +=(const String &str) {
-    cout << "operator +=" << endl;
-    cout << endl << "STR in: " << *this << endl;
-    cout << "STR in2: " << str << endl;
+    //cout << "operator +=" << endl;
+    //cout << endl << "STR in: " << *this << endl;
+    //cout << "STR in2: " << str << endl;
     this->data = (char *)realloc(this->data, this->_size + str._size + 1);
     memcpy(this->data + this->_size, str.data, str.BUFFER_SIZE);
     this->_size += str._size;
-    cout << "STR out: " << *this << endl << endl;;
+    //cout << "STR out: " << *this << endl << endl;;
 }
 
 ostream &operator<<(ostream &os, String const &str) {

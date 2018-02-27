@@ -47,8 +47,8 @@ Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
 Buffer(new BufferData(vertData, vertSize, indData, indSize), configuration) { }
 
 Buffer::~Buffer() {
-    glDeleteVertexArrays(1, &vertexArrayObject);
-    glDeleteBuffers(1, &vertexBufferObject);
+    SAFE(glDeleteVertexArrays(1, &vertexArrayObject));
+    SAFE(glDeleteBuffers(1, &vertexBufferObject)); // Potential crash
     if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
     delete data;
 }
@@ -62,6 +62,7 @@ void Buffer::setPointers(int firstParam, int secondParam, int thirdParam) const 
 
 void Buffer::setData(BufferData *data) {
     delete this->data;
+    this->data = data;
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
     glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW);
     
@@ -76,10 +77,10 @@ void Buffer::draw() const {
     glBindVertexArray(vertexArrayObject);
     
     if (data->indSize == 0) {
-        glDrawArrays(drawMode, 0, data->vertSize);
+        SAFE(glDrawArrays(drawMode, 0, data->vertSize));
     }
     else {
-        glDrawElements(drawMode, data->indSize, GL_UNSIGNED_SHORT, 0);
+        SAFE(glDrawElements(drawMode, data->indSize, GL_UNSIGNED_SHORT, 0));
     }
     
     glBindVertexArray(0);

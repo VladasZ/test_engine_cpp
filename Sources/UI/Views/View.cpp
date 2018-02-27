@@ -14,7 +14,7 @@
 View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
 View::View(float width, float height) : View(0, 0, width, height) { }
 View::View(const Size &size) : View(0, 0, size.width, size.height) { }
-View::~View() { delete buffer; }
+View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
     return absoluteFrame().getData();

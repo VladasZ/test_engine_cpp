@@ -632,6 +632,15 @@
 			path = SOIL;
 			sourceTree = "<group>";
 		};
+		7CF6A67E20458D67005D5E42 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				82E222271F4A296D002C1F17 /* Window.hpp */,
+				82E222261F4A296D002C1F17 /* Window.cpp */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
 		8208E2A31F486B76000A8E14 /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,8 +912,7 @@
 			isa = PBXGroup;
 			children = (
 				82E222291F4A2988002C1F17 /* UI.hpp */,
-				82E222271F4A296D002C1F17 /* Window.hpp */,
-				82E222261F4A296D002C1F17 /* Window.cpp */,
+				7CF6A67E20458D67005D5E42 /* Window */,
 				824FFAFE1F57415B000C58DA /* Input.hpp */,
 				824FFAFD1F57415B000C58DA /* Input.cpp */,
 				82D452221F545F620086772F /* Color.hpp */,

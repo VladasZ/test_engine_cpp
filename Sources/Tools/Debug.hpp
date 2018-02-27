@@ -14,7 +14,7 @@
 
 #define MEMORY_TEST false
 #define MEMORY_BENCHMARK false
-#define FULL_MEMORY_OUTPUT false
+#define FULL_MEMORY_OUTPUT true
 #define DEBUG_OUTPUT true
 
 #ifdef DEBUG
@@ -35,3 +35,5 @@ public:
     
     //static void notImplemented(LOCATION_INPUT);
 };
+
+void CheckGLError(const char* file, int line);

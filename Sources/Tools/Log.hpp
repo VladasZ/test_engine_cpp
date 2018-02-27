@@ -6,7 +6,8 @@
 ////  Copyright © 2017 VladasZ. All rights reserved.
 ////
 //
-//#pragma once
+#pragma once
+
 //
 //#define LOCATION __FILE__ , __func__, __LINE__
 //#define LOCATION_INPUT const char* file, const char* function, int line
@@ -16,8 +17,12 @@
 #define Warning(message) message//Log::warning((message), LOCATION)
 #define Error(message)   message//Log::error  ((message), LOCATION)
 //
+
 #define SAFE(X) \
-{ (X); }
+{\
+(X);      \
+CheckGLError(__FILE__, __LINE__); \
+}
 
 
 //void CheckGLError(const char* file, unsigned line);

@@ -35,6 +35,8 @@ class MemoryManaged {
     
 public:
     
+    int _memoryID;
+    
     static int leaked() {
         return allocated - deleted;
     }
@@ -47,7 +49,8 @@ public:
         }
         
 #if FULL_MEMORY_OUTPUT
-        cout << MemoryManaged<T>::className << " allocated" << endl;
+        _memoryID = *allocated;
+        cout << MemoryManaged<T>::className << " allocated: " << _memoryID << endl;
 #endif
         
         (*allocated)++;
@@ -58,7 +61,7 @@ public:
         if (!MemoryManager::isTracking) return;
         if (deleted == nullptr) return;
 #if FULL_MEMORY_OUTPUT
-        cout << MemoryManaged<T>::className << " deleted" << endl;
+        cout << MemoryManaged<T>::className << " deleted:" << _memoryID << endl;
 #endif
         (*deleted)++;
         MemoryManager::totalObjectsDeleted++;

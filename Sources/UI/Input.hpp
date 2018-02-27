@@ -12,11 +12,18 @@
 
 #define INPUT_PARAMETERS float x, float y
 
-class Input {
+class Input : NonCopyable {
     
     Input();
     
 public:
+    
+#if GLFW
+    
+    static Point cursorPosition;
+    static bool mouseKeyIsPressed;
+    
+#endif
     
     static void initialize();
     

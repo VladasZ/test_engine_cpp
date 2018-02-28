@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "GL.hpp"
 #include "Vertex.hpp"
 
 class Polygon MEMORY_MANAGED(Polygon) {
@@ -16,10 +15,10 @@ class Polygon MEMORY_MANAGED(Polygon) {
 public:
     
     vector<Vertex> vertices;
-    vector<GLushort> indices;
+    vector<short> indices;
     
-    GLfloat *vertexBuffer = nullptr;
-    GLushort *indexBuffer = nullptr;
+    float *vertexBuffer = nullptr;
+    short *indexBuffer = nullptr;
     
     int vertexBufferSize;
     int indexBufferSize;

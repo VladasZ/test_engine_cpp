@@ -10,7 +10,6 @@
 #include "GL.hpp"
 
 Color::Color(Color const &obj) : Color() {
-    
     this->data = obj.data;
 }
 
@@ -30,13 +29,11 @@ Color::Color() : r(data.r), g(data.g), b(data.b), a(data.a), dataBuffer(&data[0]
 }
 
 Color::Color(float r, float g, float b, float a) : Color() {
-    
     data = vec4(r, g, b, a);
 }
 
 void Color::setToUniform(int uniform) const {
-    
-    glUniform4fv(uniform, 1, &data.r);
+    GL(glUniform4fv(uniform, 1, &data.r));
 }
 
 Color Color::random() {

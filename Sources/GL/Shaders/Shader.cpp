@@ -28,7 +28,7 @@ Shader::Shader(const string &vertexPath, const string &fragmentPath) {
 }
 
 void Shader::use() const {
-    glUseProgram(program);
+    GL(glUseProgram(program));
 }
 
 void Shader::initialize() {
@@ -76,6 +76,6 @@ void Shader::setUniformColor(const Color &color) const {
 
 void Shader::setUniformProjectionMatrix(const mat4 &projection) const {
     
-    glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]);
+    GL(glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]));
 }
 

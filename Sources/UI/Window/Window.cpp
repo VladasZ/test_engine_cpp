@@ -45,7 +45,8 @@ void Window::initialize(int width, int height) {
     
     window = glfwCreateWindow(width, height, "Test Engine", NULL, NULL);
     
-    if (window == nullptr) { //Error("GLFW window creation failed");
+    if (window == nullptr) {
+        Error("GLFW window creation failed");
         return;
     }
     
@@ -53,23 +54,23 @@ void Window::initialize(int width, int height) {
     glfwSetWindowSizeCallback(window, sizeChanged);
     
     glewExperimental = GL_TRUE;
-    if (glewInit()) { //Error("Glew initialization failed");
-        
+    if (glewInit()) {
+        Error("Glew initialization failed");
     }
     
 #endif
     
-    //glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    //glEnable(GL_ALPHA_TEST);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //GL(glEnable(GL_DEPTH_TEST));
+    GL(glEnable(GL_BLEND));
+    //GL(glEnable(GL_ALPHA_TEST));
+    GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     
     Input::initialize();
     Shader::initialize();
     Image::initialize();
     Font::initialize();
     
-    glClearColor(0.5, 0.5, 0.5, 1);
+    GL(glClearColor(0.5, 0.5, 0.5, 1));
     
     setup();
 }
@@ -91,7 +92,7 @@ void Window::onDebugTick() {
     
 #if MEMORY_BENCHMARK
     static int counter = 0;
-    if (counter % 6 == 0) rootView->removeAllSubviews();    
+    if (counter % 10 == 0) rootView->removeAllSubviews();
     rootView->addTestViews();
     rootView->layout();
     counter++;
@@ -104,7 +105,7 @@ void Window::onDebugTick() {
 }
 
 void Window::update() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     rootView->drawSubviews();
     
 #if DEBUG_VIEW

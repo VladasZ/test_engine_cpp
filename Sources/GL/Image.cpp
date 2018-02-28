@@ -32,17 +32,17 @@ void Image::init(const Size &size, void *data, const int &channels, int filter) 
     this->channels = channels;
     this->size = size;
     
-    SAFE(glGenTextures(1, &id));
-    SAFE(glBindTexture(GL_TEXTURE_2D, id));
-    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));// _MIPMAP_NEAREST));
-    //SAFE(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    GL(glGenTextures(1, &id));
+    GL(glBindTexture(GL_TEXTURE_2D, id));
+    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));// _MIPMAP_NEAREST));
+    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     
     if (channels == 1)
-        SAFE(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
+        GL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
     
-    SAFE(glTexImage2D(GL_TEXTURE_2D,
+    GL(glTexImage2D(GL_TEXTURE_2D,
                       0,
                       modeForChannels(channels),
                       size.width,
@@ -55,11 +55,11 @@ void Image::init(const Size &size, void *data, const int &channels, int filter) 
     //glTexEnvf(GL_TEXTURE_2D,GL_TEXTURE_ENV_MODE,GL_MODULATE);
     
     
-    SAFE(glGenerateMipmap(GL_TEXTURE_2D));
+    GL(glGenerateMipmap(GL_TEXTURE_2D));
     
     setFilter((Filter)filter);
     
-    SAFE(glBindTexture(GL_TEXTURE_2D, 0));
+    GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 Image::Image(const Size &size, void *data, const int &channels, Filter filter) {
@@ -86,13 +86,13 @@ Image::Image(const string &file, Filter filter) {
 }
 
 void Image::bind() const {
-    glBindTexture(GL_TEXTURE_2D, id);
+    GL(glBindTexture(GL_TEXTURE_2D, id));
     if (isMonochrome()) Shader::uiMonochrome.use();
     else                Shader::uiTexture.use();
 }
 
 void Image::unbind() const {
-    glBindTexture(GL_TEXTURE_2D, 0);
+    GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 void Image::initialize() {
@@ -104,26 +104,26 @@ void Image::initialize() {
 void Image::setFilter(Filter filter) {
     switch(filter) {
         case Nearest:
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
             break;
         case Linear:
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
             break;
         case Bilinear:
-            //CROSS_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST));
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            //TEST_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
             break;
         case Trilinear:
-            //CROSS_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+            //TEST_ASSERT(mip_maps, "Current texture does not have mip maps to apply this filter");
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
             break;
         default:
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-            SAFE(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+            GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
     }
 }
 

@@ -6,9 +6,7 @@
 //  Copyright © 2017 Vladas Zakrevskis. All rights reserved.
 //
 
-#ifndef _D_h
-#define _D_h
+#pragma once
 
 #include "Cube.hpp"
 
-#endif /* _D_h */

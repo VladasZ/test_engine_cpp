@@ -11,29 +11,29 @@
 
 Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : data(data) {
     
-    glGenVertexArrays(1, &vertexArrayObject);
-    glBindVertexArray(vertexArrayObject);
+    GL(glGenVertexArrays(1, &vertexArrayObject));
+    GL(glBindVertexArray(vertexArrayObject));
     
-    glGenBuffers(1, &vertexBufferObject);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW);
-    glVertexAttribPointer(0,
+    GL(glGenBuffers(1, &vertexBufferObject));
+    GL(glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject));
+    GL(glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW));
+    GL(glVertexAttribPointer(0,
                           3,
                           GL_FLOAT,
                           GL_FALSE,
                           3 * sizeof(GLfloat),
-                          NULL);
+                          NULL));
     
     if (data->indSize != 0) {
-        glGenBuffers(1, &indexBufferObject);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->indSize, data->indData, GL_STATIC_DRAW);
+        GL(glGenBuffers(1, &indexBufferObject));
+        GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject));
+        GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->indSize, data->indData, GL_STATIC_DRAW));
     }
     
     configuration.setPointers();
     
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
+    GL(glEnableVertexAttribArray(0));
+    GL(glBindVertexArray(0));
 }
 
 Buffer::Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration)
@@ -47,41 +47,41 @@ Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
 Buffer(new BufferData(vertData, vertSize, indData, indSize), configuration) { }
 
 Buffer::~Buffer() {
-    SAFE(glDeleteVertexArrays(1, &vertexArrayObject));
-    SAFE(glDeleteBuffers(1, &vertexBufferObject)); // Potential crash
+    GL(glDeleteVertexArrays(1, &vertexArrayObject));
+    GL(glDeleteBuffers(1, &vertexBufferObject)); // Potential crash
     if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
     delete data;
 }
 
 void Buffer::setPointers(int firstParam, int secondParam, int thirdParam) const {
-    glBindVertexArray(vertexArrayObject);
+    GL(glBindVertexArray(vertexArrayObject));
     BufferConfiguration conf(firstParam, secondParam, thirdParam);
     conf.setPointers();
-    glBindVertexArray(0);
+    GL(glBindVertexArray(0));
 }
 
 void Buffer::setData(BufferData *data) {
     delete this->data;
     this->data = data;
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW);
+    GL(glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject));
+    GL(glBufferData(GL_ARRAY_BUFFER, data->vertSize, data->vertData, GL_STATIC_DRAW));
     
     if (data->indSize == 0) return;
     
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->indSize, data->indData, GL_STATIC_DRAW);
+    GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject));
+    GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->indSize, data->indData, GL_STATIC_DRAW));
 }
 
 void Buffer::draw() const {
  
-    glBindVertexArray(vertexArrayObject);
+    GL(glBindVertexArray(vertexArrayObject));
     
     if (data->indSize == 0) {
-        SAFE(glDrawArrays(drawMode, 0, data->vertSize));
+        GL(glDrawArrays(drawMode, 0, data->vertSize));
     }
     else {
-        SAFE(glDrawElements(drawMode, data->indSize, GL_UNSIGNED_SHORT, 0));
+        GL(glDrawElements(drawMode, data->indSize, GL_UNSIGNED_SHORT, 0));
     }
     
-    glBindVertexArray(0);
+    GL(glBindVertexArray(0));
 }

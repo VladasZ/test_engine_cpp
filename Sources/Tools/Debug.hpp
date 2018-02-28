@@ -10,6 +10,8 @@
 
 #include "MemoryTest.hpp"
 
+#ifdef DEBUG
+
 #define MEMORY_TRACKING true
 #define MEMORY_TEST false
 #define MEMORY_BENCHMARK false
@@ -18,6 +20,12 @@
 
 #define NOT_IMPLEMENTED Error("Not implemented")
 
-#define SAFE(x) x
+#define GL(x) (x); CheckGLError(LOCATION_INFO)
 
-void CheckGLError(const char* file, int line);
+void CheckGLError(LOCATION_PARAMETERS);
+
+#else
+
+#define GL(x) x
+
+#endif

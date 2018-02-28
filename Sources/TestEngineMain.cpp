@@ -22,11 +22,11 @@ void testEngineMain() {
 	Window::initialize(1200, 800);
 
 	do {
-		glfwPollEvents();
+		GL(glfwPollEvents());
 
 		Window::update();
 
-		glfwSwapBuffers(Window::window);
+		GL(glfwSwapBuffers(Window::window));
 	} while (glfwGetKey(Window::window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(Window::window) == 0);
 #if MEMORY_TRACKING

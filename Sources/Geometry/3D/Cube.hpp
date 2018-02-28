@@ -6,8 +6,7 @@
 //  Copyright © 2017 Vladas Zakrevskis. All rights reserved.
 //
 
-#ifndef Cube_hpp
-#define Cube_hpp
+#pragma once
 
 #include "Polygon.hpp"
 
@@ -19,4 +18,3 @@ public:
     
 };
 
-#endif /* Cube_hpp */

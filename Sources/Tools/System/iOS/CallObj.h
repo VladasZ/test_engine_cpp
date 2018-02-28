@@ -12,7 +12,7 @@
 extern "C" {
 #endif
         
-    const char * workDirectoryPath();
+    const char * workDirectoryPath(void);
     
 #if defined __cplusplus
 };

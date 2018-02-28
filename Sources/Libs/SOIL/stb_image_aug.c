@@ -1472,7 +1472,7 @@ int stbi_jpeg_test_file(FILE *f)
 {
    int n,r;
    jpeg j;
-   n = ftell(f);
+   n = (int)ftell(f);
    start_file(&j.s, f);
    r = decode_jpeg_header(&j, SCAN_type);
    fseek(f,n,SEEK_SET);
@@ -2305,7 +2305,7 @@ int stbi_png_test_file(FILE *f)
 {
    png p;
    int n,r;
-   n = ftell(f);
+   n = (int)ftell(f);
    start_file(&p.s, f);
    r = parse_png_file(&p, SCAN_type,STBI_default);
    fseek(f,n,SEEK_SET);
@@ -2339,7 +2339,7 @@ static int bmp_test(stbi *s)
 int      stbi_bmp_test_file        (FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s,f);
    r = bmp_test(&s);
    fseek(f,n,SEEK_SET);

@@ -44,13 +44,13 @@ public:
     MemoryManaged() {
         if (!MemoryManager::isTracking) return;
         if (allocated == nullptr) {
-            cout << "31 Initialized class: " << MemoryManaged<T>::className << endl;
+            Log("31 Initialized class: " << MemoryManaged<T>::className);
             return;
         }
         
 #if FULL_MEMORY_OUTPUT
         _memoryID = *allocated;
-        cout << MemoryManaged<T>::className << " allocated: " << _memoryID << endl;
+        Log(MemoryManaged<T>::className << " allocated: " << _memoryID);
 #endif
         
         (*allocated)++;
@@ -61,7 +61,7 @@ public:
         if (!MemoryManager::isTracking) return;
         if (deleted == nullptr) return;
 #if FULL_MEMORY_OUTPUT
-        cout << MemoryManaged<T>::className << " deleted:" << _memoryID << endl;
+        Log(MemoryManaged<T>::className << " deleted:" << _memoryID);
 #endif
         (*deleted)++;
         MemoryManager::totalObjectsDeleted++;
@@ -71,7 +71,7 @@ public:
 template <class T>
 string MemoryManaged<T>::className = []() {
     auto info = new ClassMemoryInfo(typeid(T).name());
-    cout << "48 Initialized class: " << info->className << endl;
+    Log("48 Initialized class: " << info->className);
     allocated = &info->allocated;
     deleted = &info->deleted;
     MemoryManager::info.push_back(info);

@@ -25,12 +25,8 @@ void Polygon::createBuffers() {
 
 void Polygon::createVertexBuffer() {
     
-    cout << Vertex::bufferSize << endl;
-    
     vertexBuffer = new float[Vertex::bufferSize * vertices.size()];
     vertexBufferSize = Vertex::bufferSize * sizeof(float) * (int)vertices.size();
-    
-    cout << vertices.size() << endl;
     
     for(int i = 0; i < vertices.size(); i++) {
         
@@ -56,12 +52,12 @@ void Polygon::createIndexBuffer() {
 void Polygon::printBuffers() {
     
     for(int i = 0; i < indices.size(); i++) {
-        cout << indexBuffer[i] << " ";
+        Log(indexBuffer[i] << " ");
     }
     
-    cout << endl;
+    Endl;
     
     for(int i = 0; i < vertices.size() * Vertex::bufferSize; i++) {
-        cout << vertexBuffer[i] << " ";
+        Log(vertexBuffer[i] << " ");
     }
 }

@@ -61,8 +61,9 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
 
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
-
-	printf("Compiling shader : %s\n", vertexPath.c_str());
+    
+    Log("Compiling shader :" << vertexPath.c_str());
+    
 	char const * VertexSourcePointer = VertexShaderCode.c_str();
 	glShaderSource(VertexShaderID, 1, &VertexSourcePointer , NULL);
 	glCompileShader(VertexShaderID);
@@ -77,7 +78,8 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
 		printf("%s\n", &VertexShaderErrorMessage[0]);
 	}
 
-	printf("Compiling shader : %s\n", fragmentPath.c_str());
+    Log("Compiling shader :" << fragmentPath.c_str());
+
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL);
 	glCompileShader(FragmentShaderID);
@@ -89,10 +91,10 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
     {
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
 		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
-		printf("%s\n", &FragmentShaderErrorMessage[0]);
+        Error(&FragmentShaderErrorMessage[0]);
 	}
 
-	printf("Linking program\n");
+    Log("Linking program");
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
@@ -105,7 +107,7 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
     {
 		vector<char> ProgramErrorMessage(InfoLogLength+1);
 		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
-		printf("%s\n", &ProgramErrorMessage[0]);
+        Error(&ProgramErrorMessage[0]);
 	}
 	
 	glDetachShader(ProgramID, VertexShaderID);

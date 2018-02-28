@@ -79,7 +79,8 @@ Image::Image(const string &file, Filter filter) {
     
     size = Size(width, height);
     
-    cout << "Loading image: " << file << " channels: " << channels << endl;
+    Log("Loading image: " << file << " channels: " << channels);
+    
     init(size, image, channels, filter);
     SOIL_free_image_data(image);
 }

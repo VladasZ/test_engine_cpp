@@ -38,28 +38,24 @@ void cursorPositionCallback(GLFWwindow* window, double x, double y) {
 #endif
 
 void Input::initialize() {
-    
 #if GLFW
     glfwSetCursorPosCallback(Window::window, cursorPositionCallback);
     glfwSetMouseButtonCallback(Window::window, mouseButtonCallback);
-#else
-    //UNIMPLEMENTED;
 #endif
 }
 
-
 void Input::touchBegan(INPUT_PARAMETERS) {
-    cout << "Began: " << x << " " << y << endl;
+    Log("Began: " << x << " " << y);
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
-    cout << "Moved: " << x << " " << y << endl;
+    Log("Moved: " << x << " " << y);
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
-    cout << "Ended: " << x << " " << y << endl;
+    Log("Ended: " << x << " " << y);
 }
 
 void Input::pressedKey(const char &key) {
-    cout << key << endl;
+    Log(key);
 }

@@ -16,7 +16,7 @@ void sizeChanged(GLFWwindow* window, int width, int height);
 GLFWwindow * Window::window;
 #endif
 
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
 DebugInfoView * Window::debugInfoView;
 #endif
 
@@ -79,7 +79,7 @@ auto labelContentView = new View(10, 100, 600, 400);
 void Window::setup() {
     rootView = new View(0, 0, Window::size.width, Window::size.height);
     
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
     debugInfoView = new DebugInfoView();
     debugInfoView->layout();
 #endif
@@ -97,7 +97,7 @@ void Window::onDebugTick() {
     counter++;
 #endif
     
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
     debugInfoView->update();
 #endif
 
@@ -107,7 +107,7 @@ void Window::update() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     rootView->drawSubviews();
     
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
     debugInfoView->draw();
 #endif
 

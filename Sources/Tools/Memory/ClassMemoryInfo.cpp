@@ -13,10 +13,10 @@
 ClassMemoryInfo::ClassMemoryInfo(const string &name) : className(name) { }
 
 void ClassMemoryInfo::print() const {
-    cout << "Class: " << className << endl;
-    cout << "allocated: " << allocated << endl;
-    cout << "deleted: " << deleted << endl;
-    cout << "exists: " << allocated - deleted << endl;
+    Log("Class: " << className);
+    Log("allocated: " << allocated);
+    Log("deleted: " << deleted);
+    Log("exists: " << allocated - deleted);
 }
 
 #endif

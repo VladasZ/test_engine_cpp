@@ -9,12 +9,6 @@
 #include "Debug.hpp"
 #include "GL.hpp"
 
-//void Debug::notImplemented(LOCATION_INPUT) {
-//    
-//   // Log::error("Not implemented", LOCATION_PARAMETERS);
-//}
-//
-
 void CheckGLError(const char* file, int line) {
     GLenum err = glGetError();
     while(err != GL_NO_ERROR) {
@@ -41,7 +35,7 @@ void CheckGLError(const char* file, int line) {
         }
         
         
-        cout << "Rendering error number: " << error << " in " << file << " : " << line << endl;
+        Error("Rendering error number: " << error << " in " << file << " : " << line);
         delete[] error;
         err = glGetError();
     }

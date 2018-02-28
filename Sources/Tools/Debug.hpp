@@ -11,29 +11,13 @@
 #include "MemoryTest.hpp"
 
 #define MEMORY_TRACKING true
-
 #define MEMORY_TEST false
 #define MEMORY_BENCHMARK false
-#define FULL_MEMORY_OUTPUT true
-#define DEBUG_OUTPUT true
+#define FULL_MEMORY_OUTPUT false
+#define DEBUG_VIEW true
 
-#ifdef DEBUG
+#define NOT_IMPLEMENTED Error("Not implemented")
 
-#define NOT_IMPLEMENTED Debug::notImplemented(LOCATION)
-
-#else
-
-#define NOT_IMPLEMENTED
-
-#endif
-
-class Debug {
-    
-    Debug();
-    
-public:
-    
-    //static void notImplemented(LOCATION_INPUT);
-};
+#define SAFE(x) x
 
 void CheckGLError(const char* file, int line);

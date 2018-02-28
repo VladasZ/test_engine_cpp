@@ -15,7 +15,7 @@
 class View;
 struct GLFWwindow;
 
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
 class DebugInfoView;
 #endif
 
@@ -38,7 +38,7 @@ public:
     static GLFWwindow *window;
 #endif
     
-#if DEBUG_OUTPUT
+#if DEBUG_VIEW
     static DebugInfoView *debugInfoView;
 #endif
     

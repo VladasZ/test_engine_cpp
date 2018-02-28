@@ -34,33 +34,33 @@ const char * String::cStr() const { return *this; }
 string String::stdString() const { return *this; }
 
 void String::print() const {
-    cout << data << endl;
+    Log(data);
 }
 
 String String::operator +(const String &str) const {
-    //cout << "operator +=" << endl;
+    //Log("operator +=");
 
-    //cout << endl << "STR in: " << *this << endl;
-    //cout << "STR in2: " << str << endl;
+    //Log(endl << "STR in: " << *this);
+    //Log("STR in2: " << str);
     
     long size = this->BUFFER_SIZE + str._size - 1;
     char *data = (char *)malloc(size);
     memcpy(data, this->data, this->_size);
     memcpy(data + this->_size, str.data, str.BUFFER_SIZE);
     
-   // cout << "STR out: " << String(size, data) << endl << endl;;
+   // Log("STR out: " << String(size, data)));;
     
     return String(size, data);
 }
 
 void String::operator +=(const String &str) {
-    //cout << "operator +=" << endl;
-    //cout << endl << "STR in: " << *this << endl;
-    //cout << "STR in2: " << str << endl;
+    //Log("operator +=");
+    //Log(endl << "STR in: " << *this);
+    //Log("STR in2: " << str);
     this->data = (char *)realloc(this->data, this->_size + str._size + 1);
     memcpy(this->data + this->_size, str.data, str.BUFFER_SIZE);
     this->_size += str._size;
-    //cout << "STR out: " << *this << endl << endl;;
+    //Log("STR out: " << *this));;
 }
 
 ostream &operator<<(ostream &os, String const &str) {

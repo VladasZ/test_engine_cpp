@@ -27,12 +27,12 @@ void MemoryManager::printDump() {
     
     for (auto info : MemoryManager::info) {
         info->print();
-        cout << endl;
+        Endl;
     }
     
-    cout << "Objects created: " << MemoryManager::totalObjectsAllocated << endl;
-    cout << "Objects deleted: " << MemoryManager::totalObjectsDeleted << endl;
-    cout << "Objects exist: " << MemoryManager::totalObjectsExist() << endl;
+    Log("Objects created: " << MemoryManager::totalObjectsAllocated);
+    Log("Objects deleted: " << MemoryManager::totalObjectsDeleted);
+    Log("Objects exist: " << MemoryManager::totalObjectsExist());
 }
 
 #endif

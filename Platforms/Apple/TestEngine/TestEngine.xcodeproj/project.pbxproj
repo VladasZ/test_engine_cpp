@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C147156201226F300494317 /* libFreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C147155201226F300494317 /* libFreetype2.a */; };
 		7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
@@ -41,6 +40,9 @@
 		821B20B61F582E5700933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
 		821B20B71F582F1A00933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
 		8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
+		823A698E20474F2000B27672 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A698D20474F2000B27672 /* libfreetype.a */; };
+		823A69C82047529400B27672 /* libFreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C62047529100B27672 /* libFreetype2.a */; };
+		823A69CB2047530B00B27672 /* libFreetype2_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C92047530600B27672 /* libFreetype2_simulator.a */; };
 		824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681B71F458F9C003BA5F3 /* OpenGL.framework */; };
 		824B9DD91F55F25B00C39543 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B9DD81F55F25B00C39543 /* main.m */; };
 		824B9DDC1F55F25B00C39543 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B9DDB1F55F25B00C39543 /* AppDelegate.m */; };
@@ -94,7 +96,6 @@
 		82D452291F5466BF0086772F /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D452271F5466BF0086772F /* Polygon.cpp */; };
 		82D4522C1F546B8E0086772F /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4522A1F546B8E0086772F /* Buffer.cpp */; };
 		82DE6FB72011389800A159E1 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA90BF81F6970DB007FE954 /* libglfw.3.2.dylib */; };
-		82DE6FB9201138D900A159E1 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DE6FB8201138D900A159E1 /* libfreetype.6.dylib */; };
 		82E222201F4A2746002C1F17 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E2221E1F4A2746002C1F17 /* FileManager.cpp */; };
 		82E222231F4A2806002C1F17 /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E222211F4A2806002C1F17 /* Size.cpp */; };
 		82E222281F4A296D002C1F17 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E222261F4A296D002C1F17 /* Window.cpp */; };
@@ -121,7 +122,6 @@
 		67F89D7B13B8DB03686B464F /* libPods-TestEngineiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestEngineiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C14714D20121BE500494317 /* libfreetype-arm64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfreetype-arm64.a"; path = "../../../../../../../../../Desktop/FreeType_iOS_Release/libfreetype-arm64.a"; sourceTree = "<group>"; };
 		7C14715120121CB000494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../../../../../../Desktop/FreeType_iOS_Release/libFreetype2.a; sourceTree = "<group>"; };
-		7C147155201226F300494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2.a; sourceTree = "<group>"; };
 		7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DebugInfoView.cpp; sourceTree = "<group>"; };
 		7C148A48201A1DBA00D93AD2 /* DebugInfoView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DebugInfoView.hpp; sourceTree = "<group>"; };
 		7C3F77E71F8E0578004A4854 /* glfw.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glfw.rb; sourceTree = "<group>"; };
@@ -220,6 +220,9 @@
 		8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
 		8222478C1F6EF80F00A1B769 /* BufferData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferData.cpp; sourceTree = "<group>"; };
 		8222478D1F6EF80F00A1B769 /* BufferData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BufferData.hpp; sourceTree = "<group>"; };
+		823A698D20474F2000B27672 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.9/lib/libfreetype.a; sourceTree = "<group>"; };
+		823A69C62047529100B27672 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2.a; sourceTree = "<group>"; };
+		823A69C92047530600B27672 /* libFreetype2_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2_simulator.a; sourceTree = "<group>"; };
 		824681AB1F458D5D003BA5F3 /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
 		824681AE1F458D72003BA5F3 /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
 		824681AF1F458D72003BA5F3 /* libGLEW.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLEW.2.0.dylib; sourceTree = "<group>"; };
@@ -312,9 +315,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823A69C82047529400B27672 /* libFreetype2.a in Frameworks */,
+				823A69CB2047530B00B27672 /* libFreetype2_simulator.a in Frameworks */,
 				7C58780D201218D200094DF5 /* GLKit.framework in Frameworks */,
 				7C58780B201218BA00094DF5 /* OpenGLES.framework in Frameworks */,
-				7C147156201226F300494317 /* libFreetype2.a in Frameworks */,
 				9B8D864C3BD4155DC4898353 /* libPods-TestEngineiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,7 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82DE6FB9201138D900A159E1 /* libfreetype.6.dylib in Frameworks */,
+				823A698E20474F2000B27672 /* libfreetype.a in Frameworks */,
 				82DE6FB72011389800A159E1 /* libglfw.3.2.dylib in Frameworks */,
 				7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */,
 				824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */,
@@ -610,7 +614,7 @@
 		7CA7D7D01F70137000113190 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				7C147155201226F300494317 /* libFreetype2.a */,
+				823A69C52047528200B27672 /* FreeType */,
 				7CA7D7F11F7018C500113190 /* SOIL */,
 			);
 			path = Libs;
@@ -664,6 +668,15 @@
 				8208E2B41F488098000A8E14 /* OBJBridge.m */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		823A69C52047528200B27672 /* FreeType */ = {
+			isa = PBXGroup;
+			children = (
+				823A69C62047529100B27672 /* libFreetype2.a */,
+				823A69C92047530600B27672 /* libFreetype2_simulator.a */,
+			);
+			path = FreeType;
 			sourceTree = "<group>";
 		};
 		824681AD1F458D72003BA5F3 /* lib */ = {
@@ -767,6 +780,7 @@
 		8266A8191F45879500C55472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				823A698D20474F2000B27672 /* libfreetype.a */,
 				7C14715120121CB000494317 /* libFreetype2.a */,
 				7C14714D20121BE500494317 /* libfreetype-arm64.a */,
 				7C58780C201218D200094DF5 /* GLKit.framework */,
@@ -1196,16 +1210,18 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3D3XHLMACB;
 				GCC_PREFIX_HEADER = ../../../Sources/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"/usr/local/Cellar/freetype/**",
+				);
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.2.1/lib,
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/Cross/Demo/Projects/iOS",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					"/usr/local/Cellar/glfw/**",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/**",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1213,7 +1229,6 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public/glm\"",
-					"-I/usr/local/opt/freetype/include/freetype2",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -1236,16 +1251,18 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3D3XHLMACB;
 				GCC_PREFIX_HEADER = ../../../Sources/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"/usr/local/Cellar/freetype/**",
+				);
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.2.1/lib,
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/Cross/Demo/Projects/iOS",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
-					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs",
+					"/usr/local/Cellar/glfw/**",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/**",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1253,7 +1270,6 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public/glm\"",
-					"-I/usr/local/opt/freetype/include/freetype2",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
@@ -1383,13 +1399,15 @@
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",
 					"/usr/local/Cellar/glm/**",
-					"/usr/local/opt/freetype/include/freetype2/**",
+					"/usr/local/Cellar/freetype/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.2.1/lib,
-					/usr/local/Cellar/glew/2.1.0/lib,
-					/usr/local/Cellar/freetype/2.9/lib,
+					"/usr/local/Cellar/glfw/**",
+					"/usr/local/Cellar/glew/**",
+					"/usr/local/Cellar/freetype/**",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/FreeType",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/FreeType",
 				);
 				OTHER_CFLAGS = "-I/usr/local/opt/freetype/include/freetype2";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -1414,13 +1432,15 @@
 					"/usr/local/Cellar/glew/**",
 					"/usr/local/Cellar/glfw/**",
 					"/usr/local/Cellar/glm/**",
-					"/usr/local/opt/freetype/include/freetype2/**",
+					"/usr/local/Cellar/freetype/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.2.1/lib,
-					/usr/local/Cellar/glew/2.1.0/lib,
-					/usr/local/Cellar/freetype/2.9/lib,
+					"/usr/local/Cellar/glfw/**",
+					"/usr/local/Cellar/glew/**",
+					"/usr/local/Cellar/freetype/**",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/FreeType",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/dev/projects/TestEngine/Sources/Libs/FreeType",
 				);
 				OTHER_CFLAGS = "-I/usr/local/opt/freetype/include/freetype2";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";

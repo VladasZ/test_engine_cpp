@@ -22,7 +22,10 @@
 
 #define GL(x) (x); CheckGLError(LOCATION_INFO)
 
+#define CHECK_FRAMEBUFFER CheckFramebufferStatus(GL_FRAMEBUFFER, LOCATION_INFO)
+
 void CheckGLError(LOCATION_PARAMETERS);
+void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 
 #else
 

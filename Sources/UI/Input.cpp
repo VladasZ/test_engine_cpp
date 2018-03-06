@@ -53,6 +53,7 @@ void Input::touchMoved(INPUT_PARAMETERS) {
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
+    Alert::show("Hello!");
     Log("Ended: " << x << " " << y);
 }
 

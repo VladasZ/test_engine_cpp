@@ -11,8 +11,9 @@
 #if defined __cplusplus
 extern "C" {
 #endif
-        
-    const char * workDirectoryPath(void);
+    
+    void objCShowAlert(const char *message);
+    const char * objCWorkDirectoryPath(void);
     
 #if defined __cplusplus
 };

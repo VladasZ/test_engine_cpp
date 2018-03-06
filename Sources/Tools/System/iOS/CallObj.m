@@ -9,8 +9,11 @@
 #include "CallObj.h"
 #include "OBJBridge.h"
 
+void objCShowAlert(const char *message) {
+    [OBJBridge showAlert:message];
+}
 
-const char * workDirectoryPath() {
+const char * objCWorkDirectoryPath() {
     return [OBJBridge workDirectoryPath];
 }
 

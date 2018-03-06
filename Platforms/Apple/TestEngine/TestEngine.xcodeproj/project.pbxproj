@@ -11,6 +11,8 @@
 		7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
 		7C43B2922020C1A000B15E40 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* String.cpp */; };
+		7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
+		7C5286D3204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
 		7C5876312012099A00094DF5 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58762F2012099A00094DF5 /* Label.cpp */; };
 		7C5876322012166900094DF5 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58762F2012099A00094DF5 /* Label.cpp */; };
 		7C5876332012166E00094DF5 /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C7C32D32010F6A200489969 /* Glyph.cpp */; };
@@ -140,6 +142,8 @@
 		7C3F77FA1F8E0578004A4854 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7C43B2902020C1A000B15E40 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		7C43B2912020C1A000B15E40 /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
+		7C5286D0204EE95D00E41CFB /* Alert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Alert.cpp; sourceTree = "<group>"; };
+		7C5286D1204EE95D00E41CFB /* Alert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Alert.hpp; sourceTree = "<group>"; };
 		7C58762F2012099A00094DF5 /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
 		7C5876302012099A00094DF5 /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
 		7C5878082012189000094DF5 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../Cross/Demo/Projects/iOS/libFreetype2.a; sourceTree = "<group>"; };
@@ -926,11 +930,13 @@
 			isa = PBXGroup;
 			children = (
 				82E222291F4A2988002C1F17 /* UI.hpp */,
-				7CF6A67E20458D67005D5E42 /* Window */,
 				824FFAFE1F57415B000C58DA /* Input.hpp */,
 				824FFAFD1F57415B000C58DA /* Input.cpp */,
+				7C5286D1204EE95D00E41CFB /* Alert.hpp */,
+				7C5286D0204EE95D00E41CFB /* Alert.cpp */,
 				82D452221F545F620086772F /* Color.hpp */,
 				82D452211F545F620086772F /* Color.cpp */,
+				7CF6A67E20458D67005D5E42 /* Window */,
 				7C80A2961F7A52570042A1A1 /* Font */,
 				82B5A05B1F76DE2F00226B0F /* Views */,
 			);
@@ -1087,6 +1093,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C5286D3204EE95D00E41CFB /* Alert.cpp in Sources */,
 				7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */,
 				7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */,
 				7C80A28E1F7A4DF00042A1A1 /* Buffer.cpp in Sources */,
@@ -1161,6 +1168,7 @@
 				7C5876312012099A00094DF5 /* Label.cpp in Sources */,
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
 				82B5A05E1F76DE4500226B0F /* ImageView.cpp in Sources */,
+				7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,
@@ -1216,7 +1224,7 @@
 					"/usr/local/Cellar/freetype/**",
 				);
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1257,7 +1265,7 @@
 					"/usr/local/Cellar/freetype/**",
 				);
 				INFOPLIST_FILE = TestEngineiOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -30,6 +30,7 @@ void CheckGLError(LOCATION_PARAMETERS) {
             break;
             case GL_INVALID_FRAMEBUFFER_OPERATION:
             strcpy(error, "GL_INVALID_FRAMEBUFFER_OPERATION");
+            CheckFramebufferStatus(GL_FRAMEBUFFER, fileName, function, line);
             break;
             default:
             strcpy(error, "Unknown error");
@@ -42,6 +43,35 @@ void CheckGLError(LOCATION_PARAMETERS) {
         err = glGetError();
     }
 }
+
+void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
+    auto error = glCheckFramebufferStatus(target);
+    
+    if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
+    
+    string errorString;
+    
+    switch (error) {
+        case GL_FRAMEBUFFER_UNDEFINED:
+            errorString = "GL_FRAMEBUFFER_UNDEFINED";
+            break;
+        case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+            errorString = "GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT";
+            break;
+        case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+            errorString = "GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT";
+            break;
+        case GL_INVALID_ENUM:
+            errorString = "GL_INVALID_ENUM";
+            break;
+        default:
+            errorString = "UNKNOWN";
+            break;
+    }
+    
+    __logE("Framebuffer error: " << errorString, fileName, function, line);
+}
+
 
 #endif
 

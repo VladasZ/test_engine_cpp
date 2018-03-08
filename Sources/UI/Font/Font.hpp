@@ -19,6 +19,7 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     
     float _height;
     float _baselineShift;
+    String _fileName;
     
     vector<Glyph *> glyphs;
   
@@ -30,11 +31,12 @@ public:
     
     static void initialize();
 
-    Font(const String& fileName);
+    Font(const String& fileName, int size = 20);
     
     float baselineShift() const;
     float height() const;
     
     Glyph *glyphForChar(char ch);
     
+    Font *withSize(int size);
 };

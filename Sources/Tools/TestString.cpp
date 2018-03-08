@@ -8,7 +8,7 @@
 
 #include "TestString.hpp"
 
-#define STRING_DEBUG true
+#define STRING_DEBUG false
 #define BUFFER_SIZE _size + 1
 
 TestString::TestString(long size, char *data) : _size(size), data(data) { }

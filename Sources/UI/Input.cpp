@@ -9,7 +9,10 @@
 #include "Input.hpp"
 #include "Point.hpp"
 #include "Window.hpp"
+#include "DebugInfoView.hpp"
 #include "GL.hpp"
+
+vector<Button *> Input::buttons;
 
 #if GLFW
 
@@ -45,16 +48,28 @@ void Input::initialize() {
 }
 
 void Input::touchBegan(INPUT_PARAMETERS) {
-    Log("Began: " << x << " " << y);
+    
+    Point point(x, y);
+    
+    for (auto button : buttons) {
+        if (button->frame.contains(point)) {
+            button->action();
+            return;
+        }
+    }
+    
+    String text = "Touch began: " + to_string(x) + " " + to_string(y);
+    DebugInfoView::instance->setTouchLabelText(text);
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
-    Log("Moved: " << x << " " << y);
+    String text = "Touch moved: " + to_string(x) + " " + to_string(y);
+    DebugInfoView::instance->setTouchLabelText(text);
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
-    Alert::show("Hello!");
-    Log("Ended: " << x << " " << y);
+    String text = "Touch ended: " + to_string(x) + " " + to_string(y);
+    DebugInfoView::instance->setTouchLabelText(text);
 }
 
 void Input::pressedKey(const char &key) {

@@ -106,6 +106,7 @@ void View::setCenter(const Point &center) {
 void View::addSubview(View *view) {
     subviews.push_back(view);
     view->superview = this;
+    view->setup();
 }
 
 void View::removeAllSubviews() {

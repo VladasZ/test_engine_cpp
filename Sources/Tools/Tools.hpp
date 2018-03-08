@@ -8,15 +8,15 @@
 #define String string
 #endif
 
-#include "Log.hpp"
 #include "TestString.hpp"
+#include "Log.hpp"
 #include "Debug.hpp"
+#include "MemoryManaged.hpp"
 #include "FileManager.hpp"
 #include "NonCopyable.hpp"
 #include "Platform.h"
 #include "System.hpp"
 #include "Alert.hpp"
-#include "MemoryManaged.hpp"
 
 #define FOR(n) for (int i = 0; i < (n); i++)
 

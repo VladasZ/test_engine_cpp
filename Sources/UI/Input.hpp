@@ -10,9 +10,15 @@
 
 #include "Point.hpp"
 
+class Button;
+
 #define INPUT_PARAMETERS float x, float y
 
 class Input : NonCopyable {
+    
+    friend Button;
+    
+    static vector<Button *> buttons;
     
     Input();
     

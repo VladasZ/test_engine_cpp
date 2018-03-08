@@ -42,6 +42,10 @@
 		821B20B61F582E5700933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
 		821B20B71F582F1A00933EC4 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821B20B41F582E5700933EC4 /* Rectangle.cpp */; };
 		8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
+		822596D12051ADAF0094733E /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596CF2051ADAF0094733E /* Button.cpp */; };
+		822596D22051ADAF0094733E /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596CF2051ADAF0094733E /* Button.cpp */; };
+		822596D52051B0640094733E /* RootView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596D32051B0640094733E /* RootView.cpp */; };
+		822596D62051B0640094733E /* RootView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596D32051B0640094733E /* RootView.cpp */; };
 		823A698E20474F2000B27672 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A698D20474F2000B27672 /* libfreetype.a */; };
 		823A69C82047529400B27672 /* libFreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C62047529100B27672 /* libFreetype2.a */; };
 		823A69CB2047530B00B27672 /* libFreetype2_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C92047530600B27672 /* libFreetype2_simulator.a */; };
@@ -222,6 +226,10 @@
 		8222478A1F6E954300A1B769 /* libglfw3.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.2.dylib; path = ../../../../../../../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw3.3.2.dylib; sourceTree = "<group>"; };
 		8222478C1F6EF80F00A1B769 /* BufferData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferData.cpp; sourceTree = "<group>"; };
 		8222478D1F6EF80F00A1B769 /* BufferData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BufferData.hpp; sourceTree = "<group>"; };
+		822596CF2051ADAF0094733E /* Button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
+		822596D02051ADAF0094733E /* Button.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Button.hpp; sourceTree = "<group>"; };
+		822596D32051B0640094733E /* RootView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RootView.cpp; sourceTree = "<group>"; };
+		822596D42051B0640094733E /* RootView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RootView.hpp; sourceTree = "<group>"; };
 		823A698D20474F2000B27672 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.9/lib/libfreetype.a; sourceTree = "<group>"; };
 		823A69C62047529100B27672 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2.a; sourceTree = "<group>"; };
 		823A69C92047530600B27672 /* libFreetype2_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2_simulator.a; sourceTree = "<group>"; };
@@ -641,6 +649,8 @@
 			children = (
 				82E222271F4A296D002C1F17 /* Window.hpp */,
 				82E222261F4A296D002C1F17 /* Window.cpp */,
+				822596D42051B0640094733E /* RootView.hpp */,
+				822596D32051B0640094733E /* RootView.cpp */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -889,6 +899,8 @@
 				82B5A05C1F76DE4500226B0F /* ImageView.cpp */,
 				7C5876302012099A00094DF5 /* Label.hpp */,
 				7C58762F2012099A00094DF5 /* Label.cpp */,
+				822596D02051ADAF0094733E /* Button.hpp */,
+				822596CF2051ADAF0094733E /* Button.cpp */,
 				7C148A46201A1D0400D93AD2 /* Debug */,
 			);
 			path = Views;
@@ -1104,6 +1116,7 @@
 				824B9E061F55F5BA00C39543 /* Rect.cpp in Sources */,
 				824B9E071F55F5BA00C39543 /* Window.cpp in Sources */,
 				7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */,
+				822596D22051ADAF0094733E /* Button.cpp in Sources */,
 				7C80A29D1F7A52990042A1A1 /* Font.cpp in Sources */,
 				824B9DDF1F55F25B00C39543 /* ViewController.mm in Sources */,
 				824FFB041F575110000C58DA /* Shader.cpp in Sources */,
@@ -1121,6 +1134,7 @@
 				7C5876332012166E00094DF5 /* Glyph.cpp in Sources */,
 				824B9DD91F55F25B00C39543 /* main.m in Sources */,
 				821B20B71F582F1A00933EC4 /* Rectangle.cpp in Sources */,
+				822596D62051B0640094733E /* RootView.cpp in Sources */,
 				7C80A28F1F7A4DF00042A1A1 /* BufferConfiguration.cpp in Sources */,
 				7C80A2921F7A4DFC0042A1A1 /* ImageView.cpp in Sources */,
 				824B9E0D1F55F8D300C39543 /* CallObj.m in Sources */,
@@ -1137,6 +1151,7 @@
 			files = (
 				7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */,
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
+				822596D12051ADAF0094733E /* Button.cpp in Sources */,
 				7C43B2922020C1A000B15E40 /* TestString.cpp in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
 				82B5A0441F7696E300226B0F /* SOIL.c in Sources */,
@@ -1162,6 +1177,7 @@
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
 				82B5A05E1F76DE4500226B0F /* ImageView.cpp in Sources */,
 				7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */,
+				822596D52051B0640094733E /* RootView.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				8222478E1F6EF80F00A1B769 /* BufferData.cpp in Sources */,
 				82D4521D1F545D730086772F /* View.cpp in Sources */,

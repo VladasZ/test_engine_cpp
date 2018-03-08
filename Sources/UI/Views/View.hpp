@@ -20,7 +20,8 @@ enum Autolayout {
    StickToBottom      = 1 << 3,
    Center             = 1 << 4,
    CenterHorizontally = 1 << 5,
-   CenterVertically   = 1 << 6
+   CenterVertically   = 1 << 6,
+   TopRight           = StickToTop | StickToRight
 };
 
 class Buffer;
@@ -42,6 +43,8 @@ protected:
     virtual void setupBuffer();
     
     Rect absoluteFrame();
+    
+    virtual void setup() { }
     
 public:
     

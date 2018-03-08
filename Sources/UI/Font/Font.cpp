@@ -51,7 +51,7 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
                            face->glyph->metrics.horiBearingY / 64));
 }
 
-Font::Font(const String& fileName) {
+Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
     auto file = new File(fileName);
     FT_Face face;
@@ -64,7 +64,7 @@ Font::Font(const String& fileName) {
     
     FT_Set_Pixel_Sizes(face,
                        0,
-                       20);
+                       size);
     
     int yMax = 0;
     int yMin = 0;
@@ -106,6 +106,10 @@ float Font::height() const {
 
 Glyph * Font::glyphForChar(char ch) {
     return glyphs[ch];
+}
+
+Font * Font::withSize(int size) {
+    return new Font(_fileName, size);
 }
 
 void Font::initialize() {

@@ -9,6 +9,7 @@
 #include "Window.hpp"
 #include "UI.hpp"
 #include "GL.hpp"
+#include "RootView.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -21,7 +22,7 @@ DebugInfoView * Window::debugInfoView;
 #endif
 
 Size Window::size;
-View * Window::rootView;
+RootView * Window::rootView;
 int Window::FPS = 0;
 int Window::framesDrawn = 0;
 
@@ -75,16 +76,15 @@ void Window::initialize(int width, int height) {
     setup();
 }
 
-auto labelContentView = new View(10, 100, 600, 400);
-
 void Window::setup() {
-    rootView = new View(0, 0, Window::size.width, Window::size.height);
+    rootView = new RootView(Window::size.width, Window::size.height);
     
 #if DEBUG_VIEW
     debugInfoView = new DebugInfoView();
     debugInfoView->layout();
 #endif
 
+    rootView->setup();
     rootView->layout();
 }
 
@@ -124,4 +124,8 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
+    
+    
+    Log(rootView->subviews[0]->frame.toString());
+    Log(rootView->subviews[1]->frame.toString());
 }

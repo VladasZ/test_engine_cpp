@@ -36,6 +36,8 @@ public:
     float maxX() const;
     float maxY() const;
     
+    bool contains(const Point &point) const;
+    
     String toString() const;
     
     BufferData *getData() const;

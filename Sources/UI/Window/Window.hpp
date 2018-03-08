@@ -13,6 +13,7 @@
 #include "Input.hpp"
 
 class View;
+class RootView;
 struct GLFWwindow;
 
 #if DEBUG_VIEW
@@ -32,7 +33,7 @@ public:
     
     static TestEngine::Size size;
     
-    static View *rootView;
+    static RootView *rootView;
 
 #if GLFW
     static GLFWwindow *window;

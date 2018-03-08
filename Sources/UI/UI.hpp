@@ -15,5 +15,6 @@
 #include "Label.hpp"
 #include "Color.hpp"
 #include "Font.hpp"
+#include "Button.hpp"
 
 #include "DebugInfoView.hpp"

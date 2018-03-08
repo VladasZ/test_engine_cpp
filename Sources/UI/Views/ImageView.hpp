@@ -13,21 +13,16 @@ class Image;
 class Window;
 
 class ImageView : public View _MEMORY_MANAGED(ImageView) {
-  
-    friend Window;
-    
+      
     BufferData *getBufferData() override;
     void setupBuffer() override;
     void draw() override;
     
-    Image *image = nullptr;
-    
 public:
     
+    Image *image = nullptr;
+    
     using View::View;
-    
     ~ImageView() override;
-    
-    void setImage(Image *image);
     
 };

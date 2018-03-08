@@ -63,6 +63,10 @@ bool Rect::contains(const Point &point) const {
            (point.y < y + height);
 }
 
+Rect Rect::withZeroOrigin() const {
+    return Rect(width, height);
+}
+
 String Rect::toString() const {
     return "x: " + to_string(origin.x) + " y: " + to_string(origin.y) +
     " width: " + to_string(size.width) + " height: " + to_string(size.width);

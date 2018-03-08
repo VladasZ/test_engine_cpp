@@ -26,7 +26,7 @@ void Label::setGlyphs() {
         auto imageView = new ImageView(glyph->size());
         imageView->frame.origin = Point(advance + glyph->bearing.x,
                                         frame.height / 2 - glyph->bearing.y + _font->baselineShift());
-        imageView->setImage(glyph->image);
+        imageView->image = glyph->image;
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;

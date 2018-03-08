@@ -22,14 +22,15 @@ void RootView::setup() {
     helloLabel->color = Color::orange;
     addSubview(helloLabel);
     
-    
     button = new Button(200, 200);
     button->autolayoutMask = Autolayout::Center;
     button->color = Color::blue;
+    button->setText("Touch me!");
+    button->setImage(Image::cat);
     
     addSubview(button);
     
     button->onTouch([]() {
-        Log("Helloooo!");
+        Alert::show("UUU!");
     });
 }

@@ -49,9 +49,3 @@ void ImageView::draw() {
     buffer->draw();
     image->unbind();
 }
-
-void ImageView::setImage(Image *image) {
-    
-    this->image = image;
-}
-

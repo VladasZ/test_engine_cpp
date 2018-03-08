@@ -16,9 +16,15 @@ class Button : public View _MEMORY_MANAGED(Button) {
         
     function<void()> action;
     
+    ImageView *imageView = nullptr;
+    Label *label = nullptr;
+    
 public:
     
     using View::View;
+    
+    void setText(const String &text);
+    void setImage(Image *image);
     
     void onTouch(function<void()> action);    
 };

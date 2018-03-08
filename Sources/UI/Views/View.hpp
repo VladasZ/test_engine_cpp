@@ -13,15 +13,16 @@
 
 enum Autolayout {
     
-   None               = 0,
-   StickToLeft        = 1 << 0,
-   StickToRight       = 1 << 1,
-   StickToTop         = 1 << 2,
-   StickToBottom      = 1 << 3,
-   Center             = 1 << 4,
-   CenterHorizontally = 1 << 5,
-   CenterVertically   = 1 << 6,
-   TopRight           = StickToTop | StickToRight
+    None               = 0,
+    StickToLeft        = 1 << 0,
+    StickToRight       = 1 << 1,
+    StickToTop         = 1 << 2,
+    StickToBottom      = 1 << 3,
+    Center             = 1 << 4,
+    CenterHorizontally = 1 << 5,
+    CenterVertically   = 1 << 6,
+    Background         = 1 << 7,
+    TopRight           = StickToTop | StickToRight
 };
 
 class Buffer;
@@ -59,13 +60,15 @@ public:
     View(float x, float y, float width, float height);
     View(float width, float height);
     View(const Size &size);
-    
+    View(const Rect &rect);
+
     virtual ~View();
     
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
     
     void addSubview(View *view);
+    void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
     
 #if MEMORY_BENCHMARK

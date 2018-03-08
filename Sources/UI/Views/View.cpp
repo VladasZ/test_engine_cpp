@@ -14,6 +14,7 @@
 View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
 View::View(float width, float height) : View(0, 0, width, height) { }
 View::View(const Size &size) : View(0, 0, size.width, size.height) { }
+View::View(const Rect &rect) : frame(rect) { }
 View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
@@ -83,6 +84,9 @@ void View::layout() {
 
     if (autolayoutMask & Autolayout::CenterVertically)
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
+    
+    if (autolayoutMask & Autolayout::Background)
+        layoutFrame = parentFrame.withZeroOrigin();
 
     this->frame = layoutFrame;
     
@@ -105,6 +109,12 @@ void View::setCenter(const Point &center) {
 
 void View::addSubview(View *view) {
     subviews.push_back(view);
+    view->superview = this;
+    view->setup();
+}
+
+void View::insertSubviewAt(int position, View *view) {
+    subviews.insert(subviews.begin() + position, view);
     view->superview = this;
     view->setup();
 }

@@ -15,11 +15,9 @@ class RootView : public View {
     friend Window;
     
     void setup() override;
-
     
 public:
     
     using View::View;
-
     
 };

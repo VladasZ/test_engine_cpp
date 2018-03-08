@@ -38,6 +38,8 @@ public:
     
     bool contains(const Point &point) const;
     
+    Rect withZeroOrigin() const;
+    
     String toString() const;
     
     BufferData *getData() const;

@@ -56,7 +56,7 @@ float Rect::maxX() const { return origin.x + size.width; }
 
 float Rect::maxY() const { return origin.y + size.height; }
 
-string Rect::toString() const {
+String Rect::toString() const {
     return "x: " + to_string(origin.x) + " y: " + to_string(origin.y) +
     " width: " + to_string(size.width) + " height: " + to_string(size.width);
 }

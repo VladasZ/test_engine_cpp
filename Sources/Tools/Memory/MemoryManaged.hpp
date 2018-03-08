@@ -28,7 +28,7 @@
 template <class T>
 class MemoryManaged {
     
-    static string className;
+    static String className;
     static int *allocated;
     static int *deleted;
     
@@ -69,7 +69,7 @@ public:
 };
 
 template <class T>
-string MemoryManaged<T>::className = []() {
+String MemoryManaged<T>::className = []() {
     auto info = new ClassMemoryInfo(typeid(T).name());
     Log("48 Initialized class: " << info->className);
     allocated = &info->allocated;

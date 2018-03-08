@@ -36,7 +36,7 @@ public:
     float maxX() const;
     float maxY() const;
     
-    string toString() const;
+    String toString() const;
     
     BufferData *getData() const;
 };

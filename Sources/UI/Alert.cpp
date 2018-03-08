@@ -10,5 +10,5 @@
 #include "CallObj.h"
 
 void Alert::show(const String &message) {
-    objCShowAlert(message.cStr());
+    objCShowAlert(message.c_str());
 }

@@ -14,8 +14,6 @@
 
 void Label::setGlyphs() {
     
-    //frame.height = _font->height();
-    
     removeAllSubviews();
     if (_text.empty()) return;
     
@@ -29,7 +27,6 @@ void Label::setGlyphs() {
         imageView->frame.origin = Point(advance + glyph->bearing.x,
                                         frame.height / 2 - glyph->bearing.y + _font->baselineShift());
         imageView->setImage(glyph->image);
-        //imageView->color = Color::purple.withAlpha(0.5);
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
@@ -40,9 +37,9 @@ void Label::setGlyphs() {
     layout();
 }
 
-string Label::text() const { return _text; }
+String Label::text() const { return _text; }
 
-void Label::setText(const string &text) {
+void Label::setText(const String &text) {
     _text = text;
     setGlyphs();
 }

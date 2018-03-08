@@ -17,9 +17,9 @@ public:
     int allocated = 0;
     int deleted = 0;
     
-    const string className;
+    const String className;
     
-    ClassMemoryInfo(const string &name);
+    ClassMemoryInfo(const String &name);
     
     void print() const;
 };

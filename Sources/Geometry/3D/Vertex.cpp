@@ -21,7 +21,7 @@ Vertex::Vertex(vec3 position, Color color) : position(position), color(color) {
     
 }
 
-string Vertex::toString() {
+String Vertex::toString() {
     
     return "x: " + to_string(position.x) + " y: " + to_string(position.y) + " z: " + to_string(position.z);
 }

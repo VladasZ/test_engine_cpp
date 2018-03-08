@@ -10,7 +10,7 @@
 
 #include "ClassMemoryInfo.hpp"
 
-ClassMemoryInfo::ClassMemoryInfo(const string &name) : className(name) { }
+ClassMemoryInfo::ClassMemoryInfo(const String &name) : className(name) { }
 
 void ClassMemoryInfo::print() const {
     Log("Class: " << className);

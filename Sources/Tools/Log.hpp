@@ -11,6 +11,7 @@
 #ifdef DEBUG
 
 #define LOG_LOCATION_ENABLED true
+#define LOG_ERRORS true
 
 #define LOCATION_INFO __FILENAME__, __func__, __LINE__
 #define LOCATION_PARAMETERS const char *fileName, const char *function, int line
@@ -30,7 +31,12 @@ LOCATION(file, func, line)\
 
 #define __logI(message, file, func, line) cout << "[💚 INFO 💚] " << message << endl;
 #define __logW(message, file, func, line) __log(message, "💛 WARNING 💛", file, func, line)
+
+#if LOG_ERRORS
 #define __logE(message, file, func, line) __log(message, "❤️ ERROR ❤️",   file, func, line)
+#else
+#define __logE(message, file, func, line)
+#endif
 
 #define Log(message)     __logI(message, __FILENAME__, __func__, __LINE__)
 #define Warning(message) __logW(message, __FILENAME__, __func__, __LINE__)

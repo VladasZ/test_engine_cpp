@@ -22,7 +22,7 @@ public:
     Vertex(float x, float y, float z = 0, Color color = Color::white);
     Vertex(vec3 position, Color color = Color::white);
     
-    string toString();
+    String toString();
     
     static int bufferSize;
 };

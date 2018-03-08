@@ -10,7 +10,7 @@
 		7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
-		7C43B2922020C1A000B15E40 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* String.cpp */; };
+		7C43B2922020C1A000B15E40 /* TestString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* TestString.cpp */; };
 		7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
 		7C5286D3204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
 		7C5876312012099A00094DF5 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58762F2012099A00094DF5 /* Label.cpp */; };
@@ -35,7 +35,7 @@
 		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
 		7CA90BF71F6970CC007FE954 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA90BF61F6970CC007FE954 /* libGLEW.2.1.0.dylib */; };
 		7CC68FEA201A01600016F226 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
-		7CF6A67D20458C53005D5E42 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* String.cpp */; };
+		7CF6A67D20458C53005D5E42 /* TestString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* TestString.cpp */; };
 		8208E2B51F488098000A8E14 /* OBJBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B41F488098000A8E14 /* OBJBridge.m */; };
 		8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 8208E2B61F48814E000A8E14 /* CallObj.m */; };
 		8208E2C61F48899B000A8E14 /* Assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8208E2C51F488998000A8E14 /* Assets */; };
@@ -54,7 +54,6 @@
 		824B9DE71F55F25B00C39543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824B9DE51F55F25B00C39543 /* LaunchScreen.storyboard */; };
 		824B9DF21F55F59300C39543 /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E2221E1F4A2746002C1F17 /* FileManager.cpp */; };
 		824B9DF31F55F5A500C39543 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF71F49AB6A009E2420 /* Debug.cpp */; };
-		824B9DF51F55F5AA00C39543 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
 		824B9E011F55F5BA00C39543 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82E76BF01F49A140009E2420 /* System.cpp */; };
 		824B9E031F55F5BA00C39543 /* ShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */; };
 		824B9E041F55F5BA00C39543 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
@@ -78,7 +77,6 @@
 		8259AD082019357E003DFF62 /* ClassMemoryInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8259AD05201932A5003DFF62 /* ClassMemoryInfo.cpp */; };
 		8266A8071F45867000C55472 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8061F45867000C55472 /* main.cpp */; };
 		8266A82B1F45899300C55472 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8221F4588FB00C55472 /* Point.cpp */; };
-		8266A82D1F45899300C55472 /* StringTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8266A8281F4588FB00C55472 /* StringTools.cpp */; };
 		829985071F77F6A4002B7E75 /* TestEngineMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829985061F77F6A4002B7E75 /* TestEngineMain.cpp */; };
 		82A78F641F4A41A1001BAD46 /* ShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */; };
 		82B5A0431F7696E300226B0F /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
@@ -140,8 +138,8 @@
 		7C3F77F71F8E0578004A4854 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.dylib; sourceTree = "<group>"; };
 		7C3F77F91F8E0578004A4854 /* glfw3.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glfw3.pc; sourceTree = "<group>"; };
 		7C3F77FA1F8E0578004A4854 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7C43B2902020C1A000B15E40 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
-		7C43B2912020C1A000B15E40 /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
+		7C43B2902020C1A000B15E40 /* TestString.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestString.cpp; sourceTree = "<group>"; };
+		7C43B2912020C1A000B15E40 /* TestString.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestString.hpp; sourceTree = "<group>"; };
 		7C5286D0204EE95D00E41CFB /* Alert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Alert.cpp; sourceTree = "<group>"; };
 		7C5286D1204EE95D00E41CFB /* Alert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Alert.hpp; sourceTree = "<group>"; };
 		7C58762F2012099A00094DF5 /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
@@ -265,8 +263,6 @@
 		8266A8231F4588FB00C55472 /* Point.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		8266A8261F4588FB00C55472 /* Log.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		8266A8271F4588FB00C55472 /* STL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STL.hpp; sourceTree = "<group>"; };
-		8266A8281F4588FB00C55472 /* StringTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringTools.cpp; sourceTree = "<group>"; };
-		8266A8291F4588FB00C55472 /* StringTools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringTools.hpp; sourceTree = "<group>"; };
 		8266A82A1F4588FB00C55472 /* Tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		829985061F77F6A4002B7E75 /* TestEngineMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestEngineMain.cpp; sourceTree = "<group>"; };
 		82A78F631F4A41A1001BAD46 /* ShaderCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderCompiler.cpp; sourceTree = "<group>"; };
@@ -860,13 +856,11 @@
 				8266A82A1F4588FB00C55472 /* Tools.hpp */,
 				82E76BF81F49AB6A009E2420 /* Debug.hpp */,
 				82E76BF71F49AB6A009E2420 /* Debug.cpp */,
-				7C43B2912020C1A000B15E40 /* String.hpp */,
-				7C43B2902020C1A000B15E40 /* String.cpp */,
+				7C43B2912020C1A000B15E40 /* TestString.hpp */,
+				7C43B2902020C1A000B15E40 /* TestString.cpp */,
 				8266A8261F4588FB00C55472 /* Log.hpp */,
 				82DE6FBB201151ED00A159E1 /* NonCopyable.hpp */,
 				8266A8271F4588FB00C55472 /* STL.hpp */,
-				8266A8291F4588FB00C55472 /* StringTools.hpp */,
-				8266A8281F4588FB00C55472 /* StringTools.cpp */,
 				7C66965A2018D11100D67260 /* Memory */,
 				8208E2A31F486B76000A8E14 /* System */,
 			);
@@ -1100,10 +1094,9 @@
 				7C80A2911F7A4DFC0042A1A1 /* View.cpp in Sources */,
 				824DABA01F5C03FE007E1568 /* Time.cpp in Sources */,
 				824B9E051F55F5BA00C39543 /* Size.cpp in Sources */,
-				7CF6A67D20458C53005D5E42 /* String.cpp in Sources */,
+				7CF6A67D20458C53005D5E42 /* TestString.cpp in Sources */,
 				824B9E031F55F5BA00C39543 /* ShaderCompiler.cpp in Sources */,
 				824B9E011F55F5BA00C39543 /* System.cpp in Sources */,
-				824B9DF51F55F5AA00C39543 /* StringTools.cpp in Sources */,
 				7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */,
 				82BE33141F5619C000AD91AC /* Cube.cpp in Sources */,
 				8259AD082019357E003DFF62 /* ClassMemoryInfo.cpp in Sources */,
@@ -1144,7 +1137,7 @@
 			files = (
 				7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */,
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
-				7C43B2922020C1A000B15E40 /* String.cpp in Sources */,
+				7C43B2922020C1A000B15E40 /* TestString.cpp in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,
 				82B5A0441F7696E300226B0F /* SOIL.c in Sources */,
 				7CC68FEA201A01600016F226 /* MemoryTest.cpp in Sources */,
@@ -1179,7 +1172,6 @@
 				82B5A0451F7696E300226B0F /* stb_image_aug.c in Sources */,
 				824FFB031F574E4E000C58DA /* Shader.cpp in Sources */,
 				82B5A0561F76AC9D00226B0F /* Image.cpp in Sources */,
-				8266A82D1F45899300C55472 /* StringTools.cpp in Sources */,
 				8266A8071F45867000C55472 /* main.cpp in Sources */,
 				82E222231F4A2806002C1F17 /* Size.cpp in Sources */,
 				7C80A35E1F7A577F0042A1A1 /* File.cpp in Sources */,

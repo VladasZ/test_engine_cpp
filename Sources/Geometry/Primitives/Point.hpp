@@ -30,7 +30,7 @@ namespace TestEngine {
         float angleWith(const Point &point) const;
         float projectionTo(const Point &point) const;
         
-        string toString() const;
+        String toString() const;
         
         Point operator +(const Point &point) const;
         void operator +=(const Point &point);

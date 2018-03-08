@@ -66,12 +66,12 @@ Image::Image(const Size &size, void *data, const int &channels, Filter filter) {
     init(size, data, channels, filter);
 }
 
-Image::Image(const string &file, Filter filter) {
+Image::Image(const String &file, Filter filter) {
     
     int width;
     int height;
     
-    unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).cStr(),
+    unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,
                                            &height,
                                            &channels,

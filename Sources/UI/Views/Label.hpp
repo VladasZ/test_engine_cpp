@@ -14,7 +14,7 @@
 
 class Label : public View _MEMORY_MANAGED(Label) {
     
-    string _text;
+    String _text;
     Font *_font = Font::System;
     
     void setGlyphs();
@@ -23,8 +23,8 @@ public:
     
     using View::View;
         
-    string text() const;
-    void setText(const string &text);
+    String text() const;
+    void setText(const String &text);
     
     Font *font() const;
     void setFont(Font *font);

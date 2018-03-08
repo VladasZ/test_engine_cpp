@@ -10,9 +10,9 @@
 #include "Log.hpp"
 #include "FileManager.hpp"
 
-File::File(const string &path) {
+File::File(const String &path) {
     
-    FILE* file = fopen(FileManager::assetsPathWithFileName(path).cStr(), "rb");
+    FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
     
     if (file == 0) {
        // Error("Failed to open a file");

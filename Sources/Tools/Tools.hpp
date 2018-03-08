@@ -1,8 +1,15 @@
 #pragma once
 
+#define TEST_STRING true
+
+#if TEST_STRING
+#define String TestString
+#else
+#define String string
+#endif
+
 #include "Log.hpp"
-#include "String.hpp"
-#include "StringTools.hpp"
+#include "TestString.hpp"
 #include "Debug.hpp"
 #include "FileManager.hpp"
 #include "NonCopyable.hpp"
@@ -19,6 +26,5 @@
 #define MMAX(container, type, comp) MIN((container), [] (type v1, type v2) {\
 return type comp < type comp;\
 })comp;
-
 
 

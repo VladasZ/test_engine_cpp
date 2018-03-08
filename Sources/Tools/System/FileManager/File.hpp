@@ -22,7 +22,7 @@ public:
     size_t getSize() const;
     Byte *getData() const;
 
-    File(const string &path);
+    File(const String &path);
     ~File();
 };
 

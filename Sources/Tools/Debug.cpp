@@ -49,7 +49,7 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
     
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
     
-    string errorString;
+    String errorString;
     
     switch (error) {
         case GL_FRAMEBUFFER_UNDEFINED:

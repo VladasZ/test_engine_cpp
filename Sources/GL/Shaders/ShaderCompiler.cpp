@@ -4,13 +4,12 @@
 #include <algorithm>
 
 #include <stdlib.h>
-#include <string.h>
 
 #include "ShaderCompiler.hpp"
 
 #include "GL.hpp"
 
-string ShaderCompiler::shaderVersion() {
+String ShaderCompiler::shaderVersion() {
     
 #if WINDOWS || MAC_OS
     return "#version 330 core";
@@ -22,13 +21,16 @@ string ShaderCompiler::shaderVersion() {
 #endif
 }
 
-int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath)
+int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath)
 {
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
-	string VertexShaderCode = shaderVersion();
+	String VertexShaderCode = shaderVersion();
 	ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
+    
+    Log(vertexPath);
+    Log(fragmentPath);
     
 	if (VertexShaderStream.is_open())
     {
@@ -46,7 +48,7 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
 		return 0;
 	}
 
-	string FragmentShaderCode = shaderVersion();
+	String FragmentShaderCode = shaderVersion();
 	ifstream FragmentShaderStream(fragmentPath.c_str(), std::ios::in);
     
 	if (FragmentShaderStream.is_open())
@@ -75,7 +77,7 @@ int ShaderCompiler::compile(const string &vertexPath, const string &fragmentPath
     {
 		vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
 		GL(glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]));
-		printf("%s\n", &VertexShaderErrorMessage[0]);
+		Error(&VertexShaderErrorMessage[0]);
 	}
 
     Log("Compiling shader :" << fragmentPath.c_str());

@@ -12,7 +12,7 @@ Point::Point(float x, float y) : x(x), y(y) {
     
 }
 
-string Point::toString() const {
+String Point::toString() const {
     
     return to_string(x) + " " + to_string(y);
 }

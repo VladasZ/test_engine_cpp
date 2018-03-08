@@ -15,7 +15,7 @@ class Window;
 class Shader MEMORY_MANAGED(Shader) {
     
     Shader() = default;
-    Shader(const string &vertexPath, const string &fragmentPath);
+    Shader(const String &vertexPath, const String &fragmentPath);
     
     static void setupUiTranslation();
     

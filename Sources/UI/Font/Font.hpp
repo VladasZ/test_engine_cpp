@@ -30,7 +30,7 @@ public:
     
     static void initialize();
 
-    Font(const string& fileName);
+    Font(const String& fileName);
     
     float baselineShift() const;
     float height() const;

@@ -37,7 +37,7 @@ public:
     
     void setToUniform(int uniform) const;
     
-    string toString() const;
+    String toString() const;
     
     bool isTransparent() const;
     

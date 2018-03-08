@@ -56,7 +56,7 @@ Color Color::withAlpha(float alpha) const {
     return Color(r, g, b, alpha);
 }
 
-string Color::toString() const {
+String Color::toString() const {
     return "r: " + to_string(r) + " g: " + to_string(g) + " b: " + to_string(b) + " a: " + to_string(a);
 }
 

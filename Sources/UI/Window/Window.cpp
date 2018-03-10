@@ -83,7 +83,7 @@ void Window::setup() {
     debugInfoView = new DebugInfoView();
     debugInfoView->layout();
 #endif
-
+    
     rootView->setup();
     rootView->layout();
 }

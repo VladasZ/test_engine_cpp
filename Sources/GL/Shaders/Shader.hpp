@@ -29,6 +29,7 @@ public:
     static Shader texture;
     static Shader uiTexture;
     static Shader uiMonochrome;
+    static Shader uiDrawing;
 
     static void initialize();
     

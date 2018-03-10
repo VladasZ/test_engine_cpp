@@ -10,6 +10,7 @@
 
 #include "Primitives.hpp"
 #include "Color.hpp"
+#include "Drawable.hpp"
 
 enum Autolayout {
     
@@ -28,20 +29,17 @@ enum Autolayout {
 class Buffer;
 class Window;
 
-class View : public NonCopyable _MEMORY_MANAGED(View) {
+class View : public Drawable _MEMORY_MANAGED(View) {
         
     friend Window;
     
 protected:
     
-    Buffer *buffer = nullptr;
-        
     void drawSubviews() const;
-    virtual void draw();
     void layout();
     
-    virtual BufferData *getBufferData();
-    virtual void setupBuffer();
+    virtual void draw() override;
+    virtual BufferData *getBufferData() override;
     
     Rect absoluteFrame();
     

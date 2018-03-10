@@ -8,10 +8,9 @@
 
 #include "TestEngineMain.h"
 
+#include "Point.hpp"
 
 int main() {
-
-    testEngineMain();
-    
+    testEngineMain();    
     return 0;
 }

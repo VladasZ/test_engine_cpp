@@ -12,7 +12,7 @@ class Buffer;
 
 class BufferConfiguration {
     
-    int *configuration = nullptr;
+    int configuration[3];
     int size = 1;
     
     int vertexSize = 0;
@@ -26,6 +26,5 @@ class BufferConfiguration {
 public:
     
     BufferConfiguration(int firstParam, int secondParam = 0, int thirdParam = 0);
-    ~BufferConfiguration();    
 };
 

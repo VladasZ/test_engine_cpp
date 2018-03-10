@@ -12,9 +12,7 @@
 #include "Shader.hpp"
 #include "BufferData.hpp"
 
-ImageView::~ImageView() {
-    //if (image != nullptr) delete image;
-}
+ImageView::~ImageView() { }
 
 BufferData * ImageView::getBufferData() {
     
@@ -33,9 +31,8 @@ BufferData * ImageView::getBufferData() {
                           indices,  sizeof(indices));
 }
 
-void ImageView::setupBuffer() {
-    delete buffer;
-    buffer = new Buffer(getBufferData(), BufferConfiguration(2, 2));
+const BufferConfiguration ImageView::bufferConfiguration() const {
+    return BufferConfiguration(2, 2);
 }
 
 void ImageView::draw() {

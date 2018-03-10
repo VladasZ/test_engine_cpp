@@ -31,11 +31,6 @@ Rect View::absoluteFrame() {
     return aFrame;
 }
 
-void View::setupBuffer() {
-    if (buffer != nullptr) delete buffer;
-    buffer = new Buffer(getBufferData(), BufferConfiguration(2));
-}
-
 void View::drawSubviews() const {
     if (subviews.empty()) return;
     for (auto subview : subviews) subview->draw();

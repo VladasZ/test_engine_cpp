@@ -18,11 +18,10 @@ Shader Shader::colorVertices;
 Shader Shader::texture;
 Shader Shader::uiTexture;
 Shader Shader::uiMonochrome;
+Shader Shader::uiDrawing;
 
-Shader::Shader(const String &vertexPath, const String &fragmentPath) {
-    
+Shader::Shader(const String &vertexPath, const String &fragmentPath) {    
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
-    
     uniformColor = glGetUniformLocation(program, "uniformColor");
     uniformProjection = glGetUniformLocation(program, "uniformProjection");
 }
@@ -51,6 +50,9 @@ void Shader::initialize() {
     texture =       Shader(FileManager::assetsDirectory() + "Shaders/texture.vert",
                            FileManager::assetsDirectory() + "Shaders/texture.frag");
     
+    uiDrawing =     Shader(FileManager::assetsDirectory() + "Shaders/uiDrawing.vert",
+                           FileManager::assetsDirectory() + "Shaders/uiDrawing.frag");
+    
     setupUiTranslation();
 }
 
@@ -67,15 +69,16 @@ void Shader::setupUiTranslation() {
     
     Shader::uiMonochrome.use();
     Shader::uiMonochrome.setUniformProjectionMatrix(uiProjection);
+    
+    Shader::uiDrawing.use();
+    Shader::uiDrawing.setUniformProjectionMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) const {
-    
     color.setToUniform(uniformColor);
 }
 
 void Shader::setUniformProjectionMatrix(const mat4 &projection) const {
-    
     GL(glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]));
 }
 

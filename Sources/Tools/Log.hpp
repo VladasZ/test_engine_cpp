@@ -43,11 +43,14 @@ LOCATION(file, func, line)\
 #define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
 #define Endl cout << endl
 
+#define PING Warning("")
+
 #else
 
 #define Log(message)
 #define Warning(message)
 #define Error(message)
 #define Endl
+#define PING
 
 #endif

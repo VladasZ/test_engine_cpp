@@ -12,25 +12,17 @@
 
 BufferConfiguration::BufferConfiguration(int firstParam, int secondParam, int thirdParam) {
     
-    if (firstParam == 0) { //Error("Zero configuration");
-        return; }
+    if (firstParam == 0) { Error("Zero configuration"); return; }
     
     if (secondParam > 0) size++;
     if (thirdParam > 0)  size++;
-    
-    configuration = (int *)malloc(sizeof(int) * size);
-    
+        
                          configuration[0] = firstParam;
     if (secondParam > 0) configuration[1] = secondParam;
     if (thirdParam  > 0) configuration[2] = thirdParam;
     
     for (int i = 0; i < size; i ++)
         vertexSize += configuration[i];
-}
-
-BufferConfiguration::~BufferConfiguration() {
-    
-    if (configuration != nullptr) free(configuration);
 }
 
 int BufferConfiguration::strideForIndex(int index) const {

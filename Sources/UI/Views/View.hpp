@@ -50,7 +50,6 @@ public:
     View *superview = nullptr;
     
     Rect frame;
-    Color color;
     int autolayoutMask = None;
     vector<View *> subviews;
     

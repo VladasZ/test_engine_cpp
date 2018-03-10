@@ -25,7 +25,7 @@ BufferData * ImageView::getBufferData() {
         frame.size.width + frame.origin.x, frame.origin.y,                     1.0f, 0.0f
     };
     
-    GLushort indices[] = { 0, 1, 2, 3 };
+    GLushort indices[] = { 0, 1, 3, 2 };
 
     return new BufferData(vertices, sizeof(vertices),
                           indices,  sizeof(indices));

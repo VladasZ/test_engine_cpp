@@ -20,6 +20,8 @@ class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
     GLuint vertexArrayObject = 0;
     GLuint vertexBufferObject = 0;
     GLuint indexBufferObject = 0;
+    
+    int verticesCount = 0;
         
 public:
     

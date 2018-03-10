@@ -10,21 +10,28 @@
 
 #include "Point.hpp"
 #include "Rect.hpp"
+#include "Drawable.hpp"
 
 class Buffer;
+class View;
 
-class Path MEMORY_MANAGED(Path) {
+class Path : public Drawable _MEMORY_MANAGED(Path) {
     
     vector<Point> points;
     
-    Buffer *buffer = nullptr;
-
+    BufferData *getBufferData() override;
+    bool bufferIsSet = false;
     
 public:
+    
+    float lineWidth = 1;
+    
+    void draw() override;
+
     
     Path() = default;
     Path(const Rect &rect);
     
+    void addPoint(int x, int y);
     void addPoint(const Point &point);
-    
 };

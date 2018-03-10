@@ -22,8 +22,8 @@ Shader Shader::uiDrawing;
 
 Shader::Shader(const String &vertexPath, const String &fragmentPath) {    
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
-    uniformColor = glGetUniformLocation(program, "uniformColor");
-    uniformProjection = glGetUniformLocation(program, "uniformProjection");
+    uniformColor = GL(glGetUniformLocation(program, "uniformColor"));
+    uniformProjection = GL(glGetUniformLocation(program, "uniformProjection"));
 }
 
 void Shader::use() const {

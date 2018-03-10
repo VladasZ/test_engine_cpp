@@ -23,8 +23,8 @@ String ShaderCompiler::shaderVersion() {
 
 int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath)
 {
-	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+	GLuint VertexShaderID = GL(glCreateShader(GL_VERTEX_SHADER));
+	GLuint FragmentShaderID = GL(glCreateShader(GL_FRAGMENT_SHADER));
 
 	String VertexShaderCode = shaderVersion();
 	ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
@@ -43,7 +43,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 	}
     else
     {
-		printf("Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", vertexPath.c_str());
+        Error("Impossible to open " << vertexPath.c_str());
 		getchar();
 		return 0;
 	}
@@ -92,7 +92,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 	if ( InfoLogLength > 0 )
     {
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
-		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+		GL(glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]));
         Error(&FragmentShaderErrorMessage[0]);
 	}
 

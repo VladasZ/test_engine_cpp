@@ -59,26 +59,26 @@ void TestString::print() const {
 
 TestString TestString::operator +(const TestString &str) const {
 #if STRING_DEBUG
-    Log("operator +=");
+    Log("operator +");
 
-    Log(endl << "STR in: " << *this);
+    Log("STR in: " << *this);
     Log("STR in2: " << str);
 #endif
     
-    long size = this->BUFFER_SIZE + str._size - 1;
+    long size = this->_size + str._size + 1;
     char *data = (char *)malloc(size);
     memcpy(data, this->data, this->_size);
-    memcpy(data + this->_size, str.data, str.BUFFER_SIZE);
+    memcpy(data + this->_size, str.data, str._size + 1);
 #if STRING_DEBUG
     Log("STR out: " << TestString(size, data));
 #endif
-    return TestString(size, data);
+    return TestString(size - 1, data);
 }
 
 void TestString::operator +=(const TestString &str) {
 #if STRING_DEBUG
     Log("operator +=");
-    Log(endl << "STR in: " << *this);
+    Log("STR in: " << *this);
     Log("STR in2: " << str);
 #endif
     this->data = (char *)realloc(this->data, this->_size + str._size + 1);

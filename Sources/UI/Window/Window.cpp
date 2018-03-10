@@ -73,6 +73,15 @@ void Window::initialize(int width, int height) {
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     
+    float lineWidth[2];
+    GL(glGetFloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidth));
+    Log("Min line width: " << lineWidth[0]);
+    Log("Max line width: " << lineWidth[1]);
+    
+    if (lineWidth[1] == 1) {
+        Warning("glLineWidth not supported");
+    }
+
     setup();
 }
 
@@ -106,7 +115,7 @@ void Window::onDebugTick() {
 
 void Window::update() {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-    rootView->drawSubviews();
+    rootView->draw();
     
 #if DEBUG_VIEW
     debugInfoView->draw();

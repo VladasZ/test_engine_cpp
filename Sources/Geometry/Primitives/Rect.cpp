@@ -46,7 +46,7 @@ BufferData * Rect::getData() const {
         size.width + origin.x, origin.y
     };
     
-    GLushort indices[] = { 0, 1, 2, 3 };
+    GLushort indices[] = { 0, 1, 3, 2 };
     
     return new BufferData(rect,    sizeof(rect),
                           indices, sizeof(indices));

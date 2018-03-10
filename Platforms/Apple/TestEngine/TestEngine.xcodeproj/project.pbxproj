@@ -52,6 +52,7 @@
 		823A69CB2047530B00B27672 /* libFreetype2_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C92047530600B27672 /* libFreetype2_simulator.a */; };
 		8241AF552054634B00199A04 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8241AF532054634B00199A04 /* Drawable.cpp */; };
 		8241AF562054634B00199A04 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8241AF532054634B00199A04 /* Drawable.cpp */; };
+		8241AF572054862B00199A04 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822B2A002051E9AE005ACD62 /* Path.cpp */; };
 		824681B81F458F9C003BA5F3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824681B71F458F9C003BA5F3 /* OpenGL.framework */; };
 		824B9DD91F55F25B00C39543 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B9DD81F55F25B00C39543 /* main.m */; };
 		824B9DDC1F55F25B00C39543 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B9DDB1F55F25B00C39543 /* AppDelegate.m */; };
@@ -1127,6 +1128,7 @@
 				824DABA01F5C03FE007E1568 /* Time.cpp in Sources */,
 				824B9E051F55F5BA00C39543 /* Size.cpp in Sources */,
 				7CF6A67D20458C53005D5E42 /* TestString.cpp in Sources */,
+				8241AF572054862B00199A04 /* Path.cpp in Sources */,
 				824B9E031F55F5BA00C39543 /* ShaderCompiler.cpp in Sources */,
 				824B9E011F55F5BA00C39543 /* System.cpp in Sources */,
 				7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */,

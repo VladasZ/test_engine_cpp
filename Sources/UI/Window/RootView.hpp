@@ -19,5 +19,6 @@ class RootView : public View {
 public:
     
     using View::View;
-    
+
+    void draw() override;
 };

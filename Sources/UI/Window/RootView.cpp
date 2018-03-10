@@ -9,8 +9,11 @@
 #include "RootView.hpp"
 
 
+
 static Label *helloLabel;
 static Button *button;
+
+static Path *testPath;
 
 
 void RootView::setup() {
@@ -33,4 +36,22 @@ void RootView::setup() {
     button->onTouch([]() {
         Alert::show("UUU!");
     });
+    
+    testPath = new Path();
+    
+    testPath->color = Color::green;
+    
+    testPath->lineWidth = 6;
+    
+    testPath->addPoint(100, 100);
+    testPath->addPoint(100, 200);
+    testPath->addPoint(200, 200);
+    testPath->addPoint(200, 100);
+    
+}
+
+void RootView::draw() {
+    View::draw();
+    
+    testPath->draw();
 }

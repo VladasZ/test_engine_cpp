@@ -7,6 +7,9 @@
 //
 
 #include "Path.hpp"
+#include "GL.hpp"
+#include "BufferData.hpp"
+#include "Buffer.hpp"
 
 
 Path::Path(const Rect &rect) {
@@ -18,6 +21,35 @@ Path::Path(const Rect &rect) {
     };
 }
 
+void Path::draw() {
+    if (!bufferIsSet) {
+        setupBuffer();
+        bufferIsSet = true;
+    }
+    
+    Shader::ui.use();
+    Shader::ui.setUniformColor(color);
+    
+    GL(glLineWidth(lineWidth));
+    
+    buffer->drawMode = GL_LINE_LOOP;
+    buffer->draw();
+}
+
+BufferData * Path::getBufferData() {
+    int size = (int)(sizeof(float) * points.size() * 2);
+    float *data = (float *)malloc(size);
+    memcpy(data, &points[0], size);
+    auto buffer = new BufferData(data, size);
+    free(data);
+    return buffer;
+}
+
+void Path::addPoint(int x, int y) {
+    addPoint(Point(x, y));
+}
+
 void Path::addPoint(const Point &point) {
     points.push_back(point);
+    bufferIsSet = false;
 }

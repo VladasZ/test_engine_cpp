@@ -11,6 +11,8 @@
 
 Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : data(data) {
     
+    verticesCount = data->vertSize / (sizeof(float) * configuration.configuration[0]);
+    
     GL(glGenVertexArrays(1, &vertexArrayObject));
     GL(glBindVertexArray(vertexArrayObject));
     
@@ -32,6 +34,7 @@ Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : dat
     
     configuration.setPointers();
     
+    
     GL(glEnableVertexAttribArray(0));
     GL(glBindVertexArray(0));
 }
@@ -49,7 +52,7 @@ Buffer(new BufferData(vertData, vertSize, indData, indSize), configuration) { }
 Buffer::~Buffer() {
     GL(glDeleteVertexArrays(1, &vertexArrayObject));
     GL(glDeleteBuffers(1, &vertexBufferObject)); // Potential crash
-    if (indexBufferObject != 0) glDeleteBuffers(1, &indexBufferObject);
+    if (indexBufferObject != 0) GL(glDeleteBuffers(1, &indexBufferObject));
     delete data;
 }
 
@@ -77,10 +80,10 @@ void Buffer::draw() const {
     GL(glBindVertexArray(vertexArrayObject));
     
     if (data->indSize == 0) {
-        GL(glDrawArrays(drawMode, 0, data->vertSize));
+        GL(glDrawArrays(drawMode, 0, verticesCount));
     }
     else {
-        GL(glDrawElements(drawMode, data->indSize, GL_UNSIGNED_SHORT, 0));
+        GL(glDrawElements(drawMode, verticesCount, GL_UNSIGNED_SHORT, 0));
     }
     
     GL(glBindVertexArray(0));

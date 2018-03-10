@@ -25,10 +25,10 @@ public:
     
     float *dataBuffer;
     
+    Color();
     Color(Color const &obj);
     Color& operator=(Color const &obj);
     
-    Color();
     Color(float r, float g, float b, float a = 1);
     
     static Color random();

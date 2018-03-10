@@ -89,8 +89,10 @@ void Window::setup() {
     rootView = new RootView(Window::size.width, Window::size.height);
     
 #if DEBUG_VIEW
-    debugInfoView = new DebugInfoView();
-    debugInfoView->layout();
+    MEMORY_MANAGER_INVISIBLE(
+        debugInfoView = new DebugInfoView();
+        debugInfoView->layout();
+    );
 #endif
     
     rootView->setup();
@@ -101,14 +103,16 @@ void Window::onDebugTick() {
     
 #if MEMORY_BENCHMARK
     static int counter = 0;
-    if (counter % 10 == 0) rootView->removeAllSubviews();
+    if (counter % 6 == 0) rootView->removeAllSubviews();
     rootView->addTestViews();
     rootView->layout();
     counter++;
 #endif
     
 #if DEBUG_VIEW
-    debugInfoView->update();
+    MEMORY_MANAGER_INVISIBLE(
+        debugInfoView->update();
+    );
 #endif
 
 }
@@ -118,7 +122,9 @@ void Window::update() {
     rootView->draw();
     
 #if DEBUG_VIEW
-    debugInfoView->draw();
+    MEMORY_MANAGER_INVISIBLE(
+        debugInfoView->draw();
+    );
 #endif
 
     FPS = 1000000000 / Time::interval();

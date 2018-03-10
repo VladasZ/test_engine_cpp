@@ -8,14 +8,6 @@
 
 #include "RootView.hpp"
 
-
-
-static Label *helloLabel;
-static Button *button;
-
-static Path *testPath;
-
-
 void RootView::setup() {
 
     helloLabel = new Label(100, 40);
@@ -47,6 +39,10 @@ void RootView::setup() {
     testPath->addPoint(100, 200);
     testPath->addPoint(200, 200);
     testPath->addPoint(200, 100);
+    
+
+    testPath = new Path(Rect(100, 100, 100, 100));
+    testPath->color = Color::green;
     
 }
 

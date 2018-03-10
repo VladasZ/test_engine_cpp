@@ -12,6 +12,11 @@
 #include "Image.hpp"
 #include "Primitives.hpp"
 
+void Label::draw() {
+    if (needsGlyphsUpdate) setGlyphs();
+    View::draw();
+}
+
 void Label::setGlyphs() {
     
     removeAllSubviews();
@@ -34,6 +39,8 @@ void Label::setGlyphs() {
 
     frame.width = views.back()->frame.maxX();
     
+    needsGlyphsUpdate = false;
+    
     layout();
 }
 
@@ -41,12 +48,12 @@ String Label::text() const { return _text; }
 
 void Label::setText(const String &text) {
     _text = text;
-    setGlyphs();
+    needsGlyphsUpdate = true;
 }
 
 Font * Label::font() const { return _font; }
 
 void Label::setFont(Font *font) {
     _font = font;
-    setGlyphs();
+    needsGlyphsUpdate = true;
 }

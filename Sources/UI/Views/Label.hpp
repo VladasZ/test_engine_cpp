@@ -18,6 +18,10 @@ class Label : public View _MEMORY_MANAGED(Label) {
     Font *_font = Font::System;
     
     void setGlyphs();
+    
+    bool needsGlyphsUpdate = false;
+    
+    virtual void draw() override;
         
 public:
     

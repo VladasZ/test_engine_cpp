@@ -10,6 +10,13 @@
 
 #if MEMORY_TRACKING
 
+#define MEMORY_MANAGER_INVISIBLE(code)\
+MemoryManager::isTracking = false;\
+do {\
+code\
+} while(false);\
+MemoryManager::isTracking = true;
+
 class ClassMemoryInfo;
 
 class MemoryManager {
@@ -30,5 +37,9 @@ public:
     static void printDump();
     
 };
+
+#else
+
+#define MEMORY_MANAGER_INVISIBLE(code) do { code } while (false);
 
 #endif

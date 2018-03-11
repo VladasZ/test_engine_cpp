@@ -10,30 +10,17 @@
 #include "Window.hpp"
 #include "BufferData.hpp"
 
-Rect::Rect() : x(origin.x), y(origin.y), width(size.width), height(size.height) { }
+Rect::Rect() { }
 
-Rect::Rect(float width, float height)
-: origin(Point(0, 0)), size(Size(width, height)), x(origin.x), y(origin.y), width(size.width), height(size.height)
-{ }
+Rect::Rect(float width, float height) : origin(Point(0, 0)), size(Size(width, height)) { }
 
-Rect::Rect(const Size &_size)
-: origin(Point(0, 0)), size(_size), x(origin.x), y(origin.y), width(size.width), height(size.height)
-{ }
+Rect::Rect(const Size &_size) : origin(Point(0, 0)), size(_size) { }
 
-Rect::Rect(float x, float y, float width, float height)
-: origin(Point(x, y)), size(Size(width, height)), x(origin.x), y(origin.y), width(size.width), height(size.height)
-{ }
+Rect::Rect(float x, float y, float width, float height) : origin(Point(x, y)), size(Size(width, height)) { }
 
 Rect& Rect::operator=(const Rect &r2) {
-    
     origin = r2.origin;
     size = r2.size;
-    
-    x = origin.x;
-    y = origin.y;
-    width = size.width;
-    height = size.height;
-        
     return *this;
 }
 
@@ -57,14 +44,14 @@ float Rect::maxX() const { return origin.x + size.width; }
 float Rect::maxY() const { return origin.y + size.height; }
 
 bool Rect::contains(const Point &point) const {
-    return  point.x > x &&
-            point.y > y &&
-           (point.x < x + width) &&
-           (point.y < y + height);
+    return  point.x > origin.x &&
+            point.y > origin.y &&
+           (point.x < origin.x + size.width) &&
+           (point.y < origin.y + size.height);
 }
 
 Rect Rect::withZeroOrigin() const {
-    return Rect(width, height);
+    return Rect(size.width, size.height);
 }
 
 String Rect::toString() const {

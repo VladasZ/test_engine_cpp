@@ -8,6 +8,8 @@
 
 #pragma once
 
+class BufferData;
+
 namespace TestEngine {
     
     class Size //MEMORY_MANAGED(Size)
@@ -19,6 +21,8 @@ namespace TestEngine {
         
         Size() = default;
         Size(float width, float height);
+        
+        BufferData *getData() const;
                 
         template<class T>
         Size operator /(const T &value) {

@@ -21,7 +21,7 @@ BufferData * View::getBufferData() {
     return absoluteFrame().getData();
 }
 
-Rect View::absoluteFrame() {
+Rect View::absoluteFrame() const {
     Rect aFrame = frame;
     View *superview = this->superview;
     while (superview != nullptr) {

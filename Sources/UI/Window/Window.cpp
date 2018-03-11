@@ -10,6 +10,7 @@
 #include "UI.hpp"
 #include "GL.hpp"
 #include "RootView.hpp"
+#include "World.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -83,6 +84,8 @@ void Window::initialize(int width, int height) {
     }
 
     setup();
+    
+    world.setup();
 }
 
 void Window::setup() {
@@ -97,6 +100,8 @@ void Window::setup() {
     
     rootView->setup();
     rootView->layout();
+    
+    
 }
 
 void Window::onDebugTick() {
@@ -132,6 +137,8 @@ void Window::update() {
     Window::framesDrawn++;
     
     if (Window::framesDrawn % 1 == 0) onDebugTick();
+    
+    Events::everyFrame();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

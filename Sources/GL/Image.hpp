@@ -31,7 +31,7 @@ public:
     static Image *cat;
     static Image *slow;
     static Image *palm;
-
+    
     static void initialize();
   
     Size size;

@@ -16,6 +16,8 @@ vector<Button *> Input::buttons;
 
 static function<void(TestEngine::Point)> _onTouchMoved;
 
+static Button *currentButton = nullptr;
+
 #if GLFW
 
 Point Input::cursorPosition;
@@ -54,8 +56,9 @@ void Input::touchBegan(INPUT_PARAMETERS) {
     Point point(x, y);
     
     for (auto button : buttons) {
-        if (button->frame.contains(point)) {
-            button->action();
+        if (button->containsPoint(point)) {
+            button->touchAction();
+            currentButton = button;
             return;
         }
     }
@@ -67,12 +70,18 @@ void Input::touchBegan(INPUT_PARAMETERS) {
 void Input::touchMoved(INPUT_PARAMETERS) {
     String text = "Touch moved: " + to_string(x) + " " + to_string(y);
     DebugInfoView::instance->setTouchLabelText(text);
-    _onTouchMoved(Point(x, y));
+    if (_onTouchMoved) {
+        _onTouchMoved(Point(x, y));
+    }
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
     String text = "Touch ended: " + to_string(x) + " " + to_string(y);
     DebugInfoView::instance->setTouchLabelText(text);
+    if (currentButton && currentButton->releaseAction) {
+        currentButton->releaseAction();
+    }
+    currentButton = nullptr;
 }
 
 void Input::pressedKey(const char &key) {

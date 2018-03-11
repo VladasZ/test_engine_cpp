@@ -17,11 +17,6 @@ class Rect {
     
 public:
     
-    float &x;
-    float &y;
-    float &width;
-    float &height;
-    
     Point origin;
     Size size;
     

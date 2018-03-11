@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Color.hpp"
+#include "Point.hpp"
 
 class Window;
 
@@ -29,7 +30,7 @@ public:
     static Shader texture;
     static Shader uiTexture;
     static Shader uiMonochrome;
-    static Shader uiDrawing;
+    static Shader sprite;
 
     static void initialize();
     
@@ -37,8 +38,10 @@ public:
     
     int uniformColor = -1;
     int uniformProjection = -1;
-    
+    int uniformPosition = -1;
+
     void use() const;
-    void setUniformColor(const Color &color) const;
-    void setUniformProjectionMatrix(const mat4 &projection) const;
+    void setUniformColor(const Color &color);
+    void setUniformProjectionMatrix(const mat4 &projection);
+    void setUniformPosition(const Point &position);
 };

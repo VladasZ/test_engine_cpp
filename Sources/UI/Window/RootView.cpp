@@ -8,46 +8,19 @@
 
 #include "RootView.hpp"
 #include "Input.hpp"
+#include "MoveView.hpp"
 
-static Button *button;
-static Path *testPath;
+static MoveView *moveView;
+
 
 void RootView::setup() {
     
-    button = new Button(50, 100);
-    button->autolayoutMask = Autolayout::TopRight;
-    button->color = Color::blue;
-    button->setText("Touch me!");
-    button->setImage(Image::cat);
-    
-    addSubview(button);
-    
-    button->onTouch([]() {
-        Alert::show("UUU!");
-    });
-    
-    testPath = new Path();
-    
-    testPath->color = Color::green;
-    
-    testPath->lineWidth = 6;
-    
-    testPath->addPoint(100, 100);
-    testPath->addPoint(100, 200);
-    testPath->addPoint(200, 200);
-    testPath->addPoint(200, 100);
-    
-
-    testPath = new Path(Rect(100, 100, 100, 100));
-    testPath->color = Color::green;
-    
-    Input::onTouchMoved([this](Point point){
-        testPath->addPoint(point);
-    });
+    moveView = new MoveView(226, 150);
+    moveView->autolayoutMask = Autolayout::BotLeft;
+    addSubview(moveView);
 }
 
 void RootView::draw() {
     View::draw();
     
-    testPath->draw();
 }

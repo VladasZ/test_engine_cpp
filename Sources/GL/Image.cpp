@@ -87,8 +87,6 @@ Image::Image(const String &file, Filter filter) {
 
 void Image::bind() const {
     GL(glBindTexture(GL_TEXTURE_2D, id));
-    if (isMonochrome()) Shader::uiMonochrome.use();
-    else                Shader::uiTexture.use();
 }
 
 void Image::unbind() const {

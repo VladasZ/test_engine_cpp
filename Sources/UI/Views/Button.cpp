@@ -28,7 +28,15 @@ void Button::setImage(Image *image) {
     imageView->image = image;
 }
 
+bool Button::containsPoint(const Point &point) const {
+    return absoluteFrame().contains(point);
+}
+
 void Button::onTouch(function<void()> action) {
     Input::buttons.push_back(this);
-    this->action = action;
+    touchAction = action;
+}
+
+void Button::onRelease(function<void()> action) {
+    releaseAction = action;
 }

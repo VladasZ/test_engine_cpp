@@ -43,6 +43,8 @@ void ImageView::draw() {
     View::drawSubviews();
     
     image->bind();
+    if (image->isMonochrome()) Shader::uiMonochrome.use();
+    else                       Shader::uiTexture.use();
     buffer->draw();
     image->unbind();
 }

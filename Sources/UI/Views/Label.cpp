@@ -30,14 +30,14 @@ void Label::setGlyphs() {
         auto glyph = _font->glyphForChar(letter);
         auto imageView = new ImageView(glyph->size());
         imageView->frame.origin = Point(advance + glyph->bearing.x,
-                                        frame.height / 2 - glyph->bearing.y + _font->baselineShift());
+                                        frame.size.height / 2 - glyph->bearing.y + _font->baselineShift());
         imageView->image = glyph->image;
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
     }
 
-    frame.width = views.back()->frame.maxX();
+    frame.size.width = views.back()->frame.maxX();
     
     needsGlyphsUpdate = false;
     

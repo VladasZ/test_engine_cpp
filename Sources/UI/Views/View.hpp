@@ -23,7 +23,10 @@ enum Autolayout {
     CenterHorizontally = 1 << 5,
     CenterVertically   = 1 << 6,
     Background         = 1 << 7,
-    TopRight           = StickToTop | StickToRight
+    TopRight           = StickToTop    | StickToRight,
+    TopLeft            = StickToTop    | StickToLeft,
+    BotRight           = StickToBottom | StickToRight,
+    BotLeft            = StickToBottom | StickToLeft
 };
 
 class Buffer;
@@ -36,12 +39,11 @@ class View : public Drawable _MEMORY_MANAGED(View) {
 protected:
     
     void drawSubviews() const;
-    void layout();
     
     virtual void draw() override;
     virtual BufferData *getBufferData() override;
     
-    Rect absoluteFrame();
+    Rect absoluteFrame() const;
     
     virtual void setup() { }
     
@@ -60,6 +62,8 @@ public:
     View(const Rect &rect);
 
     virtual ~View();
+    
+    virtual void layout();
     
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);

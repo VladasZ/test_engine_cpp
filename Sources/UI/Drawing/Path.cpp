@@ -15,9 +15,9 @@
 Path::Path(const Rect &rect) {
     points = {
               rect.origin,
-        Point(rect.x,               rect.y + rect.width),
-        Point(rect.x + rect.height, rect.y + rect.width),
-        Point(rect.x + rect.height, rect.y)
+        Point(rect.origin.x,                    rect.origin.y + rect.size.width),
+        Point(rect.origin.x + rect.size.height, rect.origin.y + rect.size.width),
+        Point(rect.origin.x + rect.size.height, rect.origin.y)
     };
 }
 

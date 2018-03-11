@@ -10,6 +10,5 @@
 
 
 void Movable::update() {
-    
-    Warning("");
+    setPosition(_position + velocity);
 }

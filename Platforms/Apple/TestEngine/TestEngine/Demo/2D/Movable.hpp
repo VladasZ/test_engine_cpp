@@ -8,13 +8,15 @@
 
 #pragma once
 
-#include "UI.hpp"
+#include "Sprite.hpp"
 
-class Movable : public View {
+class Movable : public Sprite {
     
 public:
+
+    using Sprite::Sprite;
     
-    using View::View;
+    Point velocity;
     
     void update();
     

@@ -44,7 +44,7 @@ public:
     MemoryManaged() {
         if (!MemoryManager::isTracking) return;
         if (allocated == nullptr) {
-            Log("31 Initialized class: " << MemoryManaged<T>::className);
+            Error("31 Initialized class: " << MemoryManaged<T>::className);
             return;
         }
         
@@ -71,7 +71,7 @@ public:
 template <class T>
 String MemoryManaged<T>::className = []() {
     auto info = new ClassMemoryInfo(typeid(T).name());
-    Log("48 Initialized class: " << info->className);
+    //Log("48 Initialized class: " << info->className);
     allocated = &info->allocated;
     deleted = &info->deleted;
     MemoryManager::info.push_back(info);

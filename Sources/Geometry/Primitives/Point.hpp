@@ -8,6 +8,13 @@
 
 #pragma once
 
+enum Direction {
+    right,
+    left,
+    up,
+    down
+};
+
 namespace TestEngine {
     
     class Point {
@@ -18,6 +25,7 @@ namespace TestEngine {
                 
         Point() = default;
         Point(float x, float y);
+        Point(Direction direction, float length = 1);
                 
         float angle() const;
         bool isZero() const;

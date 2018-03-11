@@ -37,7 +37,7 @@ void Sprite::draw() {
     }
     image->bind();
     Shader::sprite.use();
-    Shader::sprite.setUniformPosition(_position);
+    Shader::sprite.setUniformPosition(_position.x, _position.y);
     buffer->draw();
     image->unbind();
 }

@@ -7,6 +7,7 @@
 //
 
 #include "MoveView.hpp"
+#include "Events.hpp"
 
 static Button *leftButton;
 static Button *rightButton;
@@ -40,13 +41,15 @@ void MoveView::setup() {
     downButton ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToBottom;
     
     
-    leftButton->onTouch([]() {
-        Log("HELLOOO");
-    });
+    static int speed = 10;
     
-    leftButton->onRelease([]() {
-        Log("Bye!");
-    });
+    leftButton ->onTouch([]() { Events::moveControl(Point(Direction::left,  speed)); });
+    rightButton->onTouch([]() { Events::moveControl(Point(Direction::right, speed)); });
+    upButton   ->onTouch([]() { Events::moveControl(Point(Direction::up,    speed)); });
+    downButton ->onTouch([]() { Events::moveControl(Point(Direction::down,  speed)); });
+
+    for (auto button : buttons())
+        button->onRelease([]() { Events::moveControl(Point()); });
 }
 
 void MoveView::layout() {

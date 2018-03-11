@@ -9,8 +9,9 @@
 #pragma once
 
 #include "Event.hpp"
+#include "Point.hpp"
 
 class Events {
 public:
-    static Event<> everyFrame;
+    static Event<Point> moveControl;
 };

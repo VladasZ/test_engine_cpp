@@ -84,10 +84,10 @@ void Shader::setUniformProjectionMatrix(const mat4 &projection) {
     GL(glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]));
 }
 
-void Shader::setUniformPosition(const Point &position) {
+void Shader::setUniformPosition(float x, float y) {
     if (uniformPosition == -1)
         uniformPosition = glGetUniformLocation(program, "uniformPosition");
-    glUniform2f(uniformPosition, position.x, position.y);
+    glUniform2f(uniformPosition, x, y);
 
 }
 

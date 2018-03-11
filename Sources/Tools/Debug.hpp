@@ -17,10 +17,17 @@
 #define MEMORY_BENCHMARK false
 #define FULL_MEMORY_OUTPUT false
 #define DEBUG_VIEW true
+#define RENDERING_ERRORS_OUTPUT false
+#define SHADER_COMPILER_OUTPUT false
+#define IMAGES_LOADING_OUTPUT false
 
 #define NOT_IMPLEMENTED Error("Not implemented")
 
+#if RENDERING_ERRORS_OUTPUT
 #define GL(x) (x); CheckGLError(LOCATION_INFO)
+#else
+#define GL(x) x
+#endif
 
 #define CHECK_FRAMEBUFFER CheckFramebufferStatus(GL_FRAMEBUFFER, LOCATION_INFO)
 

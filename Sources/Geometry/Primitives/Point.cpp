@@ -12,6 +12,16 @@ Point::Point(float x, float y) : x(x), y(y) {
     
 }
 
+Point::Point(Direction direction, float length) {
+    switch (direction) {
+        case Direction::left:  x = -length; y =  0;      break;
+        case Direction::right: x =  length; y =  0;      break;
+        case Direction::up:    x =  0;      y = -length; break;
+        case Direction::down:  x =  0;      y =  length; break;
+        default: break;
+    }
+}
+
 String Point::toString() const {
     
     return to_string(x) + " " + to_string(y);

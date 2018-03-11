@@ -9,7 +9,6 @@
 #pragma once
 
 #include "Color.hpp"
-#include "Point.hpp"
 
 class Window;
 
@@ -43,5 +42,5 @@ public:
     void use() const;
     void setUniformColor(const Color &color);
     void setUniformProjectionMatrix(const mat4 &projection);
-    void setUniformPosition(const Point &position);
+    void setUniformPosition(float x, float y);
 };

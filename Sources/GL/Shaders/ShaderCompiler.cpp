@@ -29,8 +29,12 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 	String VertexShaderCode = shaderVersion();
 	ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
     
+#if SHADER_COMPILER_OUTPUT
+    
     Log(vertexPath);
     Log(fragmentPath);
+    
+#endif
     
 	if (VertexShaderStream.is_open())
     {
@@ -64,7 +68,9 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 	GLint Result = GL_FALSE;
 	int InfoLogLength;
     
+#if SHADER_COMPILER_OUTPUT
     Log("Compiling shader :" << vertexPath.c_str());
+#endif
     
 	char const * VertexSourcePointer = VertexShaderCode.c_str();
 	GL(glShaderSource(VertexShaderID, 1, &VertexSourcePointer , NULL));
@@ -80,7 +86,9 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 		Error(&VertexShaderErrorMessage[0]);
 	}
 
+#if SHADER_COMPILER_OUTPUT
     Log("Compiling shader :" << fragmentPath.c_str());
+#endif
 
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	GL(glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL));
@@ -95,8 +103,9 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 		GL(glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]));
         Error(&FragmentShaderErrorMessage[0]);
 	}
-
+#if SHADER_COMPILER_OUTPUT
     Log("Linking program");
+#endif
 	GLuint ProgramID = glCreateProgram();
 	GL(glAttachShader(ProgramID, VertexShaderID));
 	GL(glAttachShader(ProgramID, FragmentShaderID));

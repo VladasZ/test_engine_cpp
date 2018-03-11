@@ -11,6 +11,7 @@
 #include "GL.hpp"
 #include "RootView.hpp"
 #include "World.hpp"
+#include "Events.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -76,8 +77,6 @@ void Window::initialize(int width, int height) {
     
     float lineWidth[2];
     GL(glGetFloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidth));
-    Log("Min line width: " << lineWidth[0]);
-    Log("Max line width: " << lineWidth[1]);
     
     if (lineWidth[1] == 1) {
         Warning("glLineWidth not supported");
@@ -85,7 +84,6 @@ void Window::initialize(int width, int height) {
 
     setup();
     
-    world.setup();
 }
 
 void Window::setup() {
@@ -101,7 +99,7 @@ void Window::setup() {
     rootView->setup();
     rootView->layout();
     
-    
+    world.setup();
 }
 
 void Window::onDebugTick() {
@@ -124,6 +122,8 @@ void Window::onDebugTick() {
 
 void Window::update() {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    
+    world.update();    
     rootView->draw();
     
 #if DEBUG_VIEW
@@ -137,8 +137,6 @@ void Window::update() {
     Window::framesDrawn++;
     
     if (Window::framesDrawn % 1 == 0) onDebugTick();
-    
-    Events::everyFrame();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

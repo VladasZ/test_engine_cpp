@@ -8,8 +8,6 @@
 
 #include "TestEngineMain.h"
 
-#include "Point.hpp"
-
 int main() {
     testEngineMain();    
     return 0;

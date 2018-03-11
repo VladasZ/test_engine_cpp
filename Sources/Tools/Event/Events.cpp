@@ -8,4 +8,4 @@
 
 #include "Events.hpp"
 
-Event<> Events::everyFrame = Event<>("everyFrame");
+Event<Point> Events::moveControl = Event<Point>("moveControl");

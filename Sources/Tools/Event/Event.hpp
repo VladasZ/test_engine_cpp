@@ -13,16 +13,13 @@ class Event {
     
     String id;
     
-    using FunctionType = function<void(Args...)>;
-    using Subscribers = vector<FunctionType>;
- 
-    Subscribers subscribers;
+    vector<function<void(Args...)>> subscribers;
     
 public:
     
     Event(const String &id) : id(id) { }
     
-    void subscribe(const FunctionType &action) {
+    void subscribe(const function<void(Args...)> &action) {
         subscribers.push_back(action);
     }
     

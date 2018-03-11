@@ -22,6 +22,8 @@ class Sprite : public Drawable {
     virtual BufferData *getBufferData() override;
     const BufferConfiguration bufferConfiguration() const override;
     
+protected:
+    
     bool neeedsBufferUpdate = true;
     
     Point _position;

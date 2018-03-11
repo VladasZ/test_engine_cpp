@@ -9,17 +9,13 @@
 #include "RootView.hpp"
 #include "Input.hpp"
 
-void RootView::setup() {
+static Button *button;
+static Path *testPath;
 
-    helloLabel = new Label(100, 40);
-    helloLabel->autolayoutMask = Autolayout::TopRight;
-    helloLabel->setFont(Font::System->withSize(50));
-    helloLabel->setText("Hello!");
-    helloLabel->color = Color::orange;
-    addSubview(helloLabel);
+void RootView::setup() {
     
-    button = new Button(200, 200);
-    button->autolayoutMask = Autolayout::Center;
+    button = new Button(50, 100);
+    button->autolayoutMask = Autolayout::TopRight;
     button->color = Color::blue;
     button->setText("Touch me!");
     button->setImage(Image::cat);

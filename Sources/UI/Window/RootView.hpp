@@ -14,10 +14,6 @@ class RootView : public View {
     
     friend Window;
     
-    Label *helloLabel;
-    Button *button;
-    Path *testPath;
-    
     void setup() override;
     
 public:

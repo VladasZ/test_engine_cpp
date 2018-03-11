@@ -139,8 +139,4 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
-    
-    
-    Log(rootView->subviews[0]->frame.toString());
-    Log(rootView->subviews[1]->frame.toString());
 }

@@ -36,10 +36,6 @@ public:
            const BufferConfiguration &configuration);
 
     ~Buffer();
-    
-    void setPointers(int firstParam, int secondParam = 0, int thirdParam = 0) const;
-    void setData(BufferData *data);
-    
-
+        
     void draw() const;
 };

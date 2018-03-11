@@ -7,6 +7,7 @@
 //
 
 #include "RootView.hpp"
+#include "Input.hpp"
 
 void RootView::setup() {
 
@@ -44,6 +45,9 @@ void RootView::setup() {
     testPath = new Path(Rect(100, 100, 100, 100));
     testPath->color = Color::green;
     
+    Input::onTouchMoved([this](Point point){
+        testPath->addPoint(point);
+    });
 }
 
 void RootView::draw() {

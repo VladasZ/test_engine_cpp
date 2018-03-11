@@ -38,11 +38,7 @@ void Path::draw() {
 
 BufferData * Path::getBufferData() {
     int size = (int)(sizeof(float) * points.size() * 2);
-    float *data = (float *)malloc(size);
-    memcpy(data, &points[0], size);
-    auto buffer = new BufferData(data, size);
-    free(data);
-    return buffer;
+    return new BufferData((float *)&points[0], size);
 }
 
 void Path::addPoint(int x, int y) {

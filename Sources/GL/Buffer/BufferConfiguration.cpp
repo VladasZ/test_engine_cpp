@@ -42,14 +42,14 @@ void BufferConfiguration::setPointers() const {
     for (int i = 0; i < size; i++) {
         
         int attribureSize = configuration[i];
-                
-        GL(glVertexAttribPointer(i,
-                              attribureSize,
-                              GL_FLOAT,
-                              GL_FALSE,
-                              vertexSize * sizeof(GLfloat),
-                              (GLvoid*)(strideForIndex(i) * sizeof(GLfloat))));
         
         GL(glEnableVertexAttribArray(i));
+        
+        GL(glVertexAttribPointer(i,
+                                 attribureSize,
+                                 GL_FLOAT,
+                                 GL_FALSE,
+                                 vertexSize * sizeof(GLfloat),
+                                 (GLvoid*)(strideForIndex(i) * sizeof(GLfloat))));
     }
 }

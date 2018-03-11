@@ -37,4 +37,6 @@ public:
     static void touchMoved(INPUT_PARAMETERS);
     static void touchEnded(INPUT_PARAMETERS);
     static void pressedKey(const char &key);
+    
+    static void onTouchMoved(function<void(TestEngine::Point)> action);
 };

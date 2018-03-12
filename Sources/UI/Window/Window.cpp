@@ -75,12 +75,12 @@ void Window::initialize(int width, int height) {
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     
-    float lineWidth[2];
-    GL(glGetFloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidth));
-    
-    if (lineWidth[1] == 1) {
-        Warning("glLineWidth not supported");
-    }
+//    float lineWidth[2];
+//    GL(glGetfloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidth));
+//
+//    if (lineWidth[1] == 1) {
+//        Warning("glLineWidth not supported");
+//    }
 
     setup();
     

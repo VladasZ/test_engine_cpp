@@ -12,10 +12,7 @@
 #include "Window.hpp"
 
 
-Shader Shader::simple;
 Shader Shader::ui;
-Shader Shader::colorVertices;
-Shader Shader::texture;
 Shader Shader::uiTexture;
 Shader Shader::uiMonochrome;
 Shader Shader::sprite;
@@ -29,10 +26,7 @@ void Shader::use() const {
 }
 
 void Shader::initialize() {
-    
-    simple =        Shader(FileManager::assetsDirectory() + "Shaders/simple.vert",
-                           FileManager::assetsDirectory() + "Shaders/simple.frag");
-    
+
     ui =            Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
                            FileManager::assetsDirectory() + "Shaders/ui.frag");
     
@@ -41,13 +35,7 @@ void Shader::initialize() {
     
     uiMonochrome =  Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
                            FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
-    
-    colorVertices = Shader(FileManager::assetsDirectory() + "Shaders/colorVertices.vert",
-                           FileManager::assetsDirectory() + "Shaders/colorVertices.frag");
-    
-    texture =       Shader(FileManager::assetsDirectory() + "Shaders/texture.vert",
-                           FileManager::assetsDirectory() + "Shaders/texture.frag");
-    
+
     sprite =        Shader(FileManager::assetsDirectory() + "Shaders/sprite.vert",
                            FileManager::assetsDirectory() + "Shaders/sprite.frag");
     

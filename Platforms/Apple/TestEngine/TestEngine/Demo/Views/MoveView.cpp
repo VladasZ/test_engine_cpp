@@ -57,7 +57,6 @@ void MoveView::layout() {
     Size buttonSize = Size(frame.size.height / 2, frame.size.width / 3);
     for (auto button : buttons()) {
         button->frame.size = buttonSize;
-        button->color = Color::green;
         button->layout();
     }
 }

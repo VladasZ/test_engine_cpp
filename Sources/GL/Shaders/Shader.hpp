@@ -23,10 +23,7 @@ class Shader MEMORY_MANAGED(Shader) {
     
 public:
     
-    static Shader simple;
     static Shader ui;
-    static Shader colorVertices;
-    static Shader texture;
     static Shader uiTexture;
     static Shader uiMonochrome;
     static Shader sprite;

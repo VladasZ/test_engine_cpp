@@ -7,6 +7,7 @@
 //
 
 #include "Point.hpp"
+#include <math.h>
 
 Point::Point(float x, float y) : x(x), y(y) {
     
@@ -20,6 +21,10 @@ Point::Point(Direction direction, float length) {
         case Direction::down:  x =  0;      y =  length; break;
         default: break;
     }
+}
+
+Point Point::onCircle(float radius, float angle, const Point &center) {
+    return Point((radius / 2) * cos(angle) + center.x, (radius / 2) * sin(angle) + center.y);
 }
 
 bool Point::isZero() const {

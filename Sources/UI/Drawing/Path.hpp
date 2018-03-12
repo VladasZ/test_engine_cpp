@@ -15,6 +15,11 @@
 class Buffer;
 class View;
 
+enum PathDrawMode {
+    Fill,
+    Stroke
+};
+
 class Path : public Drawable _MEMORY_MANAGED(Path) {
     
     vector<Point> points;
@@ -22,16 +27,20 @@ class Path : public Drawable _MEMORY_MANAGED(Path) {
     BufferData *getBufferData() override;
     bool bufferIsSet = false;
     Point _origin;
+    
+    static Path *circleWith(const Point &center, float radius, int precision);
 
 public:
     
     float lineWidth = 1;
+    PathDrawMode drawMode;
     
     void draw() override;
 
     
     Path() = default;
     Path(const Rect &rect);
+    static Path *circleWith(const Point &center, float radius);
     
     void addPoint(int x, int y);
     void addPoint(const Point &point);

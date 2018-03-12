@@ -10,15 +10,13 @@
 
 #include "UI.hpp"
 
-class AnalogStickView : public View {
+class AnalogStickView : public DrawingView {
   
     function<void(Point)> action;
-    
-    Path *outerCirclePath;
-    
+        
     void setup() override;
-    void draw() override;
-    void layout() override;
+    
+    vector<Path *> paths();
     
 public:
         

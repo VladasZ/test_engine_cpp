@@ -49,6 +49,8 @@
 		822596D52051B0640094733E /* RootView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596D32051B0640094733E /* RootView.cpp */; };
 		822596D62051B0640094733E /* RootView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822596D32051B0640094733E /* RootView.cpp */; };
 		822B2A022051E9AE005ACD62 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822B2A002051E9AE005ACD62 /* Path.cpp */; };
+		822E248B2056FC11008CA475 /* DrawingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822E24892056FC11008CA475 /* DrawingView.cpp */; };
+		822E248C2056FC11008CA475 /* DrawingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 822E24892056FC11008CA475 /* DrawingView.cpp */; };
 		823A698E20474F2000B27672 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A698D20474F2000B27672 /* libfreetype.a */; };
 		823A69C82047529400B27672 /* libFreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C62047529100B27672 /* libFreetype2.a */; };
 		823A69CB2047530B00B27672 /* libFreetype2_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 823A69C92047530600B27672 /* libFreetype2_simulator.a */; };
@@ -250,6 +252,8 @@
 		822596D42051B0640094733E /* RootView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RootView.hpp; sourceTree = "<group>"; };
 		822B2A002051E9AE005ACD62 /* Path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Path.cpp; sourceTree = "<group>"; };
 		822B2A012051E9AE005ACD62 /* Path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Path.hpp; sourceTree = "<group>"; };
+		822E24892056FC11008CA475 /* DrawingView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingView.cpp; sourceTree = "<group>"; };
+		822E248A2056FC11008CA475 /* DrawingView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawingView.hpp; sourceTree = "<group>"; };
 		823A698D20474F2000B27672 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.9/lib/libfreetype.a; sourceTree = "<group>"; };
 		823A69C62047529100B27672 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2.a; sourceTree = "<group>"; };
 		823A69C92047530600B27672 /* libFreetype2_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFreetype2_simulator.a; sourceTree = "<group>"; };
@@ -972,6 +976,8 @@
 			children = (
 				82D4521C1F545D730086772F /* View.hpp */,
 				82D4521B1F545D730086772F /* View.cpp */,
+				822E248A2056FC11008CA475 /* DrawingView.hpp */,
+				822E24892056FC11008CA475 /* DrawingView.cpp */,
 				82B5A05D1F76DE4500226B0F /* ImageView.hpp */,
 				82B5A05C1F76DE4500226B0F /* ImageView.cpp */,
 				7C5876302012099A00094DF5 /* Label.hpp */,
@@ -1228,6 +1234,7 @@
 				8259AD042019324B003DFF62 /* MemoryManager.cpp in Sources */,
 				7C5876322012166900094DF5 /* Label.cpp in Sources */,
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
+				822E248C2056FC11008CA475 /* DrawingView.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
 				824B9E0A1F55F5BA00C39543 /* Vertex.cpp in Sources */,
 				7CA7D7FB1F7018C500113190 /* image_helper.c in Sources */,
@@ -1285,6 +1292,7 @@
 				826AC426205599B700713D1D /* Movable.cpp in Sources */,
 				82D452261F54663F0086772F /* Vertex.cpp in Sources */,
 				82B5A05E1F76DE4500226B0F /* ImageView.cpp in Sources */,
+				822E248B2056FC11008CA475 /* DrawingView.cpp in Sources */,
 				7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */,
 				822596D52051B0640094733E /* RootView.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,

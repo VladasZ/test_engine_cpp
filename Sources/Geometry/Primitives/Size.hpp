@@ -8,12 +8,13 @@
 
 #pragma once
 
+#include "Point.hpp"
+
 class BufferData;
 
 namespace TestEngine {
     
-    class Size //MEMORY_MANAGED(Size)
-    {
+    class Size {
         
     public:
         
@@ -23,6 +24,8 @@ namespace TestEngine {
         Size(float width, float height);
         
         BufferData *getData() const;
+        
+        Point center() const;
                 
         template<class T>
         Size operator /(const T &value) {

@@ -26,3 +26,7 @@ BufferData * Size::getData() const {
     return new BufferData(data,    sizeof(data),
                           indices, sizeof(indices));
 }
+
+Point Size::center() const {
+    return Point(width / 2, height / 2);
+}

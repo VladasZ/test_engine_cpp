@@ -17,5 +17,6 @@
 #include "Font.hpp"
 #include "Button.hpp"
 #include "Path.hpp"
+#include "DrawingView.hpp"
 
 #include "DebugInfoView.hpp"

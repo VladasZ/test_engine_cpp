@@ -26,6 +26,8 @@ namespace TestEngine {
         Point() = default;
         Point(float x, float y);
         Point(Direction direction, float length = 1);
+        
+        static Point onCircle(float radius, float angle, const Point &center);
                 
         float angle() const;
         bool isZero() const;

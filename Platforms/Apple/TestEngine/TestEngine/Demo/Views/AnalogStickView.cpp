@@ -8,24 +8,20 @@
 
 #include "AnalogStickView.hpp"
 
+#define OUTLINE_WIDTH 4
 
-AnalogStickView::AnalogStickView(float size) : View(size, size) {
-    color = Color::orange;
-}
+AnalogStickView::AnalogStickView(float size) : DrawingView(size, size) { }
 
 void AnalogStickView::setup() {
+
     
-    outerCirclePath = new Path(Rect(0, 0, 100, 100));
-    outerCirclePath->color = Color::green;
+    auto outerPath = Path::circleWith(frame.size.center(), frame.size.width);
+    outerPath->color = Color::yellow;
+    //addPath(outerPath);
+    
+    auto outlinePath = Path::circleWith(frame.size.center(), frame.size.width - OUTLINE_WIDTH);
+    outlinePath->color = Color::green;
+    addPath(outerPath);
+    
 }
 
-void AnalogStickView::layout() {
-    View::layout();
-    outerCirclePath->setOrigin(frame.origin);
-}
-
-void AnalogStickView::draw() {
-    View::draw();
-    
-    outerCirclePath->draw();
-}

@@ -10,7 +10,7 @@
 #include "GL.hpp"
 #include "BufferData.hpp"
 #include "Buffer.hpp"
-
+#include <math.h>
 
 Path::Path(const Rect &rect) {
     points = {
@@ -19,6 +19,20 @@ Path::Path(const Rect &rect) {
         Point(rect.origin.x + rect.size.height, rect.origin.y + rect.size.width),
         Point(rect.origin.x + rect.size.height, rect.origin.y)
     };
+}
+
+Path * Path::circleWith(const Point &center, float radius, int precision) {
+    auto path = new Path();
+    float angleStep = M_PI * 2 / precision;
+    
+    for (int i = 0; i < precision; i++)
+        path->points.push_back(Point::onCircle(radius, angleStep * i, center));
+    
+    return path;
+}
+
+Path * Path::circleWith(const Point &center, float radius) {
+    return circleWith(center, radius, 40);
 }
 
 void Path::draw() {
@@ -39,7 +53,7 @@ void Path::draw() {
     
     GL(glLineWidth(lineWidth));
     
-    buffer->drawMode = GL_LINE_LOOP;
+    buffer->drawMode = drawMode == Stroke ? GL_LINE_LOOP : GL_TRIANGLE_FAN;
     buffer->draw();
 }
 

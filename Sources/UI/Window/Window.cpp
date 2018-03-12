@@ -93,6 +93,7 @@ void Window::setup() {
     MEMORY_MANAGER_INVISIBLE(
         debugInfoView = new DebugInfoView();
         debugInfoView->layout();
+        debugInfoView->setup();
     );
 #endif
     

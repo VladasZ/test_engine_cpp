@@ -9,10 +9,11 @@
 #include "AnalogStickView.hpp"
 #include "Event.hpp"
 
+#define SIZE 140
 #define OUTLINE_WIDTH 10
-#define STICK_VIEW_SIZE 80
+#define STICK_VIEW_SIZE (SIZE / 2.18)
 
-AnalogStickView::AnalogStickView(float size) : DrawingView(size, size) { }
+AnalogStickView::AnalogStickView() : DrawingView(SIZE, SIZE) { }
 
 void AnalogStickView::setup() {
     auto outerPath = Path::circleWith(frame.size.center(), frame.size.width);
@@ -39,11 +40,17 @@ void AnalogStickView::setup() {
         return path;
     }());
     
-    Input::onTouchMoved.subscribe([this](Point point) {
+    Input::onTouchBegan.subscribe(this, [this](Point point) {
+        _touchID = 1;
         stickView->setCenter(localPointFrom(point));
     });
     
-    Input::onTouchEnded.subscribe([this](Point) {
+    Input::onTouchMoved.subscribe(this, [this](Point point) {
+        stickView->setCenter(localPointFrom(point));
+    });
+    
+    Input::onTouchEnded.subscribe(this, [this](Point poit) {
+        _touchID = -1;
         stickView->setCenter(frame.size.center());
     });
 }

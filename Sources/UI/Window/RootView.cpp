@@ -14,6 +14,7 @@
 static MoveView *moveView;
 
 static AnalogStickView *stickView;
+static AnalogStickView *stickView2;
 
 
 void RootView::setup() {
@@ -22,9 +23,14 @@ void RootView::setup() {
     moveView->autolayoutMask = Autolayout::BotLeft;
     addSubview(moveView);
     
-    stickView = new AnalogStickView(200);
+    
+    stickView = new AnalogStickView();
     stickView->autolayoutMask = Autolayout::BotRight;
     addSubview(stickView);
+    
+    stickView2 = new AnalogStickView();
+    stickView2->autolayoutMask = Autolayout::TopRight;
+    addSubview(stickView2);
 }
 
 void RootView::draw() {

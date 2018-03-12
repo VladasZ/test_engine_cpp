@@ -8,6 +8,18 @@
 
 #include "Button.hpp"
 
+void Button::setup() {
+    Input::onTouchBegan.subscribe(this, [this](Point touch) {
+        _touchID = 1;
+        touchAction();
+    });
+    
+    Input::onTouchEnded.subscribe(this, [this](Point touch) {
+        _touchID = -1;
+        releaseAction();
+    });
+}
+
 void Button::setText(const String &text) {
     if (label == nullptr) {
         label = new Label();
@@ -28,12 +40,7 @@ void Button::setImage(Image *image) {
     imageView->image = image;
 }
 
-bool Button::containsPoint(const Point &point) const {
-    return absoluteFrame().contains(point);
-}
-
 void Button::onTouch(function<void()> action) {
-    Input::buttons.push_back(this);
     touchAction = action;
 }
 

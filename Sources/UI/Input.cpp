@@ -11,13 +11,15 @@
 #include "Window.hpp"
 #include "DebugInfoView.hpp"
 #include "GL.hpp"
+#include "View.hpp"
 
-vector<Button *> Input::buttons;
+static auto touchBeganCondition = [](View *view, Point point) { return view->containsGlobalPoint(point); };
+static auto touchMovedCondition = [](View *view, Point point) { return view->getTouchID() != -1; };
+static auto touchEndedCondition = [](View *view, Point point) { return view->getTouchID() != -1; };
 
-Event<TestEngine::Point> Input::onTouchMoved;
-Event<TestEngine::Point> Input::onTouchEnded;
-
-static Button *currentButton = nullptr;
+Input::TouchEvent Input::onTouchBegan(touchBeganCondition);
+Input::TouchEvent Input::onTouchMoved(touchMovedCondition);
+Input::TouchEvent Input::onTouchEnded(touchEndedCondition);
 
 #if GLFW
 
@@ -53,34 +55,14 @@ void Input::initialize() {
 }
 
 void Input::touchBegan(INPUT_PARAMETERS) {
-    
-    Point point(x, y);
-    
-    for (auto button : buttons) {
-        if (button->containsPoint(point)) {
-            button->touchAction();
-            currentButton = button;
-            return;
-        }
-    }
-    
-    String text = "Touch began: " + to_string(x) + " " + to_string(y);
-    DebugInfoView::instance->setTouchLabelText(text);
+    onTouchBegan(Point(x, y));
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
-    String text = "Touch moved: " + to_string(x) + " " + to_string(y);
-    DebugInfoView::instance->setTouchLabelText(text);
     onTouchMoved(Point(x, y));
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
-    String text = "Touch ended: " + to_string(x) + " " + to_string(y);
-    DebugInfoView::instance->setTouchLabelText(text);
-    if (currentButton && currentButton->releaseAction) {
-        currentButton->releaseAction();
-    }
-    currentButton = nullptr;
     onTouchEnded(Point(x, y));
 }
 

@@ -16,7 +16,7 @@ void DrawingView::draw() {
 
 void DrawingView::layout() {
     View::layout();
-    for (auto path : paths) path->setOrigin(absoluteFrame().origin);
+    for (auto path : paths) path->setOrigin(_absoluteFrame.origin);
 }
 
 void DrawingView::addPath(Path *path) {

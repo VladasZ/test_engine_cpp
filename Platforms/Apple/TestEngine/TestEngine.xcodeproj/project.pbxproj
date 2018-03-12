@@ -1388,6 +1388,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3D3XHLMACB;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREFIX_HEADER = ../../../Sources/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

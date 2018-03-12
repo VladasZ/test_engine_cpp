@@ -19,7 +19,7 @@ class AnalogStickView : public DrawingView {
     
 public:
         
-    AnalogStickView(float size);
+    AnalogStickView();
     
     void onDirectionChange(const function<void(Point)> &action);
 };

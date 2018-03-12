@@ -11,7 +11,10 @@
 #include "Event.hpp"
 #include "Point.hpp"
 
+class View;
+class World;
+
 class Events {
 public:
-    static Event<Point> moveControl;
+    static Event<World, Point> moveControl;
 };

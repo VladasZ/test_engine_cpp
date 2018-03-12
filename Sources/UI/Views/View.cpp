@@ -18,10 +18,11 @@ View::View(const Rect &rect) : frame(rect) { }
 View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
-    return absoluteFrame().getData();
+    _absoluteFrame = calculateAbsoluteFrame();
+    return _absoluteFrame.getData();
 }
 
-Rect View::absoluteFrame() const {
+Rect View::calculateAbsoluteFrame() const {
     Rect aFrame = frame;
     View *superview = this->superview;
     while (superview != nullptr) {
@@ -102,6 +103,10 @@ void View::setCenter(const Point &center) {
                   frame.size.height));
 }
 
+int View::getTouchID() const {
+    return _touchID;
+}
+
 void View::addSubview(View *view) {
     subviews.push_back(view);
     view->superview = this;
@@ -159,5 +164,9 @@ void View::addTestViews() {
 #endif
 
 Point View::localPointFrom(const Point &point) const {
-    return point - absoluteFrame().origin;
+    return point - _absoluteFrame.origin;
+}
+
+bool View::containsGlobalPoint(const Point &point) const {
+    return _absoluteFrame.contains(point);
 }

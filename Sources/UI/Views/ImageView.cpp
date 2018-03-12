@@ -16,8 +16,11 @@ ImageView::~ImageView() { }
 
 BufferData * ImageView::getBufferData() {
     
-    Rect frame = absoluteFrame();
+    _absoluteFrame = calculateAbsoluteFrame();
+
+    Rect frame = _absoluteFrame;
     
+
     GLfloat vertices[] = {
         frame.origin.x,                    frame.origin.y,                     0.0f, 0.0f,
         frame.origin.x,                    frame.size.height + frame.origin.y, 0.0f, 1.0f,

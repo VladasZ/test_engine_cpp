@@ -12,14 +12,13 @@
 #include "Event.hpp"
 
 class Button;
+class View;
 
 #define INPUT_PARAMETERS float x, float y
 
 class Input : NonCopyable {
     
-    friend Button;
-    
-    static vector<Button *> buttons;
+    typedef Event<View, TestEngine::Point> TouchEvent;
     
     Input();
     
@@ -39,6 +38,7 @@ public:
     static void touchEnded(INPUT_PARAMETERS);
     static void pressedKey(const char &key);
     
-    static Event<TestEngine::Point> onTouchMoved;
-    static Event<TestEngine::Point> onTouchEnded;
+    static TouchEvent onTouchBegan;
+    static TouchEvent onTouchMoved;
+    static TouchEvent onTouchEnded;
 };

@@ -31,6 +31,7 @@ enum Autolayout {
 
 class Buffer;
 class Window;
+class Input;
 
 class View : public Drawable _MEMORY_MANAGED(View) {
         
@@ -43,7 +44,10 @@ protected:
     virtual void draw() override;
     virtual BufferData *getBufferData() override;
     
-    Rect absoluteFrame() const;
+    Rect calculateAbsoluteFrame() const;
+    Rect _absoluteFrame;
+    
+    int _touchID = -1;
     
     virtual void setup() { }
     
@@ -68,12 +72,15 @@ public:
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
     
+    int getTouchID() const;
+    
     void addSubview(View *view);
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
     
     Point localPointFrom(const Point &point) const;
-    
+    virtual bool containsGlobalPoint(const Point &point) const;
+        
 #if MEMORY_BENCHMARK
     void addTestViews();
 #endif

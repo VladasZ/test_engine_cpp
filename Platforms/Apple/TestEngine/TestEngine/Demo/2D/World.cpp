@@ -34,7 +34,7 @@ void World::setup() {
     test = new Movable(Image::cat);
     addSprite(test);
     
-    test->setSize(Size(200, 200));
+    test->setSize(Size(200, 260));
     
     Events::moveControl.subscribe([this](Point point){
         test->velocity = point;

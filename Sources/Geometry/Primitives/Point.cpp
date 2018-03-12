@@ -22,6 +22,10 @@ Point::Point(Direction direction, float length) {
     }
 }
 
+bool Point::isZero() const {
+    return x == 0 and y == 0;
+}
+
 String Point::toString() const {
     
     return to_string(x) + " " + to_string(y);

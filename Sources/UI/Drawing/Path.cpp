@@ -22,9 +22,16 @@ Path::Path(const Rect &rect) {
 }
 
 void Path::draw() {
-    if (!bufferIsSet) {
+    
+    if (!bufferIsSet) { bufferIsSet = true;
+        if (!_origin.isZero()) {
+            auto pointsCopy = points;
+            for (auto &point : points) point += _origin;
+            setupBuffer();
+            points = pointsCopy;
+            return;
+        }
         setupBuffer();
-        bufferIsSet = true;
     }
     
     Shader::ui.use();
@@ -47,5 +54,10 @@ void Path::addPoint(int x, int y) {
 
 void Path::addPoint(const Point &point) {
     points.push_back(point);
+    bufferIsSet = false;
+}
+
+void Path::setOrigin(const Point &origin) {
+    _origin = origin;
     bufferIsSet = false;
 }

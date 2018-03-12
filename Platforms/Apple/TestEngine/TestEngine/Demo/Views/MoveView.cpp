@@ -40,7 +40,6 @@ void MoveView::setup() {
     upButton   ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToTop;
     downButton ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToBottom;
     
-    
     static int speed = 10;
     
     leftButton ->onTouch([]() { Events::moveControl(Point(Direction::left,  speed)); });

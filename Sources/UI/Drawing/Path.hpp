@@ -21,7 +21,8 @@ class Path : public Drawable _MEMORY_MANAGED(Path) {
     
     BufferData *getBufferData() override;
     bool bufferIsSet = false;
-    
+    Point _origin;
+
 public:
     
     float lineWidth = 1;
@@ -34,4 +35,6 @@ public:
     
     void addPoint(int x, int y);
     void addPoint(const Point &point);
+    
+    void setOrigin(const Point &origin);
 };

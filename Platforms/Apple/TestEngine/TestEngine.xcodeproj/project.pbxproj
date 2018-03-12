@@ -10,6 +10,8 @@
 		7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
+		7C1954362056D75B00254BB2 /* AnalogStickView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1954342056D75B00254BB2 /* AnalogStickView.cpp */; };
+		7C1954372056D75B00254BB2 /* AnalogStickView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1954342056D75B00254BB2 /* AnalogStickView.cpp */; };
 		7C43B2922020C1A000B15E40 /* TestString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* TestString.cpp */; };
 		7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
 		7C5286D3204EE95D00E41CFB /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5286D0204EE95D00E41CFB /* Alert.cpp */; };
@@ -142,6 +144,8 @@
 		7C14715120121CB000494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../../../../../../Desktop/FreeType_iOS_Release/libFreetype2.a; sourceTree = "<group>"; };
 		7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DebugInfoView.cpp; sourceTree = "<group>"; };
 		7C148A48201A1DBA00D93AD2 /* DebugInfoView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DebugInfoView.hpp; sourceTree = "<group>"; };
+		7C1954342056D75B00254BB2 /* AnalogStickView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnalogStickView.cpp; sourceTree = "<group>"; };
+		7C1954352056D75B00254BB2 /* AnalogStickView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AnalogStickView.hpp; sourceTree = "<group>"; };
 		7C3F77E71F8E0578004A4854 /* glfw.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glfw.rb; sourceTree = "<group>"; };
 		7C3F77E81F8E0578004A4854 /* COPYING.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		7C3F77EB1F8E0578004A4854 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
@@ -1019,6 +1023,8 @@
 			children = (
 				82C0807020555AB200623565 /* MoveView.hpp */,
 				82C0806F20555AB200623565 /* MoveView.cpp */,
+				7C1954352056D75B00254BB2 /* AnalogStickView.hpp */,
+				7C1954342056D75B00254BB2 /* AnalogStickView.cpp */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1218,6 +1224,7 @@
 				824B9DDF1F55F25B00C39543 /* ViewController.mm in Sources */,
 				824FFB041F575110000C58DA /* Shader.cpp in Sources */,
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
+				7C1954372056D75B00254BB2 /* AnalogStickView.cpp in Sources */,
 				8259AD042019324B003DFF62 /* MemoryManager.cpp in Sources */,
 				7C5876322012166900094DF5 /* Label.cpp in Sources */,
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
@@ -1287,6 +1294,7 @@
 				82D4521D1F545D730086772F /* View.cpp in Sources */,
 				829985071F77F6A4002B7E75 /* TestEngineMain.cpp in Sources */,
 				82BE33151F561E0300AD91AC /* Triangle.cpp in Sources */,
+				7C1954362056D75B00254BB2 /* AnalogStickView.cpp in Sources */,
 				826AC42A20559A0200713D1D /* World.cpp in Sources */,
 				82B5A0431F7696E300226B0F /* image_helper.c in Sources */,
 				824DAB9F1F5C0353007E1568 /* Time.cpp in Sources */,

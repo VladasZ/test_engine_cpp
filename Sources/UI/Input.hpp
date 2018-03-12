@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Point.hpp"
+#include "Event.hpp"
 
 class Button;
 
@@ -38,5 +39,6 @@ public:
     static void touchEnded(INPUT_PARAMETERS);
     static void pressedKey(const char &key);
     
-    static void onTouchMoved(function<void(TestEngine::Point)> action);
+    static Event<TestEngine::Point> onTouchMoved;
+    static Event<TestEngine::Point> onTouchEnded;
 };

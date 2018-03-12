@@ -32,7 +32,7 @@ Path * Path::circleWith(const Point &center, float radius, int precision) {
 }
 
 Path * Path::circleWith(const Point &center, float radius) {
-    return circleWith(center, radius, 40);
+    return circleWith(center, radius, 50);
 }
 
 void Path::draw() {
@@ -43,9 +43,10 @@ void Path::draw() {
             for (auto &point : points) point += _origin;
             setupBuffer();
             points = pointsCopy;
-            return;
         }
-        setupBuffer();
+        else {
+            setupBuffer();
+        }
     }
     
     Shader::ui.use();

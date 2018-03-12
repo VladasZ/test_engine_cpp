@@ -43,6 +43,9 @@ namespace TestEngine {
         
         Point operator +(const Point &point) const;
         void operator +=(const Point &point);
+        
+        Point operator -(const Point &point) const;
+
                 
         static const Point one;
     };

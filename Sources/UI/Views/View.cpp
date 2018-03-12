@@ -157,3 +157,7 @@ void View::addTestViews() {
     }
 }
 #endif
+
+Point View::localPointFrom(const Point &point) const {
+    return point - absoluteFrame().origin;
+}

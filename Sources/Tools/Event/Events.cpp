@@ -8,4 +8,4 @@
 
 #include "Events.hpp"
 
-Event<Point> Events::moveControl = Event<Point>("moveControl");
+Event<Point> Events::moveControl;

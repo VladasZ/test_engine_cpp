@@ -10,13 +10,13 @@
 
 
 void DrawingView::draw() {
-    View::draw();
     for (auto path : paths) path->draw();
+    View::draw();
 }
 
 void DrawingView::layout() {
     View::layout();
-    for (auto path : paths) path->setOrigin(frame.origin);
+    for (auto path : paths) path->setOrigin(absoluteFrame().origin);
 }
 
 void DrawingView::addPath(Path *path) {

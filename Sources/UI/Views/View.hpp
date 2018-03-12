@@ -72,6 +72,8 @@ public:
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
     
+    Point localPointFrom(const Point &point) const;
+    
 #if MEMORY_BENCHMARK
     void addTestViews();
 #endif

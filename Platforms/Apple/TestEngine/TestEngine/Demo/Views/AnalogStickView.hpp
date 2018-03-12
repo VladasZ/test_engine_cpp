@@ -13,10 +13,9 @@
 class AnalogStickView : public DrawingView {
   
     function<void(Point)> action;
-        
     void setup() override;
     
-    vector<Path *> paths();
+    DrawingView *stickView;
     
 public:
         

@@ -14,7 +14,8 @@
 
 vector<Button *> Input::buttons;
 
-static function<void(TestEngine::Point)> _onTouchMoved;
+Event<TestEngine::Point> Input::onTouchMoved;
+Event<TestEngine::Point> Input::onTouchEnded;
 
 static Button *currentButton = nullptr;
 
@@ -70,9 +71,7 @@ void Input::touchBegan(INPUT_PARAMETERS) {
 void Input::touchMoved(INPUT_PARAMETERS) {
     String text = "Touch moved: " + to_string(x) + " " + to_string(y);
     DebugInfoView::instance->setTouchLabelText(text);
-    if (_onTouchMoved) {
-        _onTouchMoved(Point(x, y));
-    }
+    onTouchMoved(Point(x, y));
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
@@ -82,12 +81,9 @@ void Input::touchEnded(INPUT_PARAMETERS) {
         currentButton->releaseAction();
     }
     currentButton = nullptr;
+    onTouchEnded(Point(x, y));
 }
 
 void Input::pressedKey(const char &key) {
     Log(key);
-}
-
-void Input::onTouchMoved(function<void(TestEngine::Point)> action) {
-    _onTouchMoved = action;
 }

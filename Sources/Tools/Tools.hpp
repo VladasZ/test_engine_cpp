@@ -1,22 +1,5 @@
 #pragma once
 
-#define TEST_STRING true
-
-#if TEST_STRING
-#define String TestString
-#else
-#define String string
-#endif
-
-#include "TestString.hpp"
-#include "Log.hpp"
-#include "Debug.hpp"
-#include "MemoryManaged.hpp"
-#include "FileManager.hpp"
-#include "NonCopyable.hpp"
-#include "Platform.h"
-#include "System.hpp"
-#include "Alert.hpp"
 //#include "Events.hpp"
 
 template <class T>
@@ -32,4 +15,14 @@ class StaticClassInfo;
 return type comp < type comp;\
 })comp;
 
+#include "HasMember.h"
+#include "String.hpp"
+#include "Log.hpp"
+#include "Debug.hpp"
+#include "MemoryManaged.hpp"
+#include "FileManager.hpp"
+#include "NonCopyable.hpp"
+#include "Platform.h"
+#include "System.hpp"
+#include "Alert.hpp"
 

@@ -40,12 +40,12 @@ void AnalogStickView::setup() {
         return path;
     }());
     
-    Input::onTouchBegan.subscribe(this, [this](Point point) {
+    Input::onTouchBegan.subscribe(this, [this](const Point &point) {
         _touchID = 1;
         stickView->setCenter(localPointFrom(point));
     });
     
-    Input::onTouchMoved.subscribe(this, [this](Point point) {
+    Input::onTouchMoved.subscribe(this, [this](const Point &point) {
         stickView->setCenter(localPointFrom(point));
     });
     

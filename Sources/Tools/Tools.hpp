@@ -19,6 +19,10 @@
 #include "Alert.hpp"
 //#include "Events.hpp"
 
+template <class T>
+class StaticClassInfo;
+#define STATIC_GET_TYPE(Type) StaticClassInfo<decltype(Type)> _foo;
+
 #define FOR(n) for (int i = 0; i < (n); i++)
 
 #define MAX(container, comp)  (*max_element((container).begin(), (container).end(), (comp)))

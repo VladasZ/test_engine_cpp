@@ -55,7 +55,7 @@ Rect Rect::withZeroOrigin() const {
 }
 
 String Rect::toString() const {
-    return "x: " + to_string(origin.x) + " y: " + to_string(origin.y) +
-    " width: " + to_string(size.width) + " height: " + to_string(size.width);
+    return "x: "_s +  origin.x  +      " y: " + origin.y +
+      " width: "   + size.width + " height: " + size.width;
 }
 

@@ -13,9 +13,9 @@
 #include "GL.hpp"
 #include "View.hpp"
 
-static auto touchBeganCondition = [](View *view, Point point) { return view->containsGlobalPoint(point); };
-static auto touchMovedCondition = [](View *view, Point point) { return view->getTouchID() != -1; };
-static auto touchEndedCondition = [](View *view, Point point) { return view->getTouchID() != -1; };
+static auto touchBeganCondition = [](View *view, const Point &point) { return view->containsGlobalPoint(point); };
+static auto touchMovedCondition = [](View *view, const Point &point) { return view->getTouchID() != -1; };
+static auto touchEndedCondition = [](View *view, const Point &point) { return view->getTouchID() != -1; };
 
 Input::TouchEvent Input::onTouchBegan(touchBeganCondition);
 Input::TouchEvent Input::onTouchMoved(touchMovedCondition);

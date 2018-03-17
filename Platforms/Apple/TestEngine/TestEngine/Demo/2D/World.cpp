@@ -36,7 +36,7 @@ void World::setup() {
     
     test->setSize(Size(200, 260));
     
-    Events::moveControl.subscribe(this, [this](Point point){
+    Events::moveControl.subscribe(this, [this](const Point &point){
         test->velocity = point;
     });
 }

@@ -9,7 +9,7 @@
 const String FileManager::assetsDirectory() {
     
 #ifdef APPLE
-    return String(objCWorkDirectoryPath()) + String("/Assets/");
+    return String(objCWorkDirectoryPath()) + "/Assets/";
 #endif
     
 #ifdef WINDOWS

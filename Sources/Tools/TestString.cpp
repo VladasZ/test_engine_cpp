@@ -13,28 +13,13 @@
 
 TestString::TestString(long size, char *data) : _size(size), data(data) { }
 
-TestString::TestString(int number) : TestString(to_string(number)) {  }
-
-TestString::TestString(const char ch) : _size(1), data((char *)malloc(BUFFER_SIZE)) {
-    memcpy(data, &ch, 1);
-    memcpy(data + 1, &"\0", 1);
+void TestString::initWithString(const string &str) {
+    _size = str.size();
+    data = (char *)malloc(_size + 1);
+    memcpy(data, &str[0], _size + 1);
 }
 
-TestString::TestString(const char *str) : _size(strlen(str)), data((char *)malloc(BUFFER_SIZE)) {
-    memcpy(data, str, BUFFER_SIZE);
-}
-
-TestString::TestString(const string &str) : _size(str.size()), data((char *)malloc(BUFFER_SIZE)) {
-    memcpy(data, &str[0], BUFFER_SIZE);
-}
-
-TestString::TestString(const TestString &str) : _size(str._size), data((char *)malloc(BUFFER_SIZE)) {
-    memcpy(data, str.data, BUFFER_SIZE);
-}
-
-TestString::operator string() const {
-    return string(data);
-}
+TestString::operator string() const { return string(data); }
 
 TestString::operator const char*() const {
     char *data = (char *)malloc(BUFFER_SIZE);
@@ -43,19 +28,7 @@ TestString::operator const char*() const {
 }
 
 const char * TestString::c_str() const { return *this; }
-string TestString::stdString() const { return *this; }
-
-bool TestString::empty() const {
-    return _size == 0;
-}
-
-long TestString::size() const {
-    return _size;
-}
-
-void TestString::print() const {
-    Log(data);
-}
+string TestString::stdString()   const { return *this; }
 
 TestString TestString::operator +(const TestString &str) const {
 #if STRING_DEBUG
@@ -89,17 +62,12 @@ void TestString::operator +=(const TestString &str) {
 #endif
 }
 
-ostream &operator<<(ostream &os, TestString const &str) {
-    return os << str.c_str();
-}
+char * TestString::begin() const { return data; }
+char * TestString::end()   const { return data + _size; }
 
-char * TestString::begin() const {
-    return data;
-}
-
-char * TestString::end() const {
-    return data + _size;
-}
+bool TestString::empty() const { return _size == 0; }
+long TestString::size()  const { return _size; }
+void TestString::print() const { Log(data); }
 
 TestString TestString::drop(int size) const {
     TestString newString = *this;
@@ -108,3 +76,10 @@ TestString TestString::drop(int size) const {
     newString.data[newString._size] = '\0';
     return newString;
 }
+
+ostream &operator<<(ostream &os, TestString const &str) {
+    return os << str.stdString();
+}
+
+TestString operator "" _s(const char *in, size_t size) { return TestString(in); }
+TestString operator "" _s(unsigned long long in) { return TestString(in); }

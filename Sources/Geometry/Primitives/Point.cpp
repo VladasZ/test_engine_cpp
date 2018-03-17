@@ -32,7 +32,7 @@ bool Point::isZero() const {
 }
 
 String Point::toString() const {
-    return to_string(x) + " " + to_string(y);
+    return "x: "_s + x + " y: " + y;
 }
 
 Point Point::operator +(const Point &point) const {

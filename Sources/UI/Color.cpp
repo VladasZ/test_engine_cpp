@@ -39,7 +39,6 @@ void Color::setToUniform(int uniform) const {
 Color Color::random() {
     
     static vector<Color> colors = {
-        
         Color::red,
         Color::green,
         Color::blue,
@@ -57,7 +56,7 @@ Color Color::withAlpha(float alpha) const {
 }
 
 String Color::toString() const {
-    return "r: " + to_string(r) + " g: " + to_string(g) + " b: " + to_string(b) + " a: " + to_string(a);
+    return "r: "_s + r + " g: " + g + " b: " + b + " a: " + a;
 }
 
 bool Color::isTransparent() const {

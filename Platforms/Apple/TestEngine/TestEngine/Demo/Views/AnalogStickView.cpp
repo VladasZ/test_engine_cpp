@@ -29,13 +29,15 @@ void AnalogStickView::setup() {
     addSubview(stickView);
 
     stickView->addPath([this]() {
-        auto path = Path::circleWith(stickView->frame.size.center(), STICK_VIEW_SIZE);
+        auto path = Path::circleWith(stickView->frame.size.center(),
+                                     STICK_VIEW_SIZE);
         path->color = Color::black;
         return path;
     }());
     
     stickView->addPath([this]() {
-        auto path = Path::circleWith(stickView->frame.size.center(), STICK_VIEW_SIZE - OUTLINE_WIDTH);
+        auto path = Path::circleWith(stickView->frame.size.center(),
+                                     STICK_VIEW_SIZE - OUTLINE_WIDTH);
         path->color = Color::lightGray;
         return path;
     }());
@@ -44,14 +46,32 @@ void AnalogStickView::setup() {
         _touchID = 1;
         stickView->setCenter(localPointFrom(point));
     });
-    
+
     Input::onTouchMoved.subscribe(this, [this](const Point &point) {
-        stickView->setCenter(localPointFrom(point));
+        onTouchMoved(point);
     });
     
     Input::onTouchEnded.subscribe(this, [this](Point poit) {
         _touchID = -1;
         stickView->setCenter(frame.size.center());
+        if (action) action(Point());
     });
+}
+
+void AnalogStickView::onTouchMoved(const Point &touch) {
+    
+    Point stickCenter = localPointFrom(touch);
+    
+    stickView->setCenter(stickCenter);
+    
+    Point vector = stickCenter - frame.size.center();
+    
+    INFO_VIEW.setInfoText("Vector: "_s + vector);
+    
+    if (action) action(vector * 0.1);
+}
+
+void AnalogStickView::onDirectionChange(const function<void (const Point &)> &action) {
+    this->action = action;
 }
 

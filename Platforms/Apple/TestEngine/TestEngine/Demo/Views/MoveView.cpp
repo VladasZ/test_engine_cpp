@@ -18,7 +18,6 @@ vector<Button *> buttons() {
     return { leftButton, rightButton, upButton, downButton };
 }
 
-
 void MoveView::setup() {
     leftButton  = new Button();
     rightButton = new Button();

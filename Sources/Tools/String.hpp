@@ -12,12 +12,12 @@ GENERATE_HAS_MEMBER(toString);
 
 template <class T>
 auto __toString(const T &value) {
-         if constexpr (is_array_v<T>)                 return string(value);
-    else if constexpr (is_same_v<T, const char *>)    return string(value);
-    else if constexpr (is_same_v<T, string>)          return value;
-    else if constexpr (is_fundamental_v<T>)           return to_string(value);
+    if constexpr (is_array<T>::value)                 return string(value);
+    else if constexpr (is_same<T, const char *>::value)    return string(value);
+    else if constexpr (is_same<T, string>::value)          return value;
+    else if constexpr (is_fundamental<T>::value)           return to_string(value);
     else if constexpr (has_member_toString<T>::value) return value.toString();
-    else if constexpr (is_same_v<T, char>)            return string(1, value);
+    else if constexpr (is_same<T, char>::value)            return string(1, value);
     else { STATIC_GET_TYPE(value); }
 }
 

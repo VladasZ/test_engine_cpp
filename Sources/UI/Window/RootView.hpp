@@ -15,6 +15,7 @@ class RootView : public View {
     friend Window;
     
     void setup() override;
+    void layout() override;
     
 public:
     

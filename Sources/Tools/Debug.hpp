@@ -37,5 +37,6 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 #else
 
 #define GL(x) x
+#define MEMORY_MANAGER_INVISIBLE(code)
 
 #endif

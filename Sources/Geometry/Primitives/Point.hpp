@@ -46,7 +46,9 @@ namespace TestEngine {
         
         Point operator -(const Point &point) const;
 
-                
+        Point operator *(float value) const;
+        void operator *=(float value);
+
         static const Point one;
     };
 }

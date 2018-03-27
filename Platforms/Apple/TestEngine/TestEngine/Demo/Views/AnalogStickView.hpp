@@ -12,14 +12,16 @@
 
 class AnalogStickView : public DrawingView {
   
-    function<void(Point)> action;
+    function<void(const Point &)> action;
     void setup() override;
     
     DrawingView *stickView;
+    
+    void onTouchMoved(const Point &touch);
     
 public:
         
     AnalogStickView();
     
-    void onDirectionChange(const function<void(Point)> &action);
+    void onDirectionChange(const function<void(const Point &)> &action);
 };

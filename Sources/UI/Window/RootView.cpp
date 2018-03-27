@@ -10,6 +10,7 @@
 #include "Input.hpp"
 #include "MoveView.hpp"
 #include "AnalogStickView.hpp"
+#include "Events.hpp"
 
 static MoveView *moveView;
 
@@ -26,6 +27,11 @@ void RootView::setup() {
     
     stickView = new AnalogStickView();
     stickView->autolayoutMask = Autolayout::BotRight;
+    
+    stickView->onDirectionChange([](const Point &point){
+        Events::moveControl(point);
+    });
+    
     addSubview(stickView);
     
     stickView2 = new AnalogStickView();
@@ -36,4 +42,17 @@ void RootView::setup() {
 void RootView::draw() {
     View::draw();
     
+}
+
+void RootView::layout() {
+    View::layout();
+    
+    stickView->autolayoutMask = 0;
+    
+    stickView->setFrame(Rect(stickView->frame.origin.x - 28,
+                             stickView->frame.origin.y - 28,
+                             stickView->frame.size.width,
+                             stickView->frame.size.height));
+    
+    stickView->autolayoutMask = Autolayout::BotRight;
 }

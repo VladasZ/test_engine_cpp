@@ -23,8 +23,8 @@ auto __toString(const T &value) {
 
 class String {
     
-    long _size = 0;
-    char *data = new char('\0');
+    long _size;
+    char *data = nullptr;
     
     String(long size, char *data);
     void initWithString(const string &string);
@@ -32,10 +32,15 @@ class String {
 
 public:
     
-    String() = default;
+    String();
     
     template<class T>
     String(const T &value) { initWithString(__toString(value)); }
+    
+    String(const String &string);
+    String &operator =(const String &str);
+    
+    ~String();
     
     operator string()       const;
     operator const char *() const;

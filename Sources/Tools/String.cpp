@@ -11,18 +11,35 @@
 #define STRING_DEBUG false
 #define BUFFER_SIZE _size + 1
 
+String::String() : _size(0), data(new char('\0')) { }
+
 String::String(long size, char *data) : _size(size), data(data) { }
 
 void String::initWithString(const string &str) {
+    if (data != nullptr) free(data);
     _size = str.size();
-    data = (char *)malloc(_size + 1);
-    memcpy(data, &str[0], _size + 1);
+    data = (char *)malloc(BUFFER_SIZE);
+    memcpy(data, &str[0], BUFFER_SIZE);
 }
 
 void String::initWithString(const String &string) {
+    if (data != nullptr) free(data);
     _size = string._size;
-    data = (char *)malloc(_size + 1);
-    memcpy(data, string.data, _size + 1);
+    data = (char *)malloc(BUFFER_SIZE);
+    memcpy(data, string.data, BUFFER_SIZE);
+}
+
+String::String(const String &string) {
+    initWithString(string);
+}
+
+String & String::operator =(const String &str) {
+    initWithString(str);
+    return *this;
+}
+
+String::~String() {
+    free(data);
 }
 
 String::operator string() const { return string(data); }
@@ -39,19 +56,23 @@ string String::stdString()   const { return *this; }
 String String::operator +(const String &str) const {
 #if STRING_DEBUG
     Log("operator +");
-
     Log("STR in: " << *this);
     Log("STR in2: " << str);
 #endif
     
-    long size = this->_size + str._size + 1;
-    char *data = (char *)malloc(size);
-    memcpy(data, this->data, this->_size);
-    memcpy(data + this->_size, str.data, str._size + 1);
+    String result;
+    free(result.data);
+    result._size = this->_size + str._size;
+    result.data = (char *)malloc(result.BUFFER_SIZE);
+    
+    memcpy(result.data, this->data, this->_size);
+    memcpy(result.data + this->_size, str.data, str.BUFFER_SIZE);
+    
 #if STRING_DEBUG
-    Log("STR out: " << String(size, data));
+    Log("STR out: " << result);
 #endif
-    return String(size - 1, data);
+    
+    return result;
 }
 
 void String::operator +=(const String &str) {

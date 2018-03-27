@@ -105,6 +105,10 @@ float Font::height() const {
 }
 
 Glyph * Font::glyphForChar(char ch) {
+    if (ch < 0) {
+        Error("Invalid character: " << ch);
+        return glyphs['?'];
+    }
     return glyphs[ch];
 }
 

@@ -60,14 +60,17 @@ void AnalogStickView::setup() {
 
 void AnalogStickView::onTouchMoved(const Point &touch) {
     
-    Point stickCenter = localPointFrom(touch);
+    float maxLenght = frame.size.height / 2;
     
-    stickView->setCenter(stickCenter);
+    Point touchPosition = localPointFrom(touch);
+    Point vector = touchPosition - frame.size.center();
     
-    Point vector = stickCenter - frame.size.center();
+    if (vector.length() > maxLenght) {
+        vector = vector.withLength(maxLenght);
+        touchPosition = frame.size.center() + vector;
+    }
     
-    INFO_VIEW.setInfoText("Vector: "_s + vector);
-    
+    stickView->setCenter(touchPosition);
     if (action) action(vector * 0.1);
 }
 

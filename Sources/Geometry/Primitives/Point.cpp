@@ -31,6 +31,15 @@ bool Point::isZero() const {
     return x == 0 and y == 0;
 }
 
+float Point::length() const {
+    return sqrt(x * x + y * y);
+}
+
+Point Point::withLength(float length) const {
+    float ratio = length / this->length();
+    return Point(x * ratio, y * ratio);
+}
+
 String Point::toString() const {
     return "x: "_s + x + " y: " + y;
 }

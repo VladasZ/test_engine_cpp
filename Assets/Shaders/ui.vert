@@ -1,8 +1,7 @@
 layout(location = 0) in vec2 position;
 
 uniform mat4 uiTranslation;
-uniform mat4 transform;
 
 void main() {
-    gl_Position = uiTranslation * vec4(position, 0.0, 1.0);// * transform;
+    gl_Position = uiTranslation * vec4(position, 0.0, 1.0);
 }

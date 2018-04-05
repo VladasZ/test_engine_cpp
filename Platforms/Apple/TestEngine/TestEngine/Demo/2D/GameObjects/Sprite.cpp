@@ -11,6 +11,14 @@
 #include "Buffer.hpp"
 #include "Image.hpp"
 #include "Window.hpp"
+#include "GL.hpp"
+
+ostream &operator<<(ostream &os, mat4 const &mat) {
+    return os << "\n"_s + mat[0][0] + " " + mat[0][1] + " " + mat[0][2] + " " + mat[0][3] + "\n" +
+                          mat[1][0] + " " + mat[1][1] + " " + mat[1][2] + " " + mat[1][3] + "\n" +
+                          mat[2][0] + " " + mat[2][1] + " " + mat[2][2] + " " + mat[2][3] + "\n" +
+                          mat[3][0] + " " + mat[3][1] + " " + mat[3][2] + " " + mat[3][3] + "\n";
+}
 
 
 Sprite::Sprite(Image *image) : image(image) { }
@@ -38,15 +46,12 @@ void Sprite::draw() {
     }
     image->bind();
     Shader::sprite.use();
-    
-    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
-    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
-    
-    uiProjection = translate(uiProjection, vec3(_position.x, _position.y, 0));
-    uiProjection = rotate(uiProjection, rotation, vec3(0, 0, 1));
-    uiProjection = translate(uiProjection, vec3(-_position.x, -_position.y, 0));
-    
-    Shader::sprite.setUITranslationMatrix(uiProjection);
+
+    mat4 transform = translate(mat4(), vec3(_position.x, _position.y, 0));
+    transform = rotate(transform, rotation, vec3(0, 0, 1));
+    transform = translate(transform, vec3(-_position.x, -_position.y, 0));
+        
+    Shader::sprite.setTransformMatrix(transform);
     Shader::sprite.setUniformPosition(_position.x - _size.width / 2, _position.y - _size.height / 2);
     buffer->draw();
     image->unbind();

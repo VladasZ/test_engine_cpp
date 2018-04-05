@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Color.hpp"
+#include "Point.hpp"
 #include "BufferConfiguration.hpp"
 
 class Buffer;
@@ -25,8 +26,10 @@ protected:
     virtual void draw() = 0;
     virtual BufferData *getBufferData() = 0;
     virtual const BufferConfiguration bufferConfiguration() const;
-        
+    
 public:
+    
+    float rotation;
     
     Color color;
 };

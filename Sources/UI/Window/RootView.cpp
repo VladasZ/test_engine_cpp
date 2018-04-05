@@ -17,6 +17,7 @@ static MoveView *moveView;
 static AnalogStickView *stickView;
 static AnalogStickView *stickView2;
 
+static View *testView;
 
 void RootView::setup() {
     
@@ -37,6 +38,17 @@ void RootView::setup() {
     stickView2 = new AnalogStickView();
     stickView2->autolayoutMask = Autolayout::TopRight;
     addSubview(stickView2);
+    
+    testView = new View(300, 300, 100, 100);
+    testView->color = Color::green;
+    
+    
+    Events::moveControl.subscribe(nullptr, [](const Point &point) {
+        testView->rotation = point.angle();
+    });
+    
+    addSubview(testView);
+    
 }
 
 void RootView::draw() {

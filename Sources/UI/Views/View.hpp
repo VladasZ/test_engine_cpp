@@ -49,6 +49,7 @@ protected:
     
     int _touchID = -1;
     
+    
     virtual void setup() { }
     
 public:
@@ -77,7 +78,7 @@ public:
     void addSubview(View *view);
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
-    
+        
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;
         

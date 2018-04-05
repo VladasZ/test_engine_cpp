@@ -37,7 +37,6 @@ public:
     
     void draw() override;
 
-    
     Path() = default;
     Path(const Rect &rect);
     static Path *circleWith(const Point &center, float radius);

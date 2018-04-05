@@ -19,4 +19,3 @@ void Drawable::setupBuffer() {
 const BufferConfiguration Drawable::bufferConfiguration() const {
     return BufferConfiguration(2);
 }
-

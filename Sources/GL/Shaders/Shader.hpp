@@ -21,6 +21,15 @@ class Shader MEMORY_MANAGED(Shader) {
     
     friend Window;
     
+    int program = -1;
+    
+    int uniformColor = -1;
+    int uiTranslation = -1;
+    int uniformPosition = -1;
+    int transform = -1;
+    
+    static void initialize();
+    
 public:
     
     static Shader ui;
@@ -28,16 +37,9 @@ public:
     static Shader uiMonochrome;
     static Shader sprite;
 
-    static void initialize();
-    
-    int program = -1;
-    
-    int uniformColor = -1;
-    int uniformProjection = -1;
-    int uniformPosition = -1;
-
     void use() const;
     void setUniformColor(const Color &color);
-    void setUniformProjectionMatrix(const mat4 &projection);
+    void setUITranslationMatrix(const mat4 &projection);
+    void setTransformMatrix(const mat4 &transform);
     void setUniformPosition(float x, float y);
 };

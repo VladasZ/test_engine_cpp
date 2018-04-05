@@ -11,6 +11,7 @@
 #include "Sprite.hpp"
 #include "Image.hpp"
 #include "Events.hpp"
+#include "GL.hpp"
 
 World world;
 
@@ -34,9 +35,10 @@ void World::setup() {
     test = new Movable(Image::cat);
     addSprite(test);
     
+    test->setPosition(Point(150, 150));
     test->setSize(Size(200, 260));
-    
+        
     Events::moveControl.subscribe(this, [this](const Point &point){
-        test->velocity = point;
+        test->rotation = point.angle();
     });
 }

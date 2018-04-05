@@ -48,16 +48,16 @@ void Shader::setupUiTranslation() {
     uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
     
     Shader::ui.use();
-    Shader::ui.setUniformProjectionMatrix(uiProjection);
+    Shader::ui.setUITranslationMatrix(uiProjection);
     
     Shader::uiTexture.use();
-    Shader::uiTexture.setUniformProjectionMatrix(uiProjection);
+    Shader::uiTexture.setUITranslationMatrix(uiProjection);
     
     Shader::uiMonochrome.use();
-    Shader::uiMonochrome.setUniformProjectionMatrix(uiProjection);
+    Shader::uiMonochrome.setUITranslationMatrix(uiProjection);
     
     Shader::sprite.use();
-    Shader::sprite.setUniformProjectionMatrix(uiProjection);
+    Shader::sprite.setUITranslationMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) {
@@ -66,10 +66,16 @@ void Shader::setUniformColor(const Color &color) {
     color.setToUniform(uniformColor);
 }
 
-void Shader::setUniformProjectionMatrix(const mat4 &projection) {
-    if (uniformProjection == -1)
-        uniformProjection = glGetUniformLocation(program, "uniformProjection");
-    GL(glUniformMatrix4fv(uniformProjection, 1, false, &projection[0][0]));
+void Shader::setUITranslationMatrix(const mat4 &projection) {
+    if (uiTranslation == -1)
+        uiTranslation = glGetUniformLocation(program, "uiTranslation");
+    GL(glUniformMatrix4fv(uiTranslation, 1, false, &projection[0][0]));
+}
+
+void Shader::setTransformMatrix(const mat4 &transform) {
+    if (this->transform == -1)
+        this->transform = glGetUniformLocation(program, "transform");
+    GL(glUniformMatrix4fv(this->transform, 1, false, &transform[0][0]));
 }
 
 void Shader::setUniformPosition(float x, float y) {

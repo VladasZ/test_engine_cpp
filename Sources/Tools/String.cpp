@@ -60,11 +60,7 @@ String String::operator +(const String &str) const {
     Log("STR in2: " << str);
 #endif
     
-    String result;
-    free(result.data);
-    result._size = this->_size + str._size;
-    result.data = (char *)malloc(result.BUFFER_SIZE);
-    
+    String result(this->_size + str._size, (char *)malloc(this->_size + str._size + 1));
     memcpy(result.data, this->data, this->_size);
     memcpy(result.data + this->_size, str.data, str.BUFFER_SIZE);
     

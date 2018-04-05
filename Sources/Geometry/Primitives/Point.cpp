@@ -27,6 +27,10 @@ Point Point::onCircle(float radius, float angle, const Point &center) {
     return Point((radius / 2) * cos(angle) + center.x, (radius / 2) * sin(angle) + center.y);
 }
 
+float Point::angle() const {
+    return atan2(y, x);
+}
+
 bool Point::isZero() const {
     return x == 0 and y == 0;
 }

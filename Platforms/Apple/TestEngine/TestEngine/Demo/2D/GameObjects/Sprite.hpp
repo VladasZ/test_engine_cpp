@@ -32,7 +32,7 @@ protected:
     Image *image;
     
 public:
-    
+        
     Sprite(Image *image);
     
     void setPosition(const Point &position);

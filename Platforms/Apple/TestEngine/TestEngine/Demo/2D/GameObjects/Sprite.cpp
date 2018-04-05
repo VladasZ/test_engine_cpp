@@ -10,6 +10,7 @@
 #include "Shader.hpp"
 #include "Buffer.hpp"
 #include "Image.hpp"
+#include "Window.hpp"
 
 
 Sprite::Sprite(Image *image) : image(image) { }
@@ -37,7 +38,16 @@ void Sprite::draw() {
     }
     image->bind();
     Shader::sprite.use();
-    Shader::sprite.setUniformPosition(_position.x, _position.y);
+    
+    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
+    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
+    
+    uiProjection = translate(uiProjection, vec3(_position.x, _position.y, 0));
+    uiProjection = rotate(uiProjection, rotation, vec3(0, 0, 1));
+    uiProjection = translate(uiProjection, vec3(-_position.x, -_position.y, 0));
+    
+    Shader::sprite.setUITranslationMatrix(uiProjection);
+    Shader::sprite.setUniformPosition(_position.x - _size.width / 2, _position.y - _size.height / 2);
     buffer->draw();
     image->unbind();
 }
@@ -51,3 +61,4 @@ Point Sprite::position() { return _position; }
 
 void Sprite::setSize(const Size &size) { _size = size; neeedsBufferUpdate = true; }
 Size Sprite::size() { return _size; }
+

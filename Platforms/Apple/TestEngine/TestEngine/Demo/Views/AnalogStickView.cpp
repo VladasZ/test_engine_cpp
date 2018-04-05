@@ -42,16 +42,16 @@ void AnalogStickView::setup() {
         return path;
     }());
     
-    Input::onTouchBegan.subscribe(this, [this](const Point &point) {
-        _touchID = 1;
+    Input::onTouchBegan.subscribe(this, [this](const Point &point, int id) {
+        _touchID = id;
         stickView->setCenter(localPointFrom(point));
     });
 
-    Input::onTouchMoved.subscribe(this, [this](const Point &point) {
+    Input::onTouchMoved.subscribe(this, [this](const Point &point, int id) {
         onTouchMoved(point);
     });
     
-    Input::onTouchEnded.subscribe(this, [this](Point poit) {
+    Input::onTouchEnded.subscribe(this, [this](Point poit, int id) {
         _touchID = -1;
         stickView->setCenter(frame.size.center());
         if (action) action(Point());

@@ -13,9 +13,12 @@
 #include "GL.hpp"
 #include "View.hpp"
 
-static auto touchBeganCondition = [](View *view, const Point &point) { return view->containsGlobalPoint(point); };
-static auto touchMovedCondition = [](View *view, const Point &point) { return view->getTouchID() != -1; };
-static auto touchEndedCondition = [](View *view, const Point &point) { return view->getTouchID() != -1; };
+static auto touchBeganCondition = [](View *view, const Point &point, int id)
+{ return view->containsGlobalPoint(point); };
+static auto touchMovedCondition = [](View *view, const Point &point, int id)
+{ return view->getTouchID() == id; };
+static auto touchEndedCondition = [](View *view, const Point &point, int id)
+{ return view->getTouchID() == id; };
 
 Input::TouchEvent Input::onTouchBegan(touchBeganCondition);
 Input::TouchEvent Input::onTouchMoved(touchMovedCondition);
@@ -32,17 +35,17 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     
     if (action == GLFW_PRESS) {
         Input::mouseKeyIsPressed = true;
-        Input::touchBegan(Input::cursorPosition.x, Input::cursorPosition.y);
+        Input::touchBegan(Input::cursorPosition.x, Input::cursorPosition.y, 1);
     }
     else {
         Input::mouseKeyIsPressed = false;
-        Input::touchEnded(Input::cursorPosition.x, Input::cursorPosition.y);
+        Input::touchEnded(Input::cursorPosition.x, Input::cursorPosition.y, 1);
     }
 }
 
 void cursorPositionCallback(GLFWwindow* window, double x, double y) {
     Input::cursorPosition = Point(x, y);
-    if (Input::mouseKeyIsPressed) Input::touchMoved(x, y);
+    if (Input::mouseKeyIsPressed) Input::touchMoved(x, y, 1);
 }
 
 #endif
@@ -55,15 +58,15 @@ void Input::initialize() {
 }
 
 void Input::touchBegan(INPUT_PARAMETERS) {
-    onTouchBegan(Point(x, y));
+    onTouchBegan(Point(x, y), id);
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
-    onTouchMoved(Point(x, y));
+    onTouchMoved(Point(x, y), id);
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
-    onTouchEnded(Point(x, y));
+    onTouchEnded(Point(x, y), id);
 }
 
 void Input::pressedKey(const char &key) {

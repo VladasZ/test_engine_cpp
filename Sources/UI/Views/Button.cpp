@@ -9,12 +9,12 @@
 #include "Button.hpp"
 
 void Button::setup() {
-    Input::onTouchBegan.subscribe(this, [this](Point touch) {
-        _touchID = 1;
+    Input::onTouchBegan.subscribe(this, [this](Point touch, int id) {
+        _touchID = id;
         touchAction();
     });
     
-    Input::onTouchEnded.subscribe(this, [this](Point touch) {
+    Input::onTouchEnded.subscribe(this, [this](Point touch, int id) {
         _touchID = -1;
         releaseAction();
     });

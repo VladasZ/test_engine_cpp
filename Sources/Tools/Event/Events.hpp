@@ -16,5 +16,6 @@ class World;
 
 class Events {
 public:
-    static Event<World, Point> moveControl;
+    static Event<World, Point> onRotation;
+    static Event<World, Point> onMove;
 };

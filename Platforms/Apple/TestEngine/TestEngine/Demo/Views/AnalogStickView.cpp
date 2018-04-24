@@ -24,19 +24,19 @@ void AnalogStickView::setup() {
     outlinePath->color = Color::white;
     addPath(outlinePath);
 
-    stickView = new DrawingView(STICK_VIEW_SIZE, STICK_VIEW_SIZE);
-    stickView->setCenter(frame.size.center());
-    addSubview(stickView);
+    directionStick = new DrawingView(STICK_VIEW_SIZE, STICK_VIEW_SIZE);
+    directionStick->setCenter(frame.size.center());
+    addSubview(directionStick);
 
-    stickView->addPath([this]() {
-        auto path = Path::circleWith(stickView->frame.size.center(),
+    directionStick->addPath([this]() {
+        auto path = Path::circleWith(directionStick->frame.size.center(),
                                      STICK_VIEW_SIZE);
         path->color = Color::black;
         return path;
     }());
     
-    stickView->addPath([this]() {
-        auto path = Path::circleWith(stickView->frame.size.center(),
+    directionStick->addPath([this]() {
+        auto path = Path::circleWith(directionStick->frame.size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
         path->color = Color::lightGray;
         return path;
@@ -44,7 +44,7 @@ void AnalogStickView::setup() {
     
     Input::onTouchBegan.subscribe(this, [this](const Point &point, int id) {
         _touchID = id;
-        stickView->setCenter(localPointFrom(point));
+        directionStick->setCenter(localPointFrom(point));
     });
 
     Input::onTouchMoved.subscribe(this, [this](const Point &point, int id) {
@@ -53,7 +53,7 @@ void AnalogStickView::setup() {
     
     Input::onTouchEnded.subscribe(this, [this](Point poit, int id) {
         _touchID = -1;
-        stickView->setCenter(frame.size.center());
+        directionStick->setCenter(frame.size.center());
         if (action) action(Point());
     });
 }
@@ -70,7 +70,7 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
         touchPosition = frame.size.center() + vector;
     }
     
-    stickView->setCenter(touchPosition);
+    directionStick->setCenter(touchPosition);
     if (action) action(vector * 0.1);
 }
 

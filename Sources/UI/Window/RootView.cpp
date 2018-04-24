@@ -12,43 +12,28 @@
 #include "AnalogStickView.hpp"
 #include "Events.hpp"
 
-static MoveView *moveView;
 
-static AnalogStickView *stickView;
-static AnalogStickView *stickView2;
-
-static View *testView;
+static AnalogStickView *directionStick;
+static AnalogStickView *rotationStick;
 
 void RootView::setup() {
     
-    moveView = new MoveView(226, 150);
-    moveView->autolayoutMask = Autolayout::BotLeft;
-    addSubview(moveView);
+    directionStick = new AnalogStickView();
+    rotationStick = new AnalogStickView();
     
+    directionStick->autolayoutMask = Autolayout::BotRight;
+    rotationStick->autolayoutMask = Autolayout::BotLeft;
     
-    stickView = new AnalogStickView();
-    stickView->autolayoutMask = Autolayout::BotRight;
-    
-    stickView->onDirectionChange([](const Point &point){
-        Events::moveControl(point);
+    directionStick->onDirectionChange([](const Point &point) {
+        Events::onRotation(point);
     });
     
-    addSubview(stickView);
-    
-    stickView2 = new AnalogStickView();
-    stickView2->autolayoutMask = Autolayout::TopRight;
-    addSubview(stickView2);
-    
-    testView = new View(300, 300, 100, 100);
-    testView->color = Color::green;
-    
-    
-    Events::moveControl.subscribe(nullptr, [](const Point &point) {
-        testView->rotation = point.angle();
+    rotationStick->onDirectionChange([](const Point &point) {
+        Events::onMove(point);
     });
     
-    addSubview(testView);
-    
+    addSubview(directionStick);
+    addSubview(rotationStick);
 }
 
 void RootView::draw() {
@@ -59,12 +44,21 @@ void RootView::draw() {
 void RootView::layout() {
     View::layout();
     
-    stickView->autolayoutMask = 0;
+    const float stickMargin = 16;
     
-    stickView->setFrame(Rect(stickView->frame.origin.x - 28,
-                             stickView->frame.origin.y - 28,
-                             stickView->frame.size.width,
-                             stickView->frame.size.height));
+    directionStick->autolayoutMask = 0;
+    rotationStick->autolayoutMask = 0;
+
+    directionStick->setFrame(Rect(directionStick->frame.origin.x - stickMargin,
+                             directionStick->frame.origin.y - stickMargin,
+                             directionStick->frame.size.width,
+                             directionStick->frame.size.height));
     
-    stickView->autolayoutMask = Autolayout::BotRight;
+    rotationStick->setFrame(Rect(rotationStick->frame.origin.x + stickMargin,
+                              rotationStick->frame.origin.y - stickMargin,
+                              rotationStick->frame.size.width,
+                              rotationStick->frame.size.height));
+    
+    directionStick->autolayoutMask = Autolayout::BotRight;
+    rotationStick->autolayoutMask = Autolayout::BotLeft;
 }

@@ -38,7 +38,11 @@ void World::setup() {
     test->setPosition(Point(150, 150));
     test->setSize(Size(200, 260));
         
-    Events::moveControl.subscribe(this, [this](const Point &point){
+    Events::onRotation.subscribe(this, [this](const Point &point){
         test->rotation = point.angle();
+    });
+    
+    Events::onMove.subscribe(this, [this](const Point &point){
+        test->velocity = point;
     });
 }

@@ -8,4 +8,5 @@
 
 #include "Events.hpp"
 
-Event<World, Point> Events::moveControl;
+Event<World, Point> Events::onRotation;
+Event<World, Point> Events::onMove;

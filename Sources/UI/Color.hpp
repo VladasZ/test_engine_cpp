@@ -8,23 +8,15 @@
 
 #pragma once
 
-#include <glm.hpp>
-
-using namespace glm;
-
 class Color MEMORY_MANAGED(Color) {
     
 public:
-    
-    vec4 data;
-    
-    float &r;
-    float &g;
-    float &b;
-    float &a;
-    
-    float *dataBuffer;
-    
+        
+    float r;
+    float g;
+    float b;
+    float a;
+        
     Color();
     Color(Color const &obj);
     Color& operator=(Color const &obj);

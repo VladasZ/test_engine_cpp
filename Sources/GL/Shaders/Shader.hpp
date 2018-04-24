@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Color.hpp"
+#include "GL.hpp"
 
 class Window;
 

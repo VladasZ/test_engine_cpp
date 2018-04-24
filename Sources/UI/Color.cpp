@@ -10,30 +10,26 @@
 #include "GL.hpp"
 
 Color::Color(Color const &obj) : Color() {
-    this->data = obj.data;
+    r = obj.r;
+    g = obj.g;
+    b = obj.b;
+    a = obj.a;
 }
 
 Color& Color::operator=(Color const &obj) {
-    
-    data = obj.data;
-    r = data.r;
-    g = data.g;
-    b = data.b;
-    a = data.a;
-    
+    r = obj.r;
+    g = obj.g;
+    b = obj.b;
+    a = obj.a;
     return *this;
 }
 
-Color::Color() : r(data.r), g(data.g), b(data.b), a(data.a), dataBuffer(&data[0]) {
-    data = vec4(0, 0, 0, 0);
-}
+Color::Color() : r(0), g(0), b(0), a(0) { }
 
-Color::Color(float r, float g, float b, float a) : Color() {
-    data = vec4(r, g, b, a);
-}
+Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
 
-void Color::setToUniform(int uniform) const {
-    GL(glUniform4fv(uniform, 1, &data.r));
+void Color::setToUniform(int uniform) const {    
+    GL(glUniform4fv(uniform, 1, &this->r));
 }
 
 Color Color::random() {

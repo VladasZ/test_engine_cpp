@@ -13,6 +13,7 @@
 Image *Image::cat;
 Image *Image::slow;
 Image *Image::palm;
+Image *Image::frisk;
 
 static int modeForChannels(const int &channels) {
     switch (channels) {
@@ -96,9 +97,10 @@ void Image::unbind() const {
 }
 
 void Image::initialize() {
-    cat  = new Image("cat.jpg");
-    slow = new Image("slow.jpg");
-    palm = new Image("palm.png");
+    cat   = new Image("cat.jpg");
+    slow  = new Image("slow.jpg");
+    palm  = new Image("palm.png");
+    frisk = new Image("frisk.png");
 }
 
 void Image::setFilter(Filter filter) {

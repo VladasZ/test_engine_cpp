@@ -21,30 +21,61 @@ ostream &operator<<(ostream &os, mat4 const &mat) {
 }
 
 
-Sprite::Sprite(Image *image) : image(image) { }
+Sprite::Sprite(Image *image) : _image(image) { }
+
+Sprite::~Sprite() {
+    if (_subsprites != nullptr) delete _subsprites;
+}
 
 BufferData * Sprite::getBufferData() {
     
-    GLfloat vertices[] = {
-        0,           0,            0.0f, 0.0f,
-        0,           _size.height, 0.0f, 1.0f,
-        _size.width, _size.height, 1.0f, 1.0f,
-        _size.width, 0,            1.0f, 0.0f
-    };
+    GLfloat *vertices;
+    
+    if (_subspriteIndex == -1) {
+        GLfloat vert[] = {
+            0,           0,            0.0f, 0.0f,
+            0,           _size.height, 0.0f, 1.0f,
+            _size.width, _size.height, 1.0f, 1.0f,
+            _size.width, 0,            1.0f, 0.0f
+        };
+        
+        vertices = vert;
+    }
+    else {
+        
+        Rect subFrame = _subsprites->at(_subspriteIndex);
+        
+        float widthRatio  = 1 / _image->size.width;
+        float heightRatio = 1 / _image->size.height;
+        
+        float x      = subFrame.origin.x    * widthRatio;
+        float y      = subFrame.origin.y    * heightRatio;
+        float width  = subFrame.size.width  * widthRatio;
+        float height = subFrame.size.height * heightRatio;
+        
+        GLfloat vert[] = {
+            0,           0,            x, y,
+            0,           _size.height, x, y + height,
+            _size.width, _size.height, x + width, y + height,
+            _size.width, 0,            x + width, y
+        };
+        
+        vertices = vert;
+    }
     
     GLushort indices[] = { 0, 1, 3, 2 };
     
-    return new BufferData(vertices, sizeof(vertices),
+    return new BufferData(vertices, sizeof(GLfloat) * 16,
                           indices,  sizeof(indices));
     
 }
 
 void Sprite::draw() {
-    if (neeedsBufferUpdate) {
+    if (_neeedsBufferUpdate) {
         setupBuffer();
-        neeedsBufferUpdate = false;
+        _neeedsBufferUpdate = false;
     }
-    image->bind();
+    _image->bind();
     Shader::sprite.use();
 
     mat4 transform = translate(mat4(), vec3(_position.x, _position.y, 0));
@@ -54,16 +85,37 @@ void Sprite::draw() {
     Shader::sprite.setTransformMatrix(transform);
     Shader::sprite.setUniformPosition(_position.x - _size.width / 2, _position.y - _size.height / 2);
     buffer->draw();
-    image->unbind();
+    _image->unbind();
 }
 
 const BufferConfiguration Sprite::bufferConfiguration() const {
     return BufferConfiguration(2, 2);
 }
 
-void Sprite::setPosition(const Point &position) { _position = position; }
-Point Sprite::position() { return _position; }
+void Sprite::setPosition(const Point &position) {
+    _position = position;
+}
 
-void Sprite::setSize(const Size &size) { _size = size; neeedsBufferUpdate = true; }
-Size Sprite::size() { return _size; }
+Point Sprite::position() {
+    return _position;
+}
+
+void Sprite::setSize(const Size &size) {
+    _size = size;
+    _neeedsBufferUpdate = true;
+}
+
+Size Sprite::size() {
+    return _size;
+}
+
+void Sprite::setSubsprites(const initializer_list<Rect> &subsprites) {
+    _subsprites = new vector<Rect>(subsprites);
+    setSubspriteIndex(0);
+}
+
+void Sprite::setSubspriteIndex(int index) {
+    _subspriteIndex = index;
+    _neeedsBufferUpdate = true;
+}
 

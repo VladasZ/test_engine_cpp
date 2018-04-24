@@ -764,8 +764,6 @@
 				824681BF1F459108003BA5F3 /* GL.hpp */,
 				8241AF542054634B00199A04 /* Drawable.hpp */,
 				8241AF532054634B00199A04 /* Drawable.cpp */,
-				82B5A0551F76AC9D00226B0F /* Image.hpp */,
-				82B5A0541F76AC9D00226B0F /* Image.cpp */,
 				824681BA1F4590BD003BA5F3 /* Shaders */,
 			);
 			path = GL;
@@ -934,8 +932,6 @@
 			children = (
 				826AC42920559A0200713D1D /* World.hpp */,
 				826AC42820559A0200713D1D /* World.cpp */,
-				826AC425205599B700713D1D /* Movable.hpp */,
-				826AC424205599B700713D1D /* Movable.cpp */,
 				826AC4352055ACB500713D1D /* GameObjects */,
 			);
 			path = 2D;
@@ -956,6 +952,8 @@
 			children = (
 				826AC4372055ACFC00713D1D /* Sprite.hpp */,
 				826AC4362055ACFC00713D1D /* Sprite.cpp */,
+				826AC425205599B700713D1D /* Movable.hpp */,
+				826AC424205599B700713D1D /* Movable.cpp */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -1045,6 +1043,8 @@
 				824FFAFD1F57415B000C58DA /* Input.cpp */,
 				7C5286D1204EE95D00E41CFB /* Alert.hpp */,
 				7C5286D0204EE95D00E41CFB /* Alert.cpp */,
+				82B5A0551F76AC9D00226B0F /* Image.hpp */,
+				82B5A0541F76AC9D00226B0F /* Image.cpp */,
 				82D452221F545F620086772F /* Color.hpp */,
 				82D452211F545F620086772F /* Color.cpp */,
 				822B29FF2051E92E005ACD62 /* Drawing */,

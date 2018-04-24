@@ -1,6 +1,6 @@
 //
 //  World.cpp
-//  TestEngine
+//  friskEngine
 //
 //  Created by Vladas Zakrevskis on 11/03/2018.
 //  Copyright © 2018 VladasZ. All rights reserved.
@@ -15,7 +15,7 @@
 
 World world;
 
-static Movable *test;
+static Movable *frisk;
 
 World::World() { }
 
@@ -30,19 +30,20 @@ void World::update() {
     }
 }
 
-
 void World::setup() {
-    test = new Movable(Image::cat);
-    addSprite(test);
+    frisk = new Movable(Image::frisk);
+    addSprite(frisk);
     
-    test->setPosition(Point(150, 150));
-    test->setSize(Size(200, 260));
+    frisk->setPosition(Point(150, 150));
+    frisk->setSize(Size(33, 57));
+    
+    frisk->setSubsprites({Rect(6, 7, 33, 57)});
         
     Events::onRotation.subscribe(this, [this](const Point &point){
-        test->rotation = point.angle();
+        frisk->rotation = point.angle();
     });
     
     Events::onMove.subscribe(this, [this](const Point &point){
-        test->velocity = point;
+        frisk->velocity = point * 2;
     });
 }

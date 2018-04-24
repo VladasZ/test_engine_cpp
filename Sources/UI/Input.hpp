@@ -14,11 +14,11 @@
 class Button;
 class View;
 
-#define INPUT_PARAMETERS float x, float y, int id
+#define INPUT_PARAMETERS float x, float y, long id
+
+typedef Event<View, TestEngine::Point, long> TouchEvent;
 
 class Input : NonCopyable {
-    
-    typedef Event<View, TestEngine::Point, int> TouchEvent;
     
     Input();
     

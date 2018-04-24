@@ -20,9 +20,9 @@ static auto touchMovedCondition = [](View *view, const Point &point, int id)
 static auto touchEndedCondition = [](View *view, const Point &point, int id)
 { return view->getTouchID() == id; };
 
-Input::TouchEvent Input::onTouchBegan(touchBeganCondition);
-Input::TouchEvent Input::onTouchMoved(touchMovedCondition);
-Input::TouchEvent Input::onTouchEnded(touchEndedCondition);
+TouchEvent Input::onTouchBegan(touchBeganCondition);
+TouchEvent Input::onTouchMoved(touchMovedCondition);
+TouchEvent Input::onTouchEnded(touchEndedCondition);
 
 #if GLFW
 

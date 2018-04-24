@@ -24,20 +24,27 @@ class Sprite : public Drawable {
     
 protected:
     
-    bool neeedsBufferUpdate = true;
+    bool _neeedsBufferUpdate = true;
     
     Point _position;
     Size _size;
     
-    Image *image;
+    Image *_image;
+    
+    vector<Rect> *_subsprites = nullptr;
+    int _subspriteIndex = -1;
     
 public:
         
     Sprite(Image *image);
+    ~Sprite();
     
     void setPosition(const Point &position);
     Point position();
     
     void setSize(const Size &size);
     Size size();
+    
+    void setSubsprites(const initializer_list<Rect> &subsprites);
+    void setSubspriteIndex(int index);
 };

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
-		7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */; };
 		7C148A4B201A23B600D93AD2 /* MemoryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CC68FE8201A01600016F226 /* MemoryTest.cpp */; };
 		7C1954362056D75B00254BB2 /* AnalogStickView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1954342056D75B00254BB2 /* AnalogStickView.cpp */; };
 		7C43B2922020C1A000B15E40 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C43B2902020C1A000B15E40 /* String.cpp */; };
@@ -31,6 +29,8 @@
 		7C80A29D1F7A52990042A1A1 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A29A1F7A527F0042A1A1 /* Font.cpp */; };
 		7C80A35E1F7A577F0042A1A1 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A35C1F7A577F0042A1A1 /* File.cpp */; };
 		7C80A35F1F7A579C0042A1A1 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80A35C1F7A577F0042A1A1 /* File.cpp */; };
+		7C9C80E4208F42170077FC68 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C80E2208F42170077FC68 /* DebugInfoView.cpp */; };
+		7C9C80E5208F42170077FC68 /* DebugInfoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C80E2208F42170077FC68 /* DebugInfoView.cpp */; };
 		7CA7D7FB1F7018C500113190 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F31F7018C500113190 /* image_helper.c */; };
 		7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F51F7018C500113190 /* SOIL.c */; };
 		7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CA7D7F71F7018C500113190 /* stb_image_aug.c */; };
@@ -144,8 +144,6 @@
 		67F89D7B13B8DB03686B464F /* libPods-TestEngineiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestEngineiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C14714D20121BE500494317 /* libfreetype-arm64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfreetype-arm64.a"; path = "../../../../../../../../../Desktop/FreeType_iOS_Release/libfreetype-arm64.a"; sourceTree = "<group>"; };
 		7C14715120121CB000494317 /* libFreetype2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFreetype2.a; path = ../../../../../../../../../Desktop/FreeType_iOS_Release/libFreetype2.a; sourceTree = "<group>"; };
-		7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DebugInfoView.cpp; sourceTree = "<group>"; };
-		7C148A48201A1DBA00D93AD2 /* DebugInfoView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DebugInfoView.hpp; sourceTree = "<group>"; };
 		7C1954342056D75B00254BB2 /* AnalogStickView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnalogStickView.cpp; sourceTree = "<group>"; };
 		7C1954352056D75B00254BB2 /* AnalogStickView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AnalogStickView.hpp; sourceTree = "<group>"; };
 		7C3F77E71F8E0578004A4854 /* glfw.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = glfw.rb; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 		7C58780A201218BA00094DF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
 		7C58780C201218D200094DF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		7C6696562018C96E00D67260 /* TestEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestEngine.hpp; sourceTree = "<group>"; };
-		7C6696582018C9AA00D67260 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7C66965C2018D15500D67260 /* MemoryManaged.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryManaged.hpp; sourceTree = "<group>"; };
 		7C66965E2018D19700D67260 /* MemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryManager.cpp; sourceTree = "<group>"; };
 		7C66965F2018D19700D67260 /* MemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryManager.hpp; sourceTree = "<group>"; };
@@ -222,6 +219,9 @@
 		7C80A35A1F7A56A90042A1A1 /* wglew.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = wglew.html; sourceTree = "<group>"; };
 		7C80A35C1F7A577F0042A1A1 /* File.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
 		7C80A35D1F7A577F0042A1A1 /* File.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = File.hpp; sourceTree = "<group>"; };
+		7C9C80E1208F41FC0077FC68 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7C9C80E2208F42170077FC68 /* DebugInfoView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugInfoView.cpp; sourceTree = "<group>"; };
+		7C9C80E3208F42170077FC68 /* DebugInfoView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugInfoView.hpp; sourceTree = "<group>"; };
 		7CA7D7F21F7018C500113190 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
 		7CA7D7F31F7018C500113190 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
 		7CA7D7F41F7018C500113190 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_helper.h; sourceTree = "<group>"; };
@@ -392,13 +392,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		7C148A46201A1D0400D93AD2 /* Debug */ = {
+		7C148A46201A1D0400D93AD2 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				7C148A48201A1DBA00D93AD2 /* DebugInfoView.hpp */,
-				7C148A47201A1DBA00D93AD2 /* DebugInfoView.cpp */,
+				7C9C80E2208F42170077FC68 /* DebugInfoView.cpp */,
+				7C9C80E3208F42170077FC68 /* DebugInfoView.hpp */,
 			);
-			path = Debug;
+			path = Test;
 			sourceTree = "<group>";
 		};
 		7C3F77E51F8E0578004A4854 /* 3.2.1 */ = {
@@ -872,7 +872,7 @@
 		8266A81F1F4588FB00C55472 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				7C6696582018C9AA00D67260 /* PrefixHeader.pch */,
+				7C9C80E1208F41FC0077FC68 /* PrefixHeader.pch */,
 				7C6696562018C96E00D67260 /* TestEngine.hpp */,
 				82E76BF21F49A67D009E2420 /* TestEngineMain.h */,
 				829985061F77F6A4002B7E75 /* TestEngineMain.cpp */,
@@ -986,7 +986,7 @@
 				7C58762F2012099A00094DF5 /* Label.cpp */,
 				822596D02051ADAF0094733E /* Button.hpp */,
 				822596CF2051ADAF0094733E /* Button.cpp */,
-				7C148A46201A1D0400D93AD2 /* Debug */,
+				7C148A46201A1D0400D93AD2 /* Test */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1206,7 +1206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5286D3204EE95D00E41CFB /* Alert.cpp in Sources */,
-				7C148A4A201A23B000D93AD2 /* DebugInfoView.cpp in Sources */,
 				826AC42B20559A0200713D1D /* World.cpp in Sources */,
 				7CA7D7FC1F7018C500113190 /* SOIL.c in Sources */,
 				8241AF562054634B00199A04 /* Drawable.cpp in Sources */,
@@ -1243,6 +1242,7 @@
 				824B9DF31F55F5A500C39543 /* Debug.cpp in Sources */,
 				7CA7D7FD1F7018C500113190 /* stb_image_aug.c in Sources */,
 				824B9DDC1F55F25B00C39543 /* AppDelegate.m in Sources */,
+				7C9C80E5208F42170077FC68 /* DebugInfoView.cpp in Sources */,
 				824B9E0B1F55F5BA00C39543 /* Polygon.cpp in Sources */,
 				7C5876332012166E00094DF5 /* Glyph.cpp in Sources */,
 				824B9DD91F55F25B00C39543 /* main.m in Sources */,
@@ -1265,9 +1265,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				826AC43320559C2200713D1D /* Events.cpp in Sources */,
-				7C148A49201A1DBA00D93AD2 /* DebugInfoView.cpp in Sources */,
 				8208E2BB1F4882DC000A8E14 /* CallObj.m in Sources */,
 				822596D12051ADAF0094733E /* Button.cpp in Sources */,
+				7C9C80E4208F42170077FC68 /* DebugInfoView.cpp in Sources */,
 				8241AF552054634B00199A04 /* Drawable.cpp in Sources */,
 				7C43B2922020C1A000B15E40 /* String.cpp in Sources */,
 				82E76BF91F49AB6A009E2420 /* Debug.cpp in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #include "World.hpp"
-#include "Movable.hpp"
+#include "Unit.hpp"
 #include "Sprite.hpp"
 #include "Image.hpp"
 #include "Events.hpp"
@@ -15,7 +15,7 @@
 
 World world;
 
-static Movable *frisk;
+static Unit *frisk;
 
 World::World() { }
 
@@ -31,19 +31,24 @@ void World::update() {
 }
 
 void World::setup() {
-    frisk = new Movable(Image::frisk);
+    frisk = new Unit(Image::frisk);
     addSprite(frisk);
     
     frisk->setPosition(Point(150, 150));
-    frisk->setSize(Size(33, 57));
+    frisk->setSize(Size(34, 57));
     
-    frisk->setSubsprites({Rect(6, 7, 33, 57)});
+    frisk->setSubsprites({
+        Rect( 6,   7, 33, 57),
+        Rect( 7,  65, 34, 56),
+        Rect(57, 131, 33, 57),
+        Rect(53, 190, 34, 56)
+    });
         
     Events::onRotation.subscribe(this, [this](const Point &point){
         frisk->rotation = point.angle();
     });
     
     Events::onMove.subscribe(this, [this](const Point &point){
-        frisk->velocity = point * 2;
+        frisk->setVelocity(point);
     });
 }

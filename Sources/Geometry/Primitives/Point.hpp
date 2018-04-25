@@ -9,10 +9,10 @@
 #pragma once
 
 enum Direction {
-    right,
-    left,
-    up,
-    down
+    Right,
+    Left,
+    Up,
+    Down
 };
 
 namespace TestEngine {
@@ -33,11 +33,9 @@ namespace TestEngine {
         bool isZero() const;
         float length() const;
         
-        Point normalized() const;
-        float distanceTo(const Point &point) const;
         Point withLength(float length) const;
-        float angleWith(const Point &point) const;
-        float projectionTo(const Point &point) const;
+        
+        Direction directionX() const;
         
         String toString() const;
         

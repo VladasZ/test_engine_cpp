@@ -15,10 +15,10 @@ Point::Point(float x, float y) : x(x), y(y) {
 
 Point::Point(Direction direction, float length) {
     switch (direction) {
-        case Direction::left:  x = -length; y =  0;      break;
-        case Direction::right: x =  length; y =  0;      break;
-        case Direction::up:    x =  0;      y = -length; break;
-        case Direction::down:  x =  0;      y =  length; break;
+        case Direction::Left:  x = -length; y =  0;      break;
+        case Direction::Right: x =  length; y =  0;      break;
+        case Direction::Up:    x =  0;      y = -length; break;
+        case Direction::Down:  x =  0;      y =  length; break;
         default: break;
     }
 }
@@ -42,6 +42,10 @@ float Point::length() const {
 Point Point::withLength(float length) const {
     float ratio = length / this->length();
     return Point(x * ratio, y * ratio);
+}
+
+Direction Point::directionX() const {
+    return x > 0 ? Direction::Right : Direction::Left;
 }
 
 String Point::toString() const {

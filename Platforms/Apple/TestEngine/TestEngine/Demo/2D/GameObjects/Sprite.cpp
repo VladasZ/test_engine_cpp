@@ -115,7 +115,12 @@ void Sprite::setSubsprites(const initializer_list<Rect> &subsprites) {
 }
 
 void Sprite::setSubspriteIndex(int index) {
+    if (_subspriteIndex == index) return;
     _subspriteIndex = index;
     _neeedsBufferUpdate = true;
+}
+
+int Sprite::getSubspriteIndex() const {
+    return _subspriteIndex;
 }
 

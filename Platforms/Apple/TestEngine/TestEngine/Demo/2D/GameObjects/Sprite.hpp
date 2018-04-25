@@ -47,4 +47,5 @@ public:
     
     void setSubsprites(const initializer_list<Rect> &subsprites);
     void setSubspriteIndex(int index);
+    int getSubspriteIndex() const;
 };

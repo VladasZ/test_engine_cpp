@@ -18,6 +18,8 @@
 		7C58780B201218BA00094DF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C58780A201218BA00094DF5 /* OpenGLES.framework */; };
 		7C58780D201218D200094DF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C58780C201218D200094DF5 /* GLKit.framework */; };
 		7C6696602018D19700D67260 /* MemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C66965E2018D19700D67260 /* MemoryManager.cpp */; };
+		7C6FEC062090891D004F2823 /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FEC042090891D004F2823 /* Unit.cpp */; };
+		7C6FEC072090891D004F2823 /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FEC042090891D004F2823 /* Unit.cpp */; };
 		7C7C32D52010F6A200489969 /* Glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C7C32D32010F6A200489969 /* Glyph.cpp */; };
 		7C80A28D1F7A4DF00042A1A1 /* BufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8222478C1F6EF80F00A1B769 /* BufferData.cpp */; };
 		7C80A28E1F7A4DF00042A1A1 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82D4522A1F546B8E0086772F /* Buffer.cpp */; };
@@ -173,6 +175,8 @@
 		7C66965C2018D15500D67260 /* MemoryManaged.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryManaged.hpp; sourceTree = "<group>"; };
 		7C66965E2018D19700D67260 /* MemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryManager.cpp; sourceTree = "<group>"; };
 		7C66965F2018D19700D67260 /* MemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryManager.hpp; sourceTree = "<group>"; };
+		7C6FEC042090891D004F2823 /* Unit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
+		7C6FEC052090891D004F2823 /* Unit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Unit.hpp; sourceTree = "<group>"; };
 		7C7307EE1F8D1E2900C5DDFF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../../../../../../usr/local/Cellar/freetype/2.8.1/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		7C7C32D32010F6A200489969 /* Glyph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glyph.cpp; sourceTree = "<group>"; };
 		7C7C32D42010F6A200489969 /* Glyph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glyph.hpp; sourceTree = "<group>"; };
@@ -954,6 +958,8 @@
 				826AC4362055ACFC00713D1D /* Sprite.cpp */,
 				826AC425205599B700713D1D /* Movable.hpp */,
 				826AC424205599B700713D1D /* Movable.cpp */,
+				7C6FEC052090891D004F2823 /* Unit.hpp */,
+				7C6FEC042090891D004F2823 /* Unit.cpp */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -1234,6 +1240,7 @@
 				824B9E091F55F5BA00C39543 /* Color.cpp in Sources */,
 				8259AD042019324B003DFF62 /* MemoryManager.cpp in Sources */,
 				7C5876322012166900094DF5 /* Label.cpp in Sources */,
+				7C6FEC072090891D004F2823 /* Unit.cpp in Sources */,
 				82BE33131F5619C000AD91AC /* Triangle.cpp in Sources */,
 				822E248C2056FC11008CA475 /* DrawingView.cpp in Sources */,
 				824B9E0E1F55F8DC00C39543 /* OBJBridge.m in Sources */,
@@ -1297,6 +1304,7 @@
 				822E248B2056FC11008CA475 /* DrawingView.cpp in Sources */,
 				7C5286D2204EE95D00E41CFB /* Alert.cpp in Sources */,
 				822596D52051B0640094733E /* RootView.cpp in Sources */,
+				7C6FEC062090891D004F2823 /* Unit.cpp in Sources */,
 				82E222281F4A296D002C1F17 /* Window.cpp in Sources */,
 				826AC4382055ACFC00713D1D /* Sprite.cpp in Sources */,
 				822B2A022051E9AE005ACD62 /* Path.cpp in Sources */,

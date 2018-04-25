@@ -18,6 +18,6 @@ public:
     
     Point velocity;
     
-    void update();
+    virtual void update();
     
 };

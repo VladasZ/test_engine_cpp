@@ -41,10 +41,10 @@ void MoveView::setup() {
     
     static int speed = 10;
     
-    leftButton ->onTouch([]() { Events::onRotation(Point(Direction::left,  speed)); });
-    rightButton->onTouch([]() { Events::onRotation(Point(Direction::right, speed)); });
-    upButton   ->onTouch([]() { Events::onRotation(Point(Direction::up,    speed)); });
-    downButton ->onTouch([]() { Events::onRotation(Point(Direction::down,  speed)); });
+    leftButton ->onTouch([]() { Events::onRotation(Point(Direction::Left,  speed)); });
+    rightButton->onTouch([]() { Events::onRotation(Point(Direction::Right, speed)); });
+    upButton   ->onTouch([]() { Events::onRotation(Point(Direction::Up,    speed)); });
+    downButton ->onTouch([]() { Events::onRotation(Point(Direction::Down,  speed)); });
 
     for (auto button : buttons())
         button->onRelease([]() { Events::onRotation(Point()); });

@@ -29,7 +29,7 @@ protected:
     
 public:
     
-    float rotation;
+    float rotation = 0;
     
     Color color;
 };

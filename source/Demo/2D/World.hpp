@@ -15,8 +15,8 @@ class Sprite;
 
 class World {
     
-    vector<Movable *> movableObjects;
-    vector<Sprite *> objects;
+    std::vector<Movable *> movableObjects;
+    std::vector<Sprite *> objects;
 
 public:
     

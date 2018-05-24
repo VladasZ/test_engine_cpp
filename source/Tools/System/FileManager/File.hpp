@@ -24,7 +24,7 @@ public:
     size_t getSize() const;
     Byte *getData() const;
 
-    File(const String &path);
+    File(const std::string &path);
     ~File();
 };
 

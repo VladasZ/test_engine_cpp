@@ -10,6 +10,7 @@
 
 #include "Primitives.hpp"
 #include "Drawable.hpp"
+#include <vector>
 
 class World;
 class Image;
@@ -31,7 +32,7 @@ protected:
     
     Image *_image;
     
-    vector<Rect> *_subsprites = nullptr;
+    std::vector<Rect> *_subsprites = nullptr;
     int _subspriteIndex = -1;
     
 public:
@@ -45,7 +46,7 @@ public:
     void setSize(const Size &size);
     Size size();
     
-    void setSubsprites(const initializer_list<Rect> &subsprites);
+    void setSubsprites(const std::initializer_list<Rect> &subsprites);
     void setSubspriteIndex(int index);
     int getSubspriteIndex() const;
 };

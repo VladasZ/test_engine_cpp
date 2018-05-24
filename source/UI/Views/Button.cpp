@@ -8,6 +8,8 @@
 
 #include "Button.hpp"
 
+using namespace std;
+
 void Button::setup() {
     Input::onTouchBegan.subscribe(this, [this](Point touch, int id) {
         _touchID = id;
@@ -20,7 +22,7 @@ void Button::setup() {
     });
 }
 
-void Button::setText(const String &text) {
+void Button::setText(const std::string &text) {
     if (label == nullptr) {
         label = new Label();
         label->autolayoutMask = Autolayout::Center;

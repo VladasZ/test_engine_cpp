@@ -11,10 +11,11 @@
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"
+#include <vector>
 
 class Label : public View _MEMORY_MANAGED(Label) {
     
-    String _text;
+    std::string _text;
     Font *_font = Font::System;
     
     void setGlyphs();
@@ -27,8 +28,8 @@ public:
     
     using View::View;
         
-    String text() const;
-    void setText(const String &text);
+    std::string text() const;
+    void setText(const std::string &text);
     
     Font *font() const;
     void setFont(Font *font);

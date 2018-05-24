@@ -19,7 +19,7 @@ Shader Shader::uiTexture;
 Shader Shader::uiMonochrome;
 Shader Shader::sprite;
 
-Shader::Shader(const String &vertexPath, const String &fragmentPath) {    
+Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath) {    
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
 }
 

@@ -10,8 +10,8 @@
 
 #include "STL.hpp"
 
-#define _EVENT_FUNCTION_TYPE function<void(Params...)>
-#define _EVENT_CONDITION_FUNCTION_TYPE function<bool(SubscriberType *, Params...)>
+#define _EVENT_FUNCTION_TYPE std::function<void(Params...)>
+#define _EVENT_CONDITION_FUNCTION_TYPE std::function<bool(SubscriberType *, Params...)>
 
 template<class SubscriberType, class ...Params>
 class Event {
@@ -27,7 +27,7 @@ class Event {
         { }
     };
     
-    vector<Subscriber> subscribers;
+    std::vector<Subscriber> subscribers;
     
     _EVENT_CONDITION_FUNCTION_TYPE _condition = [](SubscriberType *, Params...){ return true; };
     

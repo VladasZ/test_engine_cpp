@@ -11,6 +11,7 @@
 #include "NonCopyable.hpp"
 #include "MemoryManaged.hpp"
 #include "String.hpp"
+#include <vector>
 
 class File;
 class Image;
@@ -23,9 +24,9 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     
     float _height;
     float _baselineShift;
-    String _fileName;
+    std::string _fileName;
     
-    vector<Glyph *> glyphs;
+    std::vector<Glyph *> glyphs;
   
 public:
     
@@ -35,7 +36,7 @@ public:
     
     static void initialize();
 
-    Font(const String& fileName, int size = 20);
+    Font(const std::string& fileName, int size = 20);
     
     float baselineShift() const;
     float height() const;

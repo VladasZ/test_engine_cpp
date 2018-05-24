@@ -14,8 +14,8 @@ void Unit::update() {
     float oldX = abs(_position.x);
     Movable::update();
     float newX = abs(_position.x);
-    distanceFromLastStep += max(oldX, newX) - min(oldX, newX);
-    if (distanceFromLastStep < stepLength) return;
+ /*   distanceFromLastStep += MAX(oldX, newX) - MIN(oldX, newX);
+    if (distanceFromLastStep < stepLength) return;*/
     
     Direction direction = velocity.directionX();
 

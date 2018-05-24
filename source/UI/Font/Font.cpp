@@ -53,7 +53,7 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
                            face->glyph->metrics.horiBearingY / 64));
 }
 
-Font::Font(const String& fileName, int size) : _fileName(fileName) {
+Font::Font(const std::string& fileName, int size) : _fileName(fileName) {
     
     auto file = new File(fileName);
     FT_Face face;

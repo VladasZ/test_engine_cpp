@@ -41,7 +41,7 @@ public:
     int channels;
     
     Image(const Size &size, void *data, const int &channels, Filter filter = Filter::Linear);
-    Image(const String& file, Filter filter = Filter::Linear);
+    Image(const std::string& file, Filter filter = Filter::Linear);
     
     void bind() const;
     void unbind() const;

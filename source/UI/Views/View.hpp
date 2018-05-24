@@ -11,6 +11,7 @@
 #include "Primitives.hpp"
 #include "Color.hpp"
 #include "Drawable.hpp"
+#include <vector>
 
 enum Autolayout {
     
@@ -58,7 +59,7 @@ public:
     
     Rect frame;
     int autolayoutMask = None;
-    vector<View *> subviews;
+    std::vector<View *> subviews;
     
     View() = default;
     View(float x, float y, float width, float height);

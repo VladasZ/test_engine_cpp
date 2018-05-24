@@ -7,10 +7,10 @@
 #include <Windows.h>
 #endif
 
-const String FileManager::assetsDirectory() {
+const std::string FileManager::assetsDirectory() {
     
 #ifdef APPLE
-    return String(objCWorkDirectoryPath()) + "/Assets/";
+    return std::string(objCWorkDirectoryPath()) + "/Assets/";
 #endif
     
 #ifdef WINDOWS
@@ -20,7 +20,7 @@ const String FileManager::assetsDirectory() {
     return "NOT_IMPLEMENTED";
 }
 
-const String FileManager::workDirectory() {
+const std::string FileManager::workDirectory() {
 #ifdef WINDOWS
 	char result[MAX_PATH];
 	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
@@ -30,7 +30,7 @@ const String FileManager::workDirectory() {
     return "";
 }
 
-const String FileManager::assetsPathWithFileName(const String& fileName) {
+const std::string FileManager::assetsPathWithFileName(const std::string& fileName) {
     
     return assetsDirectory() + fileName;
 }

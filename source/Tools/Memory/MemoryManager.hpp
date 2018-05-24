@@ -27,7 +27,7 @@ public:
     
     static bool isTracking;
     
-    static vector<ClassMemoryInfo *> info;
+    static std::vector<ClassMemoryInfo *> info;
     
     static int totalObjectsAllocated;
     static int totalObjectsDeleted;

@@ -9,6 +9,8 @@
 #include "AnalogStickView.hpp"
 #include "Event.hpp"
 
+using namespace std;
+
 #define SIZE 140
 #define OUTLINE_WIDTH 10
 #define STICK_VIEW_SIZE (SIZE / 2.18)
@@ -50,7 +52,7 @@ void AnalogStickView::setup() {
         onTouchMoved(point);
     });
     
-    Input::onTouchEnded.subscribe(this, [this](Point poit, int id) {
+    Input::onTouchEnded.subscribe(this, [this](Point point, int id) {
         _touchID = -1;
         directionStick->setCenter(frame.size.center());
         if (action) action(Point());

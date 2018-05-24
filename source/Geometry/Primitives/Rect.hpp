@@ -34,7 +34,7 @@ public:
     
     Rect withZeroOrigin() const;
     
-    String toString() const;
+    std::string toString() const;
     
     BufferData *getData() const;
 };

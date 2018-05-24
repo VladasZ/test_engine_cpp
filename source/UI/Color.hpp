@@ -32,7 +32,7 @@ public:
     
     void setToUniform(int uniform) const;
     
-    String toString() const;
+    std::string toString() const;
     
     bool isTransparent() const;
     

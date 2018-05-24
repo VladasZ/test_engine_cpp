@@ -12,7 +12,7 @@
 #include "MemoryManager.hpp"
 #include "ClassMemoryInfo.hpp"
 
-vector<ClassMemoryInfo *> MemoryManager::info;
+std::vector<ClassMemoryInfo *> MemoryManager::info;
 
 bool MemoryManager::isTracking = true;
 

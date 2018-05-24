@@ -14,7 +14,7 @@ static Button *rightButton;
 static Button *upButton;
 static Button *downButton;
 
-vector<Button *> buttons() {
+std::vector<Button *> buttons() {
     return { leftButton, rightButton, upButton, downButton };
 }
 

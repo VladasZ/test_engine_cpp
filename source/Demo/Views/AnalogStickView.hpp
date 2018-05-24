@@ -9,10 +9,12 @@
 #pragma once
 
 #include "UI.hpp"
+#include <functional>
+#include <vector>
 
 class AnalogStickView : public DrawingView {
   
-    function<void(const Point &)> action;
+    std::function<void(const Point &)> action;
     void setup() override;
     
     DrawingView *directionStick;
@@ -23,5 +25,5 @@ public:
         
     AnalogStickView();
     
-    void onDirectionChange(const function<void(const Point &)> &action);
+    void onDirectionChange(const std::function<void(const Point &)> &action);
 };

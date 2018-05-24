@@ -13,7 +13,7 @@
 
 Polygon::Polygon() { }
 
-Polygon::Polygon(vector<Vertex> vertices) : vertices(vertices) {
+Polygon::Polygon(std::vector<Vertex> vertices) : vertices(vertices) {
     createBuffers();
 }
 

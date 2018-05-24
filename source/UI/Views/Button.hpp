@@ -9,11 +9,12 @@
 #pragma once
 
 #include "UI.hpp"
+#include <functional>
 
 class Button : public View _MEMORY_MANAGED(Button) {
             
-    function<void()> touchAction;
-    function<void()> releaseAction;
+    std::function<void()> touchAction;
+    std::function<void()> releaseAction;
 
     ImageView *imageView = nullptr;
     Label *label = nullptr;
@@ -24,9 +25,9 @@ public:
     
     using View::View;
     
-    void setText(const String &text);
+    void setText(const std::string &text);
     void setImage(Image *image);
         
-    void onTouch(function<void()> action);
-    void onRelease(function<void()> action);
+    void onTouch(std::function<void()> action);
+    void onRelease(std::function<void()> action);
 };

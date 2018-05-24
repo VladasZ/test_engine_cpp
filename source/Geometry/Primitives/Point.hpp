@@ -39,7 +39,7 @@ namespace TestEngine {
         
         Direction directionX() const;
         
-        String toString() const;
+        std::string toString() const;
         
         Point operator +(const Point &point) const;
         void operator +=(const Point &point);

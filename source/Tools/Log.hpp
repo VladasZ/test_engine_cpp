@@ -27,11 +27,11 @@
 #endif
 
 #define __log(message, type, file, func, line)\
-cout << "[" << type << "]" \
+std::cout << "[" << type << "]" \
 LOCATION(file, func, line)\
-<< message << endl;
+<< message << std::endl;
 
-#define __logI(message, file, func, line) cout << "[💚 INFO 💚] " << message << endl;
+#define __logI(message, file, func, line) std::cout << "[💚 INFO 💚] " << message << std::endl;
 #define __logW(message, file, func, line) __log(message, "💛 WARNING 💛", file, func, line)
 
 #if LOG_ERRORS
@@ -43,7 +43,7 @@ LOCATION(file, func, line)\
 #define Log(message)     __logI(message, __FILENAME__, __func__, __LINE__)
 #define Warning(message) __logW(message, __FILENAME__, __func__, __LINE__)
 #define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
-#define Endl cout << endl
+#define Endl std::cout << std::endl
 
 #define PING Warning("")
 

@@ -30,7 +30,7 @@
 template <class T>
 class MemoryManaged {
     
-    static String className;
+    static std::string className;
     static int *allocated;
     static int *deleted;
     
@@ -71,7 +71,7 @@ public:
 };
 
 template <class T>
-String MemoryManaged<T>::className = []() {
+std::string MemoryManaged<T>::className = []() {
     auto info = new ClassMemoryInfo(typeid(T).name());
     //Log("48 Initialized class: " << info->className);
     allocated = &info->allocated;

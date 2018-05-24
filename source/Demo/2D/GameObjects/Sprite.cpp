@@ -13,11 +13,12 @@
 #include "Window.hpp"
 #include "GL.hpp"
 
-ostream &operator<<(ostream &os, mat4 const &mat) {
-    return os << "\n"_s + mat[0][0] + " " + mat[0][1] + " " + mat[0][2] + " " + mat[0][3] + "\n" +
-                          mat[1][0] + " " + mat[1][1] + " " + mat[1][2] + " " + mat[1][3] + "\n" +
-                          mat[2][0] + " " + mat[2][1] + " " + mat[2][2] + " " + mat[2][3] + "\n" +
-                          mat[3][0] + " " + mat[3][1] + " " + mat[3][2] + " " + mat[3][3] + "\n";
+std::ostream &operator<<(std::ostream &os, mat4 const &mat) {
+    return os << "not implemented";
+        //"\n"_s + mat[0][0] + " " + mat[0][1] + " " + mat[0][2] + " " + mat[0][3] + "\n" +
+        //                  mat[1][0] + " " + mat[1][1] + " " + mat[1][2] + " " + mat[1][3] + "\n" +
+        //                  mat[2][0] + " " + mat[2][1] + " " + mat[2][2] + " " + mat[2][3] + "\n" +
+        //                  mat[3][0] + " " + mat[3][1] + " " + mat[3][2] + " " + mat[3][3] + "\n";
 }
 
 
@@ -109,8 +110,8 @@ Size Sprite::size() {
     return _size;
 }
 
-void Sprite::setSubsprites(const initializer_list<Rect> &subsprites) {
-    _subsprites = new vector<Rect>(subsprites);
+void Sprite::setSubsprites(const std::initializer_list<Rect> &subsprites) {
+    _subsprites = new std::vector<Rect>(subsprites);
     setSubspriteIndex(0);
 }
 

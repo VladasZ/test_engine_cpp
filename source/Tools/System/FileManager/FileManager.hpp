@@ -8,8 +8,8 @@ class FileManager {
 
 public:
 
-	static const String assetsDirectory();
-    static const String workDirectory();
+	static const std::string assetsDirectory();
+    static const std::string workDirectory();
     
-    static const String assetsPathWithFileName(const String& fileName);
+    static const std::string assetsPathWithFileName(const std::string& fileName);
 };

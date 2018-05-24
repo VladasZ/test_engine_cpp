@@ -9,10 +9,11 @@
 #pragma once
 
 #include "UI.hpp"
+#include <vector>
 
 class DrawingView : public View {
     
-    vector<Path *> paths;
+    std::vector<Path *> paths;
     
     void draw() override;
     void layout() override;

@@ -11,6 +11,7 @@
 #include "Point.hpp"
 #include "Rect.hpp"
 #include "Drawable.hpp"
+#include <vector>
 
 class Buffer;
 class View;
@@ -22,7 +23,7 @@ enum PathDrawMode {
 
 class Path : public Drawable _MEMORY_MANAGED(Path) {
     
-    vector<Point> points;
+    std::vector<Point> points;
     
     BufferData *getBufferData() override;
     bool bufferIsSet = false;

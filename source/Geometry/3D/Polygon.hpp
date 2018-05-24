@@ -9,13 +9,14 @@
 #pragma once
 
 #include "Vertex.hpp"
+#include <vector>
 
 class Polygon MEMORY_MANAGED(Polygon) {
     
 public:
     
-    vector<Vertex> vertices;
-    vector<short> indices;
+    std::vector<Vertex> vertices;
+    std::vector<short> indices;
     
     float *vertexBuffer = nullptr;
     short *indexBuffer = nullptr;
@@ -24,7 +25,7 @@ public:
     int indexBufferSize;
     
     Polygon();
-    Polygon(vector<Vertex> vertices);
+    Polygon(std::vector<Vertex> vertices);
     
     void printBuffers();
     

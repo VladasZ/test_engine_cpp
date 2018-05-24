@@ -37,15 +37,15 @@ void DebugInfoView::setup() {
     _touchID = 1;
     
     Input::onTouchBegan.subscribe(this, [this](const Point &point, int id) {
-        touchLabel->setText("Touch began: "_s + point.x + " " + point.y);
+        touchLabel->setText("Touch began: "_s/* + point.x + " " + point.y*/);
     });
     
     Input::onTouchMoved.subscribe(this, [this](const Point &point, int id) {
-        touchLabel->setText("Touch moved: "_s + point.x + " " + point.y);
+        touchLabel->setText("Touch moved: "_s/* + point.x + " " + point.y*/);
     });
     
     Input::onTouchEnded.subscribe(this, [this](const Point &point, int id) {
-        touchLabel->setText("Touch ended: "_s + point.x + " " + point.y);
+        touchLabel->setText("Touch ended: "_s/* + point.x + " " + point.y*/);
     });
 }
 
@@ -66,7 +66,7 @@ void DebugInfoView::update() {
 #endif
 }
 
-vector<Label *> DebugInfoView::labels() const {
+std::vector<Label *> DebugInfoView::labels() const {
     return {
         fpsLabel,
 #if MEMORY_TRACKING
@@ -79,7 +79,7 @@ vector<Label *> DebugInfoView::labels() const {
     };
 }
 
-void DebugInfoView::setTouchLabelText(const String &text) {
+void DebugInfoView::setTouchLabelText(const std::string &text) {
 #if DEBUG
      MEMORY_MANAGER_INVISIBLE(
          touchLabel->setText(text);

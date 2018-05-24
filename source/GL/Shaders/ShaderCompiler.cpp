@@ -11,7 +11,7 @@
 #include "Debug.hpp"
 #include "STL.hpp"
 
-String ShaderCompiler::shaderVersion() {
+std::string ShaderCompiler::shaderVersion() {
     
 #if WINDOWS || MAC_OS
     return "#version 330 core";
@@ -23,13 +23,13 @@ String ShaderCompiler::shaderVersion() {
 #endif
 }
 
-int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath)
+int ShaderCompiler::compile(const std::string &vertexPath, const std::string &fragmentPath)
 {
 	GLuint VertexShaderID = GL(glCreateShader(GL_VERTEX_SHADER));
 	GLuint FragmentShaderID = GL(glCreateShader(GL_FRAGMENT_SHADER));
 
-	String VertexShaderCode = shaderVersion();
-	ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
+	std::string VertexShaderCode = shaderVersion();
+	std::ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
     
 #if SHADER_COMPILER_OUTPUT
     
@@ -40,7 +40,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if (VertexShaderStream.is_open())
     {
-		string Line = "";
+		std::string Line = "";
         
 		while(getline(VertexShaderStream, Line))
 			VertexShaderCode += "\n" + Line;
@@ -54,12 +54,12 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 		return 0;
 	}
 
-	String FragmentShaderCode = shaderVersion();
-	ifstream FragmentShaderStream(fragmentPath.c_str(), std::ios::in);
+	std::string FragmentShaderCode = shaderVersion();
+	std::ifstream FragmentShaderStream(fragmentPath.c_str(), std::ios::in);
     
 	if (FragmentShaderStream.is_open())
     {
-		string Line = "";
+		std::string Line = "";
         
 		while(getline(FragmentShaderStream, Line))
 			FragmentShaderCode += "\n" + Line;
@@ -83,7 +83,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if ( InfoLogLength > 0 )
     {
-		vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
+		std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
 		GL(glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]));
 		Error(&VertexShaderErrorMessage[0]);
 	}
@@ -118,7 +118,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if (InfoLogLength > 0)
     {
-		vector<char> ProgramErrorMessage(InfoLogLength+1);
+		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
 		GL(glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]));
         Error(&ProgramErrorMessage[0]);
 	}

@@ -22,7 +22,7 @@ public:
     Vertex(float x, float y, float z = 0, Color color = Color::white);
     Vertex(vec3 position, Color color = Color::white);
     
-    String toString() const;
+    std::string toString() const;
     
     static int bufferSize;
 };

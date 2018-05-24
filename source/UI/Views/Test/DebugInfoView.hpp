@@ -22,7 +22,7 @@ class DebugInfoView : public View _MEMORY_MANAGED(DebugInfoView) {
     Label *framesDrawnLabel;
     Label *touchLabel;
 
-    vector<Label *> labels() const;
+    std::vector<Label *> labels() const;
     
   
 public:
@@ -32,7 +32,7 @@ public:
     void setup() override;
     
     void update();
-    void setTouchLabelText(const String &text);
+    void setTouchLabelText(const std::string &text);
     
     bool containsGlobalPoint(const Point &point) const override { return true; }
 };

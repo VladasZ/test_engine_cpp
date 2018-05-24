@@ -10,7 +10,7 @@
 #include "File.hpp"
 #include "Log.hpp"
 
-File::File(const String &path) {
+File::File(const std::string &path) {
     
     FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
     

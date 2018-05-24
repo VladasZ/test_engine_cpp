@@ -9,6 +9,6 @@
 #include "Alert.hpp"
 #include "CallObj.h"
 
-void Alert::show(const String &message) {
-    objCShowAlert(message.c_str());
+void Alert::show(const std::string &message) {
+    //objCShowAlert(message.c_str());
 }

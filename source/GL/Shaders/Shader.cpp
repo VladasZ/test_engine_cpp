@@ -10,6 +10,8 @@
 #include "ShaderCompiler.hpp"
 #include "GL.hpp"
 #include "Window.hpp"
+#include "FileManager.hpp"
+#include "Debug.hpp"
 
 
 Shader Shader::ui;

@@ -23,7 +23,7 @@ Path::Path(const Rect &rect) {
 
 Path * Path::circleWith(const Point &center, float radius, int precision) {
     auto path = new Path();
-    float angleStep = M_PI * 2 / precision;
+    float angleStep = pi<float>() * 2 / precision;
     
     for (int i = 0; i < precision; i++)
         path->points.push_back(Point::onCircle(radius, angleStep * i, center));

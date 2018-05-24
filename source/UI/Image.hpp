@@ -10,6 +10,8 @@
 
 #include "GL.hpp"
 #include "Size.hpp"
+#include "NonCopyable.hpp"
+#include "MemoryManaged.hpp"
 
 class Image : public NonCopyable _MEMORY_MANAGED(Image) {
     

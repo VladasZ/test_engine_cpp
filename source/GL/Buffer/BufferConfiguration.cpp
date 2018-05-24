@@ -7,8 +7,9 @@
 //
 
 #include "BufferConfiguration.hpp"
-#include "Log.hpp"
 #include "GL.hpp"
+#include "Debug.hpp"
+#include "Log.hpp"
 
 BufferConfiguration::BufferConfiguration(int firstParam, int secondParam, int thirdParam) {
     

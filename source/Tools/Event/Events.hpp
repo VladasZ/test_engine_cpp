@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "Event.hpp"
 #include "Point.hpp"
+#include "Event.hpp"
 
 class View;
 class World;

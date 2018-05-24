@@ -11,6 +11,7 @@
 #include "Size.hpp"
 #include "Point.hpp"
 #include "Input.hpp"
+#include "MemoryManaged.hpp"
 
 class View;
 class RootView;

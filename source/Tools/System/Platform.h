@@ -3,7 +3,7 @@
 
 #ifdef _WIN32
 
-#define WINDOWS true
+//#define WINDOWS true
 
 #elif __APPLE__
 #include "TargetConditionals.h"
@@ -25,4 +25,4 @@
 #   error "Unknown compiler"
 #endif
 
-#define GLFW MAC_OS || WINDOWS
+//#define GLFW MAC_OS || WINDOWS

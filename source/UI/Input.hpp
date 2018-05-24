@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Point.hpp"
+#include "NonCopyable.hpp"
 #include "Event.hpp"
 
 class Button;

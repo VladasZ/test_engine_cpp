@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include "NonCopyable.hpp"
+#include "MemoryManaged.hpp"
+#include "String.hpp"
+
 class File;
 class Image;
 class Glyph;

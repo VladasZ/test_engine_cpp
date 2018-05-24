@@ -6,7 +6,7 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#pragma mark
+#pragma once
 
 #include "Font.hpp"
 #include "View.hpp"

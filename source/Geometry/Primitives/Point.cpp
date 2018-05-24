@@ -32,7 +32,7 @@ float Point::angle() const {
 }
 
 bool Point::isZero() const {
-    return x == 0 and y == 0;
+    return x == 0 && y == 0;
 }
 
 float Point::length() const {

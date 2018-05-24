@@ -9,6 +9,7 @@
 #pragma once
 
 #include "UI.hpp"
+#include "MemoryManaged.hpp"
 
 class DebugInfoView : public View _MEMORY_MANAGED(DebugInfoView) {
     

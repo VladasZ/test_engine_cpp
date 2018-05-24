@@ -9,6 +9,8 @@
 #pragma once
 
 #include "Primitives.hpp"
+#include "NonCopyable.hpp"
+#include "MemoryManaged.hpp"
 
 class Image;
 

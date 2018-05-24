@@ -12,6 +12,7 @@
 #include "DebugInfoView.hpp"
 #include "GL.hpp"
 #include "View.hpp"
+#include "Log.hpp"
 
 static auto touchBeganCondition = [](View *view, const Point &point, int id)
 { return view->containsGlobalPoint(point); };

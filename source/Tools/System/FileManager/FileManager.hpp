@@ -1,5 +1,7 @@
 #pragma once
 
+#include "String.hpp"
+
 class FileManager {
     
     FileManager();

@@ -11,6 +11,8 @@
 #include "Color.hpp"
 #include "Point.hpp"
 #include "BufferConfiguration.hpp"
+#include "MemoryManaged.hpp"
+#include "NonCopyable.hpp"
 
 class Buffer;
 class BufferData;

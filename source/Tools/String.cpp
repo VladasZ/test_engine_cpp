@@ -7,6 +7,7 @@
 //
 
 #include "String.hpp"
+#include "Log.hpp"
 
 #define STRING_DEBUG false
 #define BUFFER_SIZE _size + 1

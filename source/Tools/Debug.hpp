@@ -9,17 +9,18 @@
 #pragma once
 
 #include "MemoryTest.hpp"
+#include "Log.hpp"
 
 #ifdef DEBUG
 
-#define MEMORY_TRACKING true
-#define MEMORY_TEST false
-#define MEMORY_BENCHMARK false
-#define FULL_MEMORY_OUTPUT false
-#define DEBUG_VIEW true
-#define RENDERING_ERRORS_OUTPUT false
-#define SHADER_COMPILER_OUTPUT false
-#define IMAGES_LOADING_OUTPUT true
+//#define MEMORY_TRACKING true
+//#define MEMORY_TEST false
+//#define MEMORY_BENCHMARK false
+//#define FULL_MEMORY_OUTPUT false
+//#define DEBUG_VIEW true
+//#define RENDERING_ERRORS_OUTPUT false
+//#define SHADER_COMPILER_OUTPUT false
+//#define IMAGES_LOADING_OUTPUT true
 
 #define NOT_IMPLEMENTED Error("Not implemented")
 

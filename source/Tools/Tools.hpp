@@ -16,8 +16,6 @@ return type comp < type comp;\
 })comp;
 
 #include "HasMember.h"
-#include "String.hpp"
-#include "Log.hpp"
 #include "Debug.hpp"
 #include "MemoryManaged.hpp"
 #include "FileManager.hpp"
@@ -25,4 +23,6 @@ return type comp < type comp;\
 #include "Platform.h"
 #include "System.hpp"
 #include "Alert.hpp"
+#include "Log.hpp"
+#include "String.hpp"
 

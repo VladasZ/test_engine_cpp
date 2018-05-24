@@ -7,6 +7,7 @@
 //
 
 #include "Polygon.hpp"
+#include "Log.hpp"
 
 //Public
 

@@ -6,9 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "FileManager.hpp"
 #include "File.hpp"
 #include "Log.hpp"
-#include "FileManager.hpp"
 
 File::File(const String &path) {
     

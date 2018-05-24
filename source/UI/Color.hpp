@@ -8,6 +8,9 @@
 
 #pragma once
 
+#include "MemoryManaged.hpp"
+#include "String.hpp"
+
 class Color MEMORY_MANAGED(Color) {
     
 public:

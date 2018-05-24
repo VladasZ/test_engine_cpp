@@ -8,8 +8,8 @@
 
 #include "Platform.h"
 #include "System.hpp"
-#include "Log.hpp"
 #include "Debug.hpp"
+#include "Log.hpp"
 
 #ifdef APPLE
 #include <unistd.h>

@@ -10,19 +10,19 @@
 
 #define GLM_FORCE_RADIANS
 
-#include <glm.hpp>
+#include "glm\glm.hpp"
 
 #if APPLE
     #include <glm/gtc/matrix_transform.hpp>
 #else
-    #include <matrix_transform.hpp>
+    #include "glm\gtc\matrix_transform.hpp"
 #endif
 
 using namespace glm;
 
 #ifdef WINDOWS
     #include <glew.h>
-    #include "glfw3.h"
+    #include "GLFW\glfw3.h"
 
 #elif IOS
     #import <OpenGLES/ES3/gl.h>

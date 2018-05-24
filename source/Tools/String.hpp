@@ -8,6 +8,9 @@
 
 #pragma once
 
+#include "HasMember.h"
+#include "STL.hpp"
+
 GENERATE_HAS_MEMBER(toString);
 
 template <class T>

@@ -8,9 +8,11 @@
 
 #pragma once
 
-typedef unsigned char Byte;
-
+#include "MemoryManaged.hpp"
 #include "STL.hpp"
+#include "String.hpp"
+
+typedef unsigned char Byte;
 
 class File MEMORY_MANAGED(File) {
     

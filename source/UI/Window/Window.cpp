@@ -12,6 +12,9 @@
 #include "RootView.hpp"
 #include "World.hpp"
 #include "Events.hpp"
+#include "Debug.hpp"
+#include "Time.hpp"
+#include "Log.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 

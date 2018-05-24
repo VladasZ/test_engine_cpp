@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "String.hpp"
+
 class Alert {
 public:
     static void show(const String &message);

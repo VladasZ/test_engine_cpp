@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "STL.hpp"
+
 #ifdef DEBUG
 
 #define LOG_LOCATION_ENABLED true

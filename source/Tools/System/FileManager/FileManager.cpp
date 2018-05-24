@@ -1,4 +1,5 @@
 
+#include "FileManager.hpp"
 
 #ifdef APPLE
 #include "CallObj.h"
@@ -16,15 +17,13 @@ const String FileManager::assetsDirectory() {
     return "../../../../Assets/";
 #endif
     
-    //NOT_IMPLEMENTED;
-    return "";
+    return "NOT_IMPLEMENTED";
 }
 
 const String FileManager::workDirectory() {
-    
 #ifdef WINDOWS
 	char result[MAX_PATH];
-	return std::String(result, GetModuleFileName(NULL, result, MAX_PATH));
+	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
 #endif
 
     //NOT_IMPLEMENTED;

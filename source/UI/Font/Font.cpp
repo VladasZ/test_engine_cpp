@@ -7,13 +7,15 @@
 //
 
 #include "Font.hpp"
-#include "File.hpp"
 #include "Image.hpp"
 #include "Glyph.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
+
+#include "File.hpp"
+#include "Tools.hpp"
 
 static FT_Library library = nullptr;
 

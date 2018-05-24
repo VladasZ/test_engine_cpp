@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "String.hpp"
+
 enum Direction {
     Right,
     Left,

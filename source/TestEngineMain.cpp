@@ -10,6 +10,8 @@
 #include "TestEngineMain.h"
 #include "GL/GL.hpp"
 #include "Window.hpp"
+#include "Debug.hpp"
+#include "MemoryManaged.hpp"
 
 void testEngineMain() {
     

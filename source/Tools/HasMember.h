@@ -14,11 +14,11 @@
 #include <iostream>    // To use 'std::cout'.
 #include <iomanip>     // To use 'std::boolalpha'.
 
-#define GENERATE_HAS_MEMBER(member)                                               \
+#define GENERATE_HAS_MEMBER(member)\
 \
-template < class T >                                                              \
-class HasMember_##member                                                          \
-{                                                                                 \
+template <class T>\
+class HasMember_##member\
+{\
 private:                                                                          \
 using Yes = char[2];                                                          \
 using  No = char[1];                                                          \

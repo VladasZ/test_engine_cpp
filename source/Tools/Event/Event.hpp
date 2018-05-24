@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "STL.hpp"
+
 #define _EVENT_FUNCTION_TYPE function<void(Params...)>
 #define _EVENT_CONDITION_FUNCTION_TYPE function<bool(SubscriberType *, Params...)>
 
@@ -17,6 +19,12 @@ class Event {
     struct Subscriber {
         SubscriberType *object;
         _EVENT_FUNCTION_TYPE action;
+
+        Subscriber(SubscriberType* object, _EVENT_FUNCTION_TYPE action)
+            :
+            object(object),
+            action(action)
+        { }
     };
     
     vector<Subscriber> subscribers;
@@ -28,8 +36,8 @@ public:
     Event() = default;
     Event(_EVENT_CONDITION_FUNCTION_TYPE condition) : _condition(condition) { }
     
-    void subscribe(SubscriberType *subscriber, const _EVENT_FUNCTION_TYPE &action) {
-        subscribers.push_back((Subscriber) { subscriber, action } );
+    void subscribe(SubscriberType *subscriber, _EVENT_FUNCTION_TYPE action) {
+        subscribers.emplace_back(subscriber, action);
     }
     
     void unsubscribe(SubscriberType *subscriber) {

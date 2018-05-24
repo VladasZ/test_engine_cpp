@@ -1,5 +1,5 @@
 
-#include <stdio.h>
+#include <cstdio>
 #include <fstream>
 #include <algorithm>
 
@@ -8,6 +8,8 @@
 #include "ShaderCompiler.hpp"
 
 #include "GL.hpp"
+#include "Debug.hpp"
+#include "STL.hpp"
 
 String ShaderCompiler::shaderVersion() {
     

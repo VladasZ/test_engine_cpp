@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "STL.hpp"
+
 class Movable;
 class Sprite;
 

@@ -7,6 +7,7 @@
 //
 
 #include "DebugInfoView.hpp"
+#include "Tools.hpp"
 
 DebugInfoView::DebugInfoView() : View(0, 0, 600, 100) {
         
@@ -52,15 +53,15 @@ void DebugInfoView::update() {
     
 #if DEBUG
     
- MEMORY_MANAGER_INVISIBLE(
-     fpsLabel->setText("FPS: "_s + Window::FPS);
-#if MEMORY_TRACKING
-     allocatedLabel->setText("Allocated: "_s + MemoryManager::totalObjectsAllocated);
-     deletedLabel  ->setText("Deleted: "_s   + MemoryManager::totalObjectsDeleted);
-     existsLabel   ->setText("Exists: "_s    + MemoryManager::totalObjectsExist());
-#endif
-     framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
- );
+// MEMORY_MANAGER_INVISIBLE(
+//     fpsLabel->setText("FPS: "_s + Window::FPS);
+//#if MEMORY_TRACKING
+//     allocatedLabel->setText("Allocated: "_s + MemoryManager::totalObjectsAllocated);
+//     deletedLabel  ->setText("Deleted: "_s   + MemoryManager::totalObjectsDeleted);
+//     existsLabel   ->setText("Exists: "_s    + MemoryManager::totalObjectsExist());
+//#endif
+//     framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
+// );
     
 #endif
 }

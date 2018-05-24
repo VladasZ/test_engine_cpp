@@ -6,7 +6,7 @@ class _CmakeHelper:
 		dirs = FileManager.dirs(source)
 		file = open(saveTo, 'w+')
 		for dir in dirs:
-			file.write('include_directories(${PROJECT_SOURCE_DIR}' + '/' + dir + ')\n')
+			file.write('include_directories(' + dir + ')\n')
 		file.close()
 
 CmakeHelper = _CmakeHelper();	

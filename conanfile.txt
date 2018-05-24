@@ -1,0 +1,5 @@
+[requires]
+glfw/3.2.1.20180327@bincrafters/stable
+
+[generators]
+cmake

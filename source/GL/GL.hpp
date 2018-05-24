@@ -21,7 +21,7 @@
 using namespace glm;
 
 #ifdef WINDOWS
-    #include <glew.h>
+    #include "GL\glew.h"
     #include "GLFW\glfw3.h"
 
 #elif IOS

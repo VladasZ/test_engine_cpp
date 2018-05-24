@@ -27,8 +27,6 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 get_filename_component(SolutionName ${CMAKE_CURRENT_LIST_DIR} NAME)
 
 add_subdirectory(lib_temp/soil)
-add_subdirectory(lib_temp/glew/build/cmake)
-
 
 project(${SolutionName})
 
@@ -36,7 +34,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
 include_directories(source)
-include_directories(${PROJECT_SOURCE_DIR}/lib_temp/glew/include/GL)
 include_directories(${PROJECT_SOURCE_DIR}/lib_temp/soil/inc/SOIL)
 include(build/Include.cmake)
 conan_basic_setup()
@@ -44,16 +41,13 @@ conan_basic_setup()
 add_definitions(-DWINDOWS=1)
 add_definitions(-DDEBUG=1)
 add_definitions(-DGLFW=1)
+add_definitions(-DDEBUG_VIEW=1)
 
 add_recursive(source PARSED_SOURCE)
 add_executable(${PROJECT_NAME} ${PARSED_SOURCE})
-#add_precompiled_header(${PROJECT_NAME} source/Tools/Tools.hpp SOURCE_CXX source/Tools/Tools.cpp FORCEINCLUDE)
-
-
 
 
 target_link_libraries(${PROJECT_NAME} soil)
-target_link_libraries(${PROJECT_NAME} glew)
 
 foreach(debug_lib ${CONAN_LIBS_DEBUG})
     target_link_libraries(${PROJECT_NAME} debug ${debug_lib})

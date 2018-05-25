@@ -14,7 +14,7 @@ const std::string FileManager::assetsDirectory() {
 #endif
     
 #ifdef WINDOWS
-    return "../Assets/";
+    return "../../../Assets/";
 #endif
     
     return "NOT_IMPLEMENTED";

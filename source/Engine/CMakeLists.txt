@@ -5,7 +5,7 @@ project(Engine)
 set(CMAKE_CXX_STANDARD 17)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
-include_directories(${PROJECT_SOURCE_DIR}/lib_temp/soil/inc/SOIL)
+include_directories(${PROJECT_SOURCE_DIR}/../ThirdParty/soil/inc/SOIL)
 include_directories(${PROJECT_SOURCE_DIR})
 include(../../build/EngineInclude.cmake)
 conan_basic_setup()

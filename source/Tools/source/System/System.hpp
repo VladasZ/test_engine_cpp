@@ -8,9 +8,6 @@
 
 #pragma once
 
-#include "Platform.h"
-#include "Time.hpp"
-
 class System {
     
     System();

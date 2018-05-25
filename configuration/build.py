@@ -8,7 +8,8 @@ if not os.path.exists("build"):
     os.makedirs("build")
 
 CmakeHelper.createIncludeDirsFile("build\\Include.cmake", ".\\source")
-CmakeHelper.createIncludeDirsFile("build\\EngineInclude.cmake", ".\\source\\engine", "../../")
+CmakeHelper.createIncludeDirsFile("build\\EngineInclude.cmake", ".\\source\\Engine", "../../")
+CmakeHelper.createIncludeDirsFile("build\\ToolsInclude.cmake", ".\\source\\Tools", "../../")
 
 guide = Guide('..','build')
 guide.make_build()

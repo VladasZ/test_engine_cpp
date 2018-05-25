@@ -1,6 +1,10 @@
-#pragma once
-
-//#include "Events.hpp"
+//
+//  NonCopyable.hpp
+//  TestEngine
+//
+//  Created by Vladas Zakrevskis on 19/01/2018.
+//  Copyright © 2018 VladasZ. All rights reserved.
+//
 
 template <class T>
 class StaticClassInfo;
@@ -14,15 +18,3 @@ class StaticClassInfo;
 #define MMAX(container, type, comp) MIN((container), [] (type v1, type v2) {\
 return type comp < type comp;\
 })comp;
-
-#include "HasMember.h"
-#include "Debug.hpp"
-#include "MemoryManaged.hpp"
-#include "FileManager.hpp"
-#include "NonCopyable.hpp"
-#include "Platform.h"
-#include "System.hpp"
-#include "Alert.hpp"
-#include "Log.hpp"
-#include "String.hpp"
-

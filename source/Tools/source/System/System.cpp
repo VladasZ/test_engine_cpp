@@ -6,9 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Platform.h"
 #include "System.hpp"
-#include "Debug.hpp"
 #include "Log.hpp"
 
 #ifdef APPLE

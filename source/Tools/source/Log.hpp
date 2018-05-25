@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "STL.hpp"
+#include <iostream>
 
 #ifdef DEBUG
 
@@ -56,3 +56,5 @@ LOCATION(file, func, line)\
 #define PING
 
 #endif
+
+#define NOT_IMPLEMENTED Error("Not implemented")

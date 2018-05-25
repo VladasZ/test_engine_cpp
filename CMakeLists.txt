@@ -5,4 +5,5 @@ include(configuration/sources_parsing.cmake)
 project(TestEngine)
 
 add_subdirectory(source/Engine)
+add_subdirectory(source/Tools)
 add_subdirectory(source/ThirdParty/soil)

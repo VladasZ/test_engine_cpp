@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "MemoryTest.hpp"
 #include "Log.hpp"
 
 #ifdef DEBUG

@@ -9,7 +9,6 @@
 #pragma once
 
 #include "MemoryManaged.hpp"
-#include "STL.hpp"
 #include "String.hpp"
 
 typedef unsigned char Byte;

@@ -8,10 +8,10 @@ class ShaderCompiler {
     
 private:
     
-    static std::string shaderVersion();
+    static String shaderVersion();
     
 public:
     
-    static int compile(const std::string &vertexPath, const std::string &fragmentPath);
+    static int compile(const String &vertexPath, const String &fragmentPath);
 };
 

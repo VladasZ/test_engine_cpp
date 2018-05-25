@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "MemoryManaged.hpp"
 #include "String.hpp"
+#include "TestObject.hpp"
 
-class Color MEMORY_MANAGED(Color) {
+class Color : public TestObject<Color> {
     
 public:
         
@@ -32,7 +32,7 @@ public:
     
     void setToUniform(int uniform) const;
     
-    std::string toString() const;
+    String toString() const;
     
     bool isTransparent() const;
     

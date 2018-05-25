@@ -9,9 +9,8 @@
 
 #include "GL.hpp"
 #include "Debug.hpp"
-#include "STL.hpp"
 
-std::string ShaderCompiler::shaderVersion() {
+String ShaderCompiler::shaderVersion() {
     
 #if WINDOWS || MAC_OS
     return "#version 330 core";
@@ -23,12 +22,12 @@ std::string ShaderCompiler::shaderVersion() {
 #endif
 }
 
-int ShaderCompiler::compile(const std::string &vertexPath, const std::string &fragmentPath)
+int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath)
 {
 	GLuint VertexShaderID = GL(glCreateShader(GL_VERTEX_SHADER));
 	GLuint FragmentShaderID = GL(glCreateShader(GL_FRAGMENT_SHADER));
 
-	std::string VertexShaderCode = shaderVersion();
+    String VertexShaderCode = shaderVersion();
 	std::ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
     
 #if SHADER_COMPILER_OUTPUT

@@ -8,10 +8,11 @@
 
 #pragma once
 
+#include "MemoryManager.hpp"
+
 #if MEMORY_TRACKING
 
 #include "Log.hpp"
-#include "MemoryManager.hpp"
 #include "ClassMemoryInfo.hpp"
 
 #define  MEMORY_MANAGED(class) : public MemoryManaged<class>

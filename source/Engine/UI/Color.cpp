@@ -36,7 +36,7 @@ void Color::setToUniform(int uniform) const {
 
 Color Color::random() {
     
-    static std::vector<Color> colors = {
+    static Color::Array colors = {
         Color::red,
         Color::green,
         Color::blue,
@@ -53,8 +53,8 @@ Color Color::withAlpha(float alpha) const {
     return Color(r, g, b, alpha);
 }
 
-std::string Color::toString() const {
-    return "r: "_s;// +r + " g: " + g + " b: " + b + " a: " + a;
+String Color::toString() const {
+    return "r: "_s +r + " g: " + g + " b: " + b + " a: " + a;
 }
 
 bool Color::isTransparent() const {
@@ -67,9 +67,9 @@ const Color Color::red       = Color(1, 0, 0);
 const Color Color::green     = Color(0, 1, 0);
 const Color Color::blue      = Color(0, 0, 1);
 const Color Color::yellow    = Color(1, 1, 0);
-const Color Color::orange    = Color(1, 0.5, 0);
+const Color Color::orange    = Color(1, 0.5f, 0);
 const Color Color::purple    = Color(1, 0, 1);
 const Color Color::turquoise = Color(0, 1, 1);
-const Color Color::gray      = Color(0.5, 0.5, 0.5);
-const Color Color::lightGray = Color(0.8, 0.8, 0.8);
+const Color Color::gray      = Color(0.5f, 0.5f, 0.5f);
+const Color Color::lightGray = Color(0.8f, 0.8f, 0.8f);
 const Color Color::clear     = Color(0, 0, 0, 0);

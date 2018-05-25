@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "STL.hpp"
+#include <vector>
 
 class Movable;
 class Sprite;

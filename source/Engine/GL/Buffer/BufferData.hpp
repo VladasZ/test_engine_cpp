@@ -9,11 +9,11 @@
 #pragma once
 
 #include "GL.hpp"
-#include "Tools.hpp"
+#include "TestObject.hpp"
 
 class Buffer;
 
-class BufferData : public NonCopyable _MEMORY_MANAGED(BufferData) {
+class BufferData : TestObject<BufferData> {
     
     GLfloat *vertData = nullptr;
     GLuint vertSize = 0;

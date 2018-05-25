@@ -6,11 +6,13 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#include <math.h>
+
 #include "Path.hpp"
 #include "GL.hpp"
+#include "Debug.hpp"
 #include "BufferData.hpp"
 #include "Buffer.hpp"
-#include <math.h>
 
 Path::Path(const Rect &rect) {
     points = {

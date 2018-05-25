@@ -13,7 +13,7 @@ using namespace std;
 
 static const float SIZE = 140;
 static const float OUTLINE_WIDTH = 10;
-static const float STICK_VIEW_SIZE = SIZE / 10;
+static const float STICK_VIEW_SIZE = SIZE / 2;
 
 AnalogStickView::AnalogStickView() : DrawingView(SIZE, SIZE) { }
 

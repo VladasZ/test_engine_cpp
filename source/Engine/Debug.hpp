@@ -21,8 +21,6 @@
 //#define SHADER_COMPILER_OUTPUT false
 //#define IMAGES_LOADING_OUTPUT true
 
-#define NOT_IMPLEMENTED Error("Not implemented")
-
 #if RENDERING_ERRORS_OUTPUT
 #define GL(x) (x); CheckGLError(LOCATION_INFO)
 #else
@@ -37,6 +35,5 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 #else
 
 #define GL(x) x
-#define MEMORY_MANAGER_INVISIBLE(code)
 
 #endif

@@ -6,6 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "Font.hpp"
 #include "Image.hpp"
 #include "Glyph.hpp"
@@ -15,7 +16,6 @@
 #include FT_GLYPH_H
 
 #include "File.hpp"
-#include "Tools.hpp"
 
 static FT_Library library = nullptr;
 
@@ -59,7 +59,7 @@ Font::Font(const std::string& fileName, int size) : _fileName(fileName) {
     FT_Face face;
     
     FT_New_Memory_Face(ftLibrary(),
-                       file->getData(),
+                       (FT_Byte *)file->getData(),
                        file->getSize(),
                        0,
                        &face);

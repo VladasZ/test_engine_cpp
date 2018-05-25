@@ -6,6 +6,8 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#pragma once
+
 #include <string>
 #include <vector>
 #include <memory>

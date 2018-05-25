@@ -15,6 +15,7 @@
 #include "Debug.hpp"
 #include "Time.hpp"
 #include "Log.hpp"
+#include "MemoryManager.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 

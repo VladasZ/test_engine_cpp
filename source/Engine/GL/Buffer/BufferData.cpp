@@ -7,7 +7,6 @@
 //
 
 #include "BufferData.hpp"
-#include "STL.hpp"
 
 BufferData::BufferData(GLfloat *vertData, GLuint vertSize)
 :

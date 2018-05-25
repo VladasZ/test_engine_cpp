@@ -7,8 +7,6 @@
 //
 
 #include "DebugInfoView.hpp"
-#include "Tools.hpp"
-#include "MemoryManaged.hpp"
 
 DebugInfoView::DebugInfoView() : View(0, 0, 600, 100) {
         

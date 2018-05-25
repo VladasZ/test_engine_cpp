@@ -8,12 +8,13 @@
 
 #pragma once
 
-#include "Tools.hpp"
 #include "GL.hpp"
+#include "TestObject.hpp"
+#include "NonCopyable.hpp"
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
 
-class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
+class Buffer : public TestObject<Buffer>, public NonCopyable {
     
     BufferData *data;
     

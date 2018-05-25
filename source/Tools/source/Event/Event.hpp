@@ -8,19 +8,28 @@
 
 #pragma once
 
-#include "STL.hpp"
-
-#define _EVENT_FUNCTION_TYPE std::function<void(Params...)>
-#define _EVENT_CONDITION_FUNCTION_TYPE std::function<bool(SubscriberType *, Params...)>
+#include <functional>
+#include <type_traits>
 
 template<class SubscriberType, class ...Params>
 class Event {
     
-    struct Subscriber {
-        SubscriberType *object;
-        _EVENT_FUNCTION_TYPE action;
+public:
+    using EventCallbackType = std::function<void(Params...)>;
+    using EventConditionType = std::function<bool(SubscriberType *, Params...)>;
 
-        Subscriber(SubscriberType* object, _EVENT_FUNCTION_TYPE action)
+private:
+
+    struct Subscriber {
+        SubscriberType *object = nullptr;
+        EventCallbackType action;
+
+        Subscriber(EventCallbackType action)
+            :
+            action(action)
+        { }
+
+        Subscriber(SubscriberType* object, EventCallbackType action)
             :
             object(object),
             action(action)
@@ -29,14 +38,25 @@ class Event {
     
     std::vector<Subscriber> subscribers;
     
-    _EVENT_CONDITION_FUNCTION_TYPE _condition = [](SubscriberType *, Params...){ return true; };
+    EventConditionType _condition = [](SubscriberType *, Params...){ return true; };
     
 public:
     
     Event() = default;
-    Event(_EVENT_CONDITION_FUNCTION_TYPE condition) : _condition(condition) { }
+
+    template<class Void = SubscriberType>
+    Event(typename std::enable_if_t<std::is_same_v<Void, void> == false, EventConditionType> condition)
+        :
+        _condition(condition) 
+    { }
     
-    void subscribe(SubscriberType *subscriber, _EVENT_FUNCTION_TYPE action) {
+    template<class Void = SubscriberType>
+    void subscribe(typename std::enable_if_t<std::is_same_v<Void, void>, EventCallbackType> action)
+    {
+        subscribers.emplace_back(action);
+    }
+
+    void subscribe(SubscriberType *subscriber, EventCallbackType action) {
         subscribers.emplace_back(subscriber, action);
     }
     
@@ -54,7 +74,7 @@ public:
         }
     }
     
-    void condition(const _EVENT_CONDITION_FUNCTION_TYPE &condition) {
+    void condition(const EventConditionType &condition) {
         _condition = condition;
     }
 };

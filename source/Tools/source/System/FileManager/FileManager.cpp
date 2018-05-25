@@ -1,4 +1,5 @@
 
+#include "Log.hpp"
 #include "FileManager.hpp"
 
 #ifdef APPLE
@@ -13,7 +14,7 @@ const std::string FileManager::assetsDirectory() {
 #elif WINDOWS
     return "../../../Assets/";
 #endif
-    return "NOT_IMPLEMENTED";
+    NOT_IMPLEMENTED; return "NOT_IMPLEMENTED";
 }
 
 const std::string FileManager::workDirectory() {
@@ -21,9 +22,7 @@ const std::string FileManager::workDirectory() {
 	char result[MAX_PATH];
 	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
 #endif
-
-    //NOT_IMPLEMENTED;
-    return "";
+    NOT_IMPLEMENTED; return "";
 }
 
 const std::string FileManager::assetsPathWithFileName(const std::string& fileName) {

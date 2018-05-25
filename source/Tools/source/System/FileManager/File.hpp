@@ -8,20 +8,19 @@
 
 #pragma once
 
-#include "MemoryManaged.hpp"
 #include "String.hpp"
+#include "TestObject.hpp"
 
-typedef unsigned char Byte;
 
-class File MEMORY_MANAGED(File) {
+class File : public TestObject<File> {
     
-    size_t size;
-    Byte *data;
+    size_t _size;
+    std::byte *_data;
     
 public:
     
     size_t getSize() const;
-    Byte *getData() const;
+    std::byte *getData() const;
 
     File(const std::string &path);
     ~File();

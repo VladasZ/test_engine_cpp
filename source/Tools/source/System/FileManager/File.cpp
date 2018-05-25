@@ -10,31 +10,32 @@
 #include "File.hpp"
 #include "Log.hpp"
 
+using namespace std;
+
 File::File(const std::string &path) {
     
     FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
     
     if (file == 0) {
-       // Error("Failed to open a file");
+        Error("Failed to open file: " << path);
         return;
     }
     fseek(file, 0, SEEK_END);
-    size = ftell(file);
+    _size = ftell(file);
     fseek(file, 0, SEEK_SET);
-    data = new Byte[size];
-    fread(data, sizeof(Byte), size, file);
+    _data = new byte[_size];
+    fread(_data, sizeof(byte), _size, file);
     fclose(file);
 }
 
 File::~File() {
-    
-    delete[] data;
+    delete[] _data;
 }
 
 size_t File::getSize() const {
-    return size;
+    return _size;
 }
 
-Byte * File::getData() const {
-    return data;
+byte * File::getData() const {
+    return _data;
 }

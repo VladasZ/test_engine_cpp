@@ -12,9 +12,7 @@
 #ifdef APPLE
 #include <unistd.h>
 #include "CallObj.h"
-#endif
-
-#ifdef WINDOWS
+#elif  WINDOWS
 #include <Windows.h>
 #endif
 
@@ -22,22 +20,20 @@ void System::sleep(float interval) {
     
 #ifdef APPLE
     usleep(interval * 1000000);
-#endif
-    
-#ifdef WINDOWS
+#elif WINDOWS
 	Sleep(DWORD(interval * 1000));
+#else 
+    NOT_IMPLEMENTED;
 #endif
 }
 
 int System::random() {
-    
 #ifdef APPLE
     return arc4random();
-#endif
-    
-#ifdef WINDOWS
-	NOT_IMPLEMENTED;
-    return 0;
+#elif WINDOWS
+	NOT_IMPLEMENTED; return 0;
+#else
+    NOT_IMPLEMENTED; return 0;
 #endif
 }
 
@@ -45,11 +41,10 @@ int System::random(int range) {
     
 #ifdef APPLE
     return arc4random_uniform(range);
-#endif
-    
-#ifdef WINDOWS
-	NOT_IMPLEMENTED;
-    return 0;
+#enlif WINDOWS
+	NOT_IMPLEMENTED; return 0;
+#else 
+    NOT_IMPLEMENTED; return 0;
 #endif
 }
 

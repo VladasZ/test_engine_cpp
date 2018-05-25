@@ -1,10 +1,18 @@
 //
-//  TestObject.cpp
+//  NonCopyable.hpp
 //  TestEngine
 //
-//  Created by Vladas Zakrevskis on 25/05/2018.
+//  Created by Vladas Zakrevskis on 19/01/2018.
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "TestObject.hpp"
+#pragma once
 
+class NonCopyable {
+protected:
+    NonCopyable() = default;
+    ~NonCopyable() = default;
+
+    NonCopyable(NonCopyable const &) = delete;
+    void operator=(NonCopyable const &x) = delete;
+};

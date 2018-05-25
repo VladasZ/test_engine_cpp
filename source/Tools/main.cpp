@@ -1,32 +1,33 @@
 
 #include <iostream>
+#include "Time.hpp"
 
+#include "FileManager.hpp"
+
+#include "Event.hpp"
 #include "Log.hpp"
-
-#include "TestObject.hpp"
 
 using namespace std;
 
-class TestClass : public TestObject<TestClass> {
+using SimpleEvent = Event<int, int>;
 
-public:
-
-
-};
-
+SimpleEvent event([](auto, auto) { return true; });
 
 int main() {
- 
-    TestClass::Array arr;
-    TestClass::Ptr pointer;
 
-    TestClass aarere;
-    TestClass aarere2;
-    TestClass aarere3;
-    TestClass aarere4;
-    TestClass aarere5;
-    TestClass aarere6;
-    TestClass aarere8;
+ 
+    cout << FileManager::assetsDirectory() << endl;
+    cout << FileManager::workDirectory() << endl;
+
+    event.subscribe(new int(5), [](auto) {
+        Log("sps");
+    });
+
+    event(5);
+    event(5);
+    event(5);
+    event(5);
+
 
     return 0;
 }

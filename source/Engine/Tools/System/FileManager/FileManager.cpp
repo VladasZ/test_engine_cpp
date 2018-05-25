@@ -8,15 +8,11 @@
 #endif
 
 const std::string FileManager::assetsDirectory() {
-    
 #ifdef APPLE
     return std::string(objCWorkDirectoryPath()) + "/Assets/";
-#endif
-    
-#ifdef WINDOWS
+#elif WINDOWS
     return "../../../Assets/";
 #endif
-    
     return "NOT_IMPLEMENTED";
 }
 
@@ -31,7 +27,5 @@ const std::string FileManager::workDirectory() {
 }
 
 const std::string FileManager::assetsPathWithFileName(const std::string& fileName) {
-    
     return assetsDirectory() + fileName;
 }
-

@@ -17,23 +17,23 @@ void CheckGLError(LOCATION_PARAMETERS) {
         char* error = new char[255];
         switch(err) {
             case GL_INVALID_OPERATION:
-            strcpy(error, "GL_INVALID_OPERATION");
+            strcpy_s(error, 100, "GL_INVALID_OPERATION");
             break;
             case GL_INVALID_ENUM:
-            strcpy(error, "GL_INVALID_ENUM");
+            strcpy_s(error, 100, "GL_INVALID_ENUM");
             break;
             case GL_INVALID_VALUE:
-            strcpy(error, "GL_INVALID_VALUE");
+            strcpy_s(error, 100, "GL_INVALID_VALUE");
             break;
             case GL_OUT_OF_MEMORY:
-            strcpy(error, "GL_OUT_OF_MEMORY");
+            strcpy_s(error, 100, "GL_OUT_OF_MEMORY");
             break;
             case GL_INVALID_FRAMEBUFFER_OPERATION:
-            strcpy(error, "GL_INVALID_FRAMEBUFFER_OPERATION");
+            strcpy_s(error, 100, "GL_INVALID_FRAMEBUFFER_OPERATION");
             CheckFramebufferStatus(GL_FRAMEBUFFER, fileName, function, line);
             break;
             default:
-            strcpy(error, "Unknown error");
+            strcpy_s(error, 100, "Unknown error");
             break;
         }
         

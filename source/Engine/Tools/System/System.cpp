@@ -27,7 +27,7 @@ void System::sleep(float interval) {
 #endif
     
 #ifdef WINDOWS
-	Sleep(interval * 1000);
+	Sleep(DWORD(interval * 1000));
 #endif
 }
 

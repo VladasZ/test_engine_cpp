@@ -13,10 +13,10 @@ Rectangle::Rectangle() {
     
     vertices = {
         
-        Vertex(0,   0,   0.2, Color::random()),
-        Vertex(0,   100, 0.2, Color::random()),
-        Vertex(100, 100, 0.2, Color::random()),
-        Vertex(100, 0,   0.2, Color::random())
+        Vertex(0,   0,   0.2f, Color::random()),
+        Vertex(0,   100, 0.2f, Color::random()),
+        Vertex(100, 100, 0.2f, Color::random()),
+        Vertex(100, 0,   0.2f, Color::random())
     };
     
     indices = { 0, 1, 3, 1, 3, 2 };

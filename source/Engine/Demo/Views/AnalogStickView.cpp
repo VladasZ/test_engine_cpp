@@ -11,9 +11,9 @@
 
 using namespace std;
 
-#define SIZE 140
-#define OUTLINE_WIDTH 10
-#define STICK_VIEW_SIZE (SIZE / 2.18)
+static const float SIZE = 140;
+static const float OUTLINE_WIDTH = 10;
+static const float STICK_VIEW_SIZE = SIZE / 10;
 
 AnalogStickView::AnalogStickView() : DrawingView(SIZE, SIZE) { }
 
@@ -72,7 +72,7 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
     }
     
     directionStick->setCenter(touchPosition);
-    if (action) action(vector * 0.1);
+    if (action) action(vector * 0.1f);
 }
 
 void AnalogStickView::onDirectionChange(const function<void (const Point &)> &action) {

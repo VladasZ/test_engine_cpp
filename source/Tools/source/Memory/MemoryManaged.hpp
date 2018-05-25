@@ -8,9 +8,11 @@
 
 #pragma once
 
-#include "MemoryManager.hpp"
-
 #if MEMORY_TRACKING
+
+#include "Log.hpp"
+#include "MemoryManager.hpp"
+#include "ClassMemoryInfo.hpp"
 
 #define  MEMORY_MANAGED(class) : public MemoryManaged<class>
 #define _MEMORY_MANAGED(class) , public MemoryManaged<class>
@@ -23,9 +25,6 @@
 #endif
 
 #if MEMORY_TRACKING
-
-#include "MemoryManager.hpp"
-#include "ClassMemoryInfo.hpp"
 
 template <class T>
 class MemoryManaged {

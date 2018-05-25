@@ -9,12 +9,8 @@
 #pragma once
 
 class Time {
-    
     Time();
-    
 public:
-    
     static long long now();
-    
     static int interval();
 };

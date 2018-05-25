@@ -9,6 +9,7 @@
 #if MEMORY_TRACKING
 
 #include "ClassMemoryInfo.hpp"
+#include "Log.hpp"
 
 ClassMemoryInfo::ClassMemoryInfo(const std::string &name) : className(name) { }
 

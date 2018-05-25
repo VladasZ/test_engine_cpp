@@ -8,7 +8,7 @@
 
 #if MEMORY_TRACKING
 
-
+#include "Log.hpp"
 #include "MemoryManager.hpp"
 #include "ClassMemoryInfo.hpp"
 

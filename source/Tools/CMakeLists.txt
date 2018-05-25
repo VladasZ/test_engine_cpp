@@ -11,6 +11,8 @@ conan_basic_setup()
 
 add_definitions(-DWINDOWS=1)
 add_definitions(-DDEBUG=1)
+add_definitions(-DMEMORY_TRACKING=1)
+add_definitions(-DFULL_MEMORY_OUTPUT=1)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 add_executable(${PROJECT_NAME} ${SOURCE})

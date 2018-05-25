@@ -10,6 +10,8 @@
 
 #if MEMORY_TRACKING
 
+#include <string>
+
 class ClassMemoryInfo {
     
 public:

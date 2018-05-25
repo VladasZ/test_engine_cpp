@@ -3,14 +3,30 @@
 
 #include "Log.hpp"
 
+#include "TestObject.hpp"
+
 using namespace std;
 
-int main() {
+class TestClass : public TestObject<TestClass> {
 
-    Log("Hello");
-    Warning("Hello");
-    Error("Hello");
-    NOT_IMPLEMENTED;
+public:
+
+
+};
+
+
+int main() {
+ 
+    TestClass::Array arr;
+    TestClass::Ptr pointer;
+
+    TestClass aarere;
+    TestClass aarere2;
+    TestClass aarere3;
+    TestClass aarere4;
+    TestClass aarere5;
+    TestClass aarere6;
+    TestClass aarere8;
 
     return 0;
 }

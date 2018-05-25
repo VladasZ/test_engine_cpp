@@ -10,6 +10,10 @@
 
 #if MEMORY_TRACKING
 
+#include <vector>
+
+#include "ClassMemoryInfo.hpp"
+
 #define MEMORY_MANAGER_INVISIBLE(code)\
 MemoryManager::isTracking = false;\
 do {\

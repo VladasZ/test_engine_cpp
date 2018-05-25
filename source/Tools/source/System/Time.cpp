@@ -12,20 +12,14 @@
 using namespace std::chrono;
 
 long long Time::now() {
-    
     long long ms = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
-    
     return ms;
 }
 
 int Time::interval() {
-    
     static long long previnterval = 1;
-    
     int result = int(now() - previnterval);
     previnterval = now();
-    
     if (result == 0) return 1;
-    
     return result;
 }

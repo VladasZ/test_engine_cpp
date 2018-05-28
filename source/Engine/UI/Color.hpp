@@ -11,9 +11,11 @@
 #include "String.hpp"
 #include "TestObject.hpp"
 
-class Color : public TestObject<Color> {
+class Color MEMORY_MANAGED(Color) {
     
 public:
+
+    DEF_TYPES(Color);
         
     float r;
     float g;

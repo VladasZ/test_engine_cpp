@@ -8,12 +8,12 @@
 
 #pragma once
 
+#include "TestObject.hpp"
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"
-#include <vector>
 
-class Label : public View _MEMORY_MANAGED(Label) {
+class Label : public View {
     
     std::string _text;
     Font *_font = Font::System;

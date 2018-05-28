@@ -68,8 +68,8 @@ Font::Font(const std::string& fileName, int size) : _fileName(fileName) {
                        0,
                        size);
     
-    int yMax = 0;
-    int yMin = 0;
+    float yMax = 0;
+    float yMin = 0;
     
     Glyph *maxGlyph = nullptr;
     Glyph *minGlyph = nullptr;

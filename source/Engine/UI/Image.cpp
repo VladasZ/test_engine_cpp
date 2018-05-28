@@ -79,14 +79,12 @@ Image::Image(const std::string &file, Filter filter) {
                                            &height,
                                            &channels,
                                            SOIL_LOAD_RGBA);
-    
-    size = Size(width, height);
-    
+        
 #if IMAGES_LOADING_OUTPUT
     Log("Loading image: " << file << " channels: " << channels);
 #endif
     
-    init(size, image, channels, filter);
+    init(Size(width, height), image, channels, filter);
     SOIL_free_image_data(image);
 }
 

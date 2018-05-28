@@ -20,7 +20,7 @@ add_definitions(-DGLFW=1)
 #add_definitions(-DMEMORY_TRACKING=1)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)
-add_catalog_recursive(${PROJECT_SOURCE_DIR}/../Tools /Tools SOURCE)
+add_catalog_recursive(${PROJECT_SOURCE_DIR}/../Tools/source /Tools SOURCE)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
 

@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Primitives.hpp"
-#include "Color.hpp"
+#include "TestObject.hpp"
 #include "Drawable.hpp"
-#include <vector>
+#include "Color.hpp"
+#include "Primitives.hpp"
 
 enum Autolayout {
     
@@ -34,11 +34,13 @@ class Buffer;
 class Window;
 class Input;
 
-class View : public Drawable _MEMORY_MANAGED(View) {
+class View :  public Drawable _MEMORY_MANAGED(View) {
         
     friend Window;
     
 protected:
+
+    DEF_TYPES(View);
     
     void drawSubviews() const;
     
@@ -50,16 +52,15 @@ protected:
     
     int _touchID = -1;
     
-    
     virtual void setup() { }
     
 public:
     
-    View *superview = nullptr;
+    View::Ptr superview = nullptr;
     
     Rect frame;
     int autolayoutMask = None;
-    std::vector<View *> subviews;
+    View::PtrArray subviews;
     
     View() = default;
     View(float x, float y, float width, float height);
@@ -76,8 +77,8 @@ public:
     
     int getTouchID() const;
     
-    void addSubview(View *view);
-    void insertSubviewAt(int position, View *view);
+    void addSubview(View::Ptr view);
+    void insertSubviewAt(int position, View::Ptr view);
     void removeAllSubviews();
         
     Point localPointFrom(const Point &point) const;

@@ -14,7 +14,7 @@
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
 
-class Buffer : public TestObject<Buffer>, public NonCopyable {
+class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
     
     BufferData *data;
     

@@ -12,7 +12,7 @@
 #include "TestObject.hpp"
 
 
-class File : public TestObject<File> {
+class File MEMORY_MANAGED(File) {
     
     size_t _size;
     std::byte *_data;
@@ -22,6 +22,7 @@ public:
     size_t getSize() const;
     std::byte *getData() const;
 
+    File() = default; //FIX
     File(const std::string &path);
     ~File();
 };

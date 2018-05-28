@@ -42,7 +42,7 @@ public:
     Path(const Rect &rect);
     static Path *circleWith(const Point &center, float radius);
     
-    void addPoint(int x, int y);
+    void addPoint(float x, float y);
     void addPoint(const Point &point);
     
     void setOrigin(const Point &origin);

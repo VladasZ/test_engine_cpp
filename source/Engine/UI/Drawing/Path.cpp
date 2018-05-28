@@ -65,7 +65,7 @@ BufferData * Path::getBufferData() {
     return new BufferData((float *)&points[0], size);
 }
 
-void Path::addPoint(int x, int y) {
+void Path::addPoint(float x, float y) {
     addPoint(Point(x, y));
 }
 

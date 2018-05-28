@@ -13,7 +13,7 @@
 
 class Buffer;
 
-class BufferData : TestObject<BufferData> {
+class BufferData MEMORY_MANAGED(BufferData) {
     
     GLfloat *vertData = nullptr;
     GLuint vertSize = 0;

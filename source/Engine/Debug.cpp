@@ -36,8 +36,7 @@ void CheckGLError(LOCATION_PARAMETERS) {
             strcpy_s(error, 100, "Unknown error");
             break;
         }
-        
-        
+
         __logE("Rendering error: " << error, fileName, function, line);
         delete[] error;
         err = glGetError();

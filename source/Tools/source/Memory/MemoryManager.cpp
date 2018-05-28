@@ -6,11 +6,11 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#if MEMORY_TRACKING
-
 #include "Log.hpp"
 #include "MemoryManager.hpp"
 #include "ClassMemoryInfo.hpp"
+
+#if MEMORY_TRACKING
 
 std::vector<ClassMemoryInfo *> MemoryManager::info;
 

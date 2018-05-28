@@ -9,10 +9,10 @@
 #pragma once
 
 #include "GL.hpp"
-#include "TestObject.hpp"
 #include "NonCopyable.hpp"
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
+#include "Memory.hpp"
 
 class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
     

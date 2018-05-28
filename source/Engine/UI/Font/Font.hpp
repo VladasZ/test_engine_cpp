@@ -8,10 +8,11 @@
 
 #pragma once
 
-#include "NonCopyable.hpp"
-#include "MemoryManaged.hpp"
-#include "String.hpp"
 #include <vector>
+
+#include "String.hpp"
+#include "NonCopyable.hpp"
+#include "Memory.hpp"
 
 class File;
 class Image;
@@ -24,7 +25,7 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     
     float _height;
     float _baselineShift;
-    std::string _fileName;
+    String _fileName;
     
     std::vector<Glyph *> glyphs;
   
@@ -36,7 +37,7 @@ public:
     
     static void initialize();
 
-    Font(const std::string& fileName, int size = 20);
+    Font(const String& fileName, int size = 20);
     
     float baselineShift() const;
     float height() const;

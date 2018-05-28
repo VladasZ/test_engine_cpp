@@ -2,8 +2,6 @@
 #include <iostream>
 #include <memory>
 
-#include "TestObject.hpp"
-
 using namespace std;
 
 template<class T>

@@ -9,15 +9,11 @@
 #include "Polygon.hpp"
 #include "Log.hpp"
 
-//Public
-
 Polygon::Polygon() { }
 
 Polygon::Polygon(std::vector<Vertex> vertices) : vertices(vertices) {
     createBuffers();
 }
-
-//Private
 
 void Polygon::createBuffers() {
     createVertexBuffer();

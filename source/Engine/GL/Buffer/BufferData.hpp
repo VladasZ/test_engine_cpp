@@ -9,7 +9,7 @@
 #pragma once
 
 #include "GL.hpp"
-#include "TestObject.hpp"
+#include "Memory.hpp"
 
 class Buffer;
 

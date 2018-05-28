@@ -10,6 +10,7 @@
 
 #include "Point.hpp"
 #include "Size.hpp"
+#include "String.hpp"
 
 class BufferData;
 
@@ -34,7 +35,7 @@ public:
     
     Rect withZeroOrigin() const;
     
-    std::string toString() const;
+    String toString() const;
     
     BufferData *getData() const;
 };

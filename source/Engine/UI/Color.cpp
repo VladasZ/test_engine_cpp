@@ -6,10 +6,14 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include <vector>
+
 #include "Color.hpp"
 #include "GL.hpp"
 #include "System.hpp"
 #include "Debug.hpp"
+
+using namespace std;
 
 Color::Color(Color const &obj) : Color() {
     r = obj.r;
@@ -36,7 +40,7 @@ void Color::setToUniform(int uniform) const {
 
 Color Color::random() {
     
-    static Color::Array colors = {
+    static vector<Color> colors = {
         Color::red,
         Color::green,
         Color::blue,

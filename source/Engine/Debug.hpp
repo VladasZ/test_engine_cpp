@@ -12,11 +12,7 @@
 
 #ifdef DEBUG
 
-//#define MEMORY_TRACKING true
-//#define MEMORY_TEST false
-//#define MEMORY_BENCHMARK false
-//#define FULL_MEMORY_OUTPUT false
-//#define DEBUG_VIEW true
+#define DEBUG_VIEW true
 #define RENDERING_ERRORS_OUTPUT true
 #define SHADER_COMPILER_OUTPUT true
 #define IMAGES_LOADING_OUTPUT true

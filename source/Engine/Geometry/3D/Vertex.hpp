@@ -8,8 +8,9 @@
 
 #pragma once
 
-#include "GL.hpp"
+#include "String.hpp"
 #include "Color.hpp"
+#include "GL.hpp"
 
 class Vertex MEMORY_MANAGED(Vertex) {
     
@@ -22,7 +23,7 @@ public:
     Vertex(float x, float y, float z = 0, Color color = Color::white);
     Vertex(vec3 position, Color color = Color::white);
     
-    std::string toString() const;
+    String toString() const;
     
     static int bufferSize;
 };

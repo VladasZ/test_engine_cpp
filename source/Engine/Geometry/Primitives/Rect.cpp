@@ -54,8 +54,7 @@ Rect Rect::withZeroOrigin() const {
     return Rect(size.width, size.height);
 }
 
-std::string Rect::toString() const {
-    return "x: "_s;/* +  origin.x  +      " y: " + origin.y +
-      " width: "   + size.width + " height: " + size.width;*/
+String Rect::toString() const {
+    return "x: "_s +  origin.x  +      " y: " + origin.y +
+      " width: "   + size.width + " height: " + size.width;
 }
-

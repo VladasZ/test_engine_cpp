@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Memory.hpp"
+
 #if MEMORY_TRACKING
 
 #include <string>

@@ -9,13 +9,11 @@
 #pragma once
 
 #include "String.hpp"
-#include "TestObject.hpp"
+#include "Memory.hpp"
 
 class Color MEMORY_MANAGED(Color) {
     
 public:
-
-    DEF_TYPES(Color);
         
     float r;
     float g;

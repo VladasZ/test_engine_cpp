@@ -6,10 +6,10 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#if MEMORY_TRACKING
-
-#include "ClassMemoryInfo.hpp"
 #include "Log.hpp"
+#include "ClassMemoryInfo.hpp"
+
+#if MEMORY_TRACKING
 
 ClassMemoryInfo::ClassMemoryInfo(const std::string &name) : className(name) { }
 

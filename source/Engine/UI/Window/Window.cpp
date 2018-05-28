@@ -12,7 +12,6 @@
 #include "RootView.hpp"
 #include "World.hpp"
 #include "Events.hpp"
-#include "Debug.hpp"
 #include "Time.hpp"
 #include "Log.hpp"
 #include "MemoryManager.hpp"
@@ -59,7 +58,8 @@ void Window::initialize(int width, int height) {
     
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, sizeChanged);
-    
+    glfwSwapInterval(1); // Limit fps to 60
+
     glewExperimental = GL_TRUE;
     if (glewInit()) {
         Error("Glew initialization failed");
@@ -86,9 +86,7 @@ void Window::initialize(int width, int height) {
 //        Warning("glLineWidth not supported");
 //    }
 
-    setup();
- 
-    
+    setup(); 
 }
 
 void Window::setup() {

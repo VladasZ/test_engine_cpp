@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "TestObject.hpp"
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"

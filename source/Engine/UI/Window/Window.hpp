@@ -11,7 +11,7 @@
 #include "Size.hpp"
 #include "Point.hpp"
 #include "Input.hpp"
-#include "MemoryManaged.hpp"
+#include "Debug.hpp"
 
 class View;
 class RootView;
@@ -21,7 +21,7 @@ struct GLFWwindow;
 class DebugInfoView;
 #endif
 
-class Window MEMORY_MANAGED(Window) {
+class Window {
     
     friend Input;
     

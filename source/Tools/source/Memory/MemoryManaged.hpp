@@ -8,37 +8,21 @@
 
 #pragma once
 
-#include "MemoryManager.hpp"
-
 #if MEMORY_TRACKING
 
 #include "Log.hpp"
-#include "ClassMemoryInfo.hpp"
-
-#define  MEMORY_MANAGED(class) : public MemoryManaged<class>
-#define _MEMORY_MANAGED(class) , public MemoryManaged<class>
-
-#else
-
-#define  MEMORY_MANAGED(class)
-#define _MEMORY_MANAGED(class)
-
-#endif
-
-#if MEMORY_TRACKING
 
 template <class T>
 class MemoryManaged {
     
-    static std::string className;
+    static const std::string className;
     static int *allocated;
     static int *deleted;
     
-    
-public:
-    
     int _memoryID;
-    
+
+public:
+        
     static int leaked() {
         return allocated - deleted;
     }
@@ -46,7 +30,7 @@ public:
     MemoryManaged() {
         if (!MemoryManager::isTracking) return;
         if (allocated == nullptr) {
-            Error("31 Initialized class: " << MemoryManaged<T>::className);
+            Error(typeid(T).name() << MemoryManaged<T>::className);
             return;
         }
         
@@ -71,13 +55,13 @@ public:
 };
 
 template <class T>
-std::string MemoryManaged<T>::className = []() {
-    auto info = new ClassMemoryInfo(typeid(T).name());
-    //Log("48 Initialized class: " << info->className);
-    allocated = &info->allocated;
-    deleted = &info->deleted;
-    MemoryManager::info.push_back(info);
-    return info->className;
+const std::string MemoryManaged<T>::className = []() {
+    MemoryManager::info.push_back(new ClassMemoryInfo(typeid(T).name()));
+    ClassMemoryInfo &info = *MemoryManager::info.back();
+    Log("48 Initialized class: " << info.className);
+    MemoryManaged<T>::allocated = &info.allocated;
+    MemoryManaged<T>::deleted = &info.deleted;
+    return info.className;
 }();
 
 template <class T>

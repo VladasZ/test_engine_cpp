@@ -6,16 +6,20 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "Unit.hpp"
 #include <math.h>
+#include <algorithm>
+
+#include "Unit.hpp"
+
+using namespace std;
 
 void Unit::update() {
     
     float oldX = abs(_position.x);
     Movable::update();
     float newX = abs(_position.x);
- /*   distanceFromLastStep += MAX(oldX, newX) - MIN(oldX, newX);
-    if (distanceFromLastStep < stepLength) return;*/
+    distanceFromLastStep += max(oldX, newX) - min(oldX, newX);
+    if (distanceFromLastStep < stepLength) return;
     
     Direction direction = velocity.directionX();
 

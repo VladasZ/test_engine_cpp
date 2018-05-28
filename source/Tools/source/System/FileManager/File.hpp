@@ -9,8 +9,7 @@
 #pragma once
 
 #include "String.hpp"
-#include "TestObject.hpp"
-
+#include "Memory.hpp"
 
 class File MEMORY_MANAGED(File) {
     
@@ -23,7 +22,6 @@ public:
     std::byte *getData() const;
 
     File() = default; //FIX
-    File(const std::string &path);
+    File(const String &path);
     ~File();
 };
-

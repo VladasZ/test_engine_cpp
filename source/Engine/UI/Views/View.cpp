@@ -24,7 +24,7 @@ BufferData * View::getBufferData() {
 
 Rect View::calculateAbsoluteFrame() const {
     Rect aFrame = frame;
-    View::Ptr superview = this->superview;
+    View *superview = this->superview;
     while (superview != nullptr) {
         aFrame.origin += superview->frame.origin;
         superview = superview->superview;
@@ -107,13 +107,13 @@ int View::getTouchID() const {
     return _touchID;
 }
 
-void View::addSubview(View::Ptr view) {
+void View::addSubview(View *view) {
     subviews.emplace_back(view);
     view->superview = this;
     view->setup();
 }
 
-void View::insertSubviewAt(int position, View::Ptr view) {
+void View::insertSubviewAt(int position, View *view) {
     subviews.emplace(subviews.begin() + position, view);
     view->superview = this;
     view->setup();
@@ -122,6 +122,7 @@ void View::insertSubviewAt(int position, View::Ptr view) {
 void View::removeAllSubviews() {
     for(auto view : subviews) {
         view->removeAllSubviews();
+        delete view;
     }
     subviews.clear();
 }

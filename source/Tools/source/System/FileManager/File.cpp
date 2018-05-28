@@ -12,7 +12,7 @@
 
 using namespace std;
 
-File::File(const std::string &path) {
+File::File(const String &path) {
     
     FILE* file = fopen(FileManager::assetsPathWithFileName(path).c_str(), "rb");
     

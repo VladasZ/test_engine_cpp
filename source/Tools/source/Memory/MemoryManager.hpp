@@ -8,18 +8,11 @@
 
 #pragma once
 
+#include "Memory.hpp"
+
 #if MEMORY_TRACKING
 
 #include <vector>
-
-#include "ClassMemoryInfo.hpp"
-
-#define MEMORY_MANAGER_INVISIBLE(code)\
-MemoryManager::isTracking = false;\
-do {\
-code\
-} while(false);\
-MemoryManager::isTracking = true;
 
 class ClassMemoryInfo;
 
@@ -41,9 +34,5 @@ public:
     static void printDump();
     
 };
-
-#else
-
-#define MEMORY_MANAGER_INVISIBLE(code) do { code } while (false);
 
 #endif

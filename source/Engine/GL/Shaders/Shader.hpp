@@ -10,6 +10,7 @@
 
 #include "Color.hpp"
 #include "GL.hpp"
+#include "Memory.hpp"
 
 class Window;
 

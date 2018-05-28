@@ -6,16 +6,17 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Log.hpp"
-#include "Font.hpp"
-#include "Image.hpp"
-#include "Glyph.hpp"
-
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
 
+#include "Log.hpp"
+#include "Font.hpp"
+#include "Image.hpp"
+#include "Glyph.hpp"
 #include "File.hpp"
+
+using namespace std;
 
 static FT_Library library = nullptr;
 
@@ -23,7 +24,7 @@ Font * Font::SF;
 Font * Font::OpenSans;
 Font * Font::System;
 
-FT_Library ftLibrary() {
+static FT_Library ftLibrary() {
     if (library == nullptr) {
         FT_Init_FreeType(&library);
     }
@@ -53,7 +54,7 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
                            face->glyph->metrics.horiBearingY / 64));
 }
 
-Font::Font(const std::string& fileName, int size) : _fileName(fileName) {
+Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
     auto file = new File(fileName);
     FT_Face face;

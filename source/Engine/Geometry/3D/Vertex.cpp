@@ -14,8 +14,8 @@ Vertex::Vertex(float x, float y, float z, Color color) : position(vec3(x, y, z))
 
 Vertex::Vertex(vec3 position, Color color) : position(position), color(color) { }
 
-std::string Vertex::toString() const {
-    return "x: "_s;/* + to_string(position.x) + " y: " + to_string(position.y) + " z: " + to_string(position.z);*/
+String Vertex::toString() const {
+    return "x: "_s + position.x + " y: " + position.y + " z: " + position.z;
 }
 
 int Vertex::bufferSize = 7;

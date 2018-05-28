@@ -2,13 +2,15 @@
 #include <cstdio>
 #include <fstream>
 #include <algorithm>
-
+#include <vector>
 #include <stdlib.h>
 
 #include "ShaderCompiler.hpp"
 
 #include "GL.hpp"
 #include "Debug.hpp"
+
+using namespace std;
 
 String ShaderCompiler::shaderVersion() {
     
@@ -28,7 +30,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 	GLuint FragmentShaderID = GL(glCreateShader(GL_FRAGMENT_SHADER));
 
     String VertexShaderCode = shaderVersion();
-	std::ifstream VertexShaderStream(vertexPath.c_str(), std::ios::in);
+	ifstream VertexShaderStream(vertexPath.c_str(), ios::in);
     
 #if SHADER_COMPILER_OUTPUT
     
@@ -39,7 +41,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if (VertexShaderStream.is_open())
     {
-		std::string Line = "";
+		string Line = "";
         
 		while(getline(VertexShaderStream, Line))
 			VertexShaderCode += "\n" + Line;
@@ -53,12 +55,12 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
 		return 0;
 	}
 
-	std::string FragmentShaderCode = shaderVersion();
-	std::ifstream FragmentShaderStream(fragmentPath.c_str(), std::ios::in);
+	string FragmentShaderCode = shaderVersion();
+	ifstream FragmentShaderStream(fragmentPath.c_str(), ios::in);
     
 	if (FragmentShaderStream.is_open())
     {
-		std::string Line = "";
+		string Line = "";
         
 		while(getline(FragmentShaderStream, Line))
 			FragmentShaderCode += "\n" + Line;
@@ -100,7 +102,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if ( InfoLogLength > 0 )
     {
-		std::vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
+		vector<char> FragmentShaderErrorMessage(InfoLogLength+1);
 		GL(glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]));
         Error(&FragmentShaderErrorMessage[0]);
 	}
@@ -117,7 +119,7 @@ int ShaderCompiler::compile(const String &vertexPath, const String &fragmentPath
     
 	if (InfoLogLength > 0)
     {
-		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
+		vector<char> ProgramErrorMessage(InfoLogLength+1);
 		GL(glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]));
         Error(&ProgramErrorMessage[0]);
 	}

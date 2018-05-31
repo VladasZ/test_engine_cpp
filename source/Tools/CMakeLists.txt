@@ -2,18 +2,11 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
 project(Tools)
 
-set(CMAKE_CXX_STANDARD 17)
-
 include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
-include(../../build/ToolsInclude.cmake)
-include_directories(${PROJECT_SOURCE_DIR})
-
 conan_basic_setup()
 
 add_definitions(-DWINDOWS=1)
 add_definitions(-DDEBUG=1)
-#add_definitions(-DMEMORY_TRACKING=1)
-#add_definitions(-DFULL_MEMORY_OUTPUT=1)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 add_executable(${PROJECT_NAME} ${SOURCE})

@@ -72,7 +72,7 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
     }
     
     directionStick->setCenter(touchPosition);
-    if (action) action(vector * 0.01f);
+    if (action) action(vector * 0.1f);
 }
 
 void AnalogStickView::onDirectionChange(const function<void (const Point &)> &action) {

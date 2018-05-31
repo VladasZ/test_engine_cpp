@@ -2,25 +2,17 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
 project(Engine)
 
-set(CMAKE_CXX_STANDARD 17)
-
 include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
-include(../../build/EngineInclude.cmake)
-include(../../build/ToolsInclude.cmake)
-
 include_directories(${PROJECT_SOURCE_DIR}/../ThirdParty/soil/inc/SOIL)
-include_directories(${PROJECT_SOURCE_DIR})
 
 conan_basic_setup()
 
 add_definitions(-DWINDOWS=1)
 add_definitions(-DDEBUG=1)
 add_definitions(-DGLFW=1)
-#add_definitions(-DDEBUG_VIEW=1)
-#add_definitions(-DMEMORY_TRACKING=1)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)
-add_catalog_recursive(${PROJECT_SOURCE_DIR}/../Tools/source /Tools SOURCE)
+add_catalog_recursive(${PROJECT_SOURCE_DIR}/../Tools/source /Source/Tools SOURCE)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
 

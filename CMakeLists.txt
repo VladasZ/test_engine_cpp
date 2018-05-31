@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.9.2 FATAL_ERROR)
 
-include(configuration/sources_parsing.cmake)
+include(${CMAKE_SOURCE_DIR}/config/utils.cmake)
+
+set(CMAKE_CXX_STANDARD 17)
 
 project(TestEngine)
+
 
 add_subdirectory(source/Engine)
 add_subdirectory(source/Tools)

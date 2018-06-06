@@ -13,7 +13,7 @@
 #ifdef DEBUG
 
 #ifdef WINDOWS
-inline const char __heart = 'M';
+inline const char __heart = ' ';
 #else
 inline const char __heart = '💚';
 #endif
@@ -39,10 +39,10 @@ LOCATION(file, func, line)\
 << message << std::endl;
 
 #define __logI(message, file, func, line) std::cout << "[" << __heart << " INFO " << __heart << "] " << message << std::endl;
-#define __logW(message, file, func, line) __log(message, "💛 WARNING 💛", file, func, line)
+#define __logW(message, file, func, line) __log(message, "WARNING", file, func, line)
 
 #if LOG_ERRORS
-#define __logE(message, file, func, line) __log(message, "❤️ ERROR ❤️",   file, func, line)
+#define __logE(message, file, func, line) __log(message, "ERROR",   file, func, line)
 #else
 #define __logE(message, file, func, line)
 #endif

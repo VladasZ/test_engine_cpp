@@ -10,8 +10,9 @@
 #include "Unit.hpp"
 #include "Sprite.hpp"
 #include "Image.hpp"
-#include "Events.hpp"
 #include "GL.hpp"
+#include "RootView.hpp"
+#include "AnalogStickView.hpp"
 
 World world;
 
@@ -43,12 +44,12 @@ void World::setup() {
         Rect(57, 131, 33, 57),
         Rect(53, 190, 34, 56)
     });
-        
-    Events::onRotation.subscribe(this, [this](const Point &point){
+
+    rotationStick->onDirectionChange.subscribe([&](auto point) {
         frisk->rotation = point.angle();
     });
-    
-    Events::onMove.subscribe(this, [this](const Point &point){
+
+    directionStick->onDirectionChange.subscribe([&](auto point) {
         frisk->setVelocity(point);
     });
 }

@@ -7,7 +7,6 @@
 //
 
 #include "MoveView.hpp"
-#include "Events.hpp"
 
 static Button *leftButton;
 static Button *rightButton;
@@ -41,13 +40,13 @@ void MoveView::setup() {
     
     static const float speed = 10;
     
-    leftButton ->onTouch([]() { Events::onRotation(Point(Direction::Left,  speed)); });
-    rightButton->onTouch([]() { Events::onRotation(Point(Direction::Right, speed)); });
-    upButton   ->onTouch([]() { Events::onRotation(Point(Direction::Up,    speed)); });
-    downButton ->onTouch([]() { Events::onRotation(Point(Direction::Down,  speed)); });
+    //leftButton ->onTouch([]() { Events::onRotation(Point(Direction::Left,  speed)); });
+    //rightButton->onTouch([]() { Events::onRotation(Point(Direction::Right, speed)); });
+    //upButton   ->onTouch([]() { Events::onRotation(Point(Direction::Up,    speed)); });
+    //downButton ->onTouch([]() { Events::onRotation(Point(Direction::Down,  speed)); });
 
-    for (auto button : buttons())
-        button->onRelease([]() { Events::onRotation(Point()); });
+    //for (auto button : buttons())
+    //    button->onRelease([]() { Events::onRotation(Point()); });
 }
 
 void MoveView::layout() {

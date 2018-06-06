@@ -8,13 +8,11 @@
 
 #pragma once
 
+#include "Event.hpp"
 #include "UI.hpp"
-#include <functional>
-#include <vector>
 
 class AnalogStickView : public DrawingView {
   
-    std::function<void(const Point &)> action;
     void setup() override;
     
     DrawingView *directionStick;
@@ -24,6 +22,6 @@ class AnalogStickView : public DrawingView {
 public:
         
     AnalogStickView();
-    
-    void onDirectionChange(const std::function<void(const Point &)> &action);
+
+    Event<const Point &> onDirectionChange;
 };

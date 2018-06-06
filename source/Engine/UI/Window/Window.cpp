@@ -11,7 +11,6 @@
 #include "GL.hpp"
 #include "RootView.hpp"
 #include "World.hpp"
-#include "Events.hpp"
 #include "Time.hpp"
 #include "Log.hpp"
 #include "MemoryManager.hpp"
@@ -39,7 +38,7 @@ void Window::initialize(int width, int height) {
     
     glfwInit();
     
-    glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
+    glfwWindowHint(GLFW_SAMPLES, 16); // 4x antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     
@@ -148,4 +147,7 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
+    glViewport(0, 0, width, height);
+    update();
+    GL(glfwSwapBuffers(Window::window));
 }

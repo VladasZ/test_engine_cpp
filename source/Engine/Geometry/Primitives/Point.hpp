@@ -22,7 +22,7 @@ namespace TestEngine {
     class Point {
         
     public:
-                
+
         float x = 0, y = 0;
                 
         Point() = default;

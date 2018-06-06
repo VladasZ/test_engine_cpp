@@ -16,6 +16,6 @@ class World;
 
 class Events {
 public:
-    static Event<World, Point> onRotation;
-    static Event<World, Point> onMove;
+    inline static ConditionalEvent<World, Point> onRotation;
+    inline static ConditionalEvent<World, Point> onMove;
 };

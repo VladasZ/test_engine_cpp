@@ -9,7 +9,6 @@
 #pragma once
 
 #include "Point.hpp"
-#include "NonCopyable.hpp"
 #include "Event.hpp"
 
 class Button;
@@ -17,9 +16,9 @@ class View;
 
 #define INPUT_PARAMETERS float x, float y, long id
 
-typedef Event<View, TestEngine::Point, long> TouchEvent;
+typedef ConditionalEvent<View, TestEngine::Point, long> TouchEvent;
 
-class Input : NonCopyable {
+class Input final {
     
     Input();
     

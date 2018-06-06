@@ -103,6 +103,10 @@ void View::setCenter(const Point &center) {
                   frame.size.height));
 }
 
+void View::setCenter(float x, float y) {
+    setCenter(Point(x, y));
+}
+
 int View::getTouchID() const {
     return _touchID;
 }

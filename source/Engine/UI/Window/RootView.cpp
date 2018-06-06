@@ -10,11 +10,11 @@
 #include "Input.hpp"
 #include "MoveView.hpp"
 #include "AnalogStickView.hpp"
-#include "Events.hpp"
 
+static View *greenView = new View(100, 100);
+static View *blueView = new View(100, 100);
+static ImageView *catView = new ImageView(100, 100);
 
-static AnalogStickView *directionStick;
-static AnalogStickView *rotationStick;
 
 void RootView::setup() {
     
@@ -24,16 +24,19 @@ void RootView::setup() {
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
     
-    directionStick->onDirectionChange([](const Point &point) {
-        Events::onRotation(point);
-    });
-    
-    rotationStick->onDirectionChange([](const Point &point) {
-        Events::onMove(point);
-    });
+    greenView->color = Color::green;
+    blueView->color = Color::blue;
+
+    catView->image = Image::cat;
+    catView->setCenter(500, 300);
+
+    blueView->setCenter(300, 300);
     
     addSubview(directionStick);
     addSubview(rotationStick);
+    addSubview(greenView);
+    addSubview(blueView);
+    addSubview(catView);
 }
 
 void RootView::draw() {

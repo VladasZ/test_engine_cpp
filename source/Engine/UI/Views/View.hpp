@@ -74,7 +74,8 @@ public:
     
     void setFrame(const Rect &frame);
     void setCenter(const Point &center);
-    
+    void setCenter(float x, float y);
+
     int getTouchID() const;
     
     void addSubview(View *view);

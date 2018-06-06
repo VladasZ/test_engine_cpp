@@ -12,7 +12,7 @@
 #include <type_traits>
 
 template<class SubscriberType, class ...Params>
-class Event {
+class ConditionalEvent {
     
 public:
     using EventCallbackType = std::function<void(Params...)>;
@@ -42,10 +42,10 @@ private:
     
 public:
     
-    Event() = default;
+    ConditionalEvent() = default;
 
     template<class Void = SubscriberType>
-    Event(typename std::enable_if_t<std::is_same_v<Void, void> == false, EventConditionType> condition)
+    ConditionalEvent(typename std::enable_if_t<std::is_same_v<Void, void> == false, EventConditionType> condition)
         :
         _condition(condition) 
     { }
@@ -73,9 +73,7 @@ public:
                 subscriber.action(parameters...);
         }
     }
-    
-    void condition(const EventConditionType &condition) {
-        _condition = condition;
-    }
 };
 
+template<class ...Params>
+using Event = ConditionalEvent<void, Params...>;

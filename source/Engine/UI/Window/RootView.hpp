@@ -10,6 +10,11 @@
 
 #include "UI.hpp"
 
+class AnalogStickView;
+
+inline AnalogStickView *directionStick;
+inline AnalogStickView *rotationStick;
+
 class RootView : public View {
     
     friend Window;

@@ -12,7 +12,7 @@
 
 #if MEMORY_TRACKING
 
-std::vector<ClassMemoryInfo *> MemoryManager::info;
+Array<ClassMemoryInfo *> MemoryManager::info;
 
 bool MemoryManager::isTracking = true;
 

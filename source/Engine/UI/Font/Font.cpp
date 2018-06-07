@@ -15,6 +15,7 @@
 #include "Image.hpp"
 #include "Glyph.hpp"
 #include "File.hpp"
+#include "Macro.hpp"
 
 using namespace std;
 

@@ -22,7 +22,7 @@ class DebugInfoView : public View _MEMORY_MANAGED(DebugInfoView) {
     Label *framesDrawnLabel;
     Label *touchLabel;
 
-    std::vector<Label *> labels() const;
+    Array<Label *> labels() const;
     
   
 public:

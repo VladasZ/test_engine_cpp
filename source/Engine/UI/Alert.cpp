@@ -16,7 +16,7 @@
 
 void Alert::show(const String&message, const String& title) {
 #if WINDOWS
-    MessageBox(0, message, title, MB_OK);
+    MessageBox(0, message.c_str(), title.c_str(), MB_OK);
 #else 
     objCShowAlert(message);
 #endif

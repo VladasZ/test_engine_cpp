@@ -8,12 +8,12 @@
 
 #pragma once
 
+#include "Array.hpp"
 #include "UI.hpp"
-#include <vector>
 
 class DrawingView : public View {
     
-    std::vector<Path *> paths;
+    Array<Path *> paths;
     
     void draw() override;
     void layout() override;

@@ -110,7 +110,7 @@ Size Sprite::size() {
 }
 
 void Sprite::setSubsprites(const std::initializer_list<Rect> &subsprites) {
-    _subsprites = new std::vector<Rect>(subsprites);
+    _subsprites = new Array<Rect>(subsprites);
     setSubspriteIndex(0);
 }
 

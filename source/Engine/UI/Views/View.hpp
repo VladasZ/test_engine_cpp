@@ -8,15 +8,13 @@
 
 #pragma once
 
-#include <vector>
-
+#include "Array.hpp"
 #include "Drawable.hpp"
 #include "Color.hpp"
 #include "Primitives.hpp"
 #include "Memory.hpp"
 
 enum Autolayout {
-    
     None               = 0,
     StickToLeft        = 1 << 0,
     StickToRight       = 1 << 1,
@@ -60,7 +58,7 @@ public:
     
     Rect frame;
     int autolayoutMask = None;
-    std::vector<View *> subviews;
+    Array<View *> subviews;
     
     View() = default;
     View(float x, float y, float width, float height);

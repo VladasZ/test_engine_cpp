@@ -30,7 +30,7 @@ public:
     std::string text() const;
     void setText(const std::string &text);
     
-    Font *font() const;
+    const Font * const font() const;
     void setFont(Font *font);
     
 };

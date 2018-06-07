@@ -13,7 +13,7 @@ static Button *rightButton;
 static Button *upButton;
 static Button *downButton;
 
-std::vector<Button *> buttons() {
+Array<Button *> buttons() {
     return { leftButton, rightButton, upButton, downButton };
 }
 

@@ -8,8 +8,7 @@
 
 #pragma once
 
-#include <vector>
-
+#include "Array.hpp"
 #include "String.hpp"
 #include "NonCopyable.hpp"
 #include "Memory.hpp"
@@ -27,7 +26,7 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     float _baselineShift;
     String _fileName;
     
-    std::vector<Glyph *> glyphs;
+    Array<Glyph *> glyphs;
   
 public:
     

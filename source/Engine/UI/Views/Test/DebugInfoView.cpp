@@ -7,6 +7,7 @@
 //
 
 #include "DebugInfoView.hpp"
+#include "Macro.hpp"
 
 DebugInfoView::DebugInfoView() : View(0, 0, 600, 100) {
         
@@ -65,7 +66,7 @@ void DebugInfoView::update() {
 #endif
 }
 
-std::vector<Label *> DebugInfoView::labels() const {
+Array<Label *> DebugInfoView::labels() const {
     return {
         fpsLabel,
 #if MEMORY_TRACKING

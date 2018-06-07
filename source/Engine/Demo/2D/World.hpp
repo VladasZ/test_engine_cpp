@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include <vector>
+#include "Array.hpp"
 
 class Movable;
 class Sprite;
 
 class World {
     
-    std::vector<Movable *> movableObjects;
-    std::vector<Sprite *> objects;
+    Array<Movable *> movableObjects;
+    Array<Sprite *> objects;
 
 public:
     

@@ -24,7 +24,7 @@ void Label::setGlyphs() {
     
     int advance = 0;
     
-    std::vector<ImageView *> views;
+    Array<ImageView *> views;
     
     for (auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);
@@ -51,7 +51,7 @@ void Label::setText(const std::string &text) {
     needsGlyphsUpdate = true;
 }
 
-Font * Label::font() const { return _font; }
+const Font * const Label::font() const { return _font; }
 
 void Label::setFont(Font *font) {
     _font = font;

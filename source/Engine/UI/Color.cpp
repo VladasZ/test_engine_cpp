@@ -6,8 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include <vector>
-
+#include "Array.hpp"
 #include "Color.hpp"
 #include "GL.hpp"
 #include "System.hpp"
@@ -40,7 +39,7 @@ void Color::setToUniform(int uniform) const {
 
 Color Color::random() {
     
-    static vector<Color> colors = {
+    static Array<Color> colors = {
         Color::red,
         Color::green,
         Color::blue,

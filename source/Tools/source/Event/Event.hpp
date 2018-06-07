@@ -11,6 +11,8 @@
 #include <functional>
 #include <type_traits>
 
+#include "Array.hpp"
+
 template<class SubscriberType, class ...Params>
 class ConditionalEvent {
     
@@ -36,7 +38,7 @@ private:
         { }
     };
     
-    std::vector<Subscriber> subscribers;
+    Array<Subscriber> subscribers;
     
     EventConditionType _condition = [](SubscriberType *, Params...){ return true; };
     
@@ -68,7 +70,7 @@ public:
     }
     
     void operator()(Params... parameters) const {
-        for (auto subscriber : subscribers) {
+        for (const auto& subscriber : subscribers) {
             if (_condition(subscriber.object, parameters...))
                 subscriber.action(parameters...);
         }

@@ -10,7 +10,7 @@
 
 #include "Primitives.hpp"
 #include "Drawable.hpp"
-#include <vector>
+#include "Array.hpp"
 
 class World;
 class Image;
@@ -32,7 +32,7 @@ protected:
     
     Image *_image;
     
-    std::vector<Rect> *_subsprites = nullptr;
+    Array<Rect> *_subsprites = nullptr;
     int _subspriteIndex = -1;
     
 public:

@@ -9,17 +9,9 @@
 #pragma once
 
 #include <string>
-#include <type_traits>
-
-#include "HasMember.hpp"
-#include "Macro.hpp"
-
-#ifndef WINDOWS
-GENERATE_HAS_MEMBER(toString);
-#endif
 
 template <class T>
-auto __toString(const T &value) {
+decltype(auto) __toString(const T &value) {
     if constexpr      (std::is_array<T>::value)         return std::string(value);
     else if constexpr (std::is_same_v<T, const char *>) return std::string(value);
     else if constexpr (std::is_same_v<T, std::string>)  return value;
@@ -29,53 +21,23 @@ auto __toString(const T &value) {
     else { STATIC_GET_TYPE(value); }
 }
 
-class String {
+class String : public std::string {
     
-    size_t _size;
-    char *_data = nullptr;
+    using str = std::string;
     
-    String(size_t size, char *data);
-    void initWithString(const std::string &string);
-    void initWithString(const String &string);
-
 public:
-    
-    String();
-    
-    template<class T>
-    String(const T &value) { initWithString(__toString(value)); }
-    
-    String(const String &string);
-    String &operator =(const String &str);
-    
-    ~String();
-    
-    operator std::string() const;
-    operator const char *() const;
-    
-    const char *c_str() const;
-    std::string stdString()  const;
-    
-    String operator +(const String &str) const;
-    void operator +=(const String &str);
+
+    using str::str;
 
     template<class T>
-    String operator +(const T &in) const { return *this + String(in); }
+    String(const T &value) : str(__toString(value)) { }
     
     template<class T>
-    void operator +=(const T &in) { *this += String(in); }
+    String operator +(const T &in) const { return str(*this) + str(String(in)); }
     
-    char *begin() const;
-    char *end()   const;
-    
-    bool empty() const;
-    size_t size()  const;
-    void print() const;
-    
-    String drop(int size) const;
+    template<class T>
+    void operator +=(const T &in) { str(*this) += str(String(in)); }
 };
-
-std::ostream &operator<<(std::ostream &os, String const &str);
 
 String operator "" _s(const char *in, size_t size);
 String operator "" _s(unsigned long long in);

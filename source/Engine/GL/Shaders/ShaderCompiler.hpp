@@ -1,6 +1,6 @@
 #pragma once
 
-#include "String.hpp"
+#include <string>
 
 class ShaderCompiler {
     
@@ -8,10 +8,10 @@ class ShaderCompiler {
     
 private:
     
-    static String shaderVersion();
+    static std::string shaderVersion();
     
 public:
     
-    static int compile(const String &vertexPath, const String &fragmentPath);
+    static int compile(const std::string &vertexPath, const std::string &fragmentPath);
 };
 

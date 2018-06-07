@@ -12,7 +12,7 @@
 
 #if MEMORY_TRACKING
 
-#include <vector>
+#include "Array.hpp"
 
 class ClassMemoryInfo;
 
@@ -24,7 +24,7 @@ public:
     
     static bool isTracking;
     
-    static std::vector<ClassMemoryInfo *> info;
+    static Array<ClassMemoryInfo *> info;
     
     static int totalObjectsAllocated;
     static int totalObjectsDeleted;

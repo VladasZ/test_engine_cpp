@@ -22,9 +22,6 @@ void testEngineMain() {
     return;
 #endif
 
-    Alert::show("hello hello", "Title");
-    return;
-    
 	Window::initialize(500, 500);
 
 	do {

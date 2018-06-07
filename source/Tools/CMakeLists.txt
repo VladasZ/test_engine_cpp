@@ -5,9 +5,6 @@ project(Tools)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
 conan_basic_setup()
 
-add_definitions(-DWINDOWS=1)
-add_definitions(-DDEBUG=1)
-
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 add_executable(${PROJECT_NAME} ${SOURCE})
 

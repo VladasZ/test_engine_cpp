@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(TestEngine)
 
+add_definitions(-DWINDOWS=1)
+add_definitions(-DDEBUG=1)
 
 add_subdirectory(source/Engine)
 add_subdirectory(source/Tools)

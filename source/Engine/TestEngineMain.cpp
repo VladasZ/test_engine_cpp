@@ -12,6 +12,7 @@
 #include "Window.hpp"
 #include "Debug.hpp"
 #include "MemoryManaged.hpp"
+#include "Alert.hpp"
 
 void testEngineMain() {
     
@@ -20,6 +21,9 @@ void testEngineMain() {
     MemoryManager::printDump();
     return;
 #endif
+
+    Alert::show("hello hello", "Title");
+    return;
     
 	Window::initialize(500, 500);
 

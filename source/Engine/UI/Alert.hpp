@@ -12,5 +12,5 @@
 
 class Alert {
 public:
-    static void show(const std::string &message);
+    static void show(const String&message, const String& title = "");
 };

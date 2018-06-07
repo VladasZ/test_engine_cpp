@@ -7,8 +7,17 @@
 //
 
 #include "Alert.hpp"
-#include "CallObj.h"
 
-void Alert::show(const std::string &message) {
-    //objCShowAlert(message.c_str());
+#ifdef WINDOWS
+#include <Windows.h>
+#else
+#include "CallObj.h"
+#endif
+
+void Alert::show(const String&message, const String& title) {
+#if WINDOWS
+    MessageBox(0, message, title, MB_OK);
+#else 
+    objCShowAlert(message);
+#endif
 }

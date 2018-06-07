@@ -7,8 +7,6 @@ include_directories(${PROJECT_SOURCE_DIR}/../ThirdParty/soil/inc/SOIL)
 
 conan_basic_setup()
 
-add_definitions(-DWINDOWS=1)
-add_definitions(-DDEBUG=1)
 add_definitions(-DGLFW=1)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)

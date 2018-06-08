@@ -11,15 +11,21 @@
 #include "String.hpp"
 #include "Memory.hpp"
 
+#if APPLE
+using byte = unsigned char;
+#else
+using byte = std::byte;
+#endif
+
 class File MEMORY_MANAGED(File) {
     
     size_t _size;
-    std::byte *_data;
+    byte *_data;
     
 public:
     
     size_t getSize() const;
-    std::byte *getData() const;
+    byte *getData() const;
 
     File() = default; //FIX
     File(const String &path);

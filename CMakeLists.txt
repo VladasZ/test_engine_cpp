@@ -6,7 +6,16 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(TestEngine)
 
-add_definitions(-DWINDOWS=1)
+if (WIN32)
+	add_definitions(-DWINDOWS=1)
+endif ()
+
+if (APPLE)
+	add_definitions(-DAPPLE=1)
+	add_definitions(-DMAC_OS=1)
+endif ()
+
+
 add_definitions(-DDEBUG=1)
 
 add_subdirectory(source/Engine)

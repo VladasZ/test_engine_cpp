@@ -7,7 +7,6 @@
 //
 
 #import "OBJBridge.h"
-#import "Platform.h"
 
 #if IOS
 
@@ -20,9 +19,7 @@ static UIViewController *topmostController() {
     return controller;
 }
 
-#endif
-
-#if MAC_OS
+#elif MAC_OS
 
 #import <AppKit/AppKit.h>
 
@@ -31,7 +28,6 @@ static UIViewController *topmostController() {
 @interface OBJBridge ()
 
 @end
-
 
 @implementation OBJBridge
 
@@ -57,9 +53,7 @@ static UIViewController *topmostController() {
     
     [topmostController() presentViewController:controller animated:YES completion:nil];
     
-#endif
-    
-#if MAC_OS
+#elif MAC_OS
     
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:@"OK"];

@@ -147,7 +147,9 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
+#ifndef APPLE
     glViewport(0, 0, width, height);
+#endif
     update();
     GL(glfwSwapBuffers(Window::window));
 }

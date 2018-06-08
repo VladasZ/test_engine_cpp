@@ -10,7 +10,7 @@
 
 #ifdef WINDOWS
 #include <Windows.h>
-#else
+#elif APPLE
 #include "CallObj.h"
 #endif
 
@@ -18,6 +18,6 @@ void Alert::show(const String&message, const String& title) {
 #if WINDOWS
     MessageBox(0, message.c_str(), title.c_str(), MB_OK);
 #else 
-    objCShowAlert(message);
+    //objCShowAlert(message);
 #endif
 }

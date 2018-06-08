@@ -41,7 +41,7 @@ int System::random(int range) {
     
 #ifdef APPLE
     return arc4random_uniform(range);
-#enlif WINDOWS
+#elif WINDOWS
 	NOT_IMPLEMENTED; return 0;
 #else 
     NOT_IMPLEMENTED; return 0;

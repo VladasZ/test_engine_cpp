@@ -10,7 +10,7 @@
 
 const std::string FileManager::assetsDirectory() {
 #ifdef APPLE
-    return std::string(objCWorkDirectoryPath()) + "/Assets/";
+    return "../../../../Assets/";
 #elif WINDOWS
     return "../../../Assets/";
 #endif

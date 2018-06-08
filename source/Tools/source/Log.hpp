@@ -15,7 +15,7 @@
 #ifdef WINDOWS
 inline const char __heart = ' ';
 #else
-inline const char __heart = '💚';
+inline const char __heart = ' ';
 #endif
 
 

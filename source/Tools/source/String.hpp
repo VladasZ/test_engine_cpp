@@ -12,7 +12,7 @@
 
 template <class T>
 decltype(auto) __toString(const T &value) {
-    if constexpr      (std::is_array<T>::value)         return std::string(value);
+         if constexpr (std::is_array<T>::value)         return std::string(value);
     else if constexpr (std::is_same_v<T, const char *>) return std::string(value);
     else if constexpr (std::is_same_v<T, std::string>)  return value;
     else if constexpr (std::is_fundamental<T>::value)   return std::to_string(value);
@@ -21,25 +21,17 @@ decltype(auto) __toString(const T &value) {
     else { STATIC_GET_TYPE(value); }
 }
 
-class String : public std::string {
-    
+class String : public std::string {    
     using _str = std::string;
-    
 public:
 
     using _str::_str;
 
     String() = default;
-
-    template<class T>
-    String(const T &value) : _str(__toString(value)) { }
-    
-    template<class T>
-    String operator +(const T &in) const { return (_str)*this + String(in); }
-    
-    template<class T>
-    void operator +=(const T &in) { (_str)*this += String(in); }
+    template<class T> String(const T &value) : _str(__toString(value)) { }
+    template<class T> String operator + (const T &in) const { return (_str)*this + String(in); }
+    template<class T> void   operator +=(const T &in) { this->append(in); }
 };
 
 String operator "" _s(const char *in, size_t size);
-String operator "" _s(unsigned long long in);
+String operator "" _s(unsigned long long       in);

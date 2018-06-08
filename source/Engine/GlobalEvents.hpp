@@ -8,14 +8,9 @@
 
 #pragma once
 
-#include "Point.hpp"
 #include "Event.hpp"
-
-class View;
-class World;
 
 class Events {
 public:
-    inline static ConditionalEvent<World, Point> onRotation;
-    inline static ConditionalEvent<World, Point> onMove;
+
 };

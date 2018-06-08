@@ -65,3 +65,5 @@ LOCATION(file, func, line)\
 #endif
 
 #define NOT_IMPLEMENTED Error("Not implemented")
+
+#define OS_OUTPUT_H(Type)

@@ -48,10 +48,6 @@ Direction Point::directionX() const {
     return x > 0 ? Direction::Right : Direction::Left;
 }
 
-String Point::toString() const {
-    return "x: "_s + x + " y: " + y;
-}
-
 Point Point::operator +(const Point &point) const {
     return Point(x + point.x, y + point.y);
 }

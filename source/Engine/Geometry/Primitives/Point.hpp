@@ -9,6 +9,7 @@
 #pragma once
 
 #include "String.hpp"
+#include "Mappable.hpp"
 
 enum Direction {
     Right,
@@ -19,7 +20,7 @@ enum Direction {
 
 namespace TestEngine {
     
-    class Point {
+    class Point : public Mappable<Point> {
         
     public:
 
@@ -38,9 +39,7 @@ namespace TestEngine {
         Point withLength(float length) const;
         
         Direction directionX() const;
-        
-        String toString() const;
-        
+                
         Point operator +(const Point &point) const;
         void operator +=(const Point &point);
         
@@ -50,6 +49,14 @@ namespace TestEngine {
         void operator *=(float value);
 
         static const Point one;
+
+        static auto properties() {
+            return std::make_tuple
+            (
+                make_property("x", &Point::x),
+                make_property("y", &Point::y)
+            );
+        }
     };
 }
 

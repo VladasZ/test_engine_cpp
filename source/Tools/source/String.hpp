@@ -23,20 +23,22 @@ decltype(auto) __toString(const T &value) {
 
 class String : public std::string {
     
-    using str = std::string;
+    using _str = std::string;
     
 public:
 
-    using str::str;
+    using _str::_str;
+
+    String() = default;
 
     template<class T>
-    String(const T &value) : str(__toString(value)) { }
+    String(const T &value) : _str(__toString(value)) { }
     
     template<class T>
-    String operator +(const T &in) const { return str(*this) + str(String(in)); }
+    String operator +(const T &in) const { return (_str)*this + String(in); }
     
     template<class T>
-    void operator +=(const T &in) { str(*this) += str(String(in)); }
+    void operator +=(const T &in) { (_str)*this += String(in); }
 };
 
 String operator "" _s(const char *in, size_t size);

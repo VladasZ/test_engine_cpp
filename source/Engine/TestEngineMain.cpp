@@ -22,6 +22,15 @@ void testEngineMain() {
     return;
 #endif
 
+    Point rglo(200, 8917);
+
+
+    Point::printProperties();
+
+    Point::print(rglo);
+
+    return ;
+
 	Window::initialize(500, 500);
 
 	do {

@@ -14,6 +14,10 @@
 #include "Primitives.hpp"
 #include "Memory.hpp"
 
+class Buffer;
+class Window;
+class Input;
+
 enum Autolayout {
     None               = 0,
     StickToLeft        = 1 << 0,
@@ -29,10 +33,6 @@ enum Autolayout {
     BotRight           = StickToBottom | StickToRight,
     BotLeft            = StickToBottom | StickToLeft
 };
-
-class Buffer;
-class Window;
-class Input;
 
 class View : public Drawable _MEMORY_MANAGED(View) {
         

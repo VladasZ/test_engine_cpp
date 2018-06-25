@@ -8,6 +8,7 @@
 #include "Mappable.hpp"
 
 #include "Macro.hpp"
+#include "Block.hpp"
 
 using namespace std;
 
@@ -30,9 +31,9 @@ public:
 
 int main() {
 
-    Cat::printProperties();
+    Array<pair<String, any>> riglak = { { "spes" , "grex" },{ "mres", "gres" } };
 
-    cout << Cat::toString(Cat()) << endl;
+   // Block spes = { {"spes" , "grex" }, {"mres", "gres"} };
 
     return 0;
 }

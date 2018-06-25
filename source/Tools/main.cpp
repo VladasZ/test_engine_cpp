@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>
 #include "Array.hpp"
+#include "Dictionary.hpp"
 
 #include "String.hpp"
 
@@ -28,12 +29,21 @@ public:
 
 };
 
+template <class T>
+void usingTest() {
+
+    using arr = Array<T>;
+
+    cout << nameOf<arr> << endl;
+}
 
 int main() {
 
-    Array<pair<String, any>> riglak = { { "spes" , "grex" },{ "mres", "gres" } };
+    Block arrus = { 1, 2, 3, 4, 5, 6 };
 
-   // Block spes = { {"spes" , "grex" }, {"mres", "gres"} };
+
+    Block prt = &arrus;
+
 
     return 0;
 }

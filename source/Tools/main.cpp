@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include <memory>
+#include <optional>
+
 #include "Array.hpp"
 #include "Dictionary.hpp"
 
@@ -10,6 +12,9 @@
 
 #include "Macro.hpp"
 #include "Block.hpp"
+
+#include "ExceptionCatch.hpp"
+#include "Log.hpp"
 
 using namespace std;
 
@@ -22,11 +27,10 @@ public:
 
     static auto properties() {
         return make_tuple(
-            make_property("age",  &Cat::age),
+            make_property("age", &Cat::age),
             make_property("name", &Cat::name)
         );
     }
-
 };
 
 template <class T>
@@ -37,12 +41,28 @@ void usingTest() {
     cout << nameOf<arr> << endl;
 }
 
+optional<int> getSmershc() {
+
+    return nullopt;
+}
+
+void test() {
+
+    Block array = { "spialgok" , "spes" };
+
+
+    for (auto n : array.array<string>())
+        cout << n << endl;
+}
+
 int main() {
 
-    Block arrus = { 1, 2, 3, 4, 5, 6 };
-
-
-    Block prt = &arrus;
+    try {
+        test();
+    }
+    catch (...) {
+        Log(what());
+    }
 
 
     return 0;

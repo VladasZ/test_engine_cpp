@@ -22,14 +22,14 @@ decltype(auto) __toString(const T &value) {
 }
 
 class String : public std::string {    
-    using _str = std::string;
+    using __str = std::string;
 public:
 
-    using _str::_str;
+    using __str::__str;
 
     String() = default;
-    template<class T> String(const T &value) : _str(__toString(value)) { }
-    template<class T> String operator + (const T &in) const { return (_str)*this + String(in); }
+    template<class T> String(const T &value) : __str(__toString(value)) { }
+    template<class T> String operator + (const T &in) const { return (__str)*this + String(in); }
     template<class T> void   operator +=(const T &in) { this->append(in); }
 };
 

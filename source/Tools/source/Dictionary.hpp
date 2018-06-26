@@ -12,7 +12,7 @@
 
 template <class Key, class Value>
 class Dictionary : public std::map<Key, Value> {
-    using __map = std::map<Key, Value>;
+    using __dictionary = std::map<Key, Value>;
 public:
-    using __map::__map;
+    using __dictionary::__dictionary;
 };

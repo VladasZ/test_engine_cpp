@@ -9,10 +9,23 @@
 #pragma once
 
 #include <vector>
+#include <optional>
+#include <functional>
 
 template <class T>
 class Array : public std::vector<T> {
-    using __vector = std::vector<T>;
+    using __array = std::vector<T>;
 public:
-    using __vector::__vector;
+    using __array::__array;
+
+    using Optional = std::optional<T>;
+    using Predicate = std::function<bool(const T&)>;
+
+    Optional where(Predicate predicate) {
+        for (const auto& object : *this)
+            if (predicate(object))
+                return object;
+        return std::nullopt;
+    }
+
 };

@@ -37,6 +37,7 @@ class Block {
     constexpr DataType _getType() {
         if (is_pointer_v<T>)    return DataType::Pointer;
         if (is_arithmetic_v<T>) return DataType::Number;
+                                return DataType::String;
     }
 
 public:
@@ -49,20 +50,16 @@ public:
 
     template <class T> Block(const std::initializer_list<T> &list) { 
 
-        //constexpr bool isDict = is_same_v<T, Pair>;
-
-        //constexpr using ContainerType = is_same_v<T, Pair> ? Dictionary<String, Pair> : Array<T>;
-
-
-        //if constexpr (is_same_v<T, Pair>) {
-        //   // _typeName = typeid
-        //    _type = DataType::Dictionary;
-        //}
-        //else constexpr {
-        //    _typeName = typeid(Array<T>).name();
-        //    _value = Array<T>(list);
-        //    _type = DataType::Array;
-        //}
+        if constexpr (is_same_v<T, Pair>) {
+            _typeName = nameOf<Dictionary<Pair>>;
+            _value = Dictionary<Pair>(list);
+            _type = DataType::Dictionary;
+        }
+        else constexpr {
+            _typeName = nameOf<Array<T>>;
+            _value = Array<T>(list);
+            _type = DataType::Array;
+        }
     }
 
     template <class T> operator T() const {
@@ -73,16 +70,27 @@ public:
         return typeid(T).name() == _typeName;
     }
 
+    char type() const {
+        return (char)_type;
+    }
+
+    String typeName() const {
+        return _typeName;
+    }
+
     bool isArray() const {
         return _type == DataType::Array;
     }
 
     bool isDictionary() const {
-        return _type == DataType::Dictionary;;
+        return _type == DataType::Dictionary;
     }
 
     template <class T> Array<T> array() const {
-        if (!isArray()) return Array<T>();
+        if (!isArray())
+            throw "Block is not an array. Block type: " + _typeName;
+        //if (!isTypeOf<Array<T>>())
+        //    throw "Invalid type. Expected: " + _typeName + " Given: " + nameOf<Array<T>>;
         return *this;
     }
 

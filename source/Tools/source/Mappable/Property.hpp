@@ -14,7 +14,6 @@
 #include "Meta.hpp"
 #include "String.hpp"
 
-
 template<class ClassType, class MemberType>
 class Property {
 public:
@@ -33,3 +32,5 @@ template<class ClassType, class MemberType>
 std::ostream& operator<<(std::ostream& os, const Property<ClassType, MemberType>& obj) {
     return os << "Property: " << obj.name << " of: " << typeid(ClassType).name();
 }
+
+#define PROPERTY(name, type) make_property(#name,  &type::name)

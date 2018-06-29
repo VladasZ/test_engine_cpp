@@ -15,55 +15,36 @@
 
 #include "ExceptionCatch.hpp"
 #include "Log.hpp"
+#include "Property.hpp"
 
 using namespace std;
 
+class Paw {
+public:
+
+    int size;
+};
 
 class Cat : public Mappable<Cat> {
 public:
 
     int age = 10;
     string name = "koteiko";
+    Paw paw;
 
     static auto properties() {
         return make_tuple(
-            make_property("age", &Cat::age),
-            make_property("name", &Cat::name)
+            PROPERTY(age, Cat),
+            PROPERTY(name, Cat)
         );
     }
 };
 
-template <class T>
-void usingTest() {
-
-    using arr = Array<T>;
-
-    cout << nameOf<arr> << endl;
-}
-
-optional<int> getSmershc() {
-
-    return nullopt;
-}
-
-void test() {
-
-    Block array = { "spialgok" , "spes" };
-
-
-    for (auto n : array.array<string>())
-        cout << n << endl;
-}
 
 int main() {
 
-    try {
-        test();
-    }
-    catch (...) {
-        Log(what());
-    }
 
+    cout << Cat::toString(Cat()) << endl;
 
     return 0;
 }

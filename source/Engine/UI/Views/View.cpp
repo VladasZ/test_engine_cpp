@@ -96,11 +96,16 @@ void View::setFrame(const Rect &frame) {
     layout();
 }
 
+void View::setFrame(float x, float y, float width, float height) {
+    this->frame = { x, y, width, height };
+    layout();
+}
+
 void View::setCenter(const Point &center) {
-    setFrame(Rect(center.x - frame.size.width / 2,
+    setFrame(center.x - frame.size.width / 2,
                   center.y - frame.size.height / 2,
                   frame.size.width,
-                  frame.size.height));
+                  frame.size.height);
 }
 
 void View::setCenter(float x, float y) {

@@ -71,6 +71,7 @@ public:
     virtual void layout();
     
     void setFrame(const Rect &frame);
+    void setFrame(float x, float y, float width, float height);
     void setCenter(const Point &center);
     void setCenter(float x, float y);
 

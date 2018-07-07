@@ -52,15 +52,15 @@ void RootView::layout() {
     directionStick->autolayoutMask = 0;
     rotationStick->autolayoutMask = 0;
 
-    directionStick->setFrame(Rect(directionStick->frame.origin.x - stickMargin,
+    directionStick->setFrame(directionStick->frame.origin.x - stickMargin,
                              directionStick->frame.origin.y - stickMargin,
                              directionStick->frame.size.width,
-                             directionStick->frame.size.height));
+                             directionStick->frame.size.height);
     
-    rotationStick->setFrame(Rect(rotationStick->frame.origin.x + stickMargin,
+    rotationStick->setFrame(rotationStick->frame.origin.x + stickMargin,
                               rotationStick->frame.origin.y - stickMargin,
                               rotationStick->frame.size.width,
-                              rotationStick->frame.size.height));
+                              rotationStick->frame.size.height);
     
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;

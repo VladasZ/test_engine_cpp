@@ -20,4 +20,5 @@ add_definitions(-DDEBUG=1)
 
 add_subdirectory(source/Engine)
 add_subdirectory(source/Tools)
+add_subdirectory(source/TestTools)
 add_subdirectory(source/ThirdParty/soil)

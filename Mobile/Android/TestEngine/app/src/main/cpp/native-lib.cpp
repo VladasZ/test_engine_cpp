@@ -3,6 +3,9 @@
 #include <android/log.h>
 #include <GLES2/gl2.h>
 
+#include "Event.hpp"
+using namespace std;
+
 #define LOG(__message) __android_log_write(ANDROID_LOG_DEBUG, "", __message);
 
 #define FUN(__returnType, name___) extern "C" JNIEXPORT __returnType JNICALL Java_com_example_uzakreuskis_testengine_MainActivity_##name___ (JNIEnv *env, jobject /* this */)
@@ -15,6 +18,8 @@ FUN(jstring, getHello) {
 
 FUN(void, sayHello) {
     LOG("Hellloooww heeeloooyyww");
+
+
 }
 
 
@@ -30,5 +35,16 @@ FUN(void, callGL) {
         glClearColor(0.0, 0.0, 0.0, 0.0);
         shme = true;
     }
+
+    Event<string> event;
+
+    event.subscribe([](string n) {
+        LOG(n.c_str());
+
+        glClearColor(0.0, 1.0, 0.0, 0.0);
+
+    });
+
+    event("spes");
 
 }

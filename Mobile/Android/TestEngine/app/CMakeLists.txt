@@ -10,6 +10,20 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+add_library( testTools
+             SHARED
+
+             ../../../../source/TestTools/source/Event/Event.hpp
+             ../../../../source/TestTools/source/Array.hpp
+             ../../../../source/TestTools/source/Dictionary.hpp
+             ../../../../source/TestTools/main.cpp
+            )
+
+include_directories(
+../../../../source/TestTools/source/Event/
+../../../../source/TestTools/source/
+)
+
 add_library( engine
 
              SHARED
@@ -51,4 +65,5 @@ target_link_libraries( # Specifies the target library.
                        ${log-lib}
                        GLESv2
                        engine
+                       testTools
                        )

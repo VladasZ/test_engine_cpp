@@ -28,14 +28,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        sayHello();
-
-        Log.i("", getHello());
-        Log.i("", "spes");
-
-
-        callGL();
-
+        mGLView.queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                callGL();
+            }
+        });
 
         return super.onTouchEvent(event);
     }
@@ -47,4 +45,5 @@ public class MainActivity extends AppCompatActivity {
     public native String getHello();
     public native void sayHello();
     public native void callGL();
+
 }

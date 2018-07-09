@@ -45,28 +45,28 @@ void View::draw() {
 }
 
 void View::layout() {
-        
+
     if (autolayoutMask == Autolayout::None) {
         setupBuffer();
         for (auto subview : subviews) subview->layout();
         return;
     }
-    
+
     Rect parentFrame;
     Rect layoutFrame = frame;
-    
+
     if (superview == nullptr) parentFrame = Rect(Window::size.width, Window::size.height);
     else parentFrame = superview->frame;
-    
+
     if (autolayoutMask & Autolayout::StickToLeft)
         layoutFrame.origin.x = 0;
-    
+
     if (autolayoutMask & Autolayout::StickToRight)
         layoutFrame.origin.x = parentFrame.size.width - frame.size.width;
-    
+
     if (autolayoutMask & Autolayout::StickToTop)
         layoutFrame.origin.y = 0;
-    
+
     if (autolayoutMask & Autolayout::StickToBottom)
         layoutFrame.origin.y = parentFrame.size.height - frame.size.height;
 
@@ -74,20 +74,20 @@ void View::layout() {
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
     }
-    
+
     if (autolayoutMask & Autolayout::CenterHorizontally)
         layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
 
     if (autolayoutMask & Autolayout::CenterVertically)
         layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
-    
+
     if (autolayoutMask & Autolayout::Background)
         layoutFrame = parentFrame.withZeroOrigin();
 
     this->frame = layoutFrame;
-    
+
     setupBuffer();
-    
+
     for (auto subview : subviews) subview->layout();
 }
 
@@ -103,9 +103,9 @@ void View::setFrame(float x, float y, float width, float height) {
 
 void View::setCenter(const Point &center) {
     setFrame(center.x - frame.size.width / 2,
-                  center.y - frame.size.height / 2,
-                  frame.size.width,
-                  frame.size.height);
+             center.y - frame.size.height / 2,
+             frame.size.width,
+             frame.size.height);
 }
 
 void View::setCenter(float x, float y) {
@@ -129,7 +129,7 @@ void View::insertSubviewAt(int position, View *view) {
 }
 
 void View::removeAllSubviews() {
-    for(auto view : subviews) {
+    for (auto view : subviews) {
         view->removeAllSubviews();
         delete view;
     }
@@ -138,35 +138,35 @@ void View::removeAllSubviews() {
 
 #if MEMORY_BENCHMARK
 void View::addTestViews() {
-    
+
     if (subviews.empty()) {
-        
+
         Size size = frame.size / 2.05;
         Color color = Color::random();
-        
+
         auto view1 = new View(size);
         auto view2 = new View(size);
         auto view3 = new View(size);
         auto view4 = new View(size);
-        
+
         view1->autolayoutMask = StickToTop | StickToLeft;
         view2->autolayoutMask = StickToTop | StickToRight;
         view3->autolayoutMask = StickToBottom | StickToLeft;
         view4->autolayoutMask = StickToBottom | StickToRight;
-        
+
         view1->color = color;
         view2->color = color;
         view3->color = color;
         view4->color = color;
-        
+
         addSubview(view1);
         addSubview(view2);
         addSubview(view3);
         addSubview(view4);
         return;
     }
-    
-    for(auto view : subviews) {
+
+    for (auto view : subviews) {
         view->addTestViews();
     }
 }

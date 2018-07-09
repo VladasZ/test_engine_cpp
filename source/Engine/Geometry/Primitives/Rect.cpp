@@ -10,11 +10,10 @@
 #include "Window.hpp"
 #include "BufferData.hpp"
 
-Rect::Rect() { }
 
-Rect::Rect(float width, float height) : origin(Point(0, 0)), size(Size(width, height)) { }
+Rect::Rect(float width, float height) : size(Size(width, height)) { }
 
-Rect::Rect(const Size &_size) : origin(Point(0, 0)), size(_size) { }
+Rect::Rect(const Size &_size) : size(_size) { }
 
 Rect::Rect(float x, float y, float width, float height) : origin(Point(x, y)), size(Size(width, height)) { }
 

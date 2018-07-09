@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include <GLES2/gl2.h>
 
 #define LOG(__message) __android_log_write(ANDROID_LOG_INFO, "", __message);
 
@@ -16,4 +17,9 @@ FUN(void, sayHello) {
     __android_log_write(ANDROID_LOG_DEBUG, "", "spes");
 
     LOG("Hellloooww heeeloooyyww");
+}
+
+
+FUN(void, callGL) {
+    glClearColor(1.0, 1.0, 1.0, 1.0);
 }

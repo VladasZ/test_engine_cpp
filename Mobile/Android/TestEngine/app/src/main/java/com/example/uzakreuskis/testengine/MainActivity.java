@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i("", getHello());
         Log.i("", "spes");
 
+
+        callGL();
+
+
         return super.onTouchEvent(event);
     }
 
@@ -42,4 +46,5 @@ public class MainActivity extends AppCompatActivity {
 
     public native String getHello();
     public native void sayHello();
+    public native void callGL();
 }

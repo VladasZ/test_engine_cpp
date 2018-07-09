@@ -6,6 +6,8 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#ifdef _WIN32
+
 #include <Windows.h>
 #include <stdio.h>
 #include <tchar.h>
@@ -152,3 +154,5 @@ RegistryWriter & RegistryKey::operator[] (const std::string &key) {
     _writer._get_value();
     return _writer;
 }
+
+#endif

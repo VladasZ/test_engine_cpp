@@ -6,6 +6,8 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#ifdef _WIN32
+
 #include <Windows.h>
 #include <stdio.h>
 #include <tchar.h>
@@ -93,3 +95,5 @@ void RegistryWriter::_get_value() {
 RegistryWriter::operator string() {
     return _value;
 }
+
+#endif

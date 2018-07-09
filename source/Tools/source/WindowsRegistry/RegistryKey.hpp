@@ -8,6 +8,8 @@
 
 #pragma once
 
+#ifdef _WIN32
+
 #include <string>
 #include <vector>
 
@@ -37,3 +39,5 @@ public:
 
     RegistryWriter & operator[] (const std::string &key);
 };
+
+#endif

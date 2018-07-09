@@ -8,6 +8,8 @@
 
 #pragma once
 
+#ifdef _WIN32
+
 #include <string>
 
 class RegistryKey;
@@ -30,3 +32,5 @@ public:
 
     operator std::string();
 };
+
+#endif

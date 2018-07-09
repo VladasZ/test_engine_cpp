@@ -9,12 +9,9 @@ int main() {
 
     Event<int> event;
 
-
     event.subscribe([](int n) {
-
         cout << n << endl;
     });
-
 
     event(14);
 

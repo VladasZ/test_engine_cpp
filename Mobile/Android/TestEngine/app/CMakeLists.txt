@@ -1,69 +1,74 @@
-# For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
-
-# Sets the minimum version of CMake required to build the native library.
-
 cmake_minimum_required(VERSION 3.4.1)
 
-# Creates and names a library, sets it as either STATIC
-# or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
-# Gradle automatically packages shared libraries with your APK.
+function(add_catalog_recursive catalog group_catalog source_files)
+    message(${catalog})
+    message(${source_files})
+    file(GLOB children RELATIVE ${catalog} ${catalog}/*)
+    foreach(child ${children})
+        if(IS_DIRECTORY ${catalog}/${child})
+            add_catalog_recursive(${catalog}/${child} ${group_catalog}/${child} ${source_files})
+        else()
+            get_filename_component(extension ${child} EXT)
+            if (NOT extension STREQUAL "")
+                if(APPLE)
+                    string(REGEX MATCHALL "^.*.[h|cpp|m|c]" out ${extension})
+                else()
+                    string(REGEX MATCHALL "^.*.[h|cpp]" out ${extension})
+                endif()
+                if (NOT out STREQUAL "")
+                    if(MSVC)
+                        string(REPLACE "/" "\\" group_catalog_name ${group_catalog})
+                    else()
+                        set(group_catalog_name ${group_catalog})
+                    endif()
+                    set(filename ${catalog}/${child})
+                    source_group(${group_catalog_name} FILES ${filename})
+                    message(${group_catalog_name} " group_catalog_name")
+                    message(${filename} " filename")
+                    include_directories(${catalog})
+                    set(${source_files} ${${source_files}} ${filename})
+                endif()
+            endif()
+        endif()
+    endforeach()
+    set(${source_files} ${${source_files}} PARENT_SCOPE)
+endfunction(add_catalog_recursive)
 
-add_library( testTools
+project(Tools CXX)
+
+add_catalog_recursive(../../../../../../source/Tools / TOOLS_SOURCE)
+add_catalog_recursive(../../../../../source/Tools / TOOLS_SOURCE)
+add_catalog_recursive(../../../../source/Tools / TOOLS_SOURCE)
+add_catalog_recursive(../../../source/Tools / TOOLS_SOURCE)
+add_catalog_recursive(../../source/Tools / TOOLS_SOURCE)
+
+message("HEEELOOOOO")
+
+message(${TOOLS_SOURCE})
+message("HEEELOOOOO2")
+
+add_library( Tools
              SHARED
-
-             ../../../../source/TestTools/source/Event/Event.hpp
-             ../../../../source/TestTools/source/Array.hpp
-             ../../../../source/TestTools/source/Dictionary.hpp
-             ../../../../source/TestTools/main.cpp
+            ${TOOLS_SOURCE}
             )
 
-include_directories(
-../../../../source/TestTools/source/Event/
-../../../../source/TestTools/source/
-)
 
-add_library( engine
+target_compile_options( Tools PUBLIC -std=c++17 -fpermissive -w -Wall )
 
-             SHARED
-
-              ../../../../source/Engine/main.cpp )
-
-
-add_library( # Sets the name of the library.
+add_library(
              native-lib
-
-             # Sets the library as a shared library.
              SHARED
+             src/main/cpp/native-lib.cpp
+             )
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp )
-
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
-
-find_library( # Sets the name of the path variable.
+find_library(
               log-lib
-
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
               log )
 
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
-target_link_libraries( # Specifies the target library.
+target_link_libraries(
                        native-lib
 
-                       # Links the target library to the log library
-                       # included in the NDK.
                        ${log-lib}
                        GLESv2
-                       engine
-                       testTools
+                       Tools
                        )

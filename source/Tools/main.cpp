@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <functional>
+#include <type_traits>
 
 #include "RegistryKey.hpp"
 
@@ -8,13 +10,17 @@
 
 using namespace std;
 
+
+
+struct X {
+    String toString() const { return " tipergles "; }
+};
+
+struct Y : public X {};
+
 int main() {
 
-    String spes = "tip ";
-
-
-    Log(spes + 5 + " uu");
-
+    cout << X() << endl;
 
     return 0;
 }

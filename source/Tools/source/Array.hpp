@@ -11,6 +11,7 @@
 #include <vector>
 #include <optional>
 #include <functional>
+#include <memory>
 
 template <class T>
 class Array : public std::vector<T> {
@@ -18,10 +19,12 @@ class Array : public std::vector<T> {
 public:
     using __array::__array;
 
-    using Optional = std::optional<T>;
+    using Ptr       = std::shared_ptr<T>;
+    using Optional  = std::optional<T>;
     using Predicate = std::function<bool(const T&)>;
+    using Callback  = std::function<void(const Array<T>&)>;
 
-    Optional where(Predicate predicate) {
+    Optional where(const Predicate &predicate) {
         for (const auto& object : *this)
             if (predicate(object))
                 return object;

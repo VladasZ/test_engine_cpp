@@ -12,8 +12,8 @@ print('start')
 if not os.path.exists('build'):
             os.makedirs('build')
 
-for package in ['conan', 'cmake']:
-	Setup.checkAndInstall(package)
+#for package in ['conan', 'cmake']:
+#	Setup.checkAndInstall(package)
 
 if not Status.conanIsSetUp():
 	Setup.setupConan()

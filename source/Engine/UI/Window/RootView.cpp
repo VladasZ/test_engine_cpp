@@ -13,6 +13,8 @@
 #include "ScrollView.hpp"
 #include "Macro.hpp"
 #include "Label.hpp"
+#include "System.hpp"
+#include "ImageView.hpp"
 
 ScrollView *scrollView;
 
@@ -22,33 +24,33 @@ void RootView::setup() {
     rotationStick = new AnalogStickView();
 
     scrollView = new ScrollView({ 500, 500 });
-
     scrollView->color = Color::lightGray;
 
 
-    View *subview = new View({ 300, 300 });
-    subview->color = Color::green;
+    //View *subview = new View({ 300, 300 });
+    //subview->color = Color::green;
 
-    View *subSubView = new View({ 100, 100, 100, 100 });
-    subSubView->color = Color::blue;
+    //View *subSubView = new View({ 100, 100, 100, 100 });
+    //subSubView->color = Color::blue;
 
-    subview->addSubview(subSubView);
+    //subview->addSubview(subSubView);
 
-    scrollView->addSubview(subview);
+    //scrollView->addSubview(subview);
 
-    FOR(10) {
-        scrollView->addSubview(new View (Rect::random()));
-        scrollView->subviews.back()->color = Color::random();
+    FOR(5) {
+        //scrollView->addSubview(new View (Rect::random()));
+        //scrollView->subviews.back()->color = Color::random();
 
-        Label *label = new Label(Rect::random());
+        ImageView *imageView = new ImageView(Rect::random());
+        imageView->image = Image::cat;
+        scrollView->addSubview(imageView);
 
-        label->setText("HELO fdsk gufd9s8 ugsdfjg ;sld");
-
-
-        label->color = Color::random();
-
-        scrollView->addSubview(label);
+        //Label *label = new Label(Rect::random());
+        //label->setText("hgs98u5498u -4985u 9-8yu 49-yu-ds skjghfds ih w9- 8h");
+        //label->color = Color::random();
+        //scrollView->addSubview(label);
     }
+
 
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
@@ -66,8 +68,17 @@ void RootView::setup() {
 }
 
 void RootView::draw() {
+
+    //if (Window::FPS > 40) {
+    //    scrollView->addSubview(new View(Rect::random()));
+    //    scrollView->subviews.back()->color = Color::random();
+
+    //    Log(scrollView->subviews.size());
+    //}
+
+    //layout();
+
     View::draw();
-    
 }
 
 void RootView::layout() {

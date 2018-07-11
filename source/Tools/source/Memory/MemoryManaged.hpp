@@ -30,7 +30,7 @@ public:
     MemoryManaged() {
         if (!MemoryManager::isTracking) return;
         if (allocated == nullptr) {
-            Error(typeid(T).name() << MemoryManaged<T>::className);
+       //     Error(typeid(T).name() << MemoryManaged<T>::className);
             return;
         }
         

@@ -9,7 +9,7 @@
 #include "DebugInfoView.hpp"
 #include "Macro.hpp"
 
-DebugInfoView::DebugInfoView() : View(0, 0, 600, 100) {
+DebugInfoView::DebugInfoView() : View({ 600, 100 }) {
         
     fpsLabel = new Label();
 #if MEMORY_TRACKING

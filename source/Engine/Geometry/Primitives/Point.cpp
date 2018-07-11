@@ -61,6 +61,11 @@ Point Point::operator -(const Point &point) const {
     return Point(x - point.x, y - point.y);
 }
 
+void Point::operator -=(const Point &point) {
+    x -= point.x;
+    y -= point.y;
+}
+
 Point Point::operator *(float value) const {
     return Point(x * value, y * value);
 }

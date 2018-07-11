@@ -10,33 +10,35 @@
 #include "Input.hpp"
 #include "MoveView.hpp"
 #include "AnalogStickView.hpp"
+#include "ScrollView.hpp"
+#include "Macro.hpp"
 
-static View *greenView = new View(100, 100);
-static View *blueView = new View(100, 100);
-static ImageView *catView = new ImageView(100, 100);
-
+ScrollView *scrollView;
 
 void RootView::setup() {
     
     directionStick = new AnalogStickView();
     rotationStick = new AnalogStickView();
-    
+
+    scrollView = new ScrollView({ 500, 500 });
+
+    scrollView->color = Color::lightGray;
+
+    FOR(10) {
+        scrollView->addSubview(new View (Rect::random()));
+        scrollView->subviews.back()->color = Color::random();
+    }
+
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
-    
-    greenView->color = Color::green;
-    blueView->color = Color::blue;
 
-    catView->image = Image::cat;
-    catView->setCenter(500, 300);
-
-    blueView->setCenter(300, 300);
+    directionStick->onDirectionChange.subscribe([&](auto point) {
+        scrollView->setContentOffset(point);
+    });
     
     addSubview(directionStick);
     addSubview(rotationStick);
-    addSubview(greenView);
-    addSubview(blueView);
-    addSubview(catView);
+    addSubview(scrollView);
 }
 
 void RootView::draw() {

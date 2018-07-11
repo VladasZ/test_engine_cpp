@@ -9,7 +9,7 @@
 #include "Rect.hpp"
 #include "Window.hpp"
 #include "BufferData.hpp"
-
+#include "System.hpp"
 
 Rect::Rect(float width, float height) : size(Size(width, height)) { }
 
@@ -56,4 +56,14 @@ Rect Rect::withZeroOrigin() const {
 String Rect::toString() const {
     return "x: "_s +  origin.x  +      " y: " + origin.y +
       " width: "   + size.width + " height: " + size.width;
+}
+
+Rect Rect::random() {
+    static const float size = 300;
+    return { 
+        (float)System::random(size),
+        (float)System::random(size),
+        (float)System::random(size),
+        (float)System::random(size)
+    };
 }

@@ -10,11 +10,11 @@
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "Window.hpp"
+#include "ScrollView.hpp"
+#include "Log.hpp"
 
-View::View(float x, float y, float width, float height) : frame(Rect(x, y, width, height)) { }
-View::View(float width, float height) : View(0, 0, width, height) { }
-View::View(const Size &size) : View(0, 0, size.width, size.height) { }
-View::View(const Rect &rect) : frame(rect) { }
+View::View(const Rect &rect) : frame { rect } { }
+
 View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
@@ -23,12 +23,22 @@ BufferData * View::getBufferData() {
 }
 
 Rect View::calculateAbsoluteFrame() const {
+
+    if (this->superview == nullptr) return frame;
+
     Rect aFrame = frame;
     View *superview = this->superview;
+
     while (superview != nullptr) {
         aFrame.origin += superview->frame.origin;
         superview = superview->superview;
     }
+
+    if (this->superview->_isScrollView()) {
+        ScrollView *scrollView = (ScrollView *)this->superview;
+        aFrame.origin -= scrollView->_content_offset;
+    }
+
     return aFrame;
 }
 
@@ -48,7 +58,7 @@ void View::layout() {
 
     if (autolayoutMask == Autolayout::None) {
         setupBuffer();
-        for (auto subview : subviews) subview->layout();
+        layoutSubviews();
         return;
     }
 
@@ -87,7 +97,10 @@ void View::layout() {
     this->frame = layoutFrame;
 
     setupBuffer();
+    layoutSubviews();
+}
 
+void View::layoutSubviews() {
     for (auto subview : subviews) subview->layout();
 }
 

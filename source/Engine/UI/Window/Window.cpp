@@ -89,7 +89,7 @@ void Window::initialize(int width, int height) {
 }
 
 void Window::setup() {
-    rootView = new RootView(Window::size.width, Window::size.height);
+    rootView = new RootView({ Window::size.width, Window::size.height });
 
 #if DEBUG_VIEW
     MEMORY_MANAGER_INVISIBLE(

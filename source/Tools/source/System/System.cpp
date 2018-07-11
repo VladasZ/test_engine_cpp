@@ -13,15 +13,16 @@
 #include <unistd.h>
 #include "CallObj.h"
 #elif  WINDOWS
+#include <ctime>
 #include <Windows.h>
 #endif
 
-void System::sleep(float interval) {
-    
+    void System::sleep(float interval) {
+
 #ifdef APPLE
     usleep(interval * 1000000);
 #elif WINDOWS
-	Sleep(DWORD(interval * 1000));
+    Sleep(DWORD(interval * 1000));
 #else 
     NOT_IMPLEMENTED;
 #endif
@@ -31,18 +32,25 @@ int System::random() {
 #ifdef APPLE
     return arc4random();
 #elif WINDOWS
-	NOT_IMPLEMENTED; return 0;
+
+    static bool flag = true;
+
+    if (flag) {
+        flag = false;
+        srand(time(NULL));
+    }
+
+    return rand();
 #else
     NOT_IMPLEMENTED; return 0;
 #endif
 }
 
 int System::random(int range) {
-    
 #ifdef APPLE
     return arc4random_uniform(range);
 #elif WINDOWS
-	NOT_IMPLEMENTED; return 0;
+    return random() % range;
 #else 
     NOT_IMPLEMENTED; return 0;
 #endif

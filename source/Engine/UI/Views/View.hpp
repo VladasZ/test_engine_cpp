@@ -51,6 +51,7 @@ protected:
     int _touchID = -1;
     
     virtual void setup() { }
+    virtual bool _isScrollView() const { return false; }
     
 public:
     
@@ -61,14 +62,12 @@ public:
     Array<View *> subviews;
     
     View() = default;
-    View(float x, float y, float width, float height);
-    View(float width, float height);
-    View(const Size &size);
     View(const Rect &rect);
 
     virtual ~View();
     
     virtual void layout();
+    virtual void layoutSubviews();
     
     void setFrame(const Rect &frame);
     void setFrame(float x, float y, float width, float height);

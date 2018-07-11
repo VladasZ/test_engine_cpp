@@ -26,8 +26,46 @@ class NotStringAtAll {
 
 };
 
+
+class Base {
+
+public:
+
+    int a, b;
+
+    Base() = default;
+    Base(int a, int b) {
+        virtualInit(a, b);
+    }
+
+    Base(string str)  {
+        virtualInit(100, 100);
+    }
+
+    virtual void virtualInit(int a, int b) {
+        this->a = a; this->b = b;
+    }
+};
+
+class Derived : public Base {
+
+public:
+
+    using Base::Base;
+
+    void virtualInit(int a, int b) override {
+        this->a = 666; this->b = 666;
+    }
+
+};
+
+
 int main() {
 
+
+    auto der = new Derived("hello");
+
+    cout << der->a << endl;
 
     Block spes(true);
     Block spes2(5);

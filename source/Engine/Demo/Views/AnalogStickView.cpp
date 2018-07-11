@@ -15,7 +15,7 @@ static const float SIZE = 140;
 static const float OUTLINE_WIDTH = 10;
 static const float STICK_VIEW_SIZE = SIZE / 2;
 
-AnalogStickView::AnalogStickView() : DrawingView(SIZE, SIZE) { }
+AnalogStickView::AnalogStickView() : DrawingView({ SIZE, SIZE }) { }
 
 void AnalogStickView::setup() {
     auto outerPath = Path::circleWith(frame.size.center(), frame.size.width);
@@ -26,7 +26,7 @@ void AnalogStickView::setup() {
     outlinePath->color = Color::white;
     addPath(outlinePath);
 
-    directionStick = new DrawingView(STICK_VIEW_SIZE, STICK_VIEW_SIZE);
+    directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
     directionStick->setCenter(frame.size.center());
     addSubview(directionStick);
 

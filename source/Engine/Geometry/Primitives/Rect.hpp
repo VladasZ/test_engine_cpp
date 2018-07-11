@@ -38,4 +38,6 @@ public:
     String toString() const;
     
     BufferData *getData() const;
+
+    static Rect random();
 };

@@ -12,7 +12,7 @@
 
 #include <type_traits>
 
-#define GENERATE_HAS_MEMBER(memberName__, returnType__, parameters__)\
+#define GENERATE_HAS_MEMBER(memberName__, functionSignature__)\
 template<typename, typename T>\
 struct __has_##memberName__ {\
     static_assert(std::integral_constant<T, false>::value, "Second template parameter needs to be of function type.");\
@@ -31,6 +31,6 @@ public:\
 };\
 \
 template <class T> \
-constexpr bool has_##memberName__ = __has_toString<T, returnType__(parameters__)>::value;
+constexpr bool has_##memberName__ = __has_toString<T, functionSignature__>::value;
 
 

@@ -40,7 +40,7 @@ public:
     }
 
     template<class TypeToString>
-    static String toString(const TypeToString& val) {
+    static String _toString(const TypeToString& val) {
         String result;
         for_each(T::properties(), [&](auto property) {
             result += property.name + ": " + val.*property.pointer + "\n";

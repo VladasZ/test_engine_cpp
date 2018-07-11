@@ -57,6 +57,10 @@ namespace TestEngine {
                 PROPERTY(y, Point)
             );
         }
+
+        String toString() const {
+            return Point::_toString(*this);
+        }
     };
 }
 

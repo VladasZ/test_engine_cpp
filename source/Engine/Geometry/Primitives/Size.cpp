@@ -21,7 +21,7 @@ BufferData * Size::getData() const {
         width, 0
     };
     
-    GLushort indices[] = { 0, 1, 3, 2 };
+    static const GLushort indices[] = { 0, 1, 3, 2 };
     
     return new BufferData(data,    sizeof(data),
                           indices, sizeof(indices));

@@ -37,7 +37,6 @@ public:
         for_each(T::properties(), [&](auto property) {
             std::cout << property.name << ": " << val.*property.pointer << std::endl;
         });
-        return result;
     }
 
     template<class TypeToString>

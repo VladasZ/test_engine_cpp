@@ -63,7 +63,7 @@ BufferData * Sprite::getBufferData() {
         vertices = vert;
     }
     
-    GLushort indices[] = { 0, 1, 3, 2 };
+    static const GLushort indices[] = { 0, 1, 3, 2 };
     
     return new BufferData(vertices, sizeof(GLfloat) * 16,
                           indices,  sizeof(indices));

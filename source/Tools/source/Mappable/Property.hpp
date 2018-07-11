@@ -18,13 +18,13 @@ template<class ClassType, class MemberType>
 class Property {
 public:
     using Pointer = MemberType ClassType::*;
-    String name;
-    Pointer pointer;
+    const String name;
+    const Pointer pointer;
     Property(const String &name, Pointer pointer) : name(name), pointer(pointer) { }
 };
 
 template<class _ClassType, class _MemberType>
-static Property<_ClassType, _MemberType> make_property(const String &name, _MemberType _ClassType::* pointer) {
+static constexpr auto make_property(const String &name, _MemberType _ClassType::* pointer) {
     return Property<_ClassType, _MemberType>(name, pointer);
 }
 

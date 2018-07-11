@@ -20,7 +20,9 @@ struct Y : public X {};
 
 int main() {
 
-    cout << X() << endl;
+    Log(X() + 5 + 5 + " eigalator!");
+
+    cout << String() +  X() << endl;
 
     return 0;
 }

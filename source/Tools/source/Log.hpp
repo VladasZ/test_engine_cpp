@@ -10,6 +10,8 @@
 
 #include <iostream>
 
+#include "String.hpp"
+
 #ifdef DEBUG
 
 #ifdef WINDOWS
@@ -38,7 +40,7 @@ std::cout << "[" << type << "]" \
 LOCATION(file, func, line)\
 << message << std::endl;
 
-#define __logI(message, file, func, line) std::cout << "[" << __heart << " INFO " << __heart << "] " << message << std::endl;
+#define __logI(message, file, func, line) std::cout << "[" << __heart << " INFO " << __heart << "] " << String() + message << std::endl;
 #define __logW(message, file, func, line) __log(message, "WARNING", file, func, line)
 
 #if LOG_ERRORS
@@ -67,5 +69,3 @@ LOCATION(file, func, line)\
 #define Logvar(variable) Log(#variable << " : " << variable)
 
 #define NOT_IMPLEMENTED Error("Not implemented")
-
-#define OS_OUTPUT_H(Type)

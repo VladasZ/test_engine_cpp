@@ -25,10 +25,10 @@ class BufferData MEMORY_MANAGED(BufferData) {
     
 public:
     
-    BufferData(GLfloat *vertData, GLuint vertSize);
+    BufferData(const GLfloat *vertData, GLuint vertSize);
     
-    BufferData(GLfloat *vertData, GLuint vertSize,
-               GLushort *indData,  GLuint indSize);
+    BufferData(const GLfloat *vertData,  GLuint vertSize,
+               const GLushort *indData,  GLuint indSize);
     
     ~BufferData();
 };

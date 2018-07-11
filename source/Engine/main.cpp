@@ -7,9 +7,19 @@
 //
 
 
-//#include "TestEngineMain.h"
+#include "TestEngineMain.h"
+#include "Point.hpp"
+
 
 int main() {
-    //testEngineMain();
+
+
+    Point point(15, 15);
+
+    Point::print(point);
+
+//    return 0;
+
+    testEngineMain();
     return 0;
 }

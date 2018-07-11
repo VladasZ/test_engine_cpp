@@ -20,7 +20,6 @@ BufferData * ImageView::getBufferData() {
 
     Rect frame = _absoluteFrame;
     
-
     GLfloat vertices[] = {
         frame.origin.x,                    frame.origin.y,                     0.0f, 0.0f,
         frame.origin.x,                    frame.size.height + frame.origin.y, 0.0f, 1.0f,
@@ -28,7 +27,7 @@ BufferData * ImageView::getBufferData() {
         frame.size.width + frame.origin.x, frame.origin.y,                     1.0f, 0.0f
     };
     
-    GLushort indices[] = { 0, 1, 3, 2 };
+    static const GLushort indices[] = { 0, 1, 3, 2 };
 
     return new BufferData(vertices, sizeof(vertices),
                           indices,  sizeof(indices));

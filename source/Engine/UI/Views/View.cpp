@@ -30,13 +30,14 @@ Rect View::calculateAbsoluteFrame() const {
     View *superview = this->superview;
 
     while (superview != nullptr) {
+
+        if (superview->_isScrollView()) {
+            ScrollView *scrollView = (ScrollView *)superview;
+            aFrame.origin -= scrollView->_content_offset;
+        }
+
         aFrame.origin += superview->frame.origin;
         superview = superview->superview;
-    }
-
-    if (this->superview->_isScrollView()) {
-        ScrollView *scrollView = (ScrollView *)this->superview;
-        aFrame.origin -= scrollView->_content_offset;
     }
 
     return aFrame;

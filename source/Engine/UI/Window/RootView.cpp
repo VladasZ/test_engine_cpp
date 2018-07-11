@@ -12,6 +12,7 @@
 #include "AnalogStickView.hpp"
 #include "ScrollView.hpp"
 #include "Macro.hpp"
+#include "Label.hpp"
 
 ScrollView *scrollView;
 
@@ -24,16 +25,39 @@ void RootView::setup() {
 
     scrollView->color = Color::lightGray;
 
+
+    View *subview = new View({ 300, 300 });
+    subview->color = Color::green;
+
+    View *subSubView = new View({ 100, 100, 100, 100 });
+    subSubView->color = Color::blue;
+
+    subview->addSubview(subSubView);
+
+    scrollView->addSubview(subview);
+
     FOR(10) {
         scrollView->addSubview(new View (Rect::random()));
         scrollView->subviews.back()->color = Color::random();
+
+        Label *label = new Label(Rect::random());
+
+        label->setText("HELO fdsk gufd9s8 ugsdfjg ;sld");
+
+
+        label->color = Color::random();
+
+        scrollView->addSubview(label);
     }
 
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
 
+    static Point offset;
+
     directionStick->onDirectionChange.subscribe([&](auto point) {
-        scrollView->setContentOffset(point);
+        offset += point;
+        scrollView->setContentOffset(offset);
     });
     
     addSubview(directionStick);

@@ -27,18 +27,34 @@ class NotString {
 
 };
 
+void test() {
+
+
+    Block spes(false);
+    Block spes2(5);
+    Block spes3("sss"_s);
+    Block spes4("rglica");
+
+    cout << is_string_convertible<decltype("rglica")> << endl;
+
+    for (auto st : spes3)
+    {
+        cout << st.get<String>() << endl;
+    }
+
+
+    cout << spes.get<bool>() << endl;
+    cout << spes2.get<int>() << endl;
+    cout << spes3.get<String>() << endl;
+    cout << spes4.get<char *>() << endl;
+}
+
 int main() {
 
     try
     {
+        test();
 
-        NotString ns;
-
-        Block spes(true);
-        Block spes2(5);
-        Block spes3("sss"_s);
-        Block spes4("rglica");
-        Block spes5(ns);
     }
     catch (String err)
     {

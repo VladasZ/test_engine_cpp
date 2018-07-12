@@ -25,12 +25,13 @@ constexpr inline bool is_string_convertible =
     ;
 
 template <class T>
-std::string __toString(const T &value) {
-         if constexpr (contains<T, char>)               return value;
-    else if constexpr (std::is_same_v<T, std::string>)  return value;
+auto __toString(const T &value) {
+         if constexpr (std::is_same_v<T, std::string>)  return value;
+    else if constexpr (std::is_same_v<T, void>)         return std::string();
     else if constexpr (has_toString<T>)                 return value.toString();
+    else if constexpr (contains<T, char>)               return std::string(value);
     else if constexpr (std::is_fundamental_v<T>)        return std::to_string(value);
-    else { STATIC_GET_TYPE(value); }
+    else { return String() + "Failed string conversion from type: " + nameOf<T>; }
 }
 
 class String : public std::string {

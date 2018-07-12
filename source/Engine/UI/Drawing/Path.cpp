@@ -40,7 +40,7 @@ Path * Path::circleWith(const Point &center, float radius) {
 void Path::draw() {
     
     if (!bufferIsSet) { bufferIsSet = true;
-        if (!_origin.isZero()) {
+        if (!_origin.isZero() && false) {
             auto pointsCopy = points;
             for (auto &point : points) point += _origin;
             setupBuffer();

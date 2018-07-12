@@ -21,8 +21,6 @@ ScrollView *scrollView;
 
 Button* btn;
 
-Label *label;
-
 void RootView::setup() {
 
     directionStick = new AnalogStickView();
@@ -33,11 +31,6 @@ void RootView::setup() {
 
     btn = new Button({ 100, 100 });
     btn->color = Color::white;
-
-    label = new Label({ 100, 100 });
-    label->setText("Hellof");
-    label->color = Color::random();
-    addSubview(label);
 
     btn->onTouch([] {
 
@@ -61,7 +54,7 @@ void RootView::setup() {
 
     //scrollView->addSubview(subview);
 
-    FOR(5) {
+    FOR(20) {
         scrollView->addSubview(new View(Rect::random()));
         scrollView->subviews.back()->color = Color::random();
         scrollView->subviews.back()->addSubview(
@@ -81,10 +74,10 @@ void RootView::setup() {
         //imageView->image = Image::cat;
         //scrollView->addSubview(imageView);
 
-        //Label *label = new Label(Rect::random());
-        //label->setText("HELOWSTVO");
-        //label->color = Color::random();
-        //scrollView->addSubview(label);
+        Label *label = new Label(Rect::random());
+        label->setText("HELOWSTVO");
+        label->color = Color::random();
+        scrollView->addSubview(label);
     }
 
 
@@ -105,14 +98,14 @@ void RootView::setup() {
 
 void RootView::draw() {
 
-    //if (Window::FPS > 40) {
-    //    scrollView->addSubview(new View(Rect::random()));
-    //    scrollView->subviews.back()->color = Color::random();
+    if (Window::FPS > 40) {
+        scrollView->addSubview(new View(Rect::random()));
+        scrollView->subviews.back()->color = Color::random();
 
-    //    Log(View::exists());
-    //}
+        Log(View::exists());
+    }
 
-    //layout();
+    layout();
 
     View::draw();
 }

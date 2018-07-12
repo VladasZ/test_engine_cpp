@@ -53,7 +53,7 @@ void View::drawSubviews() const {
 void View::draw() {
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
-    glViewport(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    _absoluteFrame.setViewport();
     buffer->draw();
     drawSubviews();
 }
@@ -133,10 +133,11 @@ int View::getTouchID() const {
     return _touchID;
 }
 
-void View::addSubview(View *view) {
+View * View::addSubview(View *view) {
     subviews.emplace_back(view);
     view->superview = this;
     view->setup();
+    return this;
 }
 
 void View::insertSubviewAt(int position, View *view) {
@@ -151,6 +152,23 @@ void View::removeAllSubviews() {
         delete view;
     }
     subviews.clear();
+}
+
+View * View::setColor(const Color& color) {
+    this->color = color;
+    return this;
+}
+
+View * View::setAutolayoutMask(Autolayout mask) {
+    autolayoutMask = mask;
+    return this;
+}
+
+View * View::dummy(float width, float height) {
+    View *view = new View({ width, height });
+    view->color = Color::random();
+    view->autolayoutMask = Autolayout::Center;
+    return view;
 }
 
 #if MEMORY_BENCHMARK

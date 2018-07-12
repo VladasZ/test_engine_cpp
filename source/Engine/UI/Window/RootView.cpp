@@ -15,21 +15,29 @@
 #include "Label.hpp"
 #include "System.hpp"
 #include "ImageView.hpp"
+#include "Glyph.hpp"
 
 ScrollView *scrollView;
 
 Button* btn;
 
+Label *label;
+
 void RootView::setup() {
-    
+
     directionStick = new AnalogStickView();
     rotationStick = new AnalogStickView();
 
-    scrollView = new ScrollView({ 500, 500 });
+    scrollView = new ScrollView({ 0, 100, 500, 500 });
     scrollView->color = Color::lightGray;
 
     btn = new Button({ 100, 100 });
     btn->color = Color::white;
+
+    label = new Label({ 100, 100 });
+    label->setText("Hellof");
+    label->color = Color::random();
+    addSubview(label);
 
     btn->onTouch([] {
 
@@ -54,15 +62,27 @@ void RootView::setup() {
     //scrollView->addSubview(subview);
 
     FOR(5) {
-        //scrollView->addSubview(new View (Rect::random()));
-        //scrollView->subviews.back()->color = Color::random();
+        scrollView->addSubview(new View(Rect::random()));
+        scrollView->subviews.back()->color = Color::random();
+        scrollView->subviews.back()->addSubview(
+            View::dummy()->addSubview(
+            (new ImageView({ 30, 30 }))->setImage(Image::cat)->setAutolayoutMask(Autolayout::Center)
+            )
+        );
 
-        ImageView *imageView = new ImageView(Rect::random());
-        imageView->image = Image::cat;
-        scrollView->addSubview(imageView);
+        scrollView->addSubview(
+            (new ImageView(Rect::random()))
+            //->setImage(Font::System->glyphForChar('A')->image)
+            ->setImage(Image::cat)
+            ->setColor(Color::random())
+        );
+
+        //ImageView *imageView = new ImageView(Rect::random());
+        //imageView->image = Image::cat;
+        //scrollView->addSubview(imageView);
 
         //Label *label = new Label(Rect::random());
-        //label->setText("hgs98u5498u -4985u 9-8yu 49-yu-ds skjghfds ih w9- 8h");
+        //label->setText("HELOWSTVO");
         //label->color = Color::random();
         //scrollView->addSubview(label);
     }
@@ -77,7 +97,7 @@ void RootView::setup() {
         offset += point;
         scrollView->setContentOffset(offset);
     });
-    
+
     addSubview(directionStick);
     addSubview(rotationStick);
     addSubview(scrollView);
@@ -99,22 +119,22 @@ void RootView::draw() {
 
 void RootView::layout() {
     View::layout();
-    
+
     const float stickMargin = 16;
-    
+
     directionStick->autolayoutMask = 0;
     rotationStick->autolayoutMask = 0;
 
     directionStick->setFrame(directionStick->frame.origin.x - stickMargin,
-                             directionStick->frame.origin.y - stickMargin,
-                             directionStick->frame.size.width,
-                             directionStick->frame.size.height);
-    
+        directionStick->frame.origin.y - stickMargin,
+        directionStick->frame.size.width,
+        directionStick->frame.size.height);
+
     rotationStick->setFrame(rotationStick->frame.origin.x + stickMargin,
-                              rotationStick->frame.origin.y - stickMargin,
-                              rotationStick->frame.size.width,
-                              rotationStick->frame.size.height);
-    
+        rotationStick->frame.origin.y - stickMargin,
+        rotationStick->frame.size.width,
+        rotationStick->frame.size.height);
+
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
 }

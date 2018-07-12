@@ -17,10 +17,13 @@ class ImageView : public View _MEMORY_MANAGED(ImageView) {
     BufferData *getBufferData() override;
     const BufferConfiguration bufferConfiguration() const override;
     void draw() override;
+
+    Image *_image = nullptr;
     
 public:
     
-    Image *image = nullptr;
+    Image * getImage() const;
+    ImageView * setImage(Image *image);
     
     using View::View;
     ~ImageView() override;

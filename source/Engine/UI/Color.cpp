@@ -37,7 +37,7 @@ void Color::setToUniform(int uniform) const {
 
 Color Color::random() {
     
-    static Array<Color> colors = {
+    static const Array<Color> colors = {
         Color::red,
         Color::green,
         Color::blue,
@@ -47,7 +47,7 @@ Color Color::random() {
         Color::turquoise
     };
     
-    return colors[System::random((int)colors.size())];
+    return colors.random();
 }
 
 Color Color::withAlpha(float alpha) const {

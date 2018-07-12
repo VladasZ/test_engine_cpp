@@ -41,7 +41,7 @@ void Button::setImage(Image *image) {
         insertSubviewAt(0, imageView);
     }
     
-    imageView->image = image;
+    imageView->setImage(image);
 }
 
 void Button::onTouch(function<void()> action) {

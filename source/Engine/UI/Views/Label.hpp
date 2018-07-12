@@ -28,9 +28,9 @@ public:
     using View::View;
         
     std::string text() const;
-    void setText(const std::string &text);
+    Label * setText(const std::string &text);
     
     const Font * const font() const;
-    void setFont(Font *font);
+    Label * setFont(Font *font);
     
 };

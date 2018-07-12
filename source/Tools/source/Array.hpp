@@ -13,6 +13,8 @@
 #include <functional>
 #include <memory>
 
+#include "System.hpp"
+
 template <class T>
 class Array : public std::vector<T> {
     using __array = std::vector<T>;
@@ -29,6 +31,10 @@ public:
             if (predicate(object))
                 return object;
         return std::nullopt;
+    }
+
+    T random() const {
+        return this->at(System::random((int)size()));
     }
 
 };

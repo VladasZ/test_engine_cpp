@@ -14,7 +14,7 @@
 
 using namespace std;
 
-Color::Color(Color const &obj) : Color() {
+Color::Color(Color const &obj) {
     r = obj.r;
     g = obj.g;
     b = obj.b;
@@ -28,8 +28,6 @@ Color& Color::operator=(Color const &obj) {
     a = obj.a;
     return *this;
 }
-
-Color::Color() : r(0), g(0), b(0), a(0) { }
 
 Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
 

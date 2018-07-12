@@ -34,7 +34,7 @@ enum Autolayout {
     BotLeft            = StickToBottom | StickToLeft
 };
 
-class View : public Drawable _MEMORY_MANAGED(View) {
+class View : public Drawable {
         
     friend Window;
     

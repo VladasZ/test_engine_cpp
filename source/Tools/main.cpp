@@ -13,72 +13,57 @@
 using namespace std;
 
 
-
-struct X {
-    String toString() const { return " tipergles "; }
-};
-
-struct Y : public X {};
-
-
-class NotStringAtAll {
-
-
-};
-
-
-class Base {
+template <class T>
+class ObjectsCounter {
 
 public:
 
-    int a, b;
+    static inline int created = 0;
+    static inline int deleted = 0;
 
-    Base() = default;
-    Base(int a, int b) {
-        virtualInit(a, b);
+    static int exists() { return created - deleted; }
+
+
+    ObjectsCounter() {
+        created++;
     }
 
-    Base(string str)  {
-        virtualInit(100, 100);
-    }
-
-    virtual void virtualInit(int a, int b) {
-        this->a = a; this->b = b;
+    virtual ~ObjectsCounter() {
+        deleted++;
     }
 };
 
-class Derived : public Base {
+
+class Kec : public ObjectsCounter<Kec> {
 
 public:
 
-    using Base::Base;
+    string name;
 
-    void virtualInit(int a, int b) override {
-        this->a = 666; this->b = 666;
+    Kec(const string &name) : name(name) {
+
     }
-
 };
-
 
 int main() {
 
+    Kec k("spec");
+    Kec k2("spec");
+    Kec k3("spec");
+    Kec k4("spec");
+    Kec k5("spec");
+    Kec k6("spec");
+    Kec k7("spec");
 
-    auto der = new Derived("hello");
+    auto k8 = new Kec("spec");
 
-    cout << der->a << endl;
+    cout << Kec::exists() << endl;
 
-    Block spes(true);
-    Block spes2(5);
-    Block spes3("sss"_s);
-    Block spes4("rglica");
 
-   // Block spes5(NotStringAtAll());
+    delete k8;
 
-    cout << Block::is_supported<int> << endl;
-    cout << Block::is_supported<bool> << endl;
-    cout << Block::is_supported<String> << endl;
-    cout << Block::is_supported<const char *> << endl;
-    cout << Block::is_supported<NotStringAtAll> << endl;
+
+    cout << Kec::exists() << endl;
 
 
     return 0;

@@ -18,6 +18,8 @@
 
 ScrollView *scrollView;
 
+Button* btn;
+
 void RootView::setup() {
     
     directionStick = new AnalogStickView();
@@ -25,6 +27,20 @@ void RootView::setup() {
 
     scrollView = new ScrollView({ 500, 500 });
     scrollView->color = Color::lightGray;
+
+    btn = new Button({ 100, 100 });
+    btn->color = Color::white;
+
+    btn->onTouch([] {
+
+        glViewport(0, 0, 300, 300);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    });
+
+    btn->autolayoutMask = Autolayout::TopRight;
+
+    addSubview(btn);
 
 
     //View *subview = new View({ 300, 300 });
@@ -73,7 +89,7 @@ void RootView::draw() {
     //    scrollView->addSubview(new View(Rect::random()));
     //    scrollView->subviews.back()->color = Color::random();
 
-    //    Log(scrollView->subviews.size());
+    //    Log(View::exists());
     //}
 
     //layout();

@@ -13,12 +13,14 @@ using namespace std;
 void Button::setup() {
     Input::onTouchBegan.subscribe(this, [this](Point touch, int id) {
         _touchID = id;
-        touchAction();
+        if (touchAction)
+            touchAction();
     });
     
     Input::onTouchEnded.subscribe(this, [this](Point touch, int id) {
         _touchID = -1;
-        releaseAction();
+        if (releaseAction)
+            releaseAction();
     });
 }
 

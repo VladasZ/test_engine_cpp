@@ -12,6 +12,7 @@
 #include "Window.hpp"
 #include "ScrollView.hpp"
 #include "Log.hpp"
+#include "GL.hpp"
 
 View::View(const Rect &rect) : frame { rect } { }
 
@@ -19,7 +20,8 @@ View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
     _absoluteFrame = calculateAbsoluteFrame();
-    return _absoluteFrame.getData();
+    static const Rect default_rect = {-1, -1, 2, 2};
+    return default_rect.getData();
 }
 
 Rect View::calculateAbsoluteFrame() const {
@@ -51,6 +53,7 @@ void View::drawSubviews() const {
 void View::draw() {
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
+    glViewport(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     buffer->draw();
     drawSubviews();
 }

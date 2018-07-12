@@ -45,21 +45,21 @@ void Shader::initialize() {
 }
 
 void Shader::setupUiTranslation() {
-    
-    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
-    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
-    
-    Shader::ui.use();
-    Shader::ui.setUITranslationMatrix(uiProjection);
-    
-    Shader::uiTexture.use();
-    Shader::uiTexture.setUITranslationMatrix(uiProjection);
-    
-    Shader::uiMonochrome.use();
-    Shader::uiMonochrome.setUITranslationMatrix(uiProjection);
-    
-    Shader::sprite.use();
-    Shader::sprite.setUITranslationMatrix(uiProjection);
+    //
+    //mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
+    //uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
+    //
+    //Shader::ui.use();
+    //Shader::ui.setUITranslationMatrix(uiProjection);
+    //
+    //Shader::uiTexture.use();
+    //Shader::uiTexture.setUITranslationMatrix(uiProjection);
+    //
+    //Shader::uiMonochrome.use();
+    //Shader::uiMonochrome.setUITranslationMatrix(uiProjection);
+    //
+    //Shader::sprite.use();
+    //Shader::sprite.setUITranslationMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) {

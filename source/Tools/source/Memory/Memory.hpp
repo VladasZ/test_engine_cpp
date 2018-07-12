@@ -8,7 +8,7 @@
 
 #pragma once
 
-#define MEMORY_TRACKING false
+#define MEMORY_TRACKING true
 
 #if MEMORY_TRACKING
 

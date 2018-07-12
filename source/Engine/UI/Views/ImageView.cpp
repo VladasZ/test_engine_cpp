@@ -20,11 +20,11 @@ BufferData * ImageView::getBufferData() {
 
     Rect frame = _absoluteFrame;
     
-    GLfloat vertices[] = {
-        frame.origin.x,                    frame.origin.y,                     0.0f, 0.0f,
-        frame.origin.x,                    frame.size.height + frame.origin.y, 0.0f, 1.0f,
-        frame.size.width + frame.origin.x, frame.size.height + frame.origin.y, 1.0f, 1.0f,
-        frame.size.width + frame.origin.x, frame.origin.y,                     1.0f, 0.0f
+    static const GLfloat vertices[] = {
+       -1, -1, 0.0f, 0.0f,
+       -1,  1, 0.0f, 1.0f,
+        1,  1, 1.0f, 1.0f,
+        1, -1, 1.0f, 0.0f
     };
     
     static const GLushort indices[] = { 0, 1, 3, 2 };
@@ -41,12 +41,13 @@ void ImageView::draw() {
     
     if (image == nullptr) { View::draw(); return; }
     if (!color.isTransparent()) View::draw();
-        
+       
     View::drawSubviews();
     
     image->bind();
     if (image->isMonochrome()) Shader::uiMonochrome.use();
     else                       Shader::uiTexture.use();
+    glViewport(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     buffer->draw();
     image->unbind();
 }

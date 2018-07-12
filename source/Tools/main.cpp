@@ -30,7 +30,7 @@ class NotString {
 void test() {
 
 
-    Block spes(false);
+ /*   Block spes(false);
     Block spes2(5);
     Block spes3("sss"_s);
     Block spes4("rglica");
@@ -47,6 +47,7 @@ void test() {
     cout << spes2.get<int>() << endl;
     cout << spes3.get<String>() << endl;
     cout << spes4.get<char *>() << endl;
+    */
 }
 
 int main() {

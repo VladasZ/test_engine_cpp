@@ -80,10 +80,10 @@ public:
     template <class T>
     T get() {
 
-        Log("getting: " + _initialType);
+        //Log("getting: " + _initialType);
 
-        if (_type != _getType<T>())
-            throw String() + "Block contains " + _type + " not " + nameOf<T>;
+        //if (_type != _getType<T>())
+        //    throw String() + "Block contains " + _type + " not " + nameOf<T>;
         return std::any_cast<T>(_value);
     }
 

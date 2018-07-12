@@ -10,14 +10,14 @@
 
 #include <string>
 
+#include "Meta.hpp"
 #include "HasMember.hpp"
 
 GENERATE_HAS_MEMBER(toString, String(void));
 
 template <class T>
 constexpr inline bool is_string_convertible =
-    std::is_same_v<T, char>         ||
-    std::is_same_v<T, const char *> ||
+    contains<T, char>               ||
     std::is_same_v<T, std::string>  ||
     std::is_same_v<T, String>       ||
     has_toString<T>                 ||
@@ -25,9 +25,8 @@ constexpr inline bool is_string_convertible =
     ;
 
 template <class T>
-decltype(auto) __toString(const T &value) {
-         if constexpr (std::is_same_v<T, char>)         return std::string(1, value);
-    else if constexpr (std::is_same_v<T, const char *>) return std::string(value);
+std::string __toString(const T &value) {
+         if constexpr (contains<T, char>)               return value;
     else if constexpr (std::is_same_v<T, std::string>)  return value;
     else if constexpr (has_toString<T>)                 return value.toString();
     else if constexpr (std::is_fundamental_v<T>)        return std::to_string(value);
@@ -48,3 +47,6 @@ public:
 
 String operator "" _s(const char *in, size_t size);
 String operator "" _s(unsigned long long       in);
+
+template <class T>
+inline const String nameOf = typeid(T).name();

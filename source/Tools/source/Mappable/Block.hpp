@@ -44,21 +44,33 @@ class Block {
         if (is_integral_v<T>)         return Type::Integer;
         if (is_floating_point_v<T>)   return Type::Float;
         if (is_string_convertible<T>) return Type::String;
+        throw String() + "Type: " + nameOf<T> +" is not supported by Block class.";
     }
 
 public:
 
     template <class T>
     constexpr static inline bool is_supported =
-        is_same_v<bool, T> ||
-        is_integral_v<T> ||
+        is_same_v<bool, T>     ||
+        is_integral_v<T>       ||
         is_floating_point_v<T> ||
         is_string_convertible<T>
         ;
 
     template <class T>
     Block(const T& value) {
-        _value = value;
+
+        if constexpr (!is_supported<T>) {
+            throw String() + "Type: " + nameOf<T> + " is not supported by Block class.";
+        }
+
+        if constexpr (is_string_convertible<T>) {
+            _value = String(value);
+        }
+        else constexpr {
+            _value = value;
+        }
+
         _type = _getType<T>();
     }
 

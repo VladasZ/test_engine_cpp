@@ -13,6 +13,7 @@
 #include "Debug.hpp"
 #include "BufferData.hpp"
 #include "Buffer.hpp"
+#include "Window.hpp"
 
 Path::Path(const Rect &rect) {
     points = {
@@ -50,9 +51,11 @@ void Path::draw() {
             setupBuffer();
         }
     }
+
+    Rect(Window::size).setViewport();
     
-    Shader::ui.use();
-    Shader::ui.setUniformColor(color);
+    Shader::uiPath.use();
+    Shader::uiPath.setUniformColor(color);
     
     GL(glLineWidth(lineWidth));
     
@@ -62,7 +65,9 @@ void Path::draw() {
 
 BufferData * Path::getBufferData() {
     int size = (int)(sizeof(float) * points.size() * 2);
-    return new BufferData((float *)&points[0], size);
+
+    auto copy_points = points;
+    return new BufferData((float *)&copy_points[0], size);
 }
 
 void Path::addPoint(float x, float y) {

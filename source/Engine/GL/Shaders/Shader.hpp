@@ -37,6 +37,7 @@ public:
     static Shader ui;
     static Shader uiTexture;
     static Shader uiMonochrome;
+    static Shader uiPath;
     static Shader sprite;
 
     void use() const;

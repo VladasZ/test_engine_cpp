@@ -17,6 +17,7 @@
 Shader Shader::ui;
 Shader Shader::uiTexture;
 Shader Shader::uiMonochrome;
+Shader Shader::uiPath;
 Shader Shader::sprite;
 
 Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath) {    
@@ -38,6 +39,9 @@ void Shader::initialize() {
     uiMonochrome =  Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
                            FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
 
+    uiPath =        Shader(FileManager::assetsDirectory() + "Shaders/uiPath.vert",
+                           FileManager::assetsDirectory() + "Shaders/uiPath.frag");
+
     sprite =        Shader(FileManager::assetsDirectory() + "Shaders/sprite.vert",
                            FileManager::assetsDirectory() + "Shaders/sprite.frag");
     
@@ -45,13 +49,13 @@ void Shader::initialize() {
 }
 
 void Shader::setupUiTranslation() {
-    //
-    //mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
-    //uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
-    //
-    //Shader::ui.use();
-    //Shader::ui.setUITranslationMatrix(uiProjection);
-    //
+    
+    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
+    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
+    
+    Shader::uiPath.use();
+    Shader::uiPath.setUITranslationMatrix(uiProjection);
+    
     //Shader::uiTexture.use();
     //Shader::uiTexture.setUITranslationMatrix(uiProjection);
     //

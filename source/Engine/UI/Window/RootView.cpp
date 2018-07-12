@@ -98,14 +98,14 @@ void RootView::setup() {
 
 void RootView::draw() {
 
-    if (Window::FPS > 40) {
-        scrollView->addSubview(new View(Rect::random()));
-        scrollView->subviews.back()->color = Color::random();
+    //if (Window::FPS > 40) {
+    //    scrollView->addSubview(new View(Rect::random()));
+    //    scrollView->subviews.back()->color = Color::random();
 
-        Log(View::exists());
-    }
+    //    Log(View::exists());
+    //}
 
-    layout();
+    //layout();
 
     View::draw();
 }

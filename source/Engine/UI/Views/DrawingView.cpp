@@ -7,16 +7,24 @@
 //
 
 #include "DrawingView.hpp"
+#include "Shader.hpp"
+#include "Buffer.hpp"
 
 
 void DrawingView::draw() {
+    Shader::ui.use();
+    Shader::ui.setUniformColor(color);
+    _absoluteFrame.setViewport();
+    buffer->draw();
+    Shader::uiPath.use();
+    Shader::uiPath.setViewportTranslation(frame.size);
     for (auto path : paths) path->draw();
-    View::draw();
+
+    drawSubviews();
 }
 
 void DrawingView::layout() {
     View::layout();
-    for (auto path : paths) path->setOrigin(_absoluteFrame.origin);
 }
 
 void DrawingView::addPath(Path *path) {

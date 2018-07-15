@@ -43,13 +43,7 @@ public:
     }
     
     void unsubscribe(SubscriberType *subscriber) {
-
-        subscribers.removeIf([subscriber](SubscriberType *_sub) { return _sub == subscriber; });
-
-        //subscribers.erase(
-        //std::remove_if(subscribers.begin(), subscribers.end(),
-        //               [subscriber](SubscriberType *_sub) { return _sub == subscriber; }),
-        //                  subscribers.end());
+        subscribers.removeIf([&](SubscriberType *_sub) { return _sub == subscriber; });
     }
     
     void operator()(Params... parameters) const {

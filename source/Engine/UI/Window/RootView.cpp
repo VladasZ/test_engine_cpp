@@ -16,10 +16,11 @@
 #include "System.hpp"
 #include "ImageView.hpp"
 #include "Glyph.hpp"
+#include "DrawingView.hpp"
 
 ScrollView *scrollView;
 
-Button* btn;
+DrawingView *drawView;
 
 void RootView::setup() {
 
@@ -28,20 +29,6 @@ void RootView::setup() {
 
     scrollView = new ScrollView({ 0, 100, 500, 500 });
     scrollView->color = Color::lightGray;
-
-    btn = new Button({ 100, 100 });
-    btn->color = Color::white;
-
-    btn->onTouch([] {
-
-        glViewport(0, 0, 300, 300);
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    });
-
-    btn->autolayoutMask = Autolayout::TopRight;
-
-    addSubview(btn);
 
 
     //View *subview = new View({ 300, 300 });
@@ -81,6 +68,22 @@ void RootView::setup() {
     }
 
 
+    drawView = (DrawingView *)(new DrawingView({ 200, 200 }))->setAutolayoutMask(Autolayout::Center)->setColor(Color::purple);
+
+    Path *path = new Path();
+
+    path->drawMode = PathDrawMode::Stroke;
+
+    path->color = Color::black;
+
+    path->addPoint(0, 0);
+    path->addPoint(0, 100);
+    path->addPoint(100, 100);
+    path->addPoint(100, 0);
+
+    drawView->addPath(path);
+
+
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
 
@@ -94,6 +97,7 @@ void RootView::setup() {
     addSubview(directionStick);
     addSubview(rotationStick);
     addSubview(scrollView);
+    addSubview(drawView);
 }
 
 void RootView::draw() {

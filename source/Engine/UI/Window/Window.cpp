@@ -145,7 +145,6 @@ void Window::update() {
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size(width, height);
-    Shader::setupUiTranslation();
     rootView->frame = Rect(Window::size);
     rootView->layout();
 #ifndef APPLE

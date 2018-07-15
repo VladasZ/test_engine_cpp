@@ -27,7 +27,7 @@ void Button::setup() {
 void Button::setText(const std::string &text) {
     if (label == nullptr) {
         label = new Label();
-        label->autolayoutMask = Autolayout::Center;
+//        label->autolayoutMask = Autolayout::Center;
         addSubview(label);
     }
     label->setText(text);
@@ -36,8 +36,8 @@ void Button::setText(const std::string &text) {
 
 void Button::setImage(Image *image) {
     if (imageView == nullptr) {
-        imageView = new ImageView(frame.withZeroOrigin());
-        imageView->autolayoutMask = Autolayout::Background;
+        imageView = new ImageView(_frame.withZeroOrigin());
+//        imageView->autolayoutMask = Autolayout::Background;
         insertSubviewAt(0, imageView);
     }
     

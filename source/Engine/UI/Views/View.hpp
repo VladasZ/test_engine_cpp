@@ -13,31 +13,19 @@
 #include "Color.hpp"
 #include "Primitives.hpp"
 #include "Memory.hpp"
+#include "Layout.hpp"
 
 class Buffer;
 class Window;
 class Input;
 
-enum Autolayout {
-    None               = 0,
-    StickToLeft        = 1 << 0,
-    StickToRight       = 1 << 1,
-    StickToTop         = 1 << 2,
-    StickToBottom      = 1 << 3,
-    Center             = 1 << 4,
-    CenterHorizontally = 1 << 5,
-    CenterVertically   = 1 << 6,
-    Background         = 1 << 7,
-    TopRight           = StickToTop    | StickToRight,
-    TopLeft            = StickToTop    | StickToLeft,
-    BotRight           = StickToBottom | StickToRight,
-    BotLeft            = StickToBottom | StickToLeft
-};
+
 
 class View : public Drawable {
         
     friend Window;
-    
+    friend Layout::Base;
+
 protected:
     
     void drawSubviews() const;
@@ -48,17 +36,19 @@ protected:
     Rect calculateAbsoluteFrame() const;
     Rect _absoluteFrame;
     
+    Rect _frame;
+
     int _touchID = -1;
     
     virtual void setup() { }
     virtual bool _isScrollView() const { return false; }
+
+    Layout::Array *_layout = nullptr;
     
 public:
     
     View *superview = nullptr;
     
-    Rect frame;
-    int autolayoutMask = None;
     Array<View *> subviews;
     
     View() = default;
@@ -69,7 +59,10 @@ public:
     virtual void layout();
     virtual void layoutSubviews();
     
+    Rect frame() const { return _frame; }
     View * setFrame(const Rect &frame);
+    View * setSize(const Size &size);
+    View * setOrigin(const Point &origin);
     View * setCenter(const Point &center);
 
     int getTouchID() const;
@@ -79,10 +72,11 @@ public:
     void removeAllSubviews();
 
     View * setColor(const Color& color);
-    View * setAutolayoutMask(Autolayout mask);
 
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;
+
+    View * addLayout(const std::initializer_list<Layout::Base> &layout);
 
     static View * dummy(float width = 50, float height = 50);
         

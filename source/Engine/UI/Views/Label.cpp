@@ -13,11 +13,11 @@
 #include "Primitives.hpp"
 
 void Label::draw() {
-    if (needsGlyphsUpdate) setGlyphs();
+    if (_needsGlyphsUpdate) _setGlyphs();
     View::draw();
 }
 
-void Label::setGlyphs() {
+void Label::_setGlyphs() {
     
     removeAllSubviews();
     if (_text.empty()) return;
@@ -29,17 +29,22 @@ void Label::setGlyphs() {
     for (auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);
         auto imageView = new ImageView(glyph->size());
-        imageView->frame.origin = Point(advance + glyph->bearing.x,
-                                        frame.size.height / 2 - glyph->bearing.y + _font->baselineShift());
+        auto view = (Label *)imageView; // Lifehack
+
+        view->_frame.origin = { 
+            advance + glyph->bearing.x,
+            _frame.size.height / 2 - glyph->bearing.y + _font->baselineShift() 
+        };
+
         imageView->setImage(glyph->image);
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
     }
 
-    frame.size.width = views.back()->frame.maxX();
+    _frame.size.width = views.back()->frame().maxX();
     
-    needsGlyphsUpdate = false;
+    _needsGlyphsUpdate = false;
     
     layout();
 }
@@ -48,7 +53,7 @@ std::string Label::text() const { return _text; }
 
 Label * Label::setText(const std::string &text) {
     _text = text;
-    needsGlyphsUpdate = true;
+    _needsGlyphsUpdate = true;
     return this;
 }
 
@@ -56,6 +61,6 @@ const Font * const Label::font() const { return _font; }
 
 Label * Label::setFont(Font *font) {
     _font = font;
-    needsGlyphsUpdate = true;
+    _needsGlyphsUpdate = true;
     return this;
 }

@@ -145,7 +145,7 @@ void Window::update() {
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size(width, height);
-    rootView->frame = Rect(Window::size);
+    rootView->setFrame(Rect(width, height));
     rootView->layout();
 #ifndef APPLE
     glViewport(0, 0, width, height);

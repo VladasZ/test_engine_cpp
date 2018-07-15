@@ -17,9 +17,9 @@ class Label : public View {
     std::string _text;
     Font *_font = Font::System;
     
-    void setGlyphs();
+    void _setGlyphs();
     
-    bool needsGlyphsUpdate = false;
+    bool _needsGlyphsUpdate = false;
     
     virtual void draw() override;
         

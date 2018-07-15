@@ -13,22 +13,26 @@
 #include "ScrollView.hpp"
 #include "Log.hpp"
 #include "GL.hpp"
+#include "Layout.hpp"
 
-View::View(const Rect &rect) : frame{ rect } { }
+View::View(const Rect &rect) : _frame{ rect } { }
 
-View::~View() { if (buffer != nullptr) delete buffer; }
+View::~View() {
+    if (buffer != nullptr) delete buffer;
+    if (_layout != nullptr) delete _layout;
+}
 
 BufferData * View::getBufferData() {
     _absoluteFrame = calculateAbsoluteFrame();
-    static const Rect default_rect = { -1, -1, 2, 2 };
+    static const Rect default_rect{ -1, -1,  2,  2 };
     return default_rect.getData();
 }
 
 Rect View::calculateAbsoluteFrame() const {
 
-    if (this->superview == nullptr) return frame;
+    if (this->superview == nullptr) return _frame;
 
-    Rect aFrame = frame;
+    Rect aFrame = _frame;
     View *superview = this->superview;
 
     while (superview != nullptr) {
@@ -38,7 +42,7 @@ Rect View::calculateAbsoluteFrame() const {
             aFrame.origin -= scrollView->_content_offset;
         }
 
-        aFrame.origin += superview->frame.origin;
+        aFrame.origin += superview->_frame.origin;
         superview = superview->superview;
     }
 
@@ -59,46 +63,9 @@ void View::draw() {
 }
 
 void View::layout() {
-
-    if (autolayoutMask == Autolayout::None) {
-        setupBuffer();
-        layoutSubviews();
-        return;
-    }
-
-    Rect parentFrame;
-    Rect layoutFrame = frame;
-
-    if (superview == nullptr) parentFrame = Rect(Window::size.width, Window::size.height);
-    else parentFrame = superview->frame;
-
-    if (autolayoutMask & Autolayout::StickToLeft)
-        layoutFrame.origin.x = 0;
-
-    if (autolayoutMask & Autolayout::StickToRight)
-        layoutFrame.origin.x = parentFrame.size.width - frame.size.width;
-
-    if (autolayoutMask & Autolayout::StickToTop)
-        layoutFrame.origin.y = 0;
-
-    if (autolayoutMask & Autolayout::StickToBottom)
-        layoutFrame.origin.y = parentFrame.size.height - frame.size.height;
-
-    if (autolayoutMask & Autolayout::Center) {
-        layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
-        layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
-    }
-
-    if (autolayoutMask & Autolayout::CenterHorizontally)
-        layoutFrame.origin.x = parentFrame.size.width / 2 - frame.size.width / 2;
-
-    if (autolayoutMask & Autolayout::CenterVertically)
-        layoutFrame.origin.y = parentFrame.size.height / 2 - frame.size.height / 2;
-
-    if (autolayoutMask & Autolayout::Background)
-        layoutFrame = parentFrame.withZeroOrigin();
-
-    this->frame = layoutFrame;
+    if (_layout != nullptr)
+        for (auto& layout : *_layout)
+            layout._layout(this);
 
     setupBuffer();
     layoutSubviews();
@@ -109,17 +76,29 @@ void View::layoutSubviews() {
 }
 
 View * View::setFrame(const Rect &frame) {
-    this->frame = frame;
+    _frame = frame;
+    layout();
+    return this;
+}
+
+View * View::setSize(const Size &size) {
+    _frame.size = size;
+    layout();
+    return this;
+}
+
+View * View::setOrigin(const Point &origin) {
+    _frame.origin = origin;
     layout();
     return this;
 }
 
 View * View::setCenter(const Point &center) {
-    this->frame = {
-        center.x - frame.size.width / 2,
-        center.y - frame.size.height / 2,
-        frame.size.width,
-        frame.size.height 
+    this->_frame = {
+        center.x - _frame.size.width / 2,
+        center.y - _frame.size.height / 2,
+        _frame.size.width,
+        _frame.size.height
     };
     layout();
     return this;
@@ -155,15 +134,20 @@ View * View::setColor(const Color& color) {
     return this;
 }
 
-View * View::setAutolayoutMask(Autolayout mask) {
-    autolayoutMask = mask;
+View * View::addLayout(const std::initializer_list<Layout::Base> &layout) {
+    if (_layout == nullptr) {
+        _layout = new Layout::Array(layout);
+        return this;
+    }
+
+    _layout->append(layout);
+
     return this;
 }
 
 View * View::dummy(float width, float height) {
     View *view = new View({ width, height });
     view->color = Color::random();
-    view->autolayoutMask = Autolayout::Center;
     return view;
 }
 

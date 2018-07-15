@@ -18,27 +18,27 @@ static const float STICK_VIEW_SIZE = SIZE / 2;
 AnalogStickView::AnalogStickView() : DrawingView({ SIZE, SIZE }) { }
 
 void AnalogStickView::setup() {
-    auto outerPath = Path::circleWith(frame.size.center(), frame.size.width);
+    auto outerPath = Path::circleWith(_frame.size.center(), _frame.size.width);
     outerPath->color = Color::black;
     addPath(outerPath);
 
-    auto outlinePath = Path::circleWith(frame.size.center(), frame.size.width - OUTLINE_WIDTH);
+    auto outlinePath = Path::circleWith(_frame.size.center(), _frame.size.width - OUTLINE_WIDTH);
     outlinePath->color = Color::white;
     addPath(outlinePath);
 
     directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
-    directionStick->setCenter(frame.size.center());
+    directionStick->setCenter(_frame.size.center());
     addSubview(directionStick);
 
     directionStick->addPath([&]() {
-        auto path = Path::circleWith(directionStick->frame.size.center(),
+        auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE);
         path->color = Color::black;
         return path;
     }());
     
     directionStick->addPath([&]() {
-        auto path = Path::circleWith(directionStick->frame.size.center(),
+        auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
         path->color = Color::lightGray;
         return path;
@@ -54,21 +54,21 @@ void AnalogStickView::setup() {
     
     Input::onTouchEnded.subscribe(this, [&](Point point, int id) {
         _touchID = -1;
-        directionStick->setCenter(frame.size.center());
+        directionStick->setCenter(_frame.size.center());
         onDirectionChange(Point());
     });
 }
 
 void AnalogStickView::onTouchMoved(const Point &touch) {
     
-    float maxLenght = frame.size.height / 2;
+    float maxLenght = _frame.size.height / 2;
     
     Point touchPosition = localPointFrom(touch);
-    Point vector = touchPosition - frame.size.center();
+    Point vector = touchPosition - _frame.size.center();
     
     if (vector.length() > maxLenght) {
         vector = vector.withLength(maxLenght);
-        touchPosition = frame.size.center() + vector;
+        touchPosition = _frame.size.center() + vector;
     }
     
     directionStick->setCenter(touchPosition);

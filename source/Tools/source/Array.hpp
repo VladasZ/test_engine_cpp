@@ -37,8 +37,12 @@ public:
         erase(std::remove_if(begin(), end(),  predicate, end()));
     }
 
+    template <class ...Args>
+    void append(Args ...args) {
+        insert(end(), std::initializer_list<T> { args... });
+    }
+
     T random() const {
         return this->at(System::random((int)size()));
     }
-
 };

@@ -33,10 +33,10 @@ void MoveView::setup() {
     addSubview(upButton);
     addSubview(downButton);
     
-    leftButton ->autolayoutMask = Autolayout::BotLeft;
-    rightButton->autolayoutMask = Autolayout::BotRight;
-    upButton   ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToTop;
-    downButton ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToBottom;
+    //leftButton ->autolayoutMask = Autolayout::BotLeft;
+    //rightButton->autolayoutMask = Autolayout::BotRight;
+    //upButton   ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToTop;
+    //downButton ->autolayoutMask = Autolayout::CenterHorizontally | Autolayout::StickToBottom;
     
     static const float speed = 10;
     
@@ -51,10 +51,9 @@ void MoveView::setup() {
 
 void MoveView::layout() {
     View::layout();
-    Size buttonSize = Size(frame.size.height / 2, frame.size.width / 3);
+    Size buttonSize = Size(_frame.size.height / 2, _frame.size.width / 3);
     for (auto button : buttons()) {
-        button->frame.size = buttonSize;
-        button->layout();
+        button->setSize(buttonSize);
     }
 }
 

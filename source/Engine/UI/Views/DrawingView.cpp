@@ -17,7 +17,7 @@ void DrawingView::draw() {
     _absoluteFrame.setViewport();
     buffer->draw();
     Shader::uiPath.use();
-    Shader::uiPath.setViewportTranslation(frame.size);
+    Shader::uiPath.setViewportTranslation(_frame.size);
     for (auto path : paths) path->draw();
 
     drawSubviews();

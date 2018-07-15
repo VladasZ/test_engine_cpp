@@ -6,6 +6,6 @@ out vec2 TexCoord;
 uniform mat4 uiTranslation;
 
 void main() {
-    gl_Position = uiTranslation * vec4(position, 0.0, 1.0);
+    gl_Position = vec4(position, 0.0, 1.0);
     TexCoord = texCoord;
 }

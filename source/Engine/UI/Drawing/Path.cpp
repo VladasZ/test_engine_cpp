@@ -13,6 +13,7 @@
 #include "Debug.hpp"
 #include "BufferData.hpp"
 #include "Buffer.hpp"
+#include "Window.hpp"
 
 Path::Path(const Rect &rect) {
     points = {
@@ -39,20 +40,12 @@ Path * Path::circleWith(const Point &center, float radius) {
 
 void Path::draw() {
     
-    if (!bufferIsSet) { bufferIsSet = true;
-        if (!_origin.isZero()) {
-            auto pointsCopy = points;
-            for (auto &point : points) point += _origin;
-            setupBuffer();
-            points = pointsCopy;
-        }
-        else {
-            setupBuffer();
-        }
+    if (!bufferIsSet) { 
+        bufferIsSet = true;
+        setupBuffer();
     }
     
-    Shader::ui.use();
-    Shader::ui.setUniformColor(color);
+    Shader::uiPath.setUniformColor(color);
     
     GL(glLineWidth(lineWidth));
     
@@ -61,20 +54,11 @@ void Path::draw() {
 }
 
 BufferData * Path::getBufferData() {
-    int size = (int)(sizeof(float) * points.size() * 2);
+    int size = (int)(sizeof(Point) * points.size());
     return new BufferData((float *)&points[0], size);
 }
 
 void Path::addPoint(float x, float y) {
-    addPoint(Point(x, y));
-}
-
-void Path::addPoint(const Point &point) {
-    points.push_back(point);
-    bufferIsSet = false;
-}
-
-void Path::setOrigin(const Point &origin) {
-    _origin = origin;
+    points.emplace_back(x, y);
     bufferIsSet = false;
 }

@@ -11,6 +11,7 @@
 #include "Color.hpp"
 #include "GL.hpp"
 #include "Memory.hpp"
+#include "Rect.hpp"
 
 class Window;
 
@@ -18,15 +19,13 @@ class Shader MEMORY_MANAGED(Shader) {
     
     Shader() = default;
     Shader(const std::string &vertexPath, const std::string &fragmentPath);
-    
-    static void setupUiTranslation();
-    
+        
     friend Window;
     
     int program = -1;
     
     int uniformColor = -1;
-    int uiTranslation = -1;
+    int viewportTranslation = -1;
     int uniformPosition = -1;
     int transform = -1;
     
@@ -37,6 +36,7 @@ public:
     static Shader ui;
     static Shader uiTexture;
     static Shader uiMonochrome;
+    static Shader uiPath;
     static Shader sprite;
 
     void use() const;
@@ -44,4 +44,5 @@ public:
     void setUITranslationMatrix(const mat4 &projection);
     void setTransformMatrix(const mat4 &transform);
     void setUniformPosition(float x, float y);
+    void setViewportTranslation(const Size &viewport);
 };

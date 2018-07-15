@@ -10,6 +10,7 @@
 #include "Window.hpp"
 #include "BufferData.hpp"
 #include "System.hpp"
+#include "GL.hpp"
 
 Rect::Rect(float width, float height) : size(Size(width, height)) { }
 
@@ -66,4 +67,8 @@ Rect Rect::random() {
         (float)System::random(size),
         (float)System::random(size)
     };
+}
+
+void Rect::setViewport() const {
+    glViewport(origin.x, (Window::size.height - size.height) - origin.y, size.width, size.height);
 }

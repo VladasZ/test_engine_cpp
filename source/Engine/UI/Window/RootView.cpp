@@ -15,15 +15,19 @@
 #include "Label.hpp"
 #include "System.hpp"
 #include "ImageView.hpp"
+#include "Glyph.hpp"
+#include "DrawingView.hpp"
 
 ScrollView *scrollView;
 
+DrawingView *drawView;
+
 void RootView::setup() {
-    
+
     directionStick = new AnalogStickView();
     rotationStick = new AnalogStickView();
 
-    scrollView = new ScrollView({ 500, 500 });
+    scrollView = new ScrollView({ 0, 100, 500, 500 });
     scrollView->color = Color::lightGray;
 
 
@@ -37,19 +41,47 @@ void RootView::setup() {
 
     //scrollView->addSubview(subview);
 
-    FOR(5) {
-        //scrollView->addSubview(new View (Rect::random()));
-        //scrollView->subviews.back()->color = Color::random();
+    FOR(20) {
+        scrollView->addSubview(new View(Rect::random()));
+        scrollView->subviews.back()->color = Color::random();
+        scrollView->subviews.back()->addSubview(
+            View::dummy()->addSubview(
+            (new ImageView({ 30, 30 }))->setImage(Image::cat)->setAutolayoutMask(Autolayout::Center)
+            )
+        );
 
-        ImageView *imageView = new ImageView(Rect::random());
-        imageView->image = Image::cat;
-        scrollView->addSubview(imageView);
+        scrollView->addSubview(
+            (new ImageView(Rect::random()))
+            //->setImage(Font::System->glyphForChar('A')->image)
+            ->setImage(Image::cat)
+            ->setColor(Color::random())
+        );
 
-        //Label *label = new Label(Rect::random());
-        //label->setText("hgs98u5498u -4985u 9-8yu 49-yu-ds skjghfds ih w9- 8h");
-        //label->color = Color::random();
-        //scrollView->addSubview(label);
+        //ImageView *imageView = new ImageView(Rect::random());
+        //imageView->image = Image::cat;
+        //scrollView->addSubview(imageView);
+
+        Label *label = new Label(Rect::random());
+        label->setText("HELOWSTVO");
+        label->color = Color::random();
+        scrollView->addSubview(label);
     }
+
+
+    drawView = (DrawingView *)(new DrawingView({ 200, 200 }))->setAutolayoutMask(Autolayout::Center)->setColor(Color::purple);
+
+    Path *path = new Path();
+
+    path->drawMode = PathDrawMode::Stroke;
+
+    path->color = Color::black;
+
+    path->addPoint(0, 0);
+    path->addPoint(0, 100);
+    path->addPoint(100, 100);
+    path->addPoint(100, 0);
+
+    drawView->addPath(path);
 
 
     directionStick->autolayoutMask = Autolayout::BotRight;
@@ -61,10 +93,11 @@ void RootView::setup() {
         offset += point;
         scrollView->setContentOffset(offset);
     });
-    
+
     addSubview(directionStick);
     addSubview(rotationStick);
     addSubview(scrollView);
+    addSubview(drawView);
 }
 
 void RootView::draw() {
@@ -73,7 +106,7 @@ void RootView::draw() {
     //    scrollView->addSubview(new View(Rect::random()));
     //    scrollView->subviews.back()->color = Color::random();
 
-    //    Log(scrollView->subviews.size());
+    //    Log(View::exists());
     //}
 
     //layout();
@@ -83,22 +116,22 @@ void RootView::draw() {
 
 void RootView::layout() {
     View::layout();
-    
+
     const float stickMargin = 16;
-    
+
     directionStick->autolayoutMask = 0;
     rotationStick->autolayoutMask = 0;
 
     directionStick->setFrame(directionStick->frame.origin.x - stickMargin,
-                             directionStick->frame.origin.y - stickMargin,
-                             directionStick->frame.size.width,
-                             directionStick->frame.size.height);
-    
+        directionStick->frame.origin.y - stickMargin,
+        directionStick->frame.size.width,
+        directionStick->frame.size.height);
+
     rotationStick->setFrame(rotationStick->frame.origin.x + stickMargin,
-                              rotationStick->frame.origin.y - stickMargin,
-                              rotationStick->frame.size.width,
-                              rotationStick->frame.size.height);
-    
+        rotationStick->frame.origin.y - stickMargin,
+        rotationStick->frame.size.width,
+        rotationStick->frame.size.height);
+
     directionStick->autolayoutMask = Autolayout::BotRight;
     rotationStick->autolayoutMask = Autolayout::BotLeft;
 }

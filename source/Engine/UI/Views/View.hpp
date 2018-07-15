@@ -34,7 +34,7 @@ enum Autolayout {
     BotLeft            = StickToBottom | StickToLeft
 };
 
-class View : public Drawable _MEMORY_MANAGED(View) {
+class View : public Drawable {
         
     friend Window;
     
@@ -76,12 +76,17 @@ public:
 
     int getTouchID() const;
     
-    void addSubview(View *view);
+    View * addSubview(View *view);
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
-        
+
+    View * setColor(const Color& color);
+    View * setAutolayoutMask(Autolayout mask);
+
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;
+
+    static View * dummy(float width = 50, float height = 50);
         
 #if MEMORY_BENCHMARK
     void addTestViews();

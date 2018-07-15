@@ -31,7 +31,7 @@ void Label::setGlyphs() {
         auto imageView = new ImageView(glyph->size());
         imageView->frame.origin = Point(advance + glyph->bearing.x,
                                         frame.size.height / 2 - glyph->bearing.y + _font->baselineShift());
-        imageView->image = glyph->image;
+        imageView->setImage(glyph->image);
         views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
@@ -46,14 +46,16 @@ void Label::setGlyphs() {
 
 std::string Label::text() const { return _text; }
 
-void Label::setText(const std::string &text) {
+Label * Label::setText(const std::string &text) {
     _text = text;
     needsGlyphsUpdate = true;
+    return this;
 }
 
 const Font * const Label::font() const { return _font; }
 
-void Label::setFont(Font *font) {
+Label * Label::setFont(Font *font) {
     _font = font;
     needsGlyphsUpdate = true;
+    return this;
 }

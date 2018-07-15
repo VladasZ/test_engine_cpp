@@ -12,6 +12,7 @@
 #include "Window.hpp"
 #include "ScrollView.hpp"
 #include "Log.hpp"
+#include "GL.hpp"
 
 View::View(const Rect &rect) : frame { rect } { }
 
@@ -19,7 +20,8 @@ View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
     _absoluteFrame = calculateAbsoluteFrame();
-    return _absoluteFrame.getData();
+    static const Rect default_rect = {-1, -1, 2, 2};
+    return default_rect.getData();
 }
 
 Rect View::calculateAbsoluteFrame() const {
@@ -51,6 +53,7 @@ void View::drawSubviews() const {
 void View::draw() {
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
+    _absoluteFrame.setViewport();
     buffer->draw();
     drawSubviews();
 }
@@ -130,10 +133,11 @@ int View::getTouchID() const {
     return _touchID;
 }
 
-void View::addSubview(View *view) {
+View * View::addSubview(View *view) {
     subviews.emplace_back(view);
     view->superview = this;
     view->setup();
+    return this;
 }
 
 void View::insertSubviewAt(int position, View *view) {
@@ -148,6 +152,23 @@ void View::removeAllSubviews() {
         delete view;
     }
     subviews.clear();
+}
+
+View * View::setColor(const Color& color) {
+    this->color = color;
+    return this;
+}
+
+View * View::setAutolayoutMask(Autolayout mask) {
+    autolayoutMask = mask;
+    return this;
+}
+
+View * View::dummy(float width, float height) {
+    View *view = new View({ width, height });
+    view->color = Color::random();
+    view->autolayoutMask = Autolayout::Center;
+    return view;
 }
 
 #if MEMORY_BENCHMARK

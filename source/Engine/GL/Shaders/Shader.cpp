@@ -17,6 +17,7 @@
 Shader Shader::ui;
 Shader Shader::uiTexture;
 Shader Shader::uiMonochrome;
+Shader Shader::uiPath;
 Shader Shader::sprite;
 
 Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath) {    
@@ -38,28 +39,11 @@ void Shader::initialize() {
     uiMonochrome =  Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
                            FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
 
+    uiPath =        Shader(FileManager::assetsDirectory() + "Shaders/uiPath.vert",
+                           FileManager::assetsDirectory() + "Shaders/uiPath.frag");
+
     sprite =        Shader(FileManager::assetsDirectory() + "Shaders/sprite.vert",
                            FileManager::assetsDirectory() + "Shaders/sprite.frag");
-    
-    setupUiTranslation();
-}
-
-void Shader::setupUiTranslation() {
-    
-    mat4 uiProjection = scale(mat4(), vec3(2 / Window::size.width, -(2 / Window::size.height), 1));
-    uiProjection = translate(uiProjection, vec3(-Window::size.width / 2, - Window::size.height / 2, 0));
-    
-    Shader::ui.use();
-    Shader::ui.setUITranslationMatrix(uiProjection);
-    
-    Shader::uiTexture.use();
-    Shader::uiTexture.setUITranslationMatrix(uiProjection);
-    
-    Shader::uiMonochrome.use();
-    Shader::uiMonochrome.setUITranslationMatrix(uiProjection);
-    
-    Shader::sprite.use();
-    Shader::sprite.setUITranslationMatrix(uiProjection);
 }
 
 void Shader::setUniformColor(const Color &color) {
@@ -69,9 +53,9 @@ void Shader::setUniformColor(const Color &color) {
 }
 
 void Shader::setUITranslationMatrix(const mat4 &projection) {
-    if (uiTranslation == -1)
-        uiTranslation = glGetUniformLocation(program, "uiTranslation");
-    GL(glUniformMatrix4fv(uiTranslation, 1, false, &projection[0][0]));
+    if (viewportTranslation == -1)
+        viewportTranslation = glGetUniformLocation(program, "uiTranslation");
+    GL(glUniformMatrix4fv(viewportTranslation, 1, false, &projection[0][0]));
 }
 
 void Shader::setTransformMatrix(const mat4 &transform) {
@@ -84,6 +68,12 @@ void Shader::setUniformPosition(float x, float y) {
     if (uniformPosition == -1)
         uniformPosition = glGetUniformLocation(program, "uniformPosition");
     glUniform2f(uniformPosition, x, y);
+}
 
+void Shader::setViewportTranslation(const Size &viewport) {
+    mat4 viewportTranslation = scale(mat4(), vec3(2 / viewport.width, -(2 / viewport.height), 1));
+    viewportTranslation = translate(viewportTranslation, vec3(-viewport.width / 2, -viewport.height / 2, 0));
+    use();
+    setUITranslationMatrix(viewportTranslation);
 }
 

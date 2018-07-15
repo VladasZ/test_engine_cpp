@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Point.hpp"
-#include "Event.hpp"
+#include "ConditionalEvent.hpp"
 
 class Button;
 class View;

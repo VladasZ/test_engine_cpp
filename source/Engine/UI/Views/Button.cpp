@@ -13,12 +13,14 @@ using namespace std;
 void Button::setup() {
     Input::onTouchBegan.subscribe(this, [this](Point touch, int id) {
         _touchID = id;
-        touchAction();
+        if (touchAction)
+            touchAction();
     });
     
     Input::onTouchEnded.subscribe(this, [this](Point touch, int id) {
         _touchID = -1;
-        releaseAction();
+        if (releaseAction)
+            releaseAction();
     });
 }
 
@@ -39,7 +41,7 @@ void Button::setImage(Image *image) {
         insertSubviewAt(0, imageView);
     }
     
-    imageView->image = image;
+    imageView->setImage(image);
 }
 
 void Button::onTouch(function<void()> action) {

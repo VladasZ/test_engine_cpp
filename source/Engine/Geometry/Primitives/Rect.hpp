@@ -36,8 +36,11 @@ public:
     Rect withZeroOrigin() const;
     
     String toString() const;
-    
+
     BufferData *getData() const;
 
     static Rect random();
+
+    void setViewport() const;
+
 };

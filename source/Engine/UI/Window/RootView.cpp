@@ -17,121 +17,115 @@
 #include "ImageView.hpp"
 #include "Glyph.hpp"
 #include "DrawingView.hpp"
+#include "FrameBuffer.hpp"
 
-ScrollView *scrollView;
-
-DrawingView *drawView;
+ImageView *imageView;
+View *view;
 
 void RootView::setup() {
 
-    directionStick = new AnalogStickView();
-    rotationStick = new AnalogStickView();
+    imageView = (ImageView *)(new ImageView({ 200, 200 }))->setImage(Image::cat)->setAutolayoutMask(Autolayout::Center);
+    addSubview(imageView);
 
-    scrollView = new ScrollView({ 0, 100, 500, 500 });
-    scrollView->color = Color::lightGray;
-
-
-    //View *subview = new View({ 300, 300 });
-    //subview->color = Color::green;
-
-    //View *subSubView = new View({ 100, 100, 100, 100 });
-    //subSubView->color = Color::blue;
-
-    //subview->addSubview(subSubView);
-
-    //scrollView->addSubview(subview);
-
-    FOR(20) {
-        scrollView->addSubview(new View(Rect::random()));
-        scrollView->subviews.back()->color = Color::random();
-        scrollView->subviews.back()->addSubview(
-            View::dummy()->addSubview(
-            (new ImageView({ 30, 30 }))->setImage(Image::cat)->setAutolayoutMask(Autolayout::Center)
-            )
-        );
-
-        scrollView->addSubview(
-            (new ImageView(Rect::random()))
-            //->setImage(Font::System->glyphForChar('A')->image)
-            ->setImage(Image::cat)
-            ->setColor(Color::random())
-        );
-
-        //ImageView *imageView = new ImageView(Rect::random());
-        //imageView->image = Image::cat;
-        //scrollView->addSubview(imageView);
-
-        Label *label = new Label(Rect::random());
-        label->setText("HELOWSTVO");
-        label->color = Color::random();
-        scrollView->addSubview(label);
-    }
+    view = (new View({ 50, 50 }))->setColor(Color::purple)->setAutolayoutMask(Autolayout::BotRight);
+    addSubview(view);
 
 
-    drawView = (DrawingView *)(new DrawingView({ 200, 200 }))->setAutolayoutMask(Autolayout::Center)->setColor(Color::purple);
-
-    Path *path = new Path();
-
-    path->drawMode = PathDrawMode::Stroke;
-
-    path->color = Color::black;
-
-    path->addPoint(0, 0);
-    path->addPoint(0, 100);
-    path->addPoint(100, 100);
-    path->addPoint(100, 0);
-
-    drawView->addPath(path);
+    GLuint fbo;
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 
-    directionStick->autolayoutMask = Autolayout::BotRight;
-    rotationStick->autolayoutMask = Autolayout::BotLeft;
+    Image *renderImage = new Image(Size(1000, 1000));
+    renderImage->bind();
 
-    static Point offset;
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderImage->_get_GL_id(), 0); 
 
-    directionStick->onDirectionChange.subscribe([&](auto point) {
-        offset += point;
-        scrollView->setContentOffset(offset);
-    });
 
-    addSubview(directionStick);
-    addSubview(rotationStick);
-    addSubview(scrollView);
-    addSubview(drawView);
+
+    unsigned int rbo;
+    glGenRenderbuffers(1, &rbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1000, 1000);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+
+
+
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    glClearColor(0.1f, 0.8f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  //  glViewport(0, 0, 800, 600);
+    layout();
+    draw();
+
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
+    imageView->setImage(renderImage);
+
+
+
+
+    createSticks();
 }
 
 void RootView::draw() {
-
-    //if (Window::FPS > 40) {
-    //    scrollView->addSubview(new View(Rect::random()));
-    //    scrollView->subviews.back()->color = Color::random();
-
-    //    Log(View::exists());
-    //}
-
-    //layout();
-
     View::draw();
 }
 
 void RootView::layout() {
     View::layout();
 
-    const float stickMargin = 16;
+    //const float stickMargin = 16;
 
-    directionStick->autolayoutMask = 0;
-    rotationStick->autolayoutMask = 0;
+    //rotationStick->autolayoutMask = 0;
 
-    directionStick->setFrame(directionStick->frame.origin.x - stickMargin,
-        directionStick->frame.origin.y - stickMargin,
-        directionStick->frame.size.width,
-        directionStick->frame.size.height);
+    //directionStick
+    //    ->setAutolayoutMask(Autolayout::None)
+    //    ->setFrame({
+    //                directionStick->frame.origin.x - stickMargin,
+    //                directionStick->frame.origin.y - stickMargin,
+    //                directionStick->frame.size.width,
+    //                directionStick->frame.size.height
+    //        })
+    //    ->setAutolayoutMask(Autolayout::BotRight)
+    //    ;
 
-    rotationStick->setFrame(rotationStick->frame.origin.x + stickMargin,
-        rotationStick->frame.origin.y - stickMargin,
-        rotationStick->frame.size.width,
-        rotationStick->frame.size.height);
+    ////directionStick->setAutolayoutMask(Autolayout::None)
+    ////    ->setFrame(
+    ////        directionStick->frame.origin.x - stickMargin,
+    ////        directionStick->frame.origin.y - stickMargin,
+    ////        directionStick->frame.size.width,
+    ////        directionStick->frame.size.height)
+    ////    ->setAutolayoutMask(Autolayout::BotRight)
+    ////    ;
 
-    directionStick->autolayoutMask = Autolayout::BotRight;
-    rotationStick->autolayoutMask = Autolayout::BotLeft;
+    //rotationStick->setFrame({ rotationStick->frame.origin.x + stickMargin,
+    //    rotationStick->frame.origin.y - stickMargin,
+    //    rotationStick->frame.size.width,
+    //    rotationStick->frame.size.height });
+
+    //rotationStick->autolayoutMask = Autolayout::BotLeft;
+}
+
+void RootView::createSticks() {
+
+    directionStick = new AnalogStickView();
+    rotationStick = new AnalogStickView();
+
+    addSubview(directionStick->setAutolayoutMask(Autolayout::BotRight));
+    addSubview(rotationStick->setAutolayoutMask(Autolayout::BotLeft));
 }

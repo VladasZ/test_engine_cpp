@@ -8,16 +8,17 @@
 
 #pragma once
 
-#include "GL.hpp"
 #include "Size.hpp"
+#include "GL.hpp"
 #include "NonCopyable.hpp"
-#include "MemoryManaged.hpp"
 
-class Image : public NonCopyable _MEMORY_MANAGED(Image) {
+class FrameBuffer;
+
+class Image : public NonCopyable {
     
-    GLuint id = 0;
+    GLuint _id = 0;
     
-    void init(const Size &size, void *data, const int &channels, int filter);
+    void init(const Size &size, void *data, int channels, int filter);
     
     Image() = default;
     
@@ -40,9 +41,12 @@ public:
     Size size;
     int channels;
     
-    Image(const Size &size, void *data, const int &channels, Filter filter = Filter::Linear);
-    Image(const std::string& file, Filter filter = Filter::Linear);
+    Image(const Size &size, int channels = 4, Filter filter = Filter::Linear);
+    Image(const Size &size, void *data, int channels, Filter filter = Filter::Linear);
+    Image(const std::string &file, Filter filter = Filter::Linear);
     
+    GLuint &_get_GL_id() { return _id; }
+
     void bind() const;
     void unbind() const;
     

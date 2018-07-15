@@ -7,6 +7,7 @@
 //
 
 #include "Image.hpp"
+#include "GL.hpp"
 #include "SOIL.h"
 #include "Shader.hpp"
 #include "Debug.hpp"
@@ -17,7 +18,7 @@ Image *Image::slow;
 Image *Image::palm;
 Image *Image::frisk;
 
-static int modeForChannels(const int &channels) {
+static int modeForChannels(int channels) {
     switch (channels) {
 #if IOS
         case 1: return GL_LUMINANCE;  break;
@@ -30,13 +31,13 @@ static int modeForChannels(const int &channels) {
     }
 }
 
-void Image::init(const Size &size, void *data, const int &channels, int filter) {
+void Image::init(const Size &size, void *data, int channels, int filter) {
     
     this->channels = channels;
     this->size = size;
     
-    GL(glGenTextures(1, &id));
-    GL(glBindTexture(GL_TEXTURE_2D, id));
+    GL(glGenTextures(1, &_id));
+    GL(glBindTexture(GL_TEXTURE_2D, _id));
     //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
     //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
     //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));// _MIPMAP_NEAREST));
@@ -65,7 +66,11 @@ void Image::init(const Size &size, void *data, const int &channels, int filter) 
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const Size &size, void *data, const int &channels, Filter filter) {
+Image::Image(const Size &size, int channels, Filter filter) {
+    init(size, nullptr, channels, filter);
+}
+
+Image::Image(const Size &size, void *data, int channels, Filter filter) {
     init(size, data, channels, filter);
 }
 
@@ -89,7 +94,7 @@ Image::Image(const std::string &file, Filter filter) {
 }
 
 void Image::bind() const {
-    GL(glBindTexture(GL_TEXTURE_2D, id));
+    GL(glBindTexture(GL_TEXTURE_2D, _id));
 }
 
 void Image::unbind() const {

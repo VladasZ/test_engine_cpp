@@ -69,10 +69,8 @@ public:
     virtual void layout();
     virtual void layoutSubviews();
     
-    void setFrame(const Rect &frame);
-    void setFrame(float x, float y, float width, float height);
-    void setCenter(const Point &center);
-    void setCenter(float x, float y);
+    View * setFrame(const Rect &frame);
+    View * setCenter(const Point &center);
 
     int getTouchID() const;
     

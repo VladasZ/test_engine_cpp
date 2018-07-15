@@ -14,13 +14,13 @@
 #include "Log.hpp"
 #include "GL.hpp"
 
-View::View(const Rect &rect) : frame { rect } { }
+View::View(const Rect &rect) : frame{ rect } { }
 
 View::~View() { if (buffer != nullptr) delete buffer; }
 
 BufferData * View::getBufferData() {
     _absoluteFrame = calculateAbsoluteFrame();
-    static const Rect default_rect = {-1, -1, 2, 2};
+    static const Rect default_rect = { -1, -1, 2, 2 };
     return default_rect.getData();
 }
 
@@ -108,25 +108,21 @@ void View::layoutSubviews() {
     for (auto subview : subviews) subview->layout();
 }
 
-void View::setFrame(const Rect &frame) {
+View * View::setFrame(const Rect &frame) {
     this->frame = frame;
     layout();
+    return this;
 }
 
-void View::setFrame(float x, float y, float width, float height) {
-    this->frame = { x, y, width, height };
+View * View::setCenter(const Point &center) {
+    this->frame = {
+        center.x - frame.size.width / 2,
+        center.y - frame.size.height / 2,
+        frame.size.width,
+        frame.size.height 
+    };
     layout();
-}
-
-void View::setCenter(const Point &center) {
-    setFrame(center.x - frame.size.width / 2,
-             center.y - frame.size.height / 2,
-             frame.size.width,
-             frame.size.height);
-}
-
-void View::setCenter(float x, float y) {
-    setCenter(Point(x, y));
+    return this;
 }
 
 int View::getTouchID() const {

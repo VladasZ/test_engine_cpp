@@ -21,6 +21,8 @@ class RootView : public View {
     
     void setup() override;
     void layout() override;
+
+    void createSticks();
     
 public:
     

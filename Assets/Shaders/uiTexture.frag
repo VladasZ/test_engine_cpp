@@ -1,7 +1,7 @@
 precision highp float;
 
+layout(location = 0) out vec4 color;
 in vec2 TexCoord;
-out vec4 color;
 
 uniform sampler2D ourTexture;
 

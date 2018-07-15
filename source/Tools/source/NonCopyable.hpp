@@ -14,5 +14,5 @@ protected:
     ~NonCopyable() = default;
 
     NonCopyable(NonCopyable const &) = delete;
-    void operator=(NonCopyable const &x) = delete;
+    void operator=(NonCopyable const &) = delete;
 };

@@ -26,11 +26,15 @@ public:
     using Predicate = std::function<bool(const T&)>;
     using Callback  = std::function<void(const Array<T>&)>;
 
-    Optional where(const Predicate &predicate) {
+    Optional where(const Predicate &predicate) const {
         for (const auto& object : *this)
             if (predicate(object))
                 return object;
         return std::nullopt;
+    }
+
+    void removeIf(const Predicate &predicate) {
+        erase(std::remove_if(begin(), end(),  predicate, end()));
     }
 
     T random() const {

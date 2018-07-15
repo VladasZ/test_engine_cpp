@@ -93,6 +93,11 @@ Image::Image(const std::string &file, Filter filter) {
     SOIL_free_image_data(image);
 }
 
+Image::~Image() {
+    unbind();
+    glDeleteTextures(1, &_id);
+}
+
 void Image::bind() const {
     GL(glBindTexture(GL_TEXTURE_2D, _id));
 }

@@ -21,69 +21,34 @@
 
 ImageView *imageView;
 View *view;
+FrameBuffer *frameBuffer;
 
 void RootView::setup() {
 
-    imageView = (ImageView *)(new ImageView({ 200, 200 }))->setImage(Image::cat)->setAutolayoutMask(Autolayout::Center);
+    frameBuffer = new FrameBuffer({ 1000, 800 });
+
+
+    imageView = (ImageView *)(new ImageView({ 900, 700 }))->setImage(frameBuffer->getImage())->setAutolayoutMask(Autolayout::Center);
     addSubview(imageView);
+
 
     view = (new View({ 50, 50 }))->setColor(Color::purple)->setAutolayoutMask(Autolayout::BotRight);
     addSubview(view);
-
-
-    GLuint fbo;
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-
-
-    Image *renderImage = new Image(Size(1000, 1000));
-    renderImage->bind();
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderImage->_get_GL_id(), 0); 
-
-
-
-    unsigned int rbo;
-    glGenRenderbuffers(1, &rbo);
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1000, 1000);
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-
-
-
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-
-
-
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-    glClearColor(0.1f, 0.8f, 0.1f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  //  glViewport(0, 0, 800, 600);
-    layout();
-    draw();
-
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-    imageView->setImage(renderImage);
-
-
 
 
     createSticks();
 }
 
 void RootView::draw() {
+
+    frameBuffer->draw([&] {
+     //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        layout();
+        View::draw();
+    });
+
     View::draw();
+
 }
 
 void RootView::layout() {

@@ -28,7 +28,8 @@ public:
         Nearest,
         Linear,
         Bilinear,
-        Trilinear
+        Trilinear,
+        Default = Linear
     };
     
     static Image *cat;
@@ -41,10 +42,11 @@ public:
     Size size;
     int channels;
     
-    Image(const Size &size, int channels = 4, Filter filter = Filter::Linear);
-    Image(const Size &size, void *data, int channels, Filter filter = Filter::Linear);
-    Image(const std::string &file, Filter filter = Filter::Linear);
-    
+    Image(const Size &size, int channels = 4, Filter filter = Filter::Default);
+    Image(const Size &size, void *data, int channels, Filter filter = Filter::Default);
+    Image(const std::string &file, Filter filter = Filter::Default);
+    ~Image();
+
     GLuint &_get_GL_id() { return _id; }
 
     void bind() const;

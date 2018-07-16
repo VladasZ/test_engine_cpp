@@ -18,7 +18,7 @@
 class Buffer;
 class Window;
 class Input;
-
+class FrameBuffer;
 
 
 class View : public Drawable {
@@ -28,22 +28,30 @@ class View : public Drawable {
 
 protected:
     
-    void drawSubviews() const;
-    
-    virtual void draw() override;
-    virtual BufferData *getBufferData() override;
-    
-    Rect calculateAbsoluteFrame() const;
     Rect _absoluteFrame;
     
     Rect _frame;
-
     int _touchID = -1;
+
+    bool _needsDraw = true;
+
+
+
+    Layout::Array *_layout = nullptr;
+
+    FrameBuffer *_frameBuffer = nullptr;
+
+    FrameBuffer *_getFrameBuffer() const;
+
+    void drawSubviews() const;
+
+    virtual void draw() override;
+    virtual BufferData *getBufferData() override;
+
+    Rect calculateAbsoluteFrame() const;
     
     virtual void setup() { }
     virtual bool _isScrollView() const { return false; }
-
-    Layout::Array *_layout = nullptr;
     
     View * _addLayout(const std::initializer_list<Layout::Base *> &layout);
 
@@ -53,8 +61,7 @@ public:
     
     Array<View *> subviews;
     
-    View() = default;
-    View(const Rect &rect);
+    View(const Rect &rect = Rect());
 
     virtual ~View();
     
@@ -82,6 +89,8 @@ public:
     View * addLayout(Args ...args) {
         return _addLayout({ args... });
     }
+
+    View * clone() const;
 
     static View * dummy(float width = 50, float height = 50);
         

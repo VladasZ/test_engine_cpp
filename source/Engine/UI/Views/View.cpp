@@ -15,16 +15,28 @@
 #include "GL.hpp"
 #include "Layout.hpp"
 
-View::View(const Rect &rect) : _frame{ rect } { }
+View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
     if (buffer != nullptr) delete buffer;
     if (_layout != nullptr) delete _layout;
 }
 
+FrameBuffer * View::_getFrameBuffer() const {
+    View * superview = this->superview;
+    FrameBuffer *frameBuffer = nullptr;
+
+    while (frameBuffer == nullptr) {
+        frameBuffer = superview->_frameBuffer;
+        superview = superview->superview;
+    }
+
+    return frameBuffer;
+}
+
 BufferData * View::getBufferData() {
     _absoluteFrame = calculateAbsoluteFrame();
-    static const Rect default_rect{ -1, -1,  2,  2 };
+    static const Rect default_rect { -1, -1,  2,  2 };
     return default_rect.getData();
 }
 
@@ -145,8 +157,25 @@ View * View::_addLayout(const std::initializer_list<Layout::Base *> &layout) {
     return this;
 }
 
+View * View::clone() const {
+    View *view = new View(_frame);
+    view->color = color;
+    view->_layout = _layout;
+
+    for (auto subView : subviews)
+        view->addSubview(subView->clone());
+
+    return view;
+}
+
 View * View::dummy(float width, float height) {
-    View *view = new View({ width, height });
+    View *view = new View({
+        (float)System::random(100),
+        (float)System::random(100),
+        (float)System::random(100),
+        (float)System::random(100)
+        });
+
     view->color = Color::random();
     return view;
 }

@@ -20,9 +20,58 @@
 #include "FrameBuffer.hpp"
 
 ImageView *imageView;
+
 View *view;
 
 void RootView::setup() {
+
+    view = (new View({ 100, 100 }))
+        ->addLayout(Layout::CenterH(), Layout::Top(100))
+        ->setColor(Color::blue);
+
+    addSubview(view);
+
+    addSubview(
+        (new Label({ 50, 50 }))
+        ->setText("1111111111")
+        ->setColor(Color::green)
+        ->addLayout(
+            Layout::Bottom(10, view), 
+            Layout::CenterH(view)
+        )
+    );
+
+    addSubview(
+        (new Label({ 50, 50 }))
+        ->setText("2222222222")
+        ->setColor(Color::green)
+        ->addLayout(
+            Layout::Left(10, view),
+            Layout::CenterV(view)
+        )
+    );
+
+    addSubview(
+        (new Label({ 50, 50 }))
+        ->setText("3333333333")
+        ->setColor(Color::green)
+        ->addLayout(
+            Layout::Top(10, view),
+            Layout::CenterH(view)
+        )
+    );
+
+    addSubview(
+        (new Label({ 50, 50 }))
+        ->setText("4444444444")
+        ->setColor(Color::green)
+        ->addLayout(
+            Layout::Right(10, view),
+            Layout::CenterV(view)
+        )
+    );
+
+
     createSticks();
 }
 

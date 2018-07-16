@@ -19,7 +19,8 @@ class Layout {
         Bottom,
         Left,
         Right,
-        Center,
+        CenterH,
+        CenterV,
         Base
     };
 
@@ -37,11 +38,12 @@ public:
         float value = 0;
         View *anchor = nullptr;
 
-        bool isTop()    const { return type() == _LayoutType::Top; }
-        bool isBottom() const { return type() == _LayoutType::Bottom; }
-        bool isLeft()   const { return type() == _LayoutType::Left; }
-        bool isRight()  const { return type() == _LayoutType::Right; }
-        bool isCenter() const { return type() == _LayoutType::Center; }
+        bool isTop()     const { return type() == _LayoutType::Top;     }
+        bool isBottom()  const { return type() == _LayoutType::Bottom;  }
+        bool isLeft()    const { return type() == _LayoutType::Left;    }
+        bool isRight()   const { return type() == _LayoutType::Right;   }
+        bool isCenterH() const { return type() == _LayoutType::CenterH; }
+        bool isCenterV() const { return type() == _LayoutType::CenterV; }
 
     protected:
 
@@ -49,27 +51,27 @@ public:
 
     public:
 
-        Base(float value = 0, View *anchor = nullptr) : value(value), anchor(anchor) { }
-
+        Base(float value, View *anchor) : value(value), anchor(anchor) { }
     };
 
 #define _DEFINE_LAYOUT_TYPE(_type) \
 private:\
     struct L##_type : public Base { \
         _LayoutType type() const override { return _LayoutType::_type; } \
-        public: \
-        using Base::Base;\
-        L##_type() : Base() {}\
-    };\
+        public: using Base::Base; };\
 public:\
-    static Base * _type(float value = 0, View *view = nullptr) { return new L##_type(value, view); }\
+    static Base * _type()                        { return new L##_type(0, nullptr);     }\
+    static Base * _type(float value)             { return new L##_type(value, nullptr); }\
+    static Base * _type(View *view)              { return new L##_type(0, view);        }\
+    static Base * _type(float value, View *view) { return new L##_type(value, view);    }\
 private:
 
     _DEFINE_LAYOUT_TYPE(Top);
     _DEFINE_LAYOUT_TYPE(Bottom);
     _DEFINE_LAYOUT_TYPE(Left);
     _DEFINE_LAYOUT_TYPE(Right);
-    _DEFINE_LAYOUT_TYPE(Center);
+    _DEFINE_LAYOUT_TYPE(CenterH);
+    _DEFINE_LAYOUT_TYPE(CenterV);
 
 public:
 

@@ -40,7 +40,8 @@ void RootView::createSticks() {
     directionStick = new AnalogStickView();
     rotationStick = new AnalogStickView();
 
-    directionStick->addLayout({ Layout::Bottom(), Layout::Right() });
+    directionStick->addLayout({ Layout::bottom(15), Layout::right(15) });
+    rotationStick->addLayout({ Layout::bottom(15), Layout::left(14) });
 
     addSubview(directionStick);
     addSubview(rotationStick);

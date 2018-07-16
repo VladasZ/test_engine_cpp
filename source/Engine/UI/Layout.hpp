@@ -28,6 +28,7 @@ public:
     struct Base {
 
         friend View;
+        friend Layout;
 
         void _layout(View *view) const;
 
@@ -52,6 +53,7 @@ public:
     struct _type : public Base { \
         _LayoutType type() const override { return _LayoutType::_type; } \
         public: \
+        using Base::Base;\
         _type() : Base() {}\
     };
 
@@ -61,6 +63,12 @@ public:
     _DEFINE_LAYOUT_TYPE(Right);
     _DEFINE_LAYOUT_TYPE(Center);
 
-    using Array = Array<Base>;
+    static Base * top(float value = 0) { return new Top(value); }
+    static Base * bottom(float value = 0) { return new Bottom(value); }
+    static Base * left(float value = 0) { return new Left(value); }
+    static Base * right(float value = 0) { return new Right(value); }
+    static Base * center(float value = 0) { return new Center(value); }
+
+    using Array = Array<Base *>;
 
 };

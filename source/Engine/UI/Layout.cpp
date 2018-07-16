@@ -18,6 +18,8 @@ void Layout::Base::_layout(View *view) const {
     Rect &superFrame = view->superview->_frame;
     Rect &frame = view->_frame;
 
+    auto type = this->type();
+
     if (isTop()) {
         frame.origin.y = value;
         return;
@@ -42,27 +44,4 @@ void Layout::Base::_layout(View *view) const {
         frame.origin.y = superFrame.size.height / 2 - frame.size.height / 2;
         return;
     }
-
-    int anime;
-
-    int animeMir;
-
-    int realWorld;
-
-
-
-    if (realWorld) {
-        cout << "Tfu blat gavno ebanoje" << endl;
-    }
-    else if (animeMir) {
-        cout << "uuu zaebiiiss" << anime << endl;
-        goto aneme;
-    }
-
-
-    aneme:
-
-
-
-
 }

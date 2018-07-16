@@ -76,7 +76,7 @@ public:
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;
 
-    View * addLayout(const std::initializer_list<Layout::Base> &layout);
+    View * addLayout(const std::initializer_list<Layout::Base *> &layout);
 
     static View * dummy(float width = 50, float height = 50);
         

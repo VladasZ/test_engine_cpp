@@ -14,8 +14,13 @@
 using namespace std;
 
 void Layout::Base::_layout(View *view) const {
+    if (anchor == nullptr) _layoutWithoutAnchor(view);
+    _layoutWithAnchor(view);
+}
 
-    Rect &superFrame = view->superview->_frame;
+void Layout::Base::_layoutWithoutAnchor(View *view) const {
+
+    const Rect &superFrame = view->superview->_frame;
     Rect &frame = view->_frame;
 
     auto type = this->type();
@@ -40,8 +45,16 @@ void Layout::Base::_layout(View *view) const {
     }
 
     if (isCenter()) {
-        frame.origin.x = superFrame.size.width  / 2 - frame.size.width  / 2;
+        frame.origin.x = superFrame.size.width / 2 - frame.size.width / 2;
         frame.origin.y = superFrame.size.height / 2 - frame.size.height / 2;
         return;
     }
+}
+
+
+void Layout::Base::_layoutWithAnchor(View *view) const {
+
+    const Rect &anchorFrame = anchor->_frame;
+    Rect &frame = view->_frame;
+
 }

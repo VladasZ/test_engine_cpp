@@ -31,6 +31,8 @@ public:
         friend Layout;
 
         void _layout(View *view) const;
+        void _layoutWithoutAnchor(View *view) const;
+        void _layoutWithAnchor(View *view) const;
 
         float value = 0;
         View *anchor = nullptr;
@@ -60,9 +62,8 @@ private:\
         L##_type() : Base() {}\
     };\
 public:\
-    static Base * _type(float value = 0) { return new L##_type(value); }\
+    static Base * _type(float value = 0, View *view = nullptr) { return new L##_type(value, view); }\
 private:
-
 
     _DEFINE_LAYOUT_TYPE(Top);
     _DEFINE_LAYOUT_TYPE(Bottom);

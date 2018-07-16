@@ -134,7 +134,7 @@ View * View::setColor(const Color& color) {
     return this;
 }
 
-View * View::addLayout(const std::initializer_list<Layout::Base *> &layout) {
+View * View::_addLayout(const std::initializer_list<Layout::Base *> &layout) {
     if (_layout == nullptr) {
         _layout = new Layout::Array(layout);
         return this;

@@ -26,22 +26,13 @@ void RootView::setup() {
     createSticks();
 }
 
-void RootView::draw() {
-    View::draw();
-}
-
-void RootView::layout() {
-    View::layout();
-
-}
-
 void RootView::createSticks() {
 
     directionStick = new AnalogStickView();
     rotationStick = new AnalogStickView();
 
-    directionStick->addLayout({ Layout::bottom(15), Layout::right(15) });
-    rotationStick->addLayout({ Layout::bottom(15), Layout::left(14) });
+    directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
+    rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
 
     addSubview(directionStick);
     addSubview(rotationStick);

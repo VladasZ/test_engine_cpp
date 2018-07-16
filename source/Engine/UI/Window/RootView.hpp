@@ -20,13 +20,10 @@ class RootView : public View {
     friend Window;
     
     void setup() override;
-    void layout() override;
 
     void createSticks();
     
 public:
     
     using View::View;
-
-    void draw() override;
 };

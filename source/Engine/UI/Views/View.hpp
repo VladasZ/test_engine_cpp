@@ -45,6 +45,8 @@ protected:
 
     Layout::Array *_layout = nullptr;
     
+    View * _addLayout(const std::initializer_list<Layout::Base *> &layout);
+
 public:
     
     View *superview = nullptr;
@@ -76,7 +78,10 @@ public:
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;
 
-    View * addLayout(const std::initializer_list<Layout::Base *> &layout);
+    template <class ...Args>
+    View * addLayout(Args ...args) {
+        return _addLayout({ args... });
+    }
 
     static View * dummy(float width = 50, float height = 50);
         

@@ -12,6 +12,10 @@
 #include "Image.hpp"
 #include "Primitives.hpp"
 
+Label::Label(const Rect &rect) : View(rect) {
+    color = Color::gray;
+}
+
 void Label::draw() {
     if (_needsGlyphsUpdate) _setGlyphs();
     View::draw();

@@ -39,12 +39,6 @@ FrameBuffer * View::_getFrameBuffer() const {
     return frameBuffer;
 }
 
-//BufferData * View::getBufferData() {
-//    _frameBufferFrame = _calculateFrameBufferFrame();
-//    static const Rect default_rect { -1, -1,  2,  2 };
-//    return default_rect.getData();
-//}
-
 Rect View::_calculateAbsoluteFrame() const {
 
     if (this->superview == nullptr) return _frame;

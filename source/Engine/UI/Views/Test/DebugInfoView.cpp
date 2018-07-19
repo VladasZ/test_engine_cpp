@@ -11,6 +11,11 @@
 
 DebugInfoView::DebugInfoView() : View({ 600, 100 }) {
 
+
+}
+
+void DebugInfoView::setup() {
+
     fpsLabel = new Label();
 #if MEMORY_TRACKING
     allocatedLabel = new Label();
@@ -27,15 +32,10 @@ DebugInfoView::DebugInfoView() : View({ 600, 100 }) {
         addSubview(
             _labels[i]
             ->setFrame({ 0,
-                         i * labelHeight,
-                         _frame.size.width,
-                         labelHeight 
-        }));
-}
-
-void DebugInfoView::setup() {
-
-    _setFramebuffer();
+                i * labelHeight,
+                _frame.size.width,
+                labelHeight
+                }));
 
     _touchID = 1;
 

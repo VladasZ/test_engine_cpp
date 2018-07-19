@@ -8,6 +8,7 @@
 
 #include "Buffer.hpp"
 #include "Debug.hpp"
+#include "Window.hpp"
 
 Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : data(data) {
     
@@ -66,24 +67,40 @@ void Buffer::initialize() {
 
     static const Rect fulscreenRect { -1, -1,  2,  2 };
 
-    fullscreen = new Buffer(fulscreenRect.getData(), BufferConfiguration(2));
+    fullscreen = new Buffer(fulscreenRect.getData(), BufferConfiguration::_2);
 
     static const GLfloat imageFulscreenVertices[] = {
         -1.0f, -1.0f,  0.0f,  1.0f, //|_ |
         -1.0f,  1.0f,  0.0f,  0.0f, //|- |
-        1.0f,  1.0f,  1.0f,  0.0f,  //| -|
-        1.0f, -1.0f,  1.0f,  1.0f   //| _|
+         1.0f,  1.0f,  1.0f,  0.0f, //| -|
+         1.0f, -1.0f,  1.0f,  1.0f  //| _|
     };
 
     static const GLushort imageFulscreenVerticesIndices[] = { 0, 1, 3, 2 };
 
     fullscreenImage = new Buffer(
-        new BufferData(
-            imageFulscreenVertices, sizeof(imageFulscreenVertices),
-            imageFulscreenVerticesIndices, sizeof(imageFulscreenVerticesIndices)), 
-        BufferConfiguration(2, 2)
+        fulscreenRect.dataforImage(),
+        BufferConfiguration::_2_2
     );
+
+    windowSizeChanged();
 }
 
-Buffer * Buffer::fullscreen;
-Buffer * Buffer::fullscreenImage;
+void Buffer::windowSizeChanged() {
+
+    if (rootUIBuffer != nullptr) delete rootUIBuffer;
+
+    const Rect rect { 
+        -1, 
+        -1,
+         2 * (Window::screenResolution.width  / Window::size.width), 
+         2 * (Window::screenResolution.height / Window::size.height)
+    };
+
+    static const GLushort indices[] = { 0, 1, 3, 2 };
+
+    rootUIBuffer = new Buffer(
+        rect.dataforFramebuffer(),
+        BufferConfiguration::_2_2
+    );
+}

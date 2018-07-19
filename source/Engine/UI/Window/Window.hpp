@@ -43,10 +43,6 @@ public:
     static inline GLFWwindow *window;
 #endif
     
-#if DEBUG_VIEW
-    static inline DebugInfoView *debugInfoView;
-#endif
-    
     static void initialize(int width, int height);
     
     static void setup();

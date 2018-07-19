@@ -21,30 +21,39 @@
 
 ImageView *imageView;
 
-View *view;
-
 void RootView::setup() {
 
     _frameBuffer = Window::rootFrameBuffer;
 
-
-
-    view = new View({ 100, 100 });
-    view->color = Color::green;
-
-
     addSubview(
-        (new ImageView({100, 100}))
-            ->setImage(Image::cat)
-            ->addLayout(Layout::CenterH(), Layout::CenterV())
+        (new View({ 200, 200 }))
+        ->setColor(Color::green)
+        ->addLayout(Layout::Bottom(10), Layout::Left(10))
     );
 
-    addSubview(view); 
+    addSubview(
+        (new ImageView({ 200, 200 }))
+        ->setImage(Image::cat)
+        ->addLayout(Layout::CenterH(), Layout::CenterV())
+    );
+
+    addSubview(
+        (new Label({ 100, 20 }))
+        ->setText("Hellofff")
+        ->addLayout(Layout::Bottom(), Layout::Right())
+    );
+
     createSticks();
+
+#if DEBUG_VIEW
+    debugInfoView = new DebugInfoView();
+    addSubview(debugInfoView);
+#endif
 }
 
 void RootView::draw() {
     _frameBuffer->draw([&] {
+        View::draw();
         for (auto subview : this->subviews)
             static_cast<RootView *>(subview)->draw();
     });
@@ -59,6 +68,6 @@ void RootView::createSticks() {
     directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
     rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
 
-   // addSubview(directionStick);
-   // addSubview(rotationStick);
+    //addSubview(directionStick);
+    //addSubview(rotationStick);
 }

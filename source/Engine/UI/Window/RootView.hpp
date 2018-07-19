@@ -27,4 +27,9 @@ class RootView : public View {
 public:
     
     using View::View;
+
+#if DEBUG_VIEW
+    DebugInfoView *debugInfoView;
+#endif
+
 };

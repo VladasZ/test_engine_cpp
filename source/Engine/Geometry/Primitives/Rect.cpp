@@ -39,6 +39,36 @@ BufferData * Rect::getData() const {
                           indices, sizeof(indices));
 }
 
+BufferData * Rect::dataforImage() const {
+
+    GLfloat rect[] = {
+        origin.x,              origin.y,               0.0f,  1.0f, //|_ |
+        origin.x,              size.height + origin.y, 0.0f,  0.0f, //|- |
+        size.width + origin.x, size.height + origin.y, 1.0f,  0.0f, //| -|
+        size.width + origin.x, origin.y,               1.0f,  1.0f  //| _|
+    };
+
+    static const GLushort indices[] = { 0, 1, 3, 2 };
+
+    return new BufferData(rect, sizeof(rect),
+                          indices, sizeof(indices));
+}
+
+BufferData * Rect::dataforFramebuffer() const {
+
+    GLfloat rect[] = {
+        origin.x,              origin.y,               0.0f,  0.0f, //|_ |
+        origin.x,              size.height + origin.y, 0.0f,  1.0f, //|- |
+        size.width + origin.x, size.height + origin.y, 1.0f,  1.0f, //| -|
+        size.width + origin.x, origin.y,               1.0f,  0.0f  //| _|
+    };
+
+    static const GLushort indices[] = { 0, 1, 3, 2 };
+
+    return new BufferData(rect, sizeof(rect),
+        indices, sizeof(indices));
+}
+
 float Rect::maxX() const { return origin.x + size.width; }
 
 float Rect::maxY() const { return origin.y + size.height; }

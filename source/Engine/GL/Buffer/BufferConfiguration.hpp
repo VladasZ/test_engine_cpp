@@ -22,9 +22,11 @@ class BufferConfiguration {
     void setPointers() const;
 
     friend Buffer;
+
+    BufferConfiguration(int firstParam, int secondParam, int thirdParam);
     
 public:
-    
-    BufferConfiguration(int firstParam, int secondParam = 0, int thirdParam = 0);
-};
 
+    static inline const BufferConfiguration _2   = { 2, 0, 0 };
+    static inline const BufferConfiguration _2_2 = { 2, 2, 0 };
+};

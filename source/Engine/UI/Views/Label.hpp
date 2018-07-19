@@ -25,8 +25,8 @@ class Label : public View {
         
 public:
     
-    using View::View;
-        
+    Label(const Rect &rect = Rect());
+
     std::string text() const;
     Label * setText(const std::string &text);
     

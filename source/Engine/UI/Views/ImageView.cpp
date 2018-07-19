@@ -15,27 +15,6 @@
 #include "Debug.hpp"
 
 ImageView::~ImageView() { }
-//
-//BufferData * ImageView::getBufferData() {
-//    
-//    _frameBufferFrame = _calculateFrameBufferFrame();
-//    
-//    static const GLfloat vertices[] = {
-//       -1.0f, -1.0f,  0.0f,  1.0f, //|_ |
-//       -1.0f,  1.0f,  0.0f,  0.0f, //|- |
-//        1.0f,  1.0f,  1.0f,  0.0f, //| -|
-//        1.0f, -1.0f,  1.0f,  1.0f  //| _|
-//    };
-//    
-//    static const GLushort indices[] = { 0, 1, 3, 2 };
-//
-//    return new BufferData(vertices, sizeof(vertices),
-//                          indices,  sizeof(indices));
-//}
-
-//const BufferConfiguration ImageView::bufferConfiguration() const {
-//    return BufferConfiguration(2, 2);
-//}
 
 void ImageView::draw() {
     

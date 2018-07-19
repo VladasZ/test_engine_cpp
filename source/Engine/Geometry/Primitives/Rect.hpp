@@ -38,6 +38,8 @@ public:
     String toString() const;
 
     BufferData *getData() const;
+    BufferData *dataforImage() const;
+    BufferData *dataforFramebuffer() const;
 
     static Rect random();
 

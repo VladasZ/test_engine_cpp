@@ -21,17 +21,10 @@ class Drawable : public NonCopyable _MEMORY_MANAGED(Drawable) {
     
 protected:
     
-   // Buffer *buffer = nullptr;
-    
-  //  virtual void setupBuffer();
-    
     virtual void draw() = 0;
-   // virtual BufferData *getBufferData() = 0;
-    //virtual const BufferConfiguration bufferConfiguration() const;
     
 public:
     
     float rotation = 0;
-    
     Color color;
 };

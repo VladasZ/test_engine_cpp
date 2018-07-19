@@ -42,6 +42,9 @@ public:
 
     static void initialize();
 
-    static Buffer *fullscreen;
-    static Buffer *fullscreenImage;
+    static void windowSizeChanged();
+
+    static inline Buffer *fullscreen = nullptr;
+    static inline Buffer *fullscreenImage = nullptr;
+    static inline Buffer *rootUIBuffer = nullptr;
 };

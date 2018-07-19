@@ -51,6 +51,7 @@ void Window::initialize(int width, int height) {
     glewExperimental = GL_TRUE;
     if (glewInit()) {
         Error("Glew initialization failed");
+        return;
     }
 
     const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -75,26 +76,11 @@ void Window::initialize(int width, int height) {
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     
-//    float lineWidth[2];
-//    GL(glGetfloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidth));
-//
-//    if (lineWidth[1] == 1) {
-//        Warning("glLineWidth not supported");
-//    }
-
     setup(); 
 }
 
 void Window::setup() {
     rootView = new RootView({ Window::size.width, Window::size.height });
-
-#if DEBUG_VIEW
-    MEMORY_MANAGER_INVISIBLE(
-        debugInfoView = new DebugInfoView();
-        debugInfoView->layout();
-        debugInfoView->setup();
-    );
-#endif
     
     rootView->setup();
     rootView->layout();
@@ -103,42 +89,20 @@ void Window::setup() {
 }
 
 void Window::onDebugTick() {
-    
-#if MEMORY_BENCHMARK
-    static int counter = 0;
-    if (counter % 6 == 0) rootView->removeAllSubviews();
-    rootView->addTestViews();
-    rootView->layout();
-    counter++;
-#endif
-    
-#if DEBUG_VIEW
-    MEMORY_MANAGER_INVISIBLE(
-        debugInfoView->update();
-    );
-#endif
-
+    rootView->debugInfoView->update();
 }
 
 void Window::update() {
-
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     
-  //  world.update();    
-
     rootView->draw();
 
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+    resetViewport();
     Shader::uiTexture.use();
     rootFrameBuffer->getImage()->bind();
-    Buffer::fullscreenImage->draw();
+    Buffer::rootUIBuffer->draw();
     GL(glBindTexture(GL_TEXTURE_2D, 0));
-
-#if DEBUG_VIEW
-    MEMORY_MANAGER_INVISIBLE(
-       // debugInfoView->draw();
-    );
-#endif
 
     FPS = 1000000000 / Time::interval();
     
@@ -150,17 +114,8 @@ void Window::update() {
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size(width, height);
     rootView->setFrame(Rect(width, height));
-#ifndef APPLE
-    glViewport(0, 0, width, height);
-#endif
-
-  /*  delete rootFrameBuffer;
-
-    rootFrameBuffer = new FrameBuffer(size);
-    rootView->_frameBuffer = rootFrameBuffer;*/
-
     rootFrameBuffer->clear();
-
+    Buffer::windowSizeChanged();
     update();
     GL(glfwSwapBuffers(Window::window));
 }

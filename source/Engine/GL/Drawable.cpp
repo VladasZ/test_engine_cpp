@@ -9,13 +9,3 @@
 #include "Drawable.hpp"
 #include "Buffer.hpp"
 #include "BufferConfiguration.hpp"
-
-
-//void Drawable::setupBuffer() {
-//    if (buffer != nullptr) delete buffer;
-//    buffer = new Buffer(getBufferData(), bufferConfiguration());
-//}
-//
-//const BufferConfiguration Drawable::bufferConfiguration() const {
-//    return BufferConfiguration(2);
-//}

@@ -34,6 +34,7 @@ public:
     static inline int framesDrawn = 0;
     
     static inline TestEngine::Size size;
+    static inline TestEngine::Size screenResolution;
     
     static inline RootView *rootView;
     static inline FrameBuffer *rootFrameBuffer;

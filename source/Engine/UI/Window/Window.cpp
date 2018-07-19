@@ -52,7 +52,12 @@ void Window::initialize(int width, int height) {
     if (glewInit()) {
         Error("Glew initialization failed");
     }
+
+    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    screenResolution = { (float)mode->width, (float)mode->height };
     
+    Log("Screen resolution: " << (int)screenResolution.width << "x" << (int)screenResolution.height);
+
 #endif
     
     //GL(glEnable(GL_DEPTH_TEST));
@@ -66,7 +71,7 @@ void Window::initialize(int width, int height) {
     Font::initialize();
     Buffer::initialize();
 
-    rootFrameBuffer = new FrameBuffer(size);
+    rootFrameBuffer = new FrameBuffer(screenResolution);
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     
@@ -149,10 +154,12 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 #endif
 
-    delete rootFrameBuffer;
+  /*  delete rootFrameBuffer;
 
     rootFrameBuffer = new FrameBuffer(size);
-    rootView->_frameBuffer = rootFrameBuffer;
+    rootView->_frameBuffer = rootFrameBuffer;*/
+
+    rootFrameBuffer->clear();
 
     update();
     GL(glfwSwapBuffers(Window::window));

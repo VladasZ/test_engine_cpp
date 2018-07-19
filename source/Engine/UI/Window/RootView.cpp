@@ -29,6 +29,11 @@ void RootView::setup() {
         (new View({ 200, 200 }))
         ->setColor(Color::green)
         ->addLayout(Layout::Bottom(10), Layout::Left(10))
+        ->edit([](auto view) {
+        FOR(20000) {
+            view->addSubview(View::dummy());
+        }
+    })
     );
 
     addSubview(

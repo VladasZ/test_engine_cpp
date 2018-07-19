@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <functional>
 #include "Array.hpp"
 #include "Drawable.hpp"
 #include "Color.hpp"
@@ -45,7 +46,6 @@ protected:
     void drawSubviews() const;
 
     virtual void draw() override;
-  //  virtual BufferData *getBufferData() override;
 
     Rect _calculateAbsoluteFrame() const;
     Rect _calculateFrameBufferFrame() const;
@@ -75,6 +75,7 @@ public:
     View * setSize(const Size &size);
     View * setOrigin(const Point &origin);
     View * setCenter(const Point &center);
+    View * edit(std::function<void(View *)> edit);
 
     int getTouchID() const;
     
@@ -93,8 +94,5 @@ public:
     View * clone() const;
 
     static View * dummy(float width = 50, float height = 50);
-        
-#if MEMORY_BENCHMARK
-    void addTestViews();
-#endif
+       
 };

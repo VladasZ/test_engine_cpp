@@ -39,4 +39,9 @@ public:
     ~Buffer();
         
     void draw() const;
+
+    static void initialize();
+
+    static Buffer *fullscreen;
+    static Buffer *fullscreenImage;
 };

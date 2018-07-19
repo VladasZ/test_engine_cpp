@@ -20,8 +20,8 @@ class Sprite : public Drawable {
     friend World;
     
     virtual void draw() override;
-    virtual BufferData *getBufferData() override;
-    const BufferConfiguration bufferConfiguration() const override;
+//    virtual BufferData *getBufferData() override;
+//    const BufferConfiguration bufferConfiguration() const override;
     
 protected:
     

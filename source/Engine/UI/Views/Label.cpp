@@ -47,6 +47,8 @@ void Label::_setGlyphs() {
     _needsGlyphsUpdate = false;
     
     layout();
+
+    _needsDraw = true;
 }
 
 std::string Label::text() const { return _text; }

@@ -14,8 +14,8 @@ class Window;
 
 class ImageView : public View _MEMORY_MANAGED(ImageView) {
       
-    BufferData *getBufferData() override;
-    const BufferConfiguration bufferConfiguration() const override;
+ //   BufferData *getBufferData() override;
+ //   const BufferConfiguration bufferConfiguration() const override;
     void draw() override;
 
     Image *_image = nullptr;

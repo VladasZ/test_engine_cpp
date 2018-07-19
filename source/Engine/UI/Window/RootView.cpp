@@ -25,10 +25,15 @@ View *view;
 
 void RootView::setup() {
 
+    _setFramebuffer();
+
+
     view = (new View({ 220, 220 }))
         ->addLayout(Layout::CenterH(), Layout::CenterV())
         ->setColor(Color::blue)
         ;
+
+  //  view->_setFramebuffer();
 
     FOR(10000) {
         view->addSubview(View::dummy());
@@ -47,6 +52,6 @@ void RootView::createSticks() {
     directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
     rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
 
-    addSubview(directionStick);
-    addSubview(rotationStick);
+   // addSubview(directionStick);
+   // addSubview(rotationStick);
 }

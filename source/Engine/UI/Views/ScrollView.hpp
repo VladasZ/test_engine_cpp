@@ -17,8 +17,6 @@ class ScrollView : public View {
     Point _content_offset;
     Size _content_size;
 
-    bool _isScrollView() const override { return true; }
-
 public:
 
     ScrollView();

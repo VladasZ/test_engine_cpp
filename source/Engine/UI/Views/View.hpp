@@ -29,13 +29,12 @@ class View : public Drawable {
 protected:
     
     Rect _absoluteFrame;
-    
+    Rect _frameBufferFrame;
+
     Rect _frame;
     int _touchID = -1;
 
     bool _needsDraw = true;
-
-
 
     Layout::Array *_layout = nullptr;
 
@@ -46,17 +45,21 @@ protected:
     void drawSubviews() const;
 
     virtual void draw() override;
-    virtual BufferData *getBufferData() override;
+  //  virtual BufferData *getBufferData() override;
 
-    Rect calculateAbsoluteFrame() const;
-    
+    Rect _calculateAbsoluteFrame() const;
+    Rect _calculateFrameBufferFrame() const;
+
     virtual void setup() { }
-    virtual bool _isScrollView() const { return false; }
     
     View * _addLayout(const std::initializer_list<Layout::Base *> &layout);
 
+
 public:
     
+    void _setFramebuffer();
+
+
     View *superview = nullptr;
     
     Array<View *> subviews;
@@ -86,9 +89,7 @@ public:
     virtual bool containsGlobalPoint(const Point &point) const;
 
     template <class ...Args>
-    View * addLayout(Args ...args) {
-        return _addLayout({ args... });
-    }
+    View * addLayout(Args ...args) { return _addLayout({ args... }); }
 
     View * clone() const;
 

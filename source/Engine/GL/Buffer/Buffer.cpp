@@ -61,3 +61,29 @@ void Buffer::draw() const {
     
     GL(glBindVertexArray(0));
 }
+
+void Buffer::initialize() {
+
+    static const Rect fulscreenRect { -1, -1,  2,  2 };
+
+    fullscreen = new Buffer(fulscreenRect.getData(), BufferConfiguration(2));
+
+    static const GLfloat imageFulscreenVertices[] = {
+        -1.0f, -1.0f,  0.0f,  1.0f, //|_ |
+        -1.0f,  1.0f,  0.0f,  0.0f, //|- |
+        1.0f,  1.0f,  1.0f,  0.0f,  //| -|
+        1.0f, -1.0f,  1.0f,  1.0f   //| _|
+    };
+
+    static const GLushort imageFulscreenVerticesIndices[] = { 0, 1, 3, 2 };
+
+    fullscreenImage = new Buffer(
+        new BufferData(
+            imageFulscreenVertices, sizeof(imageFulscreenVertices),
+            imageFulscreenVerticesIndices, sizeof(imageFulscreenVerticesIndices)), 
+        BufferConfiguration(2, 2)
+    );
+}
+
+Buffer * Buffer::fullscreen;
+Buffer * Buffer::fullscreenImage;

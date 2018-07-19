@@ -14,19 +14,24 @@
 #include "Log.hpp"
 #include "GL.hpp"
 #include "Layout.hpp"
+#include "FrameBuffer.hpp"
+#include "Image.hpp"
 
 View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
-    if (buffer != nullptr) delete buffer;
+  //  if (buffer != nullptr) delete buffer;
     if (_layout != nullptr) delete _layout;
 }
 
 FrameBuffer * View::_getFrameBuffer() const {
+    
+    if (_frameBuffer != nullptr) return _frameBuffer;
+
     View * superview = this->superview;
     FrameBuffer *frameBuffer = nullptr;
 
-    while (frameBuffer == nullptr) {
+    while (superview != nullptr && frameBuffer == nullptr) {
         frameBuffer = superview->_frameBuffer;
         superview = superview->superview;
     }
@@ -34,31 +39,44 @@ FrameBuffer * View::_getFrameBuffer() const {
     return frameBuffer;
 }
 
-BufferData * View::getBufferData() {
-    _absoluteFrame = calculateAbsoluteFrame();
-    static const Rect default_rect { -1, -1,  2,  2 };
-    return default_rect.getData();
-}
+//BufferData * View::getBufferData() {
+//    _frameBufferFrame = _calculateFrameBufferFrame();
+//    static const Rect default_rect { -1, -1,  2,  2 };
+//    return default_rect.getData();
+//}
 
-Rect View::calculateAbsoluteFrame() const {
+Rect View::_calculateAbsoluteFrame() const {
 
     if (this->superview == nullptr) return _frame;
 
-    Rect aFrame = _frame;
+    Rect result = _frame;
     View *superview = this->superview;
 
     while (superview != nullptr) {
-
-        if (superview->_isScrollView()) {
-            ScrollView *scrollView = (ScrollView *)superview;
-            aFrame.origin -= scrollView->_content_offset;
-        }
-
-        aFrame.origin += superview->_frame.origin;
+        result.origin += superview->_frame.origin;
         superview = superview->superview;
     }
 
-    return aFrame;
+    return result;
+}
+
+Rect View::_calculateFrameBufferFrame() const {
+
+    if (_frameBuffer != nullptr || this->superview == nullptr) return _frame;
+
+    auto superview = this->superview;
+    Rect result = _frame;
+
+    while (superview != nullptr && superview->_frameBuffer == nullptr) {
+        result.origin += superview->_frame.origin;
+        superview = superview->superview;
+    }
+
+    return result;
+}
+
+void View::_setFramebuffer() {
+    _frameBuffer = new FrameBuffer(_frame.size);
 }
 
 void View::drawSubviews() const {
@@ -67,10 +85,25 @@ void View::drawSubviews() const {
 }
 
 void View::draw() {
-    Shader::ui.use();
-    Shader::ui.setUniformColor(color);
-    _absoluteFrame.setViewport();
-    buffer->draw();
+    if (_needsDraw) {
+        _getFrameBuffer()->draw([&] {
+            GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+            _frameBufferFrame.setViewport();
+            Shader::ui.use();
+            Shader::ui.setUniformColor(color);
+            Buffer::fullscreen->draw();
+        });
+        _needsDraw = false;
+    }
+
+    if (_frameBuffer != nullptr && superview == nullptr) {
+        _frameBuffer->unbind();
+        Shader::uiTexture.use();
+        _frameBuffer->getImage()->bind();
+        Buffer::fullscreenImage->draw();
+        _frameBuffer->getImage()->unbind();
+    }
+
     drawSubviews();
 }
 
@@ -79,7 +112,7 @@ void View::layout() {
         for (auto& layout : *_layout)
             layout->_layout(this);
 
-    setupBuffer();
+    _frameBufferFrame = _calculateFrameBufferFrame();
     layoutSubviews();
 }
 

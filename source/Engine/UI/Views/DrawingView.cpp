@@ -15,7 +15,7 @@ void DrawingView::draw() {
     Shader::ui.use();
     Shader::ui.setUniformColor(color);
     _absoluteFrame.setViewport();
-    buffer->draw();
+//    buffer->draw();
     Shader::uiPath.use();
     Shader::uiPath.setViewportTranslation(_frame.size);
     for (auto path : paths) path->draw();

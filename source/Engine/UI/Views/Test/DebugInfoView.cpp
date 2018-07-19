@@ -35,6 +35,8 @@ DebugInfoView::DebugInfoView() : View({ 600, 100 }) {
 
 void DebugInfoView::setup() {
 
+    _setFramebuffer();
+
     _touchID = 1;
 
     Input::onTouchBegan.subscribe(this, [this](const Point &point, int id) {

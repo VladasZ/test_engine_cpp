@@ -25,7 +25,7 @@ class Path : public Drawable _MEMORY_MANAGED(Path) {
     
     Array<Point> points;
     
-    BufferData *getBufferData() override;
+//    BufferData *getBufferData() override;
     bool bufferIsSet = false;
     
     static Path *circleWith(const Point &center, float radius, int precision);

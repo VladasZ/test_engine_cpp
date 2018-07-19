@@ -14,6 +14,7 @@
 #include "Time.hpp"
 #include "Log.hpp"
 #include "MemoryManager.hpp"
+#include "Buffer.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
 
@@ -75,6 +76,7 @@ void Window::initialize(int width, int height) {
     Shader::initialize();
     Image::initialize();
     Font::initialize();
+    Buffer::initialize();
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     

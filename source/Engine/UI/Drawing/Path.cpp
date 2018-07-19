@@ -40,7 +40,7 @@ Path * Path::circleWith(const Point &center, float radius) {
 
 void Path::draw() {
     
-    if (!bufferIsSet) { 
+   /* if (!bufferIsSet) { 
         bufferIsSet = true;
         setupBuffer();
     }
@@ -50,13 +50,13 @@ void Path::draw() {
     GL(glLineWidth(lineWidth));
     
     buffer->drawMode = drawMode == Stroke ? GL_LINE_LOOP : GL_TRIANGLE_FAN;
-    buffer->draw();
+    buffer->draw();*/
 }
 
-BufferData * Path::getBufferData() {
-    int size = (int)(sizeof(Point) * points.size());
-    return new BufferData((float *)&points[0], size);
-}
+//BufferData * Path::getBufferData() {
+//    int size = (int)(sizeof(Point) * points.size());
+//    return new BufferData((float *)&points[0], size);
+//}
 
 void Path::addPoint(float x, float y) {
     points.emplace_back(x, y);

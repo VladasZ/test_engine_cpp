@@ -35,6 +35,11 @@ public:
 
 int main() {
 
+    int a, b;
+    auto summ = [&] { return a + b; };
+    a = 10;
+    b = 29;
+    cout << summ() << endl;
 
     Array<int> test;
 

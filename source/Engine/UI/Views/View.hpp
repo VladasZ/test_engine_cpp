@@ -59,7 +59,6 @@ public:
     
     void _setFramebuffer();
 
-
     View *superview = nullptr;
     
     Array<View *> subviews;

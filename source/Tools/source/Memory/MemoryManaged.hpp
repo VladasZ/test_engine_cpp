@@ -10,6 +10,26 @@
 
 #if MEMORY_TRACKING
 
+//template <class T>
+//class ObjectsCounter {
+//
+//public:
+//
+//    static inline int created = 0;
+//    static inline int deleted = 0;
+//
+//    static int exists() { return created - deleted; }
+//
+//
+//    ObjectsCounter() {
+//        created++;
+//    }
+//
+//    virtual ~ObjectsCounter() {
+//        deleted++;
+//    }
+//};
+
 #include "Log.hpp"
 
 template <class T>

@@ -38,10 +38,6 @@ void Image::init(const Size &size, void *data, int channels, int filter) {
     
     GL(glGenTextures(1, &_id));
     GL(glBindTexture(GL_TEXTURE_2D, _id));
-    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));// _MIPMAP_NEAREST));
-    //GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     
     if (channels == 1)
         GL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
@@ -54,10 +50,7 @@ void Image::init(const Size &size, void *data, int channels, int filter) {
                       0,
                       modeForChannels(channels),
                       GL_UNSIGNED_BYTE,
-                      data));
-    
-    //glTexEnvf(GL_TEXTURE_2D,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-    
+                      data));    
     
     GL(glGenerateMipmap(GL_TEXTURE_2D));
     

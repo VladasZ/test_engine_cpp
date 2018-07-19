@@ -15,21 +15,9 @@
 #include "Log.hpp"
 #include "MemoryManager.hpp"
 #include "Buffer.hpp"
+#include "FrameBuffer.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
-
-#if GLFW
-GLFWwindow * Window::window;
-#endif
-
-#if DEBUG_VIEW
-DebugInfoView * Window::debugInfoView;
-#endif
-
-Size Window::size;
-RootView * Window::rootView;
-int Window::FPS = 0;
-int Window::framesDrawn = 0;
 
 void Window::initialize(int width, int height) {
     
@@ -77,6 +65,8 @@ void Window::initialize(int width, int height) {
     Image::initialize();
     Font::initialize();
     Buffer::initialize();
+
+    rootFrameBuffer = new FrameBuffer(size);
     
     GL(glClearColor(0.5, 0.5, 0.5, 1));
     
@@ -129,12 +119,19 @@ void Window::update() {
 
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     
-    world.update();    
+  //  world.update();    
+
     rootView->draw();
-    
+
+    GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+    Shader::uiTexture.use();
+    rootFrameBuffer->getImage()->bind();
+    Buffer::fullscreenImage->draw();
+    GL(glBindTexture(GL_TEXTURE_2D, 0));
+
 #if DEBUG_VIEW
     MEMORY_MANAGER_INVISIBLE(
-        debugInfoView->draw();
+       // debugInfoView->draw();
     );
 #endif
 
@@ -148,10 +145,19 @@ void Window::update() {
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size(width, height);
     rootView->setFrame(Rect(width, height));
-    rootView->layout();
 #ifndef APPLE
     glViewport(0, 0, width, height);
 #endif
+
+    delete rootFrameBuffer;
+
+    rootFrameBuffer = new FrameBuffer(size);
+    rootView->_frameBuffer = rootFrameBuffer;
+
     update();
     GL(glfwSwapBuffers(Window::window));
+}
+
+void Window::resetViewport() {
+    glViewport(0, 0, size.width, size.height);
 }

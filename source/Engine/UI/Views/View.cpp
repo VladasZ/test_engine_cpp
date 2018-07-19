@@ -87,21 +87,12 @@ void View::drawSubviews() const {
 void View::draw() {
     if (_needsDraw) {
         _getFrameBuffer()->draw([&] {
-            GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
             _frameBufferFrame.setViewport();
             Shader::ui.use();
             Shader::ui.setUniformColor(color);
             Buffer::fullscreen->draw();
         });
         _needsDraw = false;
-    }
-
-    if (_frameBuffer != nullptr && superview == nullptr) {
-        _frameBuffer->unbind();
-        Shader::uiTexture.use();
-        _frameBuffer->getImage()->bind();
-        Buffer::fullscreenImage->draw();
-        _frameBuffer->getImage()->unbind();
     }
 
     drawSubviews();
@@ -114,6 +105,7 @@ void View::layout() {
 
     _frameBufferFrame = _calculateFrameBufferFrame();
     layoutSubviews();
+    _needsDraw = true;
 }
 
 void View::layoutSubviews() {

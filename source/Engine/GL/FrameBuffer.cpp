@@ -6,33 +6,41 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "FrameBuffer.hpp"
 #include "Image.hpp"
 #include "Debug.hpp"
 
 FrameBuffer::FrameBuffer(const Size& size) : _size(size) {
 
-    glGenFramebuffers(1, &_id);
-    glBindFramebuffer(GL_FRAMEBUFFER, _id);
+    GL(glGenFramebuffers(1, &_id));
+    GL(glBindFramebuffer(GL_FRAMEBUFFER, _id));
 
     _image = new Image(size);
     _image->bind();
 
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _image->_get_GL_id(), 0);
+    GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _image->_get_GL_id(), 0));
 
-    unsigned int rbo;
-    glGenRenderbuffers(1, &rbo);
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1000, 800);
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+    GL(glGenRenderbuffers(1, &_rbo));
+    GL(glBindRenderbuffer(GL_RENDERBUFFER, _rbo));
+    GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, size.width, size.height));
+    GL(glBindRenderbuffer(GL_RENDERBUFFER, 0));
 
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+    GL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo));
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        Error("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
+    GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 
     unbind();
+}
+
+FrameBuffer::~FrameBuffer() {
+    unbind();
+    _image->unbind();
+    delete _image;
+    glDeleteRenderbuffers(1, &_rbo);
+    glDeleteFramebuffers(1, &_id);
 }
 
 FrameBuffer * FrameBuffer::bind() {
@@ -63,6 +71,14 @@ FrameBuffer * FrameBuffer::draw(std::function<void()> closure) {
     bind();
     glViewport(0, 0, _size.width, _size.height);
     closure();
+    unbind();
+    return this;
+}
+
+FrameBuffer * FrameBuffer::clear() {
+    bind();
+    glViewport(0, 0, _size.width, _size.height);
+    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     unbind();
     return this;
 }

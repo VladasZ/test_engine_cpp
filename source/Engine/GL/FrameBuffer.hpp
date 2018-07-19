@@ -18,12 +18,14 @@ class Image;
 class FrameBuffer {
 
     GLuint _id;
+    GLuint _rbo;
     Size _size;
     Image *_image;
 
 public:
 
     FrameBuffer(const Size& size);
+    ~FrameBuffer();
 
     FrameBuffer *bind();
     FrameBuffer *unbind();
@@ -34,4 +36,6 @@ public:
     Image *getImage() const;
 
     FrameBuffer * draw(std::function<void()> closure);
+
+    FrameBuffer * clear();
 };

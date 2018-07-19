@@ -15,6 +15,7 @@
 
 class View;
 class RootView;
+class FrameBuffer;
 struct GLFWwindow;
 
 #if DEBUG_VIEW
@@ -29,19 +30,20 @@ class Window {
     
 public:
     
-    static int FPS;
-    static int framesDrawn;
+    static inline int FPS = 0;
+    static inline int framesDrawn = 0;
     
-    static TestEngine::Size size;
+    static inline TestEngine::Size size;
     
-    static RootView *rootView;
+    static inline RootView *rootView;
+    static inline FrameBuffer *rootFrameBuffer;
 
 #if GLFW
-    static GLFWwindow *window;
+    static inline GLFWwindow *window;
 #endif
     
 #if DEBUG_VIEW
-    static DebugInfoView *debugInfoView;
+    static inline DebugInfoView *debugInfoView;
 #endif
     
     static void initialize(int width, int height);
@@ -51,4 +53,6 @@ public:
     static void update();
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
+
+    static void resetViewport();
 };

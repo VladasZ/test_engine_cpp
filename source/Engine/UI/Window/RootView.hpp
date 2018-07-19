@@ -20,6 +20,7 @@ class RootView : public View {
     friend Window;
     
     void setup() override;
+    void draw() override;
 
     void createSticks();
     

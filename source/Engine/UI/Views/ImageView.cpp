@@ -43,13 +43,11 @@ void ImageView::draw() {
     if (!color.isTransparent()) View::draw();
            
     _getFrameBuffer()->draw([&] {
-        GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
         _image->bind();
         if (_image->isMonochrome()) Shader::uiMonochrome.use();
         else                        Shader::uiTexture.use();
         _frameBufferFrame.setViewport();
         Buffer::fullscreenImage->draw();
-      //  buffer->draw();
         _image->unbind();
     });
 

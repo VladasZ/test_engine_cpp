@@ -22,7 +22,7 @@ void testEngineMain() {
     return;
 #endif
 
-	Window::initialize(1000, 800);
+	Window::initialize(300, 300);
 
 	do {
 		GL(glfwPollEvents());

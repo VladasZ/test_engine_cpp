@@ -25,23 +25,30 @@ View *view;
 
 void RootView::setup() {
 
-    _setFramebuffer();
+    _frameBuffer = Window::rootFrameBuffer;
 
 
-    view = (new View({ 220, 220 }))
-        ->addLayout(Layout::CenterH(), Layout::CenterV())
-        ->setColor(Color::blue)
-        ;
 
-  //  view->_setFramebuffer();
+    view = new View({ 100, 100 });
+    view->color = Color::green;
 
-    FOR(10000) {
-        view->addSubview(View::dummy());
-    }
 
-    addSubview(view);
+    addSubview(
+        (new ImageView({100, 100}))
+            ->setImage(Image::cat)
+            ->addLayout(Layout::CenterH(), Layout::CenterV())
+    );
 
+    addSubview(view); 
     createSticks();
+}
+
+void RootView::draw() {
+    _frameBuffer->draw([&] {
+        for (auto subview : this->subviews)
+            static_cast<RootView *>(subview)->draw();
+    });
+    Window::resetViewport();
 }
 
 void RootView::createSticks() {

@@ -19,7 +19,6 @@ public:
     using EventCallbackType = std::function<void(Params...)>;
 
 private:
-
     Array<EventCallbackType> subscribers;
         
 public:

@@ -49,9 +49,6 @@ void Label::_setGlyphs() {
     _frame.size.width = views.back()->frame().maxX();
     
     _needsGlyphsUpdate = false;
-    
-    layout();
-
     _needsDraw = true;
 }
 

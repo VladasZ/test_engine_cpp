@@ -53,7 +53,7 @@ Rect View::_calculateAbsoluteFrame() const {
     return result;
 }
 
-Rect View::_calculateFrameBufferFrame() const {
+Rect View::_calculateFrameInFrameBuffer() const {
 
     if (_frameBuffer != nullptr || this->superview == nullptr) return _frame;
 
@@ -78,9 +78,12 @@ void View::drawSubviews() const {
 }
 
 void View::draw() {
+
+    if (_needsLayout) layout();
+
     if (_needsDraw) {
         _getFrameBuffer()->draw([&] {
-            _frameBufferFrame.setViewport();
+            _frameInFrameBuffer.setViewport();
             Shader::ui.use();
             Shader::ui.setUniformColor(color);
             Buffer::fullscreen->draw();
@@ -92,12 +95,24 @@ void View::draw() {
 }
 
 void View::layout() {
+
+    PING;
+
+    if (!_needsLayout) {
+        Warning("Layout called");
+        return;
+    }
+
     if (_layout != nullptr)
         for (auto& layout : *_layout)
             layout->_layout(this);
 
-    _frameBufferFrame = _calculateFrameBufferFrame();
-    layoutSubviews();
+    _frameInFrameBuffer = _calculateFrameInFrameBuffer();
+
+    if (_needsSubviewsLayout) {
+        layoutSubviews();
+        _needsSubviewsLayout = false;
+    }
     _needsDraw = true;
 }
 
@@ -107,19 +122,21 @@ void View::layoutSubviews() {
 
 View * View::setFrame(const Rect &frame) {
     _frame = frame;
-    layout();
+    _needsLayout = true;
+    _needsSubviewsLayout = _frame.size != frame.size;
     return this;
 }
 
 View * View::setSize(const Size &size) {
     _frame.size = size;
-    layout();
+    _needsLayout = true;
+    _needsSubviewsLayout = _frame.size != size;
     return this;
 }
 
 View * View::setOrigin(const Point &origin) {
     _frame.origin = origin;
-    layout();
+    _needsLayout = true;
     return this;
 }
 
@@ -130,7 +147,7 @@ View * View::setCenter(const Point &center) {
         _frame.size.width,
         _frame.size.height
     };
-    layout();
+    _needsLayout = true;
     return this;
 }
 

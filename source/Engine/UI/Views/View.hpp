@@ -27,15 +27,20 @@ class View : public Drawable {
     friend Window;
     friend Layout::Base;
 
+    virtual void layout();
+    virtual void layoutSubviews();
+
 protected:
     
     Rect _absoluteFrame;
-    Rect _frameBufferFrame;
+    Rect _frameInFrameBuffer;
 
     Rect _frame;
     int _touchID = -1;
 
     bool _needsDraw = true;
+    bool _needsLayout = true;
+    bool _needsSubviewsLayout = true;
 
     Layout::Array *_layout = nullptr;
 
@@ -48,7 +53,7 @@ protected:
     virtual void draw() override;
 
     Rect _calculateAbsoluteFrame() const;
-    Rect _calculateFrameBufferFrame() const;
+    Rect _calculateFrameInFrameBuffer() const;
 
     virtual void setup() { }
     
@@ -66,9 +71,6 @@ public:
     View(const Rect &rect = Rect());
 
     virtual ~View();
-    
-    virtual void layout();
-    virtual void layoutSubviews();
     
     Rect frame() const { return _frame; }
     View * setFrame(const Rect &frame);

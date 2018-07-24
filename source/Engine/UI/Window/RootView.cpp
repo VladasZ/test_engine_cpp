@@ -8,7 +8,6 @@
 
 #include "RootView.hpp"
 #include "Input.hpp"
-#include "MoveView.hpp"
 #include "AnalogStickView.hpp"
 #include "ScrollView.hpp"
 #include "Macro.hpp"
@@ -25,26 +24,35 @@ void RootView::setup() {
 
     _frameBuffer = Window::rootFrameBuffer;
 
-    addSubview(
-        (new View({ 200, 200 }))
-        ->setColor(Color::green)
-        ->addLayout(Layout::Bottom(10), Layout::Left(10))
-        ->edit([](auto view) {
-        FOR(20000) {
-            view->addSubview(View::dummy());
-        }
-    })
-    );
 
-    addSubview(
-        (new ImageView({ 200, 200 }))
-        ->setImage(Image::cat)
-        ->addLayout(Layout::CenterH(), Layout::CenterV())
-    );
+    //View *testLabel =
+    //    (new Label({ 80, 20 }))
+    //    ->setText("123")
+    //    ->addLayout(Layout::CenterH(), Layout::CenterV());
+
+    //addSubview(
+    //    (new View({ 200, 200 }))
+    //    ->setColor(Color::green)
+    //    ->addLayout(Layout::Bottom(10), Layout::Left(10))
+    //    ->edit([&](auto view) {
+    //    FOR(10) {
+    //        view->addSubview(View::dummy());
+    //    }
+
+    //    view->addSubview(testLabel);
+    //})
+    //);
+
+    //addSubview(
+    //    (new ImageView({ 200, 200 }))
+    //    ->setImage(Image::cat)
+    //    ->addLayout(Layout::CenterH(), Layout::CenterV())
+    //);
 
     addSubview(
         (new Label({ 100, 20 }))
         ->setText("Hellofff")
+        ->setColor(Color::blue)
         ->addLayout(Layout::Bottom(), Layout::Right())
     );
 

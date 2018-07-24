@@ -16,5 +16,4 @@ ScrollView::ScrollView(const Rect &rect) : View(rect) {
 
 void ScrollView::setContentOffset(const Point &offset) {
     _content_offset = offset;
-    layoutSubviews();
 }

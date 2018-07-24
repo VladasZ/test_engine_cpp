@@ -16,8 +16,7 @@ class DrawingView : public View {
     Array<Path *> paths;
     
     void draw() override;
-    void layout() override;
-    
+
 public:
     
     using View::View;

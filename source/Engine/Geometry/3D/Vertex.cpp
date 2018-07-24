@@ -8,14 +8,16 @@
 
 #include "Vertex.hpp"
 
-Vertex::Vertex() : position(vec3(0, 0, 0)), color(Color()) { }
+Vertex::Vertex() :// position(vec3(0, 0, 0)), 
+color(Color()) { }
 
-Vertex::Vertex(float x, float y, float z, Color color) : position(vec3(x, y, z)), color(color) { }
+Vertex::Vertex(float x, float y, float z, Color color) : //position(vec3(x, y, z)), 
+color(color) { }
 
 Vertex::Vertex(vec3 position, Color color) : position(position), color(color) { }
 
 String Vertex::toString() const {
-    return "x: "_s + position.x + " y: " + position.y + " z: " + position.z;
+    return "x: "_s;//+ position.x + " y: " + position.y + " z: " + position.z;
 }
 
 int Vertex::bufferSize = 7;

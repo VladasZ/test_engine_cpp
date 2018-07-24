@@ -34,7 +34,7 @@ decltype(auto) __toString(const T &value) {
     else if constexpr (std::is_same_v<T, std::string>)  return value;
 //    else if constexpr (has_toString<T>)                 return value.toString();
     else if constexpr (std::is_fundamental_v<T>)        return std::to_string(value);
-    else { STATIC_GET_TYPE(value); }
+  //  else { STATIC_GET_TYPE(value); }
 }
 
 class String : public std::string {
@@ -44,9 +44,9 @@ public:
     using __str::__str;
 
     String() = default;
-    template<class T> String(const T &value) : __str(__toString(value)) { }
-    template<class T> String operator + (const T &in) const { return (__str)*this + String(in); }
-    template<class T> void   operator +=(const T &in) { this->append(in); }
+//    template<class T> String(const T &value) : __str(__toString(value)) { }
+//    template<class T> String operator + (const T &in) const { return (__str)*this + String(in); }
+  //  template<class T> void   operator +=(const T &in) { this->append(in); }
 };
 
 String operator "" _s(const char *in, size_t size);

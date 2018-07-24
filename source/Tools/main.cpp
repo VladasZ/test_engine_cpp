@@ -10,6 +10,8 @@
 
 #include "Block.hpp"
 
+//#include "gl"
+
 using namespace std;
 
 template <class T>
@@ -34,6 +36,12 @@ public:
 
 
 int main() {
+
+
+    String spes = "4242";
+
+
+    cout << spes << endl;
 
 
     Array<int> test;

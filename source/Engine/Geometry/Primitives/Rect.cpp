@@ -25,16 +25,16 @@ Rect& Rect::operator=(const Rect &r2) {
 }
 
 BufferData * Rect::getData() const {
-    
+
     GLfloat rect[] = {
-        origin.x,              origin.y,              
+        origin.x,              origin.y,
         origin.x,              size.height + origin.y,
         size.width + origin.x, size.height + origin.y,
         size.width + origin.x, origin.y
     };
-    
+
     static const GLushort indices[] = { 0, 1, 3, 2 };
-    
+
     return new BufferData(rect,    sizeof(rect),
                           indices, sizeof(indices));
 }
@@ -55,13 +55,13 @@ Rect Rect::withZeroOrigin() const {
 }
 
 String Rect::toString() const {
-    return "x: "_s +  origin.x  +      " y: " + origin.y +
-      " width: "   + size.width + " height: " + size.width;
+    return "x: ";//_s +  origin.x  +      " y: " + origin.y +
+      //" width: "   + size.width + " height: " + size.width;
 }
 
 Rect Rect::random() {
     static const float size = 300;
-    return { 
+    return {
         (float)System::random(size),
         (float)System::random(size),
         (float)System::random(size),

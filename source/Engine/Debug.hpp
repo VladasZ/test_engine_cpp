@@ -18,7 +18,7 @@
 #define IMAGES_LOADING_OUTPUT true
 
 #if RENDERING_ERRORS_OUTPUT
-#define GL(x) (x); CheckGLError(LOCATION_INFO)
+#define GL(x) x//(x); CheckGLError(LOCATION_INFO)
 #else
 #define GL(x) x
 #endif

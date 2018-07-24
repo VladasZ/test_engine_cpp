@@ -44,6 +44,7 @@ void CheckGLError(LOCATION_PARAMETERS) {
 }
 
 void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
+    /*
     auto error = glCheckFramebufferStatus(target);
 
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
@@ -69,6 +70,7 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
     }
 
     __logE("Framebuffer error: " << errorString, fileName, function, line);
+    */
 }
 
 

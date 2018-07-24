@@ -55,13 +55,13 @@ void Shader::setUniformColor(const Color &color) {
 void Shader::setUITranslationMatrix(const mat4 &projection) {
     if (viewportTranslation == -1)
         viewportTranslation = glGetUniformLocation(program, "uiTranslation");
-    GL(glUniformMatrix4fv(viewportTranslation, 1, false, &projection[0][0]));
+   // GL(glUniformMatrix4fv(viewportTranslation, 1, false, &projection[0][0]));
 }
 
 void Shader::setTransformMatrix(const mat4 &transform) {
     if (this->transform == -1)
         this->transform = glGetUniformLocation(program, "transform");
-    GL(glUniformMatrix4fv(this->transform, 1, false, &transform[0][0]));
+   // GL(glUniformMatrix4fv(this->transform, 1, false, &transform[0][0]));
 }
 
 void Shader::setUniformPosition(float x, float y) {
@@ -70,10 +70,10 @@ void Shader::setUniformPosition(float x, float y) {
     glUniform2f(uniformPosition, x, y);
 }
 
-void Shader::setViewportTranslation(const Size &viewport) {
+void Shader::setViewportTranslation(const Size &viewport) {/*
     mat4 viewportTranslation = scale(mat4(), vec3(2 / viewport.width, -(2 / viewport.height), 1));
     viewportTranslation = translate(viewportTranslation, vec3(-viewport.width / 2, -viewport.height / 2, 0));
     use();
-    setUITranslationMatrix(viewportTranslation);
+    setUITranslationMatrix(viewportTranslation);*/
 }
 

@@ -20,7 +20,7 @@ int main() {
 
     Logvar(point);
 
-    cout << String() + point << endl;
+//    cout << String() + point << endl;
 
     //return 0;
 

@@ -75,9 +75,9 @@ void View::draw() {
 }
 
 void View::layout() {
-    if (_layout != nullptr)
-        for (auto& layout : *_layout)
-            layout->_layout(this);
+//    if (_layout != nullptr)
+//        for (auto& layout : *_layout)
+//            layout->_layout(this);
 
     setupBuffer();
     layoutSubviews();
@@ -148,11 +148,11 @@ View * View::setColor(const Color& color) {
 
 View * View::_addLayout(const std::initializer_list<Layout::Base *> &layout) {
     if (_layout == nullptr) {
-        _layout = new Layout::Array(layout);
+//        _layout = new Layout::Array(layout);
         return this;
     }
 
-    _layout->append(layout);
+  //  _layout->append(layout);
 
     return this;
 }

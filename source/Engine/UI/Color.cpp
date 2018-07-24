@@ -31,12 +31,12 @@ Color& Color::operator=(Color const &obj) {
 
 Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
 
-void Color::setToUniform(int uniform) const {    
+void Color::setToUniform(int uniform) const {
     GL(glUniform4fv(uniform, 1, &this->r));
 }
 
 Color Color::random() {
-    
+
     static const Array<Color> colors = {
         Color::red,
         Color::green,
@@ -46,8 +46,8 @@ Color Color::random() {
         Color::purple,
         Color::turquoise
     };
-    
-    return colors.random();
+
+    return Color::red;//colors.random();
 }
 
 Color Color::withAlpha(float alpha) const {
@@ -55,7 +55,7 @@ Color Color::withAlpha(float alpha) const {
 }
 
 String Color::toString() const {
-    return "r: "_s +r + " g: " + g + " b: " + b + " a: " + a;
+    return "r: ";//_s +r + " g: " + g + " b: " + b + " a: " + a;
 }
 
 bool Color::isTransparent() const {

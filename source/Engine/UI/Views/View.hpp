@@ -22,14 +22,14 @@ class FrameBuffer;
 
 
 class View : public Drawable {
-        
+
     friend Window;
     friend Layout::Base;
 
 protected:
-    
+
     Rect _absoluteFrame;
-    
+
     Rect _frame;
     int _touchID = -1;
 
@@ -37,7 +37,7 @@ protected:
 
 
 
-    Layout::Array *_layout = nullptr;
+    Array<Layout *> *_layout = nullptr;
 
     FrameBuffer *_frameBuffer = nullptr;
 
@@ -49,25 +49,25 @@ protected:
     virtual BufferData *getBufferData() override;
 
     Rect calculateAbsoluteFrame() const;
-    
+
     virtual void setup() { }
     virtual bool _isScrollView() const { return false; }
-    
+
     View * _addLayout(const std::initializer_list<Layout::Base *> &layout);
 
 public:
-    
+
     View *superview = nullptr;
-    
+
     Array<View *> subviews;
-    
+
     View(const Rect &rect = Rect());
 
     virtual ~View();
-    
+
     virtual void layout();
     virtual void layoutSubviews();
-    
+
     Rect frame() const { return _frame; }
     View * setFrame(const Rect &frame);
     View * setSize(const Size &size);
@@ -75,7 +75,7 @@ public:
     View * setCenter(const Point &center);
 
     int getTouchID() const;
-    
+
     View * addSubview(View *view);
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();
@@ -93,7 +93,7 @@ public:
     View * clone() const;
 
     static View * dummy(float width = 50, float height = 50);
-        
+
 #if MEMORY_BENCHMARK
     void addTestViews();
 #endif

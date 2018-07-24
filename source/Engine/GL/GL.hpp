@@ -11,12 +11,17 @@
 #define GLM_FORCE_RADIANS
 
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #if APPLE
 #include <glm/glm.hpp>
     #include <glm/gtc/matrix_transform.hpp>
 #else
-    #include "glm\glm.hpp"
-    #include "glm\gtc\matrix_transform.hpp"
+//#include <glm/glm.hpp>
+
+ //   #include "glm.hpp"
+ //   #include "glm\gtc\matrix_transform.hpp"
 #endif
 
 using namespace glm;
@@ -32,6 +37,11 @@ using namespace glm;
     #include <GL/glew.h>
     #include <GLFW/glfw3.h>
 #endif
+
+//#include <GL/gl.h>
+
+    #include <GL/glew.h>
+    #include <GLFW/glfw3.h>
 
 #include "Shader.hpp"
 

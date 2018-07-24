@@ -48,6 +48,7 @@ class Status:
             return 'Visual Studio 15 2017 Win64'
         if Status.system == 'Darwin':
             return 'Xcode'
+        return 'CodeBlocks'
 
 
 class Setup:

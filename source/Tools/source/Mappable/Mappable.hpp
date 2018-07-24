@@ -42,9 +42,9 @@ public:
     template<class TypeToString>
     static String _toString(const TypeToString& val) {
         String result;
-        for_each(T::properties(), [&](auto property) {
-            result += property.name + ": " + val.*property.pointer + "\n";
-        });
+//        for_each(T::properties(), [&](auto property) {
+//            result += property.name + ": " + val.*property.pointer + "\n";
+//        });
         return result;
     }
 };

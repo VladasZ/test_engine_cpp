@@ -27,7 +27,7 @@ inline const char __heart = ' ';
 #define LOCATION_INFO __FILENAME__, __func__, __LINE__
 #define LOCATION_PARAMETERS const char *fileName, const char *function, int line
 
-#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+//#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #if LOG_LOCATION_ENABLED
 #define LOCATION(file, func, line) << "[" << file << "::" << func << " - " << line << "] "
@@ -51,7 +51,7 @@ LOCATION(file, func, line)\
 
 #define Log(message)     __logI(message, __FILENAME__, __func__, __LINE__)
 #define Warning(message) __logW(message, __FILENAME__, __func__, __LINE__)
-#define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
+//#define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
 #define Endl std::cout << std::endl
 
 #define PING Warning("")
@@ -68,4 +68,4 @@ LOCATION(file, func, line)\
 
 #define Logvar(variable) Log(#variable << " : " << String() + variable)
 
-#define NOT_IMPLEMENTED Error("Not implemented")
+#define NOT_IMPLEMENTED //Error("Not implemented")

@@ -38,11 +38,13 @@ int main() {
 
     Array<int> test;
 
-    test.append(1, 2, 3, 4, 5, 6);
+//    test.append(1, 2, 3, 4, 5, 6);
 
 
-    for (auto a : test)
-        cout << a << endl;
+//    for (auto a : test)
+//        cout << a << endl;
+
+    cout << "hello" << endl;
 
     return 0;
 }

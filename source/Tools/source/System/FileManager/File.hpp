@@ -14,8 +14,8 @@
 #if APPLE
 using byte = unsigned char;
 #else
-//using byte = std::byte;
-using byte = unsigned char;
+using byte = std::byte;
+//using byte = unsigned char;
 #endif
 
 class File MEMORY_MANAGED(File) {

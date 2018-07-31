@@ -5,9 +5,9 @@ from utils import Shell
 from utils import Setup
 from utils import Status
 
-#Setup.reset()
-
 print('start')
+
+Setup.setupConan()
 
 if not os.path.exists('build'):
     os.makedirs('build')

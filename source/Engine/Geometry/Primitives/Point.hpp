@@ -60,7 +60,7 @@ namespace TestEngine {
         }
 
         String toString() const {
-            return Point::_toString(*this);
+            return String() + x + " : " + y;
         }
     };
 }

@@ -14,16 +14,6 @@
 using namespace std;
 
 int main() {
-
-
-    Point point(15, 15);
-
-   // Logvar(point);
-
-//    cout << String() + point << endl;
-
-    //return 0;
-
     testEngineMain();
     return 0;
 }

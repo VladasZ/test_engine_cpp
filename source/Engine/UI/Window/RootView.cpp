@@ -30,10 +30,6 @@ void RootView::setup() {
         ->setColor(Color::blue)
         ;
 
-    FOR(10000) {
-        view->addSubview(View::dummy());
-    }
-
     addSubview(view);
 
     createSticks();

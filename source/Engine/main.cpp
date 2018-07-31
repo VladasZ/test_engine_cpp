@@ -18,7 +18,7 @@ int main() {
 
     Point point(15, 15);
 
-    Logvar(point);
+   // Logvar(point);
 
 //    cout << String() + point << endl;
 

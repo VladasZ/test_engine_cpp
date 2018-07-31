@@ -8,43 +8,44 @@
 
 #ifdef DEBUG
 
+#include <string.h>
+
 #include "Debug.hpp"
-//#include "GL.hpp"
+#include "GL.hpp"
 
 void CheckGLError(LOCATION_PARAMETERS) {
-//    GLenum err = glGetError();
-//    while(err != GL_NO_ERROR) {
-//        char* error = new char[255];
-//        switch(err) {
-//            case GL_INVALID_OPERATION:
-//            strcpy(error, "GL_INVALID_OPERATION");
-//            break;
-//            case GL_INVALID_ENUM:
-//            strcpy(error, "GL_INVALID_ENUM");
-//            break;
-//            case GL_INVALID_VALUE:
-//            strcpy(error, "GL_INVALID_VALUE");
-//            break;
-//            case GL_OUT_OF_MEMORY:
-//            strcpy(error, "GL_OUT_OF_MEMORY");
-//            break;
-//            case GL_INVALID_FRAMEBUFFER_OPERATION:
-//            strcpy(error, "GL_INVALID_FRAMEBUFFER_OPERATION");
-//            CheckFramebufferStatus(GL_FRAMEBUFFER, fileName, function, line);
-//            break;
-//            default:
-//            strcpy(error, "Unknown error");
-//            break;
-//        }
-//
-//        __logE("Rendering error: " << error, fileName, function, line);
-//        delete[] error;
-//        err = glGetError();
-//    }
+    GLenum err = glGetError();
+    while(err != GL_NO_ERROR) {
+        char* error = new char[255];
+        switch(err) {
+            case GL_INVALID_OPERATION:
+            strcpy(error, "GL_INVALID_OPERATION");
+            break;
+            case GL_INVALID_ENUM:
+            strcpy(error, "GL_INVALID_ENUM");
+            break;
+            case GL_INVALID_VALUE:
+            strcpy(error, "GL_INVALID_VALUE");
+            break;
+            case GL_OUT_OF_MEMORY:
+            strcpy(error, "GL_OUT_OF_MEMORY");
+            break;
+            case GL_INVALID_FRAMEBUFFER_OPERATION:
+            strcpy(error, "GL_INVALID_FRAMEBUFFER_OPERATION");
+            CheckFramebufferStatus(GL_FRAMEBUFFER, fileName, function, line);
+            break;
+            default:
+            strcpy(error, "Unknown error");
+            break;
+        }
+
+        __logE("Rendering error: " << error, fileName, function, line);
+        delete[] error;
+        err = glGetError();
+    }
 }
 
 void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
-    /*
     auto error = glCheckFramebufferStatus(target);
 
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
@@ -70,9 +71,6 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
     }
 
     __logE("Framebuffer error: " << errorString, fileName, function, line);
-    */
 }
 
-
 #endif
-

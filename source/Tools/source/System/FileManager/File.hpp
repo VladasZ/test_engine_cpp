@@ -8,10 +8,12 @@
 
 #pragma once
 
+#include <cstddef>
+
 #include "String.hpp"
 #include "Memory.hpp"
 
-using byte = unsigned char;
+using byte = std::byte;
 
 class File MEMORY_MANAGED(File) {
 

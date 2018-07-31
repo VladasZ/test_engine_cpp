@@ -8,6 +8,8 @@
 
 #ifdef DEBUG
 
+#include <string.h>
+
 #include "Debug.hpp"
 #include "GL.hpp"
 
@@ -45,11 +47,11 @@ void CheckGLError(LOCATION_PARAMETERS) {
 
 void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
     auto error = glCheckFramebufferStatus(target);
-    
+
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
-    
+
     std::string errorString;
-    
+
     switch (error) {
         case GL_FRAMEBUFFER_UNDEFINED:
             errorString = "GL_FRAMEBUFFER_UNDEFINED";
@@ -67,10 +69,8 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
             errorString = "UNKNOWN";
             break;
     }
-    
+
     __logE("Framebuffer error: " << errorString, fileName, function, line);
 }
 
-
 #endif
-

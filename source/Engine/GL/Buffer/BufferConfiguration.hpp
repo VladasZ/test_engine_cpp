@@ -27,6 +27,6 @@ class BufferConfiguration {
     
 public:
 
-    static inline const BufferConfiguration _2   = { 2, 0, 0 };
-    static inline const BufferConfiguration _2_2 = { 2, 2, 0 };
+    static const BufferConfiguration _2;
+    static const BufferConfiguration _2_2;
 };

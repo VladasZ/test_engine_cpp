@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <tuple>
+#include <utility>
 #include <type_traits>
 
 template <class T>

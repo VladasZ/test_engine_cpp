@@ -75,6 +75,6 @@ private:
 
 public:
 
-    using Array = Array<Base *>;
+    using Arr = Array<Base *>;
 
 };

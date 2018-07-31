@@ -96,7 +96,7 @@ void View::draw() {
 
 void View::layout() {
 
-    PING;
+  //  PING;
 
     if (!_needsLayout) {
         Warning("Layout called");
@@ -188,11 +188,11 @@ View * View::setColor(const Color& color) {
 
 View * View::_addLayout(const std::initializer_list<Layout::Base *> &layout) {
     if (_layout == nullptr) {
-        _layout = new Layout::Array(layout);
+//        _layout = new Layout::Array(layout);
         return this;
     }
 
-    _layout->append(layout);
+  //  _layout->append(layout);
 
     return this;
 }

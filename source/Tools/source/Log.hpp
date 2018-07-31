@@ -8,26 +8,21 @@
 
 #pragma once
 
+#include <string.h>
 #include <iostream>
 
 #include "String.hpp"
 
 #ifdef DEBUG
 
-#ifdef WINDOWS
-inline const char __heart = ' ';
-#else
-inline const char __heart = ' ';
-#endif
-
-
 #define LOG_LOCATION_ENABLED true
 #define LOG_ERRORS true
+
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #define LOCATION_INFO __FILENAME__, __func__, __LINE__
 #define LOCATION_PARAMETERS const char *fileName, const char *function, int line
 
-#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #if LOG_LOCATION_ENABLED
 #define LOCATION(file, func, line) << "[" << file << "::" << func << " - " << line << "] "
@@ -40,7 +35,7 @@ std::cout << "[" << type << "]" \
 LOCATION(file, func, line)\
 << message << std::endl;
 
-#define __logI(message, file, func, line) std::cout << "[" << __heart << " INFO " << __heart << "] " << String() + message << std::endl;
+#define __logI(message, file, func, line) std::cout << message << std::endl;
 #define __logW(message, file, func, line) __log(message, "WARNING", file, func, line)
 
 #if LOG_ERRORS
@@ -51,7 +46,7 @@ LOCATION(file, func, line)\
 
 #define Log(message)     __logI(message, __FILENAME__, __func__, __LINE__)
 #define Warning(message) __logW(message, __FILENAME__, __func__, __LINE__)
-#define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
+#define Error(message)  __logE(message, "file", __func__, __LINE__)
 #define Endl std::cout << std::endl
 
 #define PING Warning("")

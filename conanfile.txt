@@ -1,7 +1,6 @@
 [requires]
 glfw/3.2.1.20180327@bincrafters/stable
 glew/2.1.0@bincrafters/stable
-glm/0.9.8.5@bincrafters/stable
 freetype/2.9.0@bincrafters/stable
 
 [generators]

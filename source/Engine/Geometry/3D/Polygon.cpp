@@ -21,7 +21,7 @@ void Polygon::createBuffers() {
 }
 
 void Polygon::createVertexBuffer() {
-    
+    /*
     vertexBuffer = new float[Vertex::bufferSize * vertices.size()];
     vertexBufferSize = Vertex::bufferSize * sizeof(float) * (int)vertices.size();
     
@@ -38,7 +38,7 @@ void Polygon::createVertexBuffer() {
         vertexPosition[4] = vertex.color.g;
         vertexPosition[5] = vertex.color.b;
         vertexPosition[6] = vertex.color.a;
-    }
+    }*/
 }
 
 void Polygon::createIndexBuffer() {

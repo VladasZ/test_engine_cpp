@@ -6,6 +6,8 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+ #include <cstring>
+
 #include "BufferData.hpp"
 
 BufferData::BufferData(const GLfloat *vertData, GLuint vertSize)

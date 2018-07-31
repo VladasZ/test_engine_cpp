@@ -23,7 +23,7 @@ class FrameBuffer;
 
 
 class View : public Drawable {
-        
+
     friend Window;
     friend Layout::Base;
 
@@ -31,7 +31,7 @@ class View : public Drawable {
     virtual void layoutSubviews();
 
 protected:
-    
+
     Rect _absoluteFrame;
     Rect _frameInFrameBuffer;
 
@@ -42,7 +42,7 @@ protected:
     bool _needsLayout = true;
     bool _needsSubviewsLayout = true;
 
-    Layout::Array *_layout = nullptr;
+    Layout::Arr *_layout = nullptr;
 
     FrameBuffer *_frameBuffer = nullptr;
 
@@ -65,9 +65,9 @@ public:
     void _setFramebuffer();
 
     View *superview = nullptr;
-    
+
     Array<View *> subviews;
-    
+
     View(const Rect &rect = Rect());
 
     virtual ~View();
@@ -80,7 +80,7 @@ public:
     View * edit(std::function<void(View *)> edit);
 
     int getTouchID() const;
-    
+
     View * addSubview(View *view);
     void insertSubviewAt(int position, View *view);
     void removeAllSubviews();

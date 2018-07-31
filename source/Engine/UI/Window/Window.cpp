@@ -17,33 +17,37 @@
 #include "Buffer.hpp"
 #include "FrameBuffer.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 void sizeChanged(GLFWwindow* window, int width, int height);
 
 void Window::initialize(int width, int height) {
-    
+
     size = Size(width, height);
-    
+
 #if GLFW
-    
+
     glfwInit();
-    
+
     glfwWindowHint(GLFW_SAMPLES, 16); // 4x antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    
+
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
-    
+
 #if MAC_OS
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 #endif
-    
+
     window = glfwCreateWindow(width, height, "Test Engine", NULL, NULL);
-    
+
     if (window == nullptr) {
         Error("GLFW window creation failed");
         return;
     }
-    
+
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, sizeChanged);
     glfwSwapInterval(1); // Limit fps to 60
@@ -60,12 +64,14 @@ void Window::initialize(int width, int height) {
     Log("Screen resolution: " << (int)screenResolution.width << "x" << (int)screenResolution.height);
 
 #endif
-    
+
+    cout << "hello" << endl;
+
     //GL(glEnable(GL_DEPTH_TEST));
     GL(glEnable(GL_BLEND));
     //GL(glEnable(GL_ALPHA_TEST));
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-    
+
     Input::initialize();
     Shader::initialize();
     Image::initialize();
@@ -84,7 +90,7 @@ void Window::setup() {
     
     rootView->setup();
     rootView->layout();
-    
+
     world.setup();
 }
 
@@ -105,9 +111,9 @@ void Window::update() {
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 
     FPS = 1000000000 / Time::interval();
-    
+
     Window::framesDrawn++;
-    
+
     if (Window::framesDrawn % 1 == 0) onDebugTick();
 }
 

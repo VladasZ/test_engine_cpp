@@ -14,7 +14,7 @@ const std::string FileManager::assetsDirectory() {
 #elif WINDOWS
     return "../../../Assets/";
 #endif
-    NOT_IMPLEMENTED; return "NOT_IMPLEMENTED";
+    return "../../../../Assets/";
 }
 
 const std::string FileManager::workDirectory() {

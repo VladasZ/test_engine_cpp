@@ -14,10 +14,13 @@
 #include "GL.hpp"
 
 std::ostream &operator<<(std::ostream &os, mat4 const &mat) {
-    return os << "\n"_s + mat[0][0] + " " + mat[0][1] + " " + mat[0][2] + " " + mat[0][3] + "\n" +
+    return os << "";
+
+/*
+    os << "\n"_s + mat[0][0] + " " + mat[0][1] + " " + mat[0][2] + " " + mat[0][3] + "\n" +
                           mat[1][0] + " " + mat[1][1] + " " + mat[1][2] + " " + mat[1][3] + "\n" +
                           mat[2][0] + " " + mat[2][1] + " " + mat[2][2] + " " + mat[2][3] + "\n" +
-                          mat[3][0] + " " + mat[3][1] + " " + mat[3][2] + " " + mat[3][3] + "\n";
+                          mat[3][0] + " " + mat[3][1] + " " + mat[3][2] + " " + mat[3][3] + "\n";*/
 }
 
 
@@ -75,6 +78,7 @@ void Sprite::draw() {
         setupBuffer();
         _neeedsBufferUpdate = false;
     }
+    /*
     _image->bind();
     Shader::sprite.use();
 

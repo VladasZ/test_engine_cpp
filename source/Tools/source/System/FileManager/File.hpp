@@ -8,22 +8,20 @@
 
 #pragma once
 
+#include <cstddef>
+
 #include "String.hpp"
 #include "Memory.hpp"
 
-#if APPLE
-using byte = unsigned char;
-#else
 using byte = std::byte;
-#endif
 
 class File MEMORY_MANAGED(File) {
-    
+
     size_t _size;
     byte *_data;
-    
+
 public:
-    
+
     size_t getSize() const;
     byte *getData() const;
 

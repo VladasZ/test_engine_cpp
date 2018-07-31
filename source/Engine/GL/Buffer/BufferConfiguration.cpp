@@ -54,3 +54,6 @@ void BufferConfiguration::setPointers() const {
                                  (GLvoid*)(strideForIndex(i) * sizeof(GLfloat))));
     }
 }
+
+const BufferConfiguration BufferConfiguration::_2   = { 2, 0, 0 };
+const BufferConfiguration BufferConfiguration::_2_2 = { 2, 2, 0 };

@@ -5,22 +5,16 @@ from utils import Shell
 from utils import Setup
 from utils import Status
 
-#Setup.reset()
-
 print('start')
 
+Setup.setupConan()
+
 if not os.path.exists('build'):
-            os.makedirs('build')
-
-#for package in ['conan', 'cmake']:
-#	Setup.checkAndInstall(package)
-
-if not Status.conanIsSetUp():
-	Setup.setupConan()
-
-Setup.runConan()
+    os.makedirs('build')
 
 os.chdir('build')
+
+Shell.run(['conan', 'install', '..'])
 Shell.run(['cmake', '..', '-G', Status.compiler()])
 
 print('ok')

@@ -8,49 +8,14 @@
 
 #pragma once
 
-#define GLM_FORCE_RADIANS
+class mat4 { };
+class vec3 { };
 
-//#include "glm/glm.hpp"
-//#include <glm/gtc/matrix_transform.hpp>
-
-
-class mat4 {
-
-};
-
-class vec3 {
-
-};
-
-
-#if APPLE
-#include <glm/glm.hpp>
-    #include <glm/gtc/matrix_transform.hpp>
-#else
-//#include <glm/glm.hpp>
-
- //   #include "glm.hpp"
- //   #include "glm\gtc\matrix_transform.hpp"
-#endif
-
-//using namespace glm;
-
-#ifdef WINDOWS
-    #include "GL\glew.h"
-    #include "GLFW\glfw3.h"
-
-#elif IOS
+#if IOS
     #import <OpenGLES/ES3/gl.h>
-
-#elif MAC_OS
+#else
     #include <GL/glew.h>
     #include <GLFW/glfw3.h>
 #endif
-
-//#include <GL/gl.h>
-
-    #include <GL/glew.h>
-    #include <GLFW/glfw3.h>
 
 #include "Shader.hpp"
-

@@ -9,7 +9,7 @@
 #ifdef DEBUG
 
 #include "Debug.hpp"
-#include "GL.hpp"
+//#include "GL.hpp"
 
 void CheckGLError(LOCATION_PARAMETERS) {
 //    GLenum err = glGetError();

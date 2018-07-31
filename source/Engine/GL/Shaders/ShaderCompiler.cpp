@@ -12,14 +12,10 @@
 using namespace std;
 
 std::string ShaderCompiler::shaderVersion() {
-    
-#if WINDOWS || MAC_OS
-    return "#version 330 core";
-#elif IOS
+#if IOS
     return "#version 300 core";
 #else
-    NOT_IMPLEMENTED;
-    return "";
+    return "#version 330 core";
 #endif
 }
 

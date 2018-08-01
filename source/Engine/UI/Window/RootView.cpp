@@ -22,12 +22,6 @@ ImageView* imageView;
 
 void RootView::setup() {
 
-	addSubview(
-		(new Label({ 100, 20 }))
-		->setText("hello")
-		->addLayout(L::Bottom(), L::Left())
-	);
-
 	//addSubview(
 	//	(new View({ 400, 400 }))
 	//	->setColor(Color::green)
@@ -52,6 +46,21 @@ void RootView::setup() {
 		)
 	);
 
+	addSubview(
+		(new View({ 50, 50 }))
+		->setColor(Color::green)
+		->addLayout(
+			L::Bottom(5, subviews.back()), 
+			L::CenterH(5, subviews.back())
+		)
+	);
+
+	addSubview(
+		(new Label({ 0, 100, 100, 20 }))
+		->setText("hello2")
+		->addLayout(L::Bottom(), L::Right())
+	);
+
 	createSticks();
 
 #if DEBUG_VIEW
@@ -65,8 +74,8 @@ void RootView::createSticks() {
 	directionStick = new AnalogStickView();
 	rotationStick = new AnalogStickView();
 
-	directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
-	rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
+	directionStick->addLayout(L::Bottom(15), L::Right(15));
+	rotationStick->addLayout(L::Bottom(15), L::Left(15));
 
 	//addSubview(directionStick);
 	//addSubview(rotationStick);

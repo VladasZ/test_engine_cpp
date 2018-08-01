@@ -18,16 +18,21 @@ ImageView::~ImageView() { }
 
 void ImageView::draw() {
     
-    _frameBuffer->draw([&] {
-        _image->bind();
-        if (_image->isMonochrome()) Shader::uiMonochrome.use();
-        else                        Shader::uiTexture.use();
-        _frameInFrameBuffer.setViewport();
-        Buffer::fullscreenImage->draw();
-        _image->unbind();
-    });
+	if (_needsLayout) layout();
 
-	View::draw();
+	if (_needsDraw) {
+		_frameBuffer->draw([&] {
+			_image->bind();
+			if (_image->isMonochrome()) Shader::uiMonochrome.use();
+			else                        Shader::uiTexture.use();
+			_frameInFrameBuffer.setViewport();
+			Buffer::fullscreenImage->draw();
+			_image->unbind();
+		});
+		_needsDraw = false;
+	}
+
+	drawSubviews();
 }
 
 Image* ImageView::getImage() const {

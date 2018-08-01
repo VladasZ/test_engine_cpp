@@ -41,13 +41,14 @@ Rect View::_calculateAbsoluteFrame() const {
 
 Rect View::_calculateFrameInFrameBuffer() const {
 
-    if (_frameBuffer != nullptr || this->superview == nullptr) return _frame;
+    if (this->superview == nullptr) return _frame;
 
     auto superview = this->superview;
     Rect result = _frame;
 
-    while (superview != nullptr && superview->_frameBuffer == nullptr) {
+    while (!superview->_ownsFramebuffer) {
         result.origin += superview->_frame.origin;
+		if (superview->superview == nullptr) break;
         superview = superview->superview;
     }
 

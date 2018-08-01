@@ -27,9 +27,6 @@ class View : public Drawable {
     friend Window;
     friend Layout::Base;
 
-    virtual void layout();
-    virtual void layoutSubviews();
-
 	void _checkFramebuffers(View* view, FrameBuffer* framebuffer);
 
 protected:
@@ -51,6 +48,9 @@ protected:
     void drawSubviews() const;
 
     virtual void draw() override;
+
+	virtual void layout();
+	virtual void layoutSubviews();
 
     Rect _calculateAbsoluteFrame() const;
     Rect _calculateFrameInFrameBuffer() const;

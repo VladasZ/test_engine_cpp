@@ -21,21 +21,7 @@ View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
     if (_layout != nullptr) delete _layout;
-}
-
-FrameBuffer* View::_getFrameBuffer() const {
-    
-    if (_frameBuffer != nullptr) return _frameBuffer;
-
-    View* superview = this->superview;
-    FrameBuffer* frameBuffer = nullptr;
-
-    while (superview != nullptr && frameBuffer == nullptr) {
-        frameBuffer = superview->_frameBuffer;
-        superview = superview->superview;
-    }
-
-    return frameBuffer;
+	if (_ownsFramebuffer) delete _frameBuffer;
 }
 
 Rect View::_calculateAbsoluteFrame() const {
@@ -68,12 +54,13 @@ Rect View::_calculateFrameInFrameBuffer() const {
     return result;
 }
 
-void View::_setFramebuffer() {
+View* View::_setFramebuffer() {
     _frameBuffer = new FrameBuffer(_frame.size);
+	_ownsFramebuffer = true;
+	return this;
 }
 
 void View::drawSubviews() const {
-    if (subviews.empty()) return;
     for (auto subview : subviews) subview->draw();
 }
 
@@ -81,11 +68,10 @@ void View::draw() {
 
     if (_needsLayout) layout();
 
-	if (_color.isTransparent())
-		_needsDraw = false;
+	if (_color.isTransparent()) _needsDraw = false;
 
     if (_needsDraw) {
-        _getFrameBuffer()->draw([&] {
+        _frameBuffer->draw([&] {
             _frameInFrameBuffer.setViewport();
             Shader::ui.use();
             Shader::ui.setUniformColor(_color);
@@ -115,6 +101,15 @@ void View::layout() {
 
 void View::layoutSubviews() {
     for (auto subview : subviews) subview->layout();
+}
+
+void View::_checkFramebuffers(View* view, FrameBuffer* framebuffer) {
+	auto buffer = view->_ownsFramebuffer ? view->_frameBuffer : framebuffer;
+
+	view->_frameBuffer = buffer;
+
+	for (auto subview : view->subviews)
+		_checkFramebuffers(subview, buffer);
 }
 
 View* View::setFrame(const Rect &frame) {
@@ -156,13 +151,17 @@ int View::getTouchID() const {
 View* View::addSubview(View* view) {
     subviews.emplace_back(view);
     view->superview = this;
-    view->setup();
+	if (_frameBuffer != nullptr)
+		_checkFramebuffers(view, _frameBuffer);
+	view->setup();
     return this;
 }
 
 void View::insertSubviewAt(int position, View* view) {
 	subviews.insertAt(position, view);
     view->superview = this;
+	if (_frameBuffer != nullptr)
+		_checkFramebuffers(view, _frameBuffer);
     view->setup();
 }
 

@@ -18,7 +18,7 @@ ImageView::~ImageView() { }
 
 void ImageView::draw() {
     
-    _getFrameBuffer()->draw([&] {
+    _frameBuffer->draw([&] {
         _image->bind();
         if (_image->isMonochrome()) Shader::uiMonochrome.use();
         else                        Shader::uiTexture.use();

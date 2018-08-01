@@ -28,7 +28,7 @@ void Label::_setGlyphs() {
     
     int advance = 0;
     
-    Array<ImageView*> views;
+	ImageView* lastGlyph = nullptr;
     
     for (auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);
@@ -41,12 +41,12 @@ void Label::_setGlyphs() {
         };
 
         imageView->setImage(glyph->image);
-        views.push_back(imageView);
         addSubview(imageView);
         advance += glyph->advance;
+		lastGlyph = imageView;
     }
 
-    _frame.size.width = views.back()->frame().maxX();
+    _frame.size.width = lastGlyph->frame().maxX();
     
     _needsGlyphsUpdate = false;
     _needsDraw = true;
@@ -55,6 +55,7 @@ void Label::_setGlyphs() {
 std::string Label::text() const { return _text; }
 
 Label* Label::setText(const std::string &text) {
+	if (text == _text) return this;
     _text = text;
     _needsGlyphsUpdate = true;
     return this;

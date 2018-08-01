@@ -30,6 +30,8 @@ class View : public Drawable {
     virtual void layout();
     virtual void layoutSubviews();
 
+	void _checkFramebuffers(View* view, FrameBuffer* framebuffer);
+
 protected:
 
     Rect _absoluteFrame;
@@ -40,12 +42,11 @@ protected:
 
     bool _needsDraw = true;
     bool _needsLayout = true;
+	bool _ownsFramebuffer = false;
 
     Layout::Arr* _layout = nullptr;
 
     FrameBuffer* _frameBuffer = nullptr;
-
-    FrameBuffer* _getFrameBuffer() const;
 
     void drawSubviews() const;
 
@@ -58,10 +59,9 @@ protected:
     
     View* _addLayout(const std::initializer_list<Layout::Base*> &layout);
 
-
 public:
     
-    void _setFramebuffer();
+    View* _setFramebuffer();
 
     View* superview = nullptr;
 

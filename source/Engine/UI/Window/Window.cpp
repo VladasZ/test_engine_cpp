@@ -85,15 +85,10 @@ void Window::initialize(int width, int height) {
 
 void Window::setup() {
     rootView = new RootView({ Window::size.width, Window::size.height });
-    
+	rootView->_frameBuffer = rootFrameBuffer;
     rootView->setup();
     rootView->layout();
 
-    world.setup();
-}
-
-void Window::onDebugTick() {
-    rootView->debugInfoView->update();
 }
 
 void Window::update() {
@@ -111,8 +106,6 @@ void Window::update() {
     FPS = 1000000000 / Time::interval();
 
     Window::framesDrawn++;
-
-    if (Window::framesDrawn % 1 == 0) onDebugTick();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

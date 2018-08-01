@@ -49,3 +49,5 @@ public:
     static const Color lightGray;
     static const Color clear;
 };
+
+using C = Color;

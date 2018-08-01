@@ -17,48 +17,60 @@
 #include "Glyph.hpp"
 #include "DrawingView.hpp"
 #include "FrameBuffer.hpp"
+#include "StackView.hpp"
 
 ImageView* imageView;
 
 void RootView::setup() {
 
-	//addSubview(
-	//	(new View({ 400, 400 }))
-	//	->setColor(Color::green)
-	//	->addLayout(L::CenterH(), L::CenterV())
-	//	->edit([](View* view) {
-	//	FOR(10) {
-	//		view->addSubview(View::dummy());
-	//	}
-	//})
-	//	->_setFramebuffer()
-	//);
-
 	addSubview(
-		(new ImageView({100, 100 }))
-		->setImage(Image::cat)
-		->setColor(Color::green)
+		(new StackView({300, 800}))
 		->addLayout(L::Bottom(), L::Right())
 		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(Color::blue)
-			->addLayout(L::CenterH(), L::CenterV())
+			(new View({50, 50}))
+			->setColor(C::green)
 		)
-	);
-
-	addSubview(
+		->addSubview(
 		(new View({ 50, 50 }))
-		->setColor(Color::green)
-		->addLayout(
-			L::Bottom(5, subviews.back()), 
-			L::CenterH(5, subviews.back())
+			->setColor(C::green)
 		)
-	);
-
-	addSubview(
-		(new Label({ 0, 100, 100, 20 }))
-		->setText("hello2")
-		->addLayout(L::Bottom(), L::Right())
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new Label({50, 10}))
+			->setText("gelllo")
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(C::green)
+		)
+		->setColor(C::blue)
 	);
 
 	createSticks();

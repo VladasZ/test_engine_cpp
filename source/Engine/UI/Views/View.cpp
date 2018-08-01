@@ -137,6 +137,7 @@ View* View::setCenter(const Point &center) {
         _frame.size.width,
         _frame.size.height
     };
+	_needsLayout = true;
     return this;
 }
 

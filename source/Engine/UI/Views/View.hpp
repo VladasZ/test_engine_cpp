@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <functional>
 #include "Array.hpp"
 #include "Drawable.hpp"
 #include "Color.hpp"
@@ -20,7 +19,6 @@ class Buffer;
 class Window;
 class Input;
 class FrameBuffer;
-
 
 class View : public Drawable {
 
@@ -61,6 +59,14 @@ protected:
 
 public:
     
+	enum class Alignment {
+		left,
+		right,
+		top,
+		bottom,
+		center
+	};
+
     View* _setFramebuffer();
 
     View* superview = nullptr;

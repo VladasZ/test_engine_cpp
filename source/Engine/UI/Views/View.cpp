@@ -81,11 +81,14 @@ void View::draw() {
 
     if (_needsLayout) layout();
 
+	if (_color.isTransparent())
+		_needsDraw = false;
+
     if (_needsDraw) {
         _getFrameBuffer()->draw([&] {
             _frameInFrameBuffer.setViewport();
             Shader::ui.use();
-            Shader::ui.setUniformColor(color);
+            Shader::ui.setUniformColor(_color);
             Buffer::fullscreen->draw();
         });
         _needsDraw = false;
@@ -172,7 +175,7 @@ void View::removeAllSubviews() {
 }
 
 View* View::setColor(const Color& color) {
-    this->color = color;
+    this->_color = color;
     return this;
 }
 
@@ -189,7 +192,7 @@ View* View::_addLayout(const std::initializer_list<Layout::Base*> &layout) {
 
 View* View::clone() const {
     View* view = new View(_frame);
-    view->color = color;
+    view->_color = _color;
     view->_layout = _layout;
 
     for (auto subView : subviews)
@@ -206,7 +209,7 @@ View* View::dummy(float width, float height) {
         (float)System::random(100)
         });
 
-    view->color = Color::random();
+    view->_color = Color::random();
     return view;
 }
 

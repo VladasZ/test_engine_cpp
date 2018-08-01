@@ -19,11 +19,11 @@ AnalogStickView::AnalogStickView() : DrawingView({ SIZE, SIZE }) { }
 
 void AnalogStickView::setup() {
     auto outerPath = Path::circleWith(_frame.size.center(), _frame.size.width);
-    outerPath->color = Color::black;
+    outerPath->_color = Color::black;
     addPath(outerPath);
 
     auto outlinePath = Path::circleWith(_frame.size.center(), _frame.size.width - OUTLINE_WIDTH);
-    outlinePath->color = Color::white;
+    outlinePath->_color = Color::white;
     addPath(outlinePath);
 
     directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
@@ -33,14 +33,14 @@ void AnalogStickView::setup() {
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE);
-        path->color = Color::black;
+        path->_color = Color::black;
         return path;
     }());
     
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
-        path->color = Color::lightGray;
+        path->_color = Color::lightGray;
         return path;
     }());
     

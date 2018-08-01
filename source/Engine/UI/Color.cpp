@@ -47,7 +47,7 @@ Color Color::random() {
         Color::turquoise
     };
 
-    return Color::red;//colors.random();
+    return colors.random();
 }
 
 Color Color::withAlpha(float alpha) const {
@@ -55,7 +55,7 @@ Color Color::withAlpha(float alpha) const {
 }
 
 String Color::toString() const {
-    return "r: ";//_s +r + " g: " + g + " b: " + b + " a: " + a;
+    return "r: "_s + r + " g: " + g + " b: " + b + " a: " + a;
 }
 
 bool Color::isTransparent() const {

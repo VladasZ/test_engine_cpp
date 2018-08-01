@@ -23,6 +23,8 @@ public:
     Image* getImage() const;
     ImageView* setImage(Image* image);
     
+	View* setColor(const Color& color) override { return this; }
+
     using View::View;
     ~ImageView() override;
 };

@@ -78,3 +78,5 @@ public:
     using Arr = Array<Base*>;
 
 };
+
+using L = Layout;

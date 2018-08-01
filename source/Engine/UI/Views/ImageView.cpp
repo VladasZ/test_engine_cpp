@@ -18,9 +18,6 @@ ImageView::~ImageView() { }
 
 void ImageView::draw() {
     
-    if (_image == nullptr) { View::draw(); return; }
-    if (!color.isTransparent()) View::draw();
-           
     _getFrameBuffer()->draw([&] {
         _image->bind();
         if (_image->isMonochrome()) Shader::uiMonochrome.use();
@@ -30,7 +27,7 @@ void ImageView::draw() {
         _image->unbind();
     });
 
-    View::drawSubviews();
+	View::draw();
 }
 
 Image* ImageView::getImage() const {

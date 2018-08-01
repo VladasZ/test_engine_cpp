@@ -22,44 +22,70 @@ ImageView* imageView;
 
 void RootView::setup() {
 
-    _frameBuffer = Window::rootFrameBuffer;
+	_frameBuffer = Window::rootFrameBuffer;
+
+	//FOR(10000) {
+	//	addSubview(View::dummy());
+	//}
 
 	addSubview(
-		(new View({20, 20, 100, 100}))
+		(new Label({ 100, 20 }))
+		->setText("hello")
+		->addLayout(L::Bottom(), L::Left())
+	);
+
+	addSubview(
+		(new View({ 20, 20, 100, 100 }))
 		->setColor(Color::green)
+	);
+
+	addSubview(
+		(new ImageView({ 100, 100 }))
+		->setImage(Image::cat)
+		->addLayout(L::CenterH(), L::CenterV())
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(Color::blue)
+			->addLayout(L::CenterH(), L::CenterV())
+		)
 	);
 
 	addSubview(
 		(new View({ 200, 200, 100, 100 }))
 		->setColor(Color::green)
-		->addLayout(Layout::Bottom(), Layout::Right())
+		->addLayout(L::Bottom(), L::Right())
+		->addSubview(
+		(new View({ 50, 50 }))
+			->setColor(Color::blue)
+			->addLayout(L::CenterH(), L::CenterV())
+		)
 	);
 
-    createSticks();
+	createSticks();
 
 #if DEBUG_VIEW
-    debugInfoView = new DebugInfoView();
-    addSubview(debugInfoView);
+	debugInfoView = new DebugInfoView();
+	addSubview(debugInfoView);
 #endif
 }
 
 void RootView::draw() {
-    _frameBuffer->draw([&] {
-        View::draw();
-        for (auto subview : subviews)
-            static_cast<RootView*>(subview)->draw();
-    });
-    Window::resetViewport();
+	_frameBuffer->draw([&] {
+		View::draw();
+		for (auto subview : subviews)
+			static_cast<RootView*>(subview)->draw();
+	});
+	Window::resetViewport();
 }
 
 void RootView::createSticks() {
 
-    directionStick = new AnalogStickView();
-    rotationStick = new AnalogStickView();
+	directionStick = new AnalogStickView();
+	rotationStick = new AnalogStickView();
 
-    directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
-    rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
+	directionStick->addLayout(Layout::Bottom(15), Layout::Right(15));
+	rotationStick->addLayout(Layout::Bottom(15), Layout::Left(15));
 
-    //addSubview(directionStick);
-    //addSubview(rotationStick);
+	//addSubview(directionStick);
+	//addSubview(rotationStick);
 }

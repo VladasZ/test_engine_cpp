@@ -13,7 +13,7 @@
 #include "Primitives.hpp"
 
 Label::Label(const Rect &rect) : View(rect) {
-    color = Color::gray;
+    _color = Color::gray;
 }
 
 void Label::draw() {

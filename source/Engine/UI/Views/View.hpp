@@ -84,7 +84,7 @@ public:
     void insertSubviewAt(int position, View* view);
     void removeAllSubviews();
 
-    View* setColor(const Color& color);
+    virtual View* setColor(const Color& color);
 
     Point localPointFrom(const Point &point) const;
     virtual bool containsGlobalPoint(const Point &point) const;

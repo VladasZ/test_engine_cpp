@@ -13,7 +13,7 @@
 
 void DrawingView::draw() {
     Shader::ui.use();
-    Shader::ui.setUniformColor(color);
+    Shader::ui.setUniformColor(_color);
     _absoluteFrame.setViewport();
 //    buffer->draw();
     Shader::uiPath.use();

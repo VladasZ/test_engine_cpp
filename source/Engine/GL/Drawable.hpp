@@ -22,9 +22,9 @@ class Drawable : public NonCopyable _MEMORY_MANAGED(Drawable) {
 protected:
     
     virtual void draw() = 0;
-    
+
 public:
-    
+
     float rotation = 0;
-    Color color;
+	Color _color;
 };

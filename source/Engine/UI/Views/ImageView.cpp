@@ -8,7 +8,6 @@
 
 #include "ImageView.hpp"
 #include "Buffer.hpp"
-#include "Image.hpp"
 #include "Shader.hpp"
 #include "BufferData.hpp"
 #include "FrameBuffer.hpp"

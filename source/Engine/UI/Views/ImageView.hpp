@@ -7,9 +7,10 @@
 //
 
 #pragma once
-#include "View.hpp"
 
-class Image;
+#include "View.hpp"
+#include "Image.hpp"
+
 class Window;
 
 class ImageView : public View _MEMORY_MANAGED(ImageView) {

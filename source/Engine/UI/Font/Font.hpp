@@ -12,9 +12,9 @@
 #include "String.hpp"
 #include "NonCopyable.hpp"
 #include "Memory.hpp"
+#include "Image.hpp"
 
 class File;
-class Image;
 class Glyph;
 
 struct FT_FaceRec_;

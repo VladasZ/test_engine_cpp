@@ -11,9 +11,9 @@
 #include "Primitives.hpp"
 #include "Drawable.hpp"
 #include "Array.hpp"
+#include "Image.hpp"
 
 class World;
-class Image;
 
 class Sprite : public Drawable {
     

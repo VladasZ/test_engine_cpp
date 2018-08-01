@@ -11,8 +11,7 @@
 #include "Primitives.hpp"
 #include "NonCopyable.hpp"
 #include "Memory.hpp"
-
-class Image;
+#include "Image.hpp"
 
 class Glyph : public NonCopyable _MEMORY_MANAGED(Glyph) {
         

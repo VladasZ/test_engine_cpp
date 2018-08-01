@@ -9,7 +9,6 @@
 #include "Sprite.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
-#include "Image.hpp"
 #include "Window.hpp"
 #include "GL.hpp"
 

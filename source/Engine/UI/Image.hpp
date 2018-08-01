@@ -9,18 +9,17 @@
 #pragma once
 
 #include "Size.hpp"
-#include "GL.hpp"
 #include "NonCopyable.hpp"
 
 class FrameBuffer;
 
-class Image : public NonCopyable {
+class UIImage : public NonCopyable {
     
-    GLuint _id = 0;
+	unsigned int _id = 0;
     
     void init(const Size &size, void* data, int channels, int filter);
     
-    Image() = default;
+	UIImage() = default;
     
 public:
     
@@ -32,22 +31,22 @@ public:
         Default = Linear
     };
     
-    static Image* cat;
-    static Image* slow;
-    static Image* palm;
-    static Image* frisk;
+    static UIImage* cat;
+    static UIImage* slow;
+    static UIImage* palm;
+    static UIImage* frisk;
 
     static void initialize();
   
     Size size;
     int channels;
     
-    Image(const Size &size, int channels = 4, Filter filter = Filter::Default);
-    Image(const Size &size, void* data, int channels, Filter filter = Filter::Default);
-    Image(const std::string &file, Filter filter = Filter::Default);
-    ~Image();
+	UIImage(const Size &size, int channels = 4, Filter filter = Filter::Default);
+	UIImage(const Size &size, void* data, int channels, Filter filter = Filter::Default);
+	UIImage(const std::string &file, Filter filter = Filter::Default);
+    ~UIImage();
 
-    GLuint &_get_GL_id() { return _id; }
+	const unsigned int& _get_GL_id() { return _id; }
 
     void bind() const;
     void unbind() const;
@@ -56,3 +55,5 @@ public:
     
     bool isMonochrome() const;
 };
+
+using Image = UIImage;

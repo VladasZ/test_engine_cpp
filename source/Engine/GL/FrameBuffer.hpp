@@ -10,10 +10,9 @@
 
 #include <functional>
 
+#include "Image.hpp"
 #include "Rect.hpp"
 #include "GL.hpp"
-
-class Image;
 
 class FrameBuffer {
 

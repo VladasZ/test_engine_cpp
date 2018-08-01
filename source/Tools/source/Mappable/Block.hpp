@@ -9,94 +9,67 @@
 #pragma once
 
 #include <any>
-#include <functional>
 #include <type_traits>
 
-#include "Meta.hpp"
-#include "Array.hpp"
-#include "String.hpp"
 #include "Dictionary.hpp"
-//
-//class Block {
-//
-//    enum class Type : uint8_t {
-//        Bool,
-//        Integer,
-//        Float,
-//        String,
-//        Array
-//    };
-//
-//    static inline Dictionary<Type, String> _types_to_string = {
-//         { Type::Bool,    "Bool"    },
-//         { Type::Integer, "Integer" },
-//         { Type::Float,   "Float"   },
-//         { Type::String,  "String"  },
-//         { Type::Array,   "Array"   }
-//    };
-//
-//    const String _initialType;
-//    Type _type;
-//    std::any _value;
-//
-//    template <class T>
-//    constexpr Type _getType() {
-//        if (is_string_convertible<T>) return Type::String;
-//        if (is_same_v<bool, T>)       return Type::Bool;
-//        if (is_integral_v<T>)         return Type::Integer;
-//        if (is_floating_point_v<T>)   return Type::Float;
-//        throw String() + "Type: " + nameOf<T> +" is not supported by Block class.";
-//    }
-//
-//public:
-//
-//    template <class T>
-//    constexpr static inline bool is_supported =
-//        is_same_v<bool, T>     ||
-//        is_integral_v<T>       ||
-//        is_floating_point_v<T> ||
-//        is_string_convertible<T>
-//        ;
-//
-//    template <class T>
-//    Block(const T& value) : _initialType(nameOf<T>) {
-//
-//        if constexpr (!is_supported<T>) {
-//            throw String() + "Type: " + nameOf<T> + " is not supported by Block class.";
-//        }
-//
-//        if constexpr (is_string_convertible<T>) {
-//            Log(String() + " convertovkoo: " + value);
-//            _value = String(value);
-//        }
-//        else constexpr {
-//            Log(String() + " nee: " + value);
-//            _value = value;
-//        }
-//
-//        _type = _getType<T>();
-//    }
-//
-//    template <class T>
-//    T get() {
-//
-//        //Log("getting: " + _initialType);
-//
-//        //if (_type != _getType<T>())
-//        //    throw String() + "Block contains " + _type + " not " + nameOf<T>;
-//        return std::any_cast<T>(_value);
-//    }
-//
-//    String type() const {
-//        return _types_to_string[_type];
-//    }
-//
-//    Block* begin() {
-//        return this;
-//    }
-//
-//    Block* end() {
-//        return this + 1;
-//    }
-//
-//};
+#include "String.hpp"
+
+#define __CHECK_BLOCK_COMP static_assert(isCompatible<T>, "Type is not compatible with Block class.")
+
+class Block {
+
+public:
+
+	enum class Type {
+		Bool,
+		Int,
+		Float,
+		String
+	};
+
+private:
+
+	static const Dictionary<Type, std::string> _typeToString;
+
+	std::any _value;
+	const Type _type;
+
+	template <class T>
+	constexpr Type _getType() {
+		__CHECK_BLOCK_COMP;
+		if constexpr (std::is_same_v<bool,   T>) return Type::Bool;
+		if constexpr (std::is_same_v<int,    T>) return Type::Int;
+		if constexpr (std::is_same_v<float,  T>) return Type::Float;
+		if constexpr (std::is_same_v<String, T>) return Type::String;
+	}
+
+public:
+
+	template <class T>
+	static constexpr bool isCompatible =
+		std::is_same_v<bool,   T> ||
+		std::is_same_v<int,    T> ||
+		std::is_same_v<float,  T> ||
+		std::is_same_v<String, T>
+		;
+
+	template <class T>
+	Block(const T&& value) : _value(value), _type(_getType<T>()) {
+		__CHECK_BLOCK_COMP;
+	}
+
+	template <class T>
+	T value() {
+		__CHECK_BLOCK_COMP;
+		return std::any_cast<T>(_value);
+	}
+
+	String getType() { return Block::_typeToString.at(_type); }
+};
+
+const Dictionary<Block::Type, std::string> Block::_typeToString = {
+	{ Block::Type::Bool,   "bool"   },
+    { Block::Type::Int,    "int"    },
+    { Block::Type::Float,  "float"  },
+    { Block::Type::String, "String" }
+};

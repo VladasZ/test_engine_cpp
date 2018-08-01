@@ -9,55 +9,30 @@
 #include "Log.hpp"
 
 #include "Block.hpp"
-
-//#include "gl"
+#include "ExceptionCatch.hpp"
 
 using namespace std;
 
-template <class T>
-class ObjectsCounter {
 
-public:
+void test() {
 
-    static inline int created = 0;
-    static inline int deleted = 0;
+	Block spes = (double)5;
 
-    static int exists() { return created - deleted; }
+	Log(spes.getType());
 
-
-    ObjectsCounter() {
-        created++;
-    }
-
-    virtual ~ObjectsCounter() {
-        deleted++;
-    }
-};
-
+	cout << spes.value<int>() << endl;
+}
 
 int main() {
 
-    int a, b;
-    auto summ = [&] { return a + b; };
-    a = 10;
-    b = 29;
-    cout << summ() << endl;
-
-    String spes = "4242";
-
-
-    cout << spes << endl;
-
-
-    Array<int> test;
-
-//    test.append(1, 2, 3, 4, 5, 6);
-
-
-//    for (auto a : test)
-//        cout << a << endl;
-
-    cout << "hello" << endl;
+	try
+	{
+		test();
+	}
+	catch (...)
+	{
+		Log(what());
+	}
 
     return 0;
 }

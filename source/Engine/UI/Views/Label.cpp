@@ -28,12 +28,12 @@ void Label::_setGlyphs() {
     
     int advance = 0;
     
-    Array<ImageView *> views;
+    Array<ImageView*> views;
     
     for (auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);
         auto imageView = new ImageView(glyph->size());
-        auto view = (Label *)imageView; // Lifehack
+        auto view = (Label*)imageView; // Lifehack
 
         view->_frame.origin = { 
             advance + glyph->bearing.x,
@@ -54,15 +54,15 @@ void Label::_setGlyphs() {
 
 std::string Label::text() const { return _text; }
 
-Label * Label::setText(const std::string &text) {
+Label* Label::setText(const std::string &text) {
     _text = text;
     _needsGlyphsUpdate = true;
     return this;
 }
 
-const Font * const Label::font() const { return _font; }
+const Font* const Label::font() const { return _font; }
 
-Label * Label::setFont(Font *font) {
+Label* Label::setFont(Font* font) {
     _font = font;
     _needsGlyphsUpdate = true;
     return this;

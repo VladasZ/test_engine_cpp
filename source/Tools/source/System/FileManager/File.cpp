@@ -36,6 +36,6 @@ size_t File::getSize() const {
     return _size;
 }
 
-byte * File::getData() const {
+byte* File::getData() const {
     return _data;
 }

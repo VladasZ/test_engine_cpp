@@ -24,15 +24,15 @@ std::ostream &operator<<(std::ostream &os, mat4 const &mat) {
 }
 
 
-Sprite::Sprite(Image *image) : _image(image) { }
+Sprite::Sprite(Image* image) : _image(image) { }
 
 Sprite::~Sprite() {
     if (_subsprites != nullptr) delete _subsprites;
 }
 //
-//BufferData * Sprite::getBufferData() {
+//BufferData* Sprite::getBufferData() {
 //    
-//    GLfloat *vertices;
+//    GLfloat* vertices;
 //    
 //    if (_subspriteIndex == -1) {
 //        GLfloat vert[] = {

@@ -13,10 +13,10 @@
 #include "Debug.hpp"
 #include "FileManager.hpp"
 
-Image *Image::cat;
-Image *Image::slow;
-Image *Image::palm;
-Image *Image::frisk;
+Image* Image::cat;
+Image* Image::slow;
+Image* Image::palm;
+Image* Image::frisk;
 
 static int modeForChannels(int channels) {
     switch (channels) {
@@ -31,7 +31,7 @@ static int modeForChannels(int channels) {
     }
 }
 
-void Image::init(const Size &size, void *data, int channels, int filter) {
+void Image::init(const Size &size, void* data, int channels, int filter) {
     
     this->channels = channels;
     this->size = size;
@@ -45,8 +45,8 @@ void Image::init(const Size &size, void *data, int channels, int filter) {
     GL(glTexImage2D(GL_TEXTURE_2D,
                       0,
                       modeForChannels(channels),
-                      size.width,
-                      size.height,
+                      (GLsizei)size.width,
+					  (GLsizei)size.height,
                       0,
                       modeForChannels(channels),
                       GL_UNSIGNED_BYTE,
@@ -63,7 +63,7 @@ Image::Image(const Size &size, int channels, Filter filter) {
     init(size, nullptr, channels, filter);
 }
 
-Image::Image(const Size &size, void *data, int channels, Filter filter) {
+Image::Image(const Size &size, void* data, int channels, Filter filter) {
     init(size, data, channels, filter);
 }
 
@@ -72,7 +72,7 @@ Image::Image(const std::string &file, Filter filter) {
     int width;
     int height;
     
-    unsigned char *image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
+    unsigned char* image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
                                            &width,
                                            &height,
                                            &channels,
@@ -82,7 +82,7 @@ Image::Image(const std::string &file, Filter filter) {
     Log("Loading image: " << file << " channels: " << channels);
 #endif
     
-    init(Size(width, height), image, channels, filter);
+    init(Size((float)width, (float)height), image, channels, filter);
     SOIL_free_image_data(image);
 }
 

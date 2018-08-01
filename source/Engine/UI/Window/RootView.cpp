@@ -18,43 +18,22 @@
 #include "DrawingView.hpp"
 #include "FrameBuffer.hpp"
 
-ImageView *imageView;
+ImageView* imageView;
 
 void RootView::setup() {
 
     _frameBuffer = Window::rootFrameBuffer;
 
+	addSubview(
+		(new View({20, 20, 100, 100}))
+		->setColor(Color::green)
+	);
 
-    //View *testLabel =
-    //    (new Label({ 80, 20 }))
-    //    ->setText("123")
-    //    ->addLayout(Layout::CenterH(), Layout::CenterV());
-
-    //addSubview(
-    //    (new View({ 200, 200 }))
-    //    ->setColor(Color::green)
-    //    ->addLayout(Layout::Bottom(10), Layout::Left(10))
-    //    ->edit([&](auto view) {
-    //    FOR(10) {
-    //        view->addSubview(View::dummy());
-    //    }
-
-    //    view->addSubview(testLabel);
-    //})
-    //);
-
-    //addSubview(
-    //    (new ImageView({ 200, 200 }))
-    //    ->setImage(Image::cat)
-    //    ->addLayout(Layout::CenterH(), Layout::CenterV())
-    //);
-
-    addSubview(
-        (new Label({ 100, 20 }))
-        ->setText("Hellofff")
-        ->setColor(Color::blue)
-        ->addLayout(Layout::Bottom(), Layout::Right())
-    );
+	addSubview(
+		(new View({ 200, 200, 100, 100 }))
+		->setColor(Color::green)
+		->addLayout(Layout::Bottom(), Layout::Right())
+	);
 
     createSticks();
 
@@ -67,8 +46,8 @@ void RootView::setup() {
 void RootView::draw() {
     _frameBuffer->draw([&] {
         View::draw();
-        for (auto subview : this->subviews)
-            static_cast<RootView *>(subview)->draw();
+        for (auto subview : subviews)
+            static_cast<RootView*>(subview)->draw();
     });
     Window::resetViewport();
 }

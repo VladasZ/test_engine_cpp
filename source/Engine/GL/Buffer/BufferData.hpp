@@ -15,20 +15,20 @@ class Buffer;
 
 class BufferData MEMORY_MANAGED(BufferData) {
     
-    GLfloat *vertData = nullptr;
+    GLfloat* vertData = nullptr;
     GLuint vertSize = 0;
     
-    GLushort *indData = nullptr;
+    GLushort* indData = nullptr;
     GLuint indSize = 0;
     
     friend Buffer;
     
 public:
     
-    BufferData(const GLfloat *vertData, GLuint vertSize);
+    BufferData(const GLfloat* vertData, GLuint vertSize);
     
-    BufferData(const GLfloat *vertData,  GLuint vertSize,
-               const GLushort *indData,  GLuint indSize);
+    BufferData(const GLfloat* vertData,  GLuint vertSize,
+               const GLushort* indData,  GLuint indSize);
     
     ~BufferData();
 };

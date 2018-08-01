@@ -12,7 +12,7 @@
 
 Size::Size(float width, float height) : width(width), height(height) { }
 
-BufferData * Size::getData() const {
+BufferData* Size::getData() const {
     
     GLfloat data[] = {
         0,     0,

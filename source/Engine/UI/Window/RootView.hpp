@@ -12,8 +12,8 @@
 
 class AnalogStickView;
 
-inline AnalogStickView *directionStick;
-inline AnalogStickView *rotationStick;
+inline AnalogStickView* directionStick;
+inline AnalogStickView* rotationStick;
 
 class RootView : public View {
     
@@ -29,7 +29,7 @@ public:
     using View::View;
 
 #if DEBUG_VIEW
-    DebugInfoView *debugInfoView;
+    DebugInfoView* debugInfoView;
 #endif
 
 };

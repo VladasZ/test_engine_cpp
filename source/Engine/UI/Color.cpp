@@ -26,7 +26,7 @@ Color& Color::operator=(Color const &obj) {
     g = obj.g;
     b = obj.b;
     a = obj.a;
-    return *this;
+    return* this;
 }
 
 Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }

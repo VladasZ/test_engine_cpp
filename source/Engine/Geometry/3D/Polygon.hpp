@@ -18,8 +18,8 @@ public:
     Array<Vertex> vertices;
     Array<short> indices;
     
-    float *vertexBuffer = nullptr;
-    short *indexBuffer = nullptr;
+    float* vertexBuffer = nullptr;
+    short* indexBuffer = nullptr;
     
     int vertexBufferSize;
     int indexBufferSize;

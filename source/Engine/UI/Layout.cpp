@@ -13,12 +13,12 @@
 
 using namespace std;
 
-void Layout::Base::_layout(View *view) const {
+void Layout::Base::_layout(View* view) const {
     if (anchor == nullptr) _layoutWithoutAnchor(view);
     else                   _layoutWithAnchor(view);
 }
 
-void Layout::Base::_layoutWithoutAnchor(View *view) const {
+void Layout::Base::_layoutWithoutAnchor(View* view) const {
 
     const Rect &superFrame = view->superview->_frame;
     Rect &frame = view->_frame;
@@ -55,7 +55,7 @@ void Layout::Base::_layoutWithoutAnchor(View *view) const {
 }
 
 
-void Layout::Base::_layoutWithAnchor(View *view) const {
+void Layout::Base::_layoutWithAnchor(View* view) const {
 
     const Rect &anchorFrame = anchor->_frame;
     Rect &frame = view->_frame;

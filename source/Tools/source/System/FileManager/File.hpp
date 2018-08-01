@@ -18,12 +18,12 @@ using byte = std::byte;
 class File MEMORY_MANAGED(File) {
 
     size_t _size;
-    byte *_data;
+    byte* _data;
 
 public:
 
     size_t getSize() const;
-    byte *getData() const;
+    byte* getData() const;
 
     File() = default; //FIX
     File(const String &path);

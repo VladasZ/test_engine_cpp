@@ -20,22 +20,22 @@ class FrameBuffer {
     GLuint _id;
     GLuint _rbo;
     Size _size;
-    Image *_image;
+    Image* _image;
 
 public:
 
     FrameBuffer(const Size& size);
     ~FrameBuffer();
 
-    FrameBuffer *bind();
-    FrameBuffer *unbind();
+    FrameBuffer* bind();
+    FrameBuffer* unbind();
 
     Rect getSize() const;
-    FrameBuffer * setSize(const Size& size);
+    FrameBuffer* setSize(const Size& size);
 
-    Image *getImage() const;
+    Image* getImage() const;
 
-    FrameBuffer * draw(std::function<void()> closure);
+    FrameBuffer* draw(std::function<void()> closure);
 
-    FrameBuffer * clear();
+    FrameBuffer* clear();
 };

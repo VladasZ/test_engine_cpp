@@ -15,14 +15,14 @@ class Sprite;
 
 class World {
     
-    Array<Movable *> movableObjects;
-    Array<Sprite *> objects;
+    Array<Movable*> movableObjects;
+    Array<Sprite*> objects;
 
 public:
     
     World();
     
-    void addSprite(Sprite *sprite);
+    void addSprite(Sprite* sprite);
     
     void update();
     

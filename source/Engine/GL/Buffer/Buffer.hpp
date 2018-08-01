@@ -16,7 +16,7 @@
 
 class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
     
-    BufferData *data;
+    BufferData* data;
     
     GLuint vertexArrayObject = 0;
     GLuint vertexBufferObject = 0;
@@ -28,12 +28,12 @@ public:
     
     GLenum drawMode = GL_TRIANGLE_STRIP;
     
-    Buffer(BufferData *data, const BufferConfiguration &configuration);
+    Buffer(BufferData* data, const BufferConfiguration &configuration);
     
-    Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration);
+    Buffer(GLfloat* vertData, GLuint vertSize, const BufferConfiguration &configuration);
     
-    Buffer(GLfloat *vertData, GLuint vertSize,
-           GLushort *indData, GLuint indSize,
+    Buffer(GLfloat* vertData, GLuint vertSize,
+           GLushort* indData, GLuint indSize,
            const BufferConfiguration &configuration);
 
     ~Buffer();
@@ -44,7 +44,7 @@ public:
 
     static void windowSizeChanged();
 
-    static inline Buffer *fullscreen = nullptr;
-    static inline Buffer *fullscreenImage = nullptr;
-    static inline Buffer *rootUIBuffer = nullptr;
+    static inline Buffer* fullscreen = nullptr;
+    static inline Buffer* fullscreenImage = nullptr;
+    static inline Buffer* rootUIBuffer = nullptr;
 };

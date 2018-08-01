@@ -37,7 +37,7 @@ int System::random() {
 
     if (flag) {
         flag = false;
-        srand(time(NULL));
+        srand((unsigned int)time(NULL));
     }
 
     return rand();

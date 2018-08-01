@@ -10,24 +10,24 @@
 
 #include "BufferData.hpp"
 
-BufferData::BufferData(const GLfloat *vertData, GLuint vertSize)
+BufferData::BufferData(const GLfloat* vertData, GLuint vertSize)
 :
 vertSize(vertSize)
 {
-    this->vertData = (GLfloat *)malloc(vertSize);
+    this->vertData = (GLfloat*)malloc(vertSize);
     memcpy(this->vertData, vertData, vertSize);
 }
 
-BufferData::BufferData(const GLfloat *vertData, GLuint vertSize,
-                       const GLushort *indData, GLuint indSize)
+BufferData::BufferData(const GLfloat* vertData, GLuint vertSize,
+                       const GLushort* indData, GLuint indSize)
 :
 vertSize(vertSize),
 indSize(indSize)
 {
-    this->vertData = (GLfloat *)malloc(vertSize);
+    this->vertData = (GLfloat*)malloc(vertSize);
     memcpy(this->vertData, vertData, vertSize);
     
-    this->indData = (GLushort *)malloc(indSize);
+    this->indData = (GLushort*)malloc(indSize);
     memcpy(this->indData, indData, indSize);
 }
 

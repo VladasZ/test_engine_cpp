@@ -23,7 +23,7 @@ namespace TestEngine {
         Size() = default;
         Size(float width, float height);
         
-        BufferData *getData() const;
+        BufferData* getData() const;
         
         Point center() const;
                 

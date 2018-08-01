@@ -32,7 +32,7 @@ void Button::setText(const std::string &text) {
     label->setText(text);
 }
 
-void Button::setImage(Image *image) {
+void Button::setImage(Image* image) {
     if (imageView == nullptr) {
         imageView = new ImageView(_frame.withZeroOrigin());
         insertSubviewAt(0, imageView);

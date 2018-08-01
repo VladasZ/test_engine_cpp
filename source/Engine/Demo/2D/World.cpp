@@ -16,17 +16,17 @@
 
 World world;
 
-static Unit *frisk;
+static Unit* frisk;
 
 World::World() { }
 
-void World::addSprite(Sprite *sprite) {
+void World::addSprite(Sprite* sprite) {
     objects.push_back(sprite);
 }
 
 void World::update() {
     for (auto sprite  : objects) {
-        if (Movable *movable = dynamic_cast<Movable *>(sprite)) movable->update();
+        if (Movable* movable = dynamic_cast<Movable*>(sprite)) movable->update();
         sprite->draw();
     }
 }

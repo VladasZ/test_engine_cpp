@@ -69,7 +69,7 @@ void DebugInfoView::update() {
 #endif
 }
 
-Array<Label *> DebugInfoView::labels() const {
+Array<Label*> DebugInfoView::labels() const {
     return {
         fpsLabel,
 #if MEMORY_TRACKING

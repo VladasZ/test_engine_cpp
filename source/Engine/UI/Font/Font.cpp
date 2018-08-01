@@ -21,9 +21,9 @@ using namespace std;
 
 static FT_Library library = nullptr;
 
-Font * Font::SF;
-Font * Font::OpenSans;
-Font * Font::System;
+Font* Font::SF;
+Font* Font::OpenSans;
+Font* Font::System;
 
 static FT_Library ftLibrary() {
     if (library == nullptr) {
@@ -32,7 +32,7 @@ static FT_Library ftLibrary() {
     return library;
 }
 
-Glyph *renderGlyph(const FT_Face &face, char ch) {
+Glyph* renderGlyph(const FT_Face &face, char ch) {
     
     int glyphIndex = FT_Get_Char_Index(face, ch);
     
@@ -43,16 +43,16 @@ Glyph *renderGlyph(const FT_Face &face, char ch) {
     FT_BitmapGlyph bitmapGlyhp;
     FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
     
-    auto image = new Image(Size(bitmapGlyhp->bitmap.width,
-                                bitmapGlyhp->bitmap.rows),
+    auto image = new Image(Size((float)bitmapGlyhp->bitmap.width,
+								(float)bitmapGlyhp->bitmap.rows),
                            bitmapGlyhp->bitmap.buffer,
                            1);
     
     return new Glyph(ch,
                      image,
                      (int)face->glyph->metrics.horiAdvance / 64,
-                     Point(face->glyph->metrics.horiBearingX / 64,
-                           face->glyph->metrics.horiBearingY / 64));
+                     Point((float)face->glyph->metrics.horiBearingX / 64,
+                           (float)face->glyph->metrics.horiBearingY / 64));
 }
 
 Font::Font(const String& fileName, int size) : _fileName(fileName) {
@@ -61,8 +61,8 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     FT_Face face;
     
     FT_New_Memory_Face(ftLibrary(),
-                       (FT_Byte *)file->getData(),
-                       file->getSize(),
+                       (FT_Byte*)file->getData(),
+                       (FT_Long)file->getSize(),
                        0,
                        &face);
     
@@ -73,8 +73,8 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     float yMax = 0;
     float yMin = 0;
     
-    Glyph *maxGlyph = nullptr;
-    Glyph *minGlyph = nullptr;
+    Glyph* maxGlyph = nullptr;
+    Glyph* minGlyph = nullptr;
     
     FOR(128) {
         
@@ -108,7 +108,7 @@ float Font::height() const {
     return _height;
 }
 
-Glyph * Font::glyphForChar(char ch) {
+Glyph* Font::glyphForChar(char ch) {
     if (ch < 0) {
         Error("Invalid character: " << ch);
         return glyphs['?'];
@@ -116,7 +116,7 @@ Glyph * Font::glyphForChar(char ch) {
     return glyphs[ch];
 }
 
-Font * Font::withSize(int size) {
+Font* Font::withSize(int size) {
     return new Font(_fileName, size);
 }
 

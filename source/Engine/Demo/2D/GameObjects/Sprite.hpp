@@ -20,7 +20,7 @@ class Sprite : public Drawable {
     friend World;
     
     virtual void draw() override;
-//    virtual BufferData *getBufferData() override;
+//    virtual BufferData* getBufferData() override;
 //    const BufferConfiguration bufferConfiguration() const override;
     
 protected:
@@ -30,14 +30,14 @@ protected:
     Point _position;
     Size _size;
     
-    Image *_image;
+    Image* _image;
     
-    Array<Rect> *_subsprites = nullptr;
+    Array<Rect>* _subsprites = nullptr;
     int _subspriteIndex = -1;
     
 public:
         
-    Sprite(Image *image);
+    Sprite(Image* image);
     ~Sprite();
     
     void setPosition(const Point &position);

@@ -28,7 +28,7 @@ class RegistryWriter
 
 public:
 
-    RegistryWriter& operator = (const char *value);
+    RegistryWriter& operator = (const char* value);
 
     operator std::string();
 };

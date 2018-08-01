@@ -18,7 +18,7 @@ class Image : public NonCopyable {
     
     GLuint _id = 0;
     
-    void init(const Size &size, void *data, int channels, int filter);
+    void init(const Size &size, void* data, int channels, int filter);
     
     Image() = default;
     
@@ -32,10 +32,10 @@ public:
         Default = Linear
     };
     
-    static Image *cat;
-    static Image *slow;
-    static Image *palm;
-    static Image *frisk;
+    static Image* cat;
+    static Image* slow;
+    static Image* palm;
+    static Image* frisk;
 
     static void initialize();
   
@@ -43,7 +43,7 @@ public:
     int channels;
     
     Image(const Size &size, int channels = 4, Filter filter = Filter::Default);
-    Image(const Size &size, void *data, int channels, Filter filter = Filter::Default);
+    Image(const Size &size, void* data, int channels, Filter filter = Filter::Default);
     Image(const std::string &file, Filter filter = Filter::Default);
     ~Image();
 

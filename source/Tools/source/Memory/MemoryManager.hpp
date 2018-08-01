@@ -24,7 +24,7 @@ public:
     
     static bool isTracking;
     
-    static Array<ClassMemoryInfo *> info;
+    static Array<ClassMemoryInfo*> info;
     
     static int totalObjectsAllocated;
     static int totalObjectsDeleted;

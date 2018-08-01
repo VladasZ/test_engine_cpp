@@ -10,9 +10,9 @@
 #include "Debug.hpp"
 #include "Window.hpp"
 
-Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : data(data) {
+Buffer::Buffer(BufferData* data, const BufferConfiguration &configuration) : data(data) {
     
-    verticesCount = data->vertSize / (sizeof(float) * configuration.configuration[0]);
+    verticesCount = data->vertSize / (sizeof(float)* configuration.configuration[0]);
     
     GL(glGenVertexArrays(1, &vertexArrayObject));
     GL(glBindVertexArray(vertexArrayObject));
@@ -32,12 +32,12 @@ Buffer::Buffer(BufferData *data, const BufferConfiguration &configuration) : dat
     GL(glBindVertexArray(0));
 }
 
-Buffer::Buffer(GLfloat *vertData, GLuint vertSize, const BufferConfiguration &configuration)
+Buffer::Buffer(GLfloat* vertData, GLuint vertSize, const BufferConfiguration &configuration)
 :
 Buffer(new BufferData(vertData, vertSize), configuration) { }
 
-Buffer::Buffer(GLfloat *vertData, GLuint vertSize,
-               GLushort *indData,  GLuint indSize,
+Buffer::Buffer(GLfloat* vertData, GLuint vertSize,
+               GLushort* indData,  GLuint indSize,
                const BufferConfiguration &configuration)
 :
 Buffer(new BufferData(vertData, vertSize, indData, indSize), configuration) { }
@@ -93,8 +93,8 @@ void Buffer::windowSizeChanged() {
     const Rect rect { 
         -1, 
         -1,
-         2 * (Window::screenResolution.width  / Window::size.width), 
-         2 * (Window::screenResolution.height / Window::size.height)
+         2* (Window::screenResolution.width  / Window::size.width), 
+         2* (Window::screenResolution.height / Window::size.height)
     };
 
     static const GLushort indices[] = { 0, 1, 3, 2 };

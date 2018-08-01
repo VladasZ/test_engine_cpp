@@ -13,7 +13,7 @@
 
 class DrawingView : public View {
     
-    Array<Path *> paths;
+    Array<Path*> paths;
     
     void draw() override;
 
@@ -21,6 +21,6 @@ public:
     
     using View::View;
  
-    void addPath(Path *path);
+    void addPath(Path* path);
     
 };

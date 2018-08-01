@@ -31,12 +31,12 @@ public:
         friend View;
         friend Layout;
 
-        void _layout(View *view) const;
-        void _layoutWithoutAnchor(View *view) const;
-        void _layoutWithAnchor(View *view) const;
+        void _layout(View* view) const;
+        void _layoutWithoutAnchor(View* view) const;
+        void _layoutWithAnchor(View* view) const;
 
         float value = 0;
-        View *anchor = nullptr;
+        View* anchor = nullptr;
 
         bool isTop()     const { return type() == _LayoutType::Top;     }
         bool isBottom()  const { return type() == _LayoutType::Bottom;  }
@@ -51,7 +51,7 @@ public:
 
     public:
 
-        Base(float value, View *anchor) : value(value), anchor(anchor) { }
+        Base(float value, View* anchor) : value(value), anchor(anchor) { }
     };
 
 #define _DEFINE_LAYOUT_TYPE(_type) \
@@ -60,10 +60,10 @@ private:\
         _LayoutType type() const override { return _LayoutType::_type; } \
         public: using Base::Base; };\
 public:\
-    static Base * _type()                        { return new L##_type(0, nullptr);     }\
-    static Base * _type(float value)             { return new L##_type(value, nullptr); }\
-    static Base * _type(View *view)              { return new L##_type(0, view);        }\
-    static Base * _type(float value, View *view) { return new L##_type(value, view);    }\
+    static Base* _type()                        { return new L##_type(0, nullptr);     }\
+    static Base* _type(float value)             { return new L##_type(value, nullptr); }\
+    static Base* _type(View* view)              { return new L##_type(0, view);        }\
+    static Base* _type(float value, View* view) { return new L##_type(value, view);    }\
 private:
 
     _DEFINE_LAYOUT_TYPE(Top);
@@ -75,6 +75,6 @@ private:
 
 public:
 
-    using Arr = Array<Base *>;
+    using Arr = Array<Base*>;
 
 };

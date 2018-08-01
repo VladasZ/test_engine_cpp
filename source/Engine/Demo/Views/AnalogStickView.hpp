@@ -15,7 +15,7 @@ class AnalogStickView : public DrawingView {
   
     void setup() override;
     
-    DrawingView *directionStick;
+    DrawingView* directionStick;
     
     void onTouchMoved(const Point &touch);
     

@@ -15,6 +15,6 @@ String what(const std::exception_ptr &eptr) {
     try { rethrow_exception(eptr); }
     catch (const exception  &e) { return e.what(); }
 //    catch (const string     &e) { return e; }
-    catch (const char       *e) { return e; }
+    catch (const char      * e) { return e; }
     catch (...) { return "Unknown exception."; }
 }

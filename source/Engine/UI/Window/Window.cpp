@@ -25,7 +25,7 @@ void sizeChanged(GLFWwindow* window, int width, int height);
 
 void Window::initialize(int width, int height) {
 
-    size = Size(width, height);
+    size = Size((float)width, (float)height);
 
 #if GLFW
 
@@ -45,7 +45,7 @@ void Window::initialize(int width, int height) {
 
     if (window == nullptr) {
         Error("GLFW window creation failed");
-        return;
+		throw "GLFW window creation failed";
     }
 
     glfwMakeContextCurrent(window);
@@ -55,17 +55,15 @@ void Window::initialize(int width, int height) {
     glewExperimental = GL_TRUE;
     if (glewInit()) {
         Error("Glew initialization failed");
-        return;
+		throw "Glew initialization failed";
     }
 
-    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     screenResolution = { (float)mode->width, (float)mode->height };
     
     Log("Screen resolution: " << (int)screenResolution.width << "x" << (int)screenResolution.height);
 
 #endif
-
-    cout << "hello" << endl;
 
     //GL(glEnable(GL_DEPTH_TEST));
     GL(glEnable(GL_BLEND));
@@ -118,8 +116,8 @@ void Window::update() {
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
-    Window::size = Size(width, height);
-    rootView->setFrame(Rect(width, height));
+    Window::size = Size((float)width, (float)height);
+    rootView->setFrame(Rect((float)width, (float)height));
     rootFrameBuffer->clear();
     Buffer::windowSizeChanged();
     update();
@@ -127,5 +125,5 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
 }
 
 void Window::resetViewport() {
-    glViewport(0, 0, size.width, size.height);
+    glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height);
 }

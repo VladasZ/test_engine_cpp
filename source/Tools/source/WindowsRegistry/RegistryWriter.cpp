@@ -63,7 +63,7 @@ void _try_open_hkey(const string& path) {
 
 RegistryWriter::RegistryWriter(const RegistryKey &key) : _reg_key(&key) { }
 
-RegistryWriter& RegistryWriter::operator=(const char *value) {
+RegistryWriter& RegistryWriter::operator=(const char* value) {
     _setRegistryKey(_reg_key->_path.c_str(), KEY.c_str(), value);
     return *this;
 }

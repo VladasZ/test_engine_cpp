@@ -13,16 +13,16 @@
 
 class DebugInfoView : public View _MEMORY_MANAGED(DebugInfoView) {
     
-    Label *fpsLabel;
+    Label* fpsLabel;
 #if MEMORY_TRACKING
-    Label *allocatedLabel;
-    Label *deletedLabel;
-    Label *existsLabel;
+    Label* allocatedLabel;
+    Label* deletedLabel;
+    Label* existsLabel;
 #endif
-    Label *framesDrawnLabel;
-    Label *touchLabel;
+    Label* framesDrawnLabel;
+    Label* touchLabel;
 
-    Array<Label *> labels() const;
+    Array<Label*> labels() const;
     
   
 public:

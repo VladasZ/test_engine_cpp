@@ -33,11 +33,11 @@ void ImageView::draw() {
     View::drawSubviews();
 }
 
-Image * ImageView::getImage() const {
+Image* ImageView::getImage() const {
     return _image;
 }
 
-ImageView * ImageView::setImage(Image *image) {
+ImageView* ImageView::setImage(Image* image) {
     this->_image = image;
     return this;
 }

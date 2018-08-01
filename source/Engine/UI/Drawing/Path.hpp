@@ -25,10 +25,10 @@ class Path : public Drawable _MEMORY_MANAGED(Path) {
     
     Array<Point> points;
     
-//    BufferData *getBufferData() override;
+//    BufferData* getBufferData() override;
     bool bufferIsSet = false;
     
-    static Path *circleWith(const Point &center, float radius, int precision);
+    static Path* circleWith(const Point &center, float radius, int precision);
 
 public:
     
@@ -39,7 +39,7 @@ public:
 
     Path() = default;
     Path(const Rect &rect);
-    static Path *circleWith(const Point &center, float radius);
+    static Path* circleWith(const Point &center, float radius);
     
     void addPoint(float x, float y);
 };

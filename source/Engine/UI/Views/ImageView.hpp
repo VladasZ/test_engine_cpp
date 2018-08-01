@@ -16,12 +16,12 @@ class ImageView : public View _MEMORY_MANAGED(ImageView) {
       
     void draw() override;
 
-    Image *_image = nullptr;
+    Image* _image = nullptr;
     
 public:
     
-    Image * getImage() const;
-    ImageView * setImage(Image *image);
+    Image* getImage() const;
+    ImageView* setImage(Image* image);
     
     using View::View;
     ~ImageView() override;

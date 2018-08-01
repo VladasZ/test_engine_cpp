@@ -26,13 +26,13 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
     float _baselineShift;
     String _fileName;
     
-    Array<Glyph *> glyphs;
+    Array<Glyph*> glyphs;
   
 public:
     
-    static Font *System;
-    static Font *SF;
-    static Font *OpenSans;
+    static Font* System;
+    static Font* SF;
+    static Font* OpenSans;
     
     static void initialize();
 
@@ -41,7 +41,7 @@ public:
     float baselineShift() const;
     float height() const;
     
-    Glyph *glyphForChar(char ch);
+    Glyph* glyphForChar(char ch);
     
-    Font *withSize(int size);
+    Font* withSize(int size);
 };

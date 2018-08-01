@@ -17,12 +17,12 @@ class ConditionalEvent {
     
 public:
     using EventCallbackType = std::function<void(Params...)>;
-    using EventConditionType = std::function<bool(SubscriberType *, Params...)>;
+    using EventConditionType = std::function<bool(SubscriberType*, Params...)>;
 
 private:
 
     struct Subscriber {
-        SubscriberType *object = nullptr;
+        SubscriberType* object = nullptr;
         EventCallbackType action;
 
         Subscriber(SubscriberType* object, EventCallbackType action) : object(object), action(action) { }
@@ -30,7 +30,7 @@ private:
     
     Array<Subscriber> subscribers;
     
-    EventConditionType _condition = [](SubscriberType *, Params...) { return true; };
+    EventConditionType _condition = [](SubscriberType*, Params...) { return true; };
     
 public:
     
@@ -38,12 +38,12 @@ public:
 
     ConditionalEvent(EventConditionType condition) : _condition(condition) { }
     
-    void subscribe(SubscriberType *subscriber, EventCallbackType action) {
+    void subscribe(SubscriberType* subscriber, EventCallbackType action) {
         subscribers.emplace_back(subscriber, action);
     }
     
-    void unsubscribe(SubscriberType *subscriber) {
-        subscribers.removeIf([&](SubscriberType *_sub) { return _sub == subscriber; });
+    void unsubscribe(SubscriberType* subscriber) {
+        subscribers.removeIf([&](SubscriberType* _sub) { return _sub == subscriber; });
     }
     
     void operator()(Params... parameters) const {

@@ -23,7 +23,7 @@ FrameBuffer::FrameBuffer(const Size& size) : _size(size) {
 
     GL(glGenRenderbuffers(1, &_rbo));
     GL(glBindRenderbuffer(GL_RENDERBUFFER, _rbo));
-    GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, size.width, size.height));
+    GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, (GLsizei)size.width, (GLsizei)size.height));
     GL(glBindRenderbuffer(GL_RENDERBUFFER, 0));
 
     GL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo));
@@ -43,12 +43,12 @@ FrameBuffer::~FrameBuffer() {
     glDeleteFramebuffers(1, &_id);
 }
 
-FrameBuffer * FrameBuffer::bind() {
+FrameBuffer* FrameBuffer::bind() {
     GL(glBindFramebuffer(GL_FRAMEBUFFER, _id));
     return this;
 }
 
-FrameBuffer * FrameBuffer::unbind() {
+FrameBuffer* FrameBuffer::unbind() {
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
     return this;
 }
@@ -57,27 +57,27 @@ Rect FrameBuffer::getSize() const {
     return _size;
 }
 
-FrameBuffer * FrameBuffer::setSize(const Size& size) {
+FrameBuffer* FrameBuffer::setSize(const Size& size) {
     throw "Not implemented";
     _size = size;
     return this;
 }
 
-Image * FrameBuffer::getImage() const {
+Image* FrameBuffer::getImage() const {
     return _image;
 }
 
-FrameBuffer * FrameBuffer::draw(std::function<void()> closure) {
+FrameBuffer* FrameBuffer::draw(std::function<void()> closure) {
     bind();
-    glViewport(0, 0, _size.width, _size.height);
+    glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     closure();
     unbind();
     return this;
 }
 
-FrameBuffer * FrameBuffer::clear() {
+FrameBuffer* FrameBuffer::clear() {
     bind();
-    glViewport(0, 0, _size.width, _size.height);
+    glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     unbind();
     return this;

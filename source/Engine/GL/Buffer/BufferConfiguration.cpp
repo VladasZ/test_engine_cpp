@@ -50,8 +50,8 @@ void BufferConfiguration::setPointers() const {
                                  attribureSize,
                                  GL_FLOAT,
                                  GL_FALSE,
-                                 vertexSize * sizeof(GLfloat),
-                                 (GLvoid*)(strideForIndex(i) * sizeof(GLfloat))));
+                                 vertexSize* sizeof(GLfloat),
+                                 (GLvoid*)(strideForIndex(i)* sizeof(GLfloat))));
     }
 }
 

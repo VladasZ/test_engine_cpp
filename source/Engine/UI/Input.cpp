@@ -14,11 +14,11 @@
 #include "View.hpp"
 #include "Log.hpp"
 
-static auto touchBeganCondition = [](View *view, const Point &point, int id)
+static auto touchBeganCondition = [](View* view, const Point &point, int id)
 { return view->containsGlobalPoint(point); };
-static auto touchMovedCondition = [](View *view, const Point &point, int id)
+static auto touchMovedCondition = [](View* view, const Point &point, int id)
 { return view->getTouchID() == id; };
-static auto touchEndedCondition = [](View *view, const Point &point, int id)
+static auto touchEndedCondition = [](View* view, const Point &point, int id)
 { return view->getTouchID() == id; };
 
 TouchEvent Input::onTouchBegan(touchBeganCondition);
@@ -45,8 +45,8 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
 }
 
 void cursorPositionCallback(GLFWwindow* window, double x, double y) {
-    Input::cursorPosition = Point(x, y);
-    if (Input::mouseKeyIsPressed) Input::touchMoved(x, y, 1);
+    Input::cursorPosition = Point((float)x, (float)y);
+    if (Input::mouseKeyIsPressed) Input::touchMoved((float)x, (float)y, 1);
 }
 
 #endif

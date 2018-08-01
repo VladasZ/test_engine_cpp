@@ -36,11 +36,11 @@ public:
     static inline TestEngine::Size size;
     static inline TestEngine::Size screenResolution;
     
-    static inline RootView *rootView;
-    static inline FrameBuffer *rootFrameBuffer;
+    static inline RootView* rootView;
+    static inline FrameBuffer* rootFrameBuffer;
 
 #if GLFW
-    static inline GLFWwindow *window;
+    static inline GLFWwindow* window;
 #endif
     
     static void initialize(int width, int height);

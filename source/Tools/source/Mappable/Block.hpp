@@ -91,11 +91,11 @@
 //        return _types_to_string[_type];
 //    }
 //
-//    Block * begin() {
+//    Block* begin() {
 //        return this;
 //    }
 //
-//    Block * end() {
+//    Block* end() {
 //        return this + 1;
 //    }
 //

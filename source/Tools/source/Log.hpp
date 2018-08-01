@@ -18,11 +18,12 @@
 #define LOG_LOCATION_ENABLED true
 #define LOG_ERRORS true
 
-#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+std::string __getFileName(const char* path);
+
+#define __FILENAME__ __getFileName((strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__))
 
 #define LOCATION_INFO __FILENAME__, __func__, __LINE__
-#define LOCATION_PARAMETERS const char *fileName, const char *function, int line
-
+#define LOCATION_PARAMETERS std::string fileName, const char* function, int line
 
 #if LOG_LOCATION_ENABLED
 #define LOCATION(file, func, line) << "[" << file << "::" << func << " - " << line << "] "
@@ -35,7 +36,7 @@ std::cout << "[" << type << "]" \
 LOCATION(file, func, line)\
 << message << std::endl;
 
-#define __logI(message, file, func, line) std::cout << message << std::endl;
+#define __logI(message, file, func, line) __log(message, "INFO",    file, func, line)
 #define __logW(message, file, func, line) __log(message, "WARNING", file, func, line)
 
 #if LOG_ERRORS
@@ -46,7 +47,7 @@ LOCATION(file, func, line)\
 
 #define Log(message)     __logI(message, __FILENAME__, __func__, __LINE__)
 #define Warning(message) __logW(message, __FILENAME__, __func__, __LINE__)
-#define Error(message)  __logE(message, "file", __func__, __LINE__)
+#define Error(message)   __logE(message, __FILENAME__, __func__, __LINE__)
 #define Endl std::cout << std::endl
 
 #define PING Warning("")
@@ -62,5 +63,4 @@ LOCATION(file, func, line)\
 #endif
 
 #define Logvar(variable) Log(#variable << " : " << String() + variable)
-
 #define NOT_IMPLEMENTED Error("Not implemented")

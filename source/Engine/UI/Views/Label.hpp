@@ -15,7 +15,7 @@
 class Label : public View {
     
     std::string _text;
-    Font *_font = Font::System;
+    Font* _font = Font::System;
     
     void _setGlyphs();
     
@@ -28,9 +28,9 @@ public:
     Label(const Rect &rect = Rect());
 
     std::string text() const;
-    Label * setText(const std::string &text);
+    Label* setText(const std::string &text);
     
-    const Font * const font() const;
-    Label * setFont(Font *font);
+    const Font* const font() const;
+    Label* setFont(Font* font);
     
 };

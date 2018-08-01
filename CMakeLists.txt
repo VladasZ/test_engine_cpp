@@ -8,6 +8,7 @@ project(TestEngine)
 
 if (WIN32)
 	add_definitions(-DWINDOWS=1)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS=1)
 endif ()
 
 if (APPLE)

@@ -70,7 +70,7 @@ int ShaderCompiler::compile(const std::string &vertexPath, const std::string &fr
     Log("Compiling shader :" << vertexPath.c_str());
 #endif
     
-	char const * VertexSourcePointer = VertexShaderCode.c_str();
+	char const* VertexSourcePointer = VertexShaderCode.c_str();
 	GL(glShaderSource(VertexShaderID, 1, &VertexSourcePointer , NULL));
 	GL(glCompileShader(VertexShaderID));
 
@@ -88,7 +88,7 @@ int ShaderCompiler::compile(const std::string &vertexPath, const std::string &fr
     Log("Compiling shader :" << fragmentPath.c_str());
 #endif
 
-	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
+	char const* FragmentSourcePointer = FragmentShaderCode.c_str();
 	GL(glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer , NULL));
 	GL(glCompileShader(FragmentShaderID));
 

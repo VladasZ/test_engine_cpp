@@ -21,9 +21,9 @@ public:
     const char ch;
     const int advance;
     const Point bearing;
-    Image * const image;
+    Image* const image;
     
-    Glyph(char ch, Image *image, int advance, const Point &bearing);
+    Glyph(char ch, Image* image, int advance, const Point &bearing);
     ~Glyph();
     
     Size size() const;

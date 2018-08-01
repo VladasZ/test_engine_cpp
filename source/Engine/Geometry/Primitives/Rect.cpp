@@ -21,10 +21,10 @@ Rect::Rect(float x, float y, float width, float height) : origin(Point(x, y)), s
 Rect& Rect::operator=(const Rect &r2) {
     origin = r2.origin;
     size = r2.size;
-    return *this;
+    return* this;
 }
 
-BufferData * Rect::getData() const {
+BufferData* Rect::getData() const {
 
     GLfloat rect[] = {
         origin.x,              origin.y,
@@ -39,7 +39,7 @@ BufferData * Rect::getData() const {
                           indices, sizeof(indices));
 }
 
-BufferData * Rect::dataforImage() const {
+BufferData* Rect::dataforImage() const {
 
     GLfloat rect[] = {
         origin.x,              origin.y,               0.0f,  1.0f, //|_ |
@@ -54,7 +54,7 @@ BufferData * Rect::dataforImage() const {
                           indices, sizeof(indices));
 }
 
-BufferData * Rect::dataforFramebuffer() const {
+BufferData* Rect::dataforFramebuffer() const {
 
     GLfloat rect[] = {
         origin.x,              origin.y,               0.0f,  0.0f, //|_ |
@@ -90,7 +90,7 @@ String Rect::toString() const {
 }
 
 Rect Rect::random() {
-    static const float size = 300;
+    static const int size = 300;
     return {
         (float)System::random(size),
         (float)System::random(size),
@@ -100,5 +100,5 @@ Rect Rect::random() {
 }
 
 void Rect::setViewport() const {
-    glViewport(origin.x, (Window::size.height - size.height) - origin.y, size.width, size.height);
+    glViewport((GLsizei)origin.x, (GLsizei)((Window::size.height - size.height) - origin.y), (GLsizei)size.width, (GLsizei)size.height);
 }

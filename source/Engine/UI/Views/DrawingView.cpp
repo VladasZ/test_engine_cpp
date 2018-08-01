@@ -23,6 +23,6 @@ void DrawingView::draw() {
     drawSubviews();
 }
 
-void DrawingView::addPath(Path *path) {
+void DrawingView::addPath(Path* path) {
     paths.push_back(path);
 }

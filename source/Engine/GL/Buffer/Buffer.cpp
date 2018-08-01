@@ -67,7 +67,7 @@ void Buffer::initialize() {
 
     static const Rect fulscreenRect { -1, -1,  2,  2 };
 
-    fullscreen = new Buffer(fulscreenRect.getData(), BufferConfiguration::_2);
+    fullscreen = new Buffer(BufferData::fromRect(fulscreenRect), BufferConfiguration::_2);
 
     static const GLfloat imageFulscreenVertices[] = {
         -1.0f, -1.0f,  0.0f,  1.0f, //|_ |
@@ -79,7 +79,7 @@ void Buffer::initialize() {
     static const GLushort imageFulscreenVerticesIndices[] = { 0, 1, 3, 2 };
 
     fullscreenImage = new Buffer(
-        fulscreenRect.dataforImage(),
+		BufferData::fromRectToImage(fulscreenRect),
         BufferConfiguration::_2_2
     );
 
@@ -100,7 +100,7 @@ void Buffer::windowSizeChanged() {
     static const GLushort indices[] = { 0, 1, 3, 2 };
 
     rootUIBuffer = new Buffer(
-        rect.dataforFramebuffer(),
+		BufferData::fromRectToFramebuffer(rect),
         BufferConfiguration::_2_2
     );
 }

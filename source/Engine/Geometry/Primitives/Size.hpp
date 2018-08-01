@@ -10,9 +10,7 @@
 
 #include "Point.hpp"
 
-class BufferData;
-
-namespace TestEngine {
+namespace Geometry {
     
     class Size {
         
@@ -22,9 +20,7 @@ namespace TestEngine {
         
         Size() = default;
         Size(float width, float height);
-        
-        BufferData* getData() const;
-        
+                
         Point center() const;
                 
         template<class T>
@@ -37,4 +33,4 @@ namespace TestEngine {
     };
 }
 
-using namespace TestEngine;
+using namespace Geometry;

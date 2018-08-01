@@ -9,9 +9,7 @@
 #include "Point.hpp"
 #include <math.h>
 
-Point::Point(float x, float y) : x(x), y(y) {
-    
-}
+Point::Point(float x, float y) : x(x), y(y) { }
 
 Point::Point(Direction direction, float length) {
     switch (direction) {

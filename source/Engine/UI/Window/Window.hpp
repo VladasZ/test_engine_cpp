@@ -33,8 +33,8 @@ public:
     static inline int FPS = 0;
     static inline int framesDrawn = 0;
     
-    static inline TestEngine::Size size;
-    static inline TestEngine::Size screenResolution;
+    static inline Geometry::Size size;
+    static inline Geometry::Size screenResolution;
     
     static inline RootView* rootView;
     static inline FrameBuffer* rootFrameBuffer;

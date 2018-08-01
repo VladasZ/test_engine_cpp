@@ -12,8 +12,6 @@
 #include "Size.hpp"
 #include "String.hpp"
 
-class BufferData;
-
 class Rect {
     
 public:
@@ -37,12 +35,5 @@ public:
     
     String toString() const;
 
-    BufferData* getData() const;
-    BufferData* dataforImage() const;
-    BufferData* dataforFramebuffer() const;
-
     static Rect random();
-
-    void setViewport() const;
-
 };

@@ -73,7 +73,7 @@ void View::draw() {
 
     if (_needsDraw) {
         _frameBuffer->draw([&] {
-            _frameInFrameBuffer.setViewport();
+			GL::setViewport(_frameInFrameBuffer);
             Shader::ui.use();
             Shader::ui.setUniformColor(_color);
             Buffer::fullscreen->draw();

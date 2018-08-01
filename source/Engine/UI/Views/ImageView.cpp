@@ -24,7 +24,7 @@ void ImageView::draw() {
 			_image->bind();
 			if (_image->isMonochrome()) Shader::uiMonochrome.use();
 			else                        Shader::uiTexture.use();
-			_frameInFrameBuffer.setViewport();
+			GL::setViewport(_frameInFrameBuffer);
 			Buffer::fullscreenImage->draw();
 			_image->unbind();
 		});

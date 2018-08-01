@@ -10,6 +10,7 @@
 
 #include "GL.hpp"
 #include "Memory.hpp"
+#include "Size.hpp"
 
 class Buffer;
 
@@ -30,5 +31,10 @@ public:
     BufferData(const GLfloat* vertData,  GLuint vertSize,
                const GLushort* indData,  GLuint indSize);
     
+	static BufferData* fromSize(const Size& size);
+	static BufferData* fromRect(const Rect& rect);
+	static BufferData* fromRectToImage(const Rect& rect);
+	static BufferData* fromRectToFramebuffer(const Rect& rect);
+
     ~BufferData();
 };

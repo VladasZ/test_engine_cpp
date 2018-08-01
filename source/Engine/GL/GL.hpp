@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Rect.hpp"
+
 class mat4 { };
 class vec3 { };
 
@@ -19,3 +21,10 @@ class vec3 { };
 #endif
 
 #include "Shader.hpp"
+
+class GL {
+public:
+	static void setViewport(const Rect& rect) { 
+		glViewport((GLint)rect.origin.x, (GLint)rect.origin.y, (GLsizei)rect.size.width, (GLsizei)rect.size.height);
+	}
+};

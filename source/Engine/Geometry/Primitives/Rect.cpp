@@ -7,10 +7,7 @@
 //
 
 #include "Rect.hpp"
-#include "Window.hpp"
-#include "BufferData.hpp"
 #include "System.hpp"
-#include "GL.hpp"
 
 Rect::Rect(float width, float height) : size(Size(width, height)) { }
 
@@ -22,51 +19,6 @@ Rect& Rect::operator=(const Rect &r2) {
     origin = r2.origin;
     size = r2.size;
     return* this;
-}
-
-BufferData* Rect::getData() const {
-
-    GLfloat rect[] = {
-        origin.x,              origin.y,
-        origin.x,              size.height + origin.y,
-        size.width + origin.x, size.height + origin.y,
-        size.width + origin.x, origin.y
-    };
-
-    static const GLushort indices[] = { 0, 1, 3, 2 };
-
-    return new BufferData(rect,    sizeof(rect),
-                          indices, sizeof(indices));
-}
-
-BufferData* Rect::dataforImage() const {
-
-    GLfloat rect[] = {
-        origin.x,              origin.y,               0.0f,  1.0f, //|_ |
-        origin.x,              size.height + origin.y, 0.0f,  0.0f, //|- |
-        size.width + origin.x, size.height + origin.y, 1.0f,  0.0f, //| -|
-        size.width + origin.x, origin.y,               1.0f,  1.0f  //| _|
-    };
-
-    static const GLushort indices[] = { 0, 1, 3, 2 };
-
-    return new BufferData(rect, sizeof(rect),
-                          indices, sizeof(indices));
-}
-
-BufferData* Rect::dataforFramebuffer() const {
-
-    GLfloat rect[] = {
-        origin.x,              origin.y,               0.0f,  0.0f, //|_ |
-        origin.x,              size.height + origin.y, 0.0f,  1.0f, //|- |
-        size.width + origin.x, size.height + origin.y, 1.0f,  1.0f, //| -|
-        size.width + origin.x, origin.y,               1.0f,  0.0f  //| _|
-    };
-
-    static const GLushort indices[] = { 0, 1, 3, 2 };
-
-    return new BufferData(rect, sizeof(rect),
-        indices, sizeof(indices));
 }
 
 float Rect::maxX() const { return origin.x + size.width; }
@@ -85,8 +37,8 @@ Rect Rect::withZeroOrigin() const {
 }
 
 String Rect::toString() const {
-    return "x: ";//_s +  origin.x  +      " y: " + origin.y +
-      //" width: "   + size.width + " height: " + size.width;
+    return "x: "_s +  origin.x  +      " y: " + origin.y +
+      " width: "   + size.width + " height: " + size.width;
 }
 
 Rect Rect::random() {
@@ -97,8 +49,4 @@ Rect Rect::random() {
         (float)System::random(size),
         (float)System::random(size)
     };
-}
-
-void Rect::setViewport() const {
-    glViewport((GLsizei)origin.x, (GLsizei)((Window::size.height - size.height) - origin.y), (GLsizei)size.width, (GLsizei)size.height);
 }

@@ -31,6 +31,58 @@ indSize(indSize)
     memcpy(this->indData, indData, indSize);
 }
 
+BufferData* BufferData::fromSize(const Size& size) {
+	const GLfloat data[] = {
+		0,           0,
+		0,          size.height,
+		size.width, size.height,
+		size.width, 0
+	};
+
+	static const GLushort indices[] = { 0, 1, 3, 2 };
+
+	return new BufferData(data, sizeof(data), indices, sizeof(indices));
+}
+
+BufferData* BufferData::fromRect(const Rect& rect) {
+	GLfloat data[] = {
+		rect.origin.x,                   rect.origin.y,
+		rect.origin.x,                   rect.size.height + rect.origin.y,
+		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y,
+		rect.size.width + rect.origin.x, rect.origin.y
+	};
+
+	static const GLushort indices[] = { 0, 1, 3, 2 };
+
+	return new BufferData(data, sizeof(data), indices, sizeof(indices));
+}
+
+BufferData* BufferData::fromRectToImage(const Rect& rect) {
+	GLfloat data[] = {
+		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|_ |
+		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //|- |
+		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  0.0f, //| -|
+		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| _|
+	};
+
+	static const GLushort indices[] = { 0, 1, 3, 2 };
+
+	return new BufferData(data, sizeof(rect), indices, sizeof(indices));
+}
+
+BufferData* BufferData::fromRectToFramebuffer(const Rect& rect) {
+	GLfloat data[] = {
+		rect.origin.x,                   rect.origin.y,                    0.0f,  0.0f, //|_ |
+		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  1.0f, //|- |
+		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  1.0f, //| -|
+		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  0.0f  //| _|
+	};
+
+	static const GLushort indices[] = { 0, 1, 3, 2 };
+
+	return new BufferData(data, sizeof(data), indices, sizeof(indices));
+}
+
 BufferData::~BufferData() {
     if (vertData != nullptr) free(vertData);
     if (indData != nullptr) free(indData);

@@ -8,9 +8,18 @@
 
 #pragma once
 
-#include "UI.hpp"
-#include "MemoryManaged.hpp"
+#include "StackView.hpp"
+#include "Label.hpp"
 
-class DebugInfoView : public View {
+class DebugInfoView : public StackView {
     
+	Label* fpsLabel         = new Label();
+	Label* framesDrawnLabel = new Label();
+	Label* touchLabel       = new Label();
+
+public:
+
+	using StackView::StackView;
+
+	void setup() override;
 };

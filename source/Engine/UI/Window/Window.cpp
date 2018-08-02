@@ -88,7 +88,6 @@ void Window::setup() {
 	rootView->_frameBuffer = rootFrameBuffer;
     rootView->setup();
     rootView->layout();
-
 }
 
 void Window::update() {

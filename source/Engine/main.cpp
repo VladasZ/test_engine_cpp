@@ -6,10 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-
 #include "TestEngineMain.h"
-#include "Point.hpp"
-#include "Log.hpp"
 
 using namespace std;
 

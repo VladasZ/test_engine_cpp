@@ -10,7 +10,7 @@
 
 #include "Event.hpp"
 
-class Events {
-public:
+struct Events {
 
+	static inline const Event<int> fps;
 };

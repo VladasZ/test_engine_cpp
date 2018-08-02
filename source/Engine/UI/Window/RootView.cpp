@@ -24,60 +24,30 @@ ImageView* imageView;
 void RootView::setup() {
 
 	addSubview(
-		(new StackView({300, 800}))
-		->addLayout(L::Bottom(), L::Right())
-		->addSubview(
-			(new View({50, 50}))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new Label({50, 10}))
-			->setText("gelllo")
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->addSubview(
-		(new View({ 50, 50 }))
-			->setColor(C::green)
-		)
-		->setColor(C::blue)
+		View::make({ 100, 100 })
+		->addLayout(L::Right(), L::Top())
+		->setColor(Color::blue)
+	);
+
+	addSubview(
+		View::make({ 100, 100 })
+		->addLayout(L::Right(), L::Bottom())
+		->setColor(Color::blue)
+	);
+
+	addSubview(
+		View::make({ 100, 100 })
+		->addLayout(L::Left(), L::Bottom())
+		->setColor(Color::blue)
 	);
 
 	createSticks();
 
 #if DEBUG_VIEW
-	debugInfoView = new DebugInfoView();
-	addSubview(debugInfoView);
+	addSubview(
+		(new DebugInfoView({100, 200}))
+		->addLayout(L::Top(), L::Left())
+	);
 #endif
 }
 

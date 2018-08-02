@@ -44,7 +44,7 @@ public:
 
     static void windowSizeChanged();
 
-    static inline Buffer* fullscreen = nullptr;
+    static inline Buffer* fullscreen      = nullptr;
     static inline Buffer* fullscreenImage = nullptr;
-    static inline Buffer* rootUIBuffer = nullptr;
+    static inline Buffer* rootUIBuffer    = nullptr;
 };

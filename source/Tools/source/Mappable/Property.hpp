@@ -14,23 +14,26 @@
 #include "Meta.hpp"
 #include "String.hpp"
 
-template<class ClassType, class MemberType>
+template<class _ClassType, class _MemberType>
 class Property {
 public:
+	using ClassType = _ClassType;
+	using MemberType = _MemberType;
     using Pointer = MemberType ClassType::*;
     const String name;
     const Pointer pointer;
-    Property(const String &name, Pointer pointer) : name(name), pointer(pointer) { }
+	const _MemberType default_value;
+    Property(const String &name, Pointer pointer, const _MemberType& default_value) : name(name), pointer(pointer), default_value(default_value) { }
 };
 
-template<class _ClassType, class _MemberType>
-static constexpr auto make_property(const String &name, _MemberType _ClassType::* pointer) {
-    return Property<_ClassType, _MemberType>(name, pointer);
+template<class _ClassType, class _MemberType, class _DefaultType>
+static const auto make_property(const String& name, _MemberType _ClassType::* pointer, const _DefaultType& default_value) {
+    return Property<_ClassType, _MemberType>(name, pointer, default_value);
 }
 
 template<class ClassType, class MemberType>
-std::ostream& operator<<(std::ostream& os, const Property<ClassType, MemberType>& obj) {
-    return os << "Property: " << obj.name << " of: " << typeid(ClassType).name();
+auto operator<<(std::ostream& os, const Property<ClassType, MemberType>& obj) {
+    return os << "Property: " << obj.name << " of: " << nameOf<ClassType>;
 }
 
-#define PROPERTY(name, type) make_property(#name,  &type::name)
+#define PROPERTY(name, type, default_value) make_property(#name,  &type::name, default_value)

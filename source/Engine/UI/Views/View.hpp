@@ -73,8 +73,8 @@ public:
 
     Array<View*> subviews;
 
+	static View* make(const Rect& rect = Rect()) { return new View(rect); }
     View(const Rect &rect = Rect());
-
     virtual ~View();
     
     Rect frame() const { return _frame; }

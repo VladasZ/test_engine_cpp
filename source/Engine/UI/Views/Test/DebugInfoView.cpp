@@ -7,5 +7,16 @@
 //
 
 #include "DebugInfoView.hpp"
-#include "Macro.hpp"
 
+void DebugInfoView::setup() {
+
+
+	setColor(C::green);
+
+	fpsLabel->setText("Hello");
+
+
+	addSubview(fpsLabel);
+	addSubview(framesDrawnLabel);
+	addSubview(touchLabel);
+}

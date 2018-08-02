@@ -9,51 +9,50 @@
 #pragma once
 
 #include "Size.hpp"
+#include "GL.hpp"
 #include "NonCopyable.hpp"
 
 class FrameBuffer;
 
-class UIImage : public NonCopyable {
-    
-	unsigned int _id = 0;
-    
-    void init(const Size &size, void* data, int channels, int filter);
-    
-	UIImage() = default;
-    
+class Image : public NonCopyable {
+
+	GLuint _id = 0;
+
+	void init(const Size &size, void* data, int channels, int filter);
+
+	Image() = default;
+
 public:
-    
-    enum Filter {
-        Nearest,
-        Linear,
-        Bilinear,
-        Trilinear,
-        Default = Linear
-    };
-    
-    static UIImage* cat;
-    static UIImage* slow;
-    static UIImage* palm;
-    static UIImage* frisk;
 
-    static void initialize();
-  
-    Size size;
-    int channels;
-    
-	UIImage(const Size &size, int channels = 4, Filter filter = Filter::Default);
-	UIImage(const Size &size, void* data, int channels, Filter filter = Filter::Default);
-	UIImage(const std::string &file, Filter filter = Filter::Default);
-    ~UIImage();
+	enum Filter {
+		Nearest,
+		Linear,
+		Bilinear,
+		Trilinear,
+		Default = Linear
+	};
 
-	const unsigned int& _get_GL_id() { return _id; }
+	static Image* cat;
+	static Image* slow;
+	static Image* palm;
+	static Image* frisk;
 
-    void bind() const;
-    void unbind() const;
-    
-    void setFilter(Filter filter);
-    
-    bool isMonochrome() const;
+	static void initialize();
+
+	Size size;
+	int channels;
+
+	Image(const Size &size, int channels = 4, Filter filter = Filter::Default);
+	Image(const Size &size, void* data, int channels, Filter filter = Filter::Default);
+	Image(const std::string &file, Filter filter = Filter::Default);
+	~Image();
+
+	GLuint &_get_GL_id() { return _id; }
+
+	void bind() const;
+	void unbind() const;
+
+	void setFilter(Filter filter);
+
+	bool isMonochrome() const;
 };
-
-using Image = UIImage;

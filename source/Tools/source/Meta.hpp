@@ -9,6 +9,7 @@
 #pragma once
 
 #include <tuple>
+#include <vector>
 #include <utility>
 #include <type_traits>
 
@@ -31,3 +32,15 @@ void for_each(Tuple&& tuple, F&& f) {
     constexpr std::size_t N = std::tuple_size_v<std::remove_reference_t<Tuple>>;
     __for_each_impl(std::forward<Tuple>(tuple), std::forward<F>(f), std::make_index_sequence<N>{});
 }
+
+template<typename>
+struct _is_vector : std::false_type {};
+
+template<typename T, typename A>
+struct _is_vector<std::vector<T, A>> : std::true_type {};
+
+template<class T>
+constexpr bool is_vector = _is_vector<T>::value;
+
+template <class T>
+using if_vector = typename std::enable_if<is_vector<T>>::type;

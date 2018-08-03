@@ -51,17 +51,12 @@ namespace TestEngine {
 
         static const Point one;
 
-        static const auto properties() {
-            return std::make_tuple
-            (
-                PROPERTY(x, Point),
-                PROPERTY(y, Point)
-            );
-        }
+		DECL_PROPERTIES(Point, (
+			PROPERTY(x, 0.f),
+			PROPERTY(y, 0.f)
+		));
 
-        String toString() const {
-            return String() + x + " : " + y;
-        }
+        String toString() const { return String() + x + " : " + y; }
     };
 }
 

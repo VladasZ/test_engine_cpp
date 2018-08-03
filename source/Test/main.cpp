@@ -17,54 +17,43 @@
 
 using namespace std;
 
-class Obj : public Mappable<Obj> {
+class TargetClass {
 
 public:
 
-	int something;
+	static void spes() {
+		cout << "spes" << endl;
+	}
 
-	static const auto properties() {
-		return std::make_tuple(
-			PROPERTY(something, Obj, 46464646)
-		);
+protected:
+
+	void helloww() {
+		Log("hellooww");
 	}
 };
 
-class TestClass : public Mappable<TestClass> {
 
-public:
 
-	int index;
-	string name;
-	vector<int> array;
-	Obj object;
 
-	static const auto properties() {
-		return std::make_tuple(
-			PROPERTY(index,  TestClass, 616),
-			PROPERTY(name,   TestClass, "default name"),
-			PROPERTY(array,  TestClass, vector<int>({ 1, 2, 3, 4, 5 })),
-			PROPERTY(object, TestClass, Obj())
-		);
-	}
-};
 
+void test() {
+
+	auto spes = TargetClass::spes;
+	auto spe2s = &TargetClass::helloww;
+
+
+	spes();
+}
 
 int main() {
 
-	try
-	{
-		auto object = TestClass::parse_string("{ \"index\" : 5, \"name\" : \"hello\", \"array\" : [ 4, 4, 4, 4 ], \"object\" : { \"something\" : 777 } }");
-		Logvar(object.index);
-		Logvar(object.name);
-		Logvar(object.array[0]);
-		Logvar(object.object.something);
+	try {
+		test();
 	}
 	catch (...)
 	{
 		Logvar(what());
 	}
-
 
 	return 0;
 }

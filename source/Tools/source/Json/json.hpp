@@ -14217,7 +14217,7 @@ class basic_json
             return default_value;
         }
 
-        JSON_THROW(type_error::create(306, "cannot use value() with " + std::string(type_name())));
+        JSON_THROW(type_error::create(306, "cannot use value<" + std::string(typeid(ValueType).name()) + ">(" + key + ") with " + std::string(type_name())));
     }
 
     /*!

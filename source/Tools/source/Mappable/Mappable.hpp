@@ -77,7 +77,7 @@ class Mappable
 
 	template <class Member, class Property>
 	static if_mappable<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
-		json_to_pack[property.name] = Member::to_json(member);
+		json_to_pack[property.name] = member.to_json();
 	}
 
 	template <class Member, class Property>
@@ -96,25 +96,11 @@ class Mappable
 	static if_mappable<VectorType> pack_vector(const std::vector<VectorType>& vector, const Property& property, nlohmann::json& json_to_pack) {
 		json_to_pack[property.name] = nlohmann::json::array();
 		for (const auto& object : vector)
-			json_to_pack[property.name].emplace_back(VectorType::to_json(object));
-	}
-
-public:
-	static T parse(const nlohmann::json& json_to_parse) {
-		T object;
-		for_each(T::properties(), [&](auto property) {
-			extract(object.*property.pointer, property, json_to_parse);
-		});
-		return object;
-	}
-
-	static T parse_string(const std::string& json_string) {
-		const nlohmann::json parsed_json = nlohmann::json::parse(json_string, nullptr, false);
-		return parse(parsed_json);
+			json_to_pack[property.name].emplace_back(object.to_json());
 	}
 
 	template <class T>
-	static nlohmann::json to_json(const T& object) {
+	static nlohmann::json static_to_json(const T& object) {
 		nlohmann::json json;
 		for_each(T::properties(), [&](auto property) {
 			pack(object.*property.pointer, property, json);
@@ -123,8 +109,31 @@ public:
 	}
 
 	template <class T>
-	static std::string to_json_string(const T& object) {
-		return to_json(object).dump();
+	static std::string static_to_json_string(const T& object) {
+		return static_to_json(object).dump();
+	}
+
+	static T parse(const nlohmann::json& json_to_parse) {
+		T object;
+		for_each(T::properties(), [&](auto property) {
+			extract(object.*property.pointer, property, json_to_parse);
+		});
+		return object;
+	}
+
+	nlohmann::json to_json() {
+		return Mappable<T>::static_to_json(*static_cast<T*>(this));
+	}
+
+public:
+
+	static T parse_string(const std::string& json_string) {
+		const nlohmann::json parsed_json = nlohmann::json::parse(json_string, nullptr, false);
+		return parse(parsed_json);
+	}
+
+	std::string to_json_string() {
+		return Mappable<T>::static_to_json_string(*static_cast<T*>(this));
 	}
 
 	static void printProperties() {

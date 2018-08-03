@@ -36,12 +36,4 @@ std::ostream& operator<<(std::ostream& os, const Property<ClassType, MemberType>
 	return os << "Property: " << obj.name << " of: " << typeid(ClassType).name();
 }
 
-#define PROPERTY(name, default_value) make_property(#name,  &__ClassType::name, default_value)
-
-#define DECL_PROPERTIES(__classType, __properties) using __ClassType = __classType;\
-   static const auto properties() {\
-return std::make_tuple\
-(\
-__properties\
-);\
-}
+#define PROPERTY(name, __ClassType, default_value) make_property(#name,  &__ClassType::name, default_value)

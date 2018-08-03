@@ -9,13 +9,8 @@
 #pragma once
 
 #include "Color.hpp"
-#include "Point.hpp"
-#include "BufferConfiguration.hpp"
-#include "MemoryManaged.hpp"
+#include "MemoryManager.hpp"
 #include "NonCopyable.hpp"
-
-class Buffer;
-class BufferData;
 
 class Drawable : public NonCopyable _MEMORY_MANAGED(Drawable) {
     

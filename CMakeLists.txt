@@ -20,7 +20,7 @@ add_definitions(-DGLFW=1)
 add_definitions(-DDEBUG=1)
 
 add_subdirectory(source/Engine)
-#add_subdirectory(source/UI)
+add_subdirectory(source/Geometry)
 add_subdirectory(source/Tools)
 add_subdirectory(source/Test)
 add_subdirectory(source/soil)

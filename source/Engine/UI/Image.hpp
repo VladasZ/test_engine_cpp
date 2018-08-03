@@ -36,6 +36,7 @@ public:
 	static Image* slow;
 	static Image* palm;
 	static Image* frisk;
+	static Image* fullHD;
 
 	static void initialize();
 

@@ -17,6 +17,7 @@ Image* Image::cat;
 Image* Image::slow;
 Image* Image::palm;
 Image* Image::frisk;
+Image* Image::fullHD;
 
 static int modeForChannels(int channels) {
 	switch (channels) {
@@ -78,6 +79,11 @@ Image::Image(const std::string &file, Filter filter) {
 		&channels,
 		SOIL_LOAD_RGBA);
 
+	if (image == nullptr) {
+		Error("Failed to load image: " << file);
+		return;
+	}
+
 #if IMAGES_LOADING_OUTPUT
 	Log("Loading image: " << file << " channels: " << channels);
 #endif
@@ -104,6 +110,7 @@ void Image::initialize() {
 	slow = new Image("slow.jpg");
 	palm = new Image("palm.png");
 	frisk = new Image("frisk.png");
+	fullHD = new Image("fullHD.jpg");
 }
 
 void Image::setFilter(Filter filter) {

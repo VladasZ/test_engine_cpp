@@ -49,7 +49,7 @@ void Shader::initialize() {
 void Shader::setUniformColor(const Color &color) {
     if (uniformColor == -1)
         uniformColor = glGetUniformLocation(program, "uniformColor");
-    color.setToUniform(uniformColor);
+	GL(glUniform4fv(uniformColor, 1, &color.r));
 }
 
 void Shader::setUITranslationMatrix(const mat4 &projection) {
@@ -76,4 +76,3 @@ void Shader::setViewportTranslation(const Size &viewport) {/*
     use();
     setUITranslationMatrix(viewportTranslation);*/
 }
-

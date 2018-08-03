@@ -16,7 +16,7 @@ BufferConfiguration::BufferConfiguration(int firstParam, int secondParam, int th
     if (firstParam == 0) { Error("Zero configuration"); return; }
     
     if (secondParam > 0) size++;
-    if (thirdParam > 0)  size++;
+    if (thirdParam  > 0) size++;
         
                          configuration[0] = firstParam;
     if (secondParam > 0) configuration[1] = secondParam;

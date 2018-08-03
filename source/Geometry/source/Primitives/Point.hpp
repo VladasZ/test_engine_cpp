@@ -8,9 +8,6 @@
 
 #pragma once
 
-#include "String.hpp"
-#include "Mappable.hpp"
-
 enum Direction {
     Right,
     Left,
@@ -20,7 +17,7 @@ enum Direction {
 
 namespace TestEngine {
 
-    class Point : public Mappable<Point> {
+    class Point {
 
     public:
 
@@ -50,13 +47,6 @@ namespace TestEngine {
         void operator *=(float value);
 
         static const Point one;
-
-		DECL_PROPERTIES(Point, (
-			PROPERTY(x, 0.f),
-			PROPERTY(y, 0.f)
-		));
-
-        String toString() const { return String() + x + " : " + y; }
     };
 }
 

@@ -10,7 +10,7 @@
 #include "Font.hpp"
 #include "Glyph.hpp"
 #include "Image.hpp"
-#include "Primitives.hpp"
+#include "Rect.hpp"
 
 Label::Label(const Rect &rect) : View(rect) {
     _color = Color::gray;

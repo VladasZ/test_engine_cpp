@@ -66,21 +66,6 @@ BufferData* BufferData::fromRectToImage(const Rect& rect) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRectToFramebuffer(const Rect& rect) {
-
-	GLfloat data[] = {
-		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|- |
-		rect.origin.x,                   rect.size.height + rect.origin.y, 1.0f,  0.0f, //|_ |
-		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 0.0f,  0.0f, //| _|
-		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| -|
-	};
-
-	static const GLushort indices[] = { 0, 1, 3, 2 };
-
-
-	return new BufferData(data, sizeof(data), indices, sizeof(indices));
-}
-
 BufferData::~BufferData() {
     if (vertData != nullptr) free(vertData);
     if (indData  != nullptr) free(indData);

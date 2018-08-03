@@ -19,11 +19,11 @@ class String;
 
 template <class T>
 constexpr inline bool is_string_convertible =
-    std::is_same_v<T, char>            ||
-    std::is_same_v<T, const char*>    ||
-    std::is_same_v<T, std::string>     ||
-    std::is_same_v<T, String>          ||
-    has_toString<T>                    ||
+    std::is_same_v<T, char>        ||
+    std::is_same_v<T, const char*> ||
+    std::is_same_v<T, std::string> ||
+    std::is_same_v<T, String>      ||
+    has_toString<T>                ||
     std::is_fundamental_v<T>
     ;
 

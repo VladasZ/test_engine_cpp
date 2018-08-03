@@ -81,11 +81,13 @@ void Buffer::windowSizeChanged() {
 
     if (rootUIBuffer != nullptr) delete rootUIBuffer;
 
+	const auto heightRatio = Window::screenResolution.height / Window::size.height;
+
     const Rect rect { 
-        -1, 
-	    -1 * (Window::screenResolution.height / Window::size.height),
-         2 * (Window::screenResolution.width  / Window::size.width), 
-         2
+	   -1, 
+	   -1 + 2 * (1 - heightRatio),
+	    2 * (Window::screenResolution.width / Window::size.width), 
+	    2 * heightRatio
     };
 
     rootUIBuffer = new Buffer(

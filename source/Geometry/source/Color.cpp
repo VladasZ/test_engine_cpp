@@ -8,9 +8,7 @@
 
 #include "Array.hpp"
 #include "Color.hpp"
-#include "GL.hpp"
 #include "System.hpp"
-#include "Debug.hpp"
 
 using namespace std;
 
@@ -30,10 +28,6 @@ Color& Color::operator=(Color const &obj) {
 }
 
 Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
-
-void Color::setToUniform(int uniform) const {
-    GL(glUniform4fv(uniform, 1, &this->r));
-}
 
 Color Color::random() {
 

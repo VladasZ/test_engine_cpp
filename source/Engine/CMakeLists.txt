@@ -11,6 +11,6 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 
 link_project(soil)
 link_project(Tools)
-#link_project(UI)
+link_project(Geometry)
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})

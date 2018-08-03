@@ -6,8 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Point.hpp"
 #include <math.h>
+
+#include "Point.hpp"
 
 Point::Point(float x, float y) : x(x), y(y) { }
 

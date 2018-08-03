@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Primitives.hpp"
+#include "Rect.hpp"
 #include "NonCopyable.hpp"
 #include "Memory.hpp"
 #include "Image.hpp"

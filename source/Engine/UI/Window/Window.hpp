@@ -50,6 +50,4 @@ public:
     static void update();
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
-
-    static void resetViewport();
 };

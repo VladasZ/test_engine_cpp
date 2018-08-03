@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Primitives.hpp"
+#include "Rect.hpp"
 #include "Drawable.hpp"
 #include "Array.hpp"
 #include "Image.hpp"

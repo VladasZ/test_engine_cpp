@@ -95,8 +95,10 @@ void Window::update() {
     
     rootView->draw();
 
+	GL(glViewport(0, 0, size.width, size.height));
+
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-    resetViewport();
+	GL(glViewport(0, 0, size.width, size.height));
     Shader::uiTexture.use();
     rootFrameBuffer->getImage()->bind();
     Buffer::rootUIBuffer->draw();
@@ -114,8 +116,4 @@ void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Buffer::windowSizeChanged();
     update();
     GL(glfwSwapBuffers(Window::window));
-}
-
-void Window::resetViewport() {
-    glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height);
 }

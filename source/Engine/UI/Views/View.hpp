@@ -11,7 +11,7 @@
 #include "Array.hpp"
 #include "Drawable.hpp"
 #include "Color.hpp"
-#include "Primitives.hpp"
+#include "Rect.hpp"
 #include "Memory.hpp"
 #include "Layout.hpp"
 

@@ -33,7 +33,7 @@ bool Rect::contains(const Point &point) const {
 }
 
 Rect Rect::withZeroOrigin() const {
-    return Rect(size.width, size.height);
+	return { size.width, size.height };
 }
 
 String Rect::toString() const {

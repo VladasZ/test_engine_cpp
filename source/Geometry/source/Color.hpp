@@ -9,9 +9,8 @@
 #pragma once
 
 #include "String.hpp"
-#include "Memory.hpp"
 
-class Color MEMORY_MANAGED(Color) {
+class Color {
     
 public:
         
@@ -29,9 +28,7 @@ public:
     static Color random();
     
     Color withAlpha(float alpha) const;
-    
-    void setToUniform(int uniform) const;
-    
+        
     String toString() const;
     
     bool isTransparent() const;

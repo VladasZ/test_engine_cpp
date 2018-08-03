@@ -14,6 +14,7 @@
 #include "BufferData.hpp"
 #include "Buffer.hpp"
 #include "Window.hpp"
+#include "Geometry.hpp"
 
 Path::Path(const Rect &rect) {
     points = {
@@ -26,11 +27,11 @@ Path::Path(const Rect &rect) {
 
 Path* Path::circleWith(const Point &center, float radius, int precision) {
     auto path = new Path();
-//    float angleStep = pi<float>()* 2 / precision;
-//
-//    for (int i = 0; i < precision; i++)
-//        path->points.emplace_back(Point::onCircle(radius, angleStep* i, center));
-//
+    float angleStep = pi2<float> / precision;
+
+    for (int i = 0; i < precision; i++)
+        path->points.emplace_back(Point::onCircle(radius, angleStep * i, center));
+
     return path;
 }
 

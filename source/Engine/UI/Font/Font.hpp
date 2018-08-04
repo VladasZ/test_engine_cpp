@@ -36,7 +36,7 @@ public:
     
     static void initialize();
 
-    Font(const String& fileName, int size = 20);
+    Font(const String& fileName, int size = 42);
     
     float baselineShift() const;
     float height() const;

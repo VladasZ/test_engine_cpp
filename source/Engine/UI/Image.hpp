@@ -37,6 +37,7 @@ public:
 	static Image* palm;
 	static Image* frisk;
 	static Image* fullHD;
+	static Image* text;
 
 	static void initialize();
 
@@ -57,3 +58,5 @@ public:
 
 	bool isMonochrome() const;
 };
+
+using I = Image;

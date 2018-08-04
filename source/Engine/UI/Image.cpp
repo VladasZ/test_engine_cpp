@@ -18,6 +18,7 @@ Image* Image::slow;
 Image* Image::palm;
 Image* Image::frisk;
 Image* Image::fullHD;
+Image* Image::text;
 
 static int modeForChannels(int channels) {
 	switch (channels) {
@@ -106,11 +107,12 @@ void Image::unbind() const {
 }
 
 void Image::initialize() {
-	cat = new Image("cat.jpg");
-	slow = new Image("slow.jpg");
-	palm = new Image("palm.png");
-	frisk = new Image("frisk.png");
+	cat    = new Image("cat.jpg");
+	slow   = new Image("slow.jpg");
+	palm   = new Image("palm.png");
+	frisk  = new Image("frisk.png");
 	fullHD = new Image("fullHD.jpg");
+	text   = new Image("text.png");
 }
 
 void Image::setFilter(Filter filter) {

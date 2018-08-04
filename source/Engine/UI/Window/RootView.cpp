@@ -18,28 +18,34 @@
 #include "DrawingView.hpp"
 #include "FrameBuffer.hpp"
 #include "StackView.hpp"
+#include "TestView.hpp"
 
 ImageView* imageView;
 
 void RootView::setup() {
 
 	addSubview(
-		View::make({ 100, 100 })
-		->addLayout(L::Right(), L::Top())
-		->setColor(Color::blue)
+		(new TestView({300, 300}))
+		->addLayout(L::CenterH(), L::CenterV())
 	);
 
-	addSubview(
-		View::make({ 100, 100 })
-		->addLayout(L::Right(), L::Bottom())
-		->setColor(Color::blue)
-	);
+	//addSubview(
+	//	View::make({ 100, 100 })
+	//	->addLayout(L::Right(), L::Top())
+	//	->setColor(Color::blue)
+	//);
 
-	addSubview(
-		View::make({ 100, 100 })
-		->addLayout(L::Left(), L::Bottom())
-		->setColor(Color::blue)
-	);
+	//addSubview(
+	//	View::make({ 100, 100 })
+	//	->addLayout(L::Right(), L::Bottom())
+	//	->setColor(Color::blue)
+	//);
+
+	//addSubview(
+	//	View::make({ 100, 100 })
+	//	->addLayout(L::Left(), L::Bottom())
+	//	->setColor(Color::blue)
+	//);
 
 	createSticks();
 

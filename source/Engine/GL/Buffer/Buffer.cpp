@@ -91,7 +91,7 @@ void Buffer::windowSizeChanged() {
     };
 
     rootUIBuffer = new Buffer(
-		BufferData::fromRectToImage(rect),
+		BufferData::fromRectToFramebuffer(rect),
         BufferConfiguration::_2_2
     );
 }

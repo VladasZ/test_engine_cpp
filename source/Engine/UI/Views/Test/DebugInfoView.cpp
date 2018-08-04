@@ -11,7 +11,7 @@
 void DebugInfoView::setup() {
 
 
-	setColor(C::green);
+	setColor(C::gray);
 
 	fpsLabel->setText("Hello");
 

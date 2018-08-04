@@ -57,8 +57,19 @@ BufferData* BufferData::fromRect(const Rect& rect) {
 
 BufferData* BufferData::fromRectToImage(const Rect& rect) {
 	GLfloat data[] = {
-		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|_ |
-		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //|- |
+		rect.origin.x,                   rect.origin.y,                    0.0f,  0.0f, //|- |
+		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  1.0f, //|_ |
+		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  1.0f, //| _|
+		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  0.0f  //| -|
+	};
+
+	return new BufferData(data, sizeof(data), indices, sizeof(indices));
+}
+
+BufferData* BufferData::fromRectToFramebuffer(const Rect& rect) {
+	GLfloat data[] = {
+		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|- |
+		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //| _|
 		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  0.0f, //| -|
 		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| _|
 	};

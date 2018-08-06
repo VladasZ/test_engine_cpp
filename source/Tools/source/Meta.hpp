@@ -44,3 +44,22 @@ constexpr bool is_vector = _is_vector<T>::value;
 
 template <class T>
 using if_vector = typename std::enable_if<is_vector<T>>::type;
+
+template <class ArayType, class VectorType>
+void vector_to_c_array(ArayType& to_init, const VectorType& initializer) {
+	int index = 0;
+	for (const auto element : initializer)
+		to_init[index++] = element;
+}
+
+template <class ArayType>
+auto c_array_to_vector(ArayType& array) {
+	using ElementType = std::remove_const<std::remove_reference<decltype(*array)>::type>::type;
+	auto array_size = sizeof(array) / sizeof(ElementType);
+	std::vector<ElementType> vector;
+
+	for (int i = 0; i < array_size; i++)
+		vector.emplace_back(array[i]);
+
+	return vector;
+}

@@ -13,27 +13,38 @@
 
 #include "Meta.hpp"
 
-template<class _ClassType, class _MemberType>
-class Property {
+
+template<class _ClassType, class _MemberType, class _DefaultType, class _ConverterType = void>
+class Property
+{
 public:
 	using ClassType = _ClassType;
 	using MemberType = _MemberType;
 	using Pointer = MemberType ClassType::*;
+	using ConverterType = _ConverterType;
+	using DefaultType = _DefaultType;
 	const std::string name;
 	const std::string class_name = typeid(_ClassType).name();
 	const Pointer pointer;
-	const MemberType default_value;
-	Property(const std::string &name, Pointer pointer, const MemberType& default_value) : name(name), pointer(pointer), default_value(default_value) { }
+	const DefaultType default_value;
+	Property(const std::string &name, Pointer pointer, const DefaultType& default_value)
+		: name(name), pointer(pointer), default_value(default_value)
+	{ }
 };
 
-template<class ClassType, class MemberType, class DefaultType>
-static const auto make_property(const std::string& name, MemberType ClassType::* pointer, const DefaultType& default_value) {
-	return Property<ClassType, MemberType>(name, pointer, default_value);
+template<class ClassType, class MemberType, class DefaultType, class ConverterType = void>
+static const auto make_property(const std::string& name, MemberType ClassType::* pointer, const DefaultType& default_value)
+{
+	return Property<ClassType, MemberType, DefaultType, ConverterType>(name, pointer, default_value);
 }
 
-template<class ClassType, class MemberType>
-std::ostream& operator<<(std::ostream& os, const Property<ClassType, MemberType>& obj) {
-	return os << "Property: " << obj.name << " of: " << typeid(ClassType).name();
-}
 
-#define PROPERTY(name, __ClassType, default_value) make_property(#name,  &__ClassType::name, default_value)
+//template<class ClassType, class MemberType>
+//std::ostream& operator<<(std::ostream& os, const Property<ClassType, MemberType, MemberType>& obj)
+//{
+//    return os << "Property: " << obj.name << " of: " << typeid(ClassType).name();
+//}
+
+#define PROPERTY(name, default_value) make_property(#name,  &_This::name, default_value)
+#define CONVERTIBLE_PROPERTY(name, default_value, converter) make_property<_This, decltype(name), decltype(default_value), converter>(#name,  &_This::name, default_value)
+lue)

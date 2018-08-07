@@ -6,6 +6,8 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include <iostream>
+
 #include "Window.hpp"
 #include "UI.hpp"
 #include "GL.hpp"
@@ -16,8 +18,7 @@
 #include "MemoryManager.hpp"
 #include "Buffer.hpp"
 #include "FrameBuffer.hpp"
-
-#include <iostream>
+#include "GlobalEvents.hpp"
 
 using namespace std;
 
@@ -107,6 +108,7 @@ void Window::update() {
     FPS = 1000000000 / Time::interval();
 
     Window::framesDrawn++;
+	Events::frame_drawn();
 }
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {

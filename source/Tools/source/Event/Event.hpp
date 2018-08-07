@@ -34,3 +34,19 @@ public:
                 subscriber(std::forward<Params ...>(parameters...));
     }
 };
+
+
+template<>
+class Event<> {
+
+public:
+
+	using EventCallbackType = std::function<void()>;
+	Array<EventCallbackType> subscribers;
+
+	Event() = default;
+
+	void subscribe(EventCallbackType action) { subscribers.emplace_back(action); }
+	void operator()() const { for (const auto& subscriber : subscribers) subscriber(); }
+};
+

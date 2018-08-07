@@ -7,13 +7,18 @@
 //
 
 #include "DebugInfoView.hpp"
+#include "GlobalEvents.hpp"
+#include "Window.hpp"
 
 void DebugInfoView::setup() {
 
 
 	setColor(C::gray);
 
-	fpsLabel->setText("Hello");
+	Events::frame_drawn.subscribe([&] {
+		fpsLabel->setText("FPS: "_s + Window::FPS);
+		framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
+	});
 
 
 	addSubview(fpsLabel);

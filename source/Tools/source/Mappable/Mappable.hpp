@@ -16,7 +16,6 @@
 #include "Json.hpp"
 
 
-
 template <class T>
 using if_array = typename std::enable_if<std::is_array<T>::value>::type;
 

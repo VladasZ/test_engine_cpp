@@ -11,6 +11,5 @@
 #include "Event.hpp"
 
 struct Events {
-
-	static inline const Event<int> fps;
+	static inline Event<> frame_drawn;
 };

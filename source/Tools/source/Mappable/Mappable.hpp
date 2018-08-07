@@ -16,6 +16,7 @@
 #include "Json.hpp"
 
 
+
 template <class T>
 using if_array = typename std::enable_if<std::is_array<T>::value>::type;
 
@@ -53,7 +54,12 @@ private:
 
 	template <class Member, class Property>
 	static if_convertible_property<Property> dispatch_extraction(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
-		extract_convertible(member, property, json_to_parse);
+		if (json_to_parse.is_null())
+		{
+			extract_convertible(member, property, nlohmann::json());
+			return;
+		}
+		extract_convertible(member, property, json_to_parse.value<nlohmann::json>(property.name, nlohmann::json()));
 	}
 
 	template <class Member, class Property>
@@ -62,8 +68,31 @@ private:
 	}
 
 	template <class Member, class Property>
-	static void extract_convertible(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
-		member = Property::ConverterType::parse(json_to_parse[property.name]);
+	static if_not_array<Member> extract_convertible(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
+		member = Property::ConverterType::parse_string(json_to_parse.dump());
+	}
+
+	template <class Member, class Property>
+	static if_array<Member> extract_convertible(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
+		using Converter = Property::ConverterType;
+		using ArrayType = c_array_element_type<Member>;
+		auto size = c_array_size<Member>(member);
+
+		for (int i = 0; i < size; i++)
+			member[i] = ArrayType();
+
+		if (json_to_parse.find(property.name) == json_to_parse.end())
+			return;
+
+		auto json = json_to_parse[property.name];
+
+		if (json.is_null() && !json.array())
+			return;
+
+		int i = 0;
+
+		for (const auto& object_json : json)
+			member[i++] = Converter::__parse_json(object_json);
 	}
 
 	template <class Member, class Property>
@@ -79,7 +108,23 @@ private:
 
 	template <class Member, class Property>
 	static if_not_mappable<Member> extract(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
+		if (json_to_parse.is_null())
+		{
+			member = property.default_value;
+			return;
+		}
 		member = json_to_parse.value<Member>(property.name, property.default_value);
+	}
+
+	template <class Member, class Property>
+	static if_array<Member> extract(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
+		if (json_to_parse.is_null())
+		{
+			string_to_c_array(member, property.default_value);
+			return;
+		}
+
+		string_to_c_array(member, json_to_parse.value<std::string>(property.name, property.default_value));
 	}
 
 	template <class Member, class Property>
@@ -103,8 +148,7 @@ private:
 		vector = json_to_parse.value<std::vector<VectorType>>(property.name, property.default_value);
 	}
 
-
-	//Packing
+	// Packing --------------------------------------------------------------------------------------------------------------------
 
 	template <class Member, class Property>
 	static if_convertible_property<Property> dispatch_packing(const Member& member, const Property& property, nlohmann::json& json_to_parse) {
@@ -116,16 +160,40 @@ private:
 		pack(member, property, json_to_parse);
 	}
 
+	// Pack convertible --------------------------------------------------------------------------------------------------------------------
+
 	template <class Member, class Property>
-	static void pack_convertible(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
+	static if_not_array<Member> pack_convertible(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
 		using Converter = Property::ConverterType;
 		json_to_pack[property.name] = Converter::static_to_json(*static_cast<const Converter *>(&member));
 	}
 
 	template <class Member, class Property>
-	static if_array<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
-		json_to_pack[property.name] = c_array_to_vector(member);
+	static if_array<Member> pack_convertible(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
+		using Converter = Property::ConverterType;
+		auto size = c_array_size(member);
+		json_to_pack[property.name] = nlohmann::json::array();
+
+		for (int i = 0; i < size; i++)
+		{
+			auto object_json = Converter::static_to_json(*static_cast<const Converter*>(&member[i]));
+			json_to_pack[property.name].push_back(object_json);
+		}
 	}
+
+
+#pragma region pack c array
+
+	// Pack C array --------------------------------------------------------------------------------------------------------------------
+
+	template <class Member, class Property>
+	static if_array<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
+		json_to_pack[property.name] = c_array_to_string(member);
+	}
+
+#pragma endregion
+
+	// Pack Mappable<T> --------------------------------------------------------------------------------------------------------------------
 
 	template <class Member, class Property>
 	static if_not_mappable<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
@@ -136,6 +204,11 @@ private:
 	static if_mappable<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
 		json_to_pack[property.name] = member.to_json();
 	}
+
+
+#pragma region pack std_vector
+
+	// Pack std::vector --------------------------------------------------------------------------------------------------------------------
 
 	template <class Member, class Property>
 	static if_vector<Member> pack(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
@@ -156,9 +229,10 @@ private:
 			json_to_pack[property.name].emplace_back(object.to_json());
 	}
 
+#pragma endregion
+
 public:
 
-	template <class T>
 	static nlohmann::json static_to_json(const T& object) {
 		nlohmann::json json;
 		for_each(T::properties(), [&](auto property) {
@@ -167,12 +241,12 @@ public:
 		return json;
 	}
 
-	template <class T>
 	static std::string static_to_json_string(const T& object) {
 		return static_to_json(object).dump();
 	}
 
-	static T parse(const nlohmann::json& json_to_parse) {
+	// Use parse_string method
+	static T __parse_json(const nlohmann::json& json_to_parse) {
 		T object;
 		for_each(T::properties(), [&](auto property) {
 			dispatch_extraction(object.*property.pointer, property, json_to_parse);
@@ -186,21 +260,19 @@ public:
 
 	static T parse_string(const std::string& json_string) {
 		const nlohmann::json parsed_json = nlohmann::json::parse(json_string, nullptr, false);
-		return parse(parsed_json);
+		return __parse_json(parsed_json);
 	}
 
 	std::string to_json_string() {
 		return Mappable<T>::static_to_json_string(*static_cast<T*>(this));
 	}
 
-	static void printProperties() {
-		for_each(T::properties(), [](auto property) {
-			std::cout << property << std::endl;
-		});
-	}
 };
 
 template <class TargetType, class _ConverterType>
 struct Converter : public TargetType, public Mappable<_ConverterType> { };
 
 #define CONVERT(__class_name_) struct JSON##__class_name_ : public Converter<__class_name_, JSON##__class_name_>
+
+#define TO_JSON(__class_name_, object) static_cast<JSON##__class_name_*>(&object)->to_json_string()
+#define PARSE_JSON(__class_name_, string) JSON##__class_name_::parse_string(string)

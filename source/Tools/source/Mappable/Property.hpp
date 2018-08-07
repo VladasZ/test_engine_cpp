@@ -46,5 +46,5 @@ static const auto make_property(const std::string& name, MemberType ClassType::*
 //}
 
 #define PROPERTY(name, default_value) make_property(#name,  &_This::name, default_value)
-#define CONVERTIBLE_PROPERTY(name, default_value, converter) make_property<_This, decltype(name), decltype(default_value), converter>(#name,  &_This::name, default_value)
-lue)
+#define CONVERTIBLE(name, converter) make_property<_This, decltype(name), decltype(name), converter>(#name,  &_This::name, decltype(name)())
+#define CONVERT_ARRAY(name, converter) make_property<_This, decltype(name), c_array_element_type<decltype(name)>, converter>(#name,  &_This::name, c_array_element_type<decltype(name)>())

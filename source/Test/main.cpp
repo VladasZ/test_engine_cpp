@@ -38,11 +38,8 @@ protected:
 
 void test() {
 
-	auto spes = TargetClass::spes;
-	auto spe2s = &TargetClass::helloww;
 
 
-	spes();
 }
 
 int main() {

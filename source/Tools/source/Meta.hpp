@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <string>
 #include <tuple>
 #include <vector>
 #include <memory>
@@ -102,7 +103,7 @@ auto c_array_to_vector(ArayType& array) {
 }
 
 template <class ArrayType>
-std::string c_array_to_string(const ArrayType& array, typename if_char<c_array_element_type<ArrayType>>* = nullptr) {
+std::string c_array_to_string(const ArrayType& array, if_char<c_array_element_type<ArrayType>>* = nullptr) {
 	auto size = c_array_size(array);
 	std::string result;
 
@@ -117,7 +118,7 @@ std::string c_array_to_string(const ArrayType& array, typename if_char<c_array_e
 }
 
 template <class ArrayType>
-std::string c_array_to_string(const ArrayType& array, typename if_integer<c_array_element_type<ArrayType>>* = nullptr) {
+std::string c_array_to_string(const ArrayType& array, if_integer<c_array_element_type<ArrayType>>* = nullptr) {
 	auto size = c_array_size(array);
 	std::string result;
 

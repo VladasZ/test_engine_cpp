@@ -20,16 +20,16 @@ os.chdir(build_folder)
 
 
 if make:
-	Shell.run(['conan', 'install', '..'])
-	Shell.run(['cmake', '..', '-G', 'Unix Makefiles'])
-else:
 	Shell.run([
 	'conan', 'install', '..', 
 	'-scompiler=gcc', 
 	'-scompiler.version=6.3', 
 	'-scompiler.libcxx=libstdc++', 
 	'-bmissing'
-	])
+	])	
+	Shell.run(['cmake', '..', '-G', 'Unix Makefiles'])
+else:
+	Shell.run(['conan', 'install', '..'])
 	Shell.run(['cmake', '..', '-G', Status.compiler()])
 
 

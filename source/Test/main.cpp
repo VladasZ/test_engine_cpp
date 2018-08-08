@@ -8,38 +8,35 @@
 #include "String.hpp"
 #include "Log.hpp"
 
-#include "Block.hpp"
 #include "ExceptionCatch.hpp"
 
 #include "Mappable.hpp"
 
-#include "json.hpp"
+#include "Json.hpp"
 
 using namespace std;
 
-class TargetClass {
 
-public:
-
-	static void spes() {
-		cout << "spes" << endl;
-	}
-
-protected:
-
-	void helloww() {
-		Log("hellooww");
-	}
+struct SpesoStructorec {
+    int a = 0;
+    int b = 20;
 };
 
-
-
-
+CONVERT(SpesoStructorec)
+{
+    static auto properties() {
+        std::make_tuple(
+            PROPERTY(a, 500),
+            PROPERTY(b, 100500)
+        );
+    }
+};
 
 void test() {
-
-
-
+    
+    auto structorec = SpesoStructorec();
+    
+    Log("spesoperebesdhhel");
 }
 
 int main() {

@@ -10,6 +10,8 @@
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
 
+#include <cmath>
+
 #include "Log.hpp"
 #include "Font.hpp"
 #include "Image.hpp"
@@ -95,7 +97,7 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
     _height = yMax - yMin;
     
-    float baselinePosition = abs(minGlyph->yMin());
+    float baselinePosition = std::fabs((float)minGlyph->yMin());
     
     _baselineShift = _height / 2 - baselinePosition;
 }

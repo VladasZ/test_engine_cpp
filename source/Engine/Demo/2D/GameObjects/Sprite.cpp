@@ -77,7 +77,6 @@ void Sprite::draw() {
         setupBuffer();
         _neeedsBufferUpdate = false;
     }
-    /*
     _image->bind();
     Shader::sprite.use();
 

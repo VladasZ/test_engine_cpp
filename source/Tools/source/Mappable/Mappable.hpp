@@ -15,6 +15,7 @@
 #include "Property.hpp"
 #include "Json.hpp"
 
+template <class T> class Mappable;
 
 template <class T>
 using if_array = typename std::enable_if<std::is_array<T>::value>::type;
@@ -23,7 +24,7 @@ template <class T>
 using if_not_array = typename std::enable_if<!std::is_array<T>::value>::type;
 
 template <class Property>
-constexpr bool is_convertible_property = !std::is_same<Property::ConverterType, void>::value;
+constexpr bool is_convertible_property = !std::is_same<typename Property::ConverterType, void>::value;
 
 template <class Property>
 using if_convertible_property = typename std::enable_if<is_convertible_property<Property>>::type;
@@ -73,7 +74,7 @@ private:
 
 	template <class Member, class Property>
 	static if_array<Member> extract_convertible(Member& member, const Property& property, const nlohmann::json& json_to_parse) {
-		using Converter = Property::ConverterType;
+        using Converter = typename Property::ConverterType;
 		using ArrayType = c_array_element_type<Member>;
 		auto size = c_array_size<Member>(member);
 
@@ -163,13 +164,13 @@ private:
 
 	template <class Member, class Property>
 	static if_not_array<Member> pack_convertible(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
-		using Converter = Property::ConverterType;
+        using Converter = typename Property::ConverterType;
 		json_to_pack[property.name] = Converter::static_to_json(*static_cast<const Converter *>(&member));
 	}
 
 	template <class Member, class Property>
 	static if_array<Member> pack_convertible(const Member& member, const Property& property, nlohmann::json& json_to_pack) {
-		using Converter = Property::ConverterType;
+        using Converter = typename Property::ConverterType;
 		auto size = c_array_size(member);
 		json_to_pack[property.name] = nlohmann::json::array();
 

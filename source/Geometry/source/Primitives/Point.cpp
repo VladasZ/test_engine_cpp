@@ -6,7 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include <math.h>
+#include <cmath>
 
 #include "Point.hpp"
 
@@ -35,7 +35,7 @@ bool Point::isZero() const {
 }
 
 float Point::length() const {
-    return sqrt(x * x + y * y);
+    return (float)sqrt(x * x + y * y);
 }
 
 Point Point::withLength(float length) const {

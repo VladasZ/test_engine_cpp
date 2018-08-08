@@ -51,6 +51,7 @@ LOCATION(file, func, line)\
 #define Endl std::cout << std::endl
 
 #define PING Warning("")
+#define UNEXPECTED Error("")
 
 #else
 
@@ -59,6 +60,7 @@ LOCATION(file, func, line)\
 #define Error(message)
 #define Endl
 #define PING
+#define UNEXPECTED
 
 #endif
 

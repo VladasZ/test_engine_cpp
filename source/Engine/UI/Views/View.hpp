@@ -36,7 +36,7 @@ protected:
     int _touchID = -1;
 
     bool _needsDraw = true;
-    bool _needsLayout = true;
+	bool _needsLayout = true;
 	bool _ownsFramebuffer = false;
 
     Layout::Arr* _layout = nullptr;
@@ -58,14 +58,6 @@ protected:
     View* _addLayout(const std::initializer_list<Layout::Base*> &layout);
 
 public:
-    
-	enum class Alignment {
-		left,
-		right,
-		top,
-		bottom,
-		center
-	};
 
     View* _setFramebuffer();
 
@@ -97,6 +89,14 @@ public:
 
     template <class ...Args>
     View* addLayout(Args ...args) { return _addLayout({ args... }); }
+
+	template <class ...Args>
+	View* setLayout(Args ...args) { 
+		for (auto layout : *_layout) delete layout;
+		delete _layout;
+		_layout = nullptr;
+		return _addLayout({ args... }); 
+	}
 
     View* clone() const;
 

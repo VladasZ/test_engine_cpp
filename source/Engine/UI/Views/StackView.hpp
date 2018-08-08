@@ -12,7 +12,7 @@
 
 class StackView : public View {
 
-	View::Alignment _alignment = View::Alignment::center;
+	Alignment _alignment = Alignment::Center;
 
 public:
 
@@ -20,6 +20,6 @@ public:
 
 	void layout() override;
 
-	StackView* setAlignment(View::Alignment alignment) { _alignment = alignment; return this; }
+	StackView* setAlignment(Alignment alignment) { _alignment = alignment; return this; }
 
 };

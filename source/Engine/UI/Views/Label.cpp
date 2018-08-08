@@ -13,6 +13,13 @@
 #include "Rect.hpp"
 
 Label::Label(const Rect &rect) : View(rect) {
+	_contentView =
+		View::make(rect.withZeroOrigin())
+		->addLayout(L::fromAlignment(_alignment), L::CenterV())
+	;
+
+	addSubview(_contentView);
+
     _color = Color::gray;
 }
 
@@ -22,34 +29,41 @@ void Label::draw() {
 }
 
 void Label::_setGlyphs() {
-    
+	return;
     removeAllSubviews();
     if (_text.empty()) return;
     
     int advance = 0;
     
-	ImageView* lastGlyph = nullptr;
+	float contentWidth = 0;
     
-    for (auto letter : _text) {
-        auto glyph = _font->glyphForChar(letter);
-        auto imageView = new ImageView(glyph->size());
-        auto view = (Label*)imageView; // Lifehack
+	auto& contentSize = UNPRIVATE(_contentView)->_frame.size;
 
-        view->_frame.origin = { 
+    for (const auto letter : _text) {
+        auto glyph = _font->glyphForChar(letter);
+
+		auto glyphView = UNPRIVATE(
+			(new ImageView(glyph->size()))
+			->setImage(glyph->image)
+		);
+
+		auto& glyphViewFrame = glyphView->_frame;
+
+		glyphViewFrame.origin = {
             advance + glyph->bearing.x,
-            _frame.size.height / 2 - glyph->bearing.y + _font->baselineShift() 
+			contentSize.height / 2 - glyph->bearing.y + _font->baselineShift()
         };
 
-        imageView->setImage(glyph->image);
-        addSubview(imageView);
+		_contentView->addSubview(glyphView);
         advance += glyph->advance;
-		lastGlyph = imageView;
+		contentWidth = glyphViewFrame.maxX();
     }
 
-    _frame.size.width = lastGlyph->frame().maxX();
+	contentSize.width = contentWidth;
     
     _needsGlyphsUpdate = false;
     _needsDraw = true;
+	UNPRIVATE(_contentView)->_needsLayout = true;
 }
 
 std::string Label::text() const { return _text; }
@@ -61,10 +75,14 @@ Label* Label::setText(const std::string &text) {
     return this;
 }
 
-const Font* const Label::font() const { return _font; }
-
 Label* Label::setFont(Font* font) {
     _font = font;
     _needsGlyphsUpdate = true;
     return this;
+}
+
+Label* Label::setAlignment(Alignment alignment) {
+	_alignment = alignment;
+	_contentView->setLayout(L::fromAlignment(alignment), L::CenterV());
+	return this;
 }

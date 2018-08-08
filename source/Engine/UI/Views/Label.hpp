@@ -8,15 +8,19 @@
 
 #pragma once
 
+#include "Meta.hpp"
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"
 
-class Label : public View {
+class Label : public View { TYPES(Label);
     
     std::string _text;
-    Font* _font = Font::System;
     
+	Font* _font = Font::System;
+	View* _contentView;
+	Alignment _alignment = Alignment::Left;
+
     void _setGlyphs();
     
     bool _needsGlyphsUpdate = false;
@@ -30,7 +34,9 @@ public:
     std::string text() const;
     Label* setText(const std::string &text);
     
-    const Font* const font() const;
+	const Font* const font() const { return _font; }
     Label* setFont(Font* font);
-    
+
+	const Alignment alignment() const { return _alignment; }
+	Label* setAlignment(Alignment alignment);
 };

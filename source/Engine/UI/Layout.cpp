@@ -9,7 +9,7 @@
 #include "Layout.hpp"
 #include "View.hpp"
 #include "Rect.hpp"
-#include "String.hpp"
+#include "Dictionary.hpp"
 
 using namespace std;
 
@@ -54,7 +54,6 @@ void Layout::Base::_layoutWithoutAnchor(View* view) const {
     }
 }
 
-
 void Layout::Base::_layoutWithAnchor(View* view) const {
 
     const Rect &anchorFrame = anchor->_frame;
@@ -89,4 +88,13 @@ void Layout::Base::_layoutWithAnchor(View* view) const {
         frame.origin.y = anchorFrame.origin.y + anchorFrame.size.height / 2 - frame.size.height / 2 + value;
         return;
     }
+}
+
+Layout::Base* Layout::fromAlignment(Alignment alignment) {
+	switch (alignment) {
+		case Alignment::Left:   return L::Left();
+		case Alignment::Right:  return L::Right();
+		case Alignment::Center: return L::CenterH();
+	}
+	return L::CenterH();
 }

@@ -10,8 +10,19 @@
 
 #include <tuple>
 #include <vector>
+#include <memory>
 #include <utility>
 #include <type_traits>
+
+#define TYPES(ClassName)\
+public:\
+using This   = ClassName;\
+using Ptr    = std::shared_ptr<This>;\
+using Arr    = Array<This>;\
+using PtrArr = Array<Ptr>;\
+private:
+
+#define UNPRIVATE(var) reinterpret_cast<This*>(var)
 
 template <class T>
 using remove_everything = std::remove_all_extents_t<std::remove_reference_t<std::remove_const_t<std::remove_pointer_t<std::remove_reference_t<T>>>>>;

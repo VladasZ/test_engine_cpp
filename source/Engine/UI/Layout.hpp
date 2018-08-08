@@ -12,6 +12,12 @@
 
 class View;
 
+enum class Alignment {
+	Left,
+	Center,
+	Right
+};
+
 class Layout {
 
     enum class _LayoutType {
@@ -77,6 +83,7 @@ public:
 
     using Arr = Array<Base*>;
 
+	static Base* fromAlignment(Alignment alignment);
 };
 
 using L = Layout;

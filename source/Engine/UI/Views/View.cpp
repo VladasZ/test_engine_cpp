@@ -86,17 +86,13 @@ void View::draw() {
 
 void View::layout() {
 
-    if (!_needsLayout) {
-        Warning("Layout called");
-        return;
-    }
+    if (!_needsLayout) { UNEXPECTED; return; }
 
     if (_layout != nullptr)
         for (auto& layout : *_layout)
             layout->_layout(this);
 
     _frameInFrameBuffer = _calculateFrameInFrameBuffer();
-
     _needsDraw = true;
 }
 
@@ -137,7 +133,6 @@ View* View::setCenter(const Point &center) {
         _frame.size.width,
         _frame.size.height
     };
-	_needsLayout = true;
     return this;
 }
 

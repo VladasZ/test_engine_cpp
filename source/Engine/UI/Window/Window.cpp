@@ -96,10 +96,10 @@ void Window::update() {
     
     rootView->draw();
 
-	GL(glViewport(0, 0, size.width, size.height));
+	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
 
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-	GL(glViewport(0, 0, size.width, size.height));
+	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
     Shader::uiTexture.use();
     rootFrameBuffer->getImage()->bind();
     Buffer::rootUIBuffer->draw();

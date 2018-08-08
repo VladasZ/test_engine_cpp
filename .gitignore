@@ -305,6 +305,7 @@ __pycache__/
 
 ## Build generated
 [Bb]uild/
+[Mm]ake/
 DerivedData/
 
 ## Various settings

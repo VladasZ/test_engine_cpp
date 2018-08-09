@@ -74,48 +74,22 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
     float yMax = 0;
     float yMin = 0;
-    
-    Glyph* maxGlyph = nullptr;
-    Glyph* minGlyph = nullptr;
-    
+        
     FOR(128) {
         
         auto glyph = renderGlyph(face, i);
         
-        if (yMax < glyph->yMax()) {
-            yMax = glyph->yMax();
-            maxGlyph = glyph;
-        }
+        if (yMax < glyph->yMax()) yMax = glyph->yMax();        
+        if (yMin > glyph->yMin()) yMin = glyph->yMin();
         
-        if (yMin > glyph->yMin()) {
-            yMin = glyph->yMin();
-            minGlyph = glyph;
-        }
-        
-        glyphs.push_back(glyph);
+        _glyphs.push_back(glyph);
     }
     
     _height = yMax - yMin;
     
-    float baselinePosition = std::fabs((float)minGlyph->yMin());
+    float baselinePosition = std::fabs((float)yMin);
     
     _baselineShift = _height / 2 - baselinePosition;
-}
-
-float Font::baselineShift() const {
-    return _baselineShift;
-}
-
-float Font::height() const {
-    return _height;
-}
-
-Glyph* Font::glyphForChar(char ch) {
-    if (ch < 0) {
-        Error("Invalid character: " << ch);
-        return glyphs['?'];
-    }
-    return glyphs[ch];
 }
 
 Font* Font::withSize(int size) {

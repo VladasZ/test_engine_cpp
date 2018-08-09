@@ -29,15 +29,14 @@ void Label::draw() {
 }
 
 void Label::_setGlyphs() {
-	return;
-    removeAllSubviews();
+    _contentView->removeAllSubviews();
     if (_text.empty()) return;
     
     int advance = 0;
-    
 	float contentWidth = 0;
-    
 	auto& contentSize = UNPRIVATE(_contentView)->_frame.size;
+
+	contentSize.height = _font->height();
 
     for (const auto letter : _text) {
         auto glyph = _font->glyphForChar(letter);

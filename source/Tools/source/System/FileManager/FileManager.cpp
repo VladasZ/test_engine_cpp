@@ -1,20 +1,19 @@
 
-#include "Log.hpp"
-#include "FileManager.hpp"
-
 #ifdef APPLE
 #include "CallObj.h"
 #elif WINDOWS
 #include <Windows.h>
 #endif
 
+#include "Log.hpp"
+#include "FileManager.hpp"
+
 const std::string FileManager::assetsDirectory() {
-#ifdef APPLE
-    return "../../../../Assets/";
-#elif WINDOWS
-    return "../../../Assets/";
+#if WINDOWS
+	return "../../../Assets/";
+#else
+	return "../../../../Assets/";
 #endif
-    return "../../../../Assets/";
 }
 
 const std::string FileManager::workDirectory() {

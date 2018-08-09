@@ -26,6 +26,7 @@ class Font : public NonCopyable _MEMORY_MANAGED(Font) {
 public:
     
     Font(const String& fileName, int size = 42);
+	~Font();
     
 	float  baselineShift()       const { return _baselineShift; }
 	float  height()              const { return _height;        }

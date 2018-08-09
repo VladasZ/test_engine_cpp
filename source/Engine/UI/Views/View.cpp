@@ -20,6 +20,7 @@
 View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
+	removeAllSubviews();
     if (_layout != nullptr) delete _layout;
 	if (_ownsFramebuffer) delete _frameBuffer;
 }
@@ -121,6 +122,12 @@ View* View::setSize(const Size &size) {
     return this;
 }
 
+View* View::setHeight(float height) {
+	_frame.size.height = height;
+	_needsLayout = true;
+	return this;
+}
+
 View* View::setOrigin(const Point &origin) {
     _frame.origin = origin;
     return this;
@@ -163,10 +170,7 @@ void View::insertSubviewAt(int position, View* view) {
 }
 
 void View::removeAllSubviews() {
-    for (auto view : subviews) {
-        view->removeAllSubviews();
-        delete view;
-    }
+    for (auto view : subviews) delete view;
     subviews.clear();
 }
 

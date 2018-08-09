@@ -21,17 +21,16 @@
 
 using namespace std;
 
-static FT_Library library = nullptr;
 
 Font* Font::SF;
 Font* Font::OpenSans;
 Font* Font::System;
 
 static FT_Library ftLibrary() {
-    if (library == nullptr) {
-        FT_Init_FreeType(&library);
-    }
-    return library;
+	static FT_Library _library = nullptr;
+    if (_library == nullptr)
+        FT_Init_FreeType(&_library);
+    return _library;
 }
 
 Glyph* renderGlyph(const FT_Face &face, char ch) {
@@ -47,8 +46,8 @@ Glyph* renderGlyph(const FT_Face &face, char ch) {
     
     auto image = new Image(Size((float)bitmapGlyhp->bitmap.width,
 								(float)bitmapGlyhp->bitmap.rows),
-                           bitmapGlyhp->bitmap.buffer,
-                           1);
+									   bitmapGlyhp->bitmap.buffer,
+									   1);
     
     return new Glyph(ch,
                      image,
@@ -76,7 +75,6 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     float yMin = 0;
         
     FOR(128) {
-        
         auto glyph = renderGlyph(face, i);
         
         if (yMax < glyph->yMax()) yMax = glyph->yMax();        
@@ -90,6 +88,10 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     float baselinePosition = std::fabs((float)yMin);
     
     _baselineShift = _height / 2 - baselinePosition;
+}
+
+Font::~Font() {
+	for (auto glyph : _glyphs) delete glyph;
 }
 
 Font* Font::withSize(int size) {

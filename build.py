@@ -17,13 +17,11 @@ if not os.path.exists(build_folder):
 
 os.chdir(build_folder)
 
-
-
 if make:
 	Shell.run([
 	'conan', 'install', '..', 
 	'-scompiler=gcc', 
-	'-scompiler.version=6.3', 
+	'-scompiler.version=6.3gdf', 
 	'-scompiler.libcxx=libstdc++', 
 	'-bmissing'
 	])	

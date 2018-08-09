@@ -37,8 +37,9 @@ public:
     static const Color white;
     static const Color red;
     static const Color green;
-    static const Color blue;
-    static const Color yellow;
+	static const Color blue;
+	static const Color lightBlue;
+	static const Color yellow;
     static const Color orange;
     static const Color purple;
     static const Color turquoise;

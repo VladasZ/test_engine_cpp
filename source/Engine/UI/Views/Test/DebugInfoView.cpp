@@ -12,7 +12,6 @@
 
 void DebugInfoView::setup() {
 
-
 	setColor(C::gray);
 
 	Events::frame_drawn.subscribe([&] {
@@ -20,6 +19,7 @@ void DebugInfoView::setup() {
 		framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
 	});
 
+	fpsLabel->setColor(C::blue);
 
 	addSubview(fpsLabel);
 	addSubview(framesDrawnLabel);

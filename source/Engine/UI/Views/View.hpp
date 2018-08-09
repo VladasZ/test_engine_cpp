@@ -72,9 +72,11 @@ public:
     Rect frame() const { return _frame; }
     View* setFrame(const Rect &frame);
     View* setSize(const Size &size);
+	View* setHeight(float height);
     View* setOrigin(const Point &origin);
     View* setCenter(const Point &center);
     View* edit(std::function<void(View*)> edit);
+
 
     int getTouchID() const;
 

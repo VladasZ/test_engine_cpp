@@ -27,6 +27,11 @@ void ImageView::draw() {
 			GL::setViewport(_frameInFrameBuffer);
 			Buffer::fullscreenImage->draw();
 			_image->unbind();
+#if DRAW_DEBUG_FRAMES
+            Shader::ui.use();
+            Shader::ui.setUniformColor(C::turquoise);
+            Buffer::fullscreenOutline->draw();
+#endif
 		});
 		_needsDraw = false;
 	}

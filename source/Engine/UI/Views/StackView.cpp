@@ -16,6 +16,8 @@ void StackView::layout() {
 
 	for (int i = 0; i < count; i++) {
 		auto view = subviews[i];
-		view->setCenter({ _frame.size.width / 2, interval * i + interval / 2 });
+        view->setX(0);
+        view->setY(interval * i + interval / 2);
+		//view->setCenter({ _frame.size.width / 2, interval * i + interval / 2 });
 	}
 }

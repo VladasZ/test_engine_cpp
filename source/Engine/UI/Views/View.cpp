@@ -78,6 +78,10 @@ void View::draw() {
             Shader::ui.use();
             Shader::ui.setUniformColor(_color);
             Buffer::fullscreen->draw();
+#if DRAW_DEBUG_FRAMES
+            Shader::ui.setUniformColor(C::turquoise);
+            Buffer::fullscreenOutline->draw();
+#endif
         });
         _needsDraw = false;
     }
@@ -122,12 +126,6 @@ View* View::setSize(const Size &size) {
     return this;
 }
 
-View* View::setHeight(float height) {
-	_frame.size.height = height;
-	_needsLayout = true;
-	return this;
-}
-
 View* View::setOrigin(const Point &origin) {
     _frame.origin = origin;
     return this;
@@ -145,6 +143,30 @@ View* View::setCenter(const Point &center) {
 
 View* View::edit(std::function<void(View*)> edit) {
     edit(this);
+    return this;
+}
+
+View* View::setX(float x) {
+    _frame.origin.x = x;
+    _needsLayout = true;
+    return this;
+}
+
+View* View::setY(float y) {
+    _frame.origin.y = y;
+    _needsLayout = true;
+    return this;
+}
+
+View* View::setWidth(float width) {
+    _frame.size.width = width;
+    _needsLayout = true;
+    return this;
+}
+
+View* View::setHeight(float height) {
+    _frame.size.height = height;
+    _needsLayout = true;
     return this;
 }
 

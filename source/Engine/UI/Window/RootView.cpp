@@ -51,7 +51,7 @@ void RootView::setup() {
 
 #if DEBUG_VIEW
 	addSubview(
-		(new DebugInfoView({100, 200}))
+		(new DebugInfoView({500, 100}))
 		->addLayout(L::Top(), L::Left())
 	);
 #endif

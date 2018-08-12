@@ -23,7 +23,8 @@ class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
     GLuint indexBufferObject = 0;
     
     int verticesCount = 0;
-        
+    int indicesCount = 0;
+
 public:
     
     GLenum drawMode = GL_TRIANGLE_STRIP;
@@ -44,7 +45,8 @@ public:
 
     static void windowSizeChanged();
 
-    static inline Buffer* fullscreen      = nullptr;
-    static inline Buffer* fullscreenImage = nullptr;
-    static inline Buffer* rootUIBuffer    = nullptr;
+    static inline Buffer* fullscreen        = nullptr;
+    static inline Buffer* fullscreenImage   = nullptr;
+    static inline Buffer* fullscreenOutline = nullptr;
+    static inline Buffer* rootUIBuffer      = nullptr;
 };

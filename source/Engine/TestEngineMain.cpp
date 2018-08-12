@@ -12,7 +12,7 @@
 #include "Debug.hpp"
 
 void testEngineMain() {
-	Window::initialize(800, 800);
+	Window::initialize(1200, 880);
 	do {
 		GL(glfwPollEvents());
 		Window::update();

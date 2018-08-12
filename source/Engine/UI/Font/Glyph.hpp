@@ -18,9 +18,9 @@ class Glyph : public NonCopyable _MEMORY_MANAGED(Glyph) {
 public:
     
     const char ch;
+    Image* const image;
     const int advance;
     const Point bearing;
-    Image* const image;
     
     Glyph(char ch, Image* image, int advance, const Point &bearing);
     ~Glyph();

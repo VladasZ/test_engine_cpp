@@ -58,6 +58,7 @@ public:
     public:
 
         Base(float value, View* anchor) : value(value), anchor(anchor) { }
+        virtual ~Base() { }
     };
 
 #define _DEFINE_LAYOUT_TYPE(_type) \

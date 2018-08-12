@@ -15,6 +15,8 @@
 #include "Memory.hpp"
 #include "Layout.hpp"
 
+#define DRAW_DEBUG_FRAMES true
+
 class Buffer;
 class Window;
 class Input;
@@ -72,11 +74,15 @@ public:
     Rect frame() const { return _frame; }
     View* setFrame(const Rect &frame);
     View* setSize(const Size &size);
-	View* setHeight(float height);
     View* setOrigin(const Point &origin);
     View* setCenter(const Point &center);
     View* edit(std::function<void(View*)> edit);
-
+    
+    View* setX(float x);
+    View* setY(float y);
+    
+    View* setWidth(float width);
+    View* setHeight(float height);
 
     int getTouchID() const;
 

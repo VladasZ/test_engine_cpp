@@ -8,8 +8,6 @@
 
 #include "TestEngineMain.h"
 
-using namespace std;
-
 int main() {
     testEngineMain();
     return 0;

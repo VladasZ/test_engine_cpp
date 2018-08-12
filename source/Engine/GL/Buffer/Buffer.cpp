@@ -12,7 +12,7 @@
 
 Buffer::Buffer(BufferData* data, const BufferConfiguration &configuration) : data(data) {
     
-    verticesCount = data->vertSize / (sizeof(float)* configuration.configuration[0]);
+    verticesCount = data->vertSize / (sizeof(float) * configuration.configuration[0]);
     
     GL(glGenVertexArrays(1, &vertexArrayObject));
     GL(glBindVertexArray(vertexArrayObject));
@@ -25,6 +25,7 @@ Buffer::Buffer(BufferData* data, const BufferConfiguration &configuration) : dat
         GL(glGenBuffers(1, &indexBufferObject));
         GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject));
         GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->indSize, data->indData, GL_STATIC_DRAW));
+        indicesCount = data->indSize / sizeof(GLushort);
     }
     
     configuration.setPointers();
@@ -57,7 +58,7 @@ void Buffer::draw() const {
         GL(glDrawArrays(drawMode, 0, verticesCount));
     }
     else {
-        GL(glDrawElements(drawMode, verticesCount, GL_UNSIGNED_SHORT, 0));
+        GL(glDrawElements(drawMode, indicesCount, GL_UNSIGNED_SHORT, 0));
     }
     
     GL(glBindVertexArray(0));
@@ -66,14 +67,22 @@ void Buffer::draw() const {
 void Buffer::initialize() {
 
     static const Rect fulscreenRect { -1, -1,  2,  2 };
+    static const Rect almostFulscreenRect { -0.999, -0.999,  1.999,  1.999 };
 
     fullscreen = new Buffer(BufferData::fromRect(fulscreenRect), BufferConfiguration::_2);
-
+    
     fullscreenImage = new Buffer(
 		BufferData::fromRectToImage(fulscreenRect),
         BufferConfiguration::_2_2
     );
 
+    auto outlineData = BufferData::fromRect(almostFulscreenRect);
+    
+    outlineData->setIndices({ 0, 1, 2, 3 });
+    fullscreenOutline = new Buffer(outlineData, BufferConfiguration::_2);
+    
+    fullscreenOutline->drawMode = GL_LINE_LOOP;
+    
     windowSizeChanged();
 }
 

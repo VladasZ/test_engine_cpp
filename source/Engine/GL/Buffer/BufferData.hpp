@@ -11,6 +11,7 @@
 #include "GL.hpp"
 #include "Memory.hpp"
 #include "Size.hpp"
+#include "Array.hpp"
 
 class Buffer;
 
@@ -30,6 +31,8 @@ public:
     
     BufferData(const GLfloat* vertData,  GLuint vertSize,
                const GLushort* indData,  GLuint indSize);
+    
+    BufferData* setIndices(const Array<GLushort>& indices);
     
 	static BufferData* fromSize(const Size& size);
 	static BufferData* fromRect(const Rect& rect);

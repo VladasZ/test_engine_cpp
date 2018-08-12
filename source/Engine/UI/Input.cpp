@@ -13,6 +13,7 @@
 #include "GL.hpp"
 #include "View.hpp"
 #include "Log.hpp"
+#include "GlobalEvents.hpp"
 
 static auto touchBeganCondition = [](View* view, const Point &point, int id)
 { return view->containsGlobalPoint(point); };
@@ -60,14 +61,17 @@ void Input::initialize() {
 
 void Input::touchBegan(INPUT_PARAMETERS) {
     onTouchBegan(Point(x, y), id);
+    Events::touch({x, y});
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
     onTouchMoved(Point(x, y), id);
+    Events::touch({x, y});
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
     onTouchEnded(Point(x, y), id);
+    Events::touch({x, y});
 }
 
 void Input::pressedKey(const char &key) {

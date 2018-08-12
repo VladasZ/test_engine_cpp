@@ -70,7 +70,8 @@ void Window::initialize(int width, int height) {
     GL(glEnable(GL_BLEND));
     //GL(glEnable(GL_ALPHA_TEST));
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
+   // GL(glLineWidth(1000));
+    
     Input::initialize();
     Shader::initialize();
     Image::initialize();
@@ -89,6 +90,7 @@ void Window::setup() {
 	rootView->_frameBuffer = rootFrameBuffer;
     rootView->setup();
     rootView->layout();
+    rootView->_frameBuffer->clear();
 }
 
 void Window::update() {

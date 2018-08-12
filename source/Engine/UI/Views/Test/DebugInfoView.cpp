@@ -9,18 +9,21 @@
 #include "DebugInfoView.hpp"
 #include "GlobalEvents.hpp"
 #include "Window.hpp"
+#include "Input.hpp"
 
 void DebugInfoView::setup() {
 
 	setColor(C::gray);
 
 	Events::frame_drawn.subscribe([&] {
-		fpsLabel->setText("FPS: "_s + Window::FPS);
-		framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
+        fpsLabel->setText("FPS: "_s + Window::FPS);
+        framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
 	});
 
-	fpsLabel->setColor(C::blue);
-
+    Events::touch.subscribe([&] (Point point) {
+        touchLabel->setText("Touch: x - "_s + point.x + " y - " + point.y);
+    });
+    
 	addSubview(fpsLabel);
 	addSubview(framesDrawnLabel);
 	addSubview(touchLabel);

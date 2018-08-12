@@ -33,6 +33,14 @@ indSize(indSize)
     memcpy(this->indData, indData, indSize);
 }
 
+BufferData* BufferData::setIndices(const Array<GLushort>& indices) {
+    if (indData != nullptr) free(indData);
+    indSize = indices.size() * sizeof(GLushort);
+    indData = (GLushort *)malloc(indSize);
+    memcpy(this->indData, indices.data(), indSize);
+    return this;
+}
+
 BufferData* BufferData::fromSize(const Size& size) {
 	const GLfloat data[] = {
 		0,          0,

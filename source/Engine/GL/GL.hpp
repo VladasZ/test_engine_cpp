@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Rect.hpp"
+#include "Color.hpp"
 
 class mat4 { };
 class vec3 { };
@@ -30,5 +31,9 @@ public:
     
     static void unbindImage() {
         glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
+    static void setClearColor(const Color& color) {
+        glClearColor(color.r, color.g, color.b, color.a);
     }
 };

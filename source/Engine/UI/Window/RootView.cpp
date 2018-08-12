@@ -25,9 +25,13 @@ ScrollView* scrollView;
 
 void RootView::setup() {
     
+#if DEBUG_VIEW
+    addSubview(new DebugInfoView());
+#endif
+    
     scrollView = new ScrollView({400, 400});
     
-    scrollView->addLayout(L::CenterV());
+   // scrollView->addLayout(L::CenterV());
     
     scrollView->addSubview(
         (new TestView({200, 200}))
@@ -40,12 +44,5 @@ void RootView::setup() {
 		(new TestView({300, 300}))
 		->addLayout(L::CenterH(), L::CenterV())
 	);
-
-#if DEBUG_VIEW
-	addSubview(
-		(new DebugInfoView({500, 120}))
-		->addLayout(L::Top(5), L::Left(5))
-	);
-#endif
 }
 

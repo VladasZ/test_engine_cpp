@@ -21,6 +21,8 @@ public:
 
     ScrollView();
     ScrollView(const Rect &rect);
+    
+    void setup() override;
 
     void setContentOffset(const Point &offset);
 

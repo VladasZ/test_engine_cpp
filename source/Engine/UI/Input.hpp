@@ -14,9 +14,11 @@
 class Button;
 class View;
 
-#define INPUT_PARAMETERS float x, float y, long id
+#define INPUT_PARAMETERS float x, float y, TouchID id
 
-typedef ConditionalEvent<View, TestEngine::Point, long> TouchEvent;
+using TouchID = long;
+
+typedef ConditionalEvent<View, TestEngine::Point, TouchID> TouchEvent;
 
 class Input final {
     

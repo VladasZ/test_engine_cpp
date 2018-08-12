@@ -10,6 +10,8 @@
 
 #include "Log.hpp"
 
+class Label;
+
 #ifdef DEBUG
 
 #define DEBUG_VIEW true
@@ -33,3 +35,7 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 #define GL(x) x
 
 #endif
+
+struct Debug {
+    static inline Label* infoLabel;
+};

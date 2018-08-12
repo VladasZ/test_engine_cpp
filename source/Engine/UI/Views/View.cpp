@@ -70,7 +70,7 @@ void View::draw() {
 
     if (_needsLayout) layout();
 
-	if (_color.isTransparent() && !DRAW_DEBUG_FRAMES)_needsDraw = false;
+	if (_color.isTransparent() && !DRAW_DEBUG_FRAMES) _needsDraw = false;
 
     if (_needsDraw) {
         _frameBuffer->draw([&] {
@@ -114,6 +114,7 @@ void View::layout() {
             layout->_layout(this);
 
     _frameInFrameBuffer = _calculateFrameInFrameBuffer();
+    _absoluteFrame = _calculateAbsoluteFrame();
     _needsDraw = true;
 }
 
@@ -144,6 +145,7 @@ View* View::setSize(const Size &size) {
 
 View* View::setOrigin(const Point &origin) {
     _frame.origin = origin;
+    superview->_needsDraw = true;
     return this;
 }
 
@@ -184,10 +186,6 @@ View* View::setHeight(float height) {
     _frame.size.height = height;
     _needsLayout = true;
     return this;
-}
-
-int View::getTouchID() const {
-    return _touchID;
 }
 
 View* View::addSubview(View* view) {

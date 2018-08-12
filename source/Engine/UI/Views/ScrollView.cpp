@@ -7,6 +7,9 @@
 //
 
 #include "ScrollView.hpp"
+#include "Macro.hpp"
+#include "Debug.hpp"
+#include "Label.hpp"
 
 ScrollView::ScrollView() : ScrollView({ 0, 0, 0, 0 }) {}
 
@@ -18,4 +21,31 @@ ScrollView::ScrollView(const Rect &rect) : View(rect) {
 void ScrollView::setContentOffset(const Point &offset) {
     _content_offset = offset;
     _needsDraw = true;
+}
+
+void ScrollView::setup() {
+
+    Debug::infoLabel->setText("hello");
+    
+    static Point beganPoint;
+    static Point movedPoint;
+
+    Input::onTouchBegan.subscribe(this, [&](Point point, TouchID id) {
+        Debug::infoLabel->setText("Began x: "_s + point.x + " y: " + point.y);
+        beganPoint = point;
+    });
+    
+    Input::onTouchMoved.subscribe(this, [&](Point point, TouchID id) {
+        
+        Point current = beganPoint - point;
+        beganPoint = point;
+        
+        this->setOrigin(this->frame().origin - current);
+        
+        Debug::infoLabel->setText("Moved x: "_s + current.x + " y: " + current.y);
+    });
+    
+    Input::onTouchEnded.subscribe(this, [&](Point point, TouchID id) {
+        Debug::infoLabel->setText("Ended x: "_s + point.x + " y: " + point.y);
+    });
 }

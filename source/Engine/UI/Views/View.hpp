@@ -14,6 +14,7 @@
 #include "Rect.hpp"
 #include "Memory.hpp"
 #include "Layout.hpp"
+#include "Input.hpp"
 
 #define DRAW_DEBUG_FRAMES true
 
@@ -35,7 +36,6 @@ protected:
     Rect _frameInFrameBuffer;
 
     Rect _frame;
-    int _touchID = -1;
 
     bool _needsDraw = true;
 	bool _needsLayout = true;
@@ -60,6 +60,8 @@ protected:
     View* _addLayout(const std::initializer_list<Layout::Base*> &layout);
 
 public:
+    
+    TouchID _touchID = -1;
 
     View* _setFramebuffer();
 
@@ -83,8 +85,6 @@ public:
     
     View* setWidth(float width);
     View* setHeight(float height);
-
-    int getTouchID() const;
 
     View* addSubview(View* view);
     void insertSubviewAt(int position, View* view);

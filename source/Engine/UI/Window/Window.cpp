@@ -79,9 +79,7 @@ void Window::initialize(int width, int height) {
     Buffer::initialize();
 
     rootFrameBuffer = new FrameBuffer(screenResolution);
-    
-    GL(glClearColor(0.5, 0.5, 0.5, 1));
-    
+
     setup(); 
 }
 
@@ -94,8 +92,10 @@ void Window::setup() {
 }
 
 void Window::update() {
+    GL::setClearColor(C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     
+    rootFrameBuffer->clear();
     rootView->draw();
 
 	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));

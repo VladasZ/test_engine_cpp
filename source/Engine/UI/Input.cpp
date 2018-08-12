@@ -14,13 +14,33 @@
 #include "View.hpp"
 #include "Log.hpp"
 #include "GlobalEvents.hpp"
+#include "Dictionary.hpp"
 
-static auto touchBeganCondition = [](View* view, const Point &point, int id)
-{ return view->containsGlobalPoint(point); };
-static auto touchMovedCondition = [](View* view, const Point &point, int id)
-{ return view->getTouchID() == id; };
-static auto touchEndedCondition = [](View* view, const Point &point, int id)
-{ return view->getTouchID() == id; };
+
+static auto touchMovedCondition = [](View* view, const Point &point, TouchID id) {
+    
+    return view->_touchID == id;
+};
+
+static auto touchBeganCondition = [](View* view, const Point &point, TouchID id) {
+    
+    auto trigger = view->containsGlobalPoint(point);
+    
+    if (trigger)
+        view->_touchID = id;
+    
+    return trigger;
+};
+
+static auto touchEndedCondition = [](View* view, const Point &point, TouchID id) {
+    auto trigger = view->_touchID == id;
+
+    if (trigger)
+        view->_touchID = -1;
+    
+    return trigger;
+};
+
 
 TouchEvent Input::onTouchBegan(touchBeganCondition);
 TouchEvent Input::onTouchMoved(touchMovedCondition);

@@ -32,13 +32,17 @@ Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) { }
 Color Color::random() {
 
     static const Array<Color> colors = {
-        Color::red,
-        Color::green,
-        Color::blue,
-        Color::yellow,
-        Color::orange,
-        Color::purple,
-        Color::turquoise
+        black,
+        white,
+        red,
+        green,
+        blue,
+        lightBlue,
+        yellow,
+        orange,
+        purple,
+        turquoise,
+        lightGray
     };
 
     return colors.random();

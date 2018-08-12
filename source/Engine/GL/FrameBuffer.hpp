@@ -36,5 +36,5 @@ public:
 
     FrameBuffer* draw(std::function<void()> closure);
 
-    FrameBuffer* clear();
+    FrameBuffer* clear(const Color& color = C::clear);
 };

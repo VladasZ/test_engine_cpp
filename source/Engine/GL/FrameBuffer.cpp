@@ -77,8 +77,9 @@ FrameBuffer* FrameBuffer::draw(std::function<void()> closure) {
     return this;
 }
 
-FrameBuffer* FrameBuffer::clear() {
+FrameBuffer* FrameBuffer::clear(const Color& color) {
     bind();
+    GL::setClearColor(color);
     glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     unbind();

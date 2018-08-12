@@ -15,7 +15,8 @@ class DebugInfoView : public StackView {
     
     Label* fpsLabel         = new Label({ 500, 34 });
 	Label* framesDrawnLabel = new Label({ 500, 34 });
-	Label* touchLabel       = new Label({ 500, 34 });
+    Label* touchLabel       = new Label({ 500, 34 });
+    Label* infoLabel        = new Label({ 500, 34 });
 
 public:
 

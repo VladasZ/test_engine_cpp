@@ -19,52 +19,33 @@
 #include "FrameBuffer.hpp"
 #include "StackView.hpp"
 #include "TestView.hpp"
+#include "ScrollView.hpp"
 
-ImageView* imageView;
+ScrollView* scrollView;
 
 void RootView::setup() {
-
+    
+    scrollView = new ScrollView({400, 400});
+    
+    scrollView->addLayout(L::CenterV());
+    
+    scrollView->addSubview(
+        (new TestView({200, 200}))
+        ->addLayout(L::CenterH(), L::CenterV())
+    );
+    
+    addSubview(scrollView);
+    
 	addSubview(
 		(new TestView({300, 300}))
 		->addLayout(L::CenterH(), L::CenterV())
 	);
 
-	//addSubview(
-	//	View::make({ 100, 100 })
-	//	->addLayout(L::Right(), L::Top())
-	//	->setColor(Color::blue)
-	//);
-
-	//addSubview(
-	//	View::make({ 100, 100 })
-	//	->addLayout(L::Right(), L::Bottom())
-	//	->setColor(Color::blue)
-	//);
-
-	//addSubview(
-	//	View::make({ 100, 100 })
-	//	->addLayout(L::Left(), L::Bottom())
-	//	->setColor(Color::blue)
-	//);
-
-	createSticks();
-
 #if DEBUG_VIEW
 	addSubview(
-		(new DebugInfoView({500, 100}))
-		->addLayout(L::Top(), L::Left())
+		(new DebugInfoView({500, 120}))
+		->addLayout(L::Top(5), L::Left(5))
 	);
 #endif
 }
 
-void RootView::createSticks() {
-
-	directionStick = new AnalogStickView();
-	rotationStick = new AnalogStickView();
-
-	directionStick->addLayout(L::Bottom(15), L::Right(15));
-	rotationStick->addLayout(L::Bottom(15), L::Left(15));
-
-	//addSubview(directionStick);
-	//addSubview(rotationStick);
-}

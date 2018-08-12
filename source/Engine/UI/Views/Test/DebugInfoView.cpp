@@ -12,9 +12,7 @@
 #include "Input.hpp"
 
 void DebugInfoView::setup() {
-
-	setColor(C::gray);
-
+    
 	Events::frame_drawn.subscribe([&] {
         fpsLabel->setText("FPS: "_s + Window::FPS);
         framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);

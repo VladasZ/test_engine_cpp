@@ -32,6 +32,8 @@ FrameBuffer::FrameBuffer(const Size& size) : _size(size) {
         Error("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 
+    clear();
+    
     unbind();
 }
 

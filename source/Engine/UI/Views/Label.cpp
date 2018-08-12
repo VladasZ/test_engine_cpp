@@ -59,7 +59,7 @@ void Label::_setGlyphs() {
     }
 
 	contentSize.width = contentWidth;
-    
+        
     _needsGlyphsUpdate = false;
     _needsDraw = true;
 	UNPRIVATE(_contentView)->_needsLayout = true;

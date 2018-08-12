@@ -27,4 +27,8 @@ public:
 	static void setViewport(const Rect& rect) { 
 		glViewport((GLint)rect.origin.x, (GLint)rect.origin.y, (GLsizei)rect.size.width, (GLsizei)rect.size.height);
 	}
+    
+    static void unbindImage() {
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 };

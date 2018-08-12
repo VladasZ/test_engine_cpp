@@ -12,8 +12,10 @@ ScrollView::ScrollView() : ScrollView({ 0, 0, 0, 0 }) {}
 
 ScrollView::ScrollView(const Rect &rect) : View(rect) {
     _content_size = rect.size;
+    _setFramebuffer();
 }
 
 void ScrollView::setContentOffset(const Point &offset) {
     _content_offset = offset;
+    _needsDraw = true;
 }

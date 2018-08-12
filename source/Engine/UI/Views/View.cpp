@@ -70,11 +70,16 @@ void View::draw() {
 
     if (_needsLayout) layout();
 
-	if (_color.isTransparent()) _needsDraw = false;
+	if (_color.isTransparent() && !DRAW_DEBUG_FRAMES)_needsDraw = false;
 
     if (_needsDraw) {
         _frameBuffer->draw([&] {
-			GL::setViewport(_frameInFrameBuffer);
+            if (_ownsFramebuffer) {
+                GL::setViewport(_frame.withZeroOrigin());
+            }
+            else {
+                GL::setViewport(_frameInFrameBuffer);
+            }
             Shader::ui.use();
             Shader::ui.setUniformColor(_color);
             Buffer::fullscreen->draw();
@@ -87,6 +92,17 @@ void View::draw() {
     }
 
     drawSubviews();
+    
+    
+    if (_ownsFramebuffer) {
+        superview->_frameBuffer->draw([&]{
+            GL::setViewport(_frameInFrameBuffer);
+            Shader::uiTexture.use();
+            _frameBuffer->getImage()->bind();
+            Buffer::fullscreenImage->draw();
+            GL::unbindImage();
+        });
+    }
 }
 
 void View::layout() {

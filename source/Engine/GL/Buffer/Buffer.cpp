@@ -67,7 +67,7 @@ void Buffer::draw() const {
 void Buffer::initialize() {
 
     static const Rect fulscreenRect { -1, -1,  2,  2 };
-    static const Rect almostFulscreenRect { -0.999, -0.999,  1.999,  1.999 };
+    static const Rect almostFulscreenRect { -0.999f, -0.999f,  1.999f,  1.999f };
 
     fullscreen = new Buffer(BufferData::fromRect(fulscreenRect), BufferConfiguration::_2);
     

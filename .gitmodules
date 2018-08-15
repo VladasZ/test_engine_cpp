@@ -1,0 +1,3 @@
+[submodule "config/utils"]
+	path = config/utils
+	url = https://github.com/VladasZ/utils.git

@@ -1,33 +1,23 @@
 import os
 import sys
-sys.path.append('config')
-from utils import Shell
-from utils import Setup
-from utils import Status
-from utils import Arguments
+sys.path.append('config/utils')
+import File
+import Args
+import Conan
+import Cmake
 
-make = Arguments.has('--make')
+#Conan.setup()
+
+make = Args.has('--make')
+
+print(make)
 
 build_folder = 'make' if make else 'build'
 
-Setup.setupConan()
+File.mkdir(build_folder)
+File.cd(build_folder)
 
-if not os.path.exists(build_folder):
-    os.makedirs(build_folder)
+Conan.run()
+Cmake.run()
 
-os.chdir(build_folder)
-
-if make:
-	Shell.run([
-	'conan', 'install', '..', 
-	'-scompiler=gcc', 
-	'-scompiler.version=6.3gdf', 
-	'-scompiler.libcxx=libstdc++', 
-	'-bmissing'
-	])	
-	Shell.run(['cmake', '..', '-G', 'Unix Makefiles'])
-else:
-	Shell.run(['conan', 'install', '..'])
-	Shell.run(['cmake', '..', '-G', Status.compiler()])
-
-
+File.chown('.')

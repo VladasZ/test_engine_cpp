@@ -19,7 +19,7 @@ File.rm(build_folder)
 File.mkdir(build_folder)
 File.cd(build_folder)
 
-Conan.run(Compiler.clang)
+Conan.run(Compiler.gcc)
 Cmake.run(Cmake.make)
 
 File.chown('.')

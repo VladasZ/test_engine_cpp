@@ -5,6 +5,7 @@ import File
 import Args
 import Conan
 import Cmake
+import Shell
 import Compiler
 
 #Conan.setup()
@@ -19,7 +20,11 @@ File.rm(build_folder)
 File.mkdir(build_folder)
 File.cd(build_folder)
 
-Conan.run(Compiler.gcc)
+Conan.run(Compiler.appleClang)
 Cmake.run(Cmake.make)
 
 File.chown('.')
+
+if make:
+	Shell.run(['make'])
+

@@ -5,6 +5,7 @@ import File
 import Args
 import Conan
 import Cmake
+import Compiler
 
 #Conan.setup()
 
@@ -14,10 +15,11 @@ print(make)
 
 build_folder = 'make' if make else 'build'
 
+File.rm(build_folder)
 File.mkdir(build_folder)
 File.cd(build_folder)
 
-Conan.run()
-Cmake.run()
+Conan.run(Compiler.clang)
+Cmake.run(Cmake.make)
 
 File.chown('.')

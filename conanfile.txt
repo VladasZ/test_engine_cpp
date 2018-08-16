@@ -1,6 +1,6 @@
 [requires]
 
-freetype/2.9.0@bincrafters/stable
+#freetype/2.9.0@bincrafters/stable
 
 glfw/3.2.1.20180327@bincrafters/stable
 glew/2.1.0@bincrafters/stable

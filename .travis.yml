@@ -4,12 +4,15 @@ matrix:
     include:
         - os: osx
           compiler: clang
+          install:
+            - pip install conan
         - os: linux
           sudo: required 
           dist: trusty
           compiler: gcc
+          install: 
+            - sudo pip install conan
 install:
-- pip install conan
 - conan user
 script: 
 - python3 build.py --make

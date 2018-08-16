@@ -12,15 +12,13 @@ Conan.setup()
 
 make = Args.has('--make')
 
-print(make)
-
-build_folder = 'make' if make else 'build'
+build_folder = File.build_folder()
 
 File.rm(build_folder)
 File.mkdir(build_folder)
 File.cd(build_folder)
 
-Conan.run(Compiler.appleClang)
+Conan.run(Compiler.get())
 Cmake.run(Cmake.make)
 
 if make:

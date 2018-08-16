@@ -8,7 +8,7 @@ import Cmake
 import Shell
 import Compiler
 
-#Conan.setup()
+Conan.setup()
 
 make = Args.has('--make')
 

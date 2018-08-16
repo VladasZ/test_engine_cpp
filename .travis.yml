@@ -1,0 +1,9 @@
+os: osx
+language: cpp
+compiler: clang
+install:
+- pip install conan
+- conan user
+
+script:
+- python3 build.py --make

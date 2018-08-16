@@ -23,8 +23,5 @@ File.cd(build_folder)
 Conan.run(Compiler.appleClang)
 Cmake.run(Cmake.make)
 
-File.chown('.')
-
 if make:
 	Shell.run(['make'])
-

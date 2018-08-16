@@ -1,13 +1,15 @@
 language: cpp
-os:
-  - linux
-  - osx
-compiler:
-  - gcc
-  - clang
+
+matrix:
+    include:
+        - os: osx
+          compiler: clang
+        - os: linux
+          sudo: required 
+          dist: trusty
+          compiler: gcc
 install:
 - pip install conan
 - conan user
-
-script:
+script: 
 - python3 build.py --make

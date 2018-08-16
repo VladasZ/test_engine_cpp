@@ -1,6 +1,10 @@
-os: osx
 language: cpp
-compiler: clang
+os:
+  - linux
+  - osx
+compiler:
+  - gcc
+  - clang
 install:
 - pip install conan
 - conan user

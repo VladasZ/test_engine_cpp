@@ -1,28 +1,17 @@
 language: cpp
+compiler: clang
 
 matrix:
     include:
         - os: osx
-          compiler: clang
           install:
             - pip install conan
-#        - os: linux
-#          sudo: required 
-#          dist: trusty
-#          compiler: gcc
-#          addons:
-#              apt:
-#                  sources:
-#                      - ubuntu-toolchain-r-test
-#                  packages:
-#                      - gcc-7
-#                      - g++-7
-#          install: 
-#            - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
-#            - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
-#            - gcc -v && g++ -v && cmake --version
-#            - sudo pip install conan
-install:
-- conan user
-script: 
-- python3 build.py --make
+          script: 
+            - python3 build.py --make
+        - os: linux
+          sudo: required 
+          dist: trusty
+          install: 
+            - sudo pip install conan
+          script: 
+            - python3 build.py --make --clang

@@ -6,17 +6,13 @@ import Args
 import Conan
 import Cmake
 import Shell
-import Compiler
 
-os.environ['CC'] = 'clang'
-os.environ['CXX'] = 'clang++'
+Cmake.setup()
+Conan.setup()
 
 print(os.environ['CXX'])
 
-Conan.setup()
-
 build_folder = File.build_folder()
-
 
 if Args.rmbuild:
 	File.rm(build_folder)

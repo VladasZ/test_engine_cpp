@@ -12,13 +12,12 @@
 
 using namespace std;
 
-
-
-
 void test() {
-        
-    Log("spesoperebesdhhel");
+
+
+
 }
+
 
 int main() {
 

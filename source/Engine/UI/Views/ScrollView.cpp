@@ -6,10 +6,10 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "ScrollView.hpp"
 #include "Macro.hpp"
 #include "Debug.hpp"
 #include "Label.hpp"
+#include "ScrollView.hpp"
 
 ScrollView::ScrollView() : ScrollView({ 0, 0, 0, 0 }) {}
 

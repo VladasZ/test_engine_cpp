@@ -8,10 +8,10 @@ matrix:
             - pip install conan
           script: 
             - python3 build.py --make
-        - os: linux
-          sudo: required 
-          dist: trusty
-          install: 
-            - sudo pip install conan
-          script: 
-            - python3 build.py --make --clang
+#        - os: linux
+#          sudo: required 
+#          dist: trusty
+#          install: 
+#            - sudo pip install conan
+#          script: 
+#            - python3 build.py --make --clang

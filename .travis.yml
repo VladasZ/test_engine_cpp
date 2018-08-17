@@ -18,8 +18,8 @@ matrix:
                       - gcc-7
                       - g++-7
           install: 
-            - ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
-            - ln -s /usr/bin/g++-7 /usr/local/bin/g++
+            - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+            - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
             - gcc -v && g++ -v && cmake --version
             - sudo pip install conan
 install:

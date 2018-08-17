@@ -6,22 +6,22 @@ matrix:
           compiler: clang
           install:
             - pip install conan
-        - os: linux
-          sudo: required 
-          dist: trusty
-          compiler: gcc
-          addons:
-              apt:
-                  sources:
-                      - ubuntu-toolchain-r-test
-                  packages:
-                      - gcc-7
-                      - g++-7
-          install: 
-            - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
-            - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
-            - gcc -v && g++ -v && cmake --version
-            - sudo pip install conan
+#        - os: linux
+#          sudo: required 
+#          dist: trusty
+#          compiler: gcc
+#          addons:
+#              apt:
+#                  sources:
+#                      - ubuntu-toolchain-r-test
+#                  packages:
+#                      - gcc-7
+#                      - g++-7
+#          install: 
+#            - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+#            - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
+#            - gcc -v && g++ -v && cmake --version
+#            - sudo pip install conan
 install:
 - conan user
 script: 

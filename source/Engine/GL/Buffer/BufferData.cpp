@@ -35,7 +35,7 @@ indSize(indSize)
 
 BufferData* BufferData::setIndices(const Array<GLushort>& indices) {
     if (indData != nullptr) free(indData);
-    indSize = indices.size() * sizeof(GLushort);
+    indSize = (GLuint)(indices.size() * sizeof(GLushort));
     indData = (GLushort *)malloc(indSize);
     memcpy(this->indData, indices.data(), indSize);
     return this;

@@ -19,8 +19,6 @@ if Args.rmbuild:
 
 if Args.android:
 	Android.setup()
-
-exit()
 	
 File.mkdir(build_folder)
 File.cd(build_folder)

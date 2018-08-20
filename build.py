@@ -6,16 +6,21 @@ import Args
 import Conan
 import Cmake
 import Shell
+import System
+import Android
 
 Cmake.setup()
 Conan.setup()
-
-print(os.environ['CXX'])
 
 build_folder = File.build_folder()
 
 if Args.rmbuild:
 	File.rm(build_folder)
+
+if Args.android:
+	Android.setup()
+
+exit()
 	
 File.mkdir(build_folder)
 File.cd(build_folder)

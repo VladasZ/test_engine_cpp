@@ -8,15 +8,24 @@
 
 #pragma once
 
+#include "Meta.hpp"
 #include "View.hpp"
 
-class ScrollView : public View {
+class Buffer;
+
+class ScrollView : public View { TYPES(ScrollView)
 
     friend View;
 
     Point _content_offset;
     Size _content_size;
+    
+    void draw() override;
 
+    Buffer* _getBuffer() const;
+    ScrollView* _setFramebuffer(const Size& size);
+
+    
 public:
 
     ScrollView();
@@ -24,6 +33,7 @@ public:
     
     void setup() override;
 
+    const Point& contentOffset() const { return _content_offset; }
     void setContentOffset(const Point &offset);
 
 };

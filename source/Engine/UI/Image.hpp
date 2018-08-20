@@ -37,7 +37,8 @@ public:
 	static Image* palm;
 	static Image* frisk;
 	static Image* fullHD;
-	static Image* text;
+    static Image* text;
+    static Image* square;
 
 	static void initialize();
 

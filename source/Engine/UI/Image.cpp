@@ -19,6 +19,7 @@ Image* Image::palm;
 Image* Image::frisk;
 Image* Image::fullHD;
 Image* Image::text;
+Image* Image::square;
 
 static int modeForChannels(int channels) {
 	switch (channels) {
@@ -112,7 +113,8 @@ void Image::initialize() {
 	palm   = new Image("palm.png");
 	frisk  = new Image("frisk.png");
 	fullHD = new Image("fullHD.jpg");
-	text   = new Image("text.png");
+    text   = new Image("text.png");
+    square = new Image("square.png");
 }
 
 void Image::setFilter(Filter filter) {

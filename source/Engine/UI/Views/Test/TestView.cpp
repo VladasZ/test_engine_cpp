@@ -11,6 +11,11 @@
 
 void TestView::setup() {
 
+    addSubview(
+        (new ImageView({_frame.size.width, _frame.size.height}))
+        ->setImage(I::square)
+    );
+    
 	addSubview(
 		View::make({ 50, 50 })
 		->setColor(C::random())

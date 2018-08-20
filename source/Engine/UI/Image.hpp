@@ -39,6 +39,11 @@ public:
 	static Image* fullHD;
     static Image* text;
     static Image* square;
+    
+    static Image* up;
+    static Image* down;
+    static Image* left;
+    static Image* right;
 
 	static void initialize();
 

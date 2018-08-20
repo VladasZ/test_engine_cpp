@@ -21,6 +21,12 @@ Image* Image::fullHD;
 Image* Image::text;
 Image* Image::square;
 
+Image* Image::up;
+Image* Image::down;
+Image* Image::left;
+Image* Image::right;
+
+
 static int modeForChannels(int channels) {
 	switch (channels) {
 #if IOS
@@ -115,6 +121,12 @@ void Image::initialize() {
 	fullHD = new Image("fullHD.jpg");
     text   = new Image("text.png");
     square = new Image("square.png");
+    
+    up     = new Image("up.png");
+    down   = new Image("down.png");
+    left   = new Image("left.png");
+    right  = new Image("right.png");
+
 }
 
 void Image::setFilter(Filter filter) {

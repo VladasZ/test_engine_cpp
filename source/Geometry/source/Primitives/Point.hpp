@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 enum Direction {
     Right,
     Left,

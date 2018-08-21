@@ -8,7 +8,9 @@
 
 #pragma once
 
-#include "UI.hpp"
+#include "View.hpp"
+#include "Debug.hpp"
+#include "DebugInfoView.hpp"
 
 class AnalogStickView;
 

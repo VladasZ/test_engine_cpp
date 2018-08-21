@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Event.hpp"
-#include "UI.hpp"
+#include "DrawingView.hpp"
 
 class AnalogStickView : public DrawingView {
   

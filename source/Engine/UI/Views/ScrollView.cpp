@@ -9,6 +9,7 @@
 #include "Macro.hpp"
 #include "Debug.hpp"
 #include "Label.hpp"
+#include "Input.hpp"
 #include "Buffer.hpp"
 #include "ScrollView.hpp"
 #include "FrameBuffer.hpp"

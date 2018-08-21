@@ -8,8 +8,9 @@
 
 #pragma once
 
+#include "Path.hpp"
+#include "View.hpp"
 #include "Array.hpp"
-#include "UI.hpp"
 
 class DrawingView : public View {
     

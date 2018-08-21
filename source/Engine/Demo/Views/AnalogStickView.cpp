@@ -6,8 +6,9 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "AnalogStickView.hpp"
+#include "Input.hpp"
 #include "Event.hpp"
+#include "AnalogStickView.hpp"
 
 using namespace std;
 

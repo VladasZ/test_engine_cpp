@@ -18,14 +18,14 @@ class View;
 
 using TouchID = long;
 
-using TouchEvent = ConditionalEvent<View, TestEngine::Point, TouchID>;
+typedef ConditionalEvent<View, TestEngine::Point, TouchID> TouchEvent;
 
 class Input final {
     
     Input();
     
 public:
-
+    
 #if GLFW
     
     static Point cursorPosition;

@@ -64,5 +64,6 @@ LOCATION(file, func, line)\
 
 #endif
 
-#define Logvar(variable) Log(#variable << " : " << String() + variable)
+#define Info(message) Log((message))
+#define Logvar(variable) Log(#variable << " : " << (variable))
 #define NOT_IMPLEMENTED Error("Not implemented")

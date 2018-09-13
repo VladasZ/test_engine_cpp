@@ -20,7 +20,7 @@ class ImageView : public View _MEMORY_MANAGED(ImageView) {
     Image* _image = nullptr;
     
 public:
-    
+        
     Image* getImage() const;
     ImageView* setImage(Image* image);
     

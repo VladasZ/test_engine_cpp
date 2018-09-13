@@ -12,6 +12,11 @@
 
 class SliderView : public View {
     
+    View* _topArrow;
+    View* _bottomArrow;
+    View* _slider;
+    View* _slider_content_view;
+
 public:
     
     float value = 0;
@@ -20,5 +25,5 @@ public:
     
     void setup() override;
     
-    
+    void layout() override;
 };

@@ -20,6 +20,7 @@
 #include "StackView.hpp"
 #include "TestView.hpp"
 #include "ScrollView.hpp"
+#include "SliderView.hpp"
 
 ScrollView* scrollView;
 
@@ -29,20 +30,11 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
-    scrollView = new ScrollView({400, 400});
+    SliderView* slider = (new SliderView({50, 400}));
+    slider->addLayout(L::CenterV(), L::Right());
     
-   // scrollView->addLayout(L::CenterV());
+    slider->value = 1;
     
-    scrollView->addSubview(
-        (new TestView({200, 200}))
-        ->addLayout(L::CenterH(), L::CenterV())
-    );
-    
-    addSubview(scrollView);
-    
-	addSubview(
-		(new TestView({300, 300}))
-		->addLayout(L::CenterH(), L::CenterV())
-	);
+    addSubview(slider);
 }
 

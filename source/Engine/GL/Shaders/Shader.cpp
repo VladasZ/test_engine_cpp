@@ -44,6 +44,9 @@ void Shader::initialize() {
 
     sprite =        Shader(FileManager::assetsDirectory() + "Shaders/sprite.vert",
                            FileManager::assetsDirectory() + "Shaders/sprite.frag");
+    
+    simple3D =      Shader(FileManager::assetsDirectory() + "Shaders/simple3D.vert",
+                           FileManager::assetsDirectory() + "Shaders/simple3D.frag");
 }
 
 void Shader::setUniformColor(const Color &color) {

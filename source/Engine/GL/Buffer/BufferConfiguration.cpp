@@ -57,3 +57,4 @@ void BufferConfiguration::setPointers() const {
 
 const BufferConfiguration BufferConfiguration::_2   = { 2, 0, 0 };
 const BufferConfiguration BufferConfiguration::_2_2 = { 2, 2, 0 };
+const BufferConfiguration BufferConfiguration::_3   = { 3, 0, 0 };

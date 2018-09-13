@@ -26,7 +26,8 @@ std::ostream &operator<<(std::ostream &os, mat4 const &mat) {
 Sprite::Sprite(Image* image) : _image(image) { }
 
 Sprite::~Sprite() {
-    if (_subsprites != nullptr) delete _subsprites;
+    if (_subsprites)
+        delete _subsprites;
 }
 //
 //BufferData* Sprite::getBufferData() {

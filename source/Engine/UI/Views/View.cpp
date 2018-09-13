@@ -21,7 +21,7 @@ View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
 	removeAllSubviews();
-    if (_layout != nullptr) delete _layout;
+    if (_layout) delete _layout;
 	if (_ownsFramebuffer) delete _frameBuffer;
 }
 
@@ -32,7 +32,7 @@ Rect View::_calculateAbsoluteFrame() const {
     Rect result = _frame;
     View* superview = this->superview;
 
-    while (superview != nullptr) {
+    while (superview) {
         result.origin += superview->_frame.origin;
         superview = superview->superview;
     }
@@ -109,7 +109,7 @@ void View::layout() {
 
     if (!_needsLayout) { UNEXPECTED; return; }
 
-    if (_layout != nullptr)
+    if (_layout)
         for (auto& layout : *_layout)
             layout->_layout(this);
 
@@ -191,7 +191,7 @@ View* View::setHeight(float height) {
 View* View::addSubview(View* view) {
     subviews.emplace_back(view);
     view->superview = this;
-	if (_frameBuffer != nullptr)
+	if (_frameBuffer)
 		_checkFramebuffers(view, _frameBuffer);
 	view->setup();
     return this;
@@ -200,7 +200,7 @@ View* View::addSubview(View* view) {
 void View::insertSubviewAt(int position, View* view) {
 	subviews.insertAt(position, view);
     view->superview = this;
-	if (_frameBuffer != nullptr)
+	if (_frameBuffer)
 		_checkFramebuffers(view, _frameBuffer);
     view->setup();
 }

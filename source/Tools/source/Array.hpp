@@ -49,4 +49,8 @@ public:
     T random() const {
         return this->at(System::random((int)this->size()));
     }
+    
+    size_t bytes_size() const {
+        return sizeof(T) * this->size();
+    }
 };

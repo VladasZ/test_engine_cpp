@@ -38,6 +38,8 @@ public:
     static Shader uiMonochrome;
     static Shader uiPath;
     static Shader sprite;
+    
+    static Shader simple3D;
 
     void use() const;
     void setUniformColor(const Color &color);

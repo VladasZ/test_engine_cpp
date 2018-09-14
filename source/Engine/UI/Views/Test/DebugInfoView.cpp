@@ -13,7 +13,7 @@
 
 void DebugInfoView::setup() {
     
-    setSize({500, 200});
+	setSize({ 500, 200 });
     addLayout(L::Top(5), L::Left(5));
     
 	Events::frame_drawn.subscribe([&] {

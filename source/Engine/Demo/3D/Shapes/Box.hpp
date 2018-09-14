@@ -11,6 +11,6 @@
 #include "Polygon.hpp"
 
 class Box : public Polygon {
-  
+public:
     Box();
 };

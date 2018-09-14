@@ -21,7 +21,7 @@ Shader Shader::uiPath;
 Shader Shader::sprite;
 Shader Shader::simple3D;
 
-Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath) {    
+Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {    
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
 }
 
@@ -50,22 +50,16 @@ void Shader::initialize() {
                            FileManager::assetsDirectory() + "Shaders/simple3D.frag");
 }
 
-void Shader::setUniformColor(const Color &color) {
+void Shader::setUniformColor(const Color& color) {
     if (uniformColor == -1)
         uniformColor = glGetUniformLocation(program, "uniformColor");
 	GL(glUniform4fv(uniformColor, 1, &color.r));
 }
 
-void Shader::setUITranslationMatrix(const mat4 &projection) {
-    if (viewportTranslation == -1)
-        viewportTranslation = glGetUniformLocation(program, "uiTranslation");
-   // GL(glUniformMatrix4fv(viewportTranslation, 1, false, &projection[0][0]));
-}
-
-void Shader::setTransformMatrix(const mat4 &transform) {
-    if (this->transform == -1)
-        this->transform = glGetUniformLocation(program, "transform");
-   // GL(glUniformMatrix4fv(this->transform, 1, false, &transform[0][0]));
+void Shader::setMVPMatrix(const Matrix4& mvp) {
+	if (mvpMatrix == -1)
+		mvpMatrix = glGetUniformLocation(program, "mvpMatrix");
+	GL(glUniformMatrix4fv(mvpMatrix, 1, false, &mvp.data[0][0]));
 }
 
 void Shader::setUniformPosition(float x, float y) {
@@ -74,9 +68,3 @@ void Shader::setUniformPosition(float x, float y) {
     glUniform2f(uniformPosition, x, y);
 }
 
-void Shader::setViewportTranslation(const Size &viewport) {/*
-    mat4 viewportTranslation = scale(mat4(), vec3(2 / viewport.width, -(2 / viewport.height), 1));
-    viewportTranslation = translate(viewportTranslation, vec3(-viewport.width / 2, -viewport.height / 2, 0));
-    use();
-    setUITranslationMatrix(viewportTranslation);*/
-}

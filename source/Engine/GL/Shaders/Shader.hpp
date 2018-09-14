@@ -28,6 +28,7 @@ class Shader MEMORY_MANAGED(Shader) {
     int viewportTranslation = -1;
     int uniformPosition = -1;
     int transform = -1;
+	int mvpMatrix = -1;
     
     static void initialize();
     
@@ -42,9 +43,8 @@ public:
     static Shader simple3D;
 
     void use() const;
-    void setUniformColor(const Color &color);
-    void setUITranslationMatrix(const mat4 &projection);
-    void setTransformMatrix(const mat4 &transform);
+
+    void setUniformColor(const Color& color);
+	void setMVPMatrix(const Matrix4& mvp);
     void setUniformPosition(float x, float y);
-    void setViewportTranslation(const Size &viewport);
 };

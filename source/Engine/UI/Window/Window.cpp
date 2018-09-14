@@ -19,10 +19,14 @@
 #include "Buffer.hpp"
 #include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
+#include "Box.hpp"
 
 using namespace std;
 
 void sizeChanged(GLFWwindow* window, int width, int height);
+
+
+Box* box = new Box();
 
 void Window::initialize(int width, int height) {
 
@@ -89,11 +93,21 @@ void Window::setup() {
     rootView->setup();
     rootView->layout();
     rootView->_frameBuffer->clear();
+
+	auto perspective = Matrix4::perspective(0.1, (float)size.width / (float)size.height, 0.1f, 100.0f);
+
+	Shader::simple3D.use();
+	Shader::simple3D.setUniformColor(C::green);
+	Shader::simple3D.setMVPMatrix(perspective);
+
 }
 
 void Window::update() {
     GL::setClearColor(C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+	//Shader::simple3D.use();
+	//box->draw();
     
     rootFrameBuffer->clear();
     rootView->draw();

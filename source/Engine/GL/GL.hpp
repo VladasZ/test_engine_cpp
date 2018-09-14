@@ -11,8 +11,7 @@
 #include "Rect.hpp"
 #include "Color.hpp"
 
-class mat4 { };
-class vec3 { };
+#include "Matrix4.hpp"
 
 #if IOS
     #import <OpenGLES/ES3/gl.h>

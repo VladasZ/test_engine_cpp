@@ -17,7 +17,7 @@ void DrawingView::draw() {
 	GL::setViewport(_absoluteFrame);
 //    buffer->draw();
     Shader::uiPath.use();
-    Shader::uiPath.setViewportTranslation(_frame.size);
+ //   Shader::uiPath.setViewportTranslation(_frame.size);
     for (auto path : paths) path->draw();
 
     drawSubviews();

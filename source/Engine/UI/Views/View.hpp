@@ -18,8 +18,6 @@
 #include "Touch.hpp"
 #include "Event.hpp"
 
-#define DRAW_DEBUG_FRAMES true
-
 class Buffer;
 class Window;
 class FrameBuffer;

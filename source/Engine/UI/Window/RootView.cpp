@@ -31,7 +31,7 @@ void RootView::setup() {
 #endif
     
 
-    SliderView* slider = (new SliderView({50, 400}));
+	SliderView* slider = (new SliderView({ 50, 400 }));
     slider->addLayout(L::CenterV(), L::Right());
         
 

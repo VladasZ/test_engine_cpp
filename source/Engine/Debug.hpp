@@ -18,6 +18,7 @@ class Label;
 #define RENDERING_ERRORS_OUTPUT true
 #define SHADER_COMPILER_OUTPUT true
 #define IMAGES_LOADING_OUTPUT true
+#define DRAW_DEBUG_FRAMES true
 
 #if RENDERING_ERRORS_OUTPUT
 #define GL(x) (x); CheckGLError(LOCATION_INFO)

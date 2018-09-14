@@ -17,35 +17,6 @@
 #include "Dictionary.hpp"
 
 
-static auto touchMovedCondition = [](View* view, const Point &point, TouchID id) {
-    
-    return view->_touchID == id;
-};
-
-static auto touchBeganCondition = [](View* view, const Point &point, TouchID id) {
-    
-    auto trigger = view->containsGlobalPoint(point);
-    
-    if (trigger)
-        view->_touchID = id;
-    
-    return trigger;
-};
-
-static auto touchEndedCondition = [](View* view, const Point &point, TouchID id) {
-    auto trigger = view->_touchID == id;
-
-    if (trigger)
-        view->_touchID = -1;
-    
-    return trigger;
-};
-
-
-TouchEvent Input::onTouchBegan(touchBeganCondition);
-TouchEvent Input::onTouchMoved(touchMovedCondition);
-TouchEvent Input::onTouchEnded(touchEndedCondition);
-
 #if GLFW
 
 Point Input::cursorPosition;
@@ -80,20 +51,48 @@ void Input::initialize() {
 }
 
 void Input::touchBegan(INPUT_PARAMETERS) {
-    onTouchBegan(Point(x, y), id);
-    Events::touch({x, y});
+	Point location{ x, y };
+	Events::touch(location);
+
+	for (auto view : _subscribedViews)
+		if (view->containsGlobalPoint(location)) {
+			view->_touchID = id;
+			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Began));
+			break;
+		}
 }
 
 void Input::touchMoved(INPUT_PARAMETERS) {
-    onTouchMoved(Point(x, y), id);
-    Events::touch({x, y});
+	Point location{ x, y };
+	Events::touch(location);
+	
+	for (auto view : _subscribedViews)
+		if (id == view->_touchID) {
+			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Moved));
+			break;
+		}
 }
 
 void Input::touchEnded(INPUT_PARAMETERS) {
-    onTouchEnded(Point(x, y), id);
-    Events::touch({x, y});
+	Point location{ x, y };
+	Events::touch(location);
+
+	for (auto view : _subscribedViews)
+		if (id == view->_touchID) {
+			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Ended));
+			view->_touchID = -1;
+			break;
+		}
 }
 
 void Input::pressedKey(const char &key) {
     Log(key);
+}
+
+void Input::subscribeView(View* view) {
+	_subscribedViews.push_back(view);
+}
+
+void Input::unsubscribeView(View* view) {
+	_subscribedViews.remove(view);
 }

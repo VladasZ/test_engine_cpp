@@ -17,13 +17,17 @@ class SliderView : public View {
     View* _slider;
     View* _slider_content_view;
 
+	float _value = 0;
+
 public:
-    
-    float value = 0;
-    
+       
     using View::View;
     
     void setup() override;
-    
     void layout() override;
+	
+	Event<float> onValueChanged;
+
+	float value() const { return _value; }
+	SliderView* setValue(float value);
 };

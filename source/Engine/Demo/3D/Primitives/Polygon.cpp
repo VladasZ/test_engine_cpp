@@ -17,8 +17,8 @@ Polygon::~Polygon() {
 void Polygon::_createBuffer() {
     if (_buffer)
         return;
-    _buffer = new Buffer((GLfloat*)vertices.data(), vertices.bytes_size(),
-                         (GLushort*)indices.data(), indices.bytes_size(),
+    _buffer = new Buffer((GLfloat*)vertices.data(), (GLuint)vertices.bytes_size(),
+                         (GLushort*)indices.data(), (GLuint)indices.bytes_size(),
                          BufferConfiguration::_3);
 }
 

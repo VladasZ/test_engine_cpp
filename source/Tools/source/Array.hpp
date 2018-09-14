@@ -33,6 +33,17 @@ public:
 //        return std::nullopt;
 //    }
 
+	auto indexOf(const T&object) {
+		return std::find(this->begin(), this->end(), object);
+	}
+
+	void remove(const T& object) {
+		auto iter = std::find(this->begin(), this->end(), object);
+		if (iter == this->end())
+			return;
+		this->erase(iter);
+	}
+
     void removeIf(const Predicate &predicate) {
         erase(std::remove_if(this->begin(), this->end(),  predicate, this->end()));
     }

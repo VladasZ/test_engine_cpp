@@ -9,6 +9,7 @@
 #include "Input.hpp"
 #include "ImageView.hpp"
 #include "SliderView.hpp"
+#include "Log.hpp"
 
 void SliderView::setup() {
     
@@ -32,6 +33,27 @@ void SliderView::setup() {
     addSubview(_topArrow);
     addSubview(_bottomArrow);
     addSubview(_slider_content_view);
+
+	_topArrow->enableTouch();
+	_bottomArrow->enableTouch();
+	_slider_content_view->enableTouch();
+
+	_topArrow->onTouch.subscribe([&](Touch touch) {
+		if (!touch.isBegan()) return;
+		this->setValue(this->value() + 0.02f);
+	});
+
+	_bottomArrow->onTouch.subscribe([&](Touch touch) {
+		if (!touch.isBegan()) return;
+		this->setValue(this->value() - 0.02f);
+	});
+
+	_slider_content_view->onTouch.subscribe([&](Touch touch) {
+
+		auto height = _slider_content_view->frame().size.height;
+
+		this->setValue(1 - touch.location.y / height);
+	});
 }
 
 void SliderView::layout() {
@@ -50,7 +72,7 @@ void SliderView::layout() {
     
     _slider->setFrame({
         0,
-        (slider_content_view_height - slider_height) * value / 1,
+        (slider_content_view_height - slider_height) * (1 - _value / 1),
         _frame.size.width,
         slider_height
     });
@@ -58,3 +80,18 @@ void SliderView::layout() {
     _bottomArrow->setY(_frame.size.width + slider_content_view_height);
 }
 
+SliderView* SliderView::setValue(float value) {
+	_value = value;
+
+	if (_value > 1)
+		_value = 1;
+
+	if (_value < 0)
+		_value = 0;
+
+	_needsLayout = true;
+
+	onValueChanged(_value);
+
+	return this;
+}

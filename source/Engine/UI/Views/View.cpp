@@ -23,6 +23,7 @@ View::~View() {
 	removeAllSubviews();
     if (_layout) delete _layout;
 	if (_ownsFramebuffer) delete _frameBuffer;
+	disableTouch();
 }
 
 Rect View::_calculateAbsoluteFrame() const {
@@ -255,4 +256,12 @@ Point View::localPointFrom(const Point &point) const {
 
 bool View::containsGlobalPoint(const Point &point) const {
     return _absoluteFrame.contains(point);
+}
+
+void View::enableTouch() {
+	Input::subscribeView(this);
+}
+
+void View::disableTouch() {
+	Input::unsubscribeView(this);
 }

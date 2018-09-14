@@ -13,11 +13,19 @@
 class Touch {
 public:
 
-	enum TouchEvent : uint8_t {
+	enum Event : uint8_t {
 		Began = 0b0000'0001,
 		Moved = 0b0000'0010,
 		Ended = 0b0000'0100,
 		All = Began | Moved | Ended
 	};
 
+	Event event;
+	Point location;
+
+	Touch(const Point& location, Event event);
+
+	bool isBegan() const { return event == Event::Began; }
+	bool isMoved() const { return event == Event::Moved; }
+	bool isEnded() const { return event == Event::Ended; }
 };

@@ -11,18 +11,17 @@
 #include "Point.hpp"
 #include "ConditionalEvent.hpp"
 
-class Button;
 class View;
 
 #define INPUT_PARAMETERS float x, float y, TouchID id
 
 using TouchID = long;
 
-typedef ConditionalEvent<View, TestEngine::Point, TouchID> TouchEvent;
-
 class Input final {
     
     Input();
+
+	static inline Array<View*> _subscribedViews;
     
 public:
     
@@ -35,12 +34,11 @@ public:
     
     static void initialize();
     
-    static void touchBegan(INPUT_PARAMETERS);
-    static void touchMoved(INPUT_PARAMETERS);
-    static void touchEnded(INPUT_PARAMETERS);
+    static void touchBegan(INPUT_PARAMETERS = 0);
+    static void touchMoved(INPUT_PARAMETERS = 0);
+    static void touchEnded(INPUT_PARAMETERS = 0);
     static void pressedKey(const char &key);
-    
-    static TouchEvent onTouchBegan;
-    static TouchEvent onTouchMoved;
-    static TouchEvent onTouchEnded;
+
+	static void subscribeView(View* view);
+	static void unsubscribeView(View* view);
 };

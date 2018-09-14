@@ -45,19 +45,6 @@ void AnalogStickView::setup() {
         return path;
     }());
     
-    Input::onTouchBegan.subscribe(this, [&](const Point &point, int id) {
-        _touchID = id;
-    });
-
-    Input::onTouchMoved.subscribe(this, [&](const Point &point, int id) {
-        onTouchMoved(point);
-    });
-    
-    Input::onTouchEnded.subscribe(this, [&](Point point, int id) {
-        _touchID = -1;
-        directionStick->setCenter(_frame.size.center());
-        onDirectionChange(Point());
-    });
 }
 
 void AnalogStickView::onTouchMoved(const Point &touch) {

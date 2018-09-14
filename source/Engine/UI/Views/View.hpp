@@ -15,22 +15,26 @@
 #include "Memory.hpp"
 #include "Layout.hpp"
 #include "Input.hpp"
+#include "Touch.hpp"
+#include "Event.hpp"
 
 #define DRAW_DEBUG_FRAMES true
 
 class Buffer;
 class Window;
-class Input;
 class FrameBuffer;
 
 class View : public Drawable {
 
     friend Window;
+	friend Input;
     friend Layout::Base;
 
 	void _checkFramebuffers(View* view, FrameBuffer* framebuffer);
 
 protected:
+
+	TouchID _touchID = -1;
 
     Rect _absoluteFrame;
     Rect _frameInFrameBuffer;
@@ -59,15 +63,17 @@ protected:
     
     View* _addLayout(const std::initializer_list<Layout::Base*> &layout);
 
+	virtual void on_touch(const Touch& touch) { onTouch(touch); }
+
 public:
     
-    TouchID _touchID = -1;
-
-    View* _setFramebuffer();
+	Event<Touch> onTouch;
 
     View* superview = nullptr;
 
     Array<View*> subviews;
+
+	View* _setFramebuffer();
 
 	static View* make(const Rect& rect = Rect()) { return new View(rect); }
     View(const Rect &rect = Rect());
@@ -105,6 +111,9 @@ public:
 		_layout = nullptr;
 		return _addLayout({ args... }); 
 	}
+
+	void enableTouch();
+	void disableTouch();
 
     View* clone() const;
 

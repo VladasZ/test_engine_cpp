@@ -30,11 +30,20 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
+
     SliderView* slider = (new SliderView({50, 400}));
     slider->addLayout(L::CenterV(), L::Right());
-    
-    slider->value = 1;
-    
+        
+
+	Label* sliderValueLabel = new Label({ 50, 50 });
+	sliderValueLabel->addLayout(L::Bottom(20, slider), L::CenterH(slider));
+	sliderValueLabel->setText("30");
+
+	slider->onValueChanged.subscribe([=](float value) {
+		sliderValueLabel->setText(std::to_string(value));
+	});
+
+	addSubview(sliderValueLabel);
     addSubview(slider);
 }
 

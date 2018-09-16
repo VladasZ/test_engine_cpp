@@ -20,8 +20,8 @@ public:
 		All = Began | Moved | Ended
 	};
 
-	Event event;
 	Point location;
+    Event event;
 
 	Touch(const Point& location, Event event);
 

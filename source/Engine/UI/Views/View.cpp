@@ -189,6 +189,11 @@ View* View::setHeight(float height) {
     return this;
 }
 
+View* View::setNeedsLayout() {
+    _needsLayout = true;
+    return this;
+}
+
 View* View::addSubview(View* view) {
     subviews.emplace_back(view);
     view->superview = this;

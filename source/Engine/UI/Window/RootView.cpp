@@ -21,6 +21,7 @@
 #include "TestView.hpp"
 #include "ScrollView.hpp"
 #include "SliderView.hpp"
+#include "LabeledSliderView.hpp"
 
 ScrollView* scrollView;
 
@@ -31,19 +32,10 @@ void RootView::setup() {
 #endif
     
 
-	SliderView* slider = (new SliderView({ 50, 400 }));
-    slider->addLayout(L::CenterV(), L::Right());
-        
-
-	Label* sliderValueLabel = new Label({ 50, 50 });
-	sliderValueLabel->addLayout(L::Bottom(20, slider), L::CenterH(slider));
-	sliderValueLabel->setText("30");
-
-	slider->onValueChanged.subscribe([=](float value) {
-		sliderValueLabel->setText(std::to_string(value));
-	});
-
-	addSubview(sliderValueLabel);
-    addSubview(slider);
+    LabeledSliderView* lSlider = new LabeledSliderView({ 40, 200 });
+    lSlider->addLayout(L::Left(20), L::CenterV());
+    lSlider->setCaption("rglak");
+    
+    addSubview(lSlider);
 }
 

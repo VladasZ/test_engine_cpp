@@ -25,18 +25,18 @@ void SliderView::setup() {
     
     _slider->setColor(C::green);
     
-    _slider_content_view = new View();
-    _slider_content_view->setColor(C::blue);
+    _sliderContentView = new View();
+    _sliderContentView->setColor(C::blue);
     
-    _slider_content_view->addSubview(_slider);
+    _sliderContentView->addSubview(_slider);
     
     addSubview(_topArrow);
     addSubview(_bottomArrow);
-    addSubview(_slider_content_view);
+    addSubview(_sliderContentView);
 
 	_topArrow->enableTouch();
 	_bottomArrow->enableTouch();
-	_slider_content_view->enableTouch();
+	_sliderContentView->enableTouch();
 
 	_topArrow->onTouch.subscribe([&](Touch touch) {
 		if (!touch.isBegan()) return;
@@ -48,10 +48,8 @@ void SliderView::setup() {
 		this->setValue(this->value() - 0.02f);
 	});
 
-	_slider_content_view->onTouch.subscribe([&](Touch touch) {
-
-		auto height = _slider_content_view->frame().size.height;
-
+	_sliderContentView->onTouch.subscribe([&](Touch touch) {
+		auto height = _sliderContentView->frame().size.height;
 		this->setValue(1 - touch.location.y / height);
 	});
 }
@@ -60,24 +58,38 @@ void SliderView::layout() {
     
     View::layout();
     
-    auto slider_content_view_height = _frame.size.height - _frame.size.width / 2;
-    auto slider_height = _frame.size.height / 10;
+    auto sliderContentViewHeight = _frame.size.height - _frame.size.width / 2;
+    auto sliderHeight = _frame.size.height / 10;
     
-    _slider_content_view->setFrame({
+    _topArrow->setFrame({
+        0,
+        0,
+        _frame.size.width,
+        _frame.size.width
+    });
+    
+    _sliderContentView->setFrame({
         0,
         _frame.size.width,
         _frame.size.width,
-        slider_content_view_height
+        sliderContentViewHeight
     });
     
     _slider->setFrame({
         0,
-        (slider_content_view_height - slider_height) * (1 - _value / 1),
+        (sliderContentViewHeight - sliderHeight) * (1 - _value / 1),
         _frame.size.width,
-        slider_height
+        sliderHeight
     });
     
-    _bottomArrow->setY(_frame.size.width + slider_content_view_height);
+    _bottomArrow->setFrame({
+        0,
+        _frame.size.width + sliderContentViewHeight,
+        _frame.size.width,
+        _frame.size.width
+    });
+    
+    _needsLayout = false;
 }
 
 SliderView* SliderView::setValue(float value) {

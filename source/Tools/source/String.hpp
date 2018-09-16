@@ -9,6 +9,8 @@
 #pragma once
 
 #include <string>
+#include <iomanip>
+#include <sstream>
 
 #include "Meta.hpp"
 #include "HasMember.hpp"
@@ -48,6 +50,12 @@ public:
     template<class T> String(const T &value) : __str(__toString(value)) { }
     template<class T> String operator + (const T &in) const { return (__str)*this + String(in); }
     template<class T> void   operator +=(const T &in) { this->append(in); }
+    
+    static String fromFloat(float val, int precision = 2) {
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(precision) << val;
+        return stream.str();
+    }
 };
 
 String operator "" _s(const char* in, size_t size);

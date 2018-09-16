@@ -90,6 +90,8 @@ public:
     View* setWidth(float width);
     View* setHeight(float height);
 
+    View* setNeedsLayout();
+    
     View* addSubview(View* view);
     void insertSubviewAt(int position, View* view);
     void removeAllSubviews();

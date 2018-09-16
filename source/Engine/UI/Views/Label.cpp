@@ -80,6 +80,11 @@ Label* Label::setFont(Font* font) {
     return this;
 }
 
+Label* Label::setFontSize(int size) {
+    setFont(this->_font->withSize(size));
+    return this;
+}
+
 Label* Label::setAlignment(Alignment alignment) {
 	_alignment = alignment;
 	_contentView->setLayout(L::fromAlignment(alignment), L::CenterV());

@@ -6,6 +6,8 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include <math.h>
+
 #include "Matrix4.hpp"
 
 

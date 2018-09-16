@@ -15,7 +15,7 @@ class SliderView : public View {
     View* _topArrow;
     View* _bottomArrow;
     View* _slider;
-    View* _slider_content_view;
+    View* _sliderContentView;
 
 	float _value = 0;
 

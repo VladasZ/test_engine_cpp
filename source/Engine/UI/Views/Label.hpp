@@ -36,6 +36,8 @@ public:
     
 	const Font* const font() const { return _font; }
     Label* setFont(Font* font);
+    
+    Label* setFontSize(int size);
 
 	const Alignment alignment() const { return _alignment; }
 	Label* setAlignment(Alignment alignment);

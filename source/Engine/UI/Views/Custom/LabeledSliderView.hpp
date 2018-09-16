@@ -13,10 +13,10 @@
 
 class LabeledSliderView : public View {
     
-    SliderView* _sliderView;
-    Label* _valueLabel;
-    Label* _captionLabel;
-    String _caption;
+    SliderView* _sliderView = nullptr;
+    Label* _valueLabel = nullptr;
+    Label* _captionLabel = nullptr;
+    String _caption = "";
     
 public:
     

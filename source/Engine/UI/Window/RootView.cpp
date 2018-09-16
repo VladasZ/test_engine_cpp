@@ -7,23 +7,7 @@
 //
 
 #include "RootView.hpp"
-#include "Input.hpp"
-#include "AnalogStickView.hpp"
-#include "ScrollView.hpp"
-#include "Macro.hpp"
-#include "Label.hpp"
-#include "System.hpp"
-#include "ImageView.hpp"
-#include "Glyph.hpp"
-#include "DrawingView.hpp"
-#include "FrameBuffer.hpp"
-#include "StackView.hpp"
-#include "TestView.hpp"
-#include "ScrollView.hpp"
-#include "SliderView.hpp"
-#include "LabeledSliderView.hpp"
-
-ScrollView* scrollView;
+#include "SettingsView.hpp"
 
 void RootView::setup() {
     
@@ -31,11 +15,25 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
-
-    LabeledSliderView* lSlider = new LabeledSliderView({ 40, 200 });
-    lSlider->addLayout(L::Left(20), L::CenterV());
-    lSlider->setCaption("rglak");
+    auto settingsView = new SettingsView( { 280, 400 });
+    settingsView->addLayout(L::Right(), L::Bottom(60));
+    addSubview(settingsView);
+ 
     
-    addSubview(lSlider);
+    settingsView->onX.subscribe([](float valueX) {
+        Logvar(valueX);
+    });
+    
+    settingsView->onY.subscribe([](float valueY) {
+        Logvar(valueY);
+    });
+    
+    settingsView->onZ.subscribe([](float valueZ) {
+        Logvar(valueZ);
+    });
+    
+    settingsView->onFov.subscribe([](float valueFov) {
+        Logvar(valueFov);
+    });
 }
 

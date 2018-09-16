@@ -17,21 +17,29 @@ class Event {
     
 public:
     using EventCallbackType = std::function<void(Params...)>;
-
+    using EventType = Event<Params...>;
+    
 private:
     Array<EventCallbackType> subscribers;
+    Array<EventType*> linkedEvents;
         
 public:
     
     Event() = default;
 
     void subscribe(EventCallbackType action) {
-        subscribers.emplace_back(action);
+        subscribers.push_back(action);
+    }
+    
+    void link(EventType& event) {
+        linkedEvents.push_back(&event);
     }
     
     void operator()(Params... parameters) const {
         for (const auto& subscriber : subscribers)
                 subscriber(std::forward<Params ...>(parameters...));
+        for (const auto event : linkedEvents)
+            event->operator()(std::forward<Params ...>(parameters...));
     }
 };
 

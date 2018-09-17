@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Point3.hpp"
+#include "String.hpp"
 
 class Matrix4 {
     
@@ -23,6 +24,10 @@ public:
     Matrix4(const std::initializer_list<float>& list);
     
 	Matrix4 operator *(const Matrix4& mat) const;
+
+	String toString() const;
+
+	static String bufferToString(const float* buffer);
 
 	static Matrix4 scale(float scale);
 	static Matrix4 translation(const Point3& location);

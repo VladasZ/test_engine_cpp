@@ -7,7 +7,7 @@
 
 int main()
 {
-	auto rgloc = glm::perspective(1, 1, 1, 1);
+	glm::mat4 rgloc = glm::perspective(1, 1, 1, 1);
 
 
 

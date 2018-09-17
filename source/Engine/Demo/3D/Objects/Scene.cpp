@@ -19,19 +19,19 @@ void Scene::setup() {
 
 	settingsView->onX.subscribe([=](float x) {
 		auto pos = object->position();
-		pos.x = x;
+		pos.x = x * 100;
 		object->setPosition(pos);
 	});
 
 	settingsView->onY.subscribe([=](float y) {
 		auto pos = object->position();
-		pos.y = y;
+		pos.y = y * 100;
 		object->setPosition(pos);
 	});
 
 	settingsView->onZ.subscribe([=](float z) {
 		auto pos = object->position();
-		pos.z = z;
+		pos.z = z * 100;
 		object->setPosition(pos);
 	});
 

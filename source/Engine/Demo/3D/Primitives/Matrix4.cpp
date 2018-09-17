@@ -53,6 +53,19 @@ Matrix4 Matrix4::operator *(const Matrix4& mat) const {
 	return res;
 }
 
+String Matrix4::toString() const {
+	return Matrix4::bufferToString(&data[0][0]);
+}
+
+String Matrix4::bufferToString(const float* buf) {
+
+	return std::string() +
+		std::to_string(buf[0]) + " " + std::to_string(buf[4]) + " " + std::to_string(buf[8])  + " " + std::to_string(buf[12]) + "\n" +
+		std::to_string(buf[1]) + " " + std::to_string(buf[5]) + " " + std::to_string(buf[9])  + " " + std::to_string(buf[13]) + "\n" +
+		std::to_string(buf[2]) + " " + std::to_string(buf[6]) + " " + std::to_string(buf[10]) + " " + std::to_string(buf[14]) + "\n" +
+		std::to_string(buf[3]) + " " + std::to_string(buf[7]) + " " + std::to_string(buf[11]) + " " + std::to_string(buf[15]);
+}
+
 Matrix4 Matrix4::scale(float scale) {
 	return  {
 		scale,     0,     0, 0,
@@ -64,24 +77,29 @@ Matrix4 Matrix4::scale(float scale) {
  
 Matrix4 Matrix4::translation(const Point3& location) {
 	return {
-		1, 0, 0, location.x,
-		0, 1, 0, location.y,
-		0, 0, 1, location.z,
-		0, 0, 0,          1
+		1,					 0,			 0, 0,
+		0,					 1,			 0, 0,
+		0,					 0,			 1, 0,
+		location.x, location.y, location.z, 1
 	};
 }
 
 Matrix4 Matrix4::perspective(float fovy, float aspect, float zNear, float zFar) {
 
-	float D2R = 3.14159265358f / 180.0f;
-	float yScale = 1.0f / tan(D2R * fovy / 2.0f);
-	float xScale = yScale / aspect;
-	float nearmfar = zNear - zFar;
+	float const tanHalfFovy = tan(fovy / 2.0f);
 
-	return {
-		xScale, 0, 0, 0,
-		0, yScale, 0, 0,
-		0, 0, (zFar + zNear) / nearmfar, -1,
-		0, 0, 2 * zFar*zNear / nearmfar, 0
-	};
+	Matrix4 Result(0.0f);
+	Result.data[0][0] = 1.0f / (aspect * tanHalfFovy);
+	Result.data[1][1] = 1.0f / (tanHalfFovy);
+	Result.data[2][3] = -1.0f;
+
+//#		if GLM_DEPTH_CLIP_SPACE == GLM_DEPTH_ZERO_TO_ONE
+//	Result[2][2] = zFar / (zNear - zFar);
+//	Result[3][2] = -(zFar * zNear) / (zFar - zNear);
+//#		else
+	Result.data[2][2] = -(zFar + zNear) / (zFar - zNear);
+	Result.data[3][2] = -(2.0f * zFar * zNear) / (zFar - zNear);
+//#		endif
+
+	return Result;
 }

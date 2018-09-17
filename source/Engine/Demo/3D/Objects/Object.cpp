@@ -6,11 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include <glm/gtc/matrix_transform.hpp>
-#include "glm/glm.hpp"
-#include "Window.hpp"
-using namespace glm;
-
 #include "Object.hpp"
 #include "Shader.hpp"
 #include "Scene.hpp"

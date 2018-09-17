@@ -13,3 +13,7 @@ Size::Size(float width, float height) : width(width), height(height) { }
 Point Size::center() const {
     return Point(width / 2, height / 2);
 }
+
+float Size::ratio() const {
+	return width / height;
+}

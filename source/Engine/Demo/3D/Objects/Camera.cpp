@@ -1,0 +1,31 @@
+//
+//  Camera.cpp
+//  TestEngine
+//
+//  Created by Vladas Zakrevskis on 9/17/18.
+//  Copyright © 2017 VladasZ. All rights reserved.
+//
+
+#include "Camera.hpp"
+#include "Size.hpp"
+#include "GlobalEvents.hpp"
+#include "RootView.hpp"
+
+Camera::Camera() {
+
+	Events::onScreenSizeChange.subscribe([&](Size size) {
+		this->_ratio = size.ratio();
+	});
+
+	settingsView->onFov.subscribe([&](float fov) {
+		this->_fov = fov;
+	});
+
+}
+
+const Matrix4& Camera::mvp() {
+
+	_mvp = Matrix4::perspective(0.785398f, _ratio, _near, _far);
+
+	return _mvp;
+}

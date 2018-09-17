@@ -1,8 +1,8 @@
 //
-//  Polygon.hpp
+//  Mesh.hpp
 //  TestEngine
 //
-//  Created by Vladas Zakrevskis on 9/13/17.
+//  Created by Vladas Zakrevskis on 9/13/18.
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 class Buffer;
 
-class Polygon {
+class Mesh {
     
     Buffer* _buffer = nullptr;
     
@@ -24,7 +24,7 @@ public:
     Array<uint16_t> indices;
     Array<Point3> vertices;
     
-    virtual ~Polygon();
+    virtual ~Mesh();
     
     void draw();
 };

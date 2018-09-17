@@ -19,6 +19,8 @@ class SettingsView : public View {
     
     LabeledSliderView* _fovSlider;
 
+	LabeledSliderView* _scaleSlider;
+
 public:
     
     using View::View;
@@ -26,8 +28,9 @@ public:
     Event<float> onX;
     Event<float> onY;
     Event<float> onZ;
-    Event<float> onFov;
-    
+	Event<float> onFov;
+	Event<float> onScale;
+
     void setup() override;
 
 };

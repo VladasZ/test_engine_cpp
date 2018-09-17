@@ -22,6 +22,8 @@ namespace Geometry {
         Size(float width, float height);
                 
         Point center() const;
+
+		float ratio() const;
                 
         template<class T> Size operator /(const T &value) const
         { return Size(this->width / (float)value, this->height / (float)value); }

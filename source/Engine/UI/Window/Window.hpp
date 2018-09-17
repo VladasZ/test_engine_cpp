@@ -9,11 +9,11 @@
 #pragma once
 
 #include "Size.hpp"
-#include "Point.hpp"
-#include "Input.hpp"
 #include "Debug.hpp"
 
 class View;
+class Scene;
+class Input;
 class RootView;
 class FrameBuffer;
 struct GLFWwindow;
@@ -36,11 +36,13 @@ public:
     static inline Geometry::Size size;
     static inline Geometry::Size screenResolution;
     
-    static inline RootView* rootView;
-    static inline FrameBuffer* rootFrameBuffer;
+    static inline RootView* rootView = nullptr;
+    static inline FrameBuffer* rootFrameBuffer = nullptr;
+
+	static inline Scene* currentScene = nullptr;
 
 #if GLFW
-    static inline GLFWwindow* window;
+    static inline GLFWwindow* window = nullptr;
 #endif
     
     static void initialize(int width, int height);
@@ -48,6 +50,8 @@ public:
     static void setup();
     
     static void update();
+
+	static void setScene(Scene* scene);
     
     static void sizeChanged(GLFWwindow* window, int width, int height);
 };

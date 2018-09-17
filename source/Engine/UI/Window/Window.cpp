@@ -6,27 +6,19 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include <iostream>
-
 #include "Window.hpp"
 #include "GL.hpp"
-#include "Font.hpp"
 #include "RootView.hpp"
 #include "World.hpp"
 #include "Time.hpp"
 #include "Log.hpp"
 #include "MemoryManager.hpp"
-#include "Buffer.hpp"
 #include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
-#include "Box.hpp"
-
-using namespace std;
+#include "Scene.hpp"
+#include "Buffer.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
-
-
-Box* box = new Box();
 
 void Window::initialize(int width, int height) {
 
@@ -85,6 +77,8 @@ void Window::initialize(int width, int height) {
     rootFrameBuffer = new FrameBuffer(screenResolution);
 
     setup(); 
+
+	Events::onScreenSizeChange(screenResolution);
 }
 
 void Window::setup() {
@@ -94,21 +88,20 @@ void Window::setup() {
     rootView->layout();
     rootView->_frameBuffer->clear();
 
-	auto perspective = Matrix4::perspective(0.1, (float)size.width / (float)size.height, 0.1f, 100.0f);
-
-	Shader::simple3D.use();
-	Shader::simple3D.setUniformColor(C::green);
-	Shader::simple3D.setMVPMatrix(perspective);
-
+	setScene(new Scene());
 }
 
 void Window::update() {
     GL::setClearColor(C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	//Shader::simple3D.use();
-	//box->draw();
-    
+	if (currentScene) {
+		GL(glEnable(GL_DEPTH_TEST));
+		currentScene->draw();
+	}
+
+	GL(glDisable(GL_DEPTH_TEST));
+
     rootFrameBuffer->clear();
     rootView->draw();
 
@@ -127,11 +120,17 @@ void Window::update() {
 	Events::frame_drawn();
 }
 
+void Window::setScene(Scene* scene) {
+	scene->setup();
+	currentScene = scene;
+}
+
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size((float)width, (float)height);
     rootView->setFrame(Rect((float)width, (float)height));
     rootFrameBuffer->clear();
     Buffer::windowSizeChanged();
+	Events::onScreenSizeChange(size);
     update();
     GL(glfwSwapBuffers(Window::window));
 }

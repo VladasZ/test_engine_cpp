@@ -10,12 +10,10 @@
 
 #include "View.hpp"
 #include "Debug.hpp"
+#include "SettingsView.hpp"
 #include "DebugInfoView.hpp"
 
-class AnalogStickView;
-
-inline AnalogStickView* directionStick;
-inline AnalogStickView* rotationStick;
+inline SettingsView* settingsView = nullptr;
 
 class RootView : public View {
     

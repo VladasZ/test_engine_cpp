@@ -24,6 +24,8 @@ public:
     
 	Matrix4 operator *(const Matrix4& mat) const;
 
+	static Matrix4 scale(float scale);
+	static Matrix4 translation(const Point3& location);
 	static Matrix4 perspective(float fovy, float aspect, float zNear, float zFar);
 
 };

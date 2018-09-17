@@ -1,20 +1,20 @@
 //
-//  Polygon.cpp
+//  Mesh.cpp
 //  TestEngine
 //
-//  Created by Vladas Zakrevskis on 9/13/17.
+//  Created by Vladas Zakrevskis on 9/13/18.
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
 #include "Buffer.hpp"
-#include "Polygon.hpp"
+#include "Mesh.hpp"
 
-Polygon::~Polygon() {
+Mesh::~Mesh() {
     if (_buffer)
         delete _buffer;
 }
 
-void Polygon::_createBuffer() {
+void Mesh::_createBuffer() {
     if (_buffer)
         return;
     _buffer = new Buffer((GLfloat*)vertices.data(), (GLuint)vertices.bytes_size(),
@@ -22,7 +22,7 @@ void Polygon::_createBuffer() {
                          BufferConfiguration::_3);
 }
 
-void Polygon::draw() {
+void Mesh::draw() {
     if (!_buffer)
         _createBuffer();
     _buffer->draw();

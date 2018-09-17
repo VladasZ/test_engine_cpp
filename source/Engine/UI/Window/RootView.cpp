@@ -7,7 +7,6 @@
 //
 
 #include "RootView.hpp"
-#include "SettingsView.hpp"
 
 void RootView::setup() {
     
@@ -15,7 +14,7 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
-    auto settingsView = new SettingsView( { 280, 400 });
+    settingsView = new SettingsView( { 280, 400 });
     settingsView->addLayout(L::Right(), L::Bottom(60));
     addSubview(settingsView);
  

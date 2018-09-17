@@ -13,4 +13,5 @@
 struct Events {
 	static inline Event<> frame_drawn;
     static inline Event<Point> touch;
+	static inline Event<Size> onScreenSizeChange;
 };

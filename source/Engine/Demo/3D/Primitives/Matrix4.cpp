@@ -52,23 +52,36 @@ Matrix4 Matrix4::operator *(const Matrix4& mat) const {
 	res.data[3][3] = data[3][0] * mat.data[0][3] + data[3][1] * mat.data[1][3] + data[3][2] * mat.data[2][3] + data[3][3] * mat.data[3][3];
 	return res;
 }
+
+Matrix4 Matrix4::scale(float scale) {
+	return  {
+		scale,     0,     0, 0,
+			0, scale,     0, 0,
+			0,     0, scale, 0,
+			0,     0,     0, 1
+	};
+}
  
+Matrix4 Matrix4::translation(const Point3& location) {
+	return {
+		1, 0, 0, location.x,
+		0, 1, 0, location.y,
+		0, 0, 1, location.z,
+		0, 0, 0,          1
+	};
+}
+
 Matrix4 Matrix4::perspective(float fovy, float aspect, float zNear, float zFar) {
 
-	float const tanHalfFovy = tan(fovy / 2.0f);
+	float D2R = 3.14159265358f / 180.0f;
+	float yScale = 1.0f / tan(D2R * fovy / 2.0f);
+	float xScale = yScale / aspect;
+	float nearmfar = zNear - zFar;
 
-	Matrix4 result = 0;
-	result.data[0][0] = 1.0f / (aspect * tanHalfFovy);
-	result.data[1][1] = 1.0f / (tanHalfFovy);
-	result.data[2][3] = -1.0f;
-
-#	//	if GLM_DEPTH_CLIP_SPACE == GLM_DEPTH_ZERO_TO_ONE
-	result.data[2][2] = zFar / (zNear - zFar);
-	result.data[3][2] = -(zFar * zNear) / (zFar - zNear);
-//#		else
-//	Result[2][2] = -(zFar + zNear) / (zFar - zNear);
-//	Result[3][2] = -(static_cast<T>(2) * zFar * zNear) / (zFar - zNear);
-//#		endif
-
-	return result;
+	return {
+		xScale, 0, 0, 0,
+		0, yScale, 0, 0,
+		0, 0, (zFar + zNear) / nearmfar, -1,
+		0, 0, 2 * zFar*zNear / nearmfar, 0
+	};
 }

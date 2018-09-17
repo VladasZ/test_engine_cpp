@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Polygon.hpp"
+#include "Mesh.hpp"
 
-class Box : public Polygon {
+class Box : public Mesh {
 public:
     Box();
 };

@@ -45,11 +45,4 @@ void World::setup() {
         Rect(53, 190, 34, 56)
     });
 
-    rotationStick->onDirectionChange.subscribe([&](auto point) {
-        frisk->rotation = point.angle();
-    });
-
-    directionStick->onDirectionChange.subscribe([&](auto point) {
-        frisk->setVelocity(point);
-    });
 }

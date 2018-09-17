@@ -18,14 +18,14 @@ Camera::Camera() {
 	});
 
 	settingsView->onFov.subscribe([&](float fov) {
-		this->_fov = fov;
+		this->_fov = fov * 2;
 	});
 
 }
 
 const Matrix4& Camera::mvp() {
 
-	_mvp = Matrix4::perspective(0.785398f, _ratio, _near, _far);
+	_mvp = Matrix4::perspective(_fov, _ratio, _near, _far);
 
 	return _mvp;
 }

@@ -12,8 +12,8 @@
 
 class Camera {
 
-	float _near = 0.1f;
-	float _far = 100.0f;
+	float _near = 1.0f;
+	float _far = 5.0f;
 	float _ratio;
 	float _fov;
 

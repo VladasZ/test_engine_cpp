@@ -43,6 +43,7 @@ public:
     static Shader simple3D;
 
     void use() const;
+	int getProgramID() const { return program; }
 
     void setUniformColor(const Color& color);
 	void setMVPMatrix(const Matrix4& mvp);

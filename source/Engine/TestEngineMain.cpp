@@ -13,30 +13,37 @@
 #include "Window.hpp"
 #include "Debug.hpp"
 
+#include "Assimp.hpp"
+#include "FileManager.hpp"
+
 //#include "glm/glm.hpp"
 //#include "glm/gtc/matrix_transform.hpp"
 
 #include "Matrix4.hpp"
 
+void glmTest() {
+    
+    //glm::mat4 rgloc;
+    //
+    //auto glmResult = glm::perspective<float>(200, 1, 0.1, 100);
+    
+    Matrix4 mat = Matrix4::perspective(200, 1, 0.1, 100);
+    
+    //Logvar(Matrix4::bufferToString(&glmResult[0][0]));
+    Logvar(mat.toString());
+    
+    //Log(sizeof(rgloc));
+    Log(sizeof(mat));
+    
+    
+    //return;
+
+}
+
 
 void testEngineMain() {
 
-	//glm::mat4 rgloc; 
-	//
-	//auto glmResult = glm::perspective<float>(200, 1, 0.1, 100);
-
-	Matrix4 mat = Matrix4::perspective(200, 1, 0.1, 100);
-
-	//Logvar(Matrix4::bufferToString(&glmResult[0][0]));
-	Logvar(mat.toString());
-
-	//Log(sizeof(rgloc));
-	Log(sizeof(mat));
-
-
-	//return;
-
-
+    
 	Window::initialize(1200, 880);
 	do {
 		GL(glfwPollEvents());

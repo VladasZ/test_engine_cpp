@@ -10,10 +10,12 @@
 #include "Object.hpp"
 #include "Box.hpp"
 #include "RootView.hpp"
+#include "Assimp.hpp"
+#include "FileManager.hpp"
 
 void Scene::setup() {
 
-	auto object = new Object(new Box());
+	auto object = new Object(DoTheImportThing(FileManager::assetsDirectory() + "/Models/Monkey.blend"));
 
 	addObject(object);
 

@@ -16,32 +16,33 @@
 #include "Assimp.hpp"
 #include "FileManager.hpp"
 
-//#include "glm/glm.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include "Matrix4.hpp"
 
 void glmTest() {
     
-    //glm::mat4 rgloc;
-    //
-    //auto glmResult = glm::perspective<float>(200, 1, 0.1, 100);
+    auto glrota = glm::rotate(glm::mat4(), 45.0f, {1, 0, 0});
     
-    Matrix4 mat = Matrix4::perspective(200, 1, 0.1, 100);
+    Matrix4 mat = Matrix4::rotation(45.0f, {1, 0, 0});
     
-    //Logvar(Matrix4::bufferToString(&glmResult[0][0]));
+    Logvar(Matrix4::bufferToString(&glrota[0][0]));
     Logvar(mat.toString());
     
-    //Log(sizeof(rgloc));
-    Log(sizeof(mat));
     
     
-    //return;
+    
+    return;
 
 }
 
 
 void testEngineMain() {
+    
+    glmTest();
+    
+    //return;
 
     
 	Window::initialize(1200, 880);

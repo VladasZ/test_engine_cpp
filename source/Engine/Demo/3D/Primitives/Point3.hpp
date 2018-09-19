@@ -21,6 +21,8 @@ public:
     Point3() = default;
     Point3(float x, float y, float z);
 
+    float lenght() const;
     
+    Point3& normalize();
 };
 

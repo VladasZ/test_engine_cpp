@@ -8,6 +8,9 @@
 
 #include <math.h>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "Matrix4.hpp"
 
 
@@ -84,22 +87,26 @@ Matrix4 Matrix4::translation(const Point3& location) {
 	};
 }
 
+Matrix4 Matrix4::rotation(float angle, const Point3& in) {
+    return glm::rotate(glm::mat4(), angle, {in.x, in.y, in.z});
+}
+
 Matrix4 Matrix4::perspective(float fovy, float aspect, float zNear, float zFar) {
 
 	float const tanHalfFovy = tan(fovy / 2.0f);
 
-	Matrix4 Result(0.0f);
-	Result.data[0][0] = 1.0f / (aspect * tanHalfFovy);
-	Result.data[1][1] = 1.0f / (tanHalfFovy);
-	Result.data[2][3] = -1.0f;
+	Matrix4 result(0.0f);
+	result.data[0][0] = 1.0f / (aspect * tanHalfFovy);
+	result.data[1][1] = 1.0f / (tanHalfFovy);
+	result.data[2][3] = -1.0f;
 
 //#		if GLM_DEPTH_CLIP_SPACE == GLM_DEPTH_ZERO_TO_ONE
 //	Result[2][2] = zFar / (zNear - zFar);
 //	Result[3][2] = -(zFar * zNear) / (zFar - zNear);
 //#		else
-	Result.data[2][2] = -(zFar + zNear) / (zFar - zNear);
-	Result.data[3][2] = -(2.0f * zFar * zNear) / (zFar - zNear);
+	result.data[2][2] = -(zFar + zNear) / (zFar - zNear);
+	result.data[3][2] = -(2.0f * zFar * zNear) / (zFar - zNear);
 //#		endif
 
-	return Result;
+	return result;
 }

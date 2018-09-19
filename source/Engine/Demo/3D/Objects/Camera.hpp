@@ -11,6 +11,7 @@
 #include "Matrix4.hpp"
 
 class Camera {
+public:
 
 	float _near = 1.0f;
 	float _far = 5.0f;
@@ -19,7 +20,6 @@ class Camera {
 
 	Matrix4 _mvp;
 
-public:
 
 	Camera();
 

@@ -23,6 +23,12 @@ public:
 	Matrix4(float value);
     Matrix4(const std::initializer_list<float>& list);
     
+    template <class CompatibleClass>
+    Matrix4(const CompatibleClass& obj) {
+        static_assert(sizeof(Matrix4) == sizeof(CompatibleClass), "Matrix4 invalid initializer");
+        memcpy(&data[0][0], (void *)&obj, sizeof(Matrix4));
+    }
+    
 	Matrix4 operator *(const Matrix4& mat) const;
 
 	String toString() const;
@@ -31,6 +37,7 @@ public:
 
 	static Matrix4 scale(float scale);
 	static Matrix4 translation(const Point3& location);
+    static Matrix4 rotation(float angle, const Point3& axis);
 	static Matrix4 perspective(float fovy, float aspect, float zNear, float zFar);
 
 };

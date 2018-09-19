@@ -15,7 +15,7 @@
 
 void Scene::setup() {
 
-	auto object = new Object(DoTheImportThing(FileManager::assetsDirectory() + "/Models/Box.blend"));
+	auto object = new Object(DoTheImportThing(FileManager::assetsDirectory() + "/Models/Monkey.blend"));
 
 	addObject(object);
 

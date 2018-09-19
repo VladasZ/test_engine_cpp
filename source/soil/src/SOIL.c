@@ -14,6 +14,7 @@
 */
 
 #define SOIL_CHECK_FOR_GL_ERRORS 0
+#define GL_SILENCE_DEPRECATION
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN

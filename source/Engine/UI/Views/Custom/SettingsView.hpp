@@ -21,6 +21,10 @@ class SettingsView : public View {
 
 	LabeledSliderView* _scaleSlider;
 
+    LabeledSliderView* _nearSlider;
+    LabeledSliderView* _farSlider;
+
+    
 public:
     
     using View::View;
@@ -29,7 +33,9 @@ public:
     Event<float> onY;
     Event<float> onZ;
 	Event<float> onFov;
-	Event<float> onScale;
+    Event<float> onScale;
+    Event<float> onNear;
+    Event<float> onFar;
 
     void setup() override;
 

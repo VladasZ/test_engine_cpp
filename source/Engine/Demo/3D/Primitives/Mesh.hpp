@@ -8,8 +8,10 @@
 
 #pragma once
 
-#include "Point3.hpp"
 #include "Array.hpp"
+#include "ColoredVertex.hpp"
+
+#define USE_COLORED_MESH true
 
 class Buffer;
 
@@ -22,7 +24,12 @@ class Mesh {
 public:
     
     Array<uint16_t> indices;
+    
+#if USE_COLORED_MESH
+    Array<ColoredVertex> coloredVertices;
+#else
     Array<Point3> vertices;
+#endif
     
     virtual ~Mesh();
     

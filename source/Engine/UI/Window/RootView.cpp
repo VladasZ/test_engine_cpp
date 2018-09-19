@@ -14,7 +14,7 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
-    settingsView = new SettingsView( { 280, 400 });
+    settingsView = new SettingsView( { 420, 400 });
     settingsView->addLayout(L::Right(), L::Bottom(60));
     addSubview(settingsView);
  

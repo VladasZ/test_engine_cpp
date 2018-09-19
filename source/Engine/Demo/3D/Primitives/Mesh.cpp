@@ -17,9 +17,19 @@ Mesh::~Mesh() {
 void Mesh::_createBuffer() {
     if (_buffer)
         return;
+    
+#if USE_COLORED_MESH
+    _buffer = new Buffer((GLfloat*)coloredVertices.data(), (GLuint)coloredVertices.bytes_size(),
+                         (GLushort*)indices.data(), (GLuint)indices.bytes_size(),
+                         BufferConfiguration::_3_4);
+    
+#else
     _buffer = new Buffer((GLfloat*)vertices.data(), (GLuint)vertices.bytes_size(),
                          (GLushort*)indices.data(), (GLuint)indices.bytes_size(),
                          BufferConfiguration::_3);
+#endif
+    
+    _buffer->drawMode = GL_TRIANGLES;
 }
 
 void Mesh::draw() {

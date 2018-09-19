@@ -20,6 +20,8 @@ Shader Shader::uiMonochrome;
 Shader Shader::uiPath;
 Shader Shader::sprite;
 Shader Shader::simple3D;
+Shader Shader::colored3D;
+
 
 Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {    
     program = ShaderCompiler::compile(vertexPath, fragmentPath);
@@ -48,6 +50,9 @@ void Shader::initialize() {
     
     simple3D =      Shader(FileManager::assetsDirectory() + "Shaders/simple3D.vert",
                            FileManager::assetsDirectory() + "Shaders/simple3D.frag");
+    
+    colored3D =     Shader(FileManager::assetsDirectory() + "Shaders/colored3D.vert",
+                           FileManager::assetsDirectory() + "Shaders/colored3D.frag");
 }
 
 void Shader::setUniformColor(const Color& color) {

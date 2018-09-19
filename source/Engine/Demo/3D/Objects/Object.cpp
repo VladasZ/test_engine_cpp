@@ -48,9 +48,9 @@ void Object::draw() {
 
 	auto mvp = camera * transformation * scale;
 
-	Shader::simple3D.use();
-	Shader::simple3D.setMVPMatrix(mvp);
-	Shader::simple3D.setUniformColor(C::green);
+	Shader::colored3D.use();
+	Shader::colored3D.setMVPMatrix(mvp);
+	Shader::colored3D.setUniformColor(C::green);
 
 	_mesh->draw();
 }

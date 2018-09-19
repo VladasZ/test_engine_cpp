@@ -15,12 +15,9 @@ BufferConfiguration::BufferConfiguration(int firstParam, int secondParam, int th
     
     if (firstParam == 0) { Error("Zero configuration"); return; }
     
-    if (secondParam > 0) size++;
-    if (thirdParam  > 0) size++;
-        
-                         configuration[0] = firstParam;
-    if (secondParam > 0) configuration[1] = secondParam;
-    if (thirdParam  > 0) configuration[2] = thirdParam;
+                                 configuration[0] = firstParam;
+    if (secondParam > 0) size++; configuration[1] = secondParam;
+    if (thirdParam  > 0) size++; configuration[2] = thirdParam;
     
     for (int i = 0; i < size; i ++)
         vertexSize += configuration[i];
@@ -58,3 +55,4 @@ void BufferConfiguration::setPointers() const {
 const BufferConfiguration BufferConfiguration::_2   = { 2, 0, 0 };
 const BufferConfiguration BufferConfiguration::_2_2 = { 2, 2, 0 };
 const BufferConfiguration BufferConfiguration::_3   = { 3, 0, 0 };
+const BufferConfiguration BufferConfiguration::_3_4 = { 3, 4, 0 };

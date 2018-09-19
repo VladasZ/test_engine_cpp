@@ -42,13 +42,37 @@ static Mesh* DoTheImportThing(const std::string& pFile)
     
     auto result = new Mesh();
 
-    
+#if USE_COLORED_MESH
+    auto& vertices = result->coloredVertices;
+#else
     auto& vertices = result->vertices;
+#endif
     auto& indices = result->indices;
     
     vertices.resize(mesh->mNumVertices);
     
-    memcpy(&vertices[0], mesh->mVertices, mesh->mNumVertices * sizeof(Point3));
+    //memcpy(&vertices[0], mesh->mVertices, mesh->mNumVertices * sizeof(Point3));
+    
+
+    for (int i = 0; i < mesh->mNumVertices; i++)
+    {
+        auto& vert = mesh->mVertices[i];
+        
+        ColoredVertex cVert;
+        
+        cVert.position.x = vert.x;
+        cVert.position.y = vert.y;
+        cVert.position.z = vert.z;
+        
+        
+        cVert.color = C::random();
+        
+        
+        vertices[i] = cVert;
+    }
+    
+    
+   // mesh->vertices = colored_vertices;
 
     for (int i = 0; i < mesh->mNumFaces; i++)
     {

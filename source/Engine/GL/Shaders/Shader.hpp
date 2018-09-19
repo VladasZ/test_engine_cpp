@@ -41,6 +41,7 @@ public:
     static Shader sprite;
     
     static Shader simple3D;
+    static Shader colored3D;
 
     void use() const;
 	int getProgramID() const { return program; }

@@ -20,6 +20,14 @@ Camera::Camera() {
 	settingsView->onFov.subscribe([&](float fov) {
 		this->_fov = fov * 2;
 	});
+    
+    settingsView->onNear.subscribe([&](float near) {
+        this->_near = -1 + near * 2;
+    });
+    
+    settingsView->onFar.subscribe([&](float far) {
+        this->_far = far * 100;
+    });
 
 }
 

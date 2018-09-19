@@ -15,7 +15,7 @@
 
 void Scene::setup() {
 
-	auto object = new Object(DoTheImportThing(FileManager::assetsDirectory() + "/Models/Monkey.blend"));
+	auto object = new Object(DoTheImportThing(FileManager::assetsDirectory() + "/Models/Box.blend"));
 
 	addObject(object);
 
@@ -33,7 +33,7 @@ void Scene::setup() {
 
 	settingsView->onZ.subscribe([=](float z) {
 		auto pos = object->position();
-		pos.z = z;
+		pos.z = z * 20;
 		object->setPosition(pos);
 	});
 

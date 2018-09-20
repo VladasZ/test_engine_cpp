@@ -29,7 +29,8 @@ public:
         memcpy(&data[0][0], (void *)&obj, sizeof(Matrix4));
     }
     
-	Matrix4 operator *(const Matrix4& mat) const;
+    Matrix4 operator *(const Matrix4& mat) const;
+    Matrix4& operator *=(const Matrix4& mat);
 
 	String toString() const;
 

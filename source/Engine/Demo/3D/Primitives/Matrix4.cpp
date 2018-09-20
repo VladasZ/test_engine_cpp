@@ -56,6 +56,11 @@ Matrix4 Matrix4::operator *(const Matrix4& mat) const {
 	return res;
 }
 
+Matrix4& Matrix4::operator *=(const Matrix4& mat) {
+    *this = this->operator*(mat);
+    return *this;
+}
+
 String Matrix4::toString() const {
 	return Matrix4::bufferToString(&data[0][0]);
 }

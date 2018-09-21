@@ -31,7 +31,7 @@
 int System::random() {
 #ifdef APPLE
     return arc4random();
-#elif WINDOWS
+#else
 
     static bool flag = true;
 
@@ -39,20 +39,15 @@ int System::random() {
         flag = false;
         srand((unsigned int)time(NULL));
     }
-
     return rand();
-#else
-    NOT_IMPLEMENTED; return 0;
 #endif
 }
 
 int System::random(int range) {
 #ifdef APPLE
     return arc4random_uniform(range);
-#elif WINDOWS
-    return random() % range;
 #else 
-    NOT_IMPLEMENTED; return 0;
+    return random() % range;
 #endif
 }
 

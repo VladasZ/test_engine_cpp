@@ -16,18 +16,18 @@
 #include "Assimp.hpp"
 #include "FileManager.hpp"
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+//#include "glm/glm.hpp"
+//#include "glm/gtc/matrix_transform.hpp"
 
 #include "Matrix4.hpp"
 
 void glmTest() {
     
-    auto glrota = glm::rotate(glm::mat4(), 45.0f, {1, 0, 0});
+   // auto glrota = glm::rotate(glm::mat4(), 45.0f, {1, 0, 0});
     
     Matrix4 mat = Matrix4::rotation(45.0f, {1, 0, 0});
     
-    Logvar(Matrix4::bufferToString(&glrota[0][0]));
+  //  Logvar(Matrix4::bufferToString(&glrota[0][0]));
     Logvar(mat.toString());
     
     

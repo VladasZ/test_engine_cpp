@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstring>
+
 #include "Point3.hpp"
 #include "String.hpp"
 

@@ -8,8 +8,8 @@
 
 #include <math.h>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+//#include "glm/glm.hpp"
+//#include "glm/gtc/matrix_transform.hpp"
 
 #include "Matrix4.hpp"
 
@@ -93,7 +93,7 @@ Matrix4 Matrix4::translation(const Point3& location) {
 }
 
 Matrix4 Matrix4::rotation(float angle, const Point3& in) {
-    return glm::rotate(glm::mat4(), angle, {in.x, in.y, in.z});
+    return {};//glm::rotate(glm::mat4(), angle, {in.x, in.y, in.z});
 }
 
 Matrix4 Matrix4::perspective(float fovy, float aspect, float zNear, float zFar) {

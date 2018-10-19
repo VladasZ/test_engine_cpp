@@ -5,8 +5,8 @@ matrix:
     include:
         - os: osx
           install:
-            - pip install gitpython
-            - pip install conan
+            - pip3 install gitpython
+            - pip3 install conan
           script:
             - python3 build.py --build
 #        - os: linux

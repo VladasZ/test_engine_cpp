@@ -5,13 +5,14 @@ matrix:
     include:
         - os: osx
           install:
+		    - pip install gitpython
             - pip install conan
-          script: 
-            - python3 build.py --make
+          script:
+            - python3 build.py --build
 #        - os: linux
 #          sudo: required 
 #          dist: trusty
 #          install: 
 #            - sudo pip install conan
 #          script: 
-#            - python3 build.py --make --clang
+#            - python3 build.py --build

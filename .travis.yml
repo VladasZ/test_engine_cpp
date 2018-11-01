@@ -9,10 +9,11 @@ matrix:
             - pip3 install conan
           script:
             - python3 build.py --build
-#        - os: linux
-#          sudo: required 
-#          dist: trusty
-#          install: 
-#            - sudo pip install conan
-#          script: 
-#            - python3 build.py --build
+        - os: linux
+          sudo: required 
+          dist: trusty
+          install: 
+            - sudo pip install gitpython
+            - sudo pip install conan
+          script: 
+            - python3 build.py --build

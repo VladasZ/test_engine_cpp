@@ -17,7 +17,7 @@ matrix:
             - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
           install: 
             - sudo apt-get update
-            - sudo apt-get install clang
+            - sudo apt-get install clang-6.0
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py
             - sudo pip install conan

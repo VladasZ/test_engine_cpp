@@ -13,7 +13,8 @@ matrix:
           sudo: required 
           dist: trusty
           install: 
-            - sudo apt install python3-pip
+            - sudo apt-get update
+            - sudo apt-get install python3-pip
             - sudo pip3 install gitpython
             - sudo pip3 install conan
           script: 

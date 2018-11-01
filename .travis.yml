@@ -1,5 +1,5 @@
 language: cpp
-compiler: clang
+compiler: gcc
 
 matrix:
     include:
@@ -13,7 +13,7 @@ matrix:
           sudo: required 
           dist: trusty
           install: 
-            - sudo pip install gitpython
-            - sudo pip install conan
+            - sudo pip3 install gitpython
+            - sudo pip3 install conan
           script: 
             - python3 build.py --build

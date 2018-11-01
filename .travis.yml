@@ -1,5 +1,4 @@
 language: cpp
-compiler: gcc
 
 matrix:
     include:
@@ -23,3 +22,6 @@ matrix:
             - sudo pip install gitpython
           script: 
             - python3 build.py --build
+
+before_install:
+    - eval "${MATRIX_EVAL}"

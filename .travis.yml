@@ -3,16 +3,17 @@ compiler: gcc
 
 matrix:
     include:
-        - os: osx
-          install:
-            - pip3 install gitpython
-            - pip3 install conan
-          script:
-            - python3 build.py --build
+#        - os: osx
+#          install:
+#            - pip3 install gitpython
+#            - pip3 install conan
+#          script:
+#            - python3 build.py --build
         - os: linux
           sudo: required 
           dist: trusty
           install: 
+            - sudo apt install python3-pip
             - sudo pip3 install gitpython
             - sudo pip3 install conan
           script: 

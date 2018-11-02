@@ -11,8 +11,12 @@ matrix:
         - os: linux
           sudo: required 
           dist: trusty
-          packages: 
-            - g++-7
+          addons:
+            apt:
+                sources:
+                    - ubuntu-toolchain-r-test
+                packages:
+                    - g++-7
           install: 
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py

@@ -18,7 +18,7 @@ matrix:
                 packages:
                     - g++-7
           install: 
-            - sudo apt-get install --reinstall binutils
+            - sudo apt-get upgrade binutils
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py
             - sudo pip install conan

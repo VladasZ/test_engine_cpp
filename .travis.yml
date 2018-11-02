@@ -11,19 +11,12 @@ matrix:
         - os: linux
           sudo: required 
           dist: trusty
-          compiler: clang
-          addons:
-             apt:
-                sources:
-                    - ubuntu-toolchain-r-test
-                    - llvm-toolchain-trusty-6.0
-             packages: 
-                - clang-6.0
-                - libstdc++-7-dev
+          packages: 
+            - g++-7
           install: 
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py
             - sudo pip install conan
             - sudo pip install gitpython
           script: 
-              - python3 build.py --build --clang
+              - python3 build.py --build

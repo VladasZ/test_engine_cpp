@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.9.2 FATAL_ERROR)
 
-include(${CMAKE_SOURCE_DIR}/utils/utils.cmake)
+include(~/.emacs.d/utils/utils.cmake)
+
+include(${CMAKE_BINARY_DIR}/build_info.cmake)
+include(${CMAKE_BINARY_DIR}/${BUILD_INFO})
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -18,6 +21,8 @@ endif ()
 
 add_definitions(-DGLFW=1)
 add_definitions(-DDEBUG=1)
+
+conan_basic_setup()
 
 add_subdirectory(source/Engine)
 add_subdirectory(source/Geometry)

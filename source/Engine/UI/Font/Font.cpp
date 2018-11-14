@@ -17,7 +17,6 @@
 #include "Image.hpp"
 #include "Glyph.hpp"
 #include "File.hpp"
-#include "Macro.hpp"
 
 using namespace std;
 
@@ -74,7 +73,7 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
     float yMax = 0;
     float yMin = 0;
         
-    FOR(128) {
+    for (int i = 0; i < 128; i++) {
         auto glyph = renderGlyph(face, i);
         
         if (yMax < glyph->yMax()) yMax = glyph->yMax();        

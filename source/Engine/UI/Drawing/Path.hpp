@@ -21,7 +21,7 @@ enum PathDrawMode {
     Stroke
 };
 
-class Path : public Drawable _MEMORY_MANAGED(Path) {
+class Path : public Drawable {
     
     Array<Point> points;
     

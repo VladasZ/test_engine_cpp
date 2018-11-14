@@ -12,7 +12,6 @@
 #include "Drawable.hpp"
 #include "Color.hpp"
 #include "Rect.hpp"
-#include "Memory.hpp"
 #include "Layout.hpp"
 #include "Input.hpp"
 #include "Touch.hpp"

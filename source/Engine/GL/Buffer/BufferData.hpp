@@ -9,13 +9,12 @@
 #pragma once
 
 #include "GL.hpp"
-#include "Memory.hpp"
 #include "Size.hpp"
 #include "Array.hpp"
 
 class Buffer;
 
-class BufferData MEMORY_MANAGED(BufferData) {
+class BufferData {
     
     GLfloat* vertData = nullptr;
     GLuint vertSize = 0;

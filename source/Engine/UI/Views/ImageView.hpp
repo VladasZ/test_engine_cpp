@@ -13,7 +13,7 @@
 
 class Window;
 
-class ImageView : public View _MEMORY_MANAGED(ImageView) {
+class ImageView : public View {
       
     void draw() override;
 

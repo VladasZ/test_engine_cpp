@@ -9,10 +9,9 @@
 #pragma once
 
 #include "Color.hpp"
-#include "MemoryManager.hpp"
 #include "NonCopyable.hpp"
 
-class Drawable : public NonCopyable _MEMORY_MANAGED(Drawable) {
+class Drawable : public NonCopyable {
     
 protected:
     

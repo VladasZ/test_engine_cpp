@@ -10,10 +10,9 @@
 
 #include "Rect.hpp"
 #include "NonCopyable.hpp"
-#include "Memory.hpp"
 #include "Image.hpp"
 
-class Glyph : public NonCopyable _MEMORY_MANAGED(Glyph) {
+class Glyph : public NonCopyable {
         
 public:
     

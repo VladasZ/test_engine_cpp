@@ -11,11 +11,10 @@
 #include "Array.hpp"
 #include "String.hpp"
 #include "NonCopyable.hpp"
-#include "Memory.hpp"
 
 class Glyph;
 
-class Font : public NonCopyable _MEMORY_MANAGED(Font) {
+class Font : public NonCopyable {
     
     float _height;
     float _baselineShift;

@@ -10,12 +10,11 @@
 
 #include "Color.hpp"
 #include "GL.hpp"
-#include "Memory.hpp"
 #include "Rect.hpp"
 
 class Window;
 
-class Shader MEMORY_MANAGED(Shader) {
+class Shader {
     
     Shader() = default;
     Shader(const std::string &vertexPath, const std::string &fragmentPath);

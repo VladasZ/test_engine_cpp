@@ -12,7 +12,6 @@
 #include "World.hpp"
 #include "Time.hpp"
 #include "Log.hpp"
-#include "MemoryManager.hpp"
 #include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
 #include "Scene.hpp"

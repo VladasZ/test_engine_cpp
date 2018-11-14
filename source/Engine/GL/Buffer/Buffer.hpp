@@ -12,9 +12,8 @@
 #include "NonCopyable.hpp"
 #include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
-#include "Memory.hpp"
 
-class Buffer : public NonCopyable _MEMORY_MANAGED(Buffer) {
+class Buffer : public NonCopyable {
     
     BufferData* data;
     

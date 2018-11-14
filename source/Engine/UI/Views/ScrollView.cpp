@@ -6,7 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Macro.hpp"
 #include "Debug.hpp"
 #include "Label.hpp"
 #include "Input.hpp"
@@ -33,9 +32,7 @@ ScrollView* ScrollView::_setFramebuffer(const Size& size) {
 }
 
 void ScrollView::setup() {
-    
     Debug::infoLabel->setText("hello");
-   
 }
 
 Buffer* ScrollView::_getBuffer() const {

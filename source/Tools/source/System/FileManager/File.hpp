@@ -11,11 +11,10 @@
 #include <cstddef>
 
 #include "String.hpp"
-#include "Memory.hpp"
 
 using byte = std::byte;
 
-class File MEMORY_MANAGED(File) {
+class File {
 
     size_t _size;
     byte* _data;

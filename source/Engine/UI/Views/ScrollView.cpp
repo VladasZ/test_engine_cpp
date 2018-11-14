@@ -10,8 +10,10 @@
 #include "Label.hpp"
 #include "Input.hpp"
 #include "Buffer.hpp"
+#include "Lifehack.hpp"
 #include "ScrollView.hpp"
 #include "FrameBuffer.hpp"
+
 
 ScrollView::ScrollView() : ScrollView({ 0, 0, 0, 0 }) {}
 

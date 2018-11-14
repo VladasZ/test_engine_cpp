@@ -11,6 +11,7 @@
 #include "Glyph.hpp"
 #include "Image.hpp"
 #include "Rect.hpp"
+#include "Lifehack.hpp"
 
 Label::Label(const Rect &rect) : View(rect) {
 	_contentView =

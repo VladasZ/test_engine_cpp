@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "Meta.hpp"
 #include "Font.hpp"
 #include "View.hpp"
 #include "ImageView.hpp"
 
-class Label : public View { TYPES(Label);
+class Label : public View {
     
     std::string _text;
     

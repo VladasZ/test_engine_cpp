@@ -21,28 +21,12 @@
 #include "Matrix4.hpp"
 
 void glmTest() {
-    
-   // auto glrota = glm::rotate(glm::mat4(), 45.0f, {1, 0, 0});
-    
     Matrix4 mat = Matrix4::rotation(45.0f, {1, 0, 0});
-    
-  //  Logvar(Matrix4::bufferToString(&glrota[0][0]));
     Logvar(mat.toString());
-    
-    
-    
-    
     return;
-
 }
 
-
-void testEngineMain() {
-    
-    glmTest();
-    
-    //return;
-
+int testEngineMain() {
     
 	Window::initialize(1200, 880);
 	do {
@@ -53,4 +37,6 @@ void testEngineMain() {
 		glfwGetKey(Window::window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(Window::window) == 0
 	);
+
+	return 0;
 }

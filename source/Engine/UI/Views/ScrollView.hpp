@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "Meta.hpp"
 #include "View.hpp"
 
 class Buffer;
 
-class ScrollView : public View { TYPES(ScrollView)
+class ScrollView : public View {
 
     friend View;
 

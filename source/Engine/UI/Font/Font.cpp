@@ -13,10 +13,11 @@
 #include <cmath>
 
 #include "Log.hpp"
+#include "File.hpp"
 #include "Font.hpp"
+#include "Paths.hpp"
 #include "Image.hpp"
 #include "Glyph.hpp"
-#include "File.hpp"
 
 using namespace std;
 
@@ -57,7 +58,7 @@ Glyph* renderGlyph(const FT_Face &face, char ch) {
 
 Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
-  auto file = new File(fileName.c_str());
+  auto file = new File((Paths::assetsDirectory() + fileName).c_str());
   FT_Face face;
     
   FT_New_Memory_Face(ftLibrary(),

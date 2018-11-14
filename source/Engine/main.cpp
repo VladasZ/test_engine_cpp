@@ -9,8 +9,5 @@
 #include "TestEngineMain.h"
 
 int main() {
-    testEngineMain();
-
-   
-    return 0;
+    return testEngineMain();
 }

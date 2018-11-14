@@ -10,5 +10,5 @@
 
 
 String Paths::assetsDirectory() {
-  return "NOT_IMPLEMENTED";
+  return "/home/vladas/dev/projects/testengine/Assets/";
 }

@@ -5,4 +5,4 @@ project(Tools)
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 add_library(${PROJECT_NAME} ${SOURCE})
 
-conan_target_link_libraries(${PROJECT_NAME})
+link_project(cpp_utils)

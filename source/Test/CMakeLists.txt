@@ -7,5 +7,6 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 
 link_project(Tools)
 link_project(Geometry)
+link_project(cpp_utils)
 
 conan_target_link_libraries(${PROJECT_NAME})

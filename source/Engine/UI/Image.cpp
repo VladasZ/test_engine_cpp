@@ -11,7 +11,7 @@
 #include "SOIL.h"
 #include "Shader.hpp"
 #include "Debug.hpp"
-#include "FileManager.hpp"
+#include "Paths.hpp"
 
 Image* Image::cat;
 Image* Image::slow;
@@ -81,7 +81,7 @@ Image::Image(const std::string &file, Filter filter) {
 	int width;
 	int height;
 
-	unsigned char* image = SOIL_load_image((FileManager::assetsDirectory() + "Images/" + file).c_str(),
+	unsigned char* image = SOIL_load_image((Paths::assetsDirectory() + "Images/" + file).c_str(),
 		&width,
 		&height,
 		&channels,

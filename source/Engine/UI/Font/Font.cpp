@@ -26,81 +26,81 @@ Font* Font::OpenSans;
 Font* Font::System;
 
 static FT_Library ftLibrary() {
-	static FT_Library _library = nullptr;
-    if (_library == nullptr)
-        FT_Init_FreeType(&_library);
-    return _library;
+  static FT_Library _library = nullptr;
+  if (_library == nullptr)
+	FT_Init_FreeType(&_library);
+  return _library;
 }
 
 Glyph* renderGlyph(const FT_Face &face, char ch) {
     
-    int glyphIndex = FT_Get_Char_Index(face, ch);
+  int glyphIndex = FT_Get_Char_Index(face, ch);
     
-    FT_Load_Glyph(face,
-                  glyphIndex,
-                  FT_LOAD_RENDER);
+  FT_Load_Glyph(face,
+				glyphIndex,
+				FT_LOAD_RENDER);
     
-    FT_BitmapGlyph bitmapGlyhp;
-    FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
+  FT_BitmapGlyph bitmapGlyhp;
+  FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
     
-    auto image = new Image(Size((float)bitmapGlyhp->bitmap.width,
-								(float)bitmapGlyhp->bitmap.rows),
-									   bitmapGlyhp->bitmap.buffer,
-									   1);
+  auto image = new Image(Size((float)bitmapGlyhp->bitmap.width,
+							  (float)bitmapGlyhp->bitmap.rows),
+						 bitmapGlyhp->bitmap.buffer,
+						 1);
     
-    return new Glyph(ch,
-                     image,
-                     (int)face->glyph->metrics.horiAdvance / 64,
-                     Point((float)face->glyph->metrics.horiBearingX / 64,
-                           (float)face->glyph->metrics.horiBearingY / 64));
+  return new Glyph(ch,
+				   image,
+				   (int)face->glyph->metrics.horiAdvance / 64,
+				   Point((float)face->glyph->metrics.horiBearingX / 64,
+						 (float)face->glyph->metrics.horiBearingY / 64));
 }
 
 Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
-    auto file = new File(fileName);
-    FT_Face face;
+  auto file = new File(fileName.c_str());
+  FT_Face face;
     
-    FT_New_Memory_Face(ftLibrary(),
-                       (FT_Byte*)file->getData(),
-                       (FT_Long)file->getSize(),
-                       0,
-                       &face);
+  FT_New_Memory_Face(ftLibrary(),
+					 (FT_Byte*)file->getData(),
+					 (FT_Long)file->getSize(),
+					 0,
+					 &face);
     
-    FT_Set_Pixel_Sizes(face,
-                       0,
-                       size);
+  FT_Set_Pixel_Sizes(face,
+					 0,
+					 size);
     
-    float yMax = 0;
-    float yMin = 0;
+  float yMax = 0;
+  float yMin = 0;
         
-    for (int i = 0; i < 128; i++) {
-        auto glyph = renderGlyph(face, i);
+  for (int i = 0; i < 128; i++) {
+	auto glyph = renderGlyph(face, i);
         
-        if (yMax < glyph->yMax()) yMax = glyph->yMax();        
-        if (yMin > glyph->yMin()) yMin = glyph->yMin();
+	if (yMax < glyph->yMax()) yMax = glyph->yMax();        
+	if (yMin > glyph->yMin()) yMin = glyph->yMin();
         
-        _glyphs.push_back(glyph);
-    }
+	_glyphs.push_back(glyph);
+  }
     
-    _height = yMax - yMin;
+  _height = yMax - yMin;
     
-    float baselinePosition = std::fabs((float)yMin);
+  float baselinePosition = std::fabs((float)yMin);
     
-    _baselineShift = _height / 2 - baselinePosition;
+  _baselineShift = _height / 2 - baselinePosition;
 }
 
 Font::~Font() {
-	for (auto glyph : _glyphs) delete glyph;
+  for (auto glyph : _glyphs) delete glyph;
 }
 
 Font* Font::withSize(int size) {
-    return new Font(_fileName, size);
+  return new Font(_fileName, size);
 }
 
 void Font::initialize() {
-    SF       = new Font("Fonts/SF.otf");
-    OpenSans = new Font("Fonts/OpenSans.ttf");
-    System   = SF;
+  SF       = new Font("Fonts/SF.otf");
+  OpenSans = new Font("Fonts/OpenSans.ttf");
+  System   = SF;
 }
 
 

@@ -14,7 +14,6 @@
 #include "Debug.hpp"
 
 #include "Assimp.hpp"
-#include "FileManager.hpp"
 
 //#include "glm/glm.hpp"
 //#include "glm/gtc/matrix_transform.hpp"

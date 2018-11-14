@@ -6,12 +6,12 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "GL.hpp"
+#include "Paths.hpp"
+#include "Debug.hpp"
+#include "Window.hpp"
 #include "Shader.hpp"
 #include "ShaderCompiler.hpp"
-#include "GL.hpp"
-#include "Window.hpp"
-#include "FileManager.hpp"
-#include "Debug.hpp"
 
 
 Shader Shader::ui;
@@ -33,26 +33,26 @@ void Shader::use() const {
 
 void Shader::initialize() {
 
-    ui =            Shader(FileManager::assetsDirectory() + "Shaders/ui.vert",
-                           FileManager::assetsDirectory() + "Shaders/ui.frag");
+    ui =            Shader(Paths::assetsDirectory() + "Shaders/ui.vert",
+                           Paths::assetsDirectory() + "Shaders/ui.frag");
     
-    uiTexture =     Shader(FileManager::assetsDirectory() + "Shaders/uiTexture.vert",
-                           FileManager::assetsDirectory() + "Shaders/uiTexture.frag");
+    uiTexture =     Shader(Paths::assetsDirectory() + "Shaders/uiTexture.vert",
+                           Paths::assetsDirectory() + "Shaders/uiTexture.frag");
     
-    uiMonochrome =  Shader(FileManager::assetsDirectory() + "Shaders/uiMonochrome.vert",
-                           FileManager::assetsDirectory() + "Shaders/uiMonochrome.frag");
+    uiMonochrome =  Shader(Paths::assetsDirectory() + "Shaders/uiMonochrome.vert",
+                           Paths::assetsDirectory() + "Shaders/uiMonochrome.frag");
 
-    uiPath =        Shader(FileManager::assetsDirectory() + "Shaders/uiPath.vert",
-                           FileManager::assetsDirectory() + "Shaders/uiPath.frag");
+    uiPath =        Shader(Paths::assetsDirectory() + "Shaders/uiPath.vert",
+                           Paths::assetsDirectory() + "Shaders/uiPath.frag");
 
-    sprite =        Shader(FileManager::assetsDirectory() + "Shaders/sprite.vert",
-                           FileManager::assetsDirectory() + "Shaders/sprite.frag");
+    sprite =        Shader(Paths::assetsDirectory() + "Shaders/sprite.vert",
+                           Paths::assetsDirectory() + "Shaders/sprite.frag");
     
-    simple3D =      Shader(FileManager::assetsDirectory() + "Shaders/simple3D.vert",
-                           FileManager::assetsDirectory() + "Shaders/simple3D.frag");
+    simple3D =      Shader(Paths::assetsDirectory() + "Shaders/simple3D.vert",
+                           Paths::assetsDirectory() + "Shaders/simple3D.frag");
     
-    colored3D =     Shader(FileManager::assetsDirectory() + "Shaders/colored3D.vert",
-                           FileManager::assetsDirectory() + "Shaders/colored3D.frag");
+    colored3D =     Shader(Paths::assetsDirectory() + "Shaders/colored3D.vert",
+                           Paths::assetsDirectory() + "Shaders/colored3D.frag");
 }
 
 void Shader::setUniformColor(const Color& color) {

@@ -29,7 +29,6 @@ int main() {
 
   Info(bitwise::to_string(7));
 
-  bitwise::print(256);
 
   Info(typeid(bitwise::fits<33>).name());
 

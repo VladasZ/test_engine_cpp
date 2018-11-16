@@ -12,6 +12,8 @@
 String Paths::assetsDirectory() {
 #if WINDOWS
 	return "C:\\Users\\u.zakreuskis\\dev\\projects\\testengine\\Assets\\";
+#elif APPLE
+    return "/Users/vladaszakrevskis/dev/projects/testengine/Assets/";
 #else
   return "/home/vladas/dev/projects/testengine/Assets/";
 #endif

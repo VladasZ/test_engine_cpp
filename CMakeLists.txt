@@ -24,8 +24,8 @@ add_definitions(-DDEBUG=1)
 
 conan_basic_setup()
 
-add_subdirectory(source/Test)
-add_subdirectory(source/Engine)
-add_subdirectory(source/Geometry)
+add_subdirectory(source/test)
+add_subdirectory(source/testengine)
+add_subdirectory(source/geometry)
 add_subdirectory(source/cpp_utils)
 add_subdirectory(source/soil)

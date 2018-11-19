@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9.2 FATAL_ERROR)
 
-include(~/.emacs.d/utils/utils.cmake)
+include(utils/utils.cmake)
 
 include(${CMAKE_BINARY_DIR}/build_info.cmake)
 include(${CMAKE_BINARY_DIR}/${BUILD_INFO})

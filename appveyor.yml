@@ -5,7 +5,7 @@ os:
 
 install:
   - pip install conan
-  - pip install gitpython
+  - git clone --recursive https://github.com/vladasz/utils			
   - py Build.py --ide
 
 build:

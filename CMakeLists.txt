@@ -24,6 +24,7 @@ add_definitions(-DDEBUG=1)
 conan_basic_setup()
 
 add_subdirectory(source/sand)
+add_subdirectory(source/sand_lib)
 add_subdirectory(source/testengine)
 add_subdirectory(source/geometry)
 add_subdirectory(source/cpp_utils)

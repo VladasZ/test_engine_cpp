@@ -1,13 +1,10 @@
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(sand)
+project(sand_lib)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
-add_executable(${PROJECT_NAME} ${SOURCE})
+add_library(${PROJECT_NAME} ${SOURCE})
 
-link_project(geometry)
-link_project(cpp_utils)
-link_project(sand_lib)
 
 conan_target_link_libraries(${PROJECT_NAME})

@@ -1,7 +1,7 @@
 language: cpp
 
-#matrix:
-#    include:
+matrix:
+    include:
 #        - os: osx
 #          install:
 #            - pip3 install gitpython

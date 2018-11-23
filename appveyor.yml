@@ -4,6 +4,7 @@ os:
   - Visual Studio 2017
 
 install:
+  - py --version
   - pip install conan
   - git clone --recursive https://github.com/vladasz/utils			
   - py Build.py --ide

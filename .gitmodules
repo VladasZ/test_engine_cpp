@@ -1,3 +1,6 @@
 [submodule "source/cpp_utils"]
 	path = source/cpp_utils
 	url = https://github.com/VladasZ/cpp_utils.git
+[submodule "utils"]
+	path = utils
+	url = https://github.com/VladasZ/utils.git

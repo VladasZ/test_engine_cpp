@@ -5,7 +5,6 @@ os:
 
 install:
   - git submodule update --init --recursive  
-  - git clone --recursive https://github.com/vladasz/utils
   - pip install conan
   - py build.py --ide
   

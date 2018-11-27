@@ -61,9 +61,7 @@ void SliderView::layout() {
     auto sliderContentViewHeight = _frame.size.height - _frame.size.width / 2;
     auto sliderHeight = _frame.size.height / 10;
     
-    _topArrow->setFrame({
-        0,
-        0,
+    _topArrow->setSize({
         _frame.size.width,
         _frame.size.width
     });

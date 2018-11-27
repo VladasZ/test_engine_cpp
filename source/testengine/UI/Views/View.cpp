@@ -151,12 +151,8 @@ View* View::setOrigin(const Point &origin) {
 }
 
 View* View::setCenter(const Point &center) {
-    this->_frame = {
-        center.x - _frame.size.width / 2,
-        center.y - _frame.size.height / 2,
-        _frame.size.width,
-        _frame.size.height
-    };
+	this->_frame.origin.x = center.x - _frame.size.width / 2;
+	this->_frame.origin.y = center.y - _frame.size.height / 2;
     return this;
 }
 

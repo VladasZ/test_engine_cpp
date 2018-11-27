@@ -87,7 +87,7 @@ void Window::setup() {
     rootView->layout();
     rootView->_frameBuffer->clear();
 
-	setScene(new Scene());
+	//setScene(new Scene());
 }
 
 void Window::update() {

@@ -7,6 +7,9 @@
 //
 
 #include "RootView.hpp"
+#include "TestView.hpp"
+
+TestView* testView = nullptr;
 
 void RootView::setup() {
     
@@ -14,9 +17,14 @@ void RootView::setup() {
     addSubview(new DebugInfoView());
 #endif
     
-    settingsView = new SettingsView( { 420, 400 });
+    settingsView = new SettingsView({ 420, 400 });
     settingsView->addLayout(L::Right(), L::Bottom(60));
     addSubview(settingsView);
+
+	testView = new TestView({ 300, 300 });
+	testView->addLayout(L::CenterH(), L::CenterV());
+	addSubview(testView);
+
  
     
     settingsView->onX.subscribe([](float valueX) {

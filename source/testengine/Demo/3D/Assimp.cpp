@@ -17,6 +17,7 @@
 #include "Buffer.hpp"
 #include "Mesh.hpp"
 #include "Assimp.hpp"
+#include "Random.hpp"
 
 
 Mesh* DoTheImportThing(const std::string& pFile)
@@ -55,7 +56,7 @@ Mesh* DoTheImportThing(const std::string& pFile)
     //memcpy(&vertices[0], mesh->mVertices, mesh->mNumVertices * sizeof(Point3));
     
 
-    for (int i = 0; i < mesh->mNumVertices; i++)
+    for (unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
         auto& vert = mesh->mVertices[i];
         
@@ -66,7 +67,7 @@ Mesh* DoTheImportThing(const std::string& pFile)
         cVert.position.z = vert.z;
         
         
-        cVert.color = C::random();
+        cVert.color = Random::color();
         
         
         vertices[i] = cVert;
@@ -75,11 +76,11 @@ Mesh* DoTheImportThing(const std::string& pFile)
     
    // mesh->vertices = colored_vertices;
 
-    for (int i = 0; i < mesh->mNumFaces; i++)
+    for (unsigned int i = 0; i < mesh->mNumFaces; i++)
     {
         auto& face = mesh->mFaces[i];
         
-        for (int j = 0; j < face.mNumIndices; j++)
+        for (unsigned int j = 0; j < face.mNumIndices; j++)
         {
             indices.push_back(face.mIndices[j]);
         }

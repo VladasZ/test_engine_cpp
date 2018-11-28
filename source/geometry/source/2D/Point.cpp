@@ -22,54 +22,54 @@ Point::Point(Direction direction, float length) {
     }
 }
 
-Point Point::onCircle(float radius, float angle, const Point &center) {
-    return Point((radius / 2) * cos(angle) + center.x, (radius / 2) * sin(angle) + center.y);
+Point Point::on_circle(float radius, float angle, const Point &center) {
+	return { (radius / 2) * cos(angle) + center.x, (radius / 2) * sin(angle) + center.y };
 }
 
 float Point::angle() const {
     return atan2(y, x);
 }
 
-bool Point::isZero() const {
+bool Point::is_zero() const {
     return x == 0 && y == 0;
 }
 
 float Point::length() const {
-    return (float)sqrt(x * x + y * y);
+    return static_cast<float>(sqrt(x * x + y * y));
 }
 
-Point Point::withLength(float length) const {
-    float ratio = length / this->length();
-    return Point(x * ratio, y * ratio);
+Point Point::with_length(float length) const {
+    const float ratio = length / this->length();
+	return { x * ratio, y * ratio };
 }
 
 Direction Point::directionX() const {
     return x > 0 ? Direction::Right : Direction::Left;
 }
 
-Point Point::operator +(const Point &point) const {
-    return Point(x + point.x, y + point.y);
+Point Point::operator + (const Point &point) const {
+	return { x + point.x, y + point.y };
 }
 
-void Point::operator +=(const Point &point) {
+void Point::operator += (const Point &point) {
     x += point.x;
     y += point.y;
 }
 
-Point Point::operator -(const Point &point) const {
-    return Point(x - point.x, y - point.y);
+Point Point::operator - (const Point &point) const {
+	return { x - point.x, y - point.y };
 }
 
-void Point::operator -=(const Point &point) {
+void Point::operator -= (const Point &point) {
     x -= point.x;
     y -= point.y;
 }
 
-Point Point::operator *(float value) const {
-    return Point(x * value, y * value);
+Point Point::operator * (float value) const {
+	return { x * value, y * value };
 }
 
-void Point::operator *=(float value) {
+void Point::operator *= (float value) {
     x *= value;
     y *= value;
 }

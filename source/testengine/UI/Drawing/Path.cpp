@@ -30,7 +30,7 @@ Path* Path::circleWith(const Point &center, float radius, int precision) {
     float angleStep = pi2<float> / precision;
 
     for (int i = 0; i < precision; i++)
-        path->points.emplace_back(Point::onCircle(radius, angleStep * i, center));
+        path->points.emplace_back(Point::on_circle(radius, angleStep * i, center));
 
     return path;
 }

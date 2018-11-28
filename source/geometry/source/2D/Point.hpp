@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <cstdint>
-
 enum Direction {
     Right,
     Left,
@@ -17,39 +15,38 @@ enum Direction {
     Down
 };
 
-namespace TestEngine {
+namespace Geometry {
 
     class Point {
 
     public:
 
-        float x = 0, y = 0;
+		float x = 0;
+		float y = 0;
 
         Point() = default;
         Point(float x, float y);
         Point(Direction direction, float length = 1);
 
-        static Point onCircle(float radius, float angle, const Point &center);
+        static Point on_circle(float radius, float angle, const Point &center);
 
-        float angle() const;
-        bool isZero() const;
-        float length() const;
+        float angle()   const;
+        bool  is_zero() const;
+        float length()  const;
 
-        Point withLength(float length) const;
+        Point with_length(float length) const;
 
         Direction directionX() const;
 
-        Point operator +(const Point &point) const;
-        void operator +=(const Point &point);
+        Point operator +  (const Point &point) const;
+        void  operator += (const Point &point);
 
-        Point operator -(const Point &point) const;
-        void operator -=(const Point &point);
+        Point operator -  (const Point &point) const;
+        void  operator -= (const Point &point);
 
-        Point operator *(float value) const;
-        void operator *=(float value);
-
-        static const Point one;
+        Point operator *  (float value) const;
+        void  operator *= (float value);
     };
 }
 
-using namespace TestEngine;
+using namespace Geometry;

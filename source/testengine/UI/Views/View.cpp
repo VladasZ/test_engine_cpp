@@ -16,6 +16,7 @@
 #include "Layout.hpp"
 #include "FrameBuffer.hpp"
 #include "Image.hpp"
+#include "Random.hpp"
 
 View::View(const Rect &rect) : _frame { rect } { }
 
@@ -71,12 +72,12 @@ void View::draw() {
 
     if (_needsLayout) layout();
 
-	if (_color.isTransparent() && !DRAW_DEBUG_FRAMES) _needsDraw = false;
+	if (_color.is_transparent() && !DRAW_DEBUG_FRAMES) _needsDraw = false;
 
     if (_needsDraw) {
         _frameBuffer->draw([&] {
             if (_ownsFramebuffer) {
-                GL::setViewport(_frame.withZeroOrigin());
+                GL::setViewport(_frame.with_zero_origin());
             }
             else {
                 GL::setViewport(_frameInFrameBuffer);
@@ -247,7 +248,7 @@ View* View::dummy(float width, float height) {
         (float)System::random(100)
         });
 
-    view->_color = Color::random();
+    view->_color = Random::color();
     return view;
 }
 

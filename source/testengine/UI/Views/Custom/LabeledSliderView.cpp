@@ -48,7 +48,7 @@ void LabeledSliderView::layout() {
     
     _captionLabel->setFrame({
         0,
-        _sliderView->frame().maxY() + _frame.size.width * 1.5f,
+        _sliderView->frame().max_y() + _frame.size.width * 1.5f,
         _frame.size.width,
         _frame.size.width
     });

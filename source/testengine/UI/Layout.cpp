@@ -60,7 +60,7 @@ void Layout::Base::_layoutWithAnchor(View* view) const {
     Rect &frame = view->_frame;
 
     if (isTop()) {
-        frame.origin.y = anchorFrame.maxY() + value;
+        frame.origin.y = anchorFrame.max_y() + value;
         return;
     }
 
@@ -70,7 +70,7 @@ void Layout::Base::_layoutWithAnchor(View* view) const {
     }
 
     if (isLeft()) {
-        frame.origin.x = anchorFrame.maxX() + value;
+        frame.origin.x = anchorFrame.max_x() + value;
         return;
     }
 

@@ -15,7 +15,7 @@
 
 Label::Label(const Rect &rect) : View(rect) {
 	_contentView =
-		View::make(rect.withZeroOrigin())
+		View::make(rect.with_zero_origin())
 		->addLayout(L::fromAlignment(_alignment), L::CenterV())
 	;
 
@@ -56,7 +56,7 @@ void Label::_setGlyphs() {
 
 		_contentView->addSubview(glyphView);
         advance += glyph->advance;
-		contentWidth = glyphViewFrame.maxX();
+		contentWidth = glyphViewFrame.max_x();
     }
 
 	contentSize.width = contentWidth;

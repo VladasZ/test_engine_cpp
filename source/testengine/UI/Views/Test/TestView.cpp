@@ -8,6 +8,7 @@
 
 #include "TestView.hpp"
 #include "Label.hpp"
+#include "Random.hpp"
 
 void TestView::setup() {
 
@@ -18,26 +19,26 @@ void TestView::setup() {
     
 	addSubview(
 		View::make({ 50, 50 })
-		->setColor(C::random())
+		->setColor(Random::color())
 		->addLayout(L::Top(), L::Right())
 	);
 
 	addSubview(
 		View::make({ 20, 20 })
-		->setColor(C::random())
+		->setColor(Random::color())
 		->addLayout(L::Top(10, subviews.back()), L::CenterH(subviews.back()))
 	);
 
 	addSubview(
 		View::make({ 10, 10 })
-		->setColor(C::random())
+		->setColor(Random::color())
 		->addLayout(L::Right(5, subviews.back()), L::CenterV(subviews.back()))
 	);
 
 	addSubview(
 		(new Label({100, 42}))
 		->setText("Hellob")
-		->setColor(C::random())
+		->setColor(Random::color())
 		->addLayout(L::Top(), L::Left())
 	);
 

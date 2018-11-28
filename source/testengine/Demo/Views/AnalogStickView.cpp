@@ -41,7 +41,7 @@ void AnalogStickView::setup() {
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
-        path->_color = Color::lightGray;
+        path->_color = Color::light_gray;
         return path;
     }());
     
@@ -55,7 +55,7 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
     Point vector = touchPosition - _frame.size.center();
     
     if (vector.length() > maxLenght) {
-        vector = vector.withLength(maxLenght);
+        vector = vector.with_length(maxLenght);
         touchPosition = _frame.size.center() + vector;
     }
     

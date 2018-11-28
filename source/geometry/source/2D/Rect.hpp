@@ -10,30 +10,25 @@
 
 #include "Point.hpp"
 #include "Size.hpp"
-#include "String.hpp"
 
 class Rect {
     
 public:
     
     Point origin;
-    Size size;
+    Size  size;
     
     Rect() = default;
+	Rect(const Size &size);
     Rect(float width, float height);
-    Rect(const Size &size);
     Rect(float x, float y, float width, float height);
     
-    Rect& operator=(const Rect &r2);
+    Rect& operator = (const Rect& r2);
 
-    float maxX() const;
-    float maxY() const;
+    float max_x() const;
+    float max_y() const;
     
-    bool contains(const Point &point) const;
+    bool contains(const Point& point) const;
     
-    Rect withZeroOrigin() const;
-    
-    String toString() const;
-
-    static Rect random();
+    Rect with_zero_origin() const;
 };

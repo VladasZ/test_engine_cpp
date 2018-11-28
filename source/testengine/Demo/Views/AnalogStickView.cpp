@@ -28,8 +28,8 @@ void AnalogStickView::setup() {
     addPath(outlinePath);
 
     directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
-    directionStick->setCenter(_frame.size.center());
-    addSubview(directionStick);
+    directionStick->set_center(_frame.size.center());
+    add_subview(directionStick);
 
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
@@ -51,7 +51,7 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
     
     float maxLenght = _frame.size.height / 2;
     
-    Point touchPosition = localPointFrom(touch);
+    Point touchPosition = local_point_from(touch);
     Point vector = touchPosition - _frame.size.center();
     
     if (vector.length() > maxLenght) {
@@ -59,6 +59,6 @@ void AnalogStickView::onTouchMoved(const Point &touch) {
         touchPosition = _frame.size.center() + vector;
     }
     
-    directionStick->setCenter(touchPosition);
+    directionStick->set_center(touchPosition);
     onDirectionChange(vector * 0.1f);
 }

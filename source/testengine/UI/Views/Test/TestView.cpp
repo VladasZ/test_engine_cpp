@@ -12,39 +12,39 @@
 
 void TestView::setup() {
 
-    addSubview(
+    add_subview(
         (new ImageView({_frame.size.width, _frame.size.height}))
         ->setImage(I::square)
     );
     
-	addSubview(
+	add_subview(
 		View::make({ 50, 50 })
-		->setColor(Random::color())
-		->addLayout(L::Top(), L::Right())
+		->set_color(Random::color())
+		->add_layout(L::Top(), L::Right())
 	);
 
-	addSubview(
+	add_subview(
 		View::make({ 20, 20 })
-		->setColor(Random::color())
-		->addLayout(L::Top(10, subviews.back()), L::CenterH(subviews.back()))
+		->set_color(Random::color())
+		->add_layout(L::Top(10, subviews.back()), L::CenterH(subviews.back()))
 	);
 
-	addSubview(
+	add_subview(
 		View::make({ 10, 10 })
-		->setColor(Random::color())
-		->addLayout(L::Right(5, subviews.back()), L::CenterV(subviews.back()))
+		->set_color(Random::color())
+		->add_layout(L::Right(5, subviews.back()), L::CenterV(subviews.back()))
 	);
 
-	addSubview(
+	add_subview(
 		(new Label({100, 42}))
 		->setText("Hellob")
-		->setColor(Random::color())
-		->addLayout(L::Top(), L::Left())
+		->set_color(Random::color())
+		->add_layout(L::Top(), L::Left())
 	);
 
-	addSubview(
+	add_subview(
 		(new ImageView({ 100, 100 }))
 		->setImage(I::text)
-		->addLayout(L::CenterH(), L::CenterV())
+		->add_layout(L::CenterH(), L::CenterV())
 	);
 }

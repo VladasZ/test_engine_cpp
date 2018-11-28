@@ -17,14 +17,14 @@ ImageView::~ImageView() { }
 
 void ImageView::draw() {
     
-	if (_needsLayout) layout();
+	if (_needs_layout) layout();
 
-	if (_needsDraw) {
-		_frameBuffer->draw([&] {
+	if (_need_draw) {
+		_frame_buffer->draw([&] {
 			_image->bind();
 			if (_image->isMonochrome()) Shader::uiMonochrome.use();
 			else                        Shader::uiTexture.use();
-			GL::setViewport(_frameInFrameBuffer);
+			GL::setViewport(_frame_in_frame_buffer);
 			Buffer::fullscreenImage->draw();
 			_image->unbind();
 #if DRAW_DEBUG_FRAMES
@@ -33,10 +33,10 @@ void ImageView::draw() {
             Buffer::fullscreenOutline->draw();
 #endif
 		});
-		_needsDraw = false;
+		_need_draw = false;
 	}
 
-	drawSubviews();
+	draw_subviews();
 }
 
 Image* ImageView::getImage() const {

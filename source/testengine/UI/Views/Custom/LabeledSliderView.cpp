@@ -18,9 +18,9 @@ void LabeledSliderView::setup() {
     _captionLabel = new Label();
     _captionLabel->setText(_caption);
     
-    addSubview(_valueLabel);
-    addSubview(_sliderView);
-    addSubview(_captionLabel);
+    add_subview(_valueLabel);
+    add_subview(_sliderView);
+    add_subview(_captionLabel);
     
     _sliderView->onValueChanged.subscribe([&](float value){
         this->onValueChanged(value);
@@ -32,21 +32,21 @@ void LabeledSliderView::layout() {
     
     View::layout();
     
-    _valueLabel->setFrame({
+    _valueLabel->set_frame({
         0,
         0,
         _frame.size.width,
         _frame.size.width
     });
     
-    _sliderView->setFrame({
+    _sliderView->set_frame({
         0,
         _frame.size.width,
         _frame.size.width,
         _frame.size.height - _frame.size.width * 2
     });
     
-    _captionLabel->setFrame({
+    _captionLabel->set_frame({
         0,
         _sliderView->frame().max_y() + _frame.size.width * 1.5f,
         _frame.size.width,

@@ -28,21 +28,21 @@ void SettingsView::setup() {
     _nearSlider->setCaption("Near");
     _farSlider->setCaption("Far");
 
-    _xSlider->addLayout(L::Left(), L::CenterV());
-    _ySlider->addLayout(L::Left(10, _xSlider), L::CenterV());
-    _zSlider->addLayout(L::Left(10, _ySlider), L::CenterV());
-	_fovSlider->addLayout(L::Left(10, _zSlider), L::CenterV());
-    _scaleSlider->addLayout(L::Left(10, _fovSlider), L::CenterV());
-    _nearSlider->addLayout(L::Left(10, _scaleSlider), L::CenterV());
-    _farSlider->addLayout(L::Left(10, _nearSlider), L::CenterV());
+    _xSlider->add_layout(L::Left(), L::CenterV());
+    _ySlider->add_layout(L::Left(10, _xSlider), L::CenterV());
+    _zSlider->add_layout(L::Left(10, _ySlider), L::CenterV());
+	_fovSlider->add_layout(L::Left(10, _zSlider), L::CenterV());
+    _scaleSlider->add_layout(L::Left(10, _fovSlider), L::CenterV());
+    _nearSlider->add_layout(L::Left(10, _scaleSlider), L::CenterV());
+    _farSlider->add_layout(L::Left(10, _nearSlider), L::CenterV());
 
-    addSubview(_xSlider);
-    addSubview(_ySlider);
-    addSubview(_zSlider);
-	addSubview(_fovSlider);
-    addSubview(_scaleSlider);
-    addSubview(_nearSlider);
-    addSubview(_farSlider);
+    add_subview(_xSlider);
+    add_subview(_ySlider);
+    add_subview(_zSlider);
+	add_subview(_fovSlider);
+    add_subview(_scaleSlider);
+    add_subview(_nearSlider);
+    add_subview(_farSlider);
 
     _xSlider->onValueChanged.link(onX);
     _ySlider->onValueChanged.link(onY);

@@ -55,9 +55,9 @@ void Input::touchBegan(INPUT_PARAMETERS) {
 	Events::touch(location);
 
 	for (auto view : _subscribedViews)
-		if (view->containsGlobalPoint(location)) {
-			view->_touchID = id;
-			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Began));
+		if (view->contains_global_point(location)) {
+			view->_touch_id = id;
+			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Began));
 			break;
 		}
 }
@@ -67,8 +67,8 @@ void Input::touchMoved(INPUT_PARAMETERS) {
 	Events::touch(location);
 	
 	for (auto view : _subscribedViews)
-		if (id == view->_touchID) {
-			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Moved));
+		if (id == view->_touch_id) {
+			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Moved));
 			break;
 		}
 }
@@ -78,9 +78,9 @@ void Input::touchEnded(INPUT_PARAMETERS) {
 	Events::touch(location);
 
 	for (auto view : _subscribedViews)
-		if (id == view->_touchID) {
-			view->on_touch(Touch(view->localPointFrom(location), Touch::Event::Ended));
-			view->_touchID = -1;
+		if (id == view->_touch_id) {
+			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Ended));
+			view->_touch_id = -1;
 			break;
 		}
 }

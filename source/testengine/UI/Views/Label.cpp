@@ -16,10 +16,10 @@
 Label::Label(const Rect &rect) : View(rect) {
 	_contentView =
 		View::make(rect.with_zero_origin())
-		->addLayout(L::fromAlignment(_alignment), L::CenterV())
+		->add_layout(L::fromAlignment(_alignment), L::CenterV())
 	;
 
-	addSubview(_contentView);
+	add_subview(_contentView);
 
     _color = Color::gray;
 }
@@ -30,7 +30,7 @@ void Label::draw() {
 }
 
 void Label::_setGlyphs() {
-    _contentView->removeAllSubviews();
+    _contentView->remove_all_subviews();
     if (_text.empty()) return;
     
     int advance = 0;
@@ -54,7 +54,7 @@ void Label::_setGlyphs() {
 			contentSize.height / 2 - glyph->bearing.y + _font->baselineShift()
         };
 
-		_contentView->addSubview(glyphView);
+		_contentView->add_subview(glyphView);
         advance += glyph->advance;
 		contentWidth = glyphViewFrame.max_x();
     }
@@ -62,8 +62,8 @@ void Label::_setGlyphs() {
 	contentSize.width = contentWidth;
         
     _needsGlyphsUpdate = false;
-    _needsDraw = true;
-	UNPRIVATE(_contentView)->_needsLayout = true;
+    _need_draw = true;
+	UNPRIVATE(_contentView)->_needs_layout = true;
 }
 
 std::string Label::text() const { return _text; }
@@ -88,6 +88,6 @@ Label* Label::setFontSize(int size) {
 
 Label* Label::setAlignment(Alignment alignment) {
 	_alignment = alignment;
-	_contentView->setLayout(L::fromAlignment(alignment), L::CenterV());
+	_contentView->set_layout(L::fromAlignment(alignment), L::CenterV());
 	return this;
 }

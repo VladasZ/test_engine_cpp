@@ -14,33 +14,11 @@ TestView* testView = nullptr;
 void RootView::setup() {
     
 #if DEBUG_VIEW
-    addSubview(new DebugInfoView());
+    add_subview(new DebugInfoView());
 #endif
     
-    settingsView = new SettingsView({ 420, 400 });
-    settingsView->addLayout(L::Right(), L::Bottom(60));
-    addSubview(settingsView);
 
-	testView = new TestView({ 300, 300 });
-	testView->addLayout(L::CenterH(), L::CenterV());
-	addSubview(testView);
 
- 
-    
-    settingsView->onX.subscribe([](float valueX) {
-        Logvar(valueX);
-    });
-    
-    settingsView->onY.subscribe([](float valueY) {
-        Logvar(valueY);
-    });
-    
-    settingsView->onZ.subscribe([](float valueZ) {
-        Logvar(valueZ);
-    });
-    
-    settingsView->onFov.subscribe([](float valueFov) {
-        Logvar(valueFov);
-    });
+  
 }
 

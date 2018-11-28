@@ -82,10 +82,10 @@ void Window::initialize(int width, int height) {
 
 void Window::setup() {
     rootView = new RootView({ Window::size.width, Window::size.height });
-	rootView->_frameBuffer = rootFrameBuffer;
+	rootView->_frame_buffer = rootFrameBuffer;
     rootView->setup();
     rootView->layout();
-    rootView->_frameBuffer->clear();
+    rootView->_frame_buffer->clear();
 
 	//setScene(new Scene());
 }
@@ -126,7 +126,7 @@ void Window::setScene(Scene* scene) {
 
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = Size((float)width, (float)height);
-    rootView->setFrame(Rect((float)width, (float)height));
+    rootView->set_frame(Rect((float)width, (float)height));
     rootFrameBuffer->clear();
     Buffer::windowSizeChanged();
 	Events::onScreenSizeChange(size);

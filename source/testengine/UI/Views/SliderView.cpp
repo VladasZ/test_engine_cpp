@@ -23,32 +23,32 @@ void SliderView::setup() {
     
     _slider = (new View({ _frame.size.width, _frame.size.height / 10 }));
     
-    _slider->setColor(C::green);
+    _slider->set_color(C::green);
     
     _sliderContentView = new View();
-    _sliderContentView->setColor(C::blue);
+    _sliderContentView->set_color(C::blue);
     
-    _sliderContentView->addSubview(_slider);
+    _sliderContentView->add_subview(_slider);
     
-    addSubview(_topArrow);
-    addSubview(_bottomArrow);
-    addSubview(_sliderContentView);
+    add_subview(_topArrow);
+    add_subview(_bottomArrow);
+    add_subview(_sliderContentView);
 
-	_topArrow->enableTouch();
-	_bottomArrow->enableTouch();
-	_sliderContentView->enableTouch();
+	_topArrow->enable_touch();
+	_bottomArrow->enable_touch();
+	_sliderContentView->enable_touch();
 
-	_topArrow->onTouch.subscribe([&](Touch touch) {
+	_topArrow->on_touch.subscribe([&](Touch touch) {
 		if (!touch.isBegan()) return;
 		this->setValue(this->value() + 0.02f);
 	});
 
-	_bottomArrow->onTouch.subscribe([&](Touch touch) {
+	_bottomArrow->on_touch.subscribe([&](Touch touch) {
 		if (!touch.isBegan()) return;
 		this->setValue(this->value() - 0.02f);
 	});
 
-	_sliderContentView->onTouch.subscribe([&](Touch touch) {
+	_sliderContentView->on_touch.subscribe([&](Touch touch) {
 		auto height = _sliderContentView->frame().size.height;
 		this->setValue(1 - touch.location.y / height);
 	});
@@ -61,33 +61,33 @@ void SliderView::layout() {
     auto sliderContentViewHeight = _frame.size.height - _frame.size.width / 2;
     auto sliderHeight = _frame.size.height / 10;
     
-    _topArrow->setSize({
+    _topArrow->set_size({
         _frame.size.width,
         _frame.size.width
     });
     
-    _sliderContentView->setFrame({
+    _sliderContentView->set_frame({
         0,
         _frame.size.width,
         _frame.size.width,
         sliderContentViewHeight
     });
     
-    _slider->setFrame({
+    _slider->set_frame({
         0,
         (sliderContentViewHeight - sliderHeight) * (1 - _value / 1),
         _frame.size.width,
         sliderHeight
     });
     
-    _bottomArrow->setFrame({
+    _bottomArrow->set_frame({
         0,
         _frame.size.width + sliderContentViewHeight,
         _frame.size.width,
         _frame.size.width
     });
     
-    _needsLayout = false;
+    _needs_layout = false;
 }
 
 SliderView* SliderView::setValue(float value) {
@@ -99,7 +99,7 @@ SliderView* SliderView::setValue(float value) {
 	if (_value < 0)
 		_value = 0;
 
-	_needsLayout = true;
+	_needs_layout = true;
 
 	onValueChanged(_value);
 

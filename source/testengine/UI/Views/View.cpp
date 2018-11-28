@@ -21,13 +21,13 @@
 View::View(const Rect &rect) : _frame { rect } { }
 
 View::~View() {
-	removeAllSubviews();
+	remove_all_subviews();
     if (_layout) delete _layout;
-	if (_ownsFramebuffer) delete _frameBuffer;
-	disableTouch();
+	if (_owns_framebuffer) delete _frame_buffer;
+	disable_touch();
 }
 
-Rect View::_calculateAbsoluteFrame() const {
+Rect View::_calculate_absolute_frame() const {
 
     if (this->superview == nullptr) return _frame;
 
@@ -42,14 +42,14 @@ Rect View::_calculateAbsoluteFrame() const {
     return result;
 }
 
-Rect View::_calculateFrameInFrameBuffer() const {
+Rect View::_calculate_frame_in_frame_buffer() const {
 
     if (this->superview == nullptr) return _frame;
 
     auto superview = this->superview;
     Rect result = _frame;
 
-    while (!superview->_ownsFramebuffer) {
+    while (!superview->_owns_framebuffer) {
         result.origin += superview->_frame.origin;
 		if (superview->superview == nullptr) break;
         superview = superview->superview;
@@ -59,28 +59,28 @@ Rect View::_calculateFrameInFrameBuffer() const {
 }
 
 View* View::_setFramebuffer() {
-    _frameBuffer = new FrameBuffer(_frame.size);
-	_ownsFramebuffer = true;
+    _frame_buffer = new FrameBuffer(_frame.size);
+	_owns_framebuffer = true;
 	return this;
 }
 
-void View::drawSubviews() const {
+void View::draw_subviews() const {
     for (auto subview : subviews) subview->draw();
 }
 
 void View::draw() {
 
-    if (_needsLayout) layout();
+    if (_needs_layout) layout();
 
-	if (_color.is_transparent() && !DRAW_DEBUG_FRAMES) _needsDraw = false;
+	if (_color.is_transparent() && !DRAW_DEBUG_FRAMES) _need_draw = false;
 
-    if (_needsDraw) {
-        _frameBuffer->draw([&] {
-            if (_ownsFramebuffer) {
+    if (_need_draw) {
+        _frame_buffer->draw([&] {
+            if (_owns_framebuffer) {
                 GL::setViewport(_frame.with_zero_origin());
             }
             else {
-                GL::setViewport(_frameInFrameBuffer);
+                GL::setViewport(_frame_in_frame_buffer);
             }
             Shader::ui.use();
             Shader::ui.setUniformColor(_color);
@@ -90,17 +90,17 @@ void View::draw() {
             Buffer::fullscreenOutline->draw();
 #endif
         });
-        _needsDraw = false;
+        _need_draw = false;
     }
 
-    drawSubviews();
+    draw_subviews();
     
     
-    if (_ownsFramebuffer) {
-        superview->_frameBuffer->draw([&]{
-            GL::setViewport(_frameInFrameBuffer);
+    if (_owns_framebuffer) {
+        superview->_frame_buffer->draw([&]{
+            GL::setViewport(_frame_in_frame_buffer);
             Shader::uiTexture.use();
-            _frameBuffer->getImage()->bind();
+            _frame_buffer->getImage()->bind();
             Buffer::fullscreenImage->draw();
             GL::unbindImage();
         });
@@ -109,49 +109,49 @@ void View::draw() {
 
 void View::layout() {
 
-    if (!_needsLayout) { UNEXPECTED; return; }
+    if (!_needs_layout) { UNEXPECTED; return; }
 
     if (_layout)
         for (auto& layout : *_layout)
             layout->_layout(this);
 
-    _frameInFrameBuffer = _calculateFrameInFrameBuffer();
-    _absoluteFrame = _calculateAbsoluteFrame();
-    _needsDraw = true;
+    _frame_in_frame_buffer = _calculate_frame_in_frame_buffer();
+    _absolute_frame = _calculate_absolute_frame();
+    _need_draw = true;
 }
 
-void View::layoutSubviews() {
+void View::layout_subviews() {
     for (auto subview : subviews) subview->layout();
 }
 
-void View::_checkFramebuffers(View* view, FrameBuffer* framebuffer) {
-	auto buffer = view->_ownsFramebuffer ? view->_frameBuffer : framebuffer;
+void View::_check_framebuffers(View* view, FrameBuffer* framebuffer) {
+	auto buffer = view->_owns_framebuffer ? view->_frame_buffer : framebuffer;
 
-	view->_frameBuffer = buffer;
+	view->_frame_buffer = buffer;
 
 	for (auto subview : view->subviews)
-		_checkFramebuffers(subview, buffer);
+		_check_framebuffers(subview, buffer);
 }
 
-View* View::setFrame(const Rect &frame) {
+View* View::set_frame(const Rect &frame) {
     _frame = frame;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setSize(const Size &size) {
+View* View::set_size(const Size &size) {
     _frame.size = size;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setOrigin(const Point &origin) {
+View* View::set_origin(const Point &origin) {
     _frame.origin = origin;
-    superview->_needsDraw = true;
+    superview->_need_draw = true;
     return this;
 }
 
-View* View::setCenter(const Point &center) {
+View* View::set_center(const Point &center) {
 	this->_frame.origin.x = center.x - _frame.size.width / 2;
 	this->_frame.origin.y = center.y - _frame.size.height / 2;
     return this;
@@ -162,63 +162,63 @@ View* View::edit(std::function<void(View*)> edit) {
     return this;
 }
 
-View* View::setX(float x) {
+View* View::set_x(float x) {
     _frame.origin.x = x;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setY(float y) {
+View* View::set_y(float y) {
     _frame.origin.y = y;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setWidth(float width) {
+View* View::set_width(float width) {
     _frame.size.width = width;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setHeight(float height) {
+View* View::set_height(float height) {
     _frame.size.height = height;
-    _needsLayout = true;
+    _needs_layout = true;
     return this;
 }
 
-View* View::setNeedsLayout() {
-    _needsLayout = true;
+View* View::set_needs_layout() {
+    _needs_layout = true;
     return this;
 }
 
-View* View::addSubview(View* view) {
+View* View::add_subview(View* view) {
     subviews.emplace_back(view);
     view->superview = this;
-	if (_frameBuffer)
-		_checkFramebuffers(view, _frameBuffer);
+	if (_frame_buffer)
+		_check_framebuffers(view, _frame_buffer);
 	view->setup();
     return this;
 }
 
-void View::insertSubviewAt(int position, View* view) {
+void View::insert_subview_at(int position, View* view) {
 	subviews.insert_at(position, view);
     view->superview = this;
-	if (_frameBuffer)
-		_checkFramebuffers(view, _frameBuffer);
+	if (_frame_buffer)
+		_check_framebuffers(view, _frame_buffer);
     view->setup();
 }
 
-void View::removeAllSubviews() {
+void View::remove_all_subviews() {
     for (auto view : subviews) delete view;
     subviews.clear();
 }
 
-View* View::setColor(const Color& color) {
+View* View::set_color(const Color& color) {
     this->_color = color;
     return this;
 }
 
-View* View::_addLayout(const std::initializer_list<Layout::Base*> &layout) {
+View* View::_add_layout(const std::initializer_list<Layout::Base*> &layout) {
     if (_layout == nullptr) {
         _layout = new Layout::Arr(layout);
         return this;
@@ -235,7 +235,7 @@ View* View::clone() const {
     view->_layout = _layout;
 
     for (auto subView : subviews)
-        view->addSubview(subView->clone());
+        view->add_subview(subView->clone());
 
     return view;
 }
@@ -252,18 +252,18 @@ View* View::dummy(float width, float height) {
     return view;
 }
 
-Point View::localPointFrom(const Point &point) const {
-    return point - _absoluteFrame.origin;
+Point View::local_point_from(const Point &point) const {
+    return point - _absolute_frame.origin;
 }
 
-bool View::containsGlobalPoint(const Point &point) const {
-    return _absoluteFrame.contains(point);
+bool View::contains_global_point(const Point &point) const {
+    return _absolute_frame.contains(point);
 }
 
-void View::enableTouch() {
+void View::enable_touch() {
 	Input::subscribeView(this);
 }
 
-void View::disableTouch() {
+void View::disable_touch() {
 	Input::unsubscribeView(this);
 }

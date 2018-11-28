@@ -10,15 +10,14 @@
 
 #include "Log.hpp"
 
-class Label;
 
 #ifdef DEBUG
 
 #define DEBUG_VIEW true
-#define RENDERING_ERRORS_OUTPUT true
-#define SHADER_COMPILER_OUTPUT true
-#define IMAGES_LOADING_OUTPUT true
-#define DRAW_DEBUG_FRAMES false
+#define RENDERING_ERRORS_OUTPUT false
+#define SHADER_COMPILER_OUTPUT false
+#define IMAGES_LOADING_OUTPUT false
+#define DRAW_DEBUG_FRAMES true
 
 #if RENDERING_ERRORS_OUTPUT
 #define GL(x) (x); CheckGLError(LOCATION_INFO)
@@ -36,6 +35,8 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 #define GL(x) x
 
 #endif
+
+class Label;
 
 struct Debug {
     static inline Label* infoLabel;

@@ -13,8 +13,8 @@
 
 void DebugInfoView::setup() {
     
-	setSize({ 500, 200 });
-    addLayout(L::Top(5), L::Left(5));
+	set_size({ 500, 200 });
+    add_layout(L::Top(5), L::Left(5));
     
 	Events::frame_drawn.subscribe([&] {
         fpsLabel->setText("FPS: "_s + Window::FPS);
@@ -27,8 +27,8 @@ void DebugInfoView::setup() {
     
     Debug::infoLabel = infoLabel;
     
-	addSubview(fpsLabel);
-	addSubview(framesDrawnLabel);
-    addSubview(touchLabel);
-    addSubview(infoLabel);
+	add_subview(fpsLabel);
+	add_subview(framesDrawnLabel);
+    add_subview(touchLabel);
+    add_subview(infoLabel);
 }

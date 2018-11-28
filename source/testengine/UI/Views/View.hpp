@@ -27,44 +27,44 @@ class View : public Drawable {
 	friend Input;
     friend Layout::Base;
 
-	void _checkFramebuffers(View* view, FrameBuffer* framebuffer);
+	void _check_framebuffers(View* view, FrameBuffer* framebuffer);
 
 protected:
 
-	TouchID _touchID = -1;
+	TouchID _touch_id = -1;
 
-    Rect _absoluteFrame;
-    Rect _frameInFrameBuffer;
+    Rect _absolute_frame;
+    Rect _frame_in_frame_buffer;
 
     Rect _frame;
 
-    bool _needsDraw = true;
-	bool _needsLayout = true;
-	bool _ownsFramebuffer = false;
+    bool _need_draw = true;
+	bool _needs_layout = true;
+	bool _owns_framebuffer = false;
 
     Layout::Arr* _layout = nullptr;
 
-    FrameBuffer* _frameBuffer = nullptr;
+    FrameBuffer* _frame_buffer = nullptr;
 
-    void drawSubviews() const;
+    void draw_subviews() const;
 
     virtual void draw() override;
 
 	virtual void layout();
-	virtual void layoutSubviews();
+	virtual void layout_subviews();
 
-    Rect _calculateAbsoluteFrame() const;
-    Rect _calculateFrameInFrameBuffer() const;
+    Rect _calculate_absolute_frame() const;
+    Rect _calculate_frame_in_frame_buffer() const;
 
     virtual void setup() { }
     
-    View* _addLayout(const std::initializer_list<Layout::Base*> &layout);
+    View* _add_layout(const std::initializer_list<Layout::Base*>& layout);
 
-	virtual void on_touch(const Touch& touch) { onTouch(touch); }
+	virtual void _on_touch(const Touch& touch) { on_touch(touch); }
 
 public:
     
-	Event<Touch> onTouch;
+	Event<Touch> on_touch;
 
     View* superview = nullptr;
 
@@ -77,42 +77,42 @@ public:
     virtual ~View();
     
     Rect frame() const { return _frame; }
-    View* setFrame(const Rect &frame);
-    View* setSize(const Size &size);
-    View* setOrigin(const Point &origin);
-    View* setCenter(const Point &center);
+    View* set_frame(const Rect& frame);
+    View* set_size(const Size& size);
+    View* set_origin(const Point& origin);
+    View* set_center(const Point& center);
     View* edit(std::function<void(View*)> edit);
     
-    View* setX(float x);
-    View* setY(float y);
+    View* set_x(float x);
+    View* set_y(float y);
     
-    View* setWidth(float width);
-    View* setHeight(float height);
+    View* set_width(float width);
+    View* set_height(float height);
 
-    View* setNeedsLayout();
+    View* set_needs_layout();
     
-    View* addSubview(View* view);
-    void insertSubviewAt(int position, View* view);
-    void removeAllSubviews();
+    View* add_subview(View* view);
+    void insert_subview_at(int position, View* view);
+    void remove_all_subviews();
 
-    virtual View* setColor(const Color& color);
+    virtual View* set_color(const Color& color);
 
-    Point localPointFrom(const Point &point) const;
-    virtual bool containsGlobalPoint(const Point &point) const;
+    Point local_point_from(const Point &point) const;
+    virtual bool contains_global_point(const Point &point) const;
 
     template <class ...Args>
-    View* addLayout(Args ...args) { return _addLayout({ args... }); }
+    View* add_layout(Args ...args) { return _add_layout({ args... }); }
 
 	template <class ...Args>
-	View* setLayout(Args ...args) { 
+	View* set_layout(Args ...args) { 
 		for (auto layout : *_layout) delete layout;
 		delete _layout;
 		_layout = nullptr;
-		return _addLayout({ args... }); 
+		return _add_layout({ args... }); 
 	}
 
-	void enableTouch();
-	void disableTouch();
+	void enable_touch();
+	void disable_touch();
 
     View* clone() const;
 

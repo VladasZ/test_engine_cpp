@@ -24,12 +24,12 @@ ScrollView::ScrollView(const Rect &rect) : View(rect) {
 
 void ScrollView::setContentOffset(const Point &offset) {
     _content_offset = offset;
-    _needsDraw = true;
+    _need_draw = true;
 }
 
 ScrollView* ScrollView::_setFramebuffer(const Size& size) {
-    _frameBuffer = new FrameBuffer(size);
-    _ownsFramebuffer = true;
+    _frame_buffer = new FrameBuffer(size);
+    _owns_framebuffer = true;
     return this;
 }
 
@@ -54,14 +54,14 @@ Buffer* ScrollView::_getBuffer() const {
 }
 
 void ScrollView::draw() {
-    if (_needsLayout) layout();
+    if (_needs_layout) layout();
         
-    drawSubviews();
+    draw_subviews();
     
-    UNPRIVATE(superview)->_frameBuffer->draw([&]{
-        GL::setViewport(_frameInFrameBuffer);
+    UNPRIVATE(superview)->_frame_buffer->draw([&]{
+        GL::setViewport(_frame_in_frame_buffer);
         Shader::uiTexture.use();
-        _frameBuffer->getImage()->bind();
+        _frame_buffer->getImage()->bind();
         _getBuffer()->draw();
         GL::unbindImage();
 #if DRAW_DEBUG_FRAMES

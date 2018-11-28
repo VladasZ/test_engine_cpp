@@ -201,7 +201,7 @@ View* View::addSubview(View* view) {
 }
 
 void View::insertSubviewAt(int position, View* view) {
-	subviews.insertAt(position, view);
+	subviews.insert_at(position, view);
     view->superview = this;
 	if (_frameBuffer)
 		_checkFramebuffers(view, _frameBuffer);

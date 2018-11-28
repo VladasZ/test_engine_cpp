@@ -62,8 +62,8 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
   FT_Face face;
     
   FT_New_Memory_Face(ftLibrary(),
-					 (FT_Byte*)file->getData(),
-					 (FT_Long)file->getSize(),
+					 (FT_Byte*)file->data(),
+					 (FT_Long)file->size(),
 					 0,
 					 &face);
     

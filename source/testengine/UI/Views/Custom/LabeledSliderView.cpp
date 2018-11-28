@@ -24,7 +24,7 @@ void LabeledSliderView::setup() {
     
     _sliderView->onValueChanged.subscribe([&](float value){
         this->onValueChanged(value);
-        this->_valueLabel->setText(String::fromFloat(value));
+        this->_valueLabel->setText(String::from_float(value));
     });
 }
 

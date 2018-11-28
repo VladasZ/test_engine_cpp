@@ -8,9 +8,8 @@
 
 #pragma once
 
-#include "String.hpp"
+#include <string>
 
-class Alert {
-public:
-    static void show(const String&message, const String& title = "");
+namespace Alert {
+    static void show(const std::string& message, const std::string& title = "");
 };

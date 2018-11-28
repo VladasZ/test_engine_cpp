@@ -9,9 +9,7 @@
 #pragma once
 
 #include "Color.hpp"
-#include "Singletone.hpp"
 
-class Random : Static {
-public:
-	static Color color();
+namespace Random  {
+	Color color();
 };

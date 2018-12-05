@@ -6,10 +6,12 @@ add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
 
-include_recursive(${PROJECT_SOURCE_DIR}/../ui/ui_lib)
+include_recursive(${PROJECT_SOURCE_DIR}/../ui/source/ui_lib)
 target_link_libraries(${PROJECT_NAME} ui_lib)
 
-link_project(geometry)
+include_recursive(${PROJECT_SOURCE_DIR}/../ui/source/geometry)
+target_link_libraries(${PROJECT_NAME} geometry)
+
 link_project(cpp_utils)
 link_project(soil)
 

@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Path.hpp"
-#include "View.hpp"
+#include "OldView.hpp"
 #include "Array.hpp"
 
 class DrawingView : public View {

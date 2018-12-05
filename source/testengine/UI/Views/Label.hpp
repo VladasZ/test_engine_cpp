@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Font.hpp"
-#include "View.hpp"
+#include "OldView.hpp"
 #include "ImageView.hpp"
 
 class Label : public View {

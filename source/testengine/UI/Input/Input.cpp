@@ -11,7 +11,7 @@
 #include "Window.hpp"
 #include "DebugInfoView.hpp"
 #include "GL.hpp"
-#include "View.hpp"
+#include "OldView.hpp"
 #include "Log.hpp"
 #include "GlobalEvents.hpp"
 #include "Dictionary.hpp"

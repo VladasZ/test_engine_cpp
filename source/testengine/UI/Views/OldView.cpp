@@ -6,7 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "View.hpp"
+#include "OldView.hpp"
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "Window.hpp"

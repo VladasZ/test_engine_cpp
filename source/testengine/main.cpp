@@ -8,7 +8,7 @@
 
 #include "TestEngineMain.h"
 
-#include "../../source/ui/source/ui_lib/TestView.hpp"
+#include "View.hpp"
 
 
 

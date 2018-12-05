@@ -10,9 +10,6 @@
 
 #include "View.hpp"
 
-
-
 int main() {
-  ui::View::say_hello();
   return testEngineMain();
 }

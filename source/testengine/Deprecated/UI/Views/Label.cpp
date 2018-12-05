@@ -44,7 +44,7 @@ void Label::_setGlyphs() {
 
 		auto glyphView = UNPRIVATE(
 			(new ImageView(glyph->size()))
-			->setImage(glyph->image)
+			->set_image(glyph->image)
 		);
 
 		auto& glyphViewFrame = glyphView->_frame;

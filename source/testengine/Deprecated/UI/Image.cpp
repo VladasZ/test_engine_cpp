@@ -40,7 +40,7 @@ static int modeForChannels(int channels) {
 	}
 }
 
-void Image::init(const ui::Size &size, void* data, int channels, int filter) {
+void Image::init(const ui::Size& size, void* data, int channels, int filter) {
 
 	this->channels = channels;
 	this->size = size;
@@ -63,20 +63,20 @@ void Image::init(const ui::Size &size, void* data, int channels, int filter) {
 
 	GL(glGenerateMipmap(GL_TEXTURE_2D));
 
-	setFilter((Filter)filter);
+	set_filter((Filter)filter);
 
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const ui::Size &size, int channels, Filter filter) {
+Image::Image(const ui::Size& size, int channels, Filter filter) {
 	init(size, nullptr, channels, filter);
 }
 
-Image::Image(const ui::Size &size, void* data, int channels, Filter filter) {
+Image::Image(const ui::Size& size, void* data, int channels, Filter filter) {
 	init(size, data, channels, filter);
 }
 
-Image::Image(const std::string &file, Filter filter) {
+Image::Image(const std::string& file, Filter filter) {
 
 	int width;
 	int height;
@@ -129,7 +129,7 @@ void Image::initialize() {
 
 }
 
-void Image::setFilter(Filter filter) {
+void Image::set_filter(Filter filter) {
 	switch (filter) {
 	case Nearest:
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
@@ -153,4 +153,4 @@ void Image::setFilter(Filter filter) {
 	}
 }
 
-bool Image::isMonochrome() const { return channels == 1; }
+bool Image::is_monochrome() const { return channels == 1; }

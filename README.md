@@ -3,7 +3,7 @@
 ![](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20Windows%20%7C%20Linux-green.svg)
 
 
-Linux: 
+macOS: 
 
 
 [![Build Status](https://travis-ci.org/VladasZ/TestEngine.svg?branch=master)](https://travis-ci.org/VladasZ/TestEngine)

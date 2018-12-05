@@ -18,7 +18,7 @@ class Image : public NonCopyable {
 
 	GLuint _id = 0;
 
-	void init(const ui::Size &size, void* data, int channels, int filter);
+	void init(const ui::Size& size, void* data, int channels, int filter);
 
 	Image() = default;
 
@@ -50,9 +50,9 @@ public:
 	ui::Size size;
 	int channels;
 
-	Image(const ui::Size &size, int channels = 4, Filter filter = Filter::Default);
-	Image(const ui::Size &size, void* data, int channels, Filter filter = Filter::Default);
-	Image(const std::string &file, Filter filter = Filter::Default);
+	Image(const ui::Size& size, int channels = 4, Filter filter = Filter::Default);
+	Image(const ui::Size& size, void* data, int channels, Filter filter = Filter::Default);
+	Image(const std::string& file, Filter filter = Filter::Default);
 	~Image();
 
 	GLuint &_get_GL_id() { return _id; }
@@ -60,9 +60,7 @@ public:
 	void bind() const;
 	void unbind() const;
 
-	void setFilter(Filter filter);
+	void set_filter(Filter filter);
 
-	bool isMonochrome() const;
+	bool is_monochrome() const;
 };
-
-using I = Image;

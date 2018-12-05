@@ -22,14 +22,14 @@ void ImageView::draw() {
 	if (_need_draw) {
 		_frame_buffer->draw([&] {
 			_image->bind();
-			if (_image->isMonochrome()) Shader::uiMonochrome.use();
-			else                        Shader::uiTexture.use();
-			GL::setViewport(_frame_in_frame_buffer);
+			if (_image->is_monochrome()) Shader::ui_monochrome.use();
+			else                        Shader::ui_texture.use();
+			GL::set_viewport(_frame_in_frame_buffer);
 			Buffer::fullscreenImage->draw();
 			_image->unbind();
 #if DRAW_DEBUG_FRAMES
             Shader::ui.use();
-            Shader::ui.setUniformColor(ui::C::turquoise);
+            Shader::ui.set_uniform_color(ui::C::turquoise);
             Buffer::fullscreenOutline->draw();
 #endif
 		});
@@ -39,11 +39,11 @@ void ImageView::draw() {
 	draw_subviews();
 }
 
-Image* ImageView::getImage() const {
+Image* ImageView::get_image() const {
     return _image;
 }
 
-ImageView* ImageView::setImage(Image* image) {
+ImageView* ImageView::set_image(Image* image) {
     this->_image = image;
     return this;
 }

@@ -29,10 +29,10 @@ public:
     FrameBuffer* bind();
     FrameBuffer* unbind();
 
-	ui::Rect getSize() const;
+	ui::Size get_size() const;
     FrameBuffer* setSize(const ui::Size& size);
 
-    Image* getImage() const;
+    Image* get_image() const;
 
     FrameBuffer* draw(std::function<void()> closure);
 

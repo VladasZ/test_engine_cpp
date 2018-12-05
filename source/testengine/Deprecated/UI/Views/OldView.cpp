@@ -77,16 +77,16 @@ void OldView::draw() {
     if (_need_draw) {
         _frame_buffer->draw([&] {
             if (_owns_framebuffer) {
-                GL::setViewport(_frame.with_zero_origin());
+                GL::set_viewport(_frame.with_zero_origin());
             }
             else {
-                GL::setViewport(_frame_in_frame_buffer);
+                GL::set_viewport(_frame_in_frame_buffer);
             }
             Shader::ui.use();
-            Shader::ui.setUniformColor(_color);
+            Shader::ui.set_uniform_color(_color);
             Buffer::fullscreen->draw();
 #if DRAW_DEBUG_FRAMES
-            Shader::ui.setUniformColor(ui::C::turquoise);
+            Shader::ui.set_uniform_color(ui::C::turquoise);
             Buffer::fullscreenOutline->draw();
 #endif
         });
@@ -98,11 +98,11 @@ void OldView::draw() {
     
     if (_owns_framebuffer) {
         superview->_frame_buffer->draw([&]{
-            GL::setViewport(_frame_in_frame_buffer);
-            Shader::uiTexture.use();
-            _frame_buffer->getImage()->bind();
+            GL::set_viewport(_frame_in_frame_buffer);
+            Shader::ui_texture.use();
+            _frame_buffer->get_image()->bind();
             Buffer::fullscreenImage->draw();
-            GL::unbindImage();
+            GL::unbind_image();
         });
     }
 }

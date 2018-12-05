@@ -66,8 +66,8 @@ void Object::draw() {
     Matrix4 _rotationX = Matrix4::rotation(rotationX, {1.0f, 0.0f, 0.0f});
 
 	Shader::colored3D.use();
-    Shader::colored3D.setMVPMatrix(_rotationY * _rotationX * translation * projection);
-	Shader::colored3D.setUniformColor(ui::C::green);
+    Shader::colored3D.set_mvp_matrix(_rotationY * _rotationX * translation * projection);
+	Shader::colored3D.set_uniform_color(ui::C::green);
 
 	_mesh->draw();
 }

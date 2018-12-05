@@ -21,8 +21,8 @@ class ImageView : public OldView {
     
 public:
         
-    Image* getImage() const;
-    ImageView* setImage(Image* image);
+    Image* get_image() const;
+    ImageView* set_image(Image* image);
     
 	OldView* set_color(const ui::Color& color) override { return this; }
 

@@ -13,10 +13,10 @@
 
 void DrawingView::draw() {
     Shader::ui.use();
-    Shader::ui.setUniformColor(_color);
-	GL::setViewport(_absolute_frame);
+    Shader::ui.set_uniform_color(_color);
+	GL::set_viewport(_absolute_frame);
 //    buffer->draw();
-    Shader::uiPath.use();
+    Shader::ui_path.use();
  //   Shader::uiPath.setViewportTranslation(_frame.size);
     for (auto path : paths) path->draw();
 

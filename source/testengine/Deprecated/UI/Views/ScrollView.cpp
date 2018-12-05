@@ -59,14 +59,14 @@ void ScrollView::draw() {
     draw_subviews();
     
     UNPRIVATE(superview)->_frame_buffer->draw([&]{
-        GL::setViewport(_frame_in_frame_buffer);
-        Shader::uiTexture.use();
-        _frame_buffer->getImage()->bind();
+        GL::set_viewport(_frame_in_frame_buffer);
+        Shader::ui_texture.use();
+        _frame_buffer->get_image()->bind();
         _getBuffer()->draw();
-        GL::unbindImage();
+        GL::unbind_image();
 #if DRAW_DEBUG_FRAMES
         Shader::ui.use();
-        Shader::ui.setUniformColor(ui::C::turquoise);
+        Shader::ui.set_uniform_color(ui::C::turquoise);
         Buffer::fullscreenOutline->draw();
 #endif
     });

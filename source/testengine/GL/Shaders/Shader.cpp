@@ -15,20 +15,20 @@
 
 
 Shader Shader::ui;
-Shader Shader::uiTexture;
-Shader Shader::uiMonochrome;
-Shader Shader::uiPath;
+Shader Shader::ui_texture;
+Shader Shader::ui_monochrome;
+Shader Shader::ui_path;
 Shader Shader::sprite;
 Shader Shader::simple3D;
 Shader Shader::colored3D;
 
 
 Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {    
-    program = ShaderCompiler::compile(vertexPath, fragmentPath);
+    _program = ShaderCompiler::compile(vertexPath, fragmentPath);
 }
 
 void Shader::use() const {
-    GL(glUseProgram(program));
+    GL(glUseProgram(_program));
 }
 
 void Shader::initialize() {
@@ -36,13 +36,13 @@ void Shader::initialize() {
     ui =            Shader(Paths::assetsDirectory() + "Shaders/ui.vert",
                            Paths::assetsDirectory() + "Shaders/ui.frag");
     
-    uiTexture =     Shader(Paths::assetsDirectory() + "Shaders/uiTexture.vert",
+    ui_texture =    Shader(Paths::assetsDirectory() + "Shaders/uiTexture.vert",
                            Paths::assetsDirectory() + "Shaders/uiTexture.frag");
     
-    uiMonochrome =  Shader(Paths::assetsDirectory() + "Shaders/uiMonochrome.vert",
+    ui_monochrome = Shader(Paths::assetsDirectory() + "Shaders/uiMonochrome.vert",
                            Paths::assetsDirectory() + "Shaders/uiMonochrome.frag");
 
-    uiPath =        Shader(Paths::assetsDirectory() + "Shaders/uiPath.vert",
+    ui_path =       Shader(Paths::assetsDirectory() + "Shaders/uiPath.vert",
                            Paths::assetsDirectory() + "Shaders/uiPath.frag");
 
     sprite =        Shader(Paths::assetsDirectory() + "Shaders/sprite.vert",
@@ -55,21 +55,21 @@ void Shader::initialize() {
                            Paths::assetsDirectory() + "Shaders/colored3D.frag");
 }
 
-void Shader::setUniformColor(const ui::Color& color) {
-    if (uniformColor == -1)
-        uniformColor = glGetUniformLocation(program, "uniformColor");
-	GL(glUniform4fv(uniformColor, 1, &color.r));
+void Shader::set_uniform_color(const ui::Color& color) {
+    if (_uniform_color == -1)
+        _uniform_color = glGetUniformLocation(_program, "uniformColor");
+	GL(glUniform4fv(_uniform_color, 1, &color.r));
 }
 
-void Shader::setMVPMatrix(const Matrix4& mvp) {
-	if (mvpMatrix == -1)
-		mvpMatrix = glGetUniformLocation(program, "mvpMatrix");
-	GL(glUniformMatrix4fv(mvpMatrix, 1, false, &mvp.data[0][0]));
+void Shader::set_mvp_matrix(const Matrix4& mvp) {
+	if (_mvp_matrix == -1)
+		_mvp_matrix = glGetUniformLocation(_program, "mvpMatrix");
+	GL(glUniformMatrix4fv(_mvp_matrix, 1, false, &mvp.data[0][0]));
 }
 
-void Shader::setUniformPosition(float x, float y) {
-    if (uniformPosition == -1)
-        uniformPosition = glGetUniformLocation(program, "uniformPosition");
-    glUniform2f(uniformPosition, x, y);
+void Shader::set_uniform_position(float x, float y) {
+    if (_uniform_position == -1)
+        _uniform_position = glGetUniformLocation(_program, "uniformPosition");
+    glUniform2f(_uniform_position, x, y);
 }
 

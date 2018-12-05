@@ -16,8 +16,13 @@
 #include "GlobalEvents.hpp"
 #include "Scene.hpp"
 #include "Buffer.hpp"
+#include "View.hpp"
+#include "TestEngineDrawer.hpp"
+#include "ui.hpp"
 
 void sizeChanged(GLFWwindow* window, int width, int height);
+
+ui::View* new_view = nullptr;
 
 void Window::initialize(int width, int height) {
 
@@ -73,7 +78,11 @@ void Window::initialize(int width, int height) {
     Font::initialize();
     Buffer::initialize();
 
-    rootFrameBuffer = new FrameBuffer(screenResolution);
+    root_frame_buffer = new FrameBuffer(screenResolution);
+
+	ui::config::set_drawer(new TestEngineDrawer(root_frame_buffer));
+
+	new_view = new ui::View({ 100, 300, 100, 100 });
 
     setup(); 
 
@@ -82,7 +91,7 @@ void Window::initialize(int width, int height) {
 
 void Window::setup() {
     rootView = new RootView({ Window::size.width, Window::size.height });
-	rootView->_frame_buffer = rootFrameBuffer;
+	rootView->_frame_buffer = root_frame_buffer;
     rootView->setup();
     rootView->layout();
     rootView->_frame_buffer->clear();
@@ -91,7 +100,7 @@ void Window::setup() {
 }
 
 void Window::update() {
-    GL::setClearColor(ui::C::gray);
+    GL::set_clear_color(ui::C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 	if (currentScene) {
@@ -101,15 +110,17 @@ void Window::update() {
 
 	GL(glDisable(GL_DEPTH_TEST));
 
-    rootFrameBuffer->clear();
+    root_frame_buffer->clear();
     rootView->draw();
+
+	new_view->draw();
 
 	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
 
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
-    Shader::uiTexture.use();
-    rootFrameBuffer->getImage()->bind();
+    Shader::ui_texture.use();
+    root_frame_buffer->get_image()->bind();
     Buffer::rootUIBuffer->draw();
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 
@@ -127,7 +138,7 @@ void Window::setScene(Scene* scene) {
 void Window::sizeChanged(GLFWwindow* window, int width, int height) {
     Window::size = ui::Size((float)width, (float)height);
     rootView->set_frame(ui::Rect((float)width, (float)height));
-    rootFrameBuffer->clear();
+    root_frame_buffer->clear();
     Buffer::windowSizeChanged();
 	Events::onScreenSizeChange(size);
     update();

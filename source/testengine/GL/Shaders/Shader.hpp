@@ -17,35 +17,35 @@ class Window;
 class Shader {
     
     Shader() = default;
-    Shader(const std::string &vertexPath, const std::string &fragmentPath);
+    Shader(const std::string& vertexPath, const std::string& fragmentPath);
         
     friend Window;
     
-    int program = -1;
+    int _program = -1;
     
-    int uniformColor = -1;
-    int viewportTranslation = -1;
-    int uniformPosition = -1;
-    int transform = -1;
-	int mvpMatrix = -1;
+    int _uniform_color = -1;
+    int _viewport_translation = -1;
+    int _uniform_position = -1;
+    int _transform = -1;
+	int _mvp_matrix = -1;
     
     static void initialize();
     
 public:
     
     static Shader ui;
-    static Shader uiTexture;
-    static Shader uiMonochrome;
-    static Shader uiPath;
+    static Shader ui_texture;
+    static Shader ui_monochrome;
+    static Shader ui_path;
     static Shader sprite;
     
     static Shader simple3D;
     static Shader colored3D;
 
     void use() const;
-	int getProgramID() const { return program; }
+	int get_program_id() const { return _program; }
 
-    void setUniformColor(const ui::Color& color);
-	void setMVPMatrix(const Matrix4& mvp);
-    void setUniformPosition(float x, float y);
+    void set_uniform_color(const ui::Color& color);
+	void set_mvp_matrix(const Matrix4& mvp);
+    void set_uniform_position(float x, float y);
 };

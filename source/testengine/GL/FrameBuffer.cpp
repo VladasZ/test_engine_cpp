@@ -55,7 +55,7 @@ FrameBuffer* FrameBuffer::unbind() {
     return this;
 }
 
-ui::Rect FrameBuffer::getSize() const {
+ui::Size FrameBuffer::get_size() const {
     return _size;
 }
 
@@ -65,7 +65,7 @@ FrameBuffer* FrameBuffer::setSize(const ui::Size& size) {
     return this;
 }
 
-Image* FrameBuffer::getImage() const {
+Image* FrameBuffer::get_image() const {
     return _image;
 }
 
@@ -79,7 +79,7 @@ FrameBuffer* FrameBuffer::draw(std::function<void()> closure) {
 
 FrameBuffer* FrameBuffer::clear(const ui::Color& color) {
     bind();
-    GL::setClearColor(color);
+    GL::set_clear_color(color);
     glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     unbind();

@@ -14,7 +14,7 @@ void TestView::setup() {
 
     add_subview(
         (new ImageView({_frame.size.width, _frame.size.height}))
-        ->setImage(I::square)
+        ->set_image(Image::square)
     );
     
 	add_subview(
@@ -44,7 +44,7 @@ void TestView::setup() {
 
 	add_subview(
 		(new ImageView({ 100, 100 }))
-		->setImage(I::text)
+		->set_image(Image::text)
 		->add_layout(L::CenterH(), L::CenterV())
 	);
 }

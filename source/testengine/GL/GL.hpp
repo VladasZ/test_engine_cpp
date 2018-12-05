@@ -24,15 +24,15 @@
 
 class GL {
 public:
-	static void setViewport(const ui::Rect& rect) {
+	static void set_viewport(const ui::Rect& rect) {
 		glViewport((GLint)rect.origin.x, (GLint)rect.origin.y, (GLsizei)rect.size.width, (GLsizei)rect.size.height);
 	}
     
-    static void unbindImage() {
+    static void unbind_image() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    static void setClearColor(const ui::Color& color) {
+    static void set_clear_color(const ui::Color& color) {
         glClearColor(color.r, color.g, color.b, color.a);
     }
 };

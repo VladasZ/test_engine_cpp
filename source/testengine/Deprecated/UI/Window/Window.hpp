@@ -37,7 +37,7 @@ public:
     static inline ui::Size screenResolution;
     
     static inline RootView* rootView = nullptr;
-    static inline FrameBuffer* rootFrameBuffer = nullptr;
+    static inline FrameBuffer* root_frame_buffer = nullptr;
 
 	static inline Scene* currentScene = nullptr;
 

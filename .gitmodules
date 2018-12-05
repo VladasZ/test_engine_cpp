@@ -4,3 +4,6 @@
 [submodule "utils"]
 	path = utils
 	url = https://github.com/VladasZ/utils.git
+[submodule "source/ui"]
+	path = source/ui
+	url = https://github.com/VladasZ/ui.git

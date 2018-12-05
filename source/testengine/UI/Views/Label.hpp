@@ -28,7 +28,7 @@ class Label : public View {
         
 public:
     
-    Label(const Rect &rect = Rect());
+	Label(const Rect& rect = { });
 
     std::string text() const;
     Label* setText(const std::string &text);

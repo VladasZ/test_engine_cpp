@@ -58,7 +58,7 @@ Rect View::_calculate_frame_in_frame_buffer() const {
     return result;
 }
 
-View* View::_setFramebuffer() {
+View* View::_set_framebuffer() {
     _frame_buffer = new FrameBuffer(_frame.size);
 	_owns_framebuffer = true;
 	return this;

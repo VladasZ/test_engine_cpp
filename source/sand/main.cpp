@@ -17,7 +17,7 @@ int main() {
 
 	cout << bitwise::to_number(t) << endl;
 
-	auto t2 =		bitwise::set_byte(t, 2, 1);
+	auto t2 = bitwise::set_byte(t, 2, 1);
 
 	cout << bitwise::to_number(t2) << endl;
 

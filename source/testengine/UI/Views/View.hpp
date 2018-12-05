@@ -70,7 +70,7 @@ public:
 
     Array<View*> subviews;
 
-	View* _setFramebuffer();
+	View* _set_framebuffer();
 
 	static View* make(const Rect& rect = Rect()) { return new View(rect); }
     View(const Rect &rect = Rect());

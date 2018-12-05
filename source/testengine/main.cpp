@@ -8,6 +8,11 @@
 
 #include "TestEngineMain.h"
 
+#include "../../source/ui/source/ui_lib/TestView.hpp"
+
+
+
 int main() {
-    return testEngineMain();
+  ui::View::say_hello();
+  return testEngineMain();
 }

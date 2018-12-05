@@ -55,7 +55,7 @@ void Shader::initialize() {
                            Paths::assetsDirectory() + "Shaders/colored3D.frag");
 }
 
-void Shader::setUniformColor(const Color& color) {
+void Shader::setUniformColor(const ui::Color& color) {
     if (uniformColor == -1)
         uniformColor = glGetUniformLocation(program, "uniformColor");
 	GL(glUniform4fv(uniformColor, 1, &color.r));

@@ -35,14 +35,14 @@ void World::setup() {
     frisk = new Unit(Image::frisk);
     addSprite(frisk);
     
-    frisk->setPosition(Point(150, 150));
-    frisk->setSize(Size(34, 57));
+    frisk->setPosition(ui::Point(150, 150));
+    frisk->setSize(ui::Size(34, 57));
     
     frisk->setSubsprites({
-        Rect( 6,   7, 33, 57),
-        Rect( 7,  65, 34, 56),
-        Rect(57, 131, 33, 57),
-        Rect(53, 190, 34, 56)
+		ui::Rect( 6,   7, 33, 57),
+		ui::Rect( 7,  65, 34, 56),
+		ui::Rect(57, 131, 33, 57),
+		ui::Rect(53, 190, 34, 56)
     });
 
 }

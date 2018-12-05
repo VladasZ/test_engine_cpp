@@ -20,5 +20,5 @@ protected:
 public:
 
     float rotation = 0;
-	Color _color;
+	ui::Color _color;
 };

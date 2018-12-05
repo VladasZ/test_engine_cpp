@@ -18,23 +18,23 @@ class FrameBuffer {
 
     GLuint _id;
     GLuint _rbo;
-    Size _size;
+	ui::Size _size;
     Image* _image;
 
 public:
 
-    FrameBuffer(const Size& size);
+    FrameBuffer(const ui::Size& size);
     ~FrameBuffer();
 
     FrameBuffer* bind();
     FrameBuffer* unbind();
 
-    Rect getSize() const;
-    FrameBuffer* setSize(const Size& size);
+	ui::Rect getSize() const;
+    FrameBuffer* setSize(const ui::Size& size);
 
     Image* getImage() const;
 
     FrameBuffer* draw(std::function<void()> closure);
 
-    FrameBuffer* clear(const Color& color = C::clear);
+    FrameBuffer* clear(const ui::Color& color = ui::C::clear);
 };

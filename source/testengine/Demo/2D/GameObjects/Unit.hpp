@@ -30,5 +30,5 @@ public:
     
     void update() override;
     
-    void setVelocity(const Point &velocity);
+    void setVelocity(const ui::Point &velocity);
 };

@@ -45,7 +45,7 @@ public:
     void use() const;
 	int getProgramID() const { return program; }
 
-    void setUniformColor(const Color& color);
+    void setUniformColor(const ui::Color& color);
 	void setMVPMatrix(const Matrix4& mvp);
     void setUniformPosition(float x, float y);
 };

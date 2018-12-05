@@ -51,7 +51,7 @@ void Object::draw() {
     static float rotationY = 0.f;
     static float fieldOfView = 200.0f;
     
-    Events::touch.subscribe([&](Point loc)
+    Events::touch.subscribe([&](ui::Point loc)
                             {
                                 rotationX = loc.x / 100;
                                 rotationY = loc.y / 100;
@@ -67,7 +67,7 @@ void Object::draw() {
 
 	Shader::colored3D.use();
     Shader::colored3D.setMVPMatrix(_rotationY * _rotationX * translation * projection);
-	Shader::colored3D.setUniformColor(C::green);
+	Shader::colored3D.setUniformColor(ui::C::green);
 
 	_mesh->draw();
 }

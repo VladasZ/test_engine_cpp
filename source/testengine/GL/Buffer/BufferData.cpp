@@ -41,7 +41,7 @@ BufferData* BufferData::setIndices(const Array<GLushort>& indices) {
     return this;
 }
 
-BufferData* BufferData::fromSize(const Size& size) {
+BufferData* BufferData::fromSize(const ui::Size& size) {
 	const GLfloat data[] = {
 		0,          0,
 		0,          size.height,
@@ -52,7 +52,7 @@ BufferData* BufferData::fromSize(const Size& size) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRect(const Rect& rect) {
+BufferData* BufferData::fromRect(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,
 		rect.origin.x,                   rect.size.height + rect.origin.y,
@@ -63,7 +63,7 @@ BufferData* BufferData::fromRect(const Rect& rect) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRectToImage(const Rect& rect) {
+BufferData* BufferData::fromRectToImage(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,                    0.0f,  0.0f, //|- |
 		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  1.0f, //|_ |
@@ -74,7 +74,7 @@ BufferData* BufferData::fromRectToImage(const Rect& rect) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRectToFramebuffer(const Rect& rect) {
+BufferData* BufferData::fromRectToFramebuffer(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|- |
 		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //| _|

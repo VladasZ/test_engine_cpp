@@ -16,7 +16,7 @@ class ColoredVertex {
 public:
     
     Point3 position;
-    Color color;
+	ui::Color color;
     
 };
 

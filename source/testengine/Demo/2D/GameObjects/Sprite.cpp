@@ -84,25 +84,25 @@ void Sprite::draw() {
 //    return BufferConfiguration(2, 2);
 //}
 
-void Sprite::setPosition(const Point &position) {
+void Sprite::setPosition(const ui::Point &position) {
     _position = position;
 }
 
-Point Sprite::position() {
+ui::Point Sprite::position() {
     return _position;
 }
 
-void Sprite::setSize(const Size &size) {
+void Sprite::setSize(const ui::Size &size) {
     _size = size;
     _neeedsBufferUpdate = true;
 }
 
-Size Sprite::size() {
+ui::Size Sprite::size() {
     return _size;
 }
 
-void Sprite::setSubsprites(const std::initializer_list<Rect> &subsprites) {
-    _subsprites = new Array<Rect>(subsprites);
+void Sprite::setSubsprites(const std::initializer_list<ui::Rect> &subsprites) {
+    _subsprites = new Array<ui::Rect>(subsprites);
     setSubspriteIndex(0);
 }
 

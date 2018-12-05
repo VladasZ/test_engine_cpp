@@ -11,5 +11,5 @@
 #include "Color.hpp"
 
 namespace Random  {
-	Color color();
+	ui::Color color();
 };

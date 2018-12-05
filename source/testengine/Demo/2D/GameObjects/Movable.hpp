@@ -16,7 +16,7 @@ public:
 
     using Sprite::Sprite;
     
-    Point velocity;
+	ui::Point velocity;
     
     virtual void update();
     

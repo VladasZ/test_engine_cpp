@@ -20,11 +20,11 @@ AnalogStickView::AnalogStickView() : DrawingView({ SIZE, SIZE }) { }
 
 void AnalogStickView::setup() {
     auto outerPath = Path::circleWith(_frame.size.center(), _frame.size.width);
-    outerPath->_color = Color::black;
+    outerPath->_color = ui::Color::black;
     addPath(outerPath);
 
     auto outlinePath = Path::circleWith(_frame.size.center(), _frame.size.width - OUTLINE_WIDTH);
-    outlinePath->_color = Color::white;
+    outlinePath->_color = ui::Color::white;
     addPath(outlinePath);
 
     directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
@@ -34,25 +34,25 @@ void AnalogStickView::setup() {
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE);
-        path->_color = Color::black;
+        path->_color = ui::Color::black;
         return path;
     }());
     
     directionStick->addPath([&]() {
         auto path = Path::circleWith(directionStick->frame().size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
-        path->_color = Color::light_gray;
+        path->_color = ui::Color::light_gray;
         return path;
     }());
     
 }
 
-void AnalogStickView::onTouchMoved(const Point &touch) {
+void AnalogStickView::onTouchMoved(const ui::Point &touch) {
     
     float maxLenght = _frame.size.height / 2;
     
-    Point touchPosition = local_point_from(touch);
-    Point vector = touchPosition - _frame.size.center();
+	ui::Point touchPosition = local_point_from(touch);
+	ui::Point vector = touchPosition - _frame.size.center();
     
     if (vector.length() > maxLenght) {
         vector = vector.with_length(maxLenght);

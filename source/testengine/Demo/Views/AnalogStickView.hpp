@@ -17,11 +17,11 @@ class AnalogStickView : public DrawingView {
     
     DrawingView* directionStick;
     
-    void onTouchMoved(const Point &touch);
+    void onTouchMoved(const ui::Point &touch);
     
 public:
         
     AnalogStickView();
 
-    Event<const Point &> onDirectionChange;
+    Event<const ui::Point &> onDirectionChange;
 };

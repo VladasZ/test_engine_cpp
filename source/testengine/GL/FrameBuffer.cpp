@@ -11,7 +11,7 @@
 #include "Image.hpp"
 #include "Debug.hpp"
 
-FrameBuffer::FrameBuffer(const Size& size) : _size(size) {
+FrameBuffer::FrameBuffer(const ui::Size& size) : _size(size) {
 
     GL(glGenFramebuffers(1, &_id));
     GL(glBindFramebuffer(GL_FRAMEBUFFER, _id));
@@ -55,11 +55,11 @@ FrameBuffer* FrameBuffer::unbind() {
     return this;
 }
 
-Rect FrameBuffer::getSize() const {
+ui::Rect FrameBuffer::getSize() const {
     return _size;
 }
 
-FrameBuffer* FrameBuffer::setSize(const Size& size) {
+FrameBuffer* FrameBuffer::setSize(const ui::Size& size) {
     throw "Not implemented";
     _size = size;
     return this;
@@ -77,7 +77,7 @@ FrameBuffer* FrameBuffer::draw(std::function<void()> closure) {
     return this;
 }
 
-FrameBuffer* FrameBuffer::clear(const Color& color) {
+FrameBuffer* FrameBuffer::clear(const ui::Color& color) {
     bind();
     GL::setClearColor(color);
     glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);

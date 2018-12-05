@@ -33,10 +33,10 @@ public:
     
     BufferData* setIndices(const Array<GLushort>& indices);
     
-	static BufferData* fromSize(const Size& size);
-	static BufferData* fromRect(const Rect& rect);
-	static BufferData* fromRectToImage(const Rect& rect);
-	static BufferData* fromRectToFramebuffer(const Rect& rect);
+	static BufferData* fromSize(const ui::Size& size);
+	static BufferData* fromRect(const ui::Rect& rect);
+	static BufferData* fromRectToImage(const ui::Rect& rect);
+	static BufferData* fromRectToFramebuffer(const ui::Rect& rect);
 
     ~BufferData();
 };

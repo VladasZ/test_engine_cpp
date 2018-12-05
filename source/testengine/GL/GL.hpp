@@ -24,7 +24,7 @@
 
 class GL {
 public:
-	static void setViewport(const Rect& rect) { 
+	static void setViewport(const ui::Rect& rect) {
 		glViewport((GLint)rect.origin.x, (GLint)rect.origin.y, (GLsizei)rect.size.width, (GLsizei)rect.size.height);
 	}
     
@@ -32,7 +32,7 @@ public:
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    static void setClearColor(const Color& color) {
+    static void setClearColor(const ui::Color& color) {
         glClearColor(color.r, color.g, color.b, color.a);
     }
 };

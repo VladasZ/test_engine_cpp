@@ -27,12 +27,12 @@ protected:
     
     bool _neeedsBufferUpdate = true;
     
-    Point _position;
-    Size _size;
+    ui::Point _position;
+	ui::Size _size;
     
     Image* _image;
     
-    Array<Rect>* _subsprites = nullptr;
+    Array<ui::Rect>* _subsprites = nullptr;
     int _subspriteIndex = -1;
     
 public:
@@ -40,13 +40,13 @@ public:
     Sprite(Image* image);
     ~Sprite();
     
-    void setPosition(const Point &position);
-    Point position();
+    void setPosition(const ui::Point &position);
+	ui::Point position();
     
-    void setSize(const Size &size);
-    Size size();
+    void setSize(const ui::Size &size);
+	ui::Size size();
     
-    void setSubsprites(const std::initializer_list<Rect> &subsprites);
+    void setSubsprites(const std::initializer_list<ui::Rect> &subsprites);
     void setSubspriteIndex(int index);
     int getSubspriteIndex() const;
 };

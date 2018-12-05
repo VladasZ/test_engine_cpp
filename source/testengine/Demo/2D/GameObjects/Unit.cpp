@@ -43,7 +43,7 @@ void Unit::update() {
     distanceFromLastStep = 0;
 }
 
-void Unit::setVelocity(const Point &velocity) {
-    this->velocity = Point(velocity.x, 0);    
+void Unit::setVelocity(const ui::Point &velocity) {
+    this->velocity = ui::Point(velocity.x, 0);
     setSubspriteIndex((int)(velocity.x > 0 ? UnitAnimation::Right : UnitAnimation::Left));
 }

@@ -81,7 +81,7 @@ Image::Image(const std::string& file, Filter filter) {
 	int width;
 	int height;
 
-	unsigned char* image = SOIL_load_image((Paths::assetsDirectory() + "Images/" + file).c_str(),
+	unsigned char* image = SOIL_load_image((Paths::assets_directory() + "Images/" + file).c_str(),
 		&width,
 		&height,
 		&channels,

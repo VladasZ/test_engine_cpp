@@ -13,7 +13,7 @@
 
 Camera::Camera() {
 
-	Events::onScreenSizeChange.subscribe([&](ui::Size size) {
+	Events::on_screen_size_change.subscribe([&](ui::Size size) {
 		this->_ratio = size.ratio();
 	});
 

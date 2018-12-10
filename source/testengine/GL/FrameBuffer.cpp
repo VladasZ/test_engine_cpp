@@ -59,7 +59,7 @@ ui::Size FrameBuffer::get_size() const {
     return _size;
 }
 
-FrameBuffer* FrameBuffer::setSize(const ui::Size& size) {
+FrameBuffer* FrameBuffer::set_size(const ui::Size& size) {
     throw "Not implemented";
     _size = size;
     return this;

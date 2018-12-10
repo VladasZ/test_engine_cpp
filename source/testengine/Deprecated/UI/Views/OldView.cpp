@@ -87,7 +87,7 @@ void OldView::draw() {
             Buffer::fullscreen->draw();
 #if DRAW_DEBUG_FRAMES
             Shader::ui.set_uniform_color(ui::C::turquoise);
-            Buffer::fullscreenOutline->draw();
+            Buffer::fullscreen_outline->draw();
 #endif
         });
         _need_draw = false;
@@ -101,7 +101,7 @@ void OldView::draw() {
             GL::set_viewport(_frame_in_frame_buffer);
             Shader::ui_texture.use();
             _frame_buffer->get_image()->bind();
-            Buffer::fullscreenImage->draw();
+            Buffer::fullscreen_image->draw();
             GL::unbind_image();
         });
     }

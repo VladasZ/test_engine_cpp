@@ -19,27 +19,27 @@ static const float STICK_VIEW_SIZE = SIZE / 2;
 AnalogStickView::AnalogStickView() : DrawingView({ SIZE, SIZE }) { }
 
 void AnalogStickView::setup() {
-    auto outerPath = Path::circleWith(_frame.size.center(), _frame.size.width);
-    outerPath->_color = ui::Color::black;
-    addPath(outerPath);
+    auto outer_path = Path::circle_with(_frame.size.center(), _frame.size.width);
+    outer_path->_color = ui::Color::black;
+    add_path(outer_path);
 
-    auto outlinePath = Path::circleWith(_frame.size.center(), _frame.size.width - OUTLINE_WIDTH);
-    outlinePath->_color = ui::Color::white;
-    addPath(outlinePath);
+    auto outline_path = Path::circle_with(_frame.size.center(), _frame.size.width - OUTLINE_WIDTH);
+    outline_path->_color = ui::Color::white;
+    add_path(outline_path);
 
-    directionStick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
-    directionStick->set_center(_frame.size.center());
-    add_subview(directionStick);
+    direction_stick = new DrawingView({ STICK_VIEW_SIZE, STICK_VIEW_SIZE });
+    direction_stick->set_center(_frame.size.center());
+    add_subview(direction_stick);
 
-    directionStick->addPath([&]() {
-        auto path = Path::circleWith(directionStick->frame().size.center(),
+    direction_stick->add_path([&]() {
+        auto path = Path::circle_with(direction_stick->frame().size.center(),
                                      STICK_VIEW_SIZE);
         path->_color = ui::Color::black;
         return path;
     }());
     
-    directionStick->addPath([&]() {
-        auto path = Path::circleWith(directionStick->frame().size.center(),
+    direction_stick->add_path([&]() {
+        auto path = Path::circle_with(direction_stick->frame().size.center(),
                                      STICK_VIEW_SIZE - OUTLINE_WIDTH);
         path->_color = ui::Color::light_gray;
         return path;
@@ -47,18 +47,18 @@ void AnalogStickView::setup() {
     
 }
 
-void AnalogStickView::onTouchMoved(const ui::Point &touch) {
+void AnalogStickView::on_touch_moved(const ui::Point &touch) {
     
-    float maxLenght = _frame.size.height / 2;
+    float max_lenght = _frame.size.height / 2;
     
-	ui::Point touchPosition = local_point_from(touch);
-	ui::Point vector = touchPosition - _frame.size.center();
+	ui::Point touch_position = local_point_from(touch);
+	ui::Point vector = touch_position - _frame.size.center();
     
-    if (vector.length() > maxLenght) {
-        vector = vector.with_length(maxLenght);
-        touchPosition = _frame.size.center() + vector;
+    if (vector.length() > max_lenght) {
+        vector = vector.with_length(max_lenght);
+        touch_position = _frame.size.center() + vector;
     }
     
-    directionStick->set_center(touchPosition);
-    onDirectionChange(vector * 0.1f);
+    direction_stick->set_center(touch_position);
+	on_direction_change(vector * 0.1f);
 }

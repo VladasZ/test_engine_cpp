@@ -15,30 +15,30 @@
 
 void Scene::setup() {
 
-	auto object = new Object(DoTheImportThing(Paths::assetsDirectory() + "/Models/Monkey.blend"));
+	auto object = new Object(import_model(Paths::assets_directory() + "/Models/Monkey.blend"));
 
 	addObject(object);
 
 	settingsView->onX.subscribe([=](float x) {
 		auto pos = object->position();
 		pos.x = x;
-		object->setPosition(pos);
+		object->set_position(pos);
 	});
 
 	settingsView->onY.subscribe([=](float y) {
 		auto pos = object->position();
 		pos.y = y;
-		object->setPosition(pos);
+		object->set_position(pos);
 	});
 
 	settingsView->onZ.subscribe([=](float z) {
 		auto pos = object->position();
 		pos.z = z * 20;
-		object->setPosition(pos);
+		object->set_position(pos);
 	});
 
 	settingsView->onScale.subscribe([=](float scale) {
-		object->setScale(scale);
+		object->set_scale(scale);
 	});
 
 }

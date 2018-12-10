@@ -9,7 +9,7 @@
 #include "Paths.hpp"
 
 
-String Paths::assetsDirectory() {
+String Paths::assets_directory() {
 #if WINDOWS
 	return "C:\\Users\\u.zakreuskis\\dev\\projects\\testengine\\Assets\\";
 #elif APPLE

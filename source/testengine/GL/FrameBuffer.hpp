@@ -30,7 +30,7 @@ public:
     FrameBuffer* unbind();
 
 	ui::Size get_size() const;
-    FrameBuffer* setSize(const ui::Size& size);
+    FrameBuffer* set_size(const ui::Size& size);
 
     Image* get_image() const;
 

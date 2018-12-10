@@ -14,12 +14,12 @@ Mesh::~Mesh() {
         delete _buffer;
 }
 
-void Mesh::_createBuffer() {
+void Mesh::_create_buffer() {
     if (_buffer)
         return;
     
 #if USE_COLORED_MESH
-    _buffer = new Buffer((GLfloat*)coloredVertices.data(), (GLuint)coloredVertices.bytes_size(),
+    _buffer = new Buffer((GLfloat*)colored_vertices.data(), (GLuint)colored_vertices.bytes_size(),
                          (GLushort*)indices.data(), (GLuint)indices.bytes_size(),
                          BufferConfiguration::_3_4);
     
@@ -29,11 +29,11 @@ void Mesh::_createBuffer() {
                          BufferConfiguration::_3);
 #endif
     
-    _buffer->drawMode = GL_TRIANGLES;
+    _buffer->draw_mode = GL_TRIANGLES;
 }
 
 void Mesh::draw() {
     if (!_buffer)
-        _createBuffer();
+        _create_buffer();
     _buffer->draw();
 }

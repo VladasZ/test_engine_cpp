@@ -33,26 +33,26 @@ void Shader::use() const {
 
 void Shader::initialize() {
 
-    ui =            Shader(Paths::assetsDirectory() + "Shaders/ui.vert",
-                           Paths::assetsDirectory() + "Shaders/ui.frag");
+    ui =            Shader(Paths::assets_directory() + "Shaders/ui.vert",
+                           Paths::assets_directory() + "Shaders/ui.frag");
     
-    ui_texture =    Shader(Paths::assetsDirectory() + "Shaders/uiTexture.vert",
-                           Paths::assetsDirectory() + "Shaders/uiTexture.frag");
+    ui_texture =    Shader(Paths::assets_directory() + "Shaders/uiTexture.vert",
+                           Paths::assets_directory() + "Shaders/uiTexture.frag");
     
-    ui_monochrome = Shader(Paths::assetsDirectory() + "Shaders/uiMonochrome.vert",
-                           Paths::assetsDirectory() + "Shaders/uiMonochrome.frag");
+    ui_monochrome = Shader(Paths::assets_directory() + "Shaders/uiMonochrome.vert",
+                           Paths::assets_directory() + "Shaders/uiMonochrome.frag");
 
-    ui_path =       Shader(Paths::assetsDirectory() + "Shaders/uiPath.vert",
-                           Paths::assetsDirectory() + "Shaders/uiPath.frag");
+    ui_path =       Shader(Paths::assets_directory() + "Shaders/uiPath.vert",
+                           Paths::assets_directory() + "Shaders/uiPath.frag");
 
-    sprite =        Shader(Paths::assetsDirectory() + "Shaders/sprite.vert",
-                           Paths::assetsDirectory() + "Shaders/sprite.frag");
+    sprite =        Shader(Paths::assets_directory() + "Shaders/sprite.vert",
+                           Paths::assets_directory() + "Shaders/sprite.frag");
     
-    simple3D =      Shader(Paths::assetsDirectory() + "Shaders/simple3D.vert",
-                           Paths::assetsDirectory() + "Shaders/simple3D.frag");
+    simple3D =      Shader(Paths::assets_directory() + "Shaders/simple3D.vert",
+                           Paths::assets_directory() + "Shaders/simple3D.frag");
     
-    colored3D =     Shader(Paths::assetsDirectory() + "Shaders/colored3D.vert",
-                           Paths::assetsDirectory() + "Shaders/colored3D.frag");
+    colored3D =     Shader(Paths::assets_directory() + "Shaders/colored3D.vert",
+                           Paths::assets_directory() + "Shaders/colored3D.frag");
 }
 
 void Shader::set_uniform_color(const ui::Color& color) {

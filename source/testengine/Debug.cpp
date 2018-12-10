@@ -13,7 +13,7 @@
 #include "Debug.hpp"
 #include "GL.hpp"
 
-void CheckGLError(LOCATION_PARAMETERS) {
+void check_gl_error(LOCATION_PARAMETERS) {
     GLenum err = glGetError();
     while(err != GL_NO_ERROR) {
         char* error = new char[255];
@@ -32,7 +32,7 @@ void CheckGLError(LOCATION_PARAMETERS) {
             break;
             case GL_INVALID_FRAMEBUFFER_OPERATION:
             strcpy(error, "GL_INVALID_FRAMEBUFFER_OPERATION");
-            CheckFramebufferStatus(GL_FRAMEBUFFER, fileName, function, line);
+            check_framebuffer_status(GL_FRAMEBUFFER, fileName, function, line);
             break;
             default:
             strcpy(error, "Unknown error");
@@ -45,7 +45,7 @@ void CheckGLError(LOCATION_PARAMETERS) {
     }
 }
 
-void CheckFramebufferStatus(int target, LOCATION_PARAMETERS) {
+void check_framebuffer_status(int target, LOCATION_PARAMETERS) {
     auto error = glCheckFramebufferStatus(target);
 
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;

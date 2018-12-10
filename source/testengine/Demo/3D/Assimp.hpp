@@ -10,4 +10,4 @@
 
 class Mesh;
 
-Mesh* DoTheImportThing(const std::string& pFile);
+Mesh* import_model(const std::string& pFile);

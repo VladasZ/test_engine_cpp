@@ -14,19 +14,9 @@
 #include "Debug.hpp"
 
 #include "Assimp.hpp"
-
-//#include "glm/glm.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
-
 #include "Matrix4.hpp"
 
-void glmTest() {
-    Matrix4 mat = Matrix4::rotation(45.0f, {1, 0, 0});
-    Logvar(mat.toString());
-    return;
-}
-
-int testEngineMain() {
+int test_engine_main() {
     
 	Window::initialize(1200, 880);
 	do {

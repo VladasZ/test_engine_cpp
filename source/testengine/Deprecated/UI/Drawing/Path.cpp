@@ -25,18 +25,18 @@ Path::Path(const ui::Rect &rect) {
     };
 }
 
-Path* Path::circleWith(const ui::Point &center, float radius, int precision) {
+Path* Path::circle_with(const ui::Point& center, float radius, int precision) {
     auto path = new Path();
-    float angleStep = pi2<float> / precision;
+    float angle_step = pi2<float> / precision;
 
     for (int i = 0; i < precision; i++)
-        path->points.emplace_back(ui::Point::on_circle(radius, angleStep * i, center));
+        path->points.emplace_back(ui::Point::on_circle(radius, angle_step * i, center));
 
     return path;
 }
 
-Path* Path::circleWith(const ui::Point &center, float radius) {
-    return circleWith(center, radius, 50);
+Path* Path::circle_with(const ui::Point& center, float radius) {
+    return circle_with(center, radius, 50);
 }
 
 void Path::draw() {
@@ -59,7 +59,7 @@ void Path::draw() {
 //    return new BufferData((float*)&points[0], size);
 //}
 
-void Path::addPoint(float x, float y) {
+void Path::add_point(float x, float y) {
     points.emplace_back(x, y);
-    bufferIsSet = false;
+    buffer_is_set = false;
 }

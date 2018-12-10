@@ -22,20 +22,20 @@ class Object {
 	Matrix4 _mvp;
 
 	float _scale = 1;
-	Point3 _position;
-	Point3 _rotation;
+	Vector3 _position;
+	Vector3 _rotation;
 
 public:
 
 	Object(Mesh* mesh);
 
-	Object* setScale(float scale);
+	Object* set_scale(float scale);
 
-	Object* setPosition(const Point3& position);
-	Point3 position() const;
+	Object* set_position(const Vector3& position);
+	Vector3 position() const;
 
-	Object* setRotation(const Point3& rotation);
-	Point3 rotation() const;
+	Object* set_rotation(const Vector3& rotation);
+	Vector3 rotation() const;
 
 	void draw();
 

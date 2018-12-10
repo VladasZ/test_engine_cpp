@@ -50,7 +50,7 @@ void Window::initialize(int width, int height) {
     }
 
     glfwMakeContextCurrent(window);
-    glfwSetWindowSizeCallback(window, sizeChanged);
+    glfwSetWindowSizeCallback(window, size_changed);
     glfwSwapInterval(1); // Limit fps to 60
 
     glewExperimental = GL_TRUE;
@@ -60,9 +60,9 @@ void Window::initialize(int width, int height) {
     }
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    screenResolution = { (float)mode->width, (float)mode->height };
+    screen_resolution = { (float)mode->width, (float)mode->height };
     
-    Log("Screen resolution: " << (int)screenResolution.width << "x" << (int)screenResolution.height);
+    Log("Screen resolution: " << (int)screen_resolution.width << "x" << (int)screen_resolution.height);
 
 #endif
 
@@ -78,7 +78,7 @@ void Window::initialize(int width, int height) {
     Font::initialize();
     Buffer::initialize();
 
-    root_frame_buffer = new FrameBuffer(screenResolution);
+    root_frame_buffer = new FrameBuffer(screen_resolution);
 
 	ui::config::set_drawer(new TestEngineDrawer(root_frame_buffer));
 
@@ -86,15 +86,15 @@ void Window::initialize(int width, int height) {
 
     setup(); 
 
-	Events::onScreenSizeChange(screenResolution);
+	Events::on_screen_size_change(screen_resolution);
 }
 
 void Window::setup() {
-    rootView = new RootView({ Window::size.width, Window::size.height });
-	rootView->_frame_buffer = root_frame_buffer;
-    rootView->setup();
-    rootView->layout();
-    rootView->_frame_buffer->clear();
+    root_view = new RootView({ Window::size.width, Window::size.height });
+	root_view->_frame_buffer = root_frame_buffer;
+    root_view->setup();
+    root_view->layout();
+    root_view->_frame_buffer->clear();
 
 	//setScene(new Scene());
 }
@@ -103,15 +103,15 @@ void Window::update() {
     GL::set_clear_color(ui::C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	if (currentScene) {
+	if (current_scene) {
 		GL(glEnable(GL_DEPTH_TEST));
-		currentScene->draw();
+		current_scene->draw();
 	}
 
 	GL(glDisable(GL_DEPTH_TEST));
 
     root_frame_buffer->clear();
-    rootView->draw();
+    root_view->draw();
 
 	new_view->draw();
 
@@ -121,26 +121,26 @@ void Window::update() {
 	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
     Shader::ui_texture.use();
     root_frame_buffer->get_image()->bind();
-    Buffer::rootUIBuffer->draw();
+    Buffer::root_ui_buffer->draw();
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 
     FPS = 1000000000 / Time::interval();
 
-    Window::framesDrawn++;
+    Window::frames_drawn++;
 	Events::frame_drawn();
 }
 
-void Window::setScene(Scene* scene) {
+void Window::set_scene(Scene* scene) {
 	scene->setup();
-	currentScene = scene;
+	current_scene = scene;
 }
 
-void Window::sizeChanged(GLFWwindow* window, int width, int height) {
+void Window::size_changed(GLFWwindow* window, int width, int height) {
     Window::size = ui::Size((float)width, (float)height);
-    rootView->set_frame(ui::Rect((float)width, (float)height));
+    root_view->set_frame(ui::Rect((float)width, (float)height));
     root_frame_buffer->clear();
-    Buffer::windowSizeChanged();
-	Events::onScreenSizeChange(size);
+    Buffer::window_size_changed();
+	Events::on_screen_size_change(size);
     update();
     GL(glfwSwapBuffers(Window::window));
 }

@@ -17,24 +17,24 @@ class Buffer : public NonCopyable {
     
     BufferData* data;
     
-    GLuint vertexArrayObject = 0;
-    GLuint vertexBufferObject = 0;
-    GLuint indexBufferObject = 0;
+    GLuint vertex_array_object  = 0;
+    GLuint vertex_buffer_object = 0;
+    GLuint index_buffer_object  = 0;
     
-    int verticesCount = 0;
-    int indicesCount = 0;
+    int vertices_count = 0;
+    int indices_count  = 0;
 
 public:
     
-    GLenum drawMode = GL_TRIANGLE_STRIP;
+    GLenum draw_mode = GL_TRIANGLE_STRIP;
     
-    Buffer(BufferData* data, const BufferConfiguration &configuration);
+    Buffer(BufferData* data, const BufferConfiguration& configuration);
     
-    Buffer(GLfloat* vertData, GLuint vertSize, const BufferConfiguration &configuration);
+    Buffer(GLfloat* vert_data, GLuint vert_size, const BufferConfiguration& configuration);
     
-    Buffer(GLfloat* vertData, GLuint vertSize,
-           GLushort* indData, GLuint indSize,
-           const BufferConfiguration &configuration);
+    Buffer(GLfloat* vert_data, GLuint vert_size,
+           GLushort* ind_data, GLuint ind_size,
+           const BufferConfiguration& configuration);
 
     ~Buffer();
         
@@ -42,10 +42,10 @@ public:
 
     static void initialize();
 
-    static void windowSizeChanged();
+    static void window_size_changed();
 
-    static inline Buffer* fullscreen        = nullptr;
-    static inline Buffer* fullscreenImage   = nullptr;
-    static inline Buffer* fullscreenOutline = nullptr;
-    static inline Buffer* rootUIBuffer      = nullptr;
+    static inline Buffer* fullscreen         = nullptr;
+    static inline Buffer* fullscreen_image   = nullptr;
+    static inline Buffer* fullscreen_outline = nullptr;
+    static inline Buffer* root_ui_buffer     = nullptr;
 };

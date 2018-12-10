@@ -58,7 +58,7 @@ Glyph* renderGlyph(const FT_Face &face, char ch) {
 
 Font::Font(const String& fileName, int size) : _fileName(fileName) {
     
-  auto file = new File((Paths::assetsDirectory() + fileName).c_str());
+  auto file = new File((Paths::assets_directory() + fileName).c_str());
   FT_Face face;
     
   FT_New_Memory_Face(ftLibrary(),

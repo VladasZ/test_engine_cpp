@@ -22,6 +22,6 @@ public:
     
     using OldView::OldView;
  
-    void addPath(Path* path);
+    void add_path(Path* path);
     
 };

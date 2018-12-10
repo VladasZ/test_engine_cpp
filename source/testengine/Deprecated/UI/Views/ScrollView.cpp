@@ -34,7 +34,7 @@ ScrollView* ScrollView::_setFramebuffer(const ui::Size& size) {
 }
 
 void ScrollView::setup() {
-    Debug::infoLabel->setText("hello");
+    Debug::info_label->setText("hello");
 }
 
 Buffer* ScrollView::_getBuffer() const {
@@ -49,7 +49,7 @@ Buffer* ScrollView::_getBuffer() const {
              2 * heightRatio
     };
     
-    return new Buffer(BufferData::fromRectToImage(rect),
+    return new Buffer(BufferData::from_rect_to_image(rect),
                       BufferConfiguration::_2_2);
 }
 
@@ -67,7 +67,7 @@ void ScrollView::draw() {
 #if DRAW_DEBUG_FRAMES
         Shader::ui.use();
         Shader::ui.set_uniform_color(ui::C::turquoise);
-        Buffer::fullscreenOutline->draw();
+        Buffer::fullscreen_outline->draw();
 #endif
     });
 }

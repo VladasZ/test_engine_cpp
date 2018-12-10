@@ -22,26 +22,26 @@ Object::Object(Mesh* mesh) : _mesh(mesh) {
     
 }
 
-Object* Object::setScale(float scale) {
+Object* Object::set_scale(float scale) {
 	_scale = scale;
 	return this;
 }
 
-Object* Object::setPosition(const Point3& position) {
+Object* Object::set_position(const Vector3& position) {
 	_position = position;
 	return this;
 }
 
-Point3 Object::position() const {
+Vector3 Object::position() const {
 	return _position;
 }
 
-Object* Object::setRotation(const Point3& rotation) {
+Object* Object::set_rotation(const Vector3& rotation) {
 	_rotation = rotation;
 	return this;
 }
 
-Point3 Object::rotation() const {
+Vector3 Object::rotation() const {
 	return _rotation;
 }
 

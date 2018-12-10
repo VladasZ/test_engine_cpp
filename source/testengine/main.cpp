@@ -11,5 +11,5 @@
 #include "View.hpp"
 
 int main() {
-  return testEngineMain();
+  return test_engine_main();
 }

@@ -18,14 +18,14 @@ void DebugInfoView::setup() {
     
 	Events::frame_drawn.subscribe([&] {
         fpsLabel->setText("FPS: "_s + Window::FPS);
-        framesDrawnLabel->setText("Frames drawn: "_s + Window::framesDrawn);
+        framesDrawnLabel->setText("Frames drawn: "_s + Window::frames_drawn);
 	});
 
     Events::touch.subscribe([&] (ui::Point point) {
         touchLabel->setText("Touch: x - "_s + point.x + " y - " + point.y);
     });
     
-    Debug::infoLabel = infoLabel;
+    Debug::info_label = infoLabel;
     
 	add_subview(fpsLabel);
 	add_subview(framesDrawnLabel);

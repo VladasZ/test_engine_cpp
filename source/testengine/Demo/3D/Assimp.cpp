@@ -12,7 +12,7 @@
 #include <assimp/postprocess.h>     // Post processing flags
 
 #include "Array.hpp"
-#include "Point3.hpp"
+#include "Vector3.hpp"
 #include "Log.hpp"
 #include "Buffer.hpp"
 #include "Mesh.hpp"
@@ -20,7 +20,7 @@
 #include "Random.hpp"
 
 
-Mesh* DoTheImportThing(const std::string& pFile)
+Mesh* import_model(const std::string& pFile)
 {
     // Create an instance of the Importer class
     Assimp::Importer importer;
@@ -45,7 +45,7 @@ Mesh* DoTheImportThing(const std::string& pFile)
     auto result = new Mesh();
 
 #if USE_COLORED_MESH
-    auto& vertices = result->coloredVertices;
+    auto& vertices = result->colored_vertices;
 #else
     auto& vertices = result->vertices;
 #endif

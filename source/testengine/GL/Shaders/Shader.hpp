@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "Color.hpp"
 #include "GL.hpp"
 #include "Rect.hpp"

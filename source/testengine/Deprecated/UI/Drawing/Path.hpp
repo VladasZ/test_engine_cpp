@@ -26,20 +26,20 @@ class Path : public Drawable {
     Array<ui::Point> points;
     
 //    BufferData* getBufferData() override;
-    bool bufferIsSet = false;
+    bool buffer_is_set = false;
     
-    static Path* circleWith(const ui::Point &center, float radius, int precision);
+    static Path* circle_with(const ui::Point& center, float radius, int precision);
 
 public:
     
-    float lineWidth = 1;
-    PathDrawMode drawMode;
+    float line_width = 1;
+    PathDrawMode draw_mode;
     
     void draw() override;
 
     Path() = default;
-    Path(const ui::Rect &rect);
-    static Path* circleWith(const ui::Point &center, float radius);
+    Path(const ui::Rect& rect);
+    static Path* circle_with(const ui::Point& center, float radius);
     
-    void addPoint(float x, float y);
+    void add_point(float x, float y);
 };

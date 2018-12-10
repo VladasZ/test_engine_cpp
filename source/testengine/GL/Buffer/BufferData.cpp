@@ -12,36 +12,36 @@
 
 static const GLushort indices[] = { 0, 1, 3, 2 };
 
-BufferData::BufferData(const GLfloat* vertData, GLuint vertSize)
+BufferData::BufferData(const GLfloat* vert_data, GLuint vert_size)
 :
-vertSize(vertSize)
+vert_size(vert_size)
 {
-    this->vertData = (GLfloat*)malloc(vertSize);
-    memcpy(this->vertData, vertData, vertSize);
+    this->vert_data = (GLfloat*)malloc(vert_size);
+    memcpy(this->vert_data, vert_data, vert_size);
 }
 
-BufferData::BufferData(const GLfloat* vertData, GLuint vertSize,
-                       const GLushort* indData, GLuint indSize)
+BufferData::BufferData(const GLfloat* vert_data, GLuint vert_size,
+                       const GLushort* ind_data, GLuint ind_size)
 :
-vertSize(vertSize),
-indSize(indSize)
+vert_size(vert_size),
+ind_size(ind_size)
 {
-    this->vertData = (GLfloat*)malloc(vertSize);
-    memcpy(this->vertData, vertData, vertSize);
+    this->vert_data = (GLfloat*)malloc(vert_size);
+    memcpy(this->vert_data, vert_data, vert_size);
     
-    this->indData = (GLushort*)malloc(indSize);
-    memcpy(this->indData, indData, indSize);
+    this->ind_data = (GLushort*)malloc(ind_size);
+    memcpy(this->ind_data, ind_data, ind_size);
 }
 
 BufferData* BufferData::setIndices(const Array<GLushort>& indices) {
-    if (indData) free(indData);
-    indSize = (GLuint)(indices.size() * sizeof(GLushort));
-    indData = (GLushort *)malloc(indSize);
-    memcpy(this->indData, indices.data(), indSize);
+    if (ind_data) free(ind_data);
+    ind_size = (GLuint)(indices.size() * sizeof(GLushort));
+    ind_data = (GLushort *)malloc(ind_size);
+    memcpy(this->ind_data, indices.data(), ind_size);
     return this;
 }
 
-BufferData* BufferData::fromSize(const ui::Size& size) {
+BufferData* BufferData::from_size(const ui::Size& size) {
 	const GLfloat data[] = {
 		0,          0,
 		0,          size.height,
@@ -52,7 +52,7 @@ BufferData* BufferData::fromSize(const ui::Size& size) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRect(const ui::Rect& rect) {
+BufferData* BufferData::from_rect(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,
 		rect.origin.x,                   rect.size.height + rect.origin.y,
@@ -63,7 +63,7 @@ BufferData* BufferData::fromRect(const ui::Rect& rect) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRectToImage(const ui::Rect& rect) {
+BufferData* BufferData::from_rect_to_image(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,                    0.0f,  0.0f, //|- |
 		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  1.0f, //|_ |
@@ -74,7 +74,7 @@ BufferData* BufferData::fromRectToImage(const ui::Rect& rect) {
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
-BufferData* BufferData::fromRectToFramebuffer(const ui::Rect& rect) {
+BufferData* BufferData::from_rect_to_framebuffer(const ui::Rect& rect) {
 	GLfloat data[] = {
 		rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|- |
 		rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //| _|
@@ -86,6 +86,6 @@ BufferData* BufferData::fromRectToFramebuffer(const ui::Rect& rect) {
 }
 
 BufferData::~BufferData() {
-    if (vertData) free(vertData);
-    if (indData ) free(indData);
+    if (vert_data) free(vert_data);
+    if (ind_data ) free(ind_data);
 }

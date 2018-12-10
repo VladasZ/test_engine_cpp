@@ -20,15 +20,15 @@
 #define DRAW_DEBUG_FRAMES true
 
 #if RENDERING_ERRORS_OUTPUT
-#define GL(x) (x); CheckGLError(LOCATION_INFO)
+#define GL(x) (x); check_gl_error(LOCATION_INFO)
 #else
 #define GL(x) x
 #endif
 
-#define CHECK_FRAMEBUFFER CheckFramebufferStatus(GL_FRAMEBUFFER, LOCATION_INFO)
+#define CHECK_FRAMEBUFFER check_framebuffer_status(GL_FRAMEBUFFER, LOCATION_INFO)
 
-void CheckGLError(LOCATION_PARAMETERS);
-void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
+void check_gl_error(LOCATION_PARAMETERS);
+void check_framebuffer_status(int target, LOCATION_PARAMETERS);
 
 #else
 
@@ -39,5 +39,5 @@ void CheckFramebufferStatus(int target, LOCATION_PARAMETERS);
 class Label;
 
 struct Debug {
-    static inline Label* infoLabel;
+    static inline Label* info_label;
 };

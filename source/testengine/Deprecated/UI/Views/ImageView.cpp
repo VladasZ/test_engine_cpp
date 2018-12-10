@@ -25,12 +25,12 @@ void ImageView::draw() {
 			if (_image->is_monochrome()) Shader::ui_monochrome.use();
 			else                        Shader::ui_texture.use();
 			GL::set_viewport(_frame_in_frame_buffer);
-			Buffer::fullscreenImage->draw();
+			Buffer::fullscreen_image->draw();
 			_image->unbind();
 #if DRAW_DEBUG_FRAMES
             Shader::ui.use();
             Shader::ui.set_uniform_color(ui::C::turquoise);
-            Buffer::fullscreenOutline->draw();
+            Buffer::fullscreen_outline->draw();
 #endif
 		});
 		_need_draw = false;

@@ -8,4 +8,4 @@
 
 #pragma once
 
-int testEngineMain();
+int test_engine_main();

@@ -19,14 +19,14 @@ class Mesh {
     
     Buffer* _buffer = nullptr;
     
-    void _createBuffer();
+    void _create_buffer();
     
 public:
     
     Array<uint16_t> indices;
     
 #if USE_COLORED_MESH
-    Array<ColoredVertex> coloredVertices;
+    Array<ColoredVertex> colored_vertices;
 #else
     Array<Point3> vertices;
 #endif

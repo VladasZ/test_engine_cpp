@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "Point3.hpp"
+#include "Vector3.hpp"
 #include "Color.hpp"
 
 class ColoredVertex {
     
 public:
     
-    Point3 position;
+    Vector3 position;
 	ui::Color color;
     
 };

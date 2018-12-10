@@ -13,6 +13,6 @@
 class Paths {
 public:
 
-  static String assetsDirectory();
+  static String assets_directory();
   
 };

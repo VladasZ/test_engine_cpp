@@ -10,7 +10,7 @@
 
 #include <functional>
 
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 #include "Rect.hpp"
 #include "GL.hpp"
 
@@ -19,7 +19,7 @@ class FrameBuffer {
     GLuint _id;
     GLuint _rbo;
 	ui::Size _size;
-    Image* _image;
+    DeprecatedImage* _image;
 
 public:
 
@@ -32,7 +32,7 @@ public:
 	ui::Size get_size() const;
     FrameBuffer* set_size(const ui::Size& size);
 
-    Image* get_image() const;
+    DeprecatedImage* get_image() const;
 
     FrameBuffer* draw(std::function<void()> closure);
 

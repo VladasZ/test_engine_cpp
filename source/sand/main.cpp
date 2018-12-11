@@ -42,6 +42,9 @@ Vector3 ray(float angle1, float angle2) {
 	return plane1.cross(plane2).normalize();
 }
 
+
+
+
 int main() {
 
   auto r01 = (sensors_position[0] - sensors_position[1]).length();

@@ -9,7 +9,7 @@
 #include "Label.hpp"
 #include "Font.hpp"
 #include "Glyph.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 #include "Rect.hpp"
 #include "Lifehack.hpp"
 

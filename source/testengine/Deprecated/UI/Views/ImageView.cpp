@@ -39,11 +39,11 @@ void ImageView::draw() {
 	draw_subviews();
 }
 
-Image* ImageView::get_image() const {
+DeprecatedImage* ImageView::get_image() const {
     return _image;
 }
 
-ImageView* ImageView::set_image(Image* image) {
+ImageView* ImageView::set_image(DeprecatedImage* image) {
     this->_image = image;
     return this;
 }

@@ -15,7 +15,7 @@
 #include "GL.hpp"
 #include "Layout.hpp"
 #include "FrameBuffer.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 #include "Random.hpp"
 
 OldView::OldView(const ui::Rect &rect) : _frame { rect } { }

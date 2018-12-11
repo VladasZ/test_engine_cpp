@@ -12,7 +12,7 @@
 #include "Window.hpp"
 #include "GL.hpp"
 
-Sprite::Sprite(Image* image) : _image(image) { }
+Sprite::Sprite(DeprecatedImage* image) : _image(image) { }
 
 Sprite::~Sprite() {
     if (_subsprites)

@@ -74,7 +74,7 @@ void Window::initialize(int width, int height) {
     
     Input::initialize();
     Shader::initialize();
-    Image::initialize();
+    DeprecatedImage::initialize();
     Font::initialize();
     Buffer::initialize();
 

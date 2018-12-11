@@ -8,7 +8,7 @@
 
 #include "Log.hpp"
 #include "FrameBuffer.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 #include "Debug.hpp"
 
 FrameBuffer::FrameBuffer(const ui::Size& size) : _size(size) {
@@ -16,7 +16,7 @@ FrameBuffer::FrameBuffer(const ui::Size& size) : _size(size) {
     GL(glGenFramebuffers(1, &_id));
     GL(glBindFramebuffer(GL_FRAMEBUFFER, _id));
 
-    _image = new Image(size);
+    _image = new DeprecatedImage(size);
     _image->bind();
 
     GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _image->_get_GL_id(), 0));
@@ -65,7 +65,7 @@ FrameBuffer* FrameBuffer::set_size(const ui::Size& size) {
     return this;
 }
 
-Image* FrameBuffer::get_image() const {
+DeprecatedImage* FrameBuffer::get_image() const {
     return _image;
 }
 

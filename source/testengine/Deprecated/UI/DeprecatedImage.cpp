@@ -6,25 +6,26 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 #include "GL.hpp"
 #include "SOIL.h"
 #include "Shader.hpp"
 #include "Debug.hpp"
 #include "Paths.hpp"
+#include "Image.hpp"
 
-Image* Image::cat;
-Image* Image::slow;
-Image* Image::palm;
-Image* Image::frisk;
-Image* Image::fullHD;
-Image* Image::text;
-Image* Image::square;
+DeprecatedImage* DeprecatedImage::cat;
+DeprecatedImage* DeprecatedImage::slow;
+DeprecatedImage* DeprecatedImage::palm;
+DeprecatedImage* DeprecatedImage::frisk;
+DeprecatedImage* DeprecatedImage::fullHD;
+DeprecatedImage* DeprecatedImage::text;
+DeprecatedImage* DeprecatedImage::square;
 
-Image* Image::up;
-Image* Image::down;
-Image* Image::left;
-Image* Image::right;
+DeprecatedImage* DeprecatedImage::up;
+DeprecatedImage* DeprecatedImage::down;
+DeprecatedImage* DeprecatedImage::left;
+DeprecatedImage* DeprecatedImage::right;
 
 
 static int modeForChannels(int channels) {
@@ -40,7 +41,7 @@ static int modeForChannels(int channels) {
 	}
 }
 
-void Image::init(const ui::Size& size, void* data, int channels, int filter) {
+void DeprecatedImage::init(const ui::Size& size, const void* data, int channels, int filter) {
 
 	this->channels = channels;
 	this->size = size;
@@ -68,68 +69,54 @@ void Image::init(const ui::Size& size, void* data, int channels, int filter) {
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Image::Image(const ui::Size& size, int channels, Filter filter) {
+DeprecatedImage::DeprecatedImage(const ui::Size& size, int channels, Filter filter) {
 	init(size, nullptr, channels, filter);
 }
 
-Image::Image(const ui::Size& size, void* data, int channels, Filter filter) {
+DeprecatedImage::DeprecatedImage(const ui::Size& size, const void* data, int channels, Filter filter) {
 	init(size, data, channels, filter);
 }
 
-Image::Image(const std::string& file, Filter filter) {
+DeprecatedImage::DeprecatedImage(const std::string& file, Filter filter) {
 
-	int width;
-	int height;
-
-	unsigned char* image = SOIL_load_image((Paths::assets_directory() + "Images/" + file).c_str(),
-		&width,
-		&height,
-		&channels,
-		SOIL_LOAD_RGBA);
-
-	if (image == nullptr) {
-		Error("Failed to load image: " << file);
-		return;
-	}
+	ui::Image image(Paths::assets_directory() + "Images/" + file);
 
 #if IMAGES_LOADING_OUTPUT
 	Log("Loading image: " << file << " channels: " << channels);
 #endif
-
-	init(ui::Size((float)width, (float)height), image, channels, filter);
-	SOIL_free_image_data(image);
+	init(image.size(), image.data(), image.channels(), filter);
 }
 
-Image::~Image() {
+DeprecatedImage::~DeprecatedImage() {
 	unbind();
 	glDeleteTextures(1, &_id);
 }
 
-void Image::bind() const {
+void DeprecatedImage::bind() const {
 	GL(glBindTexture(GL_TEXTURE_2D, _id));
 }
 
-void Image::unbind() const {
+void DeprecatedImage::unbind() const {
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-void Image::initialize() {
-	cat    = new Image("cat.jpg");
-	slow   = new Image("slow.jpg");
-	palm   = new Image("palm.png");
-	frisk  = new Image("frisk.png");
-	fullHD = new Image("fullHD.jpg");
-    text   = new Image("text.png");
-    square = new Image("square.png");
+void DeprecatedImage::initialize() {
+	cat    = new DeprecatedImage("cat.jpg");
+	slow   = new DeprecatedImage("slow.jpg");
+	palm   = new DeprecatedImage("palm.png");
+	frisk  = new DeprecatedImage("frisk.png");
+	fullHD = new DeprecatedImage("fullHD.jpg");
+    text   = new DeprecatedImage("text.png");
+    square = new DeprecatedImage("square.png");
     
-    up     = new Image("up.png");
-    down   = new Image("down.png");
-    left   = new Image("left.png");
-    right  = new Image("right.png");
+    up     = new DeprecatedImage("up.png");
+    down   = new DeprecatedImage("down.png");
+    left   = new DeprecatedImage("left.png");
+    right  = new DeprecatedImage("right.png");
 
 }
 
-void Image::set_filter(Filter filter) {
+void DeprecatedImage::set_filter(Filter filter) {
 	switch (filter) {
 	case Nearest:
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
@@ -153,4 +140,4 @@ void Image::set_filter(Filter filter) {
 	}
 }
 
-bool Image::is_monochrome() const { return channels == 1; }
+bool DeprecatedImage::is_monochrome() const { return channels == 1; }

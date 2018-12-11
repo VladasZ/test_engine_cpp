@@ -9,7 +9,7 @@
 #pragma once
 
 #include "OldView.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 
 class Window;
 
@@ -17,12 +17,12 @@ class ImageView : public OldView {
       
     void draw() override;
 
-    Image* _image = nullptr;
+    DeprecatedImage* _image = nullptr;
     
 public:
         
-    Image* get_image() const;
-    ImageView* set_image(Image* image);
+    DeprecatedImage* get_image() const;
+    ImageView* set_image(DeprecatedImage* image);
     
 	OldView* set_color(const ui::Color& color) override { return this; }
 

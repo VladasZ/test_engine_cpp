@@ -16,10 +16,10 @@ void SliderView::setup() {
     _color = ui::C::gray;
     
     _topArrow = (new ImageView({ _frame.size.width, _frame.size.width }))
-                    ->set_image(Image::up);
+                    ->set_image(DeprecatedImage::up);
     
     _bottomArrow = (new ImageView({ _frame.size.width, _frame.size.width }))
-                    ->set_image(Image::down);
+                    ->set_image(DeprecatedImage::down);
     
     _slider = (new OldView({ _frame.size.width, _frame.size.height / 10 }));
     

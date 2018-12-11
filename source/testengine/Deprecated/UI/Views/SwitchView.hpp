@@ -9,7 +9,7 @@
 #pragma once
 
 #include "OldView.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 
 class SwitchView : public OldView {
 

@@ -11,7 +11,7 @@
 #include "Rect.hpp"
 #include "Drawable.hpp"
 #include "Array.hpp"
-#include "Image.hpp"
+#include "DeprecatedImage.hpp"
 
 class World;
 
@@ -30,14 +30,14 @@ protected:
     ui::Point _position;
 	ui::Size _size;
     
-    Image* _image;
+    DeprecatedImage* _image;
     
     Array<ui::Rect>* _subsprites = nullptr;
     int _subspriteIndex = -1;
     
 public:
         
-    Sprite(Image* image);
+    Sprite(DeprecatedImage* image);
     ~Sprite();
     
     void setPosition(const ui::Point &position);

@@ -13,8 +13,8 @@
 void TestView::setup() {
 
     add_subview(
-        (new ImageView({_frame.size.width, _frame.size.height}))
-        ->set_image(DeprecatedImage::square)
+        (new OldImageView({_frame.size.width, _frame.size.height}))
+        ->set_image(Image::square)
     );
     
 	add_subview(
@@ -43,8 +43,8 @@ void TestView::setup() {
 	);
 
 	add_subview(
-		(new ImageView({ 100, 100 }))
-		->set_image(DeprecatedImage::text)
+		(new OldImageView({ 100, 100 }))
+		->set_image(Image::text)
 		->add_layout(L::CenterH(), L::CenterV())
 	);
 }

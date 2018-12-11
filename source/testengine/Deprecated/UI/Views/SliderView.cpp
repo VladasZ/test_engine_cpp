@@ -7,7 +7,7 @@
 //
 
 #include "Input.hpp"
-#include "ImageView.hpp"
+#include "OldImageView.hpp"
 #include "SliderView.hpp"
 #include "Log.hpp"
 
@@ -15,11 +15,11 @@ void SliderView::setup() {
     
     _color = ui::C::gray;
     
-    _topArrow = (new ImageView({ _frame.size.width, _frame.size.width }))
-                    ->set_image(DeprecatedImage::up);
+    _topArrow = (new OldImageView({ _frame.size.width, _frame.size.width }))
+                    ->set_image(Image::up);
     
-    _bottomArrow = (new ImageView({ _frame.size.width, _frame.size.width }))
-                    ->set_image(DeprecatedImage::down);
+    _bottomArrow = (new OldImageView({ _frame.size.width, _frame.size.width }))
+                    ->set_image(Image::down);
     
     _slider = (new OldView({ _frame.size.width, _frame.size.height / 10 }));
     

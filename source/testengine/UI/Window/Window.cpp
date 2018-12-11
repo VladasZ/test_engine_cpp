@@ -74,7 +74,7 @@ void Window::initialize(int width, int height) {
     
     Input::initialize();
     Shader::initialize();
-    DeprecatedImage::initialize();
+    Image::initialize();
     Font::initialize();
     Buffer::initialize();
 
@@ -83,6 +83,11 @@ void Window::initialize(int width, int height) {
 	ui::config::set_drawer(new TestEngineDrawer(root_frame_buffer));
 
 	new_view = new ui::View({ 100, 300, 100, 100 });
+	new_view->color = ui::Color::green;
+
+	auto new_image_view = new ui::ImageView({ 10, 10, 50, 50 }, Image::cat);
+
+	new_view->add_subview(new_image_view);
 
     setup(); 
 

@@ -10,18 +10,18 @@
 
 #include "Rect.hpp"
 #include "NonCopyable.hpp"
-#include "DeprecatedImage.hpp"
+#include "TestEngineImage.hpp"
 
 class Glyph : public NonCopyable {
         
 public:
     
     const char ch;
-    DeprecatedImage* const image;
+    Image* const image;
     const int advance;
     const ui::Point bearing;
     
-    Glyph(char ch, DeprecatedImage* image, int advance, const ui::Point& bearing);
+    Glyph(char ch, Image* image, int advance, const ui::Point& bearing);
     ~Glyph();
     
 	ui::Size size() const;

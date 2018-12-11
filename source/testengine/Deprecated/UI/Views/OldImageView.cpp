@@ -6,16 +6,16 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "ImageView.hpp"
+#include "OldImageView.hpp"
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "BufferData.hpp"
 #include "FrameBuffer.hpp"
 #include "Debug.hpp"
 
-ImageView::~ImageView() { }
+OldImageView::~OldImageView() { }
 
-void ImageView::draw() {
+void OldImageView::draw() {
     
 	if (_needs_layout) 
 		layout();
@@ -28,11 +28,11 @@ void ImageView::draw() {
 	draw_subviews();
 }
 
-DeprecatedImage* ImageView::image() const {
+Image* OldImageView::image() const {
     return _image;
 }
 
-ImageView* ImageView::set_image(DeprecatedImage* image) {
+OldImageView* OldImageView::set_image(Image* image) {
     this->_image = image;
     return this;
 }

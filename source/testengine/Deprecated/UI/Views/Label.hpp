@@ -10,7 +10,7 @@
 
 #include "Font.hpp"
 #include "OldView.hpp"
-#include "ImageView.hpp"
+#include "OldImageView.hpp"
 
 class Label : public OldView {
     

@@ -28,7 +28,12 @@ void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
 }
 
 void TestEngineDrawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
-
+	_frame_buffer->draw([&] {
+		GL::set_viewport(rect);
+		Shader::ui.use();
+		Shader::ui.set_uniform_color(color);
+		Buffer::fullscreen->draw();
+	});
 }
 
 const ui::Rect TestEngineDrawer::_convert_rect(const ui::Rect& rect) {

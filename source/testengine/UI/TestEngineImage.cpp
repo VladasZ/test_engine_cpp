@@ -9,7 +9,7 @@
 #include "ui.hpp"
 #include "TestEngineDrawer.hpp"
 
-#include "DeprecatedImage.hpp"
+#include "TestEngineImage.hpp"
 #include "GL.hpp"
 #include "SOIL.h"
 #include "Shader.hpp"
@@ -19,18 +19,18 @@
 #include "Buffer.hpp"
 #include "FrameBuffer.hpp"
 
-DeprecatedImage* DeprecatedImage::cat;
-DeprecatedImage* DeprecatedImage::slow;
-DeprecatedImage* DeprecatedImage::palm;
-DeprecatedImage* DeprecatedImage::frisk;
-DeprecatedImage* DeprecatedImage::fullHD;
-DeprecatedImage* DeprecatedImage::text;
-DeprecatedImage* DeprecatedImage::square;
+Image* Image::cat;
+Image* Image::slow;
+Image* Image::palm;
+Image* Image::frisk;
+Image* Image::fullHD;
+Image* Image::text;
+Image* Image::square;
 
-DeprecatedImage* DeprecatedImage::up;
-DeprecatedImage* DeprecatedImage::down;
-DeprecatedImage* DeprecatedImage::left;
-DeprecatedImage* DeprecatedImage::right;
+Image* Image::up;
+Image* Image::down;
+Image* Image::left;
+Image* Image::right;
 
 
 static int modeForChannels(int channels) {
@@ -46,7 +46,7 @@ static int modeForChannels(int channels) {
 	}
 }
 
-void DeprecatedImage::_init(int filter) {
+void Image::_init(int filter) {
 
 	GL(glGenTextures(1, &_id));
 	GL(glBindTexture(GL_TEXTURE_2D, _id));
@@ -71,21 +71,21 @@ void DeprecatedImage::_init(int filter) {
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-DeprecatedImage::DeprecatedImage(const ui::Size& size, int channels, Filter filter)
+Image::Image(const ui::Size& size, int channels, Filter filter)
 	:
 	ui::Image(size, nullptr, channels)
 {
 	_init(filter);
 }
 
-DeprecatedImage::DeprecatedImage(const ui::Size& size, void* data, int channels, Filter filter)
+Image::Image(const ui::Size& size, void* data, int channels, Filter filter)
 	:
 	ui::Image(size, data, channels)
 {
 	_init(filter);
 }
 
-DeprecatedImage::DeprecatedImage(const std::string& file, Filter filter) 
+Image::Image(const std::string& file, Filter filter) 
 	: 
 	ui::Image(Paths::assets_directory() + "Images/" + file) 
 {
@@ -96,36 +96,36 @@ DeprecatedImage::DeprecatedImage(const std::string& file, Filter filter)
 	_init(filter);
 }
 
-DeprecatedImage::~DeprecatedImage() {
+Image::~Image() {
 	unbind();
 	glDeleteTextures(1, &_id);
 }
 
-void DeprecatedImage::bind() const {
+void Image::bind() const {
 	GL(glBindTexture(GL_TEXTURE_2D, _id));
 }
 
-void DeprecatedImage::unbind() const {
+void Image::unbind() const {
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-void DeprecatedImage::initialize() {
-	cat    = new DeprecatedImage("cat.jpg");
-	slow   = new DeprecatedImage("slow.jpg");
-	palm   = new DeprecatedImage("palm.png");
-	frisk  = new DeprecatedImage("frisk.png");
-	fullHD = new DeprecatedImage("fullHD.jpg");
-    text   = new DeprecatedImage("text.png");
-    square = new DeprecatedImage("square.png");
+void Image::initialize() {
+	cat    = new Image("cat.jpg");
+	slow   = new Image("slow.jpg");
+	palm   = new Image("palm.png");
+	frisk  = new Image("frisk.png");
+	fullHD = new Image("fullHD.jpg");
+    text   = new Image("text.png");
+    square = new Image("square.png");
     
-    up     = new DeprecatedImage("up.png");
-    down   = new DeprecatedImage("down.png");
-    left   = new DeprecatedImage("left.png");
-    right  = new DeprecatedImage("right.png");
+    up     = new Image("up.png");
+    down   = new Image("down.png");
+    left   = new Image("left.png");
+    right  = new Image("right.png");
 
 }
 
-void DeprecatedImage::draw_in_rect(const ui::Rect& rect) {
+void Image::draw_in_rect(const ui::Rect& rect) {
 	auto frame_buffer = static_cast<TestEngineDrawer*>(ui::config::drawer())->frame_buffer();
 
 	frame_buffer->draw([&] {
@@ -138,7 +138,7 @@ void DeprecatedImage::draw_in_rect(const ui::Rect& rect) {
 	});
 }
 
-void DeprecatedImage::_set_filter(Filter filter) {
+void Image::_set_filter(Filter filter) {
 	switch (filter) {
 	case Nearest:
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));

@@ -9,7 +9,7 @@
 #include "Label.hpp"
 #include "Font.hpp"
 #include "Glyph.hpp"
-#include "DeprecatedImage.hpp"
+#include "TestEngineImage.hpp"
 #include "Rect.hpp"
 #include "Lifehack.hpp"
 
@@ -43,7 +43,7 @@ void Label::_setGlyphs() {
         auto glyph = _font->glyphForChar(letter);
 
 		auto glyphView = UNPRIVATE(
-			(new ImageView(glyph->size()))
+			(new OldImageView(glyph->size()))
 			->set_image(glyph->image)
 		);
 

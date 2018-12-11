@@ -9,7 +9,7 @@
 #include "World.hpp"
 #include "Unit.hpp"
 #include "Sprite.hpp"
-#include "DeprecatedImage.hpp"
+#include "TestEngineImage.hpp"
 #include "GL.hpp"
 #include "RootView.hpp"
 #include "AnalogStickView.hpp"
@@ -32,7 +32,7 @@ void World::update() {
 }
 
 void World::setup() {
-    frisk = new Unit(DeprecatedImage::frisk);
+    frisk = new Unit(Image::frisk);
     addSprite(frisk);
     
     frisk->setPosition(ui::Point(150, 150));

@@ -16,7 +16,7 @@
 #include "File.hpp"
 #include "Font.hpp"
 #include "Paths.hpp"
-#include "DeprecatedImage.hpp"
+#include "TestEngineImage.hpp"
 #include "Glyph.hpp"
 
 using namespace std;
@@ -44,7 +44,7 @@ Glyph* renderGlyph(const FT_Face &face, char ch) {
   FT_BitmapGlyph bitmapGlyhp;
   FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
     
-  auto image = new DeprecatedImage(ui::Size((float)bitmapGlyhp->bitmap.width,
+  auto image = new Image(ui::Size((float)bitmapGlyhp->bitmap.width,
 							  (float)bitmapGlyhp->bitmap.rows),
 						 bitmapGlyhp->bitmap.buffer,
 						 1);

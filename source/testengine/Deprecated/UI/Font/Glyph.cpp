@@ -8,7 +8,7 @@
 
 #include "Glyph.hpp"
 
-Glyph::Glyph(char ch, DeprecatedImage* image, int advance, const ui::Point& bearing)
+Glyph::Glyph(char ch, Image* image, int advance, const ui::Point& bearing)
 : ch(ch), image(image), advance(advance), bearing(bearing)
 { }
 

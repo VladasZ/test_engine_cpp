@@ -21,6 +21,8 @@ public:
 	TestEngineDrawer() = delete;
 	TestEngineDrawer(FrameBuffer* frame_buffer);
 
+	const FrameBuffer* frame_buffer() const;
+
 private:
 
 	void _draw_rect(const ui::Rect& rect) override;

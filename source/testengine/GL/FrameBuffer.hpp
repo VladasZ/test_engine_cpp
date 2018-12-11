@@ -26,15 +26,15 @@ public:
     FrameBuffer(const ui::Size& size);
     ~FrameBuffer();
 
-    FrameBuffer* bind();
-    FrameBuffer* unbind();
+    void bind() const;
+	void unbind() const;
 
-	ui::Size get_size() const;
-    FrameBuffer* set_size(const ui::Size& size);
+	ui::Size size() const;
+	void set_size(const ui::Size& size);
 
     DeprecatedImage* get_image() const;
 
-    FrameBuffer* draw(std::function<void()> closure);
+    void draw(std::function<void()> closure) const;
 
-    FrameBuffer* clear(const ui::Color& color = ui::C::clear);
+	void clear(const ui::Color& color = ui::C::clear);
 };

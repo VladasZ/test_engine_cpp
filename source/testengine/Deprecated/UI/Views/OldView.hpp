@@ -38,7 +38,7 @@ protected:
 
 	ui::Rect _frame;
 
-    bool _need_draw = true;
+    bool _needs_draw = true;
 	bool _needs_layout = true;
 	bool _owns_framebuffer = false;
 

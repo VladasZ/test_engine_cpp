@@ -10,7 +10,13 @@
 #include "FrameBuffer.hpp"
 #include "TestEngineDrawer.hpp"
 
-TestEngineDrawer::TestEngineDrawer(FrameBuffer* frame_buffer) : _frame_buffer(frame_buffer) { }
+TestEngineDrawer::TestEngineDrawer(FrameBuffer* frame_buffer) : _frame_buffer(frame_buffer) { 
+
+}
+
+const FrameBuffer* TestEngineDrawer::frame_buffer() const {
+	return _frame_buffer;
+}
 
 void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
 	_frame_buffer->draw([&] {

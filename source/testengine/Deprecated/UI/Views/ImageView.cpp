@@ -17,29 +17,18 @@ ImageView::~ImageView() { }
 
 void ImageView::draw() {
     
-	if (_needs_layout) layout();
+	if (_needs_layout) 
+		layout();
 
-	if (_need_draw) {
-		_frame_buffer->draw([&] {
-			_image->bind();
-			if (_image->is_monochrome()) Shader::ui_monochrome.use();
-			else                        Shader::ui_texture.use();
-			GL::set_viewport(_frame_in_frame_buffer);
-			Buffer::fullscreen_image->draw();
-			_image->unbind();
-#if DRAW_DEBUG_FRAMES
-            Shader::ui.use();
-            Shader::ui.set_uniform_color(ui::C::turquoise);
-            Buffer::fullscreen_outline->draw();
-#endif
-		});
-		_need_draw = false;
+	if (_needs_draw) {
+		_image->draw_in_rect(_absolute_frame);
+		_needs_draw = false;
 	}
 
 	draw_subviews();
 }
 
-DeprecatedImage* ImageView::get_image() const {
+DeprecatedImage* ImageView::image() const {
     return _image;
 }
 

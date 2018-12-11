@@ -21,10 +21,10 @@ public:
     const int advance;
     const ui::Point bearing;
     
-    Glyph(char ch, DeprecatedImage* image, int advance, const ui::Point &bearing);
+    Glyph(char ch, DeprecatedImage* image, int advance, const ui::Point& bearing);
     ~Glyph();
     
 	ui::Size size() const;
-    float yMax() const;
-    float yMin() const;
+    float y_max() const;
+    float y_min() const;
 };

@@ -72,9 +72,9 @@ void OldView::draw() {
 
     if (_needs_layout) layout();
 
-	if (_color.is_transparent() && !DRAW_DEBUG_FRAMES) _need_draw = false;
+	if (_color.is_transparent() && !DRAW_DEBUG_FRAMES) _needs_draw = false;
 
-    if (_need_draw) {
+    if (_needs_draw) {
         _frame_buffer->draw([&] {
             if (_owns_framebuffer) {
                 GL::set_viewport(_frame.with_zero_origin());
@@ -90,7 +90,7 @@ void OldView::draw() {
             Buffer::fullscreen_outline->draw();
 #endif
         });
-        _need_draw = false;
+        _needs_draw = false;
     }
 
     draw_subviews();
@@ -117,7 +117,7 @@ void OldView::layout() {
 
     _frame_in_frame_buffer = _calculate_frame_in_frame_buffer();
     _absolute_frame = _calculate_absolute_frame();
-    _need_draw = true;
+    _needs_draw = true;
 }
 
 void OldView::layout_subviews() {
@@ -147,7 +147,7 @@ OldView* OldView::set_size(const ui::Size &size) {
 
 OldView* OldView::set_origin(const ui::Point &origin) {
     _frame.origin = origin;
-    superview->_need_draw = true;
+    superview->_needs_draw = true;
     return this;
 }
 

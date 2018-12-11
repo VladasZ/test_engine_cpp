@@ -24,7 +24,7 @@ ScrollView::ScrollView(const ui::Rect &rect) : OldView(rect) {
 
 void ScrollView::setContentOffset(const ui::Point &offset) {
     _content_offset = offset;
-    _need_draw = true;
+    _needs_draw = true;
 }
 
 ScrollView* ScrollView::_setFramebuffer(const ui::Size& size) {

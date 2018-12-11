@@ -21,7 +21,7 @@ class ImageView : public OldView {
     
 public:
         
-    DeprecatedImage* get_image() const;
+    DeprecatedImage* image() const;
     ImageView* set_image(DeprecatedImage* image);
     
 	OldView* set_color(const ui::Color& color) override { return this; }

@@ -6,6 +6,9 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "ui.hpp"
+#include "TestEngineDrawer.hpp"
+
 #include "DeprecatedImage.hpp"
 #include "GL.hpp"
 #include "SOIL.h"
@@ -13,6 +16,8 @@
 #include "Debug.hpp"
 #include "Paths.hpp"
 #include "Image.hpp"
+#include "Buffer.hpp"
+#include "FrameBuffer.hpp"
 
 DeprecatedImage* DeprecatedImage::cat;
 DeprecatedImage* DeprecatedImage::slow;
@@ -41,50 +46,54 @@ static int modeForChannels(int channels) {
 	}
 }
 
-void DeprecatedImage::init(const ui::Size& size, const void* data, int channels, int filter) {
-
-	this->channels = channels;
-	this->size = size;
+void DeprecatedImage::_init(int filter) {
 
 	GL(glGenTextures(1, &_id));
 	GL(glBindTexture(GL_TEXTURE_2D, _id));
 
-	if (channels == 1)
+	if (_channels == 1)
 		GL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
 
 	GL(glTexImage2D(GL_TEXTURE_2D,
 		0,
-		modeForChannels(channels),
-		(GLsizei)size.width,
-		(GLsizei)size.height,
+		modeForChannels(_channels),
+		(GLsizei)_size.width,
+		(GLsizei)_size.height,
 		0,
-		modeForChannels(channels),
+		modeForChannels(_channels),
 		GL_UNSIGNED_BYTE,
-		data));
+		_data));
 
 	GL(glGenerateMipmap(GL_TEXTURE_2D));
 
-	set_filter((Filter)filter);
+	_set_filter((Filter)filter);
 
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-DeprecatedImage::DeprecatedImage(const ui::Size& size, int channels, Filter filter) {
-	init(size, nullptr, channels, filter);
+DeprecatedImage::DeprecatedImage(const ui::Size& size, int channels, Filter filter)
+	:
+	ui::Image(size, nullptr, channels)
+{
+	_init(filter);
 }
 
-DeprecatedImage::DeprecatedImage(const ui::Size& size, const void* data, int channels, Filter filter) {
-	init(size, data, channels, filter);
+DeprecatedImage::DeprecatedImage(const ui::Size& size, void* data, int channels, Filter filter)
+	:
+	ui::Image(size, data, channels)
+{
+	_init(filter);
 }
 
-DeprecatedImage::DeprecatedImage(const std::string& file, Filter filter) {
-
-	ui::Image image(Paths::assets_directory() + "Images/" + file);
+DeprecatedImage::DeprecatedImage(const std::string& file, Filter filter) 
+	: 
+	ui::Image(Paths::assets_directory() + "Images/" + file) 
+{
 
 #if IMAGES_LOADING_OUTPUT
 	Log("Loading image: " << file << " channels: " << channels);
 #endif
-	init(image.size(), image.data(), image.channels(), filter);
+	_init(filter);
 }
 
 DeprecatedImage::~DeprecatedImage() {
@@ -116,7 +125,20 @@ void DeprecatedImage::initialize() {
 
 }
 
-void DeprecatedImage::set_filter(Filter filter) {
+void DeprecatedImage::draw_in_rect(const ui::Rect& rect) {
+	auto frame_buffer = static_cast<TestEngineDrawer*>(ui::config::drawer())->frame_buffer();
+
+	frame_buffer->draw([&] {
+		this->bind();
+		if (this->is_monochrome()) Shader::ui_monochrome.use();
+		else                       Shader::ui_texture.use();
+		GL::set_viewport(rect);
+		Buffer::fullscreen_image->draw();
+		this->unbind();
+	});
+}
+
+void DeprecatedImage::_set_filter(Filter filter) {
 	switch (filter) {
 	case Nearest:
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
@@ -139,5 +161,3 @@ void DeprecatedImage::set_filter(Filter filter) {
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 	}
 }
-
-bool DeprecatedImage::is_monochrome() const { return channels == 1; }

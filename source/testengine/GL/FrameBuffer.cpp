@@ -45,43 +45,38 @@ FrameBuffer::~FrameBuffer() {
     glDeleteFramebuffers(1, &_id);
 }
 
-FrameBuffer* FrameBuffer::bind() {
+void FrameBuffer::bind() const {
     GL(glBindFramebuffer(GL_FRAMEBUFFER, _id));
-    return this;
 }
 
-FrameBuffer* FrameBuffer::unbind() {
+void FrameBuffer::unbind() const {
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-    return this;
 }
 
-ui::Size FrameBuffer::get_size() const {
+ui::Size FrameBuffer::size() const {
     return _size;
 }
 
-FrameBuffer* FrameBuffer::set_size(const ui::Size& size) {
+void FrameBuffer::set_size(const ui::Size& size) {
     throw "Not implemented";
     _size = size;
-    return this;
 }
 
 DeprecatedImage* FrameBuffer::get_image() const {
     return _image;
 }
 
-FrameBuffer* FrameBuffer::draw(std::function<void()> closure) {
+void FrameBuffer::draw(std::function<void()> closure) const {
     bind();
     glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     closure();
     unbind();
-    return this;
 }
 
-FrameBuffer* FrameBuffer::clear(const ui::Color& color) {
+void FrameBuffer::clear(const ui::Color& color) {
     bind();
     GL::set_clear_color(color);
     glViewport(0, 0, (GLsizei)_size.width, (GLsizei)_size.height);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     unbind();
-    return this;
 }

@@ -77,8 +77,8 @@ Font::Font(const String& fileName, int size) : _fileName(fileName) {
   for (int i = 0; i < 128; i++) {
 	auto glyph = renderGlyph(face, i);
         
-	if (yMax < glyph->yMax()) yMax = glyph->yMax();        
-	if (yMin > glyph->yMin()) yMin = glyph->yMin();
+	if (yMax < glyph->y_max()) yMax = glyph->y_max();        
+	if (yMin > glyph->y_min()) yMin = glyph->y_min();
         
 	_glyphs.push_back(glyph);
   }

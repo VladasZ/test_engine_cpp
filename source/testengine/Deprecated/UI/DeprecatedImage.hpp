@@ -8,19 +8,17 @@
 
 #pragma once
 
-#include "Size.hpp"
 #include "GL.hpp"
+#include "Image.hpp"
 #include "NonCopyable.hpp"
 
 class FrameBuffer;
 
-class DeprecatedImage : public NonCopyable {
+class DeprecatedImage : public ui::Image, public NonCopyable {
 
 	GLuint _id = 0;
 
-	void init(const ui::Size& size, const void* data, int channels, int filter);
-
-	DeprecatedImage() = default;
+	void _init(int filter);
 
 public:
 
@@ -32,26 +30,8 @@ public:
 		Default = Linear
 	};
 
-	static DeprecatedImage* cat;
-	static DeprecatedImage* slow;
-	static DeprecatedImage* palm;
-	static DeprecatedImage* frisk;
-	static DeprecatedImage* fullHD;
-    static DeprecatedImage* text;
-    static DeprecatedImage* square;
-    
-    static DeprecatedImage* up;
-    static DeprecatedImage* down;
-    static DeprecatedImage* left;
-    static DeprecatedImage* right;
-
-	static void initialize();
-
-	ui::Size size;
-	int channels;
-
-	DeprecatedImage(const ui::Size& size, int channels = 4, Filter filter = Filter::Default);
-	DeprecatedImage(const ui::Size& size, const void* data, int channels, Filter filter = Filter::Default);
+	DeprecatedImage(const ui::Size& size, int channels = 4, Filter filter = Filter::Default); // REMOVE
+	DeprecatedImage(const ui::Size& size, void* data, int channels, Filter filter = Filter::Default);
 	DeprecatedImage(const std::string& file, Filter filter = Filter::Default);
 	~DeprecatedImage();
 
@@ -60,7 +40,27 @@ public:
 	void bind() const;
 	void unbind() const;
 
-	void set_filter(Filter filter);
+	void draw_in_rect(const ui::Rect& rect) override;
 
-	bool is_monochrome() const;
+public:
+
+	static DeprecatedImage* cat;
+	static DeprecatedImage* slow;
+	static DeprecatedImage* palm;
+	static DeprecatedImage* frisk;
+	static DeprecatedImage* fullHD;
+	static DeprecatedImage* text;
+	static DeprecatedImage* square;
+
+	static DeprecatedImage* up;
+	static DeprecatedImage* down;
+	static DeprecatedImage* left;
+	static DeprecatedImage* right;
+
+	static void initialize();
+
+private:
+
+	void _set_filter(Filter filter);
+
 };

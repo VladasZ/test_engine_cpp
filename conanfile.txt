@@ -10,5 +10,10 @@ freetype/2.9.0@bincrafters/stable
 Assimp/4.1.0@jacmoe/stable
 eigen/3.3.5@conan/stable
 
+boost/1.68.0@conan/stable
+
 [generators]
 cmake
+
+[options]
+boost:without_python=False

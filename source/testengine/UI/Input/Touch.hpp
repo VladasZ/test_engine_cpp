@@ -27,7 +27,7 @@ public:
 
 	Touch(const ui::Point& location, Event event);
 
-	bool isBegan() const { return event == Event::Began; }
-	bool isMoved() const { return event == Event::Moved; }
-	bool isEnded() const { return event == Event::Ended; }
+	bool is_began() const;
+	bool is_moved() const;
+	bool is_ended() const;
 };

@@ -261,9 +261,9 @@ bool OldView::contains_global_point(const ui::Point& point) const {
 }
 
 void OldView::enable_touch() {
-	Input::subscribeView(this);
+	Input::subscribe_view(this);
 }
 
 void OldView::disable_touch() {
-	Input::unsubscribeView(this);
+	Input::unsubscribe_view(this);
 }

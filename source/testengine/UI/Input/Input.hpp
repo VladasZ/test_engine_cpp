@@ -21,24 +21,24 @@ class Input final {
     
     Input();
 
-	static inline Array<OldView*> _subscribedViews;
+	static inline Array<OldView*> _subscribed_views;
     
 public:
     
 #if GLFW
     
-    static ui::Point cursorPosition;
-    static bool mouseKeyIsPressed;
+    static ui::Point cursor_position;
+    static bool mouse_key_is_pressed;
     
 #endif
     
     static void initialize();
     
-    static void touchBegan(INPUT_PARAMETERS = 0);
-    static void touchMoved(INPUT_PARAMETERS = 0);
-    static void touchEnded(INPUT_PARAMETERS = 0);
-    static void pressedKey(const char &key);
+    static void touch_began(INPUT_PARAMETERS = 0);
+    static void touch_moved(INPUT_PARAMETERS = 0);
+    static void touch_ended(INPUT_PARAMETERS = 0);
+    static void pressed_key(char key);
 
-	static void subscribeView(OldView* view);
-	static void unsubscribeView(OldView* view);
+	static void subscribe_view(OldView* view);
+	static void unsubscribe_view(OldView* view);
 };

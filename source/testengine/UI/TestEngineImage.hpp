@@ -9,6 +9,7 @@
 #pragma once
 
 #include "GL.hpp"
+#include "View.hpp"
 #include "Image.hpp"
 #include "NonCopyable.hpp"
 
@@ -56,6 +57,10 @@ public:
 	static Image* down;
 	static Image* left;
 	static Image* right;
+
+	static Image* mouse_pointer;
+
+	static Image* for_edge(ui::View::Edge edge);
 
 	static void initialize();
 

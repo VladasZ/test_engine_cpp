@@ -39,12 +39,12 @@ void SliderView::setup() {
 	_sliderContentView->enable_touch();
 
 	_topArrow->on_touch.subscribe([&](Touch touch) {
-		if (!touch.isBegan()) return;
+		if (!touch.is_began()) return;
 		this->setValue(this->value() + 0.02f);
 	});
 
 	_bottomArrow->on_touch.subscribe([&](Touch touch) {
-		if (!touch.isBegan()) return;
+		if (!touch.is_began()) return;
 		this->setValue(this->value() - 0.02f);
 	});
 

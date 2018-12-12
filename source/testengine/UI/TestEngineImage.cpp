@@ -1,4 +1,4 @@
-//
+
 //  Image.cpp
 //  TestEngine
 //
@@ -31,6 +31,8 @@ Image* Image::up;
 Image* Image::down;
 Image* Image::left;
 Image* Image::right;
+
+Image* Image::mouse_pointer;
 
 
 static int modeForChannels(int channels) {
@@ -110,19 +112,20 @@ void Image::unbind() const {
 }
 
 void Image::initialize() {
-	cat    = new Image("cat.jpg");
-	slow   = new Image("slow.jpg");
-	palm   = new Image("palm.png");
-	frisk  = new Image("frisk.png");
-	fullHD = new Image("fullHD.jpg");
-    text   = new Image("text.png");
-    square = new Image("square.png");
+  cat           = new Image("cat.jpg");
+  slow          = new Image("slow.jpg");
+  palm          = new Image("palm.png");
+  frisk         = new Image("frisk.png");
+  fullHD        = new Image("fullHD.jpg");
+  text          = new Image("text.png");
+  square        = new Image("square.png");
     
-    up     = new Image("up.png");
-    down   = new Image("down.png");
-    left   = new Image("left.png");
-    right  = new Image("right.png");
+  up            = new Image("up.png");
+  down          = new Image("down.png");
+  left          = new Image("left.png");
+  right         = new Image("right.png");
 
+  mouse_pointer = new Image("mouse_pointer.png");
 }
 
 void Image::draw_in_rect(const ui::Rect& rect) {
@@ -160,4 +163,23 @@ void Image::_set_filter(Filter filter) {
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 	}
+}
+
+Image* Image::for_edge(ui::View::Edge edge) {
+
+	using Edge = ui::View::Edge;
+
+	if (edge == Edge::Left)
+		return Image::left;
+
+	if (edge == Edge::Right)
+		return Image::right;
+
+	if (edge == Edge::Top)
+		return Image::up;
+
+	if (edge == Edge::Bottom)
+		return Image::down;
+
+	return Image::mouse_pointer;
 }

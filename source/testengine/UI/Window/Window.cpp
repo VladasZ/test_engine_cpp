@@ -23,6 +23,8 @@
 void sizeChanged(GLFWwindow* window, int width, int height);
 
 ui::View* new_view = nullptr;
+ui::ImageView* new_image_view = nullptr;
+ui::ImageView* mouse_pointer = nullptr;
 
 void Window::initialize(int width, int height) {
 
@@ -52,6 +54,7 @@ void Window::initialize(int width, int height) {
     glfwMakeContextCurrent(window);
     glfwSetWindowSizeCallback(window, size_changed);
     glfwSwapInterval(1); // Limit fps to 60
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glewExperimental = GL_TRUE;
     if (glewInit()) {
@@ -82,12 +85,19 @@ void Window::initialize(int width, int height) {
 
 	ui::config::set_drawer(new TestEngineDrawer(root_frame_buffer));
 
-	new_view = new ui::View({ 100, 300, 100, 100 });
+	new_view = new ui::View({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
-	auto new_image_view = new ui::ImageView({ 10, 10, 50, 50 }, Image::cat);
+	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
 
 	new_view->add_subview(new_image_view);
+
+	float cursor_size = 0.11f;
+	mouse_pointer = new ui::ImageView({0, 0, 136 * cursor_size, 200 * cursor_size }, Image::mouse_pointer);
+	Events::cursor_moved.subscribe([&](ui::Point position) {
+		mouse_pointer->set_origin(position);
+		mouse_pointer->set_image(Image::for_edge(new_image_view->get_edge(position)));
+	});
 
     setup(); 
 
@@ -119,6 +129,9 @@ void Window::update() {
     root_view->draw();
 
 	new_view->draw();
+
+	//mouse_pointer->set_origin(Input::cursor_position);
+	mouse_pointer->draw();
 
 	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
 

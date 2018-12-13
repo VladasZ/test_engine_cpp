@@ -85,15 +85,24 @@ void Window::initialize(int width, int height) {
 
 	ui::config::set_drawer(new TestEngineDrawer(root_frame_buffer));
 
+    setup(); 
+
+	Events::on_screen_size_change(screen_resolution);
+}
+
+void Window::setup() {
+
 	new_view = new ui::View({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
 	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
+	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
 
 	new_view->add_subview(new_image_view);
 
 	float cursor_size = 0.11f;
-	mouse_pointer = new ui::ImageView({0, 0, 136 * cursor_size, 200 * cursor_size }, Image::mouse_pointer);
+	mouse_pointer = new ui::ImageView({ 0, 0, 200 * cursor_size, 200 * cursor_size }, Image::mouse_pointer);
+	mouse_pointer->set_content_mode(ui::ImageView::ContentMode::AspectFit);
 	Events::cursor_moved.subscribe([&](ui::Point position) {
 		ui::View::Edge edge = new_image_view->get_edge(position);
 		if (static_cast<bool>(edge))
@@ -103,12 +112,8 @@ void Window::initialize(int width, int height) {
 		mouse_pointer->set_image(Image::for_edge(new_image_view->get_edge(position)));
 	});
 
-    setup(); 
 
-	Events::on_screen_size_change(screen_resolution);
-}
 
-void Window::setup() {
     root_view = new RootView({ Window::size.width, Window::size.height });
 	root_view->_frame_buffer = root_frame_buffer;
     root_view->setup();

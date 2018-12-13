@@ -33,6 +33,10 @@ Image* Image::left;
 Image* Image::right;
 
 Image* Image::mouse_pointer;
+Image* Image::rb_cursor;
+Image* Image::rl_cursor;
+Image* Image::rt_cursor;
+Image* Image::tb_cursor;
 
 
 static int modeForChannels(int channels) {
@@ -125,7 +129,11 @@ void Image::initialize() {
   left          = new Image("left.png");
   right         = new Image("right.png");
 
-  mouse_pointer = new Image("mouse_pointer.png");
+  mouse_pointer = new Image("cursors/mouse_pointer.png");
+  rb_cursor     = new Image("cursors/rb_cursor.png");
+  rl_cursor     = new Image("cursors/rl_cursor.png");
+  rt_cursor     = new Image("cursors/rt_cursor.png");
+  tb_cursor     = new Image("cursors/tb_cursor.png");
 }
 
 void Image::draw_in_rect(const ui::Rect& rect) {
@@ -169,17 +177,19 @@ Image* Image::for_edge(ui::View::Edge edge) {
 
 	using Edge = ui::View::Edge;
 
-	if (edge == Edge::Left)
-		return Image::left;
+	uint8_t value = static_cast<uint8_t>(edge);
 
-	if (edge == Edge::Right)
-		return Image::right;
+	if (!value)
+		return Image::mouse_pointer;
 
-	if (edge == Edge::Top)
-		return Image::up;
+	if (edge == Edge::TopLeft || edge == Edge::BottomRight)
+		return Image::rb_cursor;
 
-	if (edge == Edge::Bottom)
-		return Image::down;
+	if (edge == Edge::BottomLeft || edge == Edge::TopRight)
+		return Image::rt_cursor;
 
-	return Image::mouse_pointer;
+	if (value < static_cast<uint8_t>(Edge::Left))
+		return Image::tb_cursor;
+
+	return Image::rl_cursor;
 }

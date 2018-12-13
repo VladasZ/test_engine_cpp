@@ -95,7 +95,11 @@ void Window::initialize(int width, int height) {
 	float cursor_size = 0.11f;
 	mouse_pointer = new ui::ImageView({0, 0, 136 * cursor_size, 200 * cursor_size }, Image::mouse_pointer);
 	Events::cursor_moved.subscribe([&](ui::Point position) {
-		mouse_pointer->set_origin(position);
+		ui::View::Edge edge = new_image_view->get_edge(position);
+		if (static_cast<bool>(edge))
+			mouse_pointer->set_center(position);
+		else
+			mouse_pointer->set_origin(position);
 		mouse_pointer->set_image(Image::for_edge(new_image_view->get_edge(position)));
 	});
 

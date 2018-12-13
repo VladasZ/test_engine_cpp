@@ -59,6 +59,10 @@ public:
 	static Image* right;
 
 	static Image* mouse_pointer;
+	static Image* rb_cursor;
+	static Image* rl_cursor;
+	static Image* rt_cursor;
+	static Image* tb_cursor;
 
 	static Image* for_edge(ui::View::Edge edge);
 

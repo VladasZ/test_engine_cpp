@@ -1,7 +1,5 @@
 [requires]
 
-#glm/0.9.8.5@bincrafters/stable
-
 glfw/3.2.1.20180327@bincrafters/stable
 glew/2.1.0@bincrafters/stable
 
@@ -9,10 +7,6 @@ freetype/2.9.0@bincrafters/stable
 
 Assimp/4.1.0@jacmoe/stable
 
-#boost/1.68.0@conan/stable
-
 [generators]
 cmake
 
-[options]
-#boost:without_python=False

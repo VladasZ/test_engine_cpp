@@ -5,6 +5,8 @@
 #include <vector>
 #include <math.h>
 
+//#include <glm/glm.hpp>
+
 
 #include "Log.hpp"
 #include "Matrix4.hpp"
@@ -43,22 +45,36 @@ int main() {
 	     0, 0, 0, 1
 	};
 
+	Matrix4 inversed = transform.inversed();
+
+
+	Logvar(transform.to_string());
+	Logvar(transform.inversed().to_string());
+
 	vector<Vector3> a_ver = {
 		{  10.9651660037735, -2077.46947601362, -1732.84852242907 },
 		{ -28.2892402763447, -2273.71719218789, -1731.04816455574 },
 		{ 168.546146377346,  -2312.30780650516, -1737.13196368097 },
 		{ 206.483925998667,  -2116.14490306792, -1738.21953548907 }
 	};
-	
+
+	vector<Vector3> transformed_a_ver;
+
 	for (auto ver : a_ver)
-		Logvar((transform * ver).to_string());
+		transformed_a_ver.push_back(transform * ver);
+
+	for (auto ver : transformed_a_ver)
+		Logvar(ver.to_string());
+
+
+	for (auto ver : transformed_a_ver)
+		Logvar((inversed * ver).to_string());
 
 
 	auto station_b = transform * Vector3{};
   
 	Logvar(station_b.to_string());
 	Logvar(station_b.length());
-
 
   return 0;
 }

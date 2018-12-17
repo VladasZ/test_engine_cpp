@@ -28,7 +28,7 @@ ui::ImageView* mouse_pointer = nullptr;
 
 void Window::initialize(int width, int height) {
 
-    size = ui::Size((float)width, (float)height);
+    size = ui::Size(static_cast<float>(width), static_cast<float>(height));
 
 #if GLFW
 
@@ -40,11 +40,11 @@ void Window::initialize(int width, int height) {
 
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
 
-#if MAC_OS
+#ifdef MAC_OS
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 #endif
 
-    window = glfwCreateWindow(width, height, "Test Engine", NULL, NULL);
+    window = glfwCreateWindow(width, height, "Test Engine", nullptr, nullptr);
 
     if (window == nullptr) {
         Error("GLFW window creation failed");
@@ -142,10 +142,10 @@ void Window::update() {
 	//mouse_pointer->set_origin(Input::cursor_position);
 	mouse_pointer->draw();
 
-	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
+    GL(glViewport(0, 0, static_cast<GLsizei>(size.width), static_cast<GLsizei>(size.height)));
 
     GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-	GL(glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height));
+    GL(glViewport(0, 0, static_cast<GLsizei>(size.width), static_cast<GLsizei>(size.height)));
     Shader::ui_texture.use();
     root_frame_buffer->get_image()->bind();
     Buffer::root_ui_buffer->draw();
@@ -163,11 +163,11 @@ void Window::set_scene(Scene* scene) {
 }
 
 void Window::size_changed(GLFWwindow* window, int width, int height) {
-    Window::size = ui::Size((float)width, (float)height);
-    root_view->set_frame(ui::Rect((float)width, (float)height));
+    Window::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
+    root_view->set_frame(ui::Rect(static_cast<float>(width), static_cast<float>(height)));
     root_frame_buffer->clear();
     Buffer::window_size_changed();
 	Events::on_screen_size_change(size);
     update();
-    GL(glfwSwapBuffers(Window::window));
+    GL(glfwSwapBuffers(window));
 }

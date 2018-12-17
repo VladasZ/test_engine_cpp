@@ -28,7 +28,7 @@
 #define CHECK_FRAMEBUFFER check_framebuffer_status(GL_FRAMEBUFFER, LOCATION_INFO)
 
 void check_gl_error(LOCATION_PARAMETERS);
-void check_framebuffer_status(int target, LOCATION_PARAMETERS);
+void check_framebuffer_status(unsigned int target, LOCATION_PARAMETERS);
 
 #else
 

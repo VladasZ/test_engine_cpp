@@ -39,13 +39,13 @@ void check_gl_error(LOCATION_PARAMETERS) {
             break;
         }
 
-        __logE("Rendering error: " << error, fileName, function, line);
+        UTILS_INTERNAL_LOG_ERROR("Rendering error: " << error, fileName, function, line);
         delete[] error;
         err = glGetError();
     }
 }
 
-void check_framebuffer_status(int target, LOCATION_PARAMETERS) {
+void check_framebuffer_status(unsigned int target, LOCATION_PARAMETERS) {
     auto error = glCheckFramebufferStatus(target);
 
     if (!error || error == GL_FRAMEBUFFER_COMPLETE) return;
@@ -70,7 +70,7 @@ void check_framebuffer_status(int target, LOCATION_PARAMETERS) {
             break;
     }
 
-    __logE("Framebuffer error: " << errorString, fileName, function, line);
+    UTILS_INTERNAL_LOG_ERROR("Framebuffer error: " << errorString, fileName, function, line);
 }
 
 #endif

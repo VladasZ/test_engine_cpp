@@ -13,7 +13,7 @@
 
 #include "Matrix4.hpp"
 
-#if IOS
+#ifdef IOS
     #import <OpenGLES/ES3/gl.h>
 #else
     #include <GL/glew.h>
@@ -25,7 +25,10 @@
 class GL {
 public:
 	static void set_viewport(const ui::Rect& rect) {
-		glViewport((GLint)rect.origin.x, (GLint)rect.origin.y, (GLsizei)rect.size.width, (GLsizei)rect.size.height);
+        glViewport(static_cast<GLint>  (rect.origin.x),
+                   static_cast<GLint>  (rect.origin.y),
+                   static_cast<GLsizei>(rect.size.width),
+                   static_cast<GLsizei>(rect.size.height));
 	}
     
     static void unbind_image() {

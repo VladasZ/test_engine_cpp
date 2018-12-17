@@ -8,8 +8,9 @@
 
 #pragma once
 
+#include <string>
+
 #include "Array.hpp"
-#include "String.hpp"
 #include "NonCopyable.hpp"
 
 class Glyph;
@@ -18,13 +19,13 @@ class Font : public NonCopyable {
     
     float _height;
     float _baselineShift;
-    String _fileName;
+    std::string _fileName;
     
     Array<Glyph*> _glyphs;
   
 public:
     
-    Font(const String& fileName, int size = 28);
+    Font(const std::string& fileName, int size = 28);
 	~Font();
     
 	float  baselineShift()       const { return _baselineShift; }

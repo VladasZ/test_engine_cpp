@@ -9,10 +9,10 @@
 #include "Paths.hpp"
 
 
-String Paths::assets_directory() {
-#if WINDOWS
+std::string Paths::assets_directory() {
+#ifdef WINDOWS
 	return "C:\\Users\\u.zakreuskis\\dev\\projects\\testengine\\Assets\\";
-#elif APPLE
+#elifdef APPLE
     return "/Users/vladaszakrevskis/dev/projects/testengine/Assets/";
 #else
   return "/home/vladas/dev/projects/testengine/Assets/";

@@ -31,13 +31,13 @@ public:
 	Label(const ui::Rect& rect = { });
 
     std::string text() const;
-    Label* setText(const std::string &text);
+    Label* setText(const std::string& text);
     
-	const Font* const font() const { return _font; }
+    const Font* font() const { return _font; }
     Label* setFont(Font* font);
     
     Label* setFontSize(int size);
 
-	const Alignment alignment() const { return _alignment; }
+    Alignment alignment() const { return _alignment; }
 	Label* setAlignment(Alignment alignment);
 };

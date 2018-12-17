@@ -16,7 +16,7 @@ class LabeledSliderView : public OldView {
     SliderView* _sliderView = nullptr;
     Label* _valueLabel = nullptr;
     Label* _captionLabel = nullptr;
-    String _caption = "";
+    std::string _caption = "";
     
 public:
     
@@ -28,6 +28,6 @@ public:
     
     void layout() override;
     
-    void setCaption(const String& caption);
+    void setCaption(const std::string& caption);
     
 };

@@ -68,7 +68,7 @@ void Label::_setGlyphs() {
 
 std::string Label::text() const { return _text; }
 
-Label* Label::setText(const std::string &text) {
+Label* Label::setText(const std::string& text) {
 	if (text == _text) return this;
     _text = text;
     _needsGlyphsUpdate = true;

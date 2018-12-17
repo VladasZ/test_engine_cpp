@@ -16,6 +16,7 @@
 #include "File.hpp"
 #include "Font.hpp"
 #include "Paths.hpp"
+#include "String.hpp"
 #include "TestEngineImage.hpp"
 #include "Glyph.hpp"
 
@@ -56,7 +57,7 @@ Glyph* renderGlyph(const FT_Face &face, char ch) {
 						 (float)face->glyph->metrics.horiBearingY / 64));
 }
 
-Font::Font(const String& fileName, int size) : _fileName(fileName) {
+Font::Font(const std::string& fileName, int size) : _fileName(fileName) {
     
   auto file = new File((Paths::assets_directory() + fileName).c_str());
   FT_Face face;

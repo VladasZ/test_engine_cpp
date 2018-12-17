@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "String.hpp"
+#include <string>
 
 class Paths {
 public:
 
-  static String assets_directory();
+  static std::string assets_directory();
   
 };

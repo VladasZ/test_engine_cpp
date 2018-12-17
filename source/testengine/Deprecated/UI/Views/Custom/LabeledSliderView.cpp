@@ -6,6 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "String.hpp"
 #include "LabeledSliderView.hpp"
 
 void LabeledSliderView::setup() {
@@ -56,7 +57,7 @@ void LabeledSliderView::layout() {
     //_needsLayout = false;
 }
 
-void LabeledSliderView::setCaption(const String& caption) {
+void LabeledSliderView::setCaption(const std::string& caption) {
     _caption = caption;
     if (_captionLabel)
         _captionLabel->setText(caption);

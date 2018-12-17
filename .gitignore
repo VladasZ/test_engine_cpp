@@ -398,3 +398,4 @@ log.txt
 utils/
 
 *#
+/cmake-build-debug

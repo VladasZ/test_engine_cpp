@@ -7,19 +7,12 @@
 //
 
 #include "Buffer.hpp"
+#include "Window.hpp"
 #include "FrameBuffer.hpp"
 #include "TestEngineDrawer.hpp"
 
-TestEngineDrawer::TestEngineDrawer(FrameBuffer* frame_buffer) : _frame_buffer(frame_buffer) { 
-
-}
-
-const FrameBuffer* TestEngineDrawer::frame_buffer() const {
-	return _frame_buffer;
-}
-
 void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
-	_frame_buffer->draw([&] {
+    Window::root_frame_buffer->draw([&] {
 		GL::set_viewport(rect);
 		Shader::ui.use();
 		Shader::ui.set_uniform_color(ui::Color::green);
@@ -28,12 +21,16 @@ void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
 }
 
 void TestEngineDrawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
-	_frame_buffer->draw([&] {
+    Window::root_frame_buffer->draw([&] {
 		GL::set_viewport(rect);
 		Shader::ui.use();
 		Shader::ui.set_uniform_color(color);
 		Buffer::fullscreen->draw();
 	});
+}
+
+void TestEngineDrawer::_set_cursor_mode(ui::CursorMode cursor_mode) {
+    Window::set_cursor_mode(cursor_mode);
 }
 
 const ui::Rect TestEngineDrawer::_convert_rect(const ui::Rect& rect) {

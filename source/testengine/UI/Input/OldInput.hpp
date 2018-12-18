@@ -15,11 +15,11 @@ class OldView;
 
 #define INPUT_PARAMETERS float x, float y, TouchID id
 
-using TouchID = long;
+using TouchID = int64_t;
 
-class Input final {
+class OldInput final {
     
-    Input();
+    OldInput();
 
 	static inline Array<OldView*> _subscribed_views;
     

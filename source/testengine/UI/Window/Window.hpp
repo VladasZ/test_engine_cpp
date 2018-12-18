@@ -8,12 +8,13 @@
 
 #pragma once
 
-#include "Size.hpp"
+#include "ui.hpp"
+
 #include "Debug.hpp"
 
 class OldView;
 class Scene;
-class Input;
+class OldInput;
 class RootView;
 class FrameBuffer;
 struct GLFWwindow;
@@ -24,7 +25,7 @@ class DebugInfoView;
 
 class Window {
     
-    friend Input;
+    friend OldInput;
     
     static void on_debug_tick();
     
@@ -54,4 +55,6 @@ public:
 	static void set_scene(Scene* scene);
     
     static void size_changed(GLFWwindow* window, int width, int height);
+
+    static void set_cursor_mode(ui::CursorMode);
 };

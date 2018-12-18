@@ -64,8 +64,6 @@ public:
 	static Image* rt_cursor;
 	static Image* tb_cursor;
 
-	static Image* for_edge(ui::View::Edge edge);
-
 	static void initialize();
 
 private:

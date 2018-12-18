@@ -38,7 +38,7 @@ protected:
 public:
         
     Sprite(Image* image);
-    ~Sprite();
+    virtual ~Sprite();
     
     void setPosition(const ui::Point &position);
 	ui::Point position();

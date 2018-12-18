@@ -6,7 +6,7 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "Input.hpp"
+#include "OldInput.hpp"
 #include "Event.hpp"
 #include "AnalogStickView.hpp"
 

@@ -1,4 +1,4 @@
-
+//
 //  Image.cpp
 //  TestEngine
 //
@@ -17,6 +17,7 @@
 #include "Paths.hpp"
 #include "Image.hpp"
 #include "Buffer.hpp"
+#include "Window.hpp"
 #include "FrameBuffer.hpp"
 
 Image* Image::cat;
@@ -41,14 +42,14 @@ Image* Image::tb_cursor;
 
 static int modeForChannels(int channels) {
 	switch (channels) {
-#if IOS
-	case 1: return GL_LUMINANCE;  break;
+#ifdef IOS
+    case 1: return GL_LUMINANCE;
 #else
-	case 1: return GL_RED;  break;
+    case 1: return GL_RED;
 #endif
-		//case 3:  return GL_RGBA; break;
-		//case 4:  return GL_RGBA; break;
-	default: return GL_RGBA; break;
+        //case 3:  return GL_RGBA;
+        //case 4:  return GL_RGBA;
+    default: return GL_RGBA;
 	}
 }
 
@@ -137,9 +138,7 @@ void Image::initialize() {
 }
 
 void Image::draw_in_rect(const ui::Rect& rect) {
-	auto frame_buffer = static_cast<TestEngineDrawer*>(ui::config::drawer())->frame_buffer();
-
-	frame_buffer->draw([&] {
+    Window::root_frame_buffer->draw([&] {
 		this->bind();
 		if (this->is_monochrome()) Shader::ui_monochrome.use();
 		else                       Shader::ui_texture.use();
@@ -167,29 +166,5 @@ void Image::_set_filter(Filter filter) {
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 		break;
-	default:
-		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 	}
-}
-
-Image* Image::for_edge(ui::View::Edge edge) {
-
-	using Edge = ui::View::Edge;
-
-	uint8_t value = static_cast<uint8_t>(edge);
-
-	if (!value)
-		return Image::mouse_pointer;
-
-	if (edge == Edge::TopLeft || edge == Edge::BottomRight)
-		return Image::rb_cursor;
-
-	if (edge == Edge::BottomLeft || edge == Edge::TopRight)
-		return Image::rt_cursor;
-
-	if (value < static_cast<uint8_t>(Edge::Left))
-		return Image::tb_cursor;
-
-	return Image::rl_cursor;
 }

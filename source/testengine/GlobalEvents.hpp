@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "ui.hpp"
+
 #include "Event.hpp"
 
 struct Events {

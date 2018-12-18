@@ -24,19 +24,19 @@ void Unit::update() {
     Direction direction = velocity.directionX();
 
     if (direction == Direction::Left) {
-        if (getSubspriteIndex() == (int)UnitAnimation::Left) {
-            setSubspriteIndex((int)UnitAnimation::LeftMoved);
+        if (getSubspriteIndex() == static_cast<int>(UnitAnimation::Left)) {
+            setSubspriteIndex(static_cast<int>(UnitAnimation::LeftMoved));
         }
         else {
-            setSubspriteIndex((int)UnitAnimation::Left);
+            setSubspriteIndex(static_cast<int>(UnitAnimation::Left));
         }
     }
     else {
-        if (getSubspriteIndex() == (int)UnitAnimation::Right) {
-            setSubspriteIndex((int)UnitAnimation::RightMoved);
+        if (getSubspriteIndex() == static_cast<int>(UnitAnimation::Right)) {
+            setSubspriteIndex(static_cast<int>(UnitAnimation::RightMoved));
         }
         else {
-            setSubspriteIndex((int)UnitAnimation::Right);
+            setSubspriteIndex(static_cast<int>(UnitAnimation::Right));
         }
     }
     
@@ -45,5 +45,5 @@ void Unit::update() {
 
 void Unit::setVelocity(const ui::Point &velocity) {
     this->velocity = ui::Point(velocity.x, 0);
-    setSubspriteIndex((int)(velocity.x > 0 ? UnitAnimation::Right : UnitAnimation::Left));
+    setSubspriteIndex(static_cast<int>(velocity.x > 0 ? UnitAnimation::Right : UnitAnimation::Left));
 }

@@ -19,6 +19,8 @@ class Scene {
 
 public:
 
+    virtual ~Scene() { }
+
 	Camera* camera = new Camera();
 
 	virtual void setup();

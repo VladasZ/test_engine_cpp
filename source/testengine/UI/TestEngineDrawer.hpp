@@ -10,23 +10,17 @@
 
 #include "Drawer.hpp"
 
-class FrameBuffer;
-
 class TestEngineDrawer : public ui::Drawer {
-	
-	FrameBuffer* _frame_buffer = nullptr;
 
 public:
 
-	TestEngineDrawer() = delete;
-	TestEngineDrawer(FrameBuffer* frame_buffer);
-
-	const FrameBuffer* frame_buffer() const;
+    TestEngineDrawer() = default;
 
 private:
 
 	void _draw_rect(const ui::Rect& rect) override;
 	void _fill_rect(const ui::Rect& rect, const ui::Color& color) override;
+    void _set_cursor_mode(ui::CursorMode cursor_mode) override;
 	const ui::Rect _convert_rect(const ui::Rect& rect) override;
 
 };

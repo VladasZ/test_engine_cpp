@@ -8,7 +8,7 @@
 
 #include "Debug.hpp"
 #include "Label.hpp"
-#include "Input.hpp"
+#include "OldInput.hpp"
 #include "Buffer.hpp"
 #include "Lifehack.hpp"
 #include "ScrollView.hpp"

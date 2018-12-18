@@ -6,7 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Input.hpp"
+#include "OldInput.hpp"
 #include "OldImageView.hpp"
 #include "SliderView.hpp"
 #include "Log.hpp"
@@ -40,17 +40,17 @@ void SliderView::setup() {
 
 	_topArrow->on_touch.subscribe([&](Touch touch) {
 		if (!touch.is_began()) return;
-		this->setValue(this->value() + 0.02f);
+        this->set_value(this->value() + 0.02f);
 	});
 
 	_bottomArrow->on_touch.subscribe([&](Touch touch) {
 		if (!touch.is_began()) return;
-		this->setValue(this->value() - 0.02f);
+        this->set_value(this->value() - 0.02f);
 	});
 
 	_sliderContentView->on_touch.subscribe([&](Touch touch) {
 		auto height = _sliderContentView->frame().size.height;
-		this->setValue(1 - touch.location.y / height);
+        this->set_value(1 - touch.location.y / height);
 	});
 }
 
@@ -58,8 +58,8 @@ void SliderView::layout() {
     
     OldView::layout();
     
-    auto sliderContentViewHeight = _frame.size.height - _frame.size.width / 2;
-    auto sliderHeight = _frame.size.height / 10;
+    auto slider_content_view_height = _frame.size.height - _frame.size.width / 2;
+    auto slider_height = _frame.size.height / 10;
     
     _topArrow->set_size({
         _frame.size.width,
@@ -70,19 +70,19 @@ void SliderView::layout() {
         0,
         _frame.size.width,
         _frame.size.width,
-        sliderContentViewHeight
+        slider_content_view_height
     });
     
     _slider->set_frame({
         0,
-        (sliderContentViewHeight - sliderHeight) * (1 - _value / 1),
+        (slider_content_view_height - slider_height) * (1 - _value / 1),
         _frame.size.width,
-        sliderHeight
+        slider_height
     });
     
     _bottomArrow->set_frame({
         0,
-        _frame.size.width + sliderContentViewHeight,
+        _frame.size.width + slider_content_view_height,
         _frame.size.width,
         _frame.size.width
     });
@@ -90,7 +90,7 @@ void SliderView::layout() {
     _needs_layout = false;
 }
 
-SliderView* SliderView::setValue(float value) {
+SliderView* SliderView::set_value(float value) {
 	_value = value;
 
 	if (_value > 1)

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <string>
+
 class Mesh;
 
 Mesh* import_model(const std::string& pFile);

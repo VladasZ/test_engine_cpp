@@ -9,7 +9,7 @@
 #include "DebugInfoView.hpp"
 #include "GlobalEvents.hpp"
 #include "Window.hpp"
-#include "Input.hpp"
+#include "OldInput.hpp"
 
 void DebugInfoView::setup() {
     

@@ -29,5 +29,5 @@ public:
 	Event<float> onValueChanged;
 
 	float value() const { return _value; }
-	SliderView* setValue(float value);
+	SliderView* set_value(float value);
 };

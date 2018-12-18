@@ -13,7 +13,7 @@
 #include "Color.hpp"
 #include "Rect.hpp"
 #include "Layout.hpp"
-#include "Input.hpp"
+#include "OldInput.hpp"
 #include "Touch.hpp"
 #include "Event.hpp"
 
@@ -24,7 +24,7 @@ class FrameBuffer;
 class OldView : public Drawable {
 
     friend Window;
-	friend Input;
+    friend OldInput;
     friend Layout::Base;
 
 	void _check_framebuffers(OldView* view, FrameBuffer* framebuffer);
@@ -38,13 +38,13 @@ protected:
 
 	ui::Rect _frame;
 
-    bool _needs_draw = true;
-	bool _needs_layout = true;
-	bool _owns_framebuffer = false;
-
     Layout::Arr* _layout = nullptr;
 
     FrameBuffer* _frame_buffer = nullptr;
+
+    bool _needs_draw = true;
+    bool _needs_layout = true;
+    bool _owns_framebuffer = false;
 
     void draw_subviews() const;
 

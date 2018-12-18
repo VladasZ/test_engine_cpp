@@ -29,9 +29,9 @@ void TestEngineDrawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) 
 	});
 }
 
-void TestEngineDrawer::_set_cursor_mode(ui::CursorMode cursor_mode) {
-    Window::set_cursor_mode(cursor_mode);
-}
+//void TestEngineDrawer::_set_cursor_mode(ui::CursorMode cursor_mode) {
+//    Window::set_cursor_mode(cursor_mode);
+//}
 
 const ui::Rect TestEngineDrawer::_convert_rect(const ui::Rect& rect) {
 	return rect;

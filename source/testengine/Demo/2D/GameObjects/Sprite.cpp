@@ -9,7 +9,7 @@
 #include "Sprite.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "GL.hpp"
 
 Sprite::Sprite(Image* image) : _image(image) { }

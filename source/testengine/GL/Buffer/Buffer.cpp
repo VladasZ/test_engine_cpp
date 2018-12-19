@@ -8,7 +8,7 @@
 
 #include "Buffer.hpp"
 #include "Debug.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 
 Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data) {
     
@@ -90,12 +90,12 @@ void Buffer::window_size_changed() {
 
     if (root_ui_buffer != nullptr) delete root_ui_buffer;
 
-	const auto height_ratio = Window::screen_resolution.height / Window::size.height;
+    const auto height_ratio = Screen::display_resolution.height / Screen::size.height;
 
     const ui::Rect rect {
 	   -1, 
 	   -1 + 2 * (1 - height_ratio),
-	    2 * (Window::screen_resolution.width / Window::size.width), 
+        2 * (Screen::display_resolution.width / Screen::size.width),
 	    2 * height_ratio
     };
 

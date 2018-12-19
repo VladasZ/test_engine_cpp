@@ -6,21 +6,24 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Window.hpp"
+#include "ui.hpp"
+
+#include "Log.hpp"
+#include "Screen.hpp"
 #include "GL.hpp"
 #include "RootView.hpp"
-#include "World.hpp"
 #include "Time.hpp"
-#include "Log.hpp"
 #include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
 #include "Scene.hpp"
 #include "Buffer.hpp"
 #include "View.hpp"
 #include "TestEngineDrawer.hpp"
-#include "ui.hpp"
+#include "ImageView.hpp"
 
-void sizeChanged(GLFWwindow* window, int width, int height);
+static void size_changed(GLFWwindow* window, int width, int height);
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
 static ui::View* new_view = nullptr;
 static ui::ImageView* new_image_view = nullptr;
@@ -33,7 +36,7 @@ static GLFWcursor* h_resize;
 static GLFWcursor* v_resize;
 }
 
-void Window::initialize(int width, int height) {
+void Screen::initialize(int width, int height) {
 
     size = ui::Size(static_cast<float>(width), static_cast<float>(height));
 
@@ -51,15 +54,20 @@ void Window::initialize(int width, int height) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 #endif
 
-    window = glfwCreateWindow(width, height, "Test Engine", nullptr, nullptr);
+    glfw_window = glfwCreateWindow(width, height, "Test Engine", nullptr, nullptr);
 
-    if (window == nullptr) {
+    if (glfw_window == nullptr) {
         Error("GLFW window creation failed");
 		throw "GLFW window creation failed";
     }
 
-    glfwMakeContextCurrent(window);
-    glfwSetWindowSizeCallback(window, size_changed);
+    glfwMakeContextCurrent(glfw_window);
+
+    glfwSetWindowSizeCallback(glfw_window, size_changed);
+
+    glfwSetCursorPosCallback(glfw_window, cursor_position_callback);
+    glfwSetMouseButtonCallback(glfw_window, mouse_button_callback);
+
     glfwSwapInterval(1); // Limit fps to 60
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
@@ -69,7 +77,7 @@ void Window::initialize(int width, int height) {
     cursor::h_resize = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 
-    glfwSetCursor(window, cursor::arrow);
+    glfwSetCursor(glfw_window, cursor::arrow);
 
     glewExperimental = GL_TRUE;
     if (glewInit()) {
@@ -78,9 +86,9 @@ void Window::initialize(int width, int height) {
     }
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    screen_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
+    display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
     
-    Log("Screen resolution: " << static_cast<int>(screen_resolution.width) << "x" << static_cast<int>(screen_resolution.height));
+    Log("Screen resolution: " << static_cast<int>(display_resolution.width) << "x" << static_cast<int>(display_resolution.height));
 
 #endif
 
@@ -96,16 +104,16 @@ void Window::initialize(int width, int height) {
     Font::initialize();
     Buffer::initialize();
 
-    root_frame_buffer = new FrameBuffer(screen_resolution);
+    root_frame_buffer = new FrameBuffer(display_resolution);
 
     ui::config::set_drawer(new TestEngineDrawer());
 
     setup(); 
 
-	Events::on_screen_size_change(screen_resolution);
+    Events::on_screen_size_change(display_resolution);
 }
 
-void Window::setup() {
+void Screen::setup() {
 
 	new_view = new ui::View({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
@@ -115,7 +123,7 @@ void Window::setup() {
 
 	new_view->add_subview(new_image_view);
 
-    root_view = new RootView({ Window::size.width, Window::size.height });
+    root_view = new RootView({ Screen::size.width, Screen::size.height });
 	root_view->_frame_buffer = root_frame_buffer;
     root_view->setup();
     root_view->layout();
@@ -124,7 +132,7 @@ void Window::setup() {
 	//setScene(new Scene());
 }
 
-void Window::update() {
+void Screen::update() {
     GL::set_clear_color(ui::C::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
@@ -152,41 +160,60 @@ void Window::update() {
 
     FPS = 1000000000 / Time::interval();
 
-    Window::frames_drawn++;
+    Screen::frames_drawn++;
 	Events::frame_drawn();
 }
 
-void Window::set_scene(Scene* scene) {
+void Screen::set_scene(Scene* scene) {
 	scene->setup();
 	current_scene = scene;
 }
 
-void Window::size_changed(GLFWwindow* window, int width, int height) {
-    Window::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
-    root_view->set_frame(ui::Rect(static_cast<float>(width), static_cast<float>(height)));
-    root_frame_buffer->clear();
+//void Window::set_cursor_mode(ui::CursorMode cursor_mode) {
+//    switch (cursor_mode) {
+//    case ui::CursorMode::Arrow:
+//        glfwSetCursor(window, cursor::arrow);
+//        break;
+//    case ui::CursorMode::Text:
+//        glfwSetCursor(window, cursor::text);
+//        break;
+//    case ui::CursorMode::Drag:
+//        glfwSetCursor(window, cursor::drag);
+//        break;
+//    case ui::CursorMode::HResize:
+//        glfwSetCursor(window, cursor::h_resize);
+//        break;
+//    case ui::CursorMode::VResize:
+//        glfwSetCursor(window, cursor::v_resize);
+//        break;
+//    }
+//}
+
+#ifdef GLFW
+
+static void size_changed(GLFWwindow* window, int width, int height) {
+    Screen::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
+    Screen::root_view->set_frame(ui::Rect(static_cast<float>(width), static_cast<float>(height)));
+    Screen::root_frame_buffer->clear();
     Buffer::window_size_changed();
-	Events::on_screen_size_change(size);
-    update();
+    Events::on_screen_size_change(Screen::size);
+    Screen::update();
     GL(glfwSwapBuffers(window));
 }
 
-void Window::set_cursor_mode(ui::CursorMode cursor_mode) {
-    switch (cursor_mode) {
-    case ui::CursorMode::Arrow:
-        glfwSetCursor(window, cursor::arrow);
-        break;
-    case ui::CursorMode::Text:
-        glfwSetCursor(window, cursor::text);
-        break;
-    case ui::CursorMode::Drag:
-        glfwSetCursor(window, cursor::drag);
-        break;
-    case ui::CursorMode::HResize:
-        glfwSetCursor(window, cursor::h_resize);
-        break;
-    case ui::CursorMode::VResize:
-        glfwSetCursor(window, cursor::v_resize);
-        break;
-    }
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    if (button != GLFW_MOUSE_BUTTON_LEFT)
+        return;
+    if (action == GLFW_PRESS)
+        ui::input::mouse->set_left_button_state(ui::Mouse::ButtonState::Down);
+    else
+        ui::input::mouse->set_left_button_state(ui::Mouse::ButtonState::Up);
 }
+
+static void cursor_position_callback(GLFWwindow* window, double x, double y) {
+    ui::Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
+    Events::cursor_moved(cursor_position);
+    ui::input::mouse->position_changed(cursor_position);
+}
+
+#endif

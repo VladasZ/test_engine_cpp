@@ -9,7 +9,7 @@
 #include "OldView.hpp"
 #include "Buffer.hpp"
 #include "Shader.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "ScrollView.hpp"
 #include "Log.hpp"
 #include "GL.hpp"

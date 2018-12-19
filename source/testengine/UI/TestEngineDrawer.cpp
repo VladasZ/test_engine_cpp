@@ -7,12 +7,12 @@
 //
 
 #include "Buffer.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "FrameBuffer.hpp"
 #include "TestEngineDrawer.hpp"
 
 void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
-    Window::root_frame_buffer->draw([&] {
+    Screen::root_frame_buffer->draw([&] {
 		GL::set_viewport(rect);
 		Shader::ui.use();
 		Shader::ui.set_uniform_color(ui::Color::green);
@@ -21,7 +21,7 @@ void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
 }
 
 void TestEngineDrawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
-    Window::root_frame_buffer->draw([&] {
+    Screen::root_frame_buffer->draw([&] {
 		GL::set_viewport(rect);
 		Shader::ui.use();
 		Shader::ui.set_uniform_color(color);

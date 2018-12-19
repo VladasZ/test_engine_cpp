@@ -8,7 +8,7 @@
 
 #include "OldInput.hpp"
 #include "Point.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "DebugInfoView.hpp"
 #include "GL.hpp"
 #include "OldView.hpp"
@@ -22,7 +22,7 @@
 ui::Point OldInput::cursor_position;
 bool OldInput::mouse_key_is_pressed;
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     
     if (button != GLFW_MOUSE_BUTTON_LEFT) 
 		return;
@@ -37,7 +37,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     }
 }
 
-void cursor_position_callback(GLFWwindow* window, double x, double y) {
+static void cursor_position_callback(GLFWwindow* window, double x, double y) {
 	OldInput::cursor_position = { static_cast<float>(x), static_cast<float>(y) };
 	Events::cursor_moved(OldInput::cursor_position);
     if (OldInput::mouse_key_is_pressed) 
@@ -48,8 +48,8 @@ void cursor_position_callback(GLFWwindow* window, double x, double y) {
 
 void OldInput::initialize() {
 #if GLFW
-    glfwSetCursorPosCallback(Window::window, cursor_position_callback);
-    glfwSetMouseButtonCallback(Window::window, mouse_button_callback);
+    glfwSetCursorPosCallback(Screen::glfw_window, cursor_position_callback);
+    glfwSetMouseButtonCallback(Screen::glfw_window, mouse_button_callback);
 #endif
 }
 
@@ -60,7 +60,7 @@ void OldInput::touch_began(INPUT_PARAMETERS) {
 	for (auto view : _subscribed_views) {
 		if (view->contains_global_point(location)) {
 			view->_touch_id = id;
-			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Began));
+            view->_on_touch(Touch(1, view->local_point_from(location), Touch::Event::Began));
 			break;
 		}
 	}
@@ -72,7 +72,7 @@ void OldInput::touch_moved(INPUT_PARAMETERS) {
 	
 	for (auto view : _subscribed_views) {
 		if (id == view->_touch_id) {
-			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Moved));
+            view->_on_touch(Touch(1, view->local_point_from(location), Touch::Event::Moved));
 			break;
 		}
 	}
@@ -84,7 +84,7 @@ void OldInput::touch_ended(INPUT_PARAMETERS) {
 
 	for (auto view : _subscribed_views) {
 		if (id == view->_touch_id) {
-			view->_on_touch(Touch(view->local_point_from(location), Touch::Event::Ended));
+            view->_on_touch(Touch(1, view->local_point_from(location), Touch::Event::Ended));
 			view->_touch_id = -1;
 			break;
 		}

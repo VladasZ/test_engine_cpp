@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include "ui.hpp"
+#include "Point.hpp"
+#include "Size.hpp"
 
 #include "Event.hpp"
 

@@ -9,7 +9,7 @@
 #include "GL.hpp"
 #include "Paths.hpp"
 #include "Debug.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "Shader.hpp"
 #include "ShaderCompiler.hpp"
 

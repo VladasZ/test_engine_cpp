@@ -8,8 +8,7 @@
 
 #pragma once
 
-#include "ui.hpp"
-
+#include "Size.hpp"
 #include "Debug.hpp"
 
 class OldView;
@@ -23,7 +22,7 @@ struct GLFWwindow;
 class DebugInfoView;
 #endif
 
-class Window {
+class Screen {
     
     friend OldInput;
     
@@ -35,7 +34,7 @@ public:
     static inline int frames_drawn = 0;
     
     static inline ui::Size size;
-    static inline ui::Size screen_resolution;
+    static inline ui::Size display_resolution;
     
     static inline RootView* root_view = nullptr;
     static inline FrameBuffer* root_frame_buffer = nullptr;
@@ -43,7 +42,7 @@ public:
 	static inline Scene* current_scene = nullptr;
 
 #if GLFW
-    static inline GLFWwindow* window = nullptr;
+    static inline GLFWwindow* glfw_window = nullptr;
 #endif
     
     static void initialize(int width, int height);
@@ -53,8 +52,5 @@ public:
     static void update();
 
 	static void set_scene(Scene* scene);
-    
-    static void size_changed(GLFWwindow* window, int width, int height);
 
-    static void set_cursor_mode(ui::CursorMode);
 };

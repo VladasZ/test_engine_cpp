@@ -13,7 +13,7 @@
 #include "Debug.hpp"
 #include "BufferData.hpp"
 #include "Buffer.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "Geometry.hpp"
 
 Path::Path(const ui::Rect &rect) {

@@ -6,7 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "ui.hpp"
 #include "TestEngineDrawer.hpp"
 
 #include "TestEngineImage.hpp"
@@ -17,7 +16,7 @@
 #include "Paths.hpp"
 #include "Image.hpp"
 #include "Buffer.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "FrameBuffer.hpp"
 
 Image* Image::cat;
@@ -138,7 +137,7 @@ void Image::initialize() {
 }
 
 void Image::draw_in_rect(const ui::Rect& rect) {
-    Window::root_frame_buffer->draw([&] {
+    Screen::root_frame_buffer->draw([&] {
 		this->bind();
 		if (this->is_monochrome()) Shader::ui_monochrome.use();
 		else                       Shader::ui_texture.use();

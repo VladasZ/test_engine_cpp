@@ -17,11 +17,11 @@ inline SettingsView* settingsView = nullptr;
 
 class RootView : public OldView {
     
-    friend Window;
+    friend Screen;
     
     void setup() override;
 
-    void createSticks();
+    void create_sticks();
     
 public:
     

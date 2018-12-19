@@ -11,7 +11,7 @@
 #include "Scene.hpp"
 #include "Mesh.hpp"
 #include "RootView.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "GlobalEvents.hpp"
 
 static float angle = 0;
@@ -60,7 +60,7 @@ void Object::draw() {
     static float nearPlane = 1.0f;
     static float farPlane = 5.0f;
     
-    Matrix4 projection = Matrix4::perspective(fieldOfView, Window::size.ratio(), nearPlane, farPlane);
+    Matrix4 projection = Matrix4::perspective(fieldOfView, Screen::size.ratio(), nearPlane, farPlane);
     Matrix4 translation = Matrix4::translation({ 0, 0, -3.0f });
     Matrix4 _rotationY = Matrix4::rotation(rotationY, {0.0f, 1.0f, 0.0f});
     Matrix4 _rotationX = Matrix4::rotation(rotationX, {1.0f, 0.0f, 0.0f});

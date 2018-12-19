@@ -14,14 +14,14 @@
 #include "GL.hpp"
 #include "Rect.hpp"
 
-class Window;
+class Screen;
 
 class Shader {
     
     Shader() = default;
     Shader(const std::string& vertexPath, const std::string& fragmentPath);
         
-    friend Window;
+    friend Screen;
     
     int _program = -1;
     

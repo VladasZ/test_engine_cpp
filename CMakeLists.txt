@@ -10,6 +10,7 @@ project(TestEngine)
 
 add_definitions(-DGLFW=1)
 add_definitions(-DDEBUG=1)
+add_definitions(-DUI_DESKTOP=1)
 
 conan_basic_setup()
 

@@ -8,7 +8,7 @@
 
 #include "DebugInfoView.hpp"
 #include "GlobalEvents.hpp"
-#include "Window.hpp"
+#include "Screen.hpp"
 #include "OldInput.hpp"
 
 void DebugInfoView::setup() {
@@ -17,8 +17,8 @@ void DebugInfoView::setup() {
     add_layout(L::Top(5), L::Left(5));
     
 	Events::frame_drawn.subscribe([&] {
-        fpsLabel->setText(std::string() + "FPS: " + std::to_string(Window::FPS));
-        framesDrawnLabel->setText(std::string() + "Frames drawn: " + std::to_string(Window::frames_drawn));
+        fpsLabel->setText(std::string() + "FPS: " + std::to_string(Screen::FPS));
+        framesDrawnLabel->setText(std::string() + "Frames drawn: " + std::to_string(Screen::frames_drawn));
 	});
 
     Events::touch.subscribe([&] (ui::Point point) {

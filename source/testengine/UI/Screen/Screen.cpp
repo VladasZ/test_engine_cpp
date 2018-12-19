@@ -20,21 +20,14 @@
 #include "View.hpp"
 #include "TestEngineDrawer.hpp"
 #include "ImageView.hpp"
+#include "Window.hpp"
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
-static ui::View* new_view = nullptr;
+static ui::Window* new_view = nullptr;
 static ui::ImageView* new_image_view = nullptr;
-
-namespace cursor {
-static GLFWcursor* arrow;
-static GLFWcursor* text;
-static GLFWcursor* drag;
-static GLFWcursor* h_resize;
-static GLFWcursor* v_resize;
-}
 
 void Screen::initialize(int width, int height) {
 
@@ -70,14 +63,6 @@ void Screen::initialize(int width, int height) {
 
     glfwSwapInterval(1); // Limit fps to 60
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
-    cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
-    cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
-    cursor::drag     = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
-    cursor::h_resize = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
-    cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
-
-    glfwSetCursor(glfw_window, cursor::arrow);
 
     glewExperimental = GL_TRUE;
     if (glewInit()) {
@@ -115,7 +100,7 @@ void Screen::initialize(int width, int height) {
 
 void Screen::setup() {
 
-	new_view = new ui::View({ 100, 300, 200, 200 });
+    new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
 	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
@@ -168,26 +153,6 @@ void Screen::set_scene(Scene* scene) {
 	scene->setup();
 	current_scene = scene;
 }
-
-//void Window::set_cursor_mode(ui::CursorMode cursor_mode) {
-//    switch (cursor_mode) {
-//    case ui::CursorMode::Arrow:
-//        glfwSetCursor(window, cursor::arrow);
-//        break;
-//    case ui::CursorMode::Text:
-//        glfwSetCursor(window, cursor::text);
-//        break;
-//    case ui::CursorMode::Drag:
-//        glfwSetCursor(window, cursor::drag);
-//        break;
-//    case ui::CursorMode::HResize:
-//        glfwSetCursor(window, cursor::h_resize);
-//        break;
-//    case ui::CursorMode::VResize:
-//        glfwSetCursor(window, cursor::v_resize);
-//        break;
-//    }
-//}
 
 #ifdef GLFW
 

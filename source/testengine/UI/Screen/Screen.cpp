@@ -83,7 +83,7 @@ void Screen::initialize(int width, int height) {
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
    // GL(glLineWidth(1000));
     
-    OldInput::initialize();
+   // OldInput::initialize();
     Shader::initialize();
     Image::initialize();
     Font::initialize();

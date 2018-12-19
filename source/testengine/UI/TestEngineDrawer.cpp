@@ -22,7 +22,11 @@ static GLFWcursor* v_resize;
 TestEngineDrawer::TestEngineDrawer() {
     cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
     cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
-    cursor::drag     = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
+#ifdef WIN32
+    cursor::drag     = glfwCreateStandardCursor(GLFW_HAND_CURSOR);
+#else
+	cursor::drag     = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
+#endif
     cursor::h_resize = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 }

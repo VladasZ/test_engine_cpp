@@ -102,14 +102,6 @@ void Screen::setup() {
     new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
-    Events::cursor_moved.subscribe([&](auto point){
-        new_view->edit_frame([&](ui::Rect& frame){
-            frame.set_edge(ui::Rect::Edge::BottomRight, point);
-        });
-        Info(new_view->frame().to_string());
-        Info(new_image_view->global_point_lo_local(point).to_string());
-    });
-
 	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
 	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
 

@@ -9,25 +9,12 @@
 #include "Camera.hpp"
 #include "Size.hpp"
 #include "GlobalEvents.hpp"
-#include "RootView.hpp"
 
 Camera::Camera() {
 
 	Events::on_screen_size_change.subscribe([&](ui::Size size) {
 		this->_ratio = size.ratio();
 	});
-
-	settingsView->onFov.subscribe([&](float fov) {
-		this->_fov = fov * 2;
-	});
-    
-    settingsView->onNear.subscribe([&](float near) {
-        this->_near = -1 + near * 2;
-    });
-    
-    settingsView->onFar.subscribe([&](float far) {
-        this->_far = far * 100;
-    });
 
 }
 

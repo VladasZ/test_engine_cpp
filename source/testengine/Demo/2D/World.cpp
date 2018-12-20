@@ -11,8 +11,6 @@
 #include "Sprite.hpp"
 #include "TestEngineImage.hpp"
 #include "GL.hpp"
-#include "RootView.hpp"
-#include "AnalogStickView.hpp"
 
 World world;
 

@@ -11,13 +11,13 @@
 #include "Log.hpp"
 #include "Screen.hpp"
 #include "GL.hpp"
-#include "RootView.hpp"
 #include "Time.hpp"
 #include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
 #include "Scene.hpp"
 #include "Buffer.hpp"
 #include "View.hpp"
+#include "Font.hpp"
 #include "TestEngineDrawer.hpp"
 #include "ImageView.hpp"
 #include "Window.hpp"
@@ -83,7 +83,6 @@ void Screen::initialize(int width, int height) {
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
    // GL(glLineWidth(1000));
     
-   // OldInput::initialize();
     Shader::initialize();
     Image::initialize();
     Font::initialize();
@@ -103,16 +102,18 @@ void Screen::setup() {
     new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
+    Events::cursor_moved.subscribe([&](auto point){
+        new_view->edit_frame([&](ui::Rect& frame){
+            frame.set_edge(ui::Rect::Edge::BottomRight, point);
+        });
+        Info(new_view->frame().to_string());
+        Info(new_image_view->global_point_lo_local(point).to_string());
+    });
+
 	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
 	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
 
 	new_view->add_subview(new_image_view);
-
-    root_view = new RootView({ Screen::size.width, Screen::size.height });
-	root_view->_frame_buffer = root_frame_buffer;
-    root_view->setup();
-    root_view->layout();
-    root_view->_frame_buffer->clear();
 
 	//setScene(new Scene());
 }
@@ -129,7 +130,6 @@ void Screen::update() {
 	GL(glDisable(GL_DEPTH_TEST));
 
     root_frame_buffer->clear();
-    root_view->draw();
 
 	new_view->draw();
 
@@ -158,7 +158,6 @@ void Screen::set_scene(Scene* scene) {
 
 static void size_changed(GLFWwindow* window, int width, int height) {
     Screen::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
-    Screen::root_view->set_frame(ui::Rect(static_cast<float>(width), static_cast<float>(height)));
     Screen::root_frame_buffer->clear();
     Buffer::window_size_changed();
     Events::on_screen_size_change(Screen::size);

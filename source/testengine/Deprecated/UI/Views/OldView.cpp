@@ -10,7 +10,6 @@
 #include "Buffer.hpp"
 #include "Shader.hpp"
 #include "Screen.hpp"
-#include "ScrollView.hpp"
 #include "Log.hpp"
 #include "GL.hpp"
 #include "Layout.hpp"
@@ -24,7 +23,6 @@ OldView::~OldView() {
 	remove_all_subviews();
     if (_layout) delete _layout;
 	if (_owns_framebuffer) delete _frame_buffer;
-	disable_touch();
 }
 
 ui::Rect OldView::_calculate_absolute_frame() const {
@@ -258,12 +256,4 @@ ui::Point OldView::local_point_from(const ui::Point& point) const {
 
 bool OldView::contains_global_point(const ui::Point& point) const {
     return _absolute_frame.contains(point);
-}
-
-void OldView::enable_touch() {
-	OldInput::subscribe_view(this);
-}
-
-void OldView::disable_touch() {
-	OldInput::unsubscribe_view(this);
 }

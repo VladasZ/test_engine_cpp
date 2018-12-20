@@ -13,7 +13,6 @@
 #include "Color.hpp"
 #include "Rect.hpp"
 #include "Layout.hpp"
-#include "OldInput.hpp"
 #include "Touch.hpp"
 #include "Event.hpp"
 
@@ -24,14 +23,11 @@ class FrameBuffer;
 class OldView : public Drawable {
 
     friend Window;
-    friend OldInput;
     friend Layout::Base;
 
 	void _check_framebuffers(OldView* view, FrameBuffer* framebuffer);
 
 protected:
-
-	TouchID _touch_id = -1;
 
 	ui::Rect _absolute_frame;
 	ui::Rect _frame_in_frame_buffer;
@@ -60,12 +56,8 @@ protected:
     
     OldView* _add_layout(const std::initializer_list<Layout::Base*>& layout);
 
-	virtual void _on_touch(const Touch& touch) { on_touch(touch); }
-
 public:
     
-	Event<Touch> on_touch;
-
     OldView* superview = nullptr;
 
     Array<OldView*> subviews;
@@ -110,9 +102,6 @@ public:
 		_layout = nullptr;
 		return _add_layout({ args... }); 
 	}
-
-	void enable_touch();
-	void disable_touch();
 
     OldView* clone() const;
 

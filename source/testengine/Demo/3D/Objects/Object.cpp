@@ -10,15 +10,12 @@
 #include "Shader.hpp"
 #include "Scene.hpp"
 #include "Mesh.hpp"
-#include "RootView.hpp"
 #include "Screen.hpp"
 #include "GlobalEvents.hpp"
 
 static float angle = 0;
 
 Object::Object(Mesh* mesh) : _mesh(mesh) {
-
-    settingsView->onX.subscribe([&](float angl){ angle = -10 + angl * 20; });
     
 }
 

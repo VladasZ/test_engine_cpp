@@ -34,7 +34,7 @@ public:
 	Image(const ui::Size& size, int channels = 4, Filter filter = Filter::Default); // REMOVE
 	Image(const ui::Size& size, void* data, int channels, Filter filter = Filter::Default);
 	Image(const std::string& file, Filter filter = Filter::Default);
-	~Image();
+    ~Image() override;
 
 	GLuint &_get_GL_id() { return _id; }
 

@@ -6,14 +6,14 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "Label.hpp"
+#include "OldLabel.hpp"
 #include "Font.hpp"
 #include "Glyph.hpp"
 #include "TestEngineImage.hpp"
 #include "Rect.hpp"
 #include "Lifehack.hpp"
 
-Label::Label(const ui::Rect &rect) : OldView(rect) {
+OldLabel::OldLabel(const ui::Rect &rect) : OldView(rect) {
 	_contentView =
 		OldView::make(rect.with_zero_origin())
 		->add_layout(L::fromAlignment(_alignment), L::CenterV())
@@ -24,12 +24,12 @@ Label::Label(const ui::Rect &rect) : OldView(rect) {
     _color = ui::Color::gray;
 }
 
-void Label::draw() {
+void OldLabel::draw() {
     if (_needsGlyphsUpdate) _setGlyphs();
     OldView::draw();
 }
 
-void Label::_setGlyphs() {
+void OldLabel::_setGlyphs() {
     _contentView->remove_all_subviews();
     if (_text.empty()) return;
     
@@ -66,27 +66,27 @@ void Label::_setGlyphs() {
 	UNPRIVATE(_contentView)->_needs_layout = true;
 }
 
-std::string Label::text() const { return _text; }
+std::string OldLabel::text() const { return _text; }
 
-Label* Label::setText(const std::string& text) {
+OldLabel* OldLabel::setText(const std::string& text) {
 	if (text == _text) return this;
     _text = text;
     _needsGlyphsUpdate = true;
     return this;
 }
 
-Label* Label::setFont(Font* font) {
+OldLabel* OldLabel::setFont(Font* font) {
     _font = font;
     _needsGlyphsUpdate = true;
     return this;
 }
 
-Label* Label::setFontSize(int size) {
+OldLabel* OldLabel::setFontSize(int size) {
     setFont(this->_font->withSize(size));
     return this;
 }
 
-Label* Label::setAlignment(Alignment alignment) {
+OldLabel* OldLabel::setAlignment(Alignment alignment) {
 	_alignment = alignment;
 	_contentView->set_layout(L::fromAlignment(alignment), L::CenterV());
 	return this;

@@ -36,8 +36,8 @@ void check_framebuffer_status(unsigned int target, LOCATION_PARAMETERS);
 
 #endif
 
-class Label;
+class OldLabel;
 
 struct Debug {
-    static inline Label* info_label;
+    static inline OldLabel* info_label;
 };

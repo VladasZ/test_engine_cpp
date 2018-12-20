@@ -12,7 +12,7 @@
 #include "OldView.hpp"
 #include "OldImageView.hpp"
 
-class Label : public OldView {
+class OldLabel : public OldView {
     
     std::string _text;
     
@@ -28,16 +28,16 @@ class Label : public OldView {
         
 public:
     
-	Label(const ui::Rect& rect = { });
+    OldLabel(const ui::Rect& rect = { });
 
     std::string text() const;
-    Label* setText(const std::string& text);
+    OldLabel* setText(const std::string& text);
     
     const Font* font() const { return _font; }
-    Label* setFont(Font* font);
+    OldLabel* setFont(Font* font);
     
-    Label* setFontSize(int size);
+    OldLabel* setFontSize(int size);
 
     Alignment alignment() const { return _alignment; }
-	Label* setAlignment(Alignment alignment);
+    OldLabel* setAlignment(Alignment alignment);
 };

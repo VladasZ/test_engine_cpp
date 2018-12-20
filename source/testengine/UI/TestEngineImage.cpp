@@ -10,7 +10,6 @@
 
 #include "TestEngineImage.hpp"
 #include "GL.hpp"
-#include "SOIL.h"
 #include "Shader.hpp"
 #include "Debug.hpp"
 #include "Paths.hpp"
@@ -39,7 +38,7 @@ Image* Image::rt_cursor;
 Image* Image::tb_cursor;
 
 
-static int modeForChannels(int channels) {
+static unsigned int modeForChannels(int channels) {
 	switch (channels) {
 #ifdef IOS
     case 1: return GL_LUMINANCE;
@@ -62,17 +61,17 @@ void Image::_init(int filter) {
 
 	GL(glTexImage2D(GL_TEXTURE_2D,
 		0,
-		modeForChannels(_channels),
-		(GLsizei)_size.width,
-		(GLsizei)_size.height,
+        static_cast<GLint>(modeForChannels(_channels)),
+        static_cast<GLsizei>(_size.width),
+        static_cast<GLsizei>(_size.height),
 		0,
-		modeForChannels(_channels),
+        modeForChannels(_channels),
 		GL_UNSIGNED_BYTE,
 		_data));
 
 	GL(glGenerateMipmap(GL_TEXTURE_2D));
 
-	_set_filter((Filter)filter);
+    _set_filter(static_cast<Filter>(filter));
 
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }

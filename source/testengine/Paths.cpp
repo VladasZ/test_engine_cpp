@@ -21,3 +21,7 @@ std::string Paths::assets_directory() {
 std::string Paths::images_directory() {
     return assets_directory() + "Images/";
 }
+
+std::string Paths::fonts_directory() {
+    return assets_directory() + "Fonts/";
+}

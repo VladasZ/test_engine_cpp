@@ -74,10 +74,10 @@ void Buffer::initialize() {
         BufferConfiguration::_2_2
     );
 
-    auto outlineData = BufferData::from_rect(almost_fulscreen_rect);
+    auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
     
-    outlineData->setIndices({ 0, 1, 2, 3 });
-    fullscreen_outline = new Buffer(outlineData, BufferConfiguration::_2);
+    outline_data->setIndices({ 0, 1, 2, 3 });
+    fullscreen_outline = new Buffer(outline_data, BufferConfiguration::_2);
     
     fullscreen_outline->draw_mode = GL_LINE_LOOP;
     

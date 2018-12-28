@@ -13,4 +13,5 @@
 namespace Paths {
     std::string assets_directory();
     std::string images_directory();
+    std::string fonts_directory();
 };

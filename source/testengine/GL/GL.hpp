@@ -24,6 +24,5 @@
 
 namespace GL {
     void set_viewport(const ui::Rect& rect);
-    void unbind_image();
     void set_clear_color(const ui::Color& color);
 };

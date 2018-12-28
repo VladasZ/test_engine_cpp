@@ -20,6 +20,7 @@
 #include "ImageView.hpp"
 #include "Window.hpp"
 #include "Paths.hpp"
+#include "Glyph.hpp"
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -27,6 +28,8 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
 static ui::Window* new_view = nullptr;
 static ui::ImageView* new_image_view = nullptr;
+
+static ui::Font* font = nullptr;
 
 void Screen::initialize(int width, int height) {
 
@@ -97,11 +100,15 @@ void Screen::initialize(int width, int height) {
 
 void Screen::setup() {
 
+
+    font = new ui::Font(Paths::fonts_directory() + "SF.otf");
+
     new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
     new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
 	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
+    new_image_view->set_image(font->glyph_for_char('A')->image);
 
 	new_view->add_subview(new_image_view);
 }

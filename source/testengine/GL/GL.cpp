@@ -16,10 +16,6 @@ void GL::set_viewport(const ui::Rect& rect) {
                static_cast<GLsizei>(rect.size.height));
 }
 
-void GL::unbind_image() {
-    glBindTexture(GL_TEXTURE_2D, 0);
-}
-
 void GL::set_clear_color(const ui::Color& color) {
     glClearColor(color.r, color.g, color.b, color.a);
 }

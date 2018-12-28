@@ -13,7 +13,6 @@
 #include "Screen.hpp"
 #include "Debug.hpp"
 
-#include "Assimp.hpp"
 #include "Matrix4.hpp"
 
 int test_engine_main() {

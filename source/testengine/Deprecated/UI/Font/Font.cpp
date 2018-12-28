@@ -17,7 +17,7 @@
 #include "Font.hpp"
 #include "Paths.hpp"
 #include "String.hpp"
-#include "TestEngineImage.hpp"
+#include "TEImageDrawer.hpp"
 #include "Glyph.hpp"
 
 using namespace std;
@@ -36,25 +36,27 @@ static FT_Library ftLibrary() {
 
 Glyph* renderGlyph(const FT_Face &face, char ch) {
     
-  int glyphIndex = FT_Get_Char_Index(face, ch);
+//  int glyphIndex = FT_Get_Char_Index(face, ch);
     
-  FT_Load_Glyph(face,
-				glyphIndex,
-				FT_LOAD_RENDER);
+//  FT_Load_Glyph(face,
+//				glyphIndex,
+//				FT_LOAD_RENDER);
     
-  FT_BitmapGlyph bitmapGlyhp;
-  FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
+//  FT_BitmapGlyph bitmapGlyhp;
+//  FT_Get_Glyph(face->glyph, (FT_Glyph*)&bitmapGlyhp);
     
-  auto image = new Image(ui::Size((float)bitmapGlyhp->bitmap.width,
-							  (float)bitmapGlyhp->bitmap.rows),
-						 bitmapGlyhp->bitmap.buffer,
-						 1);
+//  auto image = new ui::Image(ui::Size((float)bitmapGlyhp->bitmap.width,
+//							  (float)bitmapGlyhp->bitmap.rows),
+//						 bitmapGlyhp->bitmap.buffer,
+//						 1);
     
-  return new Glyph(ch,
-				   image,
-				   (int)face->glyph->metrics.horiAdvance / 64,
-	           ui::Point((float)face->glyph->metrics.horiBearingX / 64,
-						 (float)face->glyph->metrics.horiBearingY / 64));
+//  return new Glyph(ch,
+//				   image,
+//				   (int)face->glyph->metrics.horiAdvance / 64,
+//	           ui::Point((float)face->glyph->metrics.horiBearingX / 64,
+//						 (float)face->glyph->metrics.horiBearingY / 64));
+
+    return nullptr;
 }
 
 Font::Font(const std::string& fileName, int size) : _fileName(fileName) {

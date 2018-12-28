@@ -10,18 +10,18 @@
 
 #include "Rect.hpp"
 #include "NonCopyable.hpp"
-#include "TestEngineImage.hpp"
+#include "TEImageDrawer.hpp"
 
 class Glyph : public NonCopyable {
         
 public:
     
     const char ch;
-    Image* const image;
+    ui::Image* const image;
     const int advance;
     const ui::Point bearing;
     
-    Glyph(char ch, Image* image, int advance, const ui::Point& bearing);
+    Glyph(char ch, ui::Image* image, int advance, const ui::Point& bearing);
     ~Glyph();
     
 	ui::Size size() const;

@@ -1,43 +1,43 @@
-//
-//  Label.hpp
-//  TestEngine
-//
-//  Created by Vladas Zakrevskis on 1/19/18.
-//  Copyright © 2018 VladasZ. All rights reserved.
-//
+////
+////  Label.hpp
+////  TestEngine
+////
+////  Created by Vladas Zakrevskis on 1/19/18.
+////  Copyright © 2018 VladasZ. All rights reserved.
+////
 
-#pragma once
+//#pragma once
 
-#include "Font.hpp"
-#include "OldView.hpp"
-#include "OldImageView.hpp"
+//#include "Font.hpp"
+//#include "OldView.hpp"
+//#include "OldImageView.hpp"
 
-class OldLabel : public OldView {
+//class OldLabel : public OldView {
     
-    std::string _text;
+//    std::string _text;
     
-	Font* _font = Font::System;
-	OldView* _contentView;
-	Alignment _alignment = Alignment::Left;
+//	Font* _font = Font::System;
+//	OldView* _contentView;
+//	Alignment _alignment = Alignment::Left;
 
-    void _setGlyphs();
+//    void _setGlyphs();
     
-    bool _needsGlyphsUpdate = false;
+//    bool _needsGlyphsUpdate = false;
     
-    virtual void draw() override;
+//    virtual void draw() override;
         
-public:
+//public:
     
-    OldLabel(const ui::Rect& rect = { });
+//    OldLabel(const ui::Rect& rect = { });
 
-    std::string text() const;
-    OldLabel* setText(const std::string& text);
+//    std::string text() const;
+//    OldLabel* setText(const std::string& text);
     
-    const Font* font() const { return _font; }
-    OldLabel* setFont(Font* font);
+//    const Font* font() const { return _font; }
+//    OldLabel* setFont(Font* font);
     
-    OldLabel* setFontSize(int size);
+//    OldLabel* setFontSize(int size);
 
-    Alignment alignment() const { return _alignment; }
-    OldLabel* setAlignment(Alignment alignment);
-};
+//    Alignment alignment() const { return _alignment; }
+//    OldLabel* setAlignment(Alignment alignment);
+//};

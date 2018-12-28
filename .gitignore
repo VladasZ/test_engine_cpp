@@ -399,3 +399,5 @@ utils/
 
 *#
 /cmake-build-debug
+
+*.autosave

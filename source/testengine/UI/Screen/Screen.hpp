@@ -11,11 +11,6 @@
 #include "Size.hpp"
 #include "Debug.hpp"
 
-class OldView;
-class Scene;
-class OldInput;
-class RootView;
-class FrameBuffer;
 struct GLFWwindow;
 
 #if DEBUG_VIEW
@@ -23,9 +18,7 @@ class DebugInfoView;
 #endif
 
 class Screen {
-    
-    friend OldInput;
-    
+        
     static void on_debug_tick();
     
 public:
@@ -36,11 +29,6 @@ public:
     static inline ui::Size size;
     static inline ui::Size display_resolution;
     
-    static inline RootView* root_view = nullptr;
-    static inline FrameBuffer* root_frame_buffer = nullptr;
-
-	static inline Scene* current_scene = nullptr;
-
 #if GLFW
     static inline GLFWwindow* glfw_window = nullptr;
 #endif
@@ -50,7 +38,5 @@ public:
     static void setup();
     
     static void update();
-
-	static void set_scene(Scene* scene);
 
 };

@@ -1,5 +1,5 @@
 //
-//  TestEngineDrawer.hpp
+//  TEDrawer.hpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 12/15/2018.
@@ -9,6 +9,10 @@
 #pragma once
 
 #include "Drawer.hpp"
+
+namespace ui {
+class Image;
+}
 
 class TestEngineDrawer : public ui::Drawer {
 
@@ -22,8 +26,12 @@ private:
 	void _fill_rect(const ui::Rect& rect, const ui::Color& color) override;
 	const ui::Rect _convert_rect(const ui::Rect& rect) override;
 
+public:
+
+    ui::Image::Drawer* init_image_drawer(ui::Image* image) override;
+
 #ifdef UI_DESKTOP
-    void _set_cursor_mode(ui::Mouse::CursorMode cursor_mode) override;
+    void set_cursor_mode(ui::Mouse::CursorMode cursor_mode) override;
 #endif
 
 };

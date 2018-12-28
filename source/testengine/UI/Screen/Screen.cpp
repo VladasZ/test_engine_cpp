@@ -12,15 +12,14 @@
 #include "Screen.hpp"
 #include "GL.hpp"
 #include "Time.hpp"
-#include "FrameBuffer.hpp"
 #include "GlobalEvents.hpp"
-#include "Scene.hpp"
 #include "Buffer.hpp"
 #include "View.hpp"
 #include "Font.hpp"
-#include "TestEngineDrawer.hpp"
+#include "TEDrawer.hpp"
 #include "ImageView.hpp"
 #include "Window.hpp"
+#include "Paths.hpp"
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -31,7 +30,7 @@ static ui::ImageView* new_image_view = nullptr;
 
 void Screen::initialize(int width, int height) {
 
-    size = ui::Size(static_cast<float>(width), static_cast<float>(height));
+    size = { static_cast<float>(width), static_cast<float>(height) };
 
 #if GLFW
 
@@ -65,6 +64,7 @@ void Screen::initialize(int width, int height) {
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glewExperimental = GL_TRUE;
+
     if (glewInit()) {
         Error("Glew initialization failed");
 		throw "Glew initialization failed";
@@ -81,14 +81,12 @@ void Screen::initialize(int width, int height) {
     GL(glEnable(GL_BLEND));
     //GL(glEnable(GL_ALPHA_TEST));
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    GL(glDisable(GL_DEPTH_TEST));
    // GL(glLineWidth(1000));
     
     Shader::initialize();
-    Image::initialize();
-    Font::initialize();
+   // Font::initialize();
     Buffer::initialize();
-
-    root_frame_buffer = new FrameBuffer(display_resolution);
 
     ui::config::set_drawer(new TestEngineDrawer());
 
@@ -102,38 +100,19 @@ void Screen::setup() {
     new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;
 
-	new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, Image::cat);
+    new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
 	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
 
 	new_view->add_subview(new_image_view);
-
-	//setScene(new Scene());
 }
 
 void Screen::update() {
+
     GL::set_clear_color(ui::C::gray);
+    GL::set_viewport({ size });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	if (current_scene) {
-		GL(glEnable(GL_DEPTH_TEST));
-		current_scene->draw();
-	}
-
-	GL(glDisable(GL_DEPTH_TEST));
-
-    root_frame_buffer->clear();
-
 	new_view->draw();
-
-
-    GL(glViewport(0, 0, static_cast<GLsizei>(size.width), static_cast<GLsizei>(size.height)));
-
-    GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-    GL(glViewport(0, 0, static_cast<GLsizei>(size.width), static_cast<GLsizei>(size.height)));
-    Shader::ui_texture.use();
-    root_frame_buffer->get_image()->bind();
-    Buffer::root_ui_buffer->draw();
-    GL(glBindTexture(GL_TEXTURE_2D, 0));
 
     FPS = 1000000000 / Time::interval();
 
@@ -141,17 +120,12 @@ void Screen::update() {
 	Events::frame_drawn();
 }
 
-void Screen::set_scene(Scene* scene) {
-	scene->setup();
-	current_scene = scene;
-}
-
 #ifdef GLFW
 
 static void size_changed(GLFWwindow* window, int width, int height) {
     Screen::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
-    Screen::root_frame_buffer->clear();
-    Buffer::window_size_changed();
+    GL::set_viewport({ static_cast<float>(width), static_cast<float>(height) });
+    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));    Buffer::window_size_changed();
     Events::on_screen_size_change(Screen::size);
     Screen::update();
     GL(glfwSwapBuffers(window));

@@ -8,7 +8,6 @@
 
 #include "Paths.hpp"
 
-
 std::string Paths::assets_directory() {
 #ifdef WINDOWS
 	return "C:\\Users\\u.zakreuskis\\dev\\projects\\testengine\\Assets\\";
@@ -17,4 +16,8 @@ std::string Paths::assets_directory() {
 #else
   return "/home/vladas/dev/projects/testengine/Assets/";
 #endif
+}
+
+std::string Paths::images_directory() {
+    return assets_directory() + "Images/";
 }

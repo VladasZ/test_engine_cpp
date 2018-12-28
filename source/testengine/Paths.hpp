@@ -10,9 +10,7 @@
 
 #include <string>
 
-class Paths {
-public:
-
-  static std::string assets_directory();
-  
+namespace Paths {
+    std::string assets_directory();
+    std::string images_directory();
 };

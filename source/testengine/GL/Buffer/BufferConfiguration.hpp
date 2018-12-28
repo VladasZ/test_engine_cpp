@@ -12,10 +12,10 @@ class Buffer;
 
 class BufferConfiguration {
     
-    int configuration[3];
-    int size = 1;
+    unsigned int configuration[3];
+    unsigned int size = 1;
     
-    int vertexSize = 0;
+    unsigned int vertexSize = 0;
     
     int strideForIndex(int index) const;
     

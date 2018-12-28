@@ -22,20 +22,8 @@
 
 #include "Shader.hpp"
 
-class GL {
-public:
-	static void set_viewport(const ui::Rect& rect) {
-        glViewport(static_cast<GLint>  (rect.origin.x),
-                   static_cast<GLint>  (rect.origin.y),
-                   static_cast<GLsizei>(rect.size.width),
-                   static_cast<GLsizei>(rect.size.height));
-	}
-    
-    static void unbind_image() {
-        glBindTexture(GL_TEXTURE_2D, 0);
-    }
-
-    static void set_clear_color(const ui::Color& color) {
-        glClearColor(color.r, color.g, color.b, color.a);
-    }
+namespace GL {
+    void set_viewport(const ui::Rect& rect);
+    void unbind_image();
+    void set_clear_color(const ui::Color& color);
 };

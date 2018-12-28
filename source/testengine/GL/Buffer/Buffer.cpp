@@ -54,12 +54,10 @@ void Buffer::draw() const {
  
     GL(glBindVertexArray(vertex_array_object));
     
-    if (data->ind_size == 0) {
-        GL(glDrawArrays(draw_mode, 0, vertices_count));
-    }
-    else {
-        GL(glDrawElements(draw_mode, indices_count, GL_UNSIGNED_SHORT, 0));
-    }
+    if (data->ind_size == 0)
+        GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(vertices_count)));
+    else
+        GL(glDrawElements(draw_mode, static_cast<GLsizei>(indices_count), GL_UNSIGNED_SHORT, nullptr));
     
     GL(glBindVertexArray(0));
 }

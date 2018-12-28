@@ -21,8 +21,8 @@ class Buffer : public NonCopyable {
     GLuint vertex_buffer_object = 0;
     GLuint index_buffer_object  = 0;
     
-    int vertices_count = 0;
-    int indices_count  = 0;
+    unsigned int vertices_count = 0;
+    unsigned int indices_count  = 0;
 
 public:
     

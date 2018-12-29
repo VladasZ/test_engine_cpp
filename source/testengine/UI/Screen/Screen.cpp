@@ -29,7 +29,9 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y);
 static ui::Window* new_view = nullptr;
 static ui::ImageView* new_image_view = nullptr;
 
-static ui::Font* font = nullptr;
+using FontType = ui::Font;
+
+static FontType* font = nullptr;
 
 void Screen::initialize(int width, int height) {
 
@@ -86,12 +88,16 @@ void Screen::initialize(int width, int height) {
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GL(glDisable(GL_DEPTH_TEST));
    // GL(glLineWidth(1000));
-    
-    Shader::initialize();
-   // Font::initialize();
-    Buffer::initialize();
 
     ui::config::set_drawer(new TestEngineDrawer());
+
+    
+    Shader::initialize();
+    //OldFont::initialize();
+    font = new FontType(Paths::fonts_directory() + "SF.otf");
+
+    Buffer::initialize();
+
 
     setup(); 
 
@@ -101,7 +107,6 @@ void Screen::initialize(int width, int height) {
 void Screen::setup() {
 
 
-    font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
     new_view = new ui::Window({ 100, 300, 200, 200 });
 	new_view->color = ui::Color::green;

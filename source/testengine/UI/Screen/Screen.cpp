@@ -21,6 +21,7 @@
 #include "Window.hpp"
 #include "Paths.hpp"
 #include "Glyph.hpp"
+#include "Label.hpp"
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -28,10 +29,7 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
 static ui::Window* new_view = nullptr;
 static ui::ImageView* new_image_view = nullptr;
-
-using FontType = ui::Font;
-
-static FontType* font = nullptr;
+static ui::Label* new_label = nullptr;
 
 void Screen::initialize(int width, int height) {
 
@@ -90,11 +88,9 @@ void Screen::initialize(int width, int height) {
    // GL(glLineWidth(1000));
 
     ui::config::set_drawer(new TestEngineDrawer());
+    ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
-    
     Shader::initialize();
-    //OldFont::initialize();
-    font = new FontType(Paths::fonts_directory() + "SF.otf");
 
     Buffer::initialize();
 
@@ -106,16 +102,17 @@ void Screen::initialize(int width, int height) {
 
 void Screen::setup() {
 
-
-
     new_view = new ui::Window({ 100, 300, 200, 200 });
-	new_view->color = ui::Color::green;
+    new_view->color = ui::Color::black;
 
-    new_image_view = new ui::ImageView({ 10, 10, 100, 100 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
+    new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
 	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
-    new_image_view->set_image(font->glyph_for_char('A')->image);
+
+    new_label = new ui::Label({ 5, 5, 100, 20 });
+    new_label->set_text("Helloff");
 
 	new_view->add_subview(new_image_view);
+    new_view->add_subview(new_label);
 }
 
 void Screen::update() {

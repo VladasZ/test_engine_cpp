@@ -67,10 +67,8 @@ void Screen::initialize(const ui::Size& size) {
 
     glewExperimental = GL_TRUE;
 
-    if (glewInit()) {
-        Error("Glew initialization failed");
-		throw "Glew initialization failed";
-    }
+    if (glewInit())
+        Fatal("Glew initialization failed");
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
@@ -109,6 +107,11 @@ void Screen::update() {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     root_view->_draw();
+
+    GL::set_viewport({100, 100});
+    Shader::ui.use();
+    Shader::ui.set_uniform_color(ui::Color::red);
+    Buffer::fullscreen->draw();
 
     FPS = 1000000000 / Time::interval();
 

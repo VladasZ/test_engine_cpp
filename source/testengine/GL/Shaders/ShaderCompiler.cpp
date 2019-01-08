@@ -12,14 +12,14 @@
 using namespace std;
 
 std::string ShaderCompiler::shader_version() {
-#if IOS
+#ifdef IOS
     return "#version 300 core";
 #else
     return "#version 330 core";
 #endif
 }
 
-int ShaderCompiler::compile(const string& vertex_path, const string& fragment_path)
+unsigned int ShaderCompiler::compile(const string& vertex_path, const string& fragment_path)
 {
 	GLuint vertex_shader_id   = GL(glCreateShader(GL_VERTEX_SHADER));
 	GLuint fragment_shader_id = GL(glCreateShader(GL_FRAGMENT_SHADER));

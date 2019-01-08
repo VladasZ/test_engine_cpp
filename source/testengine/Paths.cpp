@@ -18,6 +18,10 @@ std::string Paths::assets_directory() {
 #endif
 }
 
+std::string Paths::shaders_directory() {
+    return assets_directory() + "Shaders/";
+}
+
 std::string Paths::images_directory() {
     return assets_directory() + "Images/";
 }

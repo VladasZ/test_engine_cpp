@@ -21,6 +21,10 @@ public:
     void _setup() override;
     void _draw() override;
 
+private:
+
+    void _layout() override;
+
 };
 
 }

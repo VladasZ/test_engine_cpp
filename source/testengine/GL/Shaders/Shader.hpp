@@ -19,11 +19,11 @@ class Screen;
 class Shader {
     
     Shader() = default;
-    Shader(const std::string& vertexPath, const std::string& fragmentPath);
+    Shader(const std::string& name);
         
     friend Screen;
     
-    int _program = -1;
+    unsigned int _program = 0;
     
     int _uniform_color = -1;
     int _viewport_translation = -1;

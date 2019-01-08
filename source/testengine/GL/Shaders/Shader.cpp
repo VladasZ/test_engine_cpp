@@ -23,8 +23,9 @@ Shader Shader::simple3D;
 Shader Shader::colored3D;
 
 
-Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {    
-    _program = ShaderCompiler::compile(vertexPath, fragmentPath);
+Shader::Shader(const std::string& name) {
+    _program = ShaderCompiler::compile(Paths::shaders_directory() + name + ".vert",
+                                       Paths::shaders_directory() + name + ".frag");
 }
 
 void Shader::use() const {
@@ -32,27 +33,13 @@ void Shader::use() const {
 }
 
 void Shader::initialize() {
-
-    ui =            Shader(Paths::assets_directory() + "Shaders/ui.vert",
-                           Paths::assets_directory() + "Shaders/ui.frag");
-    
-    ui_texture =    Shader(Paths::assets_directory() + "Shaders/uiTexture.vert",
-                           Paths::assets_directory() + "Shaders/uiTexture.frag");
-    
-    ui_monochrome = Shader(Paths::assets_directory() + "Shaders/uiMonochrome.vert",
-                           Paths::assets_directory() + "Shaders/uiMonochrome.frag");
-
-    ui_path =       Shader(Paths::assets_directory() + "Shaders/uiPath.vert",
-                           Paths::assets_directory() + "Shaders/uiPath.frag");
-
-    sprite =        Shader(Paths::assets_directory() + "Shaders/sprite.vert",
-                           Paths::assets_directory() + "Shaders/sprite.frag");
-    
-    simple3D =      Shader(Paths::assets_directory() + "Shaders/simple3D.vert",
-                           Paths::assets_directory() + "Shaders/simple3D.frag");
-    
-    colored3D =     Shader(Paths::assets_directory() + "Shaders/colored3D.vert",
-                           Paths::assets_directory() + "Shaders/colored3D.frag");
+    ui            = Shader("ui");
+    ui_texture    = Shader("ui_texture");
+    ui_monochrome = Shader("ui_monochrome");
+    ui_path       = Shader("ui_path");
+    sprite        = Shader("sprite");
+    simple3D      = Shader("simple3D");
+    colored3D     = Shader("colored3D");
 }
 
 void Shader::set_uniform_color(const ui::Color& color) {
@@ -72,4 +59,3 @@ void Shader::set_uniform_position(float x, float y) {
         _uniform_position = glGetUniformLocation(_program, "uniformPosition");
     glUniform2f(_uniform_position, x, y);
 }
-

@@ -12,6 +12,6 @@ private:
     
 public:
     
-    static int compile(const std::string& vertex_path, const std::string& fragment_path);
+    static unsigned int compile(const std::string& vertex_path, const std::string& fragment_path);
 };
 

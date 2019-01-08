@@ -14,11 +14,13 @@ namespace ui {
 class Image;
 }
 
-class TestEngineDrawer : public ui::Drawer {
+namespace te {
+
+class Drawer : public ui::Drawer {
 
 public:
 
-    TestEngineDrawer();
+    Drawer();
 
 private:
 
@@ -35,3 +37,5 @@ public:
 #endif
 
 };
+
+}

@@ -17,7 +17,7 @@
 #define RENDERING_ERRORS_OUTPUT false
 #define SHADER_COMPILER_OUTPUT false
 #define IMAGES_LOADING_OUTPUT false
-#define DRAW_DEBUG_FRAMES true
+#define DRAW_DEBUG_FRAMES false
 
 #if RENDERING_ERRORS_OUTPUT
 #define GL(x) (x); check_gl_error(LOCATION_INFO)
@@ -36,8 +36,3 @@ void check_framebuffer_status(unsigned int target, LOCATION_PARAMETERS);
 
 #endif
 
-class OldLabel;
-
-struct Debug {
-    static inline OldLabel* info_label;
-};

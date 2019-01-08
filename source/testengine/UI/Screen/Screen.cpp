@@ -8,23 +8,27 @@
 
 #include "ui.hpp"
 
-#include "Log.hpp"
-#include "Screen.hpp"
 #include "GL.hpp"
+#include "Log.hpp"
 #include "Time.hpp"
-#include "GlobalEvents.hpp"
+#include "Paths.hpp"
+#include "Screen.hpp"
 #include "Buffer.hpp"
 #include "TEDrawer.hpp"
-#include "Paths.hpp"
 #include "RootView.hpp"
+#include "GlobalEvents.hpp"
+
+#if GLFW
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
-void Screen::initialize(int width, int height) {
+#endif
 
-    size = { static_cast<float>(width), static_cast<float>(height) };
+void Screen::initialize(const ui::Size& size) {
+
+    Screen::size = size;
 
 #if GLFW
 
@@ -40,7 +44,11 @@ void Screen::initialize(int width, int height) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 #endif
 
-    glfw_window = glfwCreateWindow(width, height, "Test Engine", nullptr, nullptr);
+    glfw_window = glfwCreateWindow(static_cast<int>(size.width),
+                                   static_cast<int>(size.height),
+                                   "Test Engine",
+                                   nullptr,
+                                   nullptr);
 
     if (glfw_window == nullptr) {
         Error("GLFW window creation failed");
@@ -78,13 +86,11 @@ void Screen::initialize(int width, int height) {
     GL(glDisable(GL_DEPTH_TEST));
    // GL(glLineWidth(1000));
 
-    ui::config::set_drawer(new TestEngineDrawer());
+    ui::config::set_drawer(new te::Drawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
     Shader::initialize();
-
     Buffer::initialize();
-
 
     setup(); 
 
@@ -110,19 +116,23 @@ void Screen::update() {
 	Events::frame_drawn();
 }
 
+void Screen::set_size(const ui::Size& size) {
+    GL::set_viewport(size);
+    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    Buffer::window_size_changed();
+    Events::on_screen_size_change(size);
+    Screen::root_view->set_frame({ size });
+    Screen::update();
+}
+
 #ifdef GLFW
 
 static void size_changed(GLFWwindow* window, int width, int height) {
-    Screen::size = ui::Size(static_cast<float>(width), static_cast<float>(height));
-    GL::set_viewport({ static_cast<float>(width), static_cast<float>(height) });
-    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));    Buffer::window_size_changed();
-    Events::on_screen_size_change(Screen::size);
-    Screen::root_view->set_frame({ Screen::size });
-    Screen::update();
+    Screen::set_size({ static_cast<float>(width), static_cast<float>(height) });
     GL(glfwSwapBuffers(window));
 }
 
-static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int button, int action, [[maybe_unused]] int mods) {
     if (button != GLFW_MOUSE_BUTTON_LEFT)
         return;
     if (action == GLFW_PRESS)
@@ -131,7 +141,7 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
         ui::input::mouse->set_left_button_state(ui::Mouse::ButtonState::Up);
 }
 
-static void cursor_position_callback(GLFWwindow* window, double x, double y) {
+static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double x, double y) {
     ui::Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
     Events::cursor_moved(cursor_position);
     ui::input::mouse->position_changed(cursor_position);

@@ -12,6 +12,8 @@
 #include "TEDrawer.hpp"
 #include "TEImageDrawer.hpp"
 
+using namespace te;
+
 namespace cursor {
 static GLFWcursor* arrow;
 static GLFWcursor* text;
@@ -20,7 +22,7 @@ static GLFWcursor* h_resize;
 static GLFWcursor* v_resize;
 }
 
-TestEngineDrawer::TestEngineDrawer() {
+Drawer::Drawer() {
     cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
     cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
 #ifdef WIN32
@@ -32,30 +34,30 @@ TestEngineDrawer::TestEngineDrawer() {
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 }
 
-void TestEngineDrawer::_draw_rect(const ui::Rect& rect) {
+void Drawer::_draw_rect(const ui::Rect& rect) {
     GL::set_viewport(rect);
     Shader::ui.use();
     Shader::ui.set_uniform_color(ui::Color::green);
     Buffer::fullscreen->draw();
 }
 
-void TestEngineDrawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
+void Drawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
     GL::set_viewport(rect);
     Shader::ui.use();
     Shader::ui.set_uniform_color(color);
     Buffer::fullscreen->draw();
 }
 
-const ui::Rect TestEngineDrawer::_convert_rect(const ui::Rect& rect) {
+const ui::Rect Drawer::_convert_rect(const ui::Rect& rect) {
     return rect;
 }
 
-ui::Image::Drawer* TestEngineDrawer::init_image_drawer(ui::Image* image) {
+ui::Image::Drawer* Drawer::init_image_drawer(ui::Image* image) {
     return new TEImageDrawer(image);
 }
 
 #ifdef UI_DESKTOP
-void TestEngineDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
+void Drawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:
         glfwSetCursor(Screen::glfw_window, cursor::arrow);

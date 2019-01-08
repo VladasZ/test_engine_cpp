@@ -17,7 +17,7 @@
 
 int test_engine_main() {
     
-    Screen::initialize(1200, 880);
+    Screen::initialize({ 1200, 880 });
 	do {
 		GL(glfwPollEvents());
         Screen::update();

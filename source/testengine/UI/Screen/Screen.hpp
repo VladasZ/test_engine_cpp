@@ -39,10 +39,11 @@ public:
 
     static inline te::RootView* root_view = nullptr;
     
-    static void initialize(int width, int height);
+    static void initialize(const ui::Size& size);
     
     static void setup();
     
     static void update();
 
+    static void set_size(const ui::Size& size);
 };

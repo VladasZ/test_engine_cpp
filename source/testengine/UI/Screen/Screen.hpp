@@ -17,6 +17,10 @@ struct GLFWwindow;
 class DebugInfoView;
 #endif
 
+namespace te {
+class RootView;
+}
+
 class Screen {
         
     static void on_debug_tick();
@@ -32,6 +36,8 @@ public:
 #if GLFW
     static inline GLFWwindow* glfw_window = nullptr;
 #endif
+
+    static inline te::RootView* root_view = nullptr;
     
     static void initialize(int width, int height);
     

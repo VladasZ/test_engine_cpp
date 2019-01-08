@@ -14,22 +14,13 @@
 #include "Time.hpp"
 #include "GlobalEvents.hpp"
 #include "Buffer.hpp"
-#include "View.hpp"
-#include "Font.hpp"
 #include "TEDrawer.hpp"
-#include "ImageView.hpp"
-#include "Window.hpp"
 #include "Paths.hpp"
-#include "Glyph.hpp"
-#include "Label.hpp"
+#include "RootView.hpp"
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void cursor_position_callback(GLFWwindow* window, double x, double y);
-
-static ui::Window* new_view = nullptr;
-static ui::ImageView* new_image_view = nullptr;
-static ui::Label* new_label = nullptr;
 
 void Screen::initialize(int width, int height) {
 
@@ -101,18 +92,8 @@ void Screen::initialize(int width, int height) {
 }
 
 void Screen::setup() {
-
-    new_view = new ui::Window({ 100, 300, 200, 200 });
-    new_view->color = ui::Color::black;
-
-    new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
-	new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
-
-    new_label = new ui::Label({ 5, 5, 100, 20 });
-    new_label->set_text("Helloff");
-
-	new_view->add_subview(new_image_view);
-    new_view->add_subview(new_label);
+    root_view = new te::RootView({ Screen::size });
+    root_view->_setup();
 }
 
 void Screen::update() {
@@ -121,7 +102,7 @@ void Screen::update() {
     GL::set_viewport({ size });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	new_view->draw();
+    root_view->_draw();
 
     FPS = 1000000000 / Time::interval();
 
@@ -136,6 +117,7 @@ static void size_changed(GLFWwindow* window, int width, int height) {
     GL::set_viewport({ static_cast<float>(width), static_cast<float>(height) });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));    Buffer::window_size_changed();
     Events::on_screen_size_change(Screen::size);
+    Screen::root_view->set_frame({ Screen::size });
     Screen::update();
     GL(glfwSwapBuffers(window));
 }

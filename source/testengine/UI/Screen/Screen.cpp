@@ -92,7 +92,7 @@ void Screen::initialize(const ui::Size& size) {
 
     setup(); 
 
-    Events::on_screen_size_change(display_resolution);
+    //Events::on_screen_size_change(display_resolution);
 }
 
 void Screen::setup() {
@@ -108,24 +108,20 @@ void Screen::update() {
 
     root_view->_draw();
 
-    GL::set_viewport({100, 100});
-    Shader::ui.use();
-    Shader::ui.set_uniform_color(ui::Color::red);
-    Buffer::fullscreen->draw();
-
     FPS = 1000000000 / Time::interval();
 
     Screen::frames_drawn++;
-	Events::frame_drawn();
+    //Events::frame_drawn();
 }
 
 void Screen::set_size(const ui::Size& size) {
+    Screen::size = size;
     GL::set_viewport(size);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     Buffer::window_size_changed();
-    Events::on_screen_size_change(size);
-    Screen::root_view->set_frame({ size });
-    Screen::update();
+    //Events::on_screen_size_change(size);
+    root_view->set_frame({ size });
+    update();
 }
 
 #ifdef GLFW

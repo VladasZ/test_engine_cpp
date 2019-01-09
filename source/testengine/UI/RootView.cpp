@@ -36,8 +36,12 @@ void RootView::_setup() {
     stack_view = new ui::StackView({ 100, 100 });
     stack_view->color = ui::Color::green;
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++) {
+        auto label = new ui::Label({ 100, 20 });
+        label->set_text(std::string() + "hello" + std::to_string(i));
         stack_view->add_subview(ui::View::dummy());
+        stack_view->add_subview(label);
+    }
 
     add_subview(new_view);
     add_subview(stack_view);
@@ -52,6 +56,7 @@ void RootView::_layout() {
 
     stack_view->edit_frame([&](ui::Rect& frame) {
         frame.size.height = this->_frame.size.height;
+        frame.origin.x = _frame.size.width - frame.size.width;
     });
 
     _layout_subviews();

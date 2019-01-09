@@ -13,9 +13,7 @@
 
 struct GLFWwindow;
 
-#if DEBUG_VIEW
 class DebugInfoView;
-#endif
 
 namespace te {
 class RootView;
@@ -38,6 +36,8 @@ public:
 #endif
 
     static inline te::RootView* root_view = nullptr;
+
+    static inline DebugInfoView* debug_view = nullptr;
     
     static void initialize(const ui::Size& size);
     

@@ -17,6 +17,7 @@
 #include "TEDrawer.hpp"
 #include "RootView.hpp"
 #include "GlobalEvents.hpp"
+#include "DebugInfoView.hpp"
 
 #if GLFW
 
@@ -92,12 +93,14 @@ void Screen::initialize(const ui::Size& size) {
 
     setup(); 
 
-    //Events::on_screen_size_change(display_resolution);
+    Events::on_screen_size_change(display_resolution);
 }
 
 void Screen::setup() {
     root_view = new te::RootView({ Screen::size });
     root_view->_setup();
+    debug_view = new DebugInfoView({ 400, 120 });
+    debug_view->_setup();
 }
 
 void Screen::update() {
@@ -107,11 +110,12 @@ void Screen::update() {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     root_view->_draw();
+    debug_view->_draw();
 
     FPS = 1000000000 / Time::interval();
 
     Screen::frames_drawn++;
-    //Events::frame_drawn();
+    Events::frame_drawn();
 }
 
 void Screen::set_size(const ui::Size& size) {
@@ -119,7 +123,7 @@ void Screen::set_size(const ui::Size& size) {
     GL::set_viewport(size);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     Buffer::window_size_changed();
-    //Events::on_screen_size_change(size);
+    Events::on_screen_size_change(size);
     root_view->set_frame({ size });
     update();
 }

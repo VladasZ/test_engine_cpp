@@ -20,6 +20,7 @@ private:
     ui::Label* _fps_label;
     ui::Label* _frames_drawn_label;
     ui::Label* _cursor_position_label;
+    ui::Label* _touch_state_label;
 
 public:
 

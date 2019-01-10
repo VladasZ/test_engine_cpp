@@ -21,7 +21,7 @@ static ui::Label* new_label = nullptr;
 static ui::StackView* stack_view = nullptr;
 
 void RootView::_setup() {
-    new_view = new ui::Window({ 300, 300, 200, 200 });
+    new_view = new ui::Window({ 100, 100, 200, 200 });
     new_view->color = ui::Color::black;
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));

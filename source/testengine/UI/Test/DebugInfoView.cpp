@@ -18,13 +18,10 @@ void DebugInfoView::_setup() {
     _fps_label = new ui::Label();
     _frames_drawn_label = new ui::Label();
     _cursor_position_label = new ui::Label();
+    _touch_state_label = new ui::Label();
     info_label = new ui::Label();
 
-    _fps_label->set_text("_fps_label");
-    _frames_drawn_label->set_text("_frames_drawn_label");
-    _cursor_position_label->set_text("_cursor_position_label");
-
-    for (auto label : { _fps_label, _frames_drawn_label, _cursor_position_label, info_label }) {
+    for (auto label : { _fps_label, _frames_drawn_label, _cursor_position_label, _touch_state_label, info_label }) {
         label->resize_to_fit_text();
         _stack_view->add_subview(label);
     };
@@ -37,14 +34,16 @@ void DebugInfoView::_setup() {
     Events::frame_drawn.subscribe([&]{
         static int frames_drawn = 0;
         _frames_drawn_label->set_text(std::string() + "Frames drawn: " + std::to_string(++frames_drawn));
-        _frames_drawn_label->resize_to_fit_text();
         _fps_label->set_text(std::string() + "FPS: " + std::to_string(Screen::FPS));
-        _fps_label->resize_to_fit_text();
     });
 
     Events::cursor_moved.subscribe([&](ui::Point position){
         _cursor_position_label->set_text(std::string() + "Cursor: " + position.to_string());
-        _cursor_position_label->resize_to_fit_text();
+    });
+
+    Events::touch.subscribe([&](ui::Touch* touch){
+        _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
+        Log(touch->event_string());
     });
 }
 

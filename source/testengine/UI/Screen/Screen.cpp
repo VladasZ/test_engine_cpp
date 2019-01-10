@@ -88,10 +88,14 @@ void Screen::initialize(const ui::Size& size) {
     ui::config::set_drawer(new te::Drawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
+    ui::Input::on_touch_event([](ui::Touch* touch){
+        Events::touch(touch);
+    });
+
     Shader::initialize();
     Buffer::initialize();
 
-    setup(); 
+    setup();
 
     Events::on_screen_size_change(display_resolution);
 }
@@ -99,7 +103,7 @@ void Screen::initialize(const ui::Size& size) {
 void Screen::setup() {
     root_view = new te::RootView({ Screen::size });
     root_view->_setup();
-    debug_view = new DebugInfoView({ 400, 120 });
+    debug_view = new DebugInfoView({ 400, 108 });
     debug_view->_setup();
 }
 

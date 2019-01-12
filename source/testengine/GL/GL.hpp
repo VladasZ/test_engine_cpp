@@ -23,6 +23,6 @@
 #include "Shader.hpp"
 
 namespace GL {
-    void set_viewport(const ui::Rect& rect);
-    void set_clear_color(const ui::Color& color);
+    void set_viewport(const Rect& rect);
+    void set_clear_color(const Color& color);
 };

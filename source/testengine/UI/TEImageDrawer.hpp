@@ -28,7 +28,7 @@ public:
     TEImageDrawer(ui::Image*);
     ~TEImageDrawer() override;
 
-    void draw_in_rect(const ui::Rect&) override;
+    void draw_in_rect(const Rect&) override;
 
 private:
 

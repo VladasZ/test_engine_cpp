@@ -37,13 +37,12 @@ void DebugInfoView::_setup() {
         _fps_label->set_text(std::string() + "FPS: " + std::to_string(Screen::FPS));
     });
 
-    Events::cursor_moved.subscribe([&](ui::Point position){
+    Events::cursor_moved.subscribe([&](Point position){
         _cursor_position_label->set_text(std::string() + "Cursor: " + position.to_string());
     });
 
     Events::touch.subscribe([&](ui::Touch* touch){
         _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
-        Log(touch->event_string());
     });
 }
 
@@ -54,7 +53,7 @@ void DebugInfoView::_draw() {
 void DebugInfoView::_layout() {
     _calculate_absolute_frame();
 
-    _stack_view->edit_frame([&](ui::Rect& frame){
+    _stack_view->edit_frame([&](Rect& frame){
        frame.size = this->_frame.size;
     });
 

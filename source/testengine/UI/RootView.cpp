@@ -22,7 +22,7 @@ static ui::StackView* stack_view = nullptr;
 
 void RootView::_setup() {
     new_view = new ui::Window({ 100, 100, 200, 200 });
-    new_view->color = ui::Color::black;
+    new_view->color = Color::black;
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
     new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
@@ -34,7 +34,7 @@ void RootView::_setup() {
     new_view->add_subview(new_label);
 
     stack_view = new ui::StackView({ 100, 100 });
-    stack_view->color = ui::Color::green;
+    stack_view->color = Color::green;
 
     for (int i = 0; i < 5; i++) {
         auto label = new ui::Label({ 100, 20 });
@@ -54,7 +54,7 @@ void RootView::_draw() {
 void RootView::_layout() {
     _calculate_absolute_frame();
 
-    stack_view->edit_frame([&](ui::Rect& frame) {
+    stack_view->edit_frame([&](Rect& frame) {
         frame.size.height = this->_frame.size.height;
         frame.origin.x = _frame.size.width - frame.size.width;
     });

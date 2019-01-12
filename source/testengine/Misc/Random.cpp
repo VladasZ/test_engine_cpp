@@ -9,20 +9,20 @@
 #include "Random.hpp"
 #include "Array.hpp"
 
-ui::Color Random::color() {
+Color Random::color() {
 
-	static const Array<ui::Color> colors = {
-		ui::Color::black,
-		ui::Color::white,
-		ui::Color::red,
-		ui::Color::green,
-		ui::Color::blue,
-		ui::Color::light_blue,
-		ui::Color::yellow,
-		ui::Color::orange,
-		ui::Color::purple,
-		ui::Color::turquoise,
-		ui::Color::light_gray
+    static const Array<Color> colors = {
+        Color::black,
+        Color::white,
+        Color::red,
+        Color::green,
+        Color::blue,
+        Color::light_blue,
+        Color::yellow,
+        Color::orange,
+        Color::purple,
+        Color::turquoise,
+        Color::light_gray
 	};
 
 	return colors.random();

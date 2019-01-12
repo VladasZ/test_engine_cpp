@@ -28,8 +28,8 @@ public:
     static inline int FPS = 0;
     static inline int frames_drawn = 0;
     
-    static inline ui::Size size;
-    static inline ui::Size display_resolution;
+    static inline Size size;
+    static inline Size display_resolution;
     
 #if GLFW
     static inline GLFWwindow* glfw_window = nullptr;
@@ -39,11 +39,11 @@ public:
 
     static inline DebugInfoView* debug_view = nullptr;
     
-    static void initialize(const ui::Size& size);
+    static void initialize(const Size& size);
     
     static void setup();
     
     static void update();
 
-    static void set_size(const ui::Size& size);
+    static void set_size(const Size& size);
 };

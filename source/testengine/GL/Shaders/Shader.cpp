@@ -42,7 +42,7 @@ void Shader::initialize() {
     colored3D     = Shader("colored3D");
 }
 
-void Shader::set_uniform_color(const ui::Color& color) {
+void Shader::set_uniform_color(const Color& color) {
     if (_uniform_color == -1)
         _uniform_color = glGetUniformLocation(_program, "uniformColor");
 	GL(glUniform4fv(_uniform_color, 1, &color.r));

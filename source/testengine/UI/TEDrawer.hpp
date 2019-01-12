@@ -24,9 +24,9 @@ public:
 
 private:
 
-	void _draw_rect(const ui::Rect& rect) override;
-	void _fill_rect(const ui::Rect& rect, const ui::Color& color) override;
-	const ui::Rect _convert_rect(const ui::Rect& rect) override;
+    void _draw_rect(const Rect& rect) override;
+    void _fill_rect(const Rect& rect, const Color& color) override;
+    const Rect _convert_rect(const Rect& rect) override;
 
 public:
 

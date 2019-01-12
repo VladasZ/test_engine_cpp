@@ -27,7 +27,7 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
 #endif
 
-void Screen::initialize(const ui::Size& size) {
+void Screen::initialize(const Size& size) {
 
     Screen::size = size;
 
@@ -109,7 +109,7 @@ void Screen::setup() {
 
 void Screen::update() {
 
-    GL::set_clear_color(ui::C::gray);
+    GL::set_clear_color(Color::gray);
     GL::set_viewport({ size });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
@@ -122,7 +122,7 @@ void Screen::update() {
     Events::frame_drawn();
 }
 
-void Screen::set_size(const ui::Size& size) {
+void Screen::set_size(const Size& size) {
     Screen::size = size;
     GL::set_viewport(size);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -149,7 +149,7 @@ static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int butto
 }
 
 static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double x, double y) {
-    ui::Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
+    Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
     Events::cursor_moved(cursor_position);
     ui::input::mouse->position_changed(cursor_position);
 }

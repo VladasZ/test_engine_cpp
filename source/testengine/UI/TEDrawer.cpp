@@ -34,21 +34,21 @@ Drawer::Drawer() {
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 }
 
-void Drawer::_draw_rect(const ui::Rect& rect) {
+void Drawer::_draw_rect(const Rect& rect) {
     GL::set_viewport(rect);
     Shader::ui.use();
-    Shader::ui.set_uniform_color(ui::Color::green);
+    Shader::ui.set_uniform_color(Color::green);
     Buffer::fullscreen->draw();
 }
 
-void Drawer::_fill_rect(const ui::Rect& rect, const ui::Color& color) {
+void Drawer::_fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
     Shader::ui.use();
     Shader::ui.set_uniform_color(color);
     Buffer::fullscreen->draw();
 }
 
-const ui::Rect Drawer::_convert_rect(const ui::Rect& rect) {
+const Rect Drawer::_convert_rect(const Rect& rect) {
     return rect;
 }
 

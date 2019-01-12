@@ -64,8 +64,8 @@ void Buffer::draw() const {
 
 void Buffer::initialize() {
 
-    static const ui::Rect fulscreen_rect { -1, -1,  2,  2 };
-    static const ui::Rect almost_fulscreen_rect { -0.999f, -0.999f,  1.999f,  1.999f };
+    static const Rect fulscreen_rect { -1, -1,  2,  2 };
+    static const Rect almost_fulscreen_rect { -0.999f, -0.999f,  1.999f,  1.999f };
 
     fullscreen = new Buffer(BufferData::from_rect(fulscreen_rect), BufferConfiguration::_2);
     
@@ -90,7 +90,7 @@ void Buffer::window_size_changed() {
 
     const auto height_ratio = Screen::display_resolution.height / Screen::size.height;
 
-    const ui::Rect rect {
+    const Rect rect {
 	   -1, 
 	   -1 + 2 * (1 - height_ratio),
         2 * (Screen::display_resolution.width / Screen::size.width),

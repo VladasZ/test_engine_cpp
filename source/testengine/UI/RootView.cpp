@@ -12,17 +12,18 @@
 #include "Label.hpp"
 #include "Paths.hpp"
 #include "StackView.hpp"
+#include "Rect.hpp"
 
 using namespace te;
 
-static ui::Window* new_view = nullptr;
+static ui::Window* window = nullptr;
 static ui::ImageView* new_image_view = nullptr;
 static ui::Label* new_label = nullptr;
 static ui::StackView* stack_view = nullptr;
 
 void RootView::_setup() {
-    new_view = new ui::Window({ 100, 100, 200, 200 });
-    new_view->color = Color::black;
+    window = new ui::Window({ 100, 100, 200, 200 });
+    window->color = Color::black;
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
     new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
@@ -30,8 +31,8 @@ void RootView::_setup() {
     new_label = new ui::Label({ 5, 5, 100, 20 });
     new_label->set_text("Helloff");
 
-    new_view->add_subview(new_image_view);
-    new_view->add_subview(new_label);
+    window->add_subview(new_image_view);
+    window->add_subview(new_label);
 
     stack_view = new ui::StackView({ 100, 100 });
     stack_view->color = Color::green;
@@ -43,7 +44,13 @@ void RootView::_setup() {
         stack_view->add_subview(label);
     }
 
-    add_subview(new_view);
+    auto bot_v = new ui::View({ 10, 10 });
+    bot_v->color = Color::green;
+    bot_v->add_layout(new ui::Layout(Edge::Bottom, 5));
+
+    window->add_subview(bot_v);
+
+    add_subview(window);
     add_subview(stack_view);
 }
 

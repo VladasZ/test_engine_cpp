@@ -27,6 +27,7 @@ void RootView::_setup() {
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
     new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
+    new_image_view->add_layout({ ui::Anchor::Background});
 
     new_label = new ui::Label({ 5, 5, 100, 20 });
     new_label->set_text("Helloff");
@@ -44,13 +45,31 @@ void RootView::_setup() {
         stack_view->add_subview(label);
     }
 
-    auto bot_v = new ui::View({ 100, 100, 20, 20 });
+    auto bot_v = new ui::View();
     bot_v->color = Color::green.with_alpha(0.4f);
 
-    bot_v->add_layout({{ ui::Anchor::Background, 5 },
-                       { ui::Anchor::None,  5 }});
+    bot_v->add_layout({{ ui::Anchor::Width,  30},
+                       { ui::Anchor::TR,  5 },
+                       { ui::Anchor::Bottom, 5 }});
 
     window->add_subview(bot_v);
+
+
+    auto bot_v2 = new ui::View();
+    bot_v2->color = Color::green.with_alpha(0.4f);
+
+    bot_v2->add_layout({{ ui::Anchor::Size,  30},
+                        { ui::Anchor::TL,  5 }});
+
+    window->add_subview(bot_v2);
+
+    auto bot_v3 = new ui::View();
+    bot_v3->color = Color::green.with_alpha(0.4f);
+
+    bot_v3->add_layout({{ ui::Anchor::Size,  30},
+                        { ui::Anchor::BL,  5 }});
+
+    window->add_subview(bot_v3);
 
     add_subview(window);
     add_subview(stack_view);

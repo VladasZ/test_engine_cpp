@@ -44,11 +44,11 @@ void RootView::_setup() {
         stack_view->add_subview(label);
     }
 
-    auto bot_v = new ui::View({ 20, 20 });
+    auto bot_v = new ui::View({ 100, 100, 20, 20 });
     bot_v->color = Color::green.with_alpha(0.4f);
 
-    bot_v->add_layout({{ ui::Anchor::Top },
-                       { ui::Anchor::Right }});
+    bot_v->add_layout({{ ui::Anchor::Background, 5 },
+                       { ui::Anchor::None,  5 }});
 
     window->add_subview(bot_v);
 

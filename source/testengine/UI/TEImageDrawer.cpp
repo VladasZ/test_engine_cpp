@@ -61,6 +61,10 @@ TEImageDrawer::~TEImageDrawer() {
 }
 
 void TEImageDrawer::draw_in_rect(const Rect& rect) {
+
+    if (rect.size.is_negative())
+        return;
+
     GL(glBindTexture(GL_TEXTURE_2D, _id));
     if (this->_ui_image->is_monochrome())
         Shader::ui_monochrome.use();

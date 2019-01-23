@@ -27,7 +27,7 @@ void RootView::_setup() {
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
     new_image_view->set_content_mode(ui::ImageView::ContentMode::AspectFit);
-    new_image_view->add_layout({ ui::Anchor::Background});
+    new_image_view->add_layout({ ui::Anchor::Background });
 
     new_label = new ui::Label({ 5, 5, 100, 20 });
     new_label->set_text("Helloff");

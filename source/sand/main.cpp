@@ -14,6 +14,7 @@ struct loophole_t {
 
 auto loophole(tag<0>);
 
+
 int main() {
 
     sizeof( loophole_t<std::string, 0> );

@@ -38,14 +38,12 @@ public:
     static Shader ui;
     static Shader ui_texture;
     static Shader ui_monochrome;
-    static Shader ui_path;
-    static Shader sprite;
     
     static Shader simple3D;
     static Shader colored3D;
 
     void use() const;
-	int get_program_id() const { return _program; }
+    unsigned int get_program_id() const;
 
     void set_uniform_color(const Color& color);
 	void set_mvp_matrix(const Matrix4& mvp);

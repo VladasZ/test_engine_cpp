@@ -17,8 +17,6 @@
 Shader Shader::ui;
 Shader Shader::ui_texture;
 Shader Shader::ui_monochrome;
-Shader Shader::ui_path;
-Shader Shader::sprite;
 Shader Shader::simple3D;
 Shader Shader::colored3D;
 
@@ -32,30 +30,32 @@ void Shader::use() const {
     GL(glUseProgram(_program));
 }
 
+unsigned int Shader::get_program_id() const {
+    return _program;
+}
+
 void Shader::initialize() {
     ui            = Shader("ui");
     ui_texture    = Shader("ui_texture");
     ui_monochrome = Shader("ui_monochrome");
-    ui_path       = Shader("ui_path");
-    sprite        = Shader("sprite");
     simple3D      = Shader("simple3D");
     colored3D     = Shader("colored3D");
 }
 
 void Shader::set_uniform_color(const Color& color) {
     if (_uniform_color == -1)
-        _uniform_color = glGetUniformLocation(_program, "uniformColor");
+        _uniform_color = glGetUniformLocation(_program, "uniform_color");
 	GL(glUniform4fv(_uniform_color, 1, &color.r));
 }
 
 void Shader::set_mvp_matrix(const Matrix4& mvp) {
 	if (_mvp_matrix == -1)
-		_mvp_matrix = glGetUniformLocation(_program, "mvpMatrix");
+        _mvp_matrix = glGetUniformLocation(_program, "mvp_matrix");
 	GL(glUniformMatrix4fv(_mvp_matrix, 1, false, &mvp.data[0][0]));
 }
 
 void Shader::set_uniform_position(float x, float y) {
     if (_uniform_position == -1)
-        _uniform_position = glGetUniformLocation(_program, "uniformPosition");
+        _uniform_position = glGetUniformLocation(_program, "uniform_position");
     glUniform2f(_uniform_position, x, y);
 }

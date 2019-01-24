@@ -29,8 +29,8 @@ unsigned int ShaderCompiler::compile(const string& vertex_path, const string& fr
     
 #if SHADER_COMPILER_OUTPUT
     
-    Log(vertexPath);
-    Log(fragmentPath);
+    Log(vertex_path);
+    Log(fragment_path);
     
 #endif
     
@@ -60,7 +60,7 @@ unsigned int ShaderCompiler::compile(const string& vertex_path, const string& fr
 	int info_log_length;
     
 #if SHADER_COMPILER_OUTPUT
-    Log("Compiling shader :" << vertexPath.c_str());
+    Log("Compiling shader :" << vertex_path.c_str());
 #endif
     
 	char const* vertex_source_pointer = vertex_shader_code.c_str();
@@ -77,7 +77,7 @@ unsigned int ShaderCompiler::compile(const string& vertex_path, const string& fr
 	}
 
 #if SHADER_COMPILER_OUTPUT
-    Log("Compiling shader :" << fragmentPath.c_str());
+    Log("Compiling shader :" << fragment_path.c_str());
 #endif
 
 	char const* fragment_source_pointer = fragment_shader_code.c_str();

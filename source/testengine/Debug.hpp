@@ -14,8 +14,8 @@
 #ifdef DEBUG
 
 #define DEBUG_VIEW true
-#define RENDERING_ERRORS_OUTPUT false
-#define SHADER_COMPILER_OUTPUT false
+#define RENDERING_ERRORS_OUTPUT true
+#define SHADER_COMPILER_OUTPUT true
 #define IMAGES_LOADING_OUTPUT false
 #define DRAW_DEBUG_FRAMES false
 

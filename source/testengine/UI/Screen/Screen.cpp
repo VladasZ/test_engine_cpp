@@ -13,6 +13,8 @@
 #include "Time.hpp"
 #include "Paths.hpp"
 #include "Scene.hpp"
+#include "Camera.hpp"
+#include "Object.hpp"
 #include "Screen.hpp"
 #include "Buffer.hpp"
 #include "TEDrawer.hpp"
@@ -99,6 +101,9 @@ void Screen::initialize(const Size& size) {
     setup();
 
     scene::Scene sc;
+
+
+    sc.camera->fov = 5;
 
     Events::on_screen_size_change(display_resolution);
 }

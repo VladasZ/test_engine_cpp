@@ -7,6 +7,7 @@
 //
 
 #include "Paths.hpp"
+#include "System.hpp"
 
 std::string Paths::assets_directory() {
 #ifdef WINDOWS
@@ -14,7 +15,7 @@ std::string Paths::assets_directory() {
 #elif defined (APPLE)
     return "/Users/vladaszakrevskis/dev/projects/testengine/Assets/";
 #else
-  return "/home/vladas/dev/projects/testengine/Assets/";
+  return std::string() + "/home/" + System::user_name() + "/dev/projects/testengine/Assets/";
 #endif
 }
 

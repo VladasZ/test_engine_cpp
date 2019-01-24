@@ -6,38 +6,41 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "BufferConfiguration.hpp"
 #include "GL.hpp"
 #include "Debug.hpp"
-#include "Log.hpp"
+#include "BufferConfiguration.hpp"
 
-BufferConfiguration::BufferConfiguration(int firstParam, int secondParam, int thirdParam) {
+BufferConfiguration::BufferConfiguration(uint8_t first_param, uint8_t second_param, uint8_t third_param) {
     
-    if (firstParam == 0) { Error("Zero configuration"); return; }
+    if (first_param == 0) {
+        Error("Zero BufferConfiguration");
+        throw "Zero BufferConfiguration";
+    }
     
-                                 configuration[0] = firstParam;
-    if (secondParam > 0) size++; configuration[1] = secondParam;
-    if (thirdParam  > 0) size++; configuration[2] = thirdParam;
+                                  configuration[0] = first_param;
+    if (second_param > 0) size++; configuration[1] = second_param;
+    if (third_param  > 0) size++; configuration[2] = third_param;
     
-    for (int i = 0; i < size; i ++)
-        vertexSize += configuration[i];
+    for (uint8_t i = 0; i < size; i ++)
+        vertex_size += configuration[i];
 }
 
-int BufferConfiguration::strideForIndex(int index) const {
+uint8_t BufferConfiguration::stride_for_index(uint8_t index) const {
     
-    if (index == 0) return 0;
+    if (index == 0)
+        return 0;
     
-    int stride = vertexSize;
+    uint8_t stride = vertex_size;
     
-    for (int i = size - 1; i >= index; i--)
+    for (uint8_t i = size - 1; i >= index; i--)
         stride -= configuration[i];
     
     return stride;
 }
 
-void BufferConfiguration::setPointers() const {
+void BufferConfiguration::set_pointers() const {
     
-    for (int i = 0; i < size; i++) {
+    for (uint8_t i = 0; i < size; i++) {
         
         int attribureSize = configuration[i];
         
@@ -47,8 +50,8 @@ void BufferConfiguration::setPointers() const {
                                  attribureSize,
                                  GL_FLOAT,
                                  GL_FALSE,
-                                 vertexSize* sizeof(GLfloat),
-                                 (GLvoid*)(strideForIndex(i)* sizeof(GLfloat))));
+                                 vertex_size* sizeof(GLfloat),
+                                 reinterpret_cast<GLvoid*>((stride_for_index(i) * sizeof(GLfloat)))));
     }
 }
 

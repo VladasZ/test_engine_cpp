@@ -8,22 +8,24 @@
 
 #pragma once
 
+#include <cstdint>
+
 class Buffer;
 
 class BufferConfiguration {
     
-    unsigned int configuration[3];
-    unsigned int size = 1;
+    uint8_t configuration[3];
+    uint8_t size = 1;
     
-    unsigned int vertexSize = 0;
+    uint8_t vertex_size = 0;
     
-    int strideForIndex(int index) const;
+    uint8_t stride_for_index(uint8_t index) const;
     
-    void setPointers() const;
+    void set_pointers() const;
 
     friend Buffer;
 
-    BufferConfiguration(int firstParam, int secondParam, int thirdParam);
+    BufferConfiguration(uint8_t, uint8_t, uint8_t);
     
 public:
 

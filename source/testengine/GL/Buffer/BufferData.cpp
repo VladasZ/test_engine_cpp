@@ -12,33 +12,25 @@
 
 static const GLushort indices[] = { 0, 1, 3, 2 };
 
-BufferData::BufferData(const GLfloat* vert_data, GLuint vert_size)
-:
-vert_size(vert_size)
-{
-    this->vert_data = (GLfloat*)malloc(vert_size);
+BufferData::BufferData(const GLfloat* vert_data, GLuint vert_size) : vert_size(vert_size) {
+    this->vert_data = static_cast<GLfloat*>(malloc(vert_size));
     memcpy(this->vert_data, vert_data, vert_size);
 }
 
 BufferData::BufferData(const GLfloat* vert_data, GLuint vert_size,
-                       const GLushort* ind_data, GLuint ind_size)
-:
-vert_size(vert_size),
-ind_size(ind_size)
-{
-    this->vert_data = (GLfloat*)malloc(vert_size);
+                       const GLushort* ind_data, GLuint ind_size) : vert_size(vert_size), ind_size(ind_size) {
+    this->vert_data = static_cast<GLfloat*>(malloc(vert_size));
     memcpy(this->vert_data, vert_data, vert_size);
     
-    this->ind_data = (GLushort*)malloc(ind_size);
+    this->ind_data = static_cast<GLushort*>(malloc(ind_size));
     memcpy(this->ind_data, ind_data, ind_size);
 }
 
-BufferData* BufferData::setIndices(const Array<GLushort>& indices) {
+void BufferData::set_indices(const Array<GLushort>& indices) {
     if (ind_data) free(ind_data);
-    ind_size = (GLuint)(indices.size() * sizeof(GLushort));
-    ind_data = (GLushort *)malloc(ind_size);
+    ind_size = static_cast<GLuint>(indices.size() * sizeof(GLushort));
+    ind_data = static_cast<GLushort*>(malloc(ind_size));
     memcpy(this->ind_data, indices.data(), ind_size);
-    return this;
 }
 
 BufferData* BufferData::from_size(const Size& size) {
@@ -48,7 +40,6 @@ BufferData* BufferData::from_size(const Size& size) {
 		size.width, size.height,
 		size.width, 0
 	};
-
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
@@ -59,7 +50,6 @@ BufferData* BufferData::from_rect(const Rect& rect) {
 		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y,
 		rect.size.width + rect.origin.x, rect.origin.y
 	};
-
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
@@ -70,7 +60,6 @@ BufferData* BufferData::from_rect_to_image(const Rect& rect) {
         rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  0.0f, //| _|
         rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| -|
 	};
-
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 
@@ -81,7 +70,6 @@ BufferData* BufferData::from_rect_to_framebuffer(const Rect& rect) {
 		rect.size.width + rect.origin.x, rect.size.height + rect.origin.y, 1.0f,  0.0f, //| -|
 		rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| _|
 	};
-
 	return new BufferData(data, sizeof(data), indices, sizeof(indices));
 }
 

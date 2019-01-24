@@ -28,7 +28,7 @@ Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : dat
         indices_count = data->ind_size / sizeof(GLushort);
     }
     
-    configuration.setPointers();
+    configuration.set_pointers();
     GL(glEnableVertexAttribArray(0));
     GL(glBindVertexArray(0));
 }
@@ -38,14 +38,15 @@ Buffer::Buffer(GLfloat* vert_data, GLuint vert_size, const BufferConfiguration& 
 Buffer(new BufferData(vert_data, vert_size), configuration) { }
 
 Buffer::Buffer(GLfloat* vert_data, GLuint vert_size,
-               GLushort* ind_data,  GLuint ind_size,
+               GLushort* ind_data, GLuint ind_size,
                const BufferConfiguration& configuration)
 :
 Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));
-    if (index_buffer_object != 0) GL(glDeleteBuffers(1, &index_buffer_object));
+    if (index_buffer_object != 0)
+        GL(glDeleteBuffers(1, &index_buffer_object));
     GL(glDeleteVertexArrays(1, &vertex_array_object));
     delete data;
 }
@@ -77,7 +78,7 @@ void Buffer::initialize() {
 
     auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
     
-    outline_data->setIndices({ 0, 1, 2, 3 });
+    outline_data->set_indices({ 0, 1, 2, 3 });
     fullscreen_outline = new Buffer(outline_data, BufferConfiguration::_2);
     
     fullscreen_outline->draw_mode = GL_LINE_LOOP;
@@ -87,7 +88,8 @@ void Buffer::initialize() {
 
 void Buffer::window_size_changed() {
 
-    if (root_ui_buffer != nullptr) delete root_ui_buffer;
+    if (root_ui_buffer != nullptr)
+        delete root_ui_buffer;
 
     const auto height_ratio = Screen::display_resolution.height / Screen::size.height;
 

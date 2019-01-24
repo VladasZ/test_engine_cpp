@@ -53,9 +53,3 @@ void Shader::set_mvp_matrix(const Matrix4& mvp) {
         _mvp_matrix = glGetUniformLocation(_program, "mvp_matrix");
 	GL(glUniformMatrix4fv(_mvp_matrix, 1, false, &mvp.data[0][0]));
 }
-
-void Shader::set_uniform_position(float x, float y) {
-    if (_uniform_position == -1)
-        _uniform_position = glGetUniformLocation(_program, "uniform_position");
-    glUniform2f(_uniform_position, x, y);
-}

@@ -47,5 +47,4 @@ public:
 
     void set_uniform_color(const Color& color);
 	void set_mvp_matrix(const Matrix4& mvp);
-    void set_uniform_position(float x, float y);
 };

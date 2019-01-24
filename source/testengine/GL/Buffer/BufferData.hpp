@@ -16,11 +16,11 @@ class Buffer;
 
 class BufferData {
     
-    GLfloat* vert_data = nullptr;
-    GLuint vert_size = 0;
+    GLfloat* vert_data;
+    GLuint vert_size;
     
-    GLushort* ind_data = nullptr;
-    GLuint ind_size = 0;
+    GLushort* ind_data;
+    GLuint ind_size;
     
     friend Buffer;
     
@@ -31,12 +31,12 @@ public:
     BufferData(const GLfloat* vert_data,  GLuint vert_size,
                const GLushort* ind_data,  GLuint ind_size);
     
-    BufferData* setIndices(const Array<GLushort>& indices);
+    void set_indices(const Array<GLushort>&);
     
-    static BufferData* from_size(const Size& size);
-    static BufferData* from_rect(const Rect& rect);
-    static BufferData* from_rect_to_image(const Rect& rect);
-    static BufferData* from_rect_to_framebuffer(const Rect& rect);
+    static BufferData* from_size(const Size&);
+    static BufferData* from_rect(const Rect&);
+    static BufferData* from_rect_to_image(const Rect&);
+    static BufferData* from_rect_to_framebuffer(const Rect&);
 
     ~BufferData();
 };

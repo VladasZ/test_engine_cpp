@@ -13,7 +13,7 @@ std::string Paths::assets_directory() {
 #ifdef WINDOWS
 	return "C:\\Users\\u.zakreuskis\\dev\\projects\\testengine\\Assets\\";
 #elif defined (APPLE)
-    return "/Users/vladaszakrevskis/dev/projects/testengine/Assets/";
+    return std::string() + "/Users/" + System::user_name() + "/dev/projects/testengine/Assets/";
 #else
   return std::string() + "/home/" + System::user_name() + "/dev/projects/testengine/Assets/";
 #endif

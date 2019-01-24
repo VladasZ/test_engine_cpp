@@ -6,6 +6,7 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#include "GL.hpp"
 #include "Buffer.hpp"
 #include "Screen.hpp"
 #include "Image.hpp"

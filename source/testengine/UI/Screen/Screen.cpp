@@ -96,7 +96,7 @@ void Screen::initialize(const Size& size) {
     });
 
     Shader::initialize();
-    Buffer::initialize();
+    Buffer::initialize(display_resolution, size);
 
     setup();
 
@@ -134,7 +134,7 @@ void Screen::set_size(const Size& size) {
     Screen::size = size;
     GL::set_viewport(size);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-    Buffer::window_size_changed();
+    Buffer::window_size_changed(display_resolution, size);
     Events::on_screen_size_change(size);
     root_view->set_frame({ size });
     update();

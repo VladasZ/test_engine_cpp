@@ -6,11 +6,13 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "Buffer.hpp"
+#include "GL.hpp"
 #include "Debug.hpp"
-#include "Screen.hpp"
+#include "Buffer.hpp"
+#include "BufferData.hpp"
+#include "BufferConfiguration.hpp"
 
-Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data) {
+Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLE_STRIP) {
     
     vertices_count = data->vert_size / (sizeof(float) * configuration.configuration[0]);
     
@@ -64,7 +66,7 @@ void Buffer::draw() const {
     GL(glBindVertexArray(0));
 }
 
-void Buffer::initialize() {
+void Buffer::initialize(const Size& display_resolution, const Size& window_size) {
 
     static const Rect fulscreen_rect { -1, -1,  2,  2 };
     static const Rect almost_fulscreen_rect { -0.999f, -0.999f,  1.999f,  1.999f };
@@ -83,20 +85,20 @@ void Buffer::initialize() {
     
     fullscreen_outline->draw_mode = GL_LINE_LOOP;
     
-    window_size_changed();
+    window_size_changed(display_resolution, window_size);
 }
 
-void Buffer::window_size_changed() {
+void Buffer::window_size_changed(const Size& display_resolution, const Size& window_size) {
 
     if (root_ui_buffer != nullptr)
         delete root_ui_buffer;
 
-    const auto height_ratio = Screen::display_resolution.height / Screen::size.height;
+    const auto height_ratio = display_resolution.height / window_size.height;
 
     const Rect rect {
 	   -1, 
 	   -1 + 2 * (1 - height_ratio),
-        2 * (Screen::display_resolution.width / Screen::size.width),
+        2 * (display_resolution.width / window_size.width),
 	    2 * height_ratio
     };
 

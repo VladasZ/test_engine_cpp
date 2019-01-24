@@ -8,41 +8,41 @@
 
 #pragma once
 
-#include "GL.hpp"
-#include "NonCopyable.hpp"
-#include "BufferData.hpp"
-#include "BufferConfiguration.hpp"
+class Size;
+class BufferData;
+class BufferConfiguration;
 
-class Buffer : public NonCopyable {
+class Buffer {
     
     BufferData* data;
     
-    GLuint vertex_array_object  = 0;
-    GLuint vertex_buffer_object = 0;
-    GLuint index_buffer_object  = 0;
+    unsigned int vertex_array_object  = 0;
+    unsigned int vertex_buffer_object = 0;
+    unsigned int index_buffer_object  = 0;
     
     unsigned int vertices_count = 0;
     unsigned int indices_count  = 0;
 
 public:
     
-    GLenum draw_mode = GL_TRIANGLE_STRIP;
+    unsigned int draw_mode;
     
     Buffer(BufferData* data, const BufferConfiguration& configuration);
     
-    Buffer(GLfloat* vert_data, GLuint vert_size, const BufferConfiguration& configuration);
+    Buffer(float* vert_data, unsigned int vert_size,
+           const BufferConfiguration& configuration);
     
-    Buffer(GLfloat* vert_data, GLuint vert_size,
-           GLushort* ind_data, GLuint ind_size,
+    Buffer(float*          vert_data, unsigned int vert_size,
+           unsigned short* ind_data,  unsigned int ind_size,
            const BufferConfiguration& configuration);
 
     ~Buffer();
         
     void draw() const;
 
-    static void initialize();
+    static void initialize(const Size& display_resolution, const Size& window_size);
 
-    static void window_size_changed();
+    static void window_size_changed(const Size& display_resolution, const Size& window_size);
 
     static inline Buffer* fullscreen         = nullptr;
     static inline Buffer* fullscreen_image   = nullptr;

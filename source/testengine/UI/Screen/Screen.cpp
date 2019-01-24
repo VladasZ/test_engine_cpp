@@ -12,6 +12,7 @@
 #include "Log.hpp"
 #include "Time.hpp"
 #include "Paths.hpp"
+#include "Scene.hpp"
 #include "Screen.hpp"
 #include "Buffer.hpp"
 #include "TEDrawer.hpp"
@@ -96,6 +97,8 @@ void Screen::initialize(const Size& size) {
     Buffer::initialize();
 
     setup();
+
+    scene::Scene sc;
 
     Events::on_screen_size_change(display_resolution);
 }

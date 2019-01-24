@@ -14,8 +14,18 @@ add_definitions(-DUI_DESKTOP=1)
 
 conan_basic_setup()
 
+set(curlik 1)
+
+message(${curlik})
+
+if (${curlik} EQUAL 1)
+  message("ooo")
+else()
+  message("fuu")
+endif()
+
 add_subdirectory(source/ui)
 add_subdirectory(source/sand)
-add_subdirectory(source/sand_lib)
+add_subdirectory(source/scene)
 add_subdirectory(source/cpp_utils)
 add_subdirectory(source/testengine)

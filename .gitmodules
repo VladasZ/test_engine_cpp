@@ -7,3 +7,6 @@
 [submodule "build_tools"]
 	path = build_tools
 	url = https://github.com/VladasZ/build_tools.git
+[submodule "source/scene"]
+	path = source/scene
+	url = https://github.com/VladasZ/scene.git

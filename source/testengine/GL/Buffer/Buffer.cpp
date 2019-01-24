@@ -6,7 +6,10 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include <string>
+
 #include "GL.hpp"
+#include "Mesh.hpp"
 #include "Debug.hpp"
 #include "Buffer.hpp"
 #include "BufferData.hpp"
@@ -35,15 +38,27 @@ Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : dat
     GL(glBindVertexArray(0));
 }
 
-Buffer::Buffer(GLfloat* vert_data, GLuint vert_size, const BufferConfiguration& configuration)
-:
-Buffer(new BufferData(vert_data, vert_size), configuration) { }
-
-Buffer::Buffer(GLfloat* vert_data, GLuint vert_size,
-               GLushort* ind_data, GLuint ind_size,
+Buffer::Buffer(const GLfloat* vert_data,
+               GLuint vert_size,
                const BufferConfiguration& configuration)
-:
-Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
+: Buffer(new BufferData(vert_data, vert_size), configuration) { }
+
+Buffer::Buffer(const GLfloat* vert_data, GLuint vert_size,
+               const GLushort* ind_data, GLuint ind_size,
+               const BufferConfiguration& configuration)
+: Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
+
+Buffer::Buffer(const std::vector<GLfloat>& vertices,
+               const std::vector<GLushort>& indices,
+               const BufferConfiguration& configuration)
+: Buffer(vertices.data(), static_cast<GLuint>(vertices.size()), indices.data(), static_cast<GLuint>(indices.size()), configuration) { }
+
+Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration)
+    : Buffer(reinterpret_cast<const GLfloat*>(mesh->vertices.data()),
+             static_cast<GLuint>(mesh->vertices.size() * 3),
+             reinterpret_cast<const GLushort*>(mesh->indices.data()),
+             static_cast<GLuint>(mesh->indices.size()),
+             configuration) { }
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));
@@ -54,7 +69,7 @@ Buffer::~Buffer() {
 }
 
 void Buffer::draw() const {
- 
+
     GL(glBindVertexArray(vertex_array_object));
     
     if (data->ind_size == 0) {
@@ -66,6 +81,17 @@ void Buffer::draw() const {
     GL(glBindVertexArray(0));
 }
 
+const char* Buffer::to_string(unsigned int new_line) const {
+    static std::string string;
+    string = "\n";
+    for (GLuint i = 0; i < data->vert_size; i++) {
+        string += std::to_string(data->vert_data[i]) + " ";
+        if ((i + 1) % (new_line) == 0)
+            string += "\n";
+    }
+    return string.c_str();
+}
+
 void Buffer::initialize(const Size& display_resolution, const Size& window_size) {
 
     static const Rect fulscreen_rect { -1, -1,  2,  2 };
@@ -73,10 +99,7 @@ void Buffer::initialize(const Size& display_resolution, const Size& window_size)
 
     fullscreen = new Buffer(BufferData::from_rect(fulscreen_rect), BufferConfiguration::_2);
     
-    fullscreen_image = new Buffer(
-		BufferData::from_rect_to_image(fulscreen_rect),
-        BufferConfiguration::_2_2
-    );
+    fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2);
 
     auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
     
@@ -96,14 +119,11 @@ void Buffer::window_size_changed(const Size& display_resolution, const Size& win
     const auto height_ratio = display_resolution.height / window_size.height;
 
     const Rect rect {
-	   -1, 
-	   -1 + 2 * (1 - height_ratio),
-        2 * (display_resolution.width / window_size.width),
-	    2 * height_ratio
+        -1,
+        -1 + 2 * (1 - height_ratio),
+                2 * (display_resolution.width / window_size.width),
+                2 * height_ratio
     };
 
-    root_ui_buffer = new Buffer(
-		BufferData::from_rect_to_framebuffer(rect),
-        BufferConfiguration::_2_2
-    );
+    root_ui_buffer = new Buffer(BufferData::from_rect_to_framebuffer(rect), BufferConfiguration::_2_2);
 }

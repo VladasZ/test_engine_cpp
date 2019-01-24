@@ -10,6 +10,8 @@
 
 #include "GL.hpp"
 #include "Log.hpp"
+#include "Box.hpp"
+#include "Mesh.hpp"
 #include "Time.hpp"
 #include "Paths.hpp"
 #include "Scene.hpp"
@@ -21,6 +23,7 @@
 #include "RootView.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
+#include "BufferConfiguration.hpp"
 
 #if GLFW
 
@@ -106,6 +109,17 @@ void Screen::initialize(const Size& size) {
     sc.camera->fov = 5;
 
     Events::on_screen_size_change(display_resolution);
+
+
+    scene::Box box;
+
+    Buffer buf { box.mesh(), BufferConfiguration::_3 };
+
+    Info(box.mesh()->vertices.size());
+    Info(box.mesh()->to_string());
+
+    Info(buf.to_string());
+
 }
 
 void Screen::setup() {

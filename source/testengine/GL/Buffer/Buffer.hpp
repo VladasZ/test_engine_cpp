@@ -8,6 +8,12 @@
 
 #pragma once
 
+#include <vector>
+
+namespace scene {
+class Mesh;
+}
+
 class Size;
 class BufferData;
 class BufferConfiguration;
@@ -27,18 +33,27 @@ public:
     
     unsigned int draw_mode;
     
-    Buffer(BufferData* data, const BufferConfiguration& configuration);
-    
-    Buffer(float* vert_data, unsigned int vert_size,
-           const BufferConfiguration& configuration);
-    
-    Buffer(float*          vert_data, unsigned int vert_size,
-           unsigned short* ind_data,  unsigned int ind_size,
+    Buffer(BufferData* data,
            const BufferConfiguration& configuration);
 
+    Buffer(const float* vert_data, unsigned int vert_size,
+           const BufferConfiguration& configuration);
+    
+    Buffer(const float*          vert_data, unsigned int vert_size,
+           const unsigned short* ind_data,  unsigned int ind_size,
+           const BufferConfiguration& configuration);
+
+    Buffer(const std::vector<float>& vertices,
+           const std::vector<unsigned short>& indices,
+           const BufferConfiguration& configuration);
+
+    Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration);
+
     ~Buffer();
-        
+
     void draw() const;
+
+    const char* to_string(unsigned int new_line = 3) const;
 
     static void initialize(const Size& display_resolution, const Size& window_size);
 

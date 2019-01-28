@@ -15,6 +15,7 @@
 #include "StackView.hpp"
 #include "Rect.hpp"
 #include "Button.hpp"
+#include "ImageButton.hpp"
 
 using namespace te;
 
@@ -22,7 +23,7 @@ static ui::Window* window = nullptr;
 static ui::ImageView* new_image_view = nullptr;
 static ui::Label* new_label = nullptr;
 static ui::StackView* stack_view = nullptr;
-static ui::Button* button = nullptr;
+static ui::ImageButton* button = nullptr;
 
 void RootView::_setup() {
     window = new ui::Window({ 100, 100, 200, 200 });
@@ -51,9 +52,9 @@ void RootView::_setup() {
     auto bot_v = new ui::View();
     bot_v->color = Color::green.with_alpha(0.4f);
 
-    bot_v->add_layout({{ ui::Anchor::Width,  30},
-                       { ui::Anchor::TR,  5 },
-                       { ui::Anchor::Bottom, 5 }});
+    bot_v->add_layout({{ ui::Anchor::Width,  30 },
+                       { ui::Anchor::TR,     5  },
+                       { ui::Anchor::Bottom, 5  }});
 
     window->add_subview(bot_v);
 
@@ -61,23 +62,24 @@ void RootView::_setup() {
     auto bot_v2 = new ui::View();
     bot_v2->color = Color::green.with_alpha(0.4f);
 
-    bot_v2->add_layout({{ ui::Anchor::Size,  30},
-                        { ui::Anchor::TL,  5 }});
+    bot_v2->add_layout({{ ui::Anchor::Size, 30 },
+                        { ui::Anchor::TL,   5  }});
 
     window->add_subview(bot_v2);
 
     auto bot_v3 = new ui::View();
     bot_v3->color = Color::green.with_alpha(0.4f);
 
-    bot_v3->add_layout({{ ui::Anchor::Size,  30},
-                        { ui::Anchor::BL,  5 }});
+    bot_v3->add_layout({{ ui::Anchor::Size, 30 },
+                        { ui::Anchor::BL,   5  }});
 
     window->add_subview(bot_v3);
 
 
-    button = new ui::Button({ 20, 20 });
+    button = new ui::ImageButton({ 20, 20 });
     button->add_layout({ ui::Anchor::Center });
     button->color = Color::blue;
+    button->set_image(new ui::Image(Paths::images_directory() + "up.png"));
     button->on_touch = [&] {
         Info("hellof");
     };

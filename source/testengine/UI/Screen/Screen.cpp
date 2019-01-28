@@ -17,6 +17,7 @@
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "Object.hpp"
+#include "System.hpp"
 #include "Screen.hpp"
 #include "Buffer.hpp"
 #include "TEDrawer.hpp"
@@ -84,9 +85,18 @@ void Screen::initialize(const Size& size) {
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
+    display_resolution *= 2;
     
-    Log("Screen resolution: " << static_cast<int>(display_resolution.width) << "x" << static_cast<int>(display_resolution.height));
+    Log("Screen resolution: " << display_resolution.to_string());
 
+
+    int width;
+    int height;
+    glfwGetFramebufferSize(glfw_window, &width, &height);
+    
+    Logvar(width);
+    Logvar(height);
+    
 #endif
 
     //GL(glEnable(GL_DEPTH_TEST));
@@ -95,6 +105,7 @@ void Screen::initialize(const Size& size) {
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GL(glDisable(GL_DEPTH_TEST));
    // GL(glLineWidth(1000));
+
 
     ui::config::set_drawer(new te::Drawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
@@ -151,6 +162,8 @@ void Screen::update() {
 
     Screen::frames_drawn++;
     Events::frame_drawn();
+    
+    System::sleep(0.03f);
 }
 
 void Screen::set_size(const Size& size) {

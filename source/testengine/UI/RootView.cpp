@@ -6,6 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "RootView.hpp"
 #include "Window.hpp"
 #include "ImageView.hpp"
@@ -13,6 +14,7 @@
 #include "Paths.hpp"
 #include "StackView.hpp"
 #include "Rect.hpp"
+#include "Button.hpp"
 
 using namespace te;
 
@@ -20,6 +22,7 @@ static ui::Window* window = nullptr;
 static ui::ImageView* new_image_view = nullptr;
 static ui::Label* new_label = nullptr;
 static ui::StackView* stack_view = nullptr;
+static ui::Button* button = nullptr;
 
 void RootView::_setup() {
     window = new ui::Window({ 100, 100, 200, 200 });
@@ -70,6 +73,16 @@ void RootView::_setup() {
                         { ui::Anchor::BL,  5 }});
 
     window->add_subview(bot_v3);
+
+
+    button = new ui::Button({ 20, 20 });
+    button->add_layout({ ui::Anchor::Center });
+    button->color = Color::blue;
+    button->on_touch = [&] {
+        Info("hellof");
+    };
+
+    window->add_subview(button);
 
     add_subview(window);
     add_subview(stack_view);

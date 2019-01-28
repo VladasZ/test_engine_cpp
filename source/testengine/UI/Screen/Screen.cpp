@@ -33,6 +33,11 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y);
 
 #endif
 
+static scene::Scene* _scene;
+static scene::Box*   box;
+static Buffer*       box_buffer;
+
+
 void Screen::initialize(const Size& size) {
 
     Screen::size = size;
@@ -94,29 +99,28 @@ void Screen::initialize(const Size& size) {
     ui::config::set_drawer(new te::Drawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
-    ui::Input::on_touch_event([](ui::Touch* touch){
+    ui::Input::on_touch_event([](ui::Touch* touch) {
         Events::touch(touch);
     });
 
     Shader::initialize();
     Buffer::initialize(display_resolution, size);
+    Events::on_screen_size_change(display_resolution);
 
     setup();
 
-    scene::Scene sc;
+    _scene = new scene::Scene();
+    _scene->camera->fov = 1;
 
-    sc.camera->fov = 5;
+    box = new scene::Box();
+    _scene->add_object(box);
+    box->refresh_mesh();
+    box->calculate_mvp_matrix();
 
-    Events::on_screen_size_change(display_resolution);
 
-    scene::Box box;
+    box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
 
-    Buffer buf { box.mesh(), BufferConfiguration::_3 };
 
-    Info(box.mesh()->vertices.size());
-    Info(box.mesh()->to_string());
-
-    Info(buf.to_string());
 
 }
 
@@ -135,6 +139,13 @@ void Screen::update() {
 
     root_view->_draw();
     debug_view->_draw();
+
+    scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
+
+    Shader::simple3D.use();
+    Shader::simple3D.set_mvp_matrix(box->mvp_matrix());
+    Shader::simple3D.set_uniform_color(Color::blue);
+    box_buffer->draw();
 
     FPS = 1000000000 / Time::interval();
 

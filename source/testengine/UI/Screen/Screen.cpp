@@ -105,11 +105,9 @@ void Screen::initialize(const Size& size) {
 
     scene::Scene sc;
 
-
     sc.camera->fov = 5;
 
     Events::on_screen_size_change(display_resolution);
-
 
     scene::Box box;
 

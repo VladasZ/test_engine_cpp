@@ -9,6 +9,7 @@
 #include <string>
 
 #include "GL.hpp"
+#include "Log.hpp"
 #include "Mesh.hpp"
 #include "Debug.hpp"
 #include "Buffer.hpp"
@@ -55,9 +56,9 @@ Buffer::Buffer(const std::vector<GLfloat>& vertices,
 
 Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration)
     : Buffer(reinterpret_cast<const GLfloat*>(mesh->vertices.data()),
-             static_cast<GLuint>(mesh->vertices.size() * 3),
+             static_cast<GLuint>(mesh->vertices.size() * 3 * sizeof (Vector3::Float)),
              reinterpret_cast<const GLushort*>(mesh->indices.data()),
-             static_cast<GLuint>(mesh->indices.size()),
+             static_cast<GLuint>(mesh->indices.size() * sizeof(GLushort)),
              configuration) { }
 
 Buffer::~Buffer() {
@@ -84,7 +85,7 @@ void Buffer::draw() const {
 const char* Buffer::to_string(unsigned int new_line) const {
     static std::string string;
     string = "\n";
-    for (GLuint i = 0; i < data->vert_size; i++) {
+    for (GLuint i = 0; i < data->vert_size / sizeof(Vector3::Float); i++) {
         string += std::to_string(data->vert_data[i]) + " ";
         if ((i + 1) % (new_line) == 0)
             string += "\n";

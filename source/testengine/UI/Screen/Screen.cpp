@@ -24,6 +24,7 @@
 #include "RootView.hpp"
 #include "TEDrawer.hpp"
 #include "GlobalEvents.hpp"
+#include "DebugInfoView.hpp"
 #include "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
@@ -130,16 +131,16 @@ void Screen::initialize(const Size& size) {
     box->calculate_mvp_matrix();
 
 
-   // box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
+    box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
 
     TestSlidersView::view._x_view->on_value_changed.subscribe([&](float value){
         _scene->camera->fov = value;
         box->calculate_mvp_matrix();
     });
 
-   // Info(box->mesh()->to_string());
-   // Endl;
-   // Info(box_buffer->to_string());
+    //Info(box->mesh()->to_string());
+    Endl;
+    Info(box_buffer->to_string());
 }
 
 void Screen::setup() {
@@ -157,17 +158,22 @@ void Screen::update() {
     GL::set_viewport({ size });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-    root_view->_draw();
 #ifdef DEBUG_VIEW
     debug_view->_draw();
 #endif
+
+
 
     scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
 
     Shader::simple3D.use();
     Shader::simple3D.set_mvp_matrix(box->mvp_matrix());
     Shader::simple3D.set_uniform_color(Color::blue);
-    //box_buffer->draw();
+    box_buffer->draw();
+
+    GL::set_viewport({ size });
+
+    root_view->_draw();
 
     FPS = 1000000000 / Time::interval();
 

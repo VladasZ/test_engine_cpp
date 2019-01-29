@@ -47,25 +47,11 @@ Buffer::Buffer(const std::vector<float>& vertices,
                const BufferConfiguration& configuration)
     : Buffer(new BufferData(vertices, indices), configuration) { }
 
-
-//Buffer::Buffer(const GLfloat* vert_data,
-//               GLuint vert_size,
-//               const BufferConfiguration& configuration)
-//: Buffer(new BufferData(vert_data, vert_size), configuration) { }
-
-//Buffer::Buffer(const GLfloat* vert_data, GLuint vert_size,
-//               const GLushort* ind_data, GLuint ind_size,
-//               const BufferConfiguration& configuration)
-//: Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
-
-//Buffer::Buffer(const std::vector<GLfloat>& vertices,
-//               const std::vector<GLushort>& indices,
-//               const BufferConfiguration& configuration)
-//: Buffer(vertices.data(), static_cast<GLuint>(vertices.size()), indices.data(), static_cast<GLuint>(indices.size()), configuration) { }
-
-//Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration) {
-
-//}
+Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration)
+    : Buffer(std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
+                                reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3),
+             mesh->indices,
+             configuration) { }
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));
@@ -76,15 +62,12 @@ Buffer::~Buffer() {
 }
 
 void Buffer::draw() const {
-
-    GL(glBindVertexArray(vertex_array_object));
-    
+    GL(glBindVertexArray(vertex_array_object));    
     if (data->indices.empty()) {
         GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(data->vertices.size())));
     } else {
         GL(glDrawElements(draw_mode, static_cast<GLsizei>(data->indices.size()), GL_UNSIGNED_SHORT, nullptr));
     }
-    
     GL(glBindVertexArray(0));
 }
 
@@ -121,8 +104,8 @@ void Buffer::window_size_changed(const Size& display_resolution, const Size& win
     const Rect rect {
         -1,
         -1 + 2 * (1 - height_ratio),
-                2 * (display_resolution.width / window_size.width),
-                2 * height_ratio
+             2 * (display_resolution.width / window_size.width),
+             2 * height_ratio
     };
 
     root_ui_buffer = new Buffer(BufferData::from_rect_to_framebuffer(rect), BufferConfiguration::_2_2);

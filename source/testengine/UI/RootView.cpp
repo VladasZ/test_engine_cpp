@@ -9,7 +9,6 @@
 #include "Log.hpp"
 #include "Screen.hpp"
 #include "RootView.hpp"
-#include "SliderView.hpp"
 #include "Window.hpp"
 #include "ImageView.hpp"
 #include "Label.hpp"
@@ -19,6 +18,7 @@
 #include "Button.hpp"
 #include "ImageButton.hpp"
 #include "DebugInfoView.hpp"
+#include "LabeledSliderView.hpp"
 
 using namespace te;
 
@@ -27,10 +27,10 @@ static ui::ImageView* new_image_view = nullptr;
 static ui::Label* new_label = nullptr;
 static ui::StackView* stack_view = nullptr;
 static ui::ImageButton* button = nullptr;
-static ui::SliderView* slider = nullptr;
+static ui::LabeledSliderView* slider = nullptr;
 
 void RootView::_setup() {
-    window = new ui::Window({ 100, 100, 200, 200 });
+    window = new ui::Window({ 200, 200, 200, 200 });
     window->color = Color::black;
 
     new_image_view = new ui::ImageView({ 50, 50, 50, 50 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
@@ -90,20 +90,22 @@ void RootView::_setup() {
     window->add_subview(button);
 
 
-    slider = new ui::SliderView({ 40, 300 });
-    slider->add_layout({{ ui::Anchor::Bottom, 100 },
+    slider = new ui::LabeledSliderView({ 50, 300 });
+    slider->add_layout({{ ui::Anchor::Bottom      },
                         { ui::Anchor::Height, 300 }});
 
     slider->set_value(1);
 
-    slider->value_changed = [&](float value) {
+    slider->on_value_changed.subscribe([&](float value) {
         Screen::debug_view->info_label->set_text(std::string() + "Slider value: " + std::to_string(value));
-    };
-
+    });
 
     add_subview(slider);
     add_subview(window);
     add_subview(stack_view);
+
+    slider->set_caption("Us");
+
 }
 
 void RootView::_draw() {

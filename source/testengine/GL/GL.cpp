@@ -10,10 +10,10 @@
 #include "Screen.hpp"
 
 void GL::set_viewport(const Rect& rect) {
-    glViewport(static_cast<GLint>  (rect.origin.x),
-               static_cast<GLint>  (Screen::size.height - rect.origin.y - rect.size.height),
-               static_cast<GLsizei>(rect.size.width),
-               static_cast<GLsizei>(rect.size.height));
+    glViewport(static_cast<GLint>  (rect.origin.x) * 2,
+               static_cast<GLint>  (Screen::size.height - rect.origin.y - rect.size.height) * 2,
+               static_cast<GLsizei>(rect.size.width) * 2,
+               static_cast<GLsizei>(rect.size.height) * 2);
 }
 
 void GL::set_clear_color(const Color& color) {

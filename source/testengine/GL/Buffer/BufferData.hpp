@@ -8,35 +8,28 @@
 
 #pragma once
 
+#include <vector>
+
 #include "GL.hpp"
 #include "Size.hpp"
-#include "Array.hpp"
 
 class Buffer;
 
 class BufferData {
     
-    GLfloat* vert_data;
-    GLuint vert_size;
-    
-    GLushort* ind_data;
-    GLuint ind_size;
+    std::vector<GLfloat> vertices;
+    std::vector<GLushort> indices;
     
     friend Buffer;
     
 public:
+        
+    BufferData(const std::vector<GLfloat>& vertices, const std::vector<GLushort>& indices = { });
     
-    BufferData(const GLfloat* vert_data, GLuint vert_size);
-    
-    BufferData(const GLfloat* vert_data,  GLuint vert_size,
-               const GLushort* ind_data,  GLuint ind_size);
-    
-    void set_indices(const Array<GLushort>&);
+    const char* to_string(unsigned int new_line = 3) const;
     
     static BufferData* from_size(const Size&);
     static BufferData* from_rect(const Rect&);
     static BufferData* from_rect_to_image(const Rect&);
     static BufferData* from_rect_to_framebuffer(const Rect&);
-
-    ~BufferData();
 };

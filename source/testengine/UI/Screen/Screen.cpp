@@ -7,23 +7,24 @@
 //
 
 #include "ui.hpp"
-
 #include "GL.hpp"
 #include "Log.hpp"
 #include "Box.hpp"
-#include "Mesh.hpp"
 #include "Time.hpp"
+#include "Mesh.hpp"
+#include "Input.hpp"
 #include "Paths.hpp"
+#include "Touch.hpp"
+#include "Event.hpp"
 #include "Scene.hpp"
-#include "Camera.hpp"
-#include "Object.hpp"
 #include "System.hpp"
-#include "Screen.hpp"
+#include "Camera.hpp"
 #include "Buffer.hpp"
-#include "TEDrawer.hpp"
+#include "Screen.hpp"
 #include "RootView.hpp"
+#include "TEDrawer.hpp"
 #include "GlobalEvents.hpp"
-#include "DebugInfoView.hpp"
+#include "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
 #if GLFW
@@ -129,10 +130,16 @@ void Screen::initialize(const Size& size) {
     box->calculate_mvp_matrix();
 
 
-    box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
+   // box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
 
+    TestSlidersView::view._x_view->on_value_changed.subscribe([&](float value){
+        _scene->camera->fov = value;
+        box->calculate_mvp_matrix();
+    });
 
-
+   // Info(box->mesh()->to_string());
+   // Endl;
+   // Info(box_buffer->to_string());
 }
 
 void Screen::setup() {
@@ -160,7 +167,7 @@ void Screen::update() {
     Shader::simple3D.use();
     Shader::simple3D.set_mvp_matrix(box->mvp_matrix());
     Shader::simple3D.set_uniform_color(Color::blue);
-    box_buffer->draw();
+    //box_buffer->draw();
 
     FPS = 1000000000 / Time::interval();
 

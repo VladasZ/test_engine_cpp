@@ -17,21 +17,24 @@
 #include "BufferConfiguration.hpp"
 
 Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLE_STRIP) {
-    
-    vertices_count = data->vert_size / (sizeof(float) * configuration.configuration[0]);
-    
+        
     GL(glGenVertexArrays(1, &vertex_array_object));
     GL(glBindVertexArray(vertex_array_object));
     
     GL(glGenBuffers(1, &vertex_buffer_object));
     GL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object));
-    GL(glBufferData(GL_ARRAY_BUFFER, data->vert_size, data->vert_data, GL_STATIC_DRAW));
+    GL(glBufferData(GL_ARRAY_BUFFER,
+                    static_cast<uint16_t>(data->vertices.size() * sizeof(GLfloat)),
+                    data->vertices.data(),
+                    GL_STATIC_DRAW));
 
-    if (data->ind_size != 0) {
+    if (!data->indices.empty()) {
         GL(glGenBuffers(1, &index_buffer_object));
         GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer_object));
-        GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, data->ind_size, data->ind_data, GL_STATIC_DRAW));
-        indices_count = data->ind_size / sizeof(GLushort);
+        GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                        static_cast<uint16_t>(data->indices.size() * sizeof(GLushort)),
+                        data->indices.data(),
+                        GL_STATIC_DRAW));
     }
     
     configuration.set_pointers();
@@ -39,27 +42,30 @@ Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : dat
     GL(glBindVertexArray(0));
 }
 
-Buffer::Buffer(const GLfloat* vert_data,
-               GLuint vert_size,
+Buffer::Buffer(const std::vector<float>& vertices,
+               const std::vector<unsigned short>& indices,
                const BufferConfiguration& configuration)
-: Buffer(new BufferData(vert_data, vert_size), configuration) { }
+    : Buffer(new BufferData(vertices, indices), configuration) { }
 
-Buffer::Buffer(const GLfloat* vert_data, GLuint vert_size,
-               const GLushort* ind_data, GLuint ind_size,
-               const BufferConfiguration& configuration)
-: Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
 
-Buffer::Buffer(const std::vector<GLfloat>& vertices,
-               const std::vector<GLushort>& indices,
-               const BufferConfiguration& configuration)
-: Buffer(vertices.data(), static_cast<GLuint>(vertices.size()), indices.data(), static_cast<GLuint>(indices.size()), configuration) { }
+//Buffer::Buffer(const GLfloat* vert_data,
+//               GLuint vert_size,
+//               const BufferConfiguration& configuration)
+//: Buffer(new BufferData(vert_data, vert_size), configuration) { }
 
-Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration)
-    : Buffer(reinterpret_cast<const GLfloat*>(mesh->vertices.data()),
-             static_cast<GLuint>(mesh->vertices.size() * 3 * sizeof (Vector3::Float)),
-             reinterpret_cast<const GLushort*>(mesh->indices.data()),
-             static_cast<GLuint>(mesh->indices.size() * sizeof(GLushort)),
-             configuration) { }
+//Buffer::Buffer(const GLfloat* vert_data, GLuint vert_size,
+//               const GLushort* ind_data, GLuint ind_size,
+//               const BufferConfiguration& configuration)
+//: Buffer(new BufferData(vert_data, vert_size, ind_data, ind_size), configuration) { }
+
+//Buffer::Buffer(const std::vector<GLfloat>& vertices,
+//               const std::vector<GLushort>& indices,
+//               const BufferConfiguration& configuration)
+//: Buffer(vertices.data(), static_cast<GLuint>(vertices.size()), indices.data(), static_cast<GLuint>(indices.size()), configuration) { }
+
+//Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration) {
+
+//}
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));
@@ -73,24 +79,17 @@ void Buffer::draw() const {
 
     GL(glBindVertexArray(vertex_array_object));
     
-    if (data->ind_size == 0) {
-        GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(vertices_count)));
+    if (data->indices.empty()) {
+        GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(data->vertices.size())));
     } else {
-        GL(glDrawElements(draw_mode, static_cast<GLsizei>(indices_count), GL_UNSIGNED_SHORT, nullptr));
+        GL(glDrawElements(draw_mode, static_cast<GLsizei>(data->indices.size()), GL_UNSIGNED_SHORT, nullptr));
     }
     
     GL(glBindVertexArray(0));
 }
 
 const char* Buffer::to_string(unsigned int new_line) const {
-    static std::string string;
-    string = "\n";
-    for (GLuint i = 0; i < data->vert_size / sizeof(Vector3::Float); i++) {
-        string += std::to_string(data->vert_data[i]) + " ";
-        if ((i + 1) % (new_line) == 0)
-            string += "\n";
-    }
-    return string.c_str();
+    return data->to_string(new_line);
 }
 
 void Buffer::initialize(const Size& display_resolution, const Size& window_size) {
@@ -102,12 +101,12 @@ void Buffer::initialize(const Size& display_resolution, const Size& window_size)
     
     fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2);
 
-    auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
+//    auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
     
-    outline_data->set_indices({ 0, 1, 2, 3 });
-    fullscreen_outline = new Buffer(outline_data, BufferConfiguration::_2);
+//    outline_data->set_indices({ 0, 1, 2, 3 });
+//    fullscreen_outline = new Buffer(outline_data, BufferConfiguration::_2);
     
-    fullscreen_outline->draw_mode = GL_LINE_LOOP;
+//    fullscreen_outline->draw_mode = GL_LINE_LOOP;
     
     window_size_changed(display_resolution, window_size);
 }

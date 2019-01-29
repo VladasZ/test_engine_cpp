@@ -83,9 +83,9 @@ void RootView::_setup() {
     button->add_layout({ ui::Anchor::Center });
     button->color = Color::blue;
     button->set_image(new ui::Image(Paths::images_directory() + "up.png"));
-    button->on_touch = [&] {
+    button->on_press.subscribe([&] {
         Info("hellof");
-    };
+    });
 
     window->add_subview(button);
 

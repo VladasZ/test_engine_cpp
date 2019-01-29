@@ -85,7 +85,7 @@ void Screen::initialize(const Size& size) {
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
-    display_resolution *= 2;
+    //display_resolution *= 2;
     
     Log("Screen resolution: " << display_resolution.to_string());
 

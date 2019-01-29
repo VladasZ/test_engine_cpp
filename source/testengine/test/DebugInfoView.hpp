@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include "Debug.hpp"
+
+#ifdef DEBUG_VIEW
+
 #include "Label.hpp"
 #include "StackView.hpp"
 
@@ -40,3 +44,5 @@ protected:
     void _layout() override;
 
 };
+
+#endif

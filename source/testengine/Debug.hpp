@@ -13,7 +13,7 @@
 
 #ifdef DEBUG
 
-#define DEBUG_VIEW true
+//#define DEBUG_VIEW
 #define RENDERING_ERRORS_OUTPUT true
 #define SHADER_COMPILER_OUTPUT false
 #define IMAGES_LOADING_OUTPUT false

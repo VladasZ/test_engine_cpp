@@ -12,13 +12,15 @@
 
 class TestSlidersView : public ui::View {
 
-public:
-
     using View::View;
+
+public:
 
     ui::LabeledSliderView* _x_view = nullptr;
     ui::LabeledSliderView* _y_view = nullptr;
     ui::LabeledSliderView* _z_view = nullptr;
+
+    static TestSlidersView view;
 
 private:
 

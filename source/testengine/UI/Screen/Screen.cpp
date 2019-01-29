@@ -138,8 +138,10 @@ void Screen::initialize(const Size& size) {
 void Screen::setup() {
     root_view = new te::RootView({ Screen::size });
     root_view->_setup();
+#ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
     debug_view->_setup();
+#endif
 }
 
 void Screen::update() {
@@ -149,7 +151,9 @@ void Screen::update() {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     root_view->_draw();
+#ifdef DEBUG_VIEW
     debug_view->_draw();
+#endif
 
     scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
 

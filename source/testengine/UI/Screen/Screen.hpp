@@ -37,7 +37,9 @@ public:
 
     static inline te::RootView* root_view = nullptr;
 
+#ifdef DEBUG_VIEW
     static inline DebugInfoView* debug_view = nullptr;
+#endif
     
     static void initialize(const Size& size);
     

@@ -10,6 +10,7 @@
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
+#ifdef DEBUG_VIEW
 
 void DebugInfoView::_setup() {
 
@@ -59,3 +60,5 @@ void DebugInfoView::_layout() {
 
     _layout_subviews();
 }
+
+#endif

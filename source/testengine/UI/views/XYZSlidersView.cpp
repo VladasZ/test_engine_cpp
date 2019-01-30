@@ -31,19 +31,17 @@ void XYZSlidersView::_setup() {
     _y_slider->set_caption("Y");
     _z_slider->set_caption("Z");
 
-    _x_slider->on_value_changed.subscribe([&](float value) {
+    _x_slider->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.x, value);
-        Logvar(value);
-        Logvar(position.to_string());
         on_change(position);
     });
 
-    _y_slider->on_value_changed.subscribe([&](float value) {
+    _y_slider->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.y, value);
         on_change(position);
     });
 
-    _z_slider->on_value_changed.subscribe([&](float value) {
+    _z_slider->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.z, value);
         on_change(position);
     });

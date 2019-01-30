@@ -108,11 +108,10 @@ void Screen::initialize(const Size& size) {
     
 #endif
 
-    //GL(glEnable(GL_DEPTH_TEST));
+    GL(glEnable(GL_DEPTH_TEST));
     GL(glEnable(GL_BLEND));
     //GL(glEnable(GL_ALPHA_TEST));
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-    GL(glDisable(GL_DEPTH_TEST));
    // GL(glLineWidth(1000));
 
 
@@ -132,11 +131,10 @@ void Screen::initialize(const Size& size) {
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
 
-    box = new scene::Box(0.2f);
+    box = new scene::Box(2.0f, 2.0f, 0.1f);
     _scene->add_object(box);
     box->refresh_mesh();
     box->calculate_mvp_matrix();
-
 
     box_buffer = new Buffer(box->mesh());
 
@@ -152,7 +150,7 @@ void Screen::initialize(const Size& size) {
         cout << box->position.to_string() << endl;
     });
 
-    TestSlidersView::view._fov_view->on_value_changed.subscribe([&](float value) {
+    TestSlidersView::view._fov_view->slider_view->on_value_changed.subscribe([&](float value) {
         _scene->camera->fov = value * fov_multiplier;
         box->calculate_mvp_matrix();
         cout << log_data<float>(16, box->mvp_matrix()) << endl;
@@ -171,13 +169,26 @@ void Screen::initialize(const Size& size) {
         cout << rotation.to_string() << endl;
     });
 
-    TestSlidersView::view._box_angle_view->on_value_changed.subscribe([&](float angle) {
+    TestSlidersView::view._box_angle_view->slider_view->on_value_changed.subscribe([&](float angle) {
         box->rotation.w = angle;
         box->calculate_mvp_matrix();
         cout << log_data<float>(16, box->mvp_matrix()) << endl;
         cout << log_data<float>(16, box->model_matrix()) << endl;
     });
 
+    TestSlidersView::view._z_near_view->slider_view->on_value_changed.subscribe([&](float value) {
+        _scene->camera->z_near = value;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
+
+    TestSlidersView::view._z_far_view->slider_view->on_value_changed.subscribe([&](float value) {
+        _scene->camera->z_far = value;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
 
     Info(box->mesh()->to_string());
     Endl;
@@ -210,6 +221,7 @@ void Screen::update() {
 #endif
 
 
+    GL(glEnable(GL_DEPTH_TEST));
 
     scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
 
@@ -218,6 +230,9 @@ void Screen::update() {
     box_buffer->draw();
 
     GL::set_viewport({ size });
+
+    GL(glDisable(GL_DEPTH_TEST));
+
 
     root_view->_draw();
 

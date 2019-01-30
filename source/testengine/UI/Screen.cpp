@@ -139,29 +139,16 @@ void Screen::initialize(const Size& size) {
 
     box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
 
-    static const float position_multiplier = 1.0f;
-    static const float fov_multiplier      = 10.0f;
+    static const float fov_multiplier = 10.0f;
 
-    TestSlidersView::view._x_view->on_value_changed.subscribe([&](float value) {
-        box->position.x = value * position_multiplier;
+    TestSlidersView::view._box_position_view->multiplier = 1.0f;
+
+    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position){
+        box->position = position;
         box->calculate_mvp_matrix();
         cout << log_data<float>(16, box->mvp_matrix()) << endl;
         cout << log_data<float>(16, box->model_matrix()) << endl;
         cout << box->position.to_string() << endl;
-    });
-
-    TestSlidersView::view._y_view->on_value_changed.subscribe([&](float value) {
-        box->position.y = value * position_multiplier;
-        box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
-    });
-
-    TestSlidersView::view._z_view->on_value_changed.subscribe([&](float value) {
-        box->position.z = value * position_multiplier;
-        box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
     });
 
     TestSlidersView::view._fov_view->on_value_changed.subscribe([&](float value) {

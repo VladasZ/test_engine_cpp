@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "LabeledSliderView.hpp"
+#include "XYZSlidersView.hpp"
 
 class TestSlidersView : public ui::View {
 
@@ -16,9 +16,7 @@ class TestSlidersView : public ui::View {
 
 public:
 
-    ui::LabeledSliderView* _x_view   = nullptr;
-    ui::LabeledSliderView* _y_view   = nullptr;
-    ui::LabeledSliderView* _z_view   = nullptr;
+    XYZSlidersView* _box_position_view = nullptr;
 
     ui::LabeledSliderView* _fov_view = nullptr;
 

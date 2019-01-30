@@ -8,31 +8,19 @@
 
 #include "TestSlidersView.hpp"
 
-TestSlidersView TestSlidersView::view = TestSlidersView({ 0, 0, 400, 400 });
+static const float width  = 400;
+static const float height = 280;
+static const float margin = 5;
+
+TestSlidersView TestSlidersView::view = TestSlidersView({ 0, 0, width, height });
 
 void TestSlidersView::_setup() {
 
-    static const float width  = 50;
-    static const float height = 300;
-    static const float margin = 4;
+    _box_position_view = new XYZSlidersView({0, 0, 168, height});
+    add_subview(_box_position_view);
 
-    _x_view   = new ui::LabeledSliderView({ width * 0 + margin * 0, 0, width, height });
-    _y_view   = new ui::LabeledSliderView({ width * 1 + margin * 1, 0, width, height });
-    _z_view   = new ui::LabeledSliderView({ width * 2 + margin * 2, 0, width, height });
-
-    _fov_view = new ui::LabeledSliderView({ width * 3 + margin * 3, 0, width, height });
-
-
-    add_subview(_x_view);
-    add_subview(_y_view);
-    add_subview(_z_view);
-
+    _fov_view = new ui::LabeledSliderView({ _box_position_view->frame().max_x() + margin, 0, 50, height });
     add_subview(_fov_view);
-
-    _x_view->set_caption("X");
-    _y_view->set_caption("Y");
-    _z_view->set_caption("Z");
-
     _fov_view->set_caption("fV");
 
 }

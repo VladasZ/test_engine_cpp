@@ -21,9 +21,9 @@ public:
 
     using View::View;
 
-    ~XYZSlidersView();
+    ~XYZSlidersView() override;
 
-    float multiplier;
+    float multiplier = 1;
     Vector3 position;
 
     Event<Vector3> on_change;

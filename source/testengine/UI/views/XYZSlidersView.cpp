@@ -6,7 +6,11 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
+
 #include "XYZSlidersView.hpp"
+
+#define XYZ_SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
 
 XYZSlidersView::~XYZSlidersView() {
     delete  _x_slider;
@@ -27,19 +31,19 @@ void XYZSlidersView::_setup() {
     _y_slider->set_caption("Y");
     _z_slider->set_caption("Z");
 
-#define XYZ_SET_VALUE(var, value) var = -1 + value * 2 * multiplier;
-
-    _x_slider->on_value_changed.subscribe([&](float value){
+    _x_slider->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.x, value);
+        Logvar(value);
+        Logvar(position.to_string());
         on_change(position);
     });
 
-    _y_slider->on_value_changed.subscribe([&](float value){
+    _y_slider->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.y, value);
         on_change(position);
     });
 
-    _z_slider->on_value_changed.subscribe([&](float value){
+    _z_slider->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.z, value);
         on_change(position);
     });

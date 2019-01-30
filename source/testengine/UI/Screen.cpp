@@ -167,6 +167,8 @@ void Screen::initialize(const Size& size) {
         box->calculate_mvp_matrix();
         cout << log_data<float>(16, box->mvp_matrix()) << endl;
         cout << log_data<float>(16, box->model_matrix()) << endl;
+        cout << box->rotation.to_string() << endl;
+        cout << rotation.to_string() << endl;
     });
 
     TestSlidersView::view._box_angle_view->on_value_changed.subscribe([&](float angle) {

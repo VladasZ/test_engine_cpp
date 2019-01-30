@@ -29,6 +29,7 @@ using namespace std;
 #include "LogData.hpp"
 #include "RootView.hpp"
 #include "TEDrawer.hpp"
+#include "ColoredMesh.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 #include "TestSlidersView.hpp"
@@ -137,13 +138,13 @@ void Screen::initialize(const Size& size) {
     box->calculate_mvp_matrix();
 
 
-    box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
+    box_buffer = new Buffer(box->mesh());
 
     static const float fov_multiplier = 10.0f;
 
     TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
-    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position){
+    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
         box->position = position;
         box->calculate_mvp_matrix();
         cout << log_data<float>(16, box->mvp_matrix()) << endl;
@@ -158,6 +159,23 @@ void Screen::initialize(const Size& size) {
         cout << log_data<float>(16, box->model_matrix()) << endl;
 
     });
+
+    TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
+        box->rotation.x = rotation.x;
+        box->rotation.y = rotation.y;
+        box->rotation.z = rotation.z;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
+
+    TestSlidersView::view._box_angle_view->on_value_changed.subscribe([&](float angle) {
+        box->rotation.w = angle;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
+
 
     Info(box->mesh()->to_string());
     Endl;
@@ -193,9 +211,8 @@ void Screen::update() {
 
     scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
 
-    Shader::simple3D.use();
-    Shader::simple3D.set_mvp_matrix(box->mvp_matrix());
-    Shader::simple3D.set_uniform_color(Color::blue);
+    Shader::colored3D.use();
+    Shader::colored3D.set_mvp_matrix(box->mvp_matrix());
     box_buffer->draw();
 
     GL::set_viewport({ size });

@@ -16,9 +16,15 @@ class TestSlidersView : public ui::View {
 
 public:
 
-    XYZSlidersView* _box_position_view = nullptr;
+    XYZSlidersView* _box_position_view     = nullptr;
 
-    ui::LabeledSliderView* _fov_view = nullptr;
+    ui::LabeledSliderView* _fov_view       = nullptr;
+    ui::LabeledSliderView* _z_near_view    = nullptr;
+    ui::LabeledSliderView* _z_far_view     = nullptr;
+
+    XYZSlidersView* _box_rotation_view     = nullptr;
+    ui::LabeledSliderView* _box_angle_view = nullptr;
+
 
     static TestSlidersView view;
 

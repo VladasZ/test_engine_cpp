@@ -27,19 +27,21 @@ void XYZSlidersView::_setup() {
     _y_slider->set_caption("Y");
     _z_slider->set_caption("Z");
 
+#define XYZ_SET_VALUE(var, value) var = -1 + value * 2 * multiplier;
+
     _x_slider->on_value_changed.subscribe([&](float value){
-       position.x = value * multiplier;
-       on_change(position);
+        XYZ_SET_VALUE(position.x, value);
+        on_change(position);
     });
 
     _y_slider->on_value_changed.subscribe([&](float value){
-       position.y = value * multiplier;
-       on_change(position);
+        XYZ_SET_VALUE(position.y, value);
+        on_change(position);
     });
 
     _z_slider->on_value_changed.subscribe([&](float value){
-       position.z = value * multiplier;
-       on_change(position);
+        XYZ_SET_VALUE(position.z, value);
+        on_change(position);
     });
 }
 

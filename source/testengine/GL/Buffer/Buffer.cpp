@@ -14,6 +14,7 @@
 #include "Debug.hpp"
 #include "Buffer.hpp"
 #include "BufferData.hpp"
+#include "ColoredMesh.hpp"
 #include "BufferConfiguration.hpp"
 
 Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLE_STRIP) {
@@ -47,11 +48,16 @@ Buffer::Buffer(const std::vector<float>& vertices,
                const BufferConfiguration& configuration)
     : Buffer(new BufferData(vertices, indices), configuration) { }
 
-Buffer::Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration)
+Buffer::Buffer(const scene::Mesh* mesh)
     : Buffer(std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
                                 reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3),
              mesh->indices,
-             configuration) { }
+             BufferConfiguration::_3) { }
+
+Buffer::Buffer(const scene::ColoredMesh* mesh)
+    : Buffer(mesh->data,
+             mesh->indices,
+             BufferConfiguration::_3_3) { }
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));

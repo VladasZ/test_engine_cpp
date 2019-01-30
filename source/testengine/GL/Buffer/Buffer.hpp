@@ -12,6 +12,7 @@
 
 namespace scene {
 class Mesh;
+class ColoredMesh;
 }
 
 class Size;
@@ -36,7 +37,8 @@ public:
            const std::vector<unsigned short>& indices,
            const BufferConfiguration& configuration);
 
-    Buffer(const scene::Mesh* mesh, const BufferConfiguration& configuration);
+    Buffer(const scene::Mesh* mesh);
+    Buffer(const scene::ColoredMesh* mesh);
 
     ~Buffer();
 

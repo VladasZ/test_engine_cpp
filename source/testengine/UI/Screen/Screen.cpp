@@ -6,6 +6,11 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
+using namespace std;
+
 #include "ui.hpp"
 #include "GL.hpp"
 #include "Log.hpp"
@@ -21,6 +26,7 @@
 #include "Camera.hpp"
 #include "Buffer.hpp"
 #include "Screen.hpp"
+#include "LogData.hpp"
 #include "RootView.hpp"
 #include "TEDrawer.hpp"
 #include "GlobalEvents.hpp"
@@ -125,7 +131,7 @@ void Screen::initialize(const Size& size) {
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
 
-    box = new scene::Box();
+    box = new scene::Box(0.2f);
     _scene->add_object(box);
     box->refresh_mesh();
     box->calculate_mvp_matrix();
@@ -133,14 +139,48 @@ void Screen::initialize(const Size& size) {
 
     box_buffer = new Buffer(box->mesh(), BufferConfiguration::_3);
 
-    TestSlidersView::view._x_view->on_value_changed.subscribe([&](float value){
-        _scene->camera->fov = value;
+    static const float position_multiplier = 1.0f;
+    static const float fov_multiplier      = 10.0f;
+
+    TestSlidersView::view._x_view->on_value_changed.subscribe([&](float value) {
+        box->position.x = value * position_multiplier;
         box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+        cout << box->position.to_string() << endl;
     });
 
-    //Info(box->mesh()->to_string());
+    TestSlidersView::view._y_view->on_value_changed.subscribe([&](float value) {
+        box->position.y = value * position_multiplier;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
+
+    TestSlidersView::view._z_view->on_value_changed.subscribe([&](float value) {
+        box->position.z = value * position_multiplier;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+    });
+
+    TestSlidersView::view._fov_view->on_value_changed.subscribe([&](float value) {
+        _scene->camera->fov = value * fov_multiplier;
+        box->calculate_mvp_matrix();
+        cout << log_data<float>(16, box->mvp_matrix()) << endl;
+        cout << log_data<float>(16, box->model_matrix()) << endl;
+
+    });
+
+    Info(box->mesh()->to_string());
     Endl;
     Info(box_buffer->to_string());
+
+    glm::mat4 mat;
+
+    Info(log_data<float>(16, mat));
+
+
 }
 
 void Screen::setup() {

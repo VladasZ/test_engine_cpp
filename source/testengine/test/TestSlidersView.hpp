@@ -16,9 +16,11 @@ class TestSlidersView : public ui::View {
 
 public:
 
-    ui::LabeledSliderView* _x_view = nullptr;
-    ui::LabeledSliderView* _y_view = nullptr;
-    ui::LabeledSliderView* _z_view = nullptr;
+    ui::LabeledSliderView* _x_view   = nullptr;
+    ui::LabeledSliderView* _y_view   = nullptr;
+    ui::LabeledSliderView* _z_view   = nullptr;
+
+    ui::LabeledSliderView* _fov_view = nullptr;
 
     static TestSlidersView view;
 

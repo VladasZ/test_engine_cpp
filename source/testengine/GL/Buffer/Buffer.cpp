@@ -17,7 +17,7 @@
 #include "ColoredMesh.hpp"
 #include "BufferConfiguration.hpp"
 
-Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLE_STRIP) {
+Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLES) {
         
     GL(glGenVertexArrays(1, &vertex_array_object));
     GL(glBindVertexArray(vertex_array_object));
@@ -87,8 +87,10 @@ void Buffer::initialize(const Size& display_resolution, const Size& window_size)
     static const Rect almost_fulscreen_rect { -0.999f, -0.999f,  1.999f,  1.999f };
 
     fullscreen = new Buffer(BufferData::from_rect(fulscreen_rect), BufferConfiguration::_2);
-    
+    fullscreen->draw_mode = GL_TRIANGLE_STRIP;
+
     fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2);
+    fullscreen_image->draw_mode = GL_TRIANGLE_STRIP;
 
 //    auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
     

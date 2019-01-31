@@ -138,24 +138,16 @@ void Screen::initialize(const Size& size) {
 
     box_buffer = new Buffer(box->mesh());
 
-    static const float fov_multiplier = 10.0f;
-
     TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
     TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
         box->position = position;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
-        cout << box->position.to_string() << endl;
     });
 
     TestSlidersView::view._fov_view->slider_view->on_value_changed.subscribe([&](float value) {
-        _scene->camera->fov = value * fov_multiplier;
+        _scene->camera->fov = value;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
-
     });
 
     TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
@@ -163,42 +155,22 @@ void Screen::initialize(const Size& size) {
         box->rotation.y = rotation.y;
         box->rotation.z = rotation.z;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
-        cout << box->rotation.to_string() << endl;
-        cout << rotation.to_string() << endl;
     });
 
     TestSlidersView::view._box_angle_view->slider_view->on_value_changed.subscribe([&](float angle) {
         box->rotation.w = angle;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
     });
 
     TestSlidersView::view._z_near_view->slider_view->on_value_changed.subscribe([&](float value) {
         _scene->camera->z_near = value;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
     });
 
     TestSlidersView::view._z_far_view->slider_view->on_value_changed.subscribe([&](float value) {
         _scene->camera->z_far = value;
         box->calculate_mvp_matrix();
-        cout << log_data<float>(16, box->mvp_matrix()) << endl;
-        cout << log_data<float>(16, box->model_matrix()) << endl;
     });
-
-    Info(box->mesh()->to_string());
-    Endl;
-    Info(box_buffer->to_string());
-
-    glm::mat4 mat;
-
-    Info(log_data<float>(16, mat));
-
-
 }
 
 void Screen::setup() {
@@ -227,6 +199,8 @@ void Screen::update() {
 
     Shader::colored3D.use();
     Shader::colored3D.set_mvp_matrix(box->mvp_matrix());
+
+    //box_buffer->draw_mode = GL_LINE_STRIP;
     box_buffer->draw();
 
     GL::set_viewport({ size });
@@ -261,19 +235,21 @@ static void size_changed(GLFWwindow* window, int width, int height) {
     GL(glfwSwapBuffers(window));
 }
 
-static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int button, int action, [[maybe_unused]] int mods) {
-    if (button != GLFW_MOUSE_BUTTON_LEFT)
-        return;
-    if (action == GLFW_PRESS)
-        ui::input::mouse->set_left_button_state(ui::Mouse::ButtonState::Down);
-    else
-        ui::input::mouse->set_left_button_state(ui::Mouse::ButtonState::Up);
+static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int glfw_button, int action, [[maybe_unused]] int mods) {
+    auto button = ui::Mouse::Button::Left;
+
+    if (glfw_button == GLFW_MOUSE_BUTTON_RIGHT)
+        button = ui::Mouse::Button::Right;
+    else if (glfw_button == GLFW_MOUSE_BUTTON_MIDDLE)
+        button = ui::Mouse::Button::Middle;
+
+    ui::input::mouse->set_button_state(button, action == GLFW_PRESS ? ui::Mouse::ButtonState::Down : ui::Mouse::ButtonState::Up);
 }
 
 static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double x, double y) {
     Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
     Events::cursor_moved(cursor_position);
-    ui::input::mouse->position_changed(cursor_position);
+    ui::input::mouse->set_position(cursor_position);
 }
 
 #endif

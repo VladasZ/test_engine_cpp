@@ -14,8 +14,8 @@
 #include "Event.hpp"
 
 struct Events {
-    static inline Event<> frame_drawn;
-    static inline Event<ui::Touch*> touch;
-    static inline Event<Point> cursor_moved;
-    static inline Event<Size> on_screen_size_change;
+    static inline ui::Event<> frame_drawn;
+    static inline ui::Event<ui::Touch*> touch;
+    static inline ui::Event<Point> cursor_moved;
+    static inline ui::Event<Size> on_screen_size_change;
 };

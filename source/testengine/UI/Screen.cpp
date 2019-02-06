@@ -27,6 +27,7 @@ using namespace std;
 #include "Buffer.hpp"
 #include "Screen.hpp"
 #include "LogData.hpp"
+#include "Keyboard.hpp"
 #include "RootView.hpp"
 #include "TEDrawer.hpp"
 #include "ColoredMesh.hpp"
@@ -40,6 +41,7 @@ using namespace std;
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void cursor_position_callback(GLFWwindow* window, double x, double y);
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 #endif
 
@@ -83,6 +85,7 @@ void Screen::initialize(const Size& size) {
 
     glfwSetCursorPosCallback(glfw_window, cursor_position_callback);
     glfwSetMouseButtonCallback(glfw_window, mouse_button_callback);
+    glfwSetKeyCallback(glfw_window, key_callback);
 
     glfwSwapInterval(1); // Limit fps to 60
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -171,6 +174,32 @@ void Screen::initialize(const Size& size) {
         _scene->camera->z_far = value;
         box->calculate_mvp_matrix();
     });
+
+    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+
+        if (event == ui::Keyboard::Event::Up) {
+            _scene->camera->stop();
+            return;
+        }
+
+        if (key == 'A')
+            _scene->camera->velocity = { 0.1f,      0, 0 };
+
+        if (key == 'S')
+            _scene->camera->velocity = { -0.1f,     0, 0 };
+
+        if (key == 'D')
+            _scene->camera->velocity = {     0,  0.1f, 0 };
+
+        if (key == 'W')
+            _scene->camera->velocity = {     0, -0.1f, 0 };
+    });
+
+    _scene->camera->velocity = { 0.01f, 0, 0 };
+
+
+    Screen::set_size(size);
+
 }
 
 void Screen::setup() {
@@ -195,7 +224,11 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    scene::Box* box = static_cast<scene::Box*>(_scene->_objects[0]);
+    scene::Box* box = static_cast<scene::Box*>(_scene->_objects.back());
+
+    _scene->update();
+
+    box->calculate_mvp_matrix();
 
     Shader::colored3D.use();
     Shader::colored3D.set_mvp_matrix(box->mvp_matrix());
@@ -225,6 +258,7 @@ void Screen::set_size(const Size& size) {
     Buffer::window_size_changed(display_resolution, size);
     Events::on_screen_size_change(size);
     root_view->set_frame({ size });
+    _scene->camera->resolution = size;
     update();
 }
 
@@ -250,6 +284,11 @@ static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double
     Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
     Events::cursor_moved(cursor_position);
     ui::input::mouse->set_position(cursor_position);
+}
+
+static void key_callback([[maybe_unused]] GLFWwindow* window, int key, int scancode, int action, int mods) {
+    mods = scancode;
+    ui::Keyboard::add_key_event(static_cast<ui::Keyboard::Key>(key), static_cast<ui::Keyboard::Event>(action));
 }
 
 #endif

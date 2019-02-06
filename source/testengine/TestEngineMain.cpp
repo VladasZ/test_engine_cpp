@@ -19,7 +19,7 @@ int test_engine_main() {
     
     srand(time(nullptr));
 
-    Screen::initialize({ 680, 680 });
+    Screen::initialize({ 1200, 680 });
 	do {
 		GL(glfwPollEvents());
         Screen::update();

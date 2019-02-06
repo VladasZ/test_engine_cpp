@@ -26,7 +26,7 @@ public:
     float multiplier = 1.0f;
     Vector3 position;
 
-    Event<Vector3> on_change;
+    ui::Event<Vector3> on_change;
 
 private:
 

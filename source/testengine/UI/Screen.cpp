@@ -17,6 +17,7 @@ using namespace std;
 #include "Box.hpp"
 #include "Time.hpp"
 #include "Mesh.hpp"
+#include "Grid.hpp"
 #include "Input.hpp"
 #include "Paths.hpp"
 #include "Touch.hpp"
@@ -49,6 +50,8 @@ static scene::Scene* _scene;
 static scene::Box*   box;
 static Buffer*       box_buffer;
 
+static scene::Grid* grid;
+static Buffer* grid_buffer;
 
 void Screen::initialize(const Size& size) {
 
@@ -62,10 +65,12 @@ void Screen::initialize(const Size& size) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    //We don't want the old OpenGL
 
 #ifdef MAC_OS
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    // To make MacOS happy; should not be needed
 #endif
 
     glfw_window = glfwCreateWindow(static_cast<int>(size.width),
@@ -133,13 +138,23 @@ void Screen::initialize(const Size& size) {
 
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
+    _scene->camera->position = { 4, 3, 0 };
 
     box = new scene::Box(2.0f, 2.0f, 0.1f);
     _scene->add_object(box);
     box->refresh_mesh();
     box->calculate_mvp_matrix();
 
-    box_buffer = new Buffer(box->mesh());
+    box_buffer = new Buffer(static_cast<scene::ColoredMesh*>(box->mesh()));
+
+    grid = new scene::Grid();
+    _scene->add_object(grid);
+    grid->calculate_mvp_matrix();
+
+    grid_buffer = new Buffer(grid->mesh());
+    grid_buffer->draw_mode = GL_LINES;
+
+    Info(grid_buffer->to_string());
 
     TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
@@ -154,23 +169,26 @@ void Screen::initialize(const Size& size) {
     });
 
     TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
-        box->rotation.x = rotation.x;
-        box->rotation.y = rotation.y;
-        box->rotation.z = rotation.z;
-        box->calculate_mvp_matrix();
+        grid->rotation.x = rotation.x;
+        grid->rotation.y = rotation.y;
+        grid->rotation.z = rotation.z;
+        grid->calculate_mvp_matrix();
     });
 
-    TestSlidersView::view._box_angle_view->slider_view->on_value_changed.subscribe([&](float angle) {
-        box->rotation.w = angle;
-        box->calculate_mvp_matrix();
+    TestSlidersView::view._box_angle_view->
+            slider_view->on_value_changed.subscribe([&](float angle) {
+        grid->rotation.w = angle;
+        grid->calculate_mvp_matrix();
     });
 
-    TestSlidersView::view._z_near_view->slider_view->on_value_changed.subscribe([&](float value) {
+    TestSlidersView::view._z_near_view->slider_view->
+            on_value_changed.subscribe([&](float value) {
         _scene->camera->z_near = value;
         box->calculate_mvp_matrix();
     });
 
-    TestSlidersView::view._z_far_view->slider_view->on_value_changed.subscribe([&](float value) {
+    TestSlidersView::view._z_far_view->slider_view->
+            on_value_changed.subscribe([&](float value) {
         _scene->camera->z_far = value;
         box->calculate_mvp_matrix();
     });
@@ -186,7 +204,7 @@ void Screen::initialize(const Size& size) {
             _scene->camera->velocity = { 0.1f,      0, 0 };
 
         if (key == 'S')
-            _scene->camera->velocity = { -0.1f,     0, 0 };
+            _scene->camera->velocity = { -0.1f,     80, 0 };
 
         if (key == 'D')
             _scene->camera->velocity = {     0,  0.1f, 0 };
@@ -195,7 +213,7 @@ void Screen::initialize(const Size& size) {
             _scene->camera->velocity = {     0, -0.1f, 0 };
     });
 
-    _scene->camera->velocity = { 0.01f, 0, 0 };
+    //_scene->camera->velocity = { 0.01f, 0, 0 };
 
 
     Screen::set_size(size);
@@ -224,7 +242,8 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    scene::Box* box = static_cast<scene::Box*>(_scene->_objects.back());
+    auto box  = static_cast<scene::Box*>(_scene->_objects[1]);
+    auto grid = static_cast<scene::Grid*>(_scene->_objects[2]);
 
     _scene->update();
 
@@ -235,6 +254,12 @@ void Screen::update() {
 
     //box_buffer->draw_mode = GL_LINE_STRIP;
     box_buffer->draw();
+
+    grid->calculate_mvp_matrix();
+    Shader::simple3D.use();
+    Shader::simple3D.set_mvp_matrix(grid->mvp_matrix());
+    Shader::simple3D.set_uniform_color(Color::red);
+    grid_buffer->draw();
 
     GL::set_viewport({ size });
 
@@ -269,7 +294,10 @@ static void size_changed(GLFWwindow* window, int width, int height) {
     GL(glfwSwapBuffers(window));
 }
 
-static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int glfw_button, int action, [[maybe_unused]] int mods) {
+static void mouse_button_callback([[maybe_unused]] GLFWwindow* window,
+int glfw_button,
+int action,
+[[maybe_unused]] int mods) {
     auto button = ui::Mouse::Button::Left;
 
     if (glfw_button == GLFW_MOUSE_BUTTON_RIGHT)
@@ -277,7 +305,10 @@ static void mouse_button_callback([[maybe_unused]] GLFWwindow* window, int glfw_
     else if (glfw_button == GLFW_MOUSE_BUTTON_MIDDLE)
         button = ui::Mouse::Button::Middle;
 
-    ui::input::mouse->set_button_state(button, action == GLFW_PRESS ? ui::Mouse::ButtonState::Down : ui::Mouse::ButtonState::Up);
+    ui::input::mouse->set_button_state(button,
+                                       action == GLFW_PRESS ?
+                                           ui::Mouse::ButtonState::Down :
+                                           ui::Mouse::ButtonState::Up);
 }
 
 static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double x, double y) {
@@ -286,9 +317,14 @@ static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double
     ui::input::mouse->set_position(cursor_position);
 }
 
-static void key_callback([[maybe_unused]] GLFWwindow* window, int key, int scancode, int action, int mods) {
+static void key_callback([[maybe_unused]] GLFWwindow* window,
+int key,
+int scancode,
+int action,
+int mods) {
     mods = scancode;
-    ui::Keyboard::add_key_event(static_cast<ui::Keyboard::Key>(key), static_cast<ui::Keyboard::Event>(action));
+    ui::Keyboard::add_key_event(static_cast<ui::Keyboard::Key>(key),
+                                static_cast<ui::Keyboard::Event>(action));
 }
 
 #endif

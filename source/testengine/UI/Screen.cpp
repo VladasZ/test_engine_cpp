@@ -138,18 +138,16 @@ void Screen::initialize(const Size& size) {
 
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
-    _scene->camera->position = { 4, 3, 0 };
+    _scene->camera->set_position({ 0, 0, 1 });
 
     box = new scene::Box(2.0f, 2.0f, 0.1f);
     _scene->add_object(box);
     box->refresh_mesh();
-    box->calculate_mvp_matrix();
 
     box_buffer = new Buffer(static_cast<scene::ColoredMesh*>(box->mesh()));
 
     grid = new scene::Grid();
     _scene->add_object(grid);
-    grid->calculate_mvp_matrix();
 
     grid_buffer = new Buffer(grid->mesh());
     grid_buffer->draw_mode = GL_LINES;
@@ -159,38 +157,41 @@ void Screen::initialize(const Size& size) {
     TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
     TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
-        box->position = position;
-        box->calculate_mvp_matrix();
+        box->set_position(position);
     });
 
     TestSlidersView::view._fov_view->slider_view->on_value_changed.subscribe([&](float value) {
         _scene->camera->fov = value;
-        box->calculate_mvp_matrix();
+        _scene->camera->update_matrices();
     });
 
     TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
-        grid->rotation.x = rotation.x;
-        grid->rotation.y = rotation.y;
-        grid->rotation.z = rotation.z;
-        grid->calculate_mvp_matrix();
+        auto rot = grid->rotation();
+
+        rot.x = rotation.x;
+        rot.y = rotation.y;
+        rot.z = rotation.z;
+
+        grid->set_rotation(rot);
     });
 
     TestSlidersView::view._box_angle_view->
             slider_view->on_value_changed.subscribe([&](float angle) {
-        grid->rotation.w = angle;
-        grid->calculate_mvp_matrix();
+        auto rot = grid->rotation();
+        rot.w = angle;
+        grid->set_rotation(rot);
     });
 
     TestSlidersView::view._z_near_view->slider_view->
             on_value_changed.subscribe([&](float value) {
         _scene->camera->z_near = value;
-        box->calculate_mvp_matrix();
+        _scene->camera->update_matrices();
     });
 
     TestSlidersView::view._z_far_view->slider_view->
             on_value_changed.subscribe([&](float value) {
         _scene->camera->z_far = value;
-        box->calculate_mvp_matrix();
+        _scene->camera->update_matrices();
     });
 
     ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
@@ -203,18 +204,15 @@ void Screen::initialize(const Size& size) {
         if (key == 'A')
             _scene->camera->velocity = { 0.1f,      0, 0 };
 
-        if (key == 'S')
-            _scene->camera->velocity = { -0.1f,     80, 0 };
-
         if (key == 'D')
-            _scene->camera->velocity = {     0,  0.1f, 0 };
+            _scene->camera->velocity = { -0.1f,     0, 0 };
 
         if (key == 'W')
             _scene->camera->velocity = {     0, -0.1f, 0 };
+
+        if (key == 'S')
+            _scene->camera->velocity = {     0,  0.1f, 0 };
     });
-
-    //_scene->camera->velocity = { 0.01f, 0, 0 };
-
 
     Screen::set_size(size);
 
@@ -247,15 +245,11 @@ void Screen::update() {
 
     _scene->update();
 
-    box->calculate_mvp_matrix();
-
     Shader::colored3D.use();
     Shader::colored3D.set_mvp_matrix(box->mvp_matrix());
 
-    //box_buffer->draw_mode = GL_LINE_STRIP;
     box_buffer->draw();
 
-    grid->calculate_mvp_matrix();
     Shader::simple3D.use();
     Shader::simple3D.set_mvp_matrix(grid->mvp_matrix());
     Shader::simple3D.set_uniform_color(Color::red);

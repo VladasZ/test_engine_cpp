@@ -10,7 +10,7 @@
 #include "Buffer.hpp"
 #include "Screen.hpp"
 #include "Image.hpp"
-#include "TEDrawer.hpp"
+#include "TEUIDrawer.hpp"
 #include "TEImageDrawer.hpp"
 
 using namespace te;

@@ -17,11 +17,14 @@
 #include "ColoredMesh.hpp"
 #include "BufferConfiguration.hpp"
 
-Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : data(data), draw_mode(GL_TRIANGLES) {
-        
+void Buffer::_initialize(BufferData* data, const BufferConfiguration& configuration) {
+
+    this->data = data;
+    draw_mode = GL_TRIANGLES;
+
     GL(glGenVertexArrays(1, &vertex_array_object));
     GL(glBindVertexArray(vertex_array_object));
-    
+
     GL(glGenBuffers(1, &vertex_buffer_object));
     GL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object));
     GL(glBufferData(GL_ARRAY_BUFFER,
@@ -37,10 +40,14 @@ Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) : dat
                         data->indices.data(),
                         GL_STATIC_DRAW));
     }
-    
+
     configuration.set_pointers();
     GL(glEnableVertexAttribArray(0));
     GL(glBindVertexArray(0));
+}
+
+Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) {
+    _initialize(data, configuration);
 }
 
 Buffer::Buffer(const std::vector<float>& vertices,
@@ -48,16 +55,19 @@ Buffer::Buffer(const std::vector<float>& vertices,
                const BufferConfiguration& configuration)
     : Buffer(new BufferData(vertices, indices), configuration) { }
 
-Buffer::Buffer(const scene::Mesh* mesh)
-    : Buffer(std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
-                                reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3),
-             mesh->indices,
-             BufferConfiguration::_3) { }
+Buffer::Buffer(const scene::Mesh* mesh) {
 
-Buffer::Buffer(const scene::ColoredMesh* mesh)
-    : Buffer(mesh->data,
-             mesh->indices,
-             BufferConfiguration::_3_3) { }
+    if (auto colored_mesh = dynamic_cast<const scene::ColoredMesh*>(mesh)) {
+        _initialize(new BufferData(colored_mesh->data, mesh->indices), BufferConfiguration::_3_3);
+        return;
+    }
+
+    auto vertices =
+            std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
+                               reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3);
+
+    _initialize(new BufferData(vertices, mesh->indices), BufferConfiguration::_3);
+}
 
 Buffer::~Buffer() {
     GL(glDeleteBuffers(1, &vertex_buffer_object));

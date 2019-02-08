@@ -27,6 +27,10 @@ class Buffer {
     unsigned int vertex_buffer_object = 0;
     unsigned int index_buffer_object  = 0;
 
+private:
+
+    void _initialize(BufferData* data, const BufferConfiguration& configuration);
+
 public:
     
     unsigned int draw_mode;
@@ -38,7 +42,6 @@ public:
            const BufferConfiguration& configuration);
 
     Buffer(const scene::Mesh* mesh);
-    Buffer(const scene::ColoredMesh* mesh);
 
     ~Buffer();
 

@@ -32,10 +32,12 @@ using namespace std;
 #include "LogData.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
-#include "TEDrawer.hpp"
+#include "TEUIDrawer.hpp"
 #include "ColoredMesh.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
+#include "TESceneDrawer.hpp"
+#include "TEModelDrawer.hpp"
 #include "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
@@ -50,11 +52,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 #endif
 
 static scene::Scene* _scene;
-static scene::Box*   box;
-static Buffer*       box_buffer;
-
-static scene::Grid* grid;
-static Buffer* grid_buffer;
 
 void Screen::initialize(const Size& size) {
 
@@ -139,46 +136,40 @@ void Screen::initialize(const Size& size) {
     Buffer::initialize(display_resolution, size);
     Events::on_screen_size_change(display_resolution);
 
+    scene::config::drawer = new TESceneDrawer();
+
     setup();
 
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
     _scene->camera->set_position({ 0, -4, 1 });
 
-    box = new scene::Box(2.0f, 2.0f, 0.1f);
-    _scene->add_object(box);
-    box->refresh_mesh();
+    _scene->add_object(new scene::Box(2.0f, 2.0f, 0.1f));
+    _scene->add_object(new scene::Box(1.0f, 1.0f, 1.1f));
+    _scene->add_object(new scene::Grid({ 10, 10 }, { 20, 20 }));
 
-    box_buffer = new Buffer(static_cast<scene::ColoredMesh*>(box->mesh()));
+//    TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
-    grid = new scene::Grid({ 10, 10 }, { 20, 20 });
-    _scene->add_object(grid);
+//    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
+//        box->set_position(position);
+//    });
 
-    grid_buffer = new Buffer(grid->mesh());
-    grid_buffer->draw_mode = GL_LINES;
+//    TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
+//        auto rot = grid->rotation();
 
-    TestSlidersView::view._box_position_view->multiplier = 1.0f;
+//        rot.x = rotation.x;
+//        rot.y = rotation.y;
+//        rot.z = rotation.z;
 
-    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
-        box->set_position(position);
-    });
+//        grid->set_rotation(rot);
+//    });
 
-    TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
-        auto rot = grid->rotation();
-
-        rot.x = rotation.x;
-        rot.y = rotation.y;
-        rot.z = rotation.z;
-
-        grid->set_rotation(rot);
-    });
-
-    TestSlidersView::view._box_angle_view->
-            slider_view->on_value_changed.subscribe([&](float angle) {
-        auto rot = grid->rotation();
-        rot.w = angle;
-        grid->set_rotation(rot);
-    });
+//    TestSlidersView::view._box_angle_view->
+//            slider_view->on_value_changed.subscribe([&](float angle) {
+//        auto rot = grid->rotation();
+//        rot.w = angle;
+//        grid->set_rotation(rot);
+//    });
 
     ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
@@ -226,25 +217,10 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    auto box  = static_cast<scene::Box*>(_scene->_objects[1]);
-    auto grid = static_cast<scene::Grid*>(_scene->_objects[2]);
-
     _scene->update();
-
-    Shader::colored3D.use();
-    Shader::colored3D.set_mvp_matrix(box->mvp_matrix());
-
-    box_buffer->draw();
-
-    Shader::simple3D.use();
-    Shader::simple3D.set_mvp_matrix(grid->mvp_matrix());
-    Shader::simple3D.set_uniform_color(Color::red);
-    grid_buffer->draw();
-
-    GL::set_viewport({ size });
+    _scene->draw();
 
     GL(glDisable(GL_DEPTH_TEST));
-
 
     root_view->_draw();
 

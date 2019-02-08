@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Drawer.hpp"
+#include "../ui/source/ui_lib/Drawer.hpp"
 
 namespace ui {
 class Image;

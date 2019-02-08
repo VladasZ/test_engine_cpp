@@ -6,7 +6,7 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "TEDrawer.hpp"
+#include "TEUIDrawer.hpp"
 
 #include "TEImageDrawer.hpp"
 #include "GL.hpp"

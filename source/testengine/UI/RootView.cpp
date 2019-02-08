@@ -12,7 +12,7 @@
 using namespace te;
 
 void RootView::_setup() {
-    add_subview(&TestSlidersView::view);
+    //add_subview(&TestSlidersView::view);
 }
 
 void RootView::_draw() {

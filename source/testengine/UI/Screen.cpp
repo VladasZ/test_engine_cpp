@@ -35,6 +35,7 @@ using namespace std;
 #include "TEUIDrawer.hpp"
 #include "ColoredMesh.hpp"
 #include "GlobalEvents.hpp"
+#include "ModelImporter.hpp"
 #include "DebugInfoView.hpp"
 #include "TESceneDrawer.hpp"
 #include "TEModelDrawer.hpp"
@@ -147,6 +148,15 @@ void Screen::initialize(const Size& size) {
     _scene->add_object(new scene::Box(2.0f, 2.0f, 0.1f));
     _scene->add_object(new scene::Box(1.0f, 1.0f, 1.1f));
     _scene->add_object(new scene::Grid({ 10, 10 }, { 20, 20 }));
+
+    auto box = new scene::Box(0.5f, 0.5f, 0.5f);
+    box->set_position({ 3, 1, 1 });
+    _scene->add_object(box);
+
+
+    auto monkey = new scene::Model(ModelImporter::import("Monkey.blend"));
+    monkey->set_position({ -3, 2, 1 });
+    _scene->add_object(monkey);
 
 //    TestSlidersView::view._box_position_view->multiplier = 1.0f;
 

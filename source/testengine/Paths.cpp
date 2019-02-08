@@ -27,6 +27,10 @@ std::string Paths::images_directory() {
     return assets_directory() + "Images/";
 }
 
+std::string Paths::models_directory() {
+    return assets_directory() + "Models/";
+}
+
 std::string Paths::fonts_directory() {
     return assets_directory() + "Fonts/";
 }

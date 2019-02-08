@@ -27,7 +27,8 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
 
     if (!scene) {
         Error(_importer.GetErrorString());
-        assert(scene == nullptr);
+        //assert(scene == nullptr);
+        return nullptr;
     }
 
     auto mesh = scene->mMeshes[0];

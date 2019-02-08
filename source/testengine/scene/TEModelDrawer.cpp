@@ -14,6 +14,7 @@
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
     _buffer = new Buffer(model->mesh());
+    _buffer->draw_mode = model->draw_mode();
 }
 
 TEModelDrawer::~TEModelDrawer() { }

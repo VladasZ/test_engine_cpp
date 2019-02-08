@@ -9,6 +9,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "GLFW/glfw3native.h"
+
 using namespace std;
 
 #include "ui.hpp"
@@ -42,6 +44,7 @@ using namespace std;
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void cursor_position_callback(GLFWwindow* window, double x, double y);
+static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 #endif
@@ -89,11 +92,13 @@ void Screen::initialize(const Size& size) {
     glfwSetWindowSizeCallback(glfw_window, size_changed);
 
     glfwSetCursorPosCallback(glfw_window, cursor_position_callback);
+    glfwSetScrollCallback(glfw_window, scroll_callback);
     glfwSetMouseButtonCallback(glfw_window, mouse_button_callback);
     glfwSetKeyCallback(glfw_window, key_callback);
 
     glfwSwapInterval(1); // Limit fps to 60
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
 
     glewExperimental = GL_TRUE;
 
@@ -138,7 +143,7 @@ void Screen::initialize(const Size& size) {
 
     _scene = new scene::Scene();
     _scene->camera->fov = 1;
-    _scene->camera->set_position({ 0, 0, 1 });
+    _scene->camera->set_position({ 0, -4, 1 });
 
     box = new scene::Box(2.0f, 2.0f, 0.1f);
     _scene->add_object(box);
@@ -146,13 +151,11 @@ void Screen::initialize(const Size& size) {
 
     box_buffer = new Buffer(static_cast<scene::ColoredMesh*>(box->mesh()));
 
-    grid = new scene::Grid();
+    grid = new scene::Grid({ 10, 10 }, { 20, 20 });
     _scene->add_object(grid);
 
     grid_buffer = new Buffer(grid->mesh());
     grid_buffer->draw_mode = GL_LINES;
-
-    Info(grid_buffer->to_string());
 
     TestSlidersView::view._box_position_view->multiplier = 1.0f;
 
@@ -201,17 +204,20 @@ void Screen::initialize(const Size& size) {
             return;
         }
 
-        if (key == 'A')
-            _scene->camera->velocity = { 0.1f,      0, 0 };
-
         if (key == 'D')
-            _scene->camera->velocity = { -0.1f,     0, 0 };
+            _scene->camera->velocity += { 0.1f,      0, 0 };
 
-        if (key == 'W')
-            _scene->camera->velocity = {     0, -0.1f, 0 };
+        if (key == 'A')
+            _scene->camera->velocity += { -0.1f,     0, 0 };
 
         if (key == 'S')
-            _scene->camera->velocity = {     0,  0.1f, 0 };
+            _scene->camera->velocity += {     0, -0.1f, 0 };
+
+        if (key == 'W')
+            _scene->camera->velocity += {     0,  0.1f, 0 };
+
+        _scene->camera->velocity = _scene->camera->velocity.normalize() * 0.1f;
+
     });
 
     Screen::set_size(size);
@@ -294,6 +300,8 @@ int action,
 [[maybe_unused]] int mods) {
     auto button = ui::Mouse::Button::Left;
 
+    Logvar(glfw_button);
+
     if (glfw_button == GLFW_MOUSE_BUTTON_RIGHT)
         button = ui::Mouse::Button::Right;
     else if (glfw_button == GLFW_MOUSE_BUTTON_MIDDLE)
@@ -309,6 +317,10 @@ static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double
     Point cursor_position = { static_cast<float>(x), static_cast<float>(y) };
     Events::cursor_moved(cursor_position);
     ui::input::mouse->set_position(cursor_position);
+}
+
+static void scroll_callback([[maybe_unused]] GLFWwindow* window, double xoffset, double yoffset) {
+    _scene->camera->move_orbit({ static_cast<float>(xoffset) / 50, static_cast<float>(yoffset) / 50 });
 }
 
 static void key_callback([[maybe_unused]] GLFWwindow* window,

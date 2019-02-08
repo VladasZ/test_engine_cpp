@@ -163,11 +163,6 @@ void Screen::initialize(const Size& size) {
         box->set_position(position);
     });
 
-    TestSlidersView::view._fov_view->slider_view->on_value_changed.subscribe([&](float value) {
-        _scene->camera->fov = value;
-        _scene->camera->update_matrices();
-    });
-
     TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
         auto rot = grid->rotation();
 
@@ -185,18 +180,6 @@ void Screen::initialize(const Size& size) {
         grid->set_rotation(rot);
     });
 
-    TestSlidersView::view._z_near_view->slider_view->
-            on_value_changed.subscribe([&](float value) {
-        _scene->camera->z_near = value;
-        _scene->camera->update_matrices();
-    });
-
-    TestSlidersView::view._z_far_view->slider_view->
-            on_value_changed.subscribe([&](float value) {
-        _scene->camera->z_far = value;
-        _scene->camera->update_matrices();
-    });
-
     ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
         if (event == ui::Keyboard::Event::Up) {
@@ -204,20 +187,17 @@ void Screen::initialize(const Size& size) {
             return;
         }
 
-        if (key == 'D')
-            _scene->camera->velocity += { 0.1f,      0, 0 };
-
-        if (key == 'A')
-            _scene->camera->velocity += { -0.1f,     0, 0 };
+        if (key == 'W')
+            _scene->camera->walk(scene::Walkable::Direction::Forward);
 
         if (key == 'S')
-            _scene->camera->velocity += {     0, -0.1f, 0 };
+            _scene->camera->walk(scene::Walkable::Direction::Back);
 
-        if (key == 'W')
-            _scene->camera->velocity += {     0,  0.1f, 0 };
+        if (key == 'A')
+            _scene->camera->walk(scene::Walkable::Direction::Left);
 
-        _scene->camera->velocity = _scene->camera->velocity.normalize() * 0.1f;
-
+        if (key == 'D')
+            _scene->camera->walk(scene::Walkable::Direction::Right);
     });
 
     Screen::set_size(size);
@@ -236,13 +216,13 @@ void Screen::setup() {
 void Screen::update() {
 
     GL::set_clear_color(Color::gray);
-    GL::set_viewport({ size });
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 #ifdef DEBUG_VIEW
     debug_view->_draw();
 #endif
 
+    GL::set_viewport({ size });
 
     GL(glEnable(GL_DEPTH_TEST));
 

@@ -147,7 +147,7 @@ void Screen::initialize(const Size& size) {
 
     _scene->add_object(new scene::Box(2.0f, 2.0f, 0.1f));
     _scene->add_object(new scene::Box(1.0f, 1.0f, 1.1f));
-    _scene->add_object(new scene::Grid({ 10, 10 }, { 20, 20 }));
+    _scene->add_object(new scene::Grid({ 10, 10 }, { 10, 10 }));
 
     auto box = new scene::Box(0.5f, 0.5f, 0.5f);
     box->set_position({ 3, 1, 1 });
@@ -155,8 +155,10 @@ void Screen::initialize(const Size& size) {
 
 
     auto monkey = new scene::Model(ModelImporter::import("Monkey.blend"));
-    monkey->set_position({ -3, 2, 1 });
+    monkey->set_position({ 2, 5, 1 });
     _scene->add_object(monkey);
+
+    _scene->add_object(new scene::Model(ModelImporter::import("Vector.blend")));
 
 //    TestSlidersView::view._box_position_view->multiplier = 1.0f;
 

@@ -9,7 +9,7 @@
 #include "Log.hpp"
 
 #include "TestEngineMain.h"
-#include "GL/GL.hpp"
+#include "GL.hpp"
 #include "Screen.hpp"
 #include "Debug.hpp"
 

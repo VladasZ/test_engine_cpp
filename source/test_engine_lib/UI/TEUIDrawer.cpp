@@ -7,9 +7,9 @@
 //
 
 #include "GL.hpp"
-#include "Buffer.hpp"
-#include "Screen.hpp"
 #include "Image.hpp"
+#include "Buffer.hpp"
+#include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 #include "TEImageDrawer.hpp"
 
@@ -61,19 +61,19 @@ ui::Image::Drawer* Drawer::init_image_drawer(ui::Image* image) {
 void Drawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:
-        glfwSetCursor(Screen::glfw_window, cursor::arrow);
+        glfwSetCursor(TestEngine::screen.glfw_window, cursor::arrow);
         break;
     case ui::Mouse::CursorMode::Text:
-        glfwSetCursor(Screen::glfw_window, cursor::text);
+        glfwSetCursor(TestEngine::screen.glfw_window, cursor::text);
         break;
     case ui::Mouse::CursorMode::Drag:
-        glfwSetCursor(Screen::glfw_window, cursor::drag);
+        glfwSetCursor(TestEngine::screen.glfw_window, cursor::drag);
         break;
     case ui::Mouse::CursorMode::HResize:
-        glfwSetCursor(Screen::glfw_window, cursor::h_resize);
+        glfwSetCursor(TestEngine::screen.glfw_window, cursor::h_resize);
         break;
     case ui::Mouse::CursorMode::VResize:
-        glfwSetCursor(Screen::glfw_window, cursor::v_resize);
+        glfwSetCursor(TestEngine::screen.glfw_window, cursor::v_resize);
         break;
     }
 }

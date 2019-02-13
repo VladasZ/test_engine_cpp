@@ -10,6 +10,7 @@
 
 #include "Size.hpp"
 #include "Debug.hpp"
+#include "Scene.hpp"
 
 struct GLFWwindow;
 
@@ -21,31 +22,32 @@ class RootView;
 
 class Screen {
         
-    static void on_debug_tick();
+    void on_debug_tick();
     
 public:
     
-    static inline int FPS = 0;
-    static inline int frames_drawn = 0;
+    int FPS = 0;
+    int frames_drawn = 0;
     
-    static inline Size size;
-    static inline Size display_resolution;
+    Size size;
+    Size display_resolution;
     
 #if GLFW
-    static inline GLFWwindow* glfw_window = nullptr;
+    GLFWwindow* glfw_window = nullptr;
 #endif
 
-    static inline te::RootView* root_view = nullptr;
+    te::RootView* root_view = nullptr;
+    scene::Scene* scene = nullptr;
 
 #ifdef DEBUG_VIEW
-    static inline DebugInfoView* debug_view = nullptr;
+    DebugInfoView* debug_view = nullptr;
 #endif
     
-    static void initialize(const Size& size);
+    void initialize(const Size&);
     
-    static void setup();
+    void setup();
     
-    static void update();
+    void update();
 
-    static void set_size(const Size& size);
+    void set_size(const Size&);
 };

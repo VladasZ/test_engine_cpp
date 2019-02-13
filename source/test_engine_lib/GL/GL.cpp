@@ -7,12 +7,12 @@
 //
 
 #include "GL.hpp"
-#include "Screen.hpp"
+#include "TestEngine.hpp"
 
 void GL::set_viewport(const Rect& rect) {
     static const GLint scale = 2;
     glViewport(static_cast<GLint>  (rect.origin.x) * scale,
-               static_cast<GLint>  (Screen::size.height - rect.origin.y - rect.size.height) * scale,
+               static_cast<GLint>  (TestEngine::screen.size.height - rect.origin.y - rect.size.height) * scale,
                static_cast<GLsizei>(rect.size.width) * scale,
                static_cast<GLsizei>(rect.size.height) * scale);
 }

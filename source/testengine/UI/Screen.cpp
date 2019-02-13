@@ -208,7 +208,7 @@ void Screen::initialize(const Size& size) {
 }
 
 void Screen::setup() {
-    root_view = new te::RootView({ Screen::size });
+    root_view = new te::RootView(Rect { Screen::size });
     root_view->_setup();
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });

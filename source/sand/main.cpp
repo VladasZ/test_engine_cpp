@@ -1,18 +1,6 @@
 
-#include <iostream>
-#include <string>
-#include <type_traits>
-
-#include "System.hpp"
-
-using namespace std;
-
+#include "TestEngineMain.h"
 
 int main() {
-
-
-    cout << System::user_name() << endl;
-
-    return 0;
-
+    return test_engine_main();
 }

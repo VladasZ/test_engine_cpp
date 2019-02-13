@@ -4,7 +4,7 @@ project(test_engine_lib)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)
 
-add_executable(${PROJECT_NAME} ${SOURCE})
+add_library(${PROJECT_NAME} ${SOURCE})
 
 link_project_at_path(ui_lib    ${ui_path}       )
 link_project_at_path(scene_lib ${scene_path}    )

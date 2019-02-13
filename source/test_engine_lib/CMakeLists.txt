@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(TestEngine)
+project(test_engine_lib)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /Source SOURCE)
 

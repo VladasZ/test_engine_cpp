@@ -17,7 +17,9 @@ conan_basic_setup()
 add_subdirectory(source/sand)
 add_subdirectory(source/TestEngine)
 
-foreach(var ${GIT_DEPENDENCIES})
-  add_subdirectory(${var})
-endforeach()
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+  foreach(var ${GIT_DEPENDENCIES})
+	add_subdirectory(${var})
+  endforeach()
+endif()
 

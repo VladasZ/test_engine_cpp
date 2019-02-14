@@ -6,7 +6,7 @@
 macOS: 
 
 
-[![Build Status](https://travis-ci.org/VladasZ/TestEngine.svg?branch=master)](https://travis-ci.org/VladasZ/TestEngine)
+[![Build Status](https://travis-ci.org/VladasZ/test_engine.svg?branch=master)](https://travis-ci.org/VladasZ/test_engine)
 
 
 Windows:

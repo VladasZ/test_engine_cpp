@@ -11,7 +11,7 @@ macOS:
 
 Windows:
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/8wf7dkknl9cf1hqd?svg=true)](https://ci.appveyor.com/project/VladasZ/testengine)
+[![Build Status](https://ci.appveyor.com/api/projects/status/ukmv5disdy3x00km?svg=true)](https://ci.appveyor.com/project/VladasZ/test-engine)
 
 My attempt to create a cross platform, OpenGL based game engine.
 

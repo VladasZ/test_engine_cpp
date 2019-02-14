@@ -24,6 +24,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 #endif
 
+Screen TestEngine::screen;
 
 void TestEngine::initialize(const Size& window_size) {
 
@@ -37,10 +38,12 @@ void TestEngine::initialize(const Size& window_size) {
 
 }
 
-void TestEngine::start_main_loop(std::function<void ()> on_frame_drawn) {
+void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
     do {
         GL(glfwPollEvents());
         screen.update();
+        if (on_frame_drawn)
+            on_frame_drawn();
         GL(glfwSwapBuffers(screen.glfw_window));
     } while (
         glfwGetKey(screen.glfw_window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
@@ -81,7 +84,7 @@ static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double
 }
 
 static void scroll_callback([[maybe_unused]] GLFWwindow* window, double xoffset, double yoffset) {
-    TestEngine::screen.scene->camera->move_orbit({ static_cast<float>(xoffset) / 50, static_cast<float>(yoffset) / 50 });
+    //TestEngine::screen.scene->camera->move_orbit({ static_cast<float>(xoffset) / 50, static_cast<float>(yoffset) / 50 });
 }
 
 static void key_callback([[maybe_unused]] GLFWwindow* window,

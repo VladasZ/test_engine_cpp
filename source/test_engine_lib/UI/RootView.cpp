@@ -12,6 +12,7 @@
 using namespace te;
 
 void RootView::_setup() {
+    color = Color::gray;
     //add_subview(&TestSlidersView::view);
 }
 

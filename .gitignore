@@ -401,5 +401,6 @@ utils/
 
 *#
 /cmake-build-debug
+/dep_build
 
 *.autosave

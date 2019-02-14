@@ -15,7 +15,7 @@
 class TestEngine {
 public:
 
-    static inline Screen screen;
+    static Screen screen;
 
     static void initialize(const Size& window_size);
     static void start_main_loop(std::function<void()> on_frame_drawn);

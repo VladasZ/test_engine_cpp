@@ -43,24 +43,15 @@ using namespace std;
 #include "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
-void Screen::initialize(const Size& size) {
-
-    Screen::size = size;
-
+void Screen::_initialize_gl() {
 #if GLFW
-
     glfwInit();
-
     glfwWindowHint(GLFW_SAMPLES, 16); // 4x antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //We don't want the old OpenGL
-
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
 #ifdef MAC_OS
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    // To make MacOS happy; should not be needed
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 #endif
 
     glfw_window = glfwCreateWindow(static_cast<int>(size.width),
@@ -69,45 +60,29 @@ void Screen::initialize(const Size& size) {
                                    nullptr,
                                    nullptr);
 
-    if (glfw_window == nullptr) {
-        Error("GLFW window creation failed");
-		throw "GLFW window creation failed";
-    }
+    if (glfw_window == nullptr)
+        Fatal("GLFW window creation failed");
 
     glfwMakeContextCurrent(glfw_window);
-
     glfwSwapInterval(1); // Limit fps to 60
-    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
-
     glewExperimental = GL_TRUE;
 
     if (glewInit())
         Fatal("Glew initialization failed");
 
-    const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    auto mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
-    //display_resolution *= 2;
-    
-    Log("Screen resolution: " << display_resolution.to_string());
-
-
-    int width;
-    int height;
-    glfwGetFramebufferSize(glfw_window, &width, &height);
-    
-    Logvar(width);
-    Logvar(height);
-    
 #endif
 
     GL(glEnable(GL_DEPTH_TEST));
     GL(glEnable(GL_BLEND));
-    //GL(glEnable(GL_ALPHA_TEST));
     GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-   // GL(glLineWidth(1000));
 
+    Shader::initialize();
+    Buffer::initialize(display_resolution, size);
+}
 
+void Screen::_initialize_ui() {
     ui::config::set_drawer(new te::Drawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
@@ -115,75 +90,46 @@ void Screen::initialize(const Size& size) {
         Events::touch(touch);
     });
 
-    Shader::initialize();
-    Buffer::initialize(display_resolution, size);
     Events::on_screen_size_change(display_resolution);
+}
 
+void Screen::_initialize_scene() {
     scene::config::drawer = new TESceneDrawer();
+}
+
+void Screen::initialize(const Size& size) {
+
+    Screen::size = size;
+
+    _initialize_gl();
+    _initialize_ui();
+    _initialize_scene();
+
+
 
     setup();
 
-    scene = new scene::Scene();
-    scene->camera->fov = 1;
-    scene->camera->set_position({ 0, -4, 1 });
+//    scene = new scene::Scene();
 
-    scene->add_object(new scene::Box(2.0f, 2.0f, 0.1f));
-    scene->add_object(new scene::Box(1.0f, 1.0f, 1.1f));
-    scene->add_object(new scene::Grid({ 10, 10 }, { 10, 10 }));
+//    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
-    auto box = new scene::Box(0.5f, 0.5f, 0.5f);
-    box->set_position({ 3, 1, 1 });
-    scene->add_object(box);
+//        if (event == ui::Keyboard::Event::Up) {
+//            scene->camera->stop();
+//            return;
+//        }
 
+//        if (key == 'W')
+//            scene->camera->walk(scene::Walkable::Direction::Forward);
 
-    auto monkey = new scene::Model(ModelImporter::import("Monkey.blend"));
-    monkey->set_position({ 2, 5, 1 });
-    scene->add_object(monkey);
+//        if (key == 'S')
+//            scene->camera->walk(scene::Walkable::Direction::Back);
 
-    scene->add_object(new scene::Model(ModelImporter::import("Vector.blend")));
+//        if (key == 'A')
+//            scene->camera->walk(scene::Walkable::Direction::Left);
 
-//    TestSlidersView::view._box_position_view->multiplier = 1.0f;
-
-//    TestSlidersView::view._box_position_view->on_change.subscribe([&](Vector3 position) {
-//        box->set_position(position);
+//        if (key == 'D')
+//            scene->camera->walk(scene::Walkable::Direction::Right);
 //    });
-
-//    TestSlidersView::view._box_rotation_view->on_change.subscribe([&](Vector3 rotation) {
-//        auto rot = grid->rotation();
-
-//        rot.x = rotation.x;
-//        rot.y = rotation.y;
-//        rot.z = rotation.z;
-
-//        grid->set_rotation(rot);
-//    });
-
-//    TestSlidersView::view._box_angle_view->
-//            slider_view->on_value_changed.subscribe([&](float angle) {
-//        auto rot = grid->rotation();
-//        rot.w = angle;
-//        grid->set_rotation(rot);
-//    });
-
-    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
-
-        if (event == ui::Keyboard::Event::Up) {
-            scene->camera->stop();
-            return;
-        }
-
-        if (key == 'W')
-            scene->camera->walk(scene::Walkable::Direction::Forward);
-
-        if (key == 'S')
-            scene->camera->walk(scene::Walkable::Direction::Back);
-
-        if (key == 'A')
-            scene->camera->walk(scene::Walkable::Direction::Left);
-
-        if (key == 'D')
-            scene->camera->walk(scene::Walkable::Direction::Right);
-    });
 
     Screen::set_size(size);
 
@@ -192,6 +138,10 @@ void Screen::initialize(const Size& size) {
 void Screen::setup() {
     root_view = new te::RootView(Rect { Screen::size });
     root_view->_setup();
+
+    auto view = new ui::View {{ 100, 100 }};
+    root_view->add_subview(view);
+
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
     debug_view->_setup();
@@ -211,8 +161,8 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    scene->update();
-    scene->draw();
+    //scene->update();
+    //scene->draw();
 
     GL(glDisable(GL_DEPTH_TEST));
 
@@ -233,7 +183,7 @@ void Screen::set_size(const Size& size) {
     Buffer::window_size_changed(display_resolution, size);
     Events::on_screen_size_change(size);
     root_view->set_frame({ size });
-    scene->camera->resolution = size;
+    //scene->camera->resolution = size;
     update();
 }
 

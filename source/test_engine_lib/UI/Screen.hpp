@@ -11,17 +11,20 @@
 #include "Size.hpp"
 #include "Debug.hpp"
 #include "Scene.hpp"
+#include "RootView.hpp"
 
 struct GLFWwindow;
 
 class DebugInfoView;
 
-namespace te {
-class RootView;
-}
-
 class Screen {
-        
+
+private:
+
+    void _initialize_gl();
+    void _initialize_ui();
+    void _initialize_scene();
+
     void on_debug_tick();
     
 public:
@@ -36,8 +39,8 @@ public:
     GLFWwindow* glfw_window = nullptr;
 #endif
 
+    //scene::Scene* scene = nullptr;
     te::RootView* root_view = nullptr;
-    scene::Scene* scene = nullptr;
 
 #ifdef DEBUG_VIEW
     DebugInfoView* debug_view = nullptr;

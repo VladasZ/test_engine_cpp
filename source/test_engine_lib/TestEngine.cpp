@@ -84,7 +84,7 @@ static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double
 }
 
 static void scroll_callback([[maybe_unused]] GLFWwindow* window, double xoffset, double yoffset) {
-    //TestEngine::screen.scene->camera->move_orbit({ static_cast<float>(xoffset) / 50, static_cast<float>(yoffset) / 50 });
+    TestEngine::screen.scene()->camera->move_orbit({ static_cast<float>(xoffset) / 50, static_cast<float>(yoffset) / 50 });
 }
 
 static void key_callback([[maybe_unused]] GLFWwindow* window,

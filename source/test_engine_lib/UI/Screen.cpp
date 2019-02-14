@@ -91,10 +91,42 @@ void Screen::_initialize_ui() {
     });
 
     Events::on_screen_size_change(display_resolution);
+
+    _root_view = new te::RootView(Rect { Screen::size });
+    _root_view->_setup();
+
+    auto view = new ui::View {{ 100, 100 }};
+    _root_view->add_subview(view);
+
+#ifdef DEBUG_VIEW
+    debug_view = new DebugInfoView({ 400, 108 });
+    debug_view->_setup();
+#endif
+
+        ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+
+            if (event == ui::Keyboard::Event::Up) {
+                _scene->camera->stop();
+                return;
+            }
+
+            if (key == 'W')
+                _scene->camera->walk(scene::Walkable::Direction::Forward);
+
+            if (key == 'S')
+                _scene->camera->walk(scene::Walkable::Direction::Back);
+
+            if (key == 'A')
+                _scene->camera->walk(scene::Walkable::Direction::Left);
+
+            if (key == 'D')
+                _scene->camera->walk(scene::Walkable::Direction::Right);
+        });
 }
 
 void Screen::_initialize_scene() {
     scene::config::drawer = new TESceneDrawer();
+    _scene = new scene::Scene();
 }
 
 void Screen::initialize(const Size& size) {
@@ -105,47 +137,7 @@ void Screen::initialize(const Size& size) {
     _initialize_ui();
     _initialize_scene();
 
-
-
-    setup();
-
-//    scene = new scene::Scene();
-
-//    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
-
-//        if (event == ui::Keyboard::Event::Up) {
-//            scene->camera->stop();
-//            return;
-//        }
-
-//        if (key == 'W')
-//            scene->camera->walk(scene::Walkable::Direction::Forward);
-
-//        if (key == 'S')
-//            scene->camera->walk(scene::Walkable::Direction::Back);
-
-//        if (key == 'A')
-//            scene->camera->walk(scene::Walkable::Direction::Left);
-
-//        if (key == 'D')
-//            scene->camera->walk(scene::Walkable::Direction::Right);
-//    });
-
     Screen::set_size(size);
-
-}
-
-void Screen::setup() {
-    root_view = new te::RootView(Rect { Screen::size });
-    root_view->_setup();
-
-    auto view = new ui::View {{ 100, 100 }};
-    root_view->add_subview(view);
-
-#ifdef DEBUG_VIEW
-    debug_view = new DebugInfoView({ 400, 108 });
-    debug_view->_setup();
-#endif
 }
 
 void Screen::update() {
@@ -161,12 +153,12 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    //scene->update();
-    //scene->draw();
+    _scene->update();
+    _scene->draw();
 
     GL(glDisable(GL_DEPTH_TEST));
 
-    root_view->_draw();
+    _root_view->_draw();
 
     FPS = 1000000000 / Time::interval();
 
@@ -182,8 +174,15 @@ void Screen::set_size(const Size& size) {
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     Buffer::window_size_changed(display_resolution, size);
     Events::on_screen_size_change(size);
-    root_view->set_frame({ size });
-    //scene->camera->resolution = size;
+    _root_view->set_frame({ size });
+    _scene->camera->resolution = size;
     update();
 }
 
+scene::Scene* Screen::scene() const {
+    return _scene;
+}
+
+te::RootView* Screen::root_view() const {
+    return _root_view;
+}

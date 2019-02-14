@@ -24,9 +24,10 @@ private:
     void _initialize_gl();
     void _initialize_ui();
     void _initialize_scene();
-
-    void on_debug_tick();
     
+    scene::Scene* _scene = nullptr;
+    te::RootView* _root_view = nullptr;
+
 public:
     
     int FPS = 0;
@@ -39,18 +40,21 @@ public:
     GLFWwindow* glfw_window = nullptr;
 #endif
 
-    //scene::Scene* scene = nullptr;
-    te::RootView* root_view = nullptr;
-
 #ifdef DEBUG_VIEW
     DebugInfoView* debug_view = nullptr;
 #endif
     
+public:
+
     void initialize(const Size&);
-    
-    void setup();
-    
+        
     void update();
 
     void set_size(const Size&);
+
+public:
+
+    scene::Scene* scene() const;
+    te::RootView* root_view() const;
+
 };

@@ -54,6 +54,7 @@ public:
 
 public:
 
+    void set_scene(scene::Scene*);
     scene::Scene* scene() const;
     te::RootView* root_view() const;
 

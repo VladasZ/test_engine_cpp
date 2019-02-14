@@ -126,7 +126,6 @@ void Screen::_initialize_ui() {
 
 void Screen::_initialize_scene() {
     scene::config::drawer = new TESceneDrawer();
-    _scene = new scene::Scene();
 }
 
 void Screen::initialize(const Size& size) {
@@ -153,8 +152,10 @@ void Screen::update() {
 
     GL(glEnable(GL_DEPTH_TEST));
 
-    _scene->update();
-    _scene->draw();
+    if (_scene) {
+        _scene->update();
+        _scene->draw();
+    }
 
     GL(glDisable(GL_DEPTH_TEST));
 
@@ -175,8 +176,16 @@ void Screen::set_size(const Size& size) {
     Buffer::window_size_changed(display_resolution, size);
     Events::on_screen_size_change(size);
     _root_view->set_frame({ size });
-    _scene->camera->resolution = size;
+    if (_scene)
+        _scene->camera->resolution = size;
     update();
+}
+
+void Screen::set_scene(scene::Scene* scene) {
+    if (scene) {
+        _scene = scene;
+        _scene->setup();
+    }
 }
 
 scene::Scene* Screen::scene() const {

@@ -95,33 +95,30 @@ void Screen::_initialize_ui() {
     _root_view = new te::RootView(Rect { Screen::size });
     _root_view->_setup();
 
-    auto view = new ui::View {{ 100, 100 }};
-    _root_view->add_subview(view);
-
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
     debug_view->_setup();
 #endif
 
-        ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
-            if (event == ui::Keyboard::Event::Up) {
-                _scene->camera->stop();
-                return;
-            }
+        if (event == ui::Keyboard::Event::Up) {
+            _scene->camera->stop();
+            return;
+        }
 
-            if (key == 'W')
-                _scene->camera->walk(scene::Walkable::Direction::Forward);
+        if (key == 'W')
+            _scene->camera->walk(scene::Walkable::Direction::Forward);
 
-            if (key == 'S')
-                _scene->camera->walk(scene::Walkable::Direction::Back);
+        if (key == 'S')
+            _scene->camera->walk(scene::Walkable::Direction::Back);
 
-            if (key == 'A')
-                _scene->camera->walk(scene::Walkable::Direction::Left);
+        if (key == 'A')
+            _scene->camera->walk(scene::Walkable::Direction::Left);
 
-            if (key == 'D')
-                _scene->camera->walk(scene::Walkable::Direction::Right);
-        });
+        if (key == 'D')
+            _scene->camera->walk(scene::Walkable::Direction::Right);
+    });
 }
 
 void Screen::_initialize_scene() {
@@ -144,10 +141,6 @@ void Screen::update() {
     GL::set_clear_color(Color::gray);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-#ifdef DEBUG_VIEW
-    debug_view->_draw();
-#endif
-
     GL::set_viewport({ size });
 
     GL(glEnable(GL_DEPTH_TEST));
@@ -160,6 +153,10 @@ void Screen::update() {
     GL(glDisable(GL_DEPTH_TEST));
 
     _root_view->_draw();
+
+#ifdef DEBUG_VIEW
+    debug_view->_draw();
+#endif
 
     FPS = 1000000000 / Time::interval();
 

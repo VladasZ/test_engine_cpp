@@ -13,9 +13,9 @@ std::string Paths::assets_directory() {
 #ifdef WINDOWS
 	return "C:\\Users\\u.zakreuskis\\.deps\\test_engine\\Assets\\";
 #elif defined (APPLE)
-    return std::string() + "/Users/" + System::user_name() + "/dev/projects/testengine/Assets/";
+    return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/Assets/";
 #else
-  return std::string() + "/home/" + System::user_name() + "/dev/projects/testengine/Assets/";
+  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/Assets/";
 #endif
 }
 

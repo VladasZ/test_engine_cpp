@@ -1,14 +1,13 @@
 //
-//  Image.cpp
+//  TEImageDrawer.cpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 9/23/17.
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "TEUIDrawer.hpp"
+#include "ui.hpp"
 
-#include "TEImageDrawer.hpp"
 #include "GL.hpp"
 #include "Shader.hpp"
 #include "Debug.hpp"
@@ -16,6 +15,8 @@
 #include "Image.hpp"
 #include "Buffer.hpp"
 #include "Screen.hpp"
+#include "TEUIDrawer.hpp"
+#include "TEImageDrawer.hpp"
 
 static unsigned int mode_for_channels(int channels) {
 	switch (channels) {
@@ -62,25 +63,19 @@ TEImageDrawer::~TEImageDrawer() {
 
 void TEImageDrawer::draw_in_rect(const Rect& rect) {
 
-//    if (rect.size.is_negative())
-//        return;
+    if (rect.size.is_negative())
+        return;
 
-    Shader::ui.use();
-    Shader::ui.set_uniform_color(Color::random());
+    GL(glBindTexture(GL_TEXTURE_2D, _id));
+
+    if (this->_ui_image->is_monochrome())
+        Shader::ui_monochrome.use();
+    else
+        Shader::ui_texture.use();
+
     GL::set_viewport(rect);
-    Buffer::fullscreen->draw();
-
-//    GL(glBindTexture(GL_TEXTURE_2D, _id));
-//    if (this->_ui_image->is_monochrome())
-//        Shader::ui_monochrome.use();
-//    else
-//        Shader::ui_texture.use();
-
-//    GL(glUseProgram(0));
-
-//    GL::set_viewport(rect);
-//    Buffer::fullscreen_image->draw();
-//    GL(glBindTexture(GL_TEXTURE_2D, 0));
+    Buffer::fullscreen_image->draw();
+    GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 void TEImageDrawer::_set_filter(Filter filter) {

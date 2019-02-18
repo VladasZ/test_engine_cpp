@@ -1,5 +1,5 @@
 //
-//  Image.hpp
+//  TEImageDrawer.hpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 9/23/17.

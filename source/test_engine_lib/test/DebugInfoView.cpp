@@ -14,7 +14,10 @@
 
 void DebugInfoView::_setup() {
 
+    color = Color::clear;
+
     _stack_view = new ui::StackView();
+    _stack_view->color = Color::clear;
 
     _fps_label = new ui::Label();
     _frames_drawn_label = new ui::Label();

@@ -6,7 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "Screen.hpp"
+#include "TestEngine.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
@@ -35,7 +35,7 @@ void DebugInfoView::_setup() {
     Events::frame_drawn.subscribe([&]{
         static int frames_drawn = 0;
         _frames_drawn_label->set_text(std::string() + "Frames drawn: " + std::to_string(++frames_drawn));
-        _fps_label->set_text(std::string() + "FPS: " + std::to_string(Screen::FPS));
+        _fps_label->set_text(std::string() + "FPS: " + std::to_string(TestEngine::screen.FPS));
     });
 
     Events::cursor_moved.subscribe([&](Point position){

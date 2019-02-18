@@ -1,5 +1,5 @@
 //
-//  TEDrawer.cpp
+//  TEUIDrawer.cpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 12/15/2018.
@@ -13,8 +13,6 @@
 #include "TEUIDrawer.hpp"
 #include "TEImageDrawer.hpp"
 
-using namespace te;
-
 namespace cursor {
 static GLFWcursor* arrow;
 static GLFWcursor* text;
@@ -23,7 +21,7 @@ static GLFWcursor* h_resize;
 static GLFWcursor* v_resize;
 }
 
-Drawer::Drawer() {
+TEUIDrawer::TEUIDrawer() {
     cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
     cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
 #ifdef WIN32
@@ -35,30 +33,23 @@ Drawer::Drawer() {
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 }
 
-void Drawer::_draw_rect(const Rect& rect) {
-    GL::set_viewport(rect);
-    Shader::ui.use();
-    Shader::ui.set_uniform_color(Color::green);
-    Buffer::fullscreen->draw();
-}
-
-void Drawer::_fill_rect(const Rect& rect, const Color& color) {
+void TEUIDrawer::_fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
     Shader::ui.use();
     Shader::ui.set_uniform_color(color);
     Buffer::fullscreen->draw();
 }
 
-const Rect Drawer::_convert_rect(const Rect& rect) {
+const Rect TEUIDrawer::_convert_rect(const Rect& rect) {
     return rect;
 }
 
-ui::Image::Drawer* Drawer::init_image_drawer(ui::Image* image) {
+ui::Image::Drawer* TEUIDrawer::init_image_drawer(ui::Image* image) {
     return new TEImageDrawer(image);
 }
 
 #ifdef UI_DESKTOP
-void Drawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
+void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:
         glfwSetCursor(TestEngine::screen.glfw_window, cursor::arrow);

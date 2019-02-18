@@ -19,7 +19,7 @@ int main() {
     //TestEngine::screen.root_view()->add_subview(new TestSlidersView());
 
 
-    auto view = new ui::ImageView({200, 500, 300, 300 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
+    auto view = new ui::ImageView({ 200, 500, 300, 300 }, new ui::Image(Paths::images_directory() + "cat.jpg"));
     view->color = Color::green;
     //view->add_layout(ui::Layout(ui::Anchor::BR));
 

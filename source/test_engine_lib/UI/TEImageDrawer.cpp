@@ -62,17 +62,25 @@ TEImageDrawer::~TEImageDrawer() {
 
 void TEImageDrawer::draw_in_rect(const Rect& rect) {
 
-    if (rect.size.is_negative())
-        return;
+//    if (rect.size.is_negative())
+//        return;
 
-    GL(glBindTexture(GL_TEXTURE_2D, _id));
-    if (this->_ui_image->is_monochrome())
-        Shader::ui_monochrome.use();
-    else
-        Shader::ui_texture.use();
+    Shader::ui.use();
+    Shader::ui.set_uniform_color(Color::random());
     GL::set_viewport(rect);
-    Buffer::fullscreen_image->draw();
-    GL(glBindTexture(GL_TEXTURE_2D, 0));
+    Buffer::fullscreen->draw();
+
+//    GL(glBindTexture(GL_TEXTURE_2D, _id));
+//    if (this->_ui_image->is_monochrome())
+//        Shader::ui_monochrome.use();
+//    else
+//        Shader::ui_texture.use();
+
+//    GL(glUseProgram(0));
+
+//    GL::set_viewport(rect);
+//    Buffer::fullscreen_image->draw();
+//    GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 void TEImageDrawer::_set_filter(Filter filter) {

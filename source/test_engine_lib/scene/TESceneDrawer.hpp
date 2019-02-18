@@ -9,9 +9,9 @@
 #pragma once
 
 #include "Model.hpp"
-#include "../scene/source/scene_lib/Drawer.hpp"
+#include "SceneDrawer.hpp"
 
-class TESceneDrawer : public scene::Drawer {
+class TESceneDrawer : public scene::SceneDrawer {
 
     ~TESceneDrawer() override;
     scene::Model::Drawer* init_model_drawer(scene::Model*) override;

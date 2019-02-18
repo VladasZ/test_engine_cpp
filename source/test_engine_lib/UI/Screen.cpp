@@ -83,7 +83,8 @@ void Screen::_initialize_gl() {
 }
 
 void Screen::_initialize_ui() {
-    ui::config::set_drawer(new te::Drawer());
+
+    ui::config::set_drawer(new TEUIDrawer());
     ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
 
     ui::Input::on_touch_event([](ui::Touch* touch) {

@@ -127,15 +127,11 @@ void Screen::_initialize_scene() {
 }
 
 void Screen::initialize(const Size& size) {
-
     Screen::size = size;
-
     _initialize_gl();
     _initialize_ui();
     _initialize_scene();
-
     Screen::set_size(size);
-    Logvar(size.to_string());
 }
 
 void Screen::update() {

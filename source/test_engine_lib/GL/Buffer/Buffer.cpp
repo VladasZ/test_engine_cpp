@@ -101,13 +101,6 @@ void Buffer::initialize(const Size& display_resolution, const Size& window_size)
 
     fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2);
     fullscreen_image->draw_mode = GL_TRIANGLE_STRIP;
-
-//    auto outline_data = BufferData::from_rect(almost_fulscreen_rect);
-    
-//    outline_data->set_indices({ 0, 1, 2, 3 });
-//    fullscreen_outline = new Buffer(outline_data, BufferConfiguration::_2);
-    
-//    fullscreen_outline->draw_mode = GL_LINE_LOOP;
     
     window_size_changed(display_resolution, window_size);
 }

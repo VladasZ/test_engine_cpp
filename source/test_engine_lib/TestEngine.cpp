@@ -56,7 +56,6 @@ void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
 #ifdef GLFW
 
 static void size_changed(GLFWwindow* window, int width, int height) {
-    Logvar(Point(width, height).to_string());
     TestEngine::screen.set_size({ static_cast<float>(width), static_cast<float>(height) });
     GL(glfwSwapBuffers(window));
 }

@@ -14,16 +14,13 @@
 
 void DebugInfoView::_setup() {
 
-    color = Color::clear;
-
     _stack_view = new ui::StackView();
-    _stack_view->color = Color::clear;
 
-    _fps_label = new ui::Label();
-    _frames_drawn_label = new ui::Label();
+    _fps_label             = new ui::Label();
+    _frames_drawn_label    = new ui::Label();
     _cursor_position_label = new ui::Label();
-    _touch_state_label = new ui::Label();
-    info_label = new ui::Label();
+    _touch_state_label     = new ui::Label();
+    info_label             = new ui::Label();
 
     for (auto label : { _fps_label, _frames_drawn_label, _cursor_position_label, _touch_state_label, info_label }) {
         label->resize_to_fit_text();

@@ -56,6 +56,7 @@ void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
 #ifdef GLFW
 
 static void size_changed(GLFWwindow* window, int width, int height) {
+    Logvar(Point(width, height).to_string());
     TestEngine::screen.set_size({ static_cast<float>(width), static_cast<float>(height) });
     GL(glfwSwapBuffers(window));
 }
@@ -66,8 +67,6 @@ int action,
 [[maybe_unused]] int mods) {
     auto button = ui::Mouse::Button::Left;
 
-    Logvar(glfw_button);
-
     if (glfw_button == GLFW_MOUSE_BUTTON_RIGHT)
         button = ui::Mouse::Button::Right;
     else if (glfw_button == GLFW_MOUSE_BUTTON_MIDDLE)
@@ -75,8 +74,8 @@ int action,
 
     ui::input::mouse->set_button_state(button,
                                        action == GLFW_PRESS ?
-                                           ui::Mouse::ButtonState::Down :
-                                           ui::Mouse::ButtonState::Up);
+                                       ui::Mouse::ButtonState::Down :
+                                       ui::Mouse::ButtonState::Up);
 }
 
 static void cursor_position_callback([[maybe_unused]] GLFWwindow* window, double x, double y) {

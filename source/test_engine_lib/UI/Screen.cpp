@@ -135,6 +135,7 @@ void Screen::initialize(const Size& size) {
     _initialize_scene();
 
     Screen::set_size(size);
+    Logvar(size.to_string());
 }
 
 void Screen::update() {

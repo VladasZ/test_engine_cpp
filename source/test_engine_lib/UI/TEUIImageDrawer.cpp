@@ -1,5 +1,5 @@
 //
-//  TEImageDrawer.cpp
+//  TEUIImageDrawer.cpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 9/23/17.
@@ -15,7 +15,7 @@
 #include "Buffer.hpp"
 #include "Screen.hpp"
 #include "TEUIDrawer.hpp"
-#include "TEImageDrawer.hpp"
+#include "TEUIImageDrawer.hpp"
 
 static unsigned int mode_for_channels(int channels) {
 	switch (channels) {
@@ -30,7 +30,7 @@ static unsigned int mode_for_channels(int channels) {
 	}
 }
 
-TEImageDrawer::TEImageDrawer(ui::UIImage* image) : _ui_image(image) {
+TEUIImageDrawer::TEUIImageDrawer(ui::UIImage* image) : _ui_image(image) {
 
     GL(glGenTextures(1, &_id));
     GL(glBindTexture(GL_TEXTURE_2D, _id));
@@ -55,12 +55,12 @@ TEImageDrawer::TEImageDrawer(ui::UIImage* image) : _ui_image(image) {
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-TEImageDrawer::~TEImageDrawer() {
+TEUIImageDrawer::~TEUIImageDrawer() {
     GL(glDeleteTextures(1, &_id));
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-void TEImageDrawer::draw_in_rect(const Rect& rect) {
+void TEUIImageDrawer::draw_in_rect(const Rect& rect) {
 
     if (rect.size.is_negative())
         return;
@@ -77,7 +77,7 @@ void TEImageDrawer::draw_in_rect(const Rect& rect) {
     GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-void TEImageDrawer::_set_filter(Filter filter) {
+void TEUIImageDrawer::_set_filter(Filter filter) {
 	switch (filter) {
 	case Nearest:
 		GL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));

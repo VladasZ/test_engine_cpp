@@ -11,7 +11,7 @@
 #include "UIImage.hpp"
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
-#include "TEImageDrawer.hpp"
+#include "TEUIImageDrawer.hpp"
 
 namespace cursor {
 static GLFWcursor* arrow;
@@ -45,7 +45,7 @@ const Rect TEUIDrawer::_convert_rect(const Rect& rect) {
 }
 
 ui::UIImage::Drawer* TEUIDrawer::init_image_drawer(ui::UIImage* image) {
-    return new TEImageDrawer(image);
+    return new TEUIImageDrawer(image);
 }
 
 #ifdef UI_DESKTOP

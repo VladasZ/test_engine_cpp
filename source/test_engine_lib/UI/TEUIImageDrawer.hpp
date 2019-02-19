@@ -1,5 +1,5 @@
 //
-//  TEImageDrawer.hpp
+//  TEUIImageDrawer.hpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 9/23/17.
@@ -12,7 +12,7 @@
 #include "Image.hpp"
 #include "UIImage.hpp"
 
-class TEImageDrawer : public ui::UIImage::Drawer {
+class TEUIImageDrawer : public ui::UIImage::Drawer {
 
     unsigned int _id = 0;
     ui::UIImage* _ui_image;
@@ -27,8 +27,8 @@ public:
 		Default = Linear
 	};
 
-    TEImageDrawer(ui::UIImage*);
-    ~TEImageDrawer() override;
+    TEUIImageDrawer(ui::UIImage*);
+    ~TEUIImageDrawer() override;
 
     void draw_in_rect(const Rect&) override;
 

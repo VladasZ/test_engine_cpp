@@ -20,6 +20,8 @@ static Assimp::Importer _importer;
 
 scene::Mesh* ModelImporter::import(const std::string& file) {
 
+    Info(std::string() + "Loading model: " + file);
+
     const aiScene* scene = _importer.ReadFile(Paths::models_directory() + file,
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
@@ -28,7 +30,6 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
 
     if (!scene) {
         Error(_importer.GetErrorString());
-        //assert(scene == nullptr);
         return nullptr;
     }
 
@@ -57,7 +58,7 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
     if (has_texture_coordinates) {
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
             auto& coord = mesh->mTextureCoords[0][i];
-            texture_coordinates.emplace_back(coord.x, coord.y);
+            texture_coordinates.emplace_back(coord.x, 1 - coord.y);
         }
 
         return new scene::TexturedMesh(vertices, indices, texture_coordinates);

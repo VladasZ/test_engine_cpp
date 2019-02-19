@@ -27,8 +27,8 @@ void create_scene() {
     auto z_box = new scene::Box(0.1f); z_box->set_position({ 0, 0, 1.0f }); _scene->add_object(z_box);
 
     _scene->camera->resolution = TestEngine::screen.size;
-    _scene->camera->set_target({ 0, 0, 0.5 });
-    _scene->camera->set_position({ 1, 0, 3 });
+    _scene->camera->set_target({ 0, 0, 0 });
+    _scene->camera->set_position({ 3, 0, 4 });
 
     _scene->add_object(new scene::Grid({ 10, 10, }, { 10, 10 }));
 

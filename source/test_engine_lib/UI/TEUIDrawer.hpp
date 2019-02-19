@@ -11,7 +11,7 @@
 #include "UIDrawer.hpp"
 
 namespace ui {
-class Image;
+class UIImage;
 }
 
 class TEUIDrawer : public ui::UIDrawer {
@@ -27,7 +27,7 @@ private:
 
 public:
 
-    ui::Image::Drawer* init_image_drawer(ui::Image* image) override;
+    ui::UIImage::Drawer* init_image_drawer(ui::UIImage* image) override;
 
 #ifdef UI_DESKTOP
     void set_cursor_mode(ui::Mouse::CursorMode cursor_mode) override;

@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "Image.hpp"
+#include "UIImage.hpp"
 
-class TEImageDrawer : public ui::Image::Drawer {
+class TEImageDrawer : public ui::UIImage::Drawer {
 
     unsigned int _id = 0;
-    ui::Image* _ui_image;
+    ui::UIImage* _ui_image;
 
 public:
 
@@ -25,7 +25,7 @@ public:
 		Default = Linear
 	};
 
-    TEImageDrawer(ui::Image*);
+    TEImageDrawer(ui::UIImage*);
     ~TEImageDrawer() override;
 
     void draw_in_rect(const Rect&) override;

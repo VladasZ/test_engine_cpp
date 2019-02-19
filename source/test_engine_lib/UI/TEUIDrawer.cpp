@@ -7,8 +7,8 @@
 //
 
 #include "GL.hpp"
-#include "Image.hpp"
 #include "Buffer.hpp"
+#include "UIImage.hpp"
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 #include "TEImageDrawer.hpp"
@@ -44,7 +44,7 @@ const Rect TEUIDrawer::_convert_rect(const Rect& rect) {
     return rect;
 }
 
-ui::Image::Drawer* TEUIDrawer::init_image_drawer(ui::Image* image) {
+ui::UIImage::Drawer* TEUIDrawer::init_image_drawer(ui::UIImage* image) {
     return new TEImageDrawer(image);
 }
 

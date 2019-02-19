@@ -12,7 +12,6 @@
 #include "Shader.hpp"
 #include "Debug.hpp"
 #include "Paths.hpp"
-#include "Image.hpp"
 #include "Buffer.hpp"
 #include "Screen.hpp"
 #include "TEUIDrawer.hpp"
@@ -31,7 +30,7 @@ static unsigned int mode_for_channels(int channels) {
 	}
 }
 
-TEImageDrawer::TEImageDrawer(ui::Image* image) : _ui_image(image) {
+TEImageDrawer::TEImageDrawer(ui::UIImage* image) : _ui_image(image) {
 
     GL(glGenTextures(1, &_id));
     GL(glBindTexture(GL_TEXTURE_2D, _id));

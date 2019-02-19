@@ -1,5 +1,0 @@
-target 'TestEngineiOS' do
-
-    pod 'glm'
-
-end

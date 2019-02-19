@@ -11,26 +11,26 @@
 
 std::string Paths::assets_directory() {
 #ifdef WINDOWS
-	return "C:\\Users\\u.zakreuskis\\.deps\\test_engine\\Assets\\";
+    return "C:\\Users\\u.zakreuskis\\.deps\\test_engine\\assets\\";
 #elif defined (APPLE)
-    return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/Assets/";
+    return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/assets/";
 #else
-  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/Assets/";
+  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/assets/";
 #endif
 }
 
 std::string Paths::shaders_directory() {
-    return assets_directory() + "Shaders/";
+    return assets_directory() + "shaders/";
 }
 
 std::string Paths::images_directory() {
-    return assets_directory() + "Images/";
+    return assets_directory() + "images/";
 }
 
 std::string Paths::models_directory() {
-    return assets_directory() + "Models/";
+    return assets_directory() + "models/";
 }
 
 std::string Paths::fonts_directory() {
-    return assets_directory() + "Fonts/";
+    return assets_directory() + "fonts/";
 }

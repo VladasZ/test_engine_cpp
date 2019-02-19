@@ -20,9 +20,9 @@ void create_scene() {
     _scene = new scene::Scene();
     TestEngine::screen.set_scene(_scene);
 
-    auto x_box = new scene::Box(0.1); x_box->set_position({ 1.0f, 0, 0 }); _scene->add_object(x_box);
-    auto y_box = new scene::Box(0.1); y_box->set_position({ 0, 1.2f, 0 }); _scene->add_object(y_box);
-    auto z_box = new scene::Box(0.1); z_box->set_position({ 0, 0, 1.0f }); _scene->add_object(z_box);
+    auto x_box = new scene::Box(0.1f); x_box->set_position({ 1.0f, 0, 0 }); _scene->add_object(x_box);
+    auto y_box = new scene::Box(0.1f); y_box->set_position({ 0, 1.2f, 0 }); _scene->add_object(y_box);
+    auto z_box = new scene::Box(0.1f); z_box->set_position({ 0, 0, 1.0f }); _scene->add_object(z_box);
 
 
 
@@ -39,11 +39,11 @@ void create_scene() {
 
     Logvar(vector_model->pivot().to_string());
 
-    cube_model = new::scene::Model(ModelImporter::import("TexturedCube.blend"));
+    cube_model = new::scene::Model(ModelImporter::import("textured_cube.blend"));
     cube_model->set_position({ 10, 10, 0 });
     _scene->add_object(cube_model);
 
-    monkey_model = new::scene::Model(ModelImporter::import("Monkey.blend"));
+    monkey_model = new::scene::Model(ModelImporter::import("monkey.blend"));
     monkey_model->set_position({ -10, -10, 0 });
     _scene->add_object(monkey_model);
 }

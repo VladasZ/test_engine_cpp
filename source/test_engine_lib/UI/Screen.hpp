@@ -24,7 +24,8 @@ private:
     void _initialize_gl();
     void _initialize_ui();
     void _initialize_scene();
-    
+    void _initialize_image();
+
     scene::Scene* _scene = nullptr;
     te::RootView* _root_view = nullptr;
 

@@ -7,11 +7,10 @@
 //
 
 #include "GL.hpp"
+#include "Image.hpp"
 #include "Buffer.hpp"
-#include "UIImage.hpp"
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
-#include "TEUIImageDrawer.hpp"
 
 namespace cursor {
 static GLFWcursor* arrow;
@@ -33,19 +32,28 @@ TEUIDrawer::TEUIDrawer() {
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
 }
 
-void TEUIDrawer::_fill_rect(const Rect& rect, const Color& color) {
+void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
     Shader::ui.use();
     Shader::ui.set_uniform_color(color);
     Buffer::fullscreen->draw();
 }
 
-const Rect TEUIDrawer::_convert_rect(const Rect& rect) {
-    return rect;
-}
+void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
+    if (rect.size.is_negative())
+        return;
 
-ui::UIImage::Drawer* TEUIDrawer::init_image_drawer(ui::UIImage* image) {
-    return new TEUIImageDrawer(image);
+    image->bind();
+
+    if (image->is_monochrome())
+        Shader::ui_monochrome.use();
+    else
+        Shader::ui_texture.use();
+
+    GL::set_viewport(rect);
+    Buffer::fullscreen_image->draw();
+
+    image->unbind();
 }
 
 #ifdef UI_DESKTOP

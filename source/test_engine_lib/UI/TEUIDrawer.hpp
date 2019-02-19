@@ -10,10 +10,6 @@
 
 #include "UIDrawer.hpp"
 
-namespace ui {
-class UIImage;
-}
-
 class TEUIDrawer : public ui::UIDrawer {
 
 public:
@@ -22,12 +18,10 @@ public:
 
 private:
 
-    void _fill_rect(const Rect& rect, const Color& color) override;
-    const Rect _convert_rect(const Rect& rect) override;
+    void fill_rect(const Rect& rect, const Color& color) override;
+    void draw_image_in_rect(Image*, const Rect&) override;
 
 public:
-
-    ui::UIImage::Drawer* init_image_drawer(ui::UIImage* image) override;
 
 #ifdef UI_DESKTOP
     void set_cursor_mode(ui::Mouse::CursorMode cursor_mode) override;

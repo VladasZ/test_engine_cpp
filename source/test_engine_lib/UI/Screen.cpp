@@ -35,7 +35,9 @@ using namespace std;
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 #include "ColoredMesh.hpp"
+#include "ImageConfig.hpp"
 #include "GlobalEvents.hpp"
+#include "TEImageLoader.hpp"
 #include "ModelImporter.hpp"
 #include "DebugInfoView.hpp"
 #include "TESceneDrawer.hpp"
@@ -126,9 +128,14 @@ void Screen::_initialize_scene() {
     scene::config::drawer = new TESceneDrawer();
 }
 
+void Screen::_initialize_image() {
+    image::config::set_loader(new TEImageLoader());
+}
+
 void Screen::initialize(const Size& size) {
     Screen::size = size;
     _initialize_gl();
+    _initialize_image();
     _initialize_ui();
     _initialize_scene();
     Screen::set_size(size);

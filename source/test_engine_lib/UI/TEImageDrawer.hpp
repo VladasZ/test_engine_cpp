@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Rect.hpp"
+#include "Image.hpp"
 #include "UIImage.hpp"
 
 class TEImageDrawer : public ui::UIImage::Drawer {

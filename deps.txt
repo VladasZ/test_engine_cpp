@@ -1,5 +1,6 @@
 ui
 soil
+image
 scene
 geometry
 cpp_utils

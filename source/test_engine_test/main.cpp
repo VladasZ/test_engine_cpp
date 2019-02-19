@@ -7,13 +7,15 @@
 #include "Model.hpp"
 #include "ImageView.hpp"
 #include "TestEngine.hpp"
+#include "TexturedModel.hpp"
 #include "ModelImporter.hpp"
 #include "TestSlidersView.hpp"
 
-static scene::Model* cube_model   = nullptr;
-static scene::Model* vector_model = nullptr;
-static scene::Model* monkey_model = nullptr;
-static scene::Scene* _scene       = nullptr;
+static scene::Scene* _scene = nullptr;
+
+static scene::Model* vector_model       = nullptr;
+static scene::Model* monkey_model       = nullptr;
+static scene::TexturedModel* cube_model = nullptr;
 
 void create_scene() {
 
@@ -26,7 +28,7 @@ void create_scene() {
 
     _scene->camera->resolution = TestEngine::screen.size;
     _scene->camera->set_target({ 0, 0, 0.5 });
-    _scene->camera->set_position({ 1, 0, 0.5 });
+    _scene->camera->set_position({ 1, 0, 3 });
 
     _scene->add_object(new scene::Grid({ 10, 10, }, { 10, 10 }));
 
@@ -37,8 +39,7 @@ void create_scene() {
 
     Logvar(vector_model->pivot().to_string());
 
-    cube_model = new::scene::Model(ModelImporter::import("textured_cube.blend"));
-    cube_model->set_position({ 10, 10, 0 });
+    cube_model = new scene::TexturedModel(new Image(Paths::images_directory() + "cube_texture.png"), ModelImporter::import("textured_cube.blend"));
     _scene->add_object(cube_model);
 
     monkey_model = new::scene::Model(ModelImporter::import("monkey.blend"));

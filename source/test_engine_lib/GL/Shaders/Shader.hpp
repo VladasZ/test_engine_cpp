@@ -35,12 +35,13 @@ class Shader {
     
 public:
     
-    static Shader ui;
-    static Shader ui_texture;
-    static Shader ui_monochrome;
+    static Shader* ui;
+    static Shader* ui_texture;
+    static Shader* ui_monochrome;
     
-    static Shader simple3D;
-    static Shader colored3D;
+    static Shader* simple3D;
+    static Shader* colored3D;
+    static Shader* textured3D;
 
     void use() const;
     unsigned int get_program_id() const;

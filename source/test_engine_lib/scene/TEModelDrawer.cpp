@@ -20,7 +20,7 @@ TEModelDrawer::TEModelDrawer(scene::Model* model) {
 TEModelDrawer::~TEModelDrawer() { }
 
 void TEModelDrawer::_draw() const {
-    Shader::colored3D.use();
-    Shader::colored3D.set_mvp_matrix(_model->mvp_matrix());
+    _buffer->bind();
+    _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
     _buffer->draw();
 }

@@ -10,6 +10,8 @@
 
 #include <vector>
 
+#include "Shader.hpp"
+
 namespace scene {
 class Mesh;
 class ColoredMesh;
@@ -27,25 +29,31 @@ class Buffer {
     unsigned int vertex_buffer_object = 0;
     unsigned int index_buffer_object  = 0;
 
+    Shader* _shader;
+
 private:
 
-    void _initialize(BufferData* data, const BufferConfiguration& configuration);
+    void _initialize(BufferData* data, const BufferConfiguration& configuration, Shader* shader);
 
 public:
     
     unsigned int draw_mode;
 
-    Buffer(BufferData* data, const BufferConfiguration& configuration);
+    Buffer(BufferData* data, const BufferConfiguration& configuration, Shader* shader);
     
     Buffer(const std::vector<float>& vertices,
            const std::vector<unsigned short>& indices,
-           const BufferConfiguration& configuration);
+           const BufferConfiguration& configuration,
+           Shader* shader);
 
     Buffer(const scene::Mesh* mesh);
 
     ~Buffer();
 
+    void bind() const;
     void draw() const;
+
+    Shader* shader() const;
 
     const char* to_string(unsigned int new_line = 3) const;
 

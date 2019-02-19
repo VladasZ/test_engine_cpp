@@ -34,8 +34,10 @@ TEUIDrawer::TEUIDrawer() {
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-    Shader::ui.use();
-    Shader::ui.set_uniform_color(color);
+    Shader::ui->use();
+    Shader::ui->set_uniform_color(color);
+    Buffer::fullscreen->bind();
+
     Buffer::fullscreen->draw();
 }
 
@@ -44,11 +46,12 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
         return;
 
     image->bind();
+    Buffer::fullscreen_image->bind();
 
     if (image->is_monochrome())
-        Shader::ui_monochrome.use();
+        Shader::ui_monochrome->use();
     else
-        Shader::ui_texture.use();
+        Shader::ui_texture->use();
 
     GL::set_viewport(rect);
     Buffer::fullscreen_image->draw();

@@ -13,6 +13,7 @@
 #include "Log.hpp"
 #include "Paths.hpp"
 #include "ColoredMesh.hpp"
+#include "TexturedMesh.hpp"
 #include "ModelImporter.hpp"
 
 static Assimp::Importer _importer;
@@ -36,7 +37,7 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
 
     std::vector<Vector3> vertices;
     std::vector<unsigned short> indices;
-    std::vector<float> texture_coordinates;
+    std::vector<Point> texture_coordinates;
 
     Info(file);
     Info(mesh->HasTextureCoords(0));
@@ -56,10 +57,10 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
     if (has_texture_coordinates) {
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
             auto& coord = mesh->mTextureCoords[0][i];
-            Logvar(coord.x);
-            Logvar(coord.y);
-            Logvar(coord.z);
+            texture_coordinates.emplace_back(coord.x, coord.y);
         }
+
+        return new scene::TexturedMesh(vertices, indices, texture_coordinates);
     }
 
     return new scene::ColoredMesh(vertices, indices);

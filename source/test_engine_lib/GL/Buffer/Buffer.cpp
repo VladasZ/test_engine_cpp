@@ -15,9 +15,12 @@
 #include "Buffer.hpp"
 #include "BufferData.hpp"
 #include "ColoredMesh.hpp"
+#include "TexturedMesh.hpp"
 #include "BufferConfiguration.hpp"
 
-void Buffer::_initialize(BufferData* data, const BufferConfiguration& configuration) {
+void Buffer::_initialize(BufferData* data, const BufferConfiguration& configuration, Shader* shader) {
+
+    _shader = shader;
 
     this->data = data;
     draw_mode = GL_TRIANGLES;
@@ -46,19 +49,25 @@ void Buffer::_initialize(BufferData* data, const BufferConfiguration& configurat
     GL(glBindVertexArray(0));
 }
 
-Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration) {
-    _initialize(data, configuration);
+Buffer::Buffer(BufferData* data, const BufferConfiguration& configuration, Shader* shader) {
+    _initialize(data, configuration, shader);
 }
 
 Buffer::Buffer(const std::vector<float>& vertices,
                const std::vector<unsigned short>& indices,
-               const BufferConfiguration& configuration)
-    : Buffer(new BufferData(vertices, indices), configuration) { }
+               const BufferConfiguration& configuration,
+               Shader* shader)
+    : Buffer(new BufferData(vertices, indices), configuration, shader) { }
 
 Buffer::Buffer(const scene::Mesh* mesh) {
 
+    if (auto textured_mesh = dynamic_cast<const scene::TexturedMesh*>(mesh)) {
+        _initialize(new BufferData(textured_mesh->data, mesh->indices), BufferConfiguration::_3_2, Shader::textured3D);
+        return;
+    }
+
     if (auto colored_mesh = dynamic_cast<const scene::ColoredMesh*>(mesh)) {
-        _initialize(new BufferData(colored_mesh->data, mesh->indices), BufferConfiguration::_3_3);
+        _initialize(new BufferData(colored_mesh->data, mesh->indices), BufferConfiguration::_3_3, Shader::colored3D);
         return;
     }
 
@@ -66,7 +75,7 @@ Buffer::Buffer(const scene::Mesh* mesh) {
             std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
                                reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3);
 
-    _initialize(new BufferData(vertices, mesh->indices), BufferConfiguration::_3);
+    _initialize(new BufferData(vertices, mesh->indices), BufferConfiguration::_3, Shader::simple3D);
 }
 
 Buffer::~Buffer() {
@@ -77,14 +86,22 @@ Buffer::~Buffer() {
     delete data;
 }
 
+void Buffer::bind() const {
+    _shader->use();
+    GL(glBindVertexArray(vertex_array_object));
+}
+
 void Buffer::draw() const {
-    GL(glBindVertexArray(vertex_array_object));    
     if (data->indices.empty()) {
         GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(data->vertices.size())));
     } else {
         GL(glDrawElements(draw_mode, static_cast<GLsizei>(data->indices.size()), GL_UNSIGNED_SHORT, nullptr));
     }
     GL(glBindVertexArray(0));
+}
+
+Shader* Buffer::shader() const {
+    return _shader;
 }
 
 const char* Buffer::to_string(unsigned int new_line) const {
@@ -96,10 +113,10 @@ void Buffer::initialize(const Size& display_resolution, const Size& window_size)
     static const Rect fulscreen_rect { -1, -1,  2,  2 };
     static const Rect almost_fulscreen_rect { -0.999f, -0.999f,  1.999f,  1.999f };
 
-    fullscreen = new Buffer(BufferData::from_rect(fulscreen_rect), BufferConfiguration::_2);
+    fullscreen = new Buffer(BufferData::from_rect(fulscreen_rect), BufferConfiguration::_2, Shader::ui);
     fullscreen->draw_mode = GL_TRIANGLE_STRIP;
 
-    fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2);
+    fullscreen_image = new Buffer(BufferData::from_rect_to_image(fulscreen_rect), BufferConfiguration::_2_2, Shader::ui_texture);
     fullscreen_image->draw_mode = GL_TRIANGLE_STRIP;
     
     window_size_changed(display_resolution, window_size);
@@ -119,5 +136,5 @@ void Buffer::window_size_changed(const Size& display_resolution, const Size& win
              2 * height_ratio
     };
 
-    root_ui_buffer = new Buffer(BufferData::from_rect_to_framebuffer(rect), BufferConfiguration::_2_2);
+    root_ui_buffer = new Buffer(BufferData::from_rect_to_framebuffer(rect), BufferConfiguration::_2_2, Shader::ui_texture);
 }

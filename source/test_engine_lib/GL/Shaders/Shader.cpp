@@ -14,11 +14,12 @@
 #include "ShaderCompiler.hpp"
 
 
-Shader Shader::ui;
-Shader Shader::ui_texture;
-Shader Shader::ui_monochrome;
-Shader Shader::simple3D;
-Shader Shader::colored3D;
+Shader* Shader::ui;
+Shader* Shader::ui_texture;
+Shader* Shader::ui_monochrome;
+Shader* Shader::simple3D;
+Shader* Shader::colored3D;
+Shader* Shader::textured3D;
 
 
 Shader::Shader(const std::string& name) {
@@ -35,11 +36,12 @@ unsigned int Shader::get_program_id() const {
 }
 
 void Shader::initialize() {
-    ui            = Shader("ui");
-    ui_texture    = Shader("ui_texture");
-    ui_monochrome = Shader("ui_monochrome");
-    simple3D      = Shader("simple3D");
-    colored3D     = Shader("colored3D");
+    ui            = new Shader("ui");
+    ui_texture    = new Shader("ui_texture");
+    ui_monochrome = new Shader("ui_monochrome");
+    simple3D      = new Shader("simple3D");
+    colored3D     = new Shader("colored3D");
+    textured3D    = new Shader("textured3D");
 }
 
 void Shader::set_uniform_color(const Color& color) {

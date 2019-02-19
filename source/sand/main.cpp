@@ -10,8 +10,10 @@
 #include "ModelImporter.hpp"
 #include "TestSlidersView.hpp"
 
+static scene::Model* cube_model   = nullptr;
 static scene::Model* vector_model = nullptr;
-static scene::Scene* _scene        = nullptr;
+static scene::Model* monkey_model = nullptr;
+static scene::Scene* _scene       = nullptr;
 
 void create_scene() {
 
@@ -37,8 +39,13 @@ void create_scene() {
 
     Logvar(vector_model->pivot().to_string());
 
-    //vector_model->set_pivot(vector_model->pivot());
+    cube_model = new::scene::Model(ModelImporter::import("TexturedCube.blend"));
+    cube_model->set_position({ 10, 10, 0 });
+    _scene->add_object(cube_model);
 
+    monkey_model = new::scene::Model(ModelImporter::import("Monkey.blend"));
+    monkey_model->set_position({ -10, -10, 0 });
+    _scene->add_object(monkey_model);
 }
 
 void create_ui() {

@@ -32,9 +32,15 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
     }
 
     auto mesh = scene->mMeshes[0];
+    auto has_texture_coordinates = mesh->HasTextureCoords(0);
 
     std::vector<Vector3> vertices;
     std::vector<unsigned short> indices;
+    std::vector<float> texture_coordinates;
+
+    Info(file);
+    Info(mesh->HasTextureCoords(0));
+    Logvar(scene->HasMaterials());
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         auto& vert = mesh->mVertices[i];
@@ -45,6 +51,15 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
         auto& face = mesh->mFaces[i];
         for (unsigned int j = 0; j < face.mNumIndices; j++)
             indices.push_back(static_cast<unsigned short>(face.mIndices[j]));
+    }
+
+    if (has_texture_coordinates) {
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+            auto& coord = mesh->mTextureCoords[0][i];
+            Logvar(coord.x);
+            Logvar(coord.y);
+            Logvar(coord.z);
+        }
     }
 
     return new scene::ColoredMesh(vertices, indices);

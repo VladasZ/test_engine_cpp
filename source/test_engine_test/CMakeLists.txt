@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(sand)
+project(test_engine_test)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 add_executable(${PROJECT_NAME} ${SOURCE})

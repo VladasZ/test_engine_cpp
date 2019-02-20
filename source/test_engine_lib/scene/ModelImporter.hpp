@@ -11,10 +11,10 @@
 #include <string>
 
 namespace scene {
-class Mesh;
+class Model;
 }
 
 class ModelImporter {
 public:
-    static scene::Mesh* import(const std::string&);
+    static scene::Model* import(const std::string&);
 };

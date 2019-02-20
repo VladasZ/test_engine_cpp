@@ -36,20 +36,19 @@ void create_scene() {
 
     _scene->add_object(new scene::Grid({ 10, 10, }, { 10, 10 }));
 
-    vector_model = new scene::Model(ModelImporter::import("Vector.blend"));
+    vector_model = ModelImporter::import("Vector.blend");
     vector_model->set_position({ 5, 5, -1 });
     _scene->add_object(vector_model);
 
     Logvar(vector_model->pivot().to_string());
 
-    cube_model = new scene::TexturedModel(new Image(Paths::images_directory() + "cube_texture.png"), ModelImporter::import("textured_cube.blend"));
-    cube_model->set_position({ 10, 10, 0 });
-    _scene->add_object(cube_model);
+//    cube_model = new scene::TexturedModel(new Image(Paths::images_directory() + "cube_texture.png"), ModelImporter::import("textured_cube.blend"));
+//    cube_model->set_position({ 10, 10, 0 });
+//    _scene->add_object(cube_model);
 
-    monkey_model = new scene::Model(ModelImporter::import("monkey.blend"));
+    monkey_model = ModelImporter::import("monkey.blend");
     monkey_model->set_position({ -10, -10, 0 });
     _scene->add_object(monkey_model);
-
 
     indicator = new scene::Box(0.2);
     _scene->add_object(indicator);
@@ -67,7 +66,6 @@ void create_ui() {
 
     vec4_view->on_change.subscribe([&](const Vector4& vector){
         auto target = vector.vector3();
-        Info(target.to_string());
         vector_model->look_at(target);
         indicator->set_position(target * vector.w + vector_model->position());
     });

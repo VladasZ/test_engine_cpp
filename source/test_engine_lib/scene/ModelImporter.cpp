@@ -12,13 +12,14 @@
 
 #include "Log.hpp"
 #include "Paths.hpp"
+#include "Model.hpp"
 #include "ColoredMesh.hpp"
 #include "TexturedMesh.hpp"
 #include "ModelImporter.hpp"
 
 static Assimp::Importer _importer;
 
-scene::Mesh* ModelImporter::import(const std::string& file) {
+scene::Model* ModelImporter::import(const std::string& file) {
 
     Info(std::string() + "Loading model: " + file);
 
@@ -61,8 +62,8 @@ scene::Mesh* ModelImporter::import(const std::string& file) {
             texture_coordinates.emplace_back(coord.x, 1 - coord.y);
         }
 
-        return new scene::TexturedMesh(vertices, indices, texture_coordinates);
+        return new scene::Model(new scene::TexturedMesh(vertices, indices, texture_coordinates));
     }
 
-    return new scene::ColoredMesh(vertices, indices);
+    return new scene::Model(new scene::ColoredMesh(vertices, indices));
 }

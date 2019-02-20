@@ -111,16 +111,22 @@ void Screen::_initialize_ui() {
         }
 
         if (key == 'W')
-            _scene->camera->walk(scene::Walkable::Direction::Forward);
+            _scene->camera->fly(scene::Flyable::Direction::Forward);
 
         if (key == 'S')
-            _scene->camera->walk(scene::Walkable::Direction::Back);
+            _scene->camera->fly(scene::Flyable::Direction::Back);
 
         if (key == 'A')
-            _scene->camera->walk(scene::Walkable::Direction::Left);
+            _scene->camera->fly(scene::Flyable::Direction::Left);
 
         if (key == 'D')
-            _scene->camera->walk(scene::Walkable::Direction::Right);
+            _scene->camera->fly(scene::Flyable::Direction::Right);
+
+        if (key == 'E')
+            _scene->camera->fly(scene::Flyable::Direction::Up);
+
+        if (key == 'Q')
+            _scene->camera->fly(scene::Flyable::Direction::Down);
     });
 }
 

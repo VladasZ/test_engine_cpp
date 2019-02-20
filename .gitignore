@@ -404,3 +404,4 @@ utils/
 /dep_build
 
 *.autosave
+*.blend1

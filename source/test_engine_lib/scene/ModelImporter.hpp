@@ -10,11 +10,13 @@
 
 #include <string>
 
+class Image;
+
 namespace scene {
 class Model;
 }
 
 class ModelImporter {
 public:
-    static scene::Model* import(const std::string&);
+    static scene::Model* import(const std::string&, Image* = nullptr);
 };

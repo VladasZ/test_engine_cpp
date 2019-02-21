@@ -15,11 +15,12 @@
 #include "Model.hpp"
 #include "ColoredMesh.hpp"
 #include "TexturedMesh.hpp"
+#include "TexturedModel.hpp"
 #include "ModelImporter.hpp"
 
 static Assimp::Importer _importer;
 
-scene::Model* ModelImporter::import(const std::string& file) {
+scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Info(std::string() + "Loading model: " + file);
 
@@ -56,13 +57,13 @@ scene::Model* ModelImporter::import(const std::string& file) {
             indices.push_back(static_cast<unsigned short>(face.mIndices[j]));
     }
 
-    if (has_texture_coordinates) {
+    if (image && has_texture_coordinates) {
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
             auto& coord = mesh->mTextureCoords[0][i];
             texture_coordinates.emplace_back(coord.x, 1 - coord.y);
         }
 
-        return new scene::Model(new scene::TexturedMesh(vertices, indices, texture_coordinates));
+        return new scene::TexturedModel(image, new scene::TexturedMesh(vertices, indices, texture_coordinates));
     }
 
     return new scene::Model(new scene::ColoredMesh(vertices, indices));

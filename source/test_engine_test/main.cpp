@@ -19,7 +19,7 @@ static scene::Model* side               = nullptr;
 static scene::Model* indicator          = nullptr;
 static scene::Model* vector_model       = nullptr;
 static scene::Model* monkey_model       = nullptr;
-static scene::TexturedModel* cube_model = nullptr;
+static scene::Model* cube_model = nullptr;
 
 void create_scene() {
 
@@ -42,15 +42,15 @@ void create_scene() {
 
     Logvar(vector_model->pivot().to_string());
 
-//    cube_model = new scene::TexturedModel(new Image(Paths::images_directory() + "cube_texture.png"), ModelImporter::import("textured_cube.blend"));
-//    cube_model->set_position({ 10, 10, 0 });
-//    _scene->add_object(cube_model);
+    cube_model = ModelImporter::import("textured_cube.blend", new Image(Paths::images_directory() + "cube_texture.png"));
+    cube_model->set_position({ 10, 10, 0 });
+    _scene->add_object(cube_model);
 
     monkey_model = ModelImporter::import("monkey.blend");
     monkey_model->set_position({ -10, -10, 0 });
     _scene->add_object(monkey_model);
 
-    indicator = new scene::Box(0.2);
+    indicator = new scene::Box(0.2f);
     _scene->add_object(indicator);
 
 }

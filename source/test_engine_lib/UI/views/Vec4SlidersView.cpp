@@ -35,7 +35,7 @@ void Vec4SlidersView::_setup() {
     _z_slider->set_caption("Z");
     _w_slider->set_caption("W");
 
-    _w_slider->slider_view->multiplier = 10.0f;
+    _w_slider->slider_view->multiplier = 2.0f;
 
     _x_slider->slider_view->on_value_changed.subscribe([&](float value) {
         SET_VALUE(position.x, value);

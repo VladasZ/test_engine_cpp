@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "GL.hpp"
+#include "Debug.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
 #include "TexturedModel.hpp"
@@ -23,6 +25,9 @@ TEModelDrawer::~TEModelDrawer() {
 }
 
 void TEModelDrawer::_draw() const {
+    if (_model->is_transparent)
+        GL(glDisable(GL_DEPTH_TEST));
+
     _buffer->bind();
     if (auto textured_model = dynamic_cast<const scene::TexturedModel*>(_model)) {
         textured_model->texture()->bind();
@@ -31,4 +36,7 @@ void TEModelDrawer::_draw() const {
     }
     _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
     _buffer->draw();
+
+    if (_model->is_transparent)
+        GL(glEnable(GL_DEPTH_TEST));
 }

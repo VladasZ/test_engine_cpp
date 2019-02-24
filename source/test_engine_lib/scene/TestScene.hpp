@@ -24,6 +24,7 @@ class TestScene : public scene::Scene {
     scene::Model* cube_model          = nullptr;
 
     void setup() override;
+    void each_frame() override;
 
 public:
 

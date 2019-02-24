@@ -39,6 +39,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     auto has_texture_coordinates = mesh->HasTextureCoords(0);
 
     std::vector<Vector3> vertices;
+    std::vector<Vector3> normals;
     std::vector<unsigned short> indices;
     std::vector<Point> texture_coordinates;
 
@@ -48,7 +49,9 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         auto& vert = mesh->mVertices[i];
+        auto& norm = mesh->mNormals[i];
         vertices.emplace_back(vert.x, vert.y, vert.z);
+        normals .emplace_back(norm.x, norm.y, norm.z);
     }
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
@@ -63,7 +66,10 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
             texture_coordinates.emplace_back(coord.x, 1 - coord.y);
         }
 
-        return new scene::TexturedModel(image, new scene::TexturedMesh(vertices, indices, texture_coordinates));
+        auto mesh = new scene::TexturedMesh(vertices, indices, texture_coordinates);
+        mesh->normals = normals;
+
+        return new scene::TexturedModel(image, mesh);
     }
 
     return new scene::Model(new scene::ColoredMesh(vertices, indices));

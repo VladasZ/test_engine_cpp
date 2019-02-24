@@ -23,6 +23,8 @@ class TestScene : public scene::Scene {
     scene::Model* monkey_model        = nullptr;
     scene::Model* cube_model          = nullptr;
 
+    scene::Model* floor               = nullptr;
+
     void setup() override;
     void each_frame() override;
 

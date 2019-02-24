@@ -61,10 +61,6 @@ void test_geometry() {
 
 int main() {
 
-    test_geometry();
-
-   // return 0;
-
     TestEngine::initialize({ 1000, 680 });
 
     TestEngine::screen.set_scene(_scene = new TestScene());

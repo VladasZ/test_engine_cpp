@@ -13,6 +13,7 @@
 #include "Mesh.hpp"
 #include "Paths.hpp"
 #include "Image.hpp"
+#include "Plane.hpp"
 #include "TestScene.hpp"
 #include "TestEngine.hpp"
 #include "ModelImporter.hpp"
@@ -35,7 +36,7 @@ void TestScene::setup() {
 
     cube_model = ModelImporter::import("textured_cube.blend", new Image(Paths::images_directory() + "cube_texture.png"));
     add_object(cube_model);
-    cube_model->set_position({ 5, 5, 5 });
+    //cube_model->set_position({ 5, 5, 5 });
     cube_model->set_scale(0.1f);
 
     direction_vector = ModelImporter::import("Vector.blend");
@@ -50,6 +51,8 @@ void TestScene::setup() {
     indicator = new scene::Box(0.05f);
     add_object(indicator);
 
+    floor = new scene::Plane({ 20, 20 });
+    //add_object(floor);
 }
 
 void TestScene::each_frame() {
@@ -73,16 +76,17 @@ void TestScene::each_frame() {
 //    Endl;
 //    Endl;
 //    Endl;
-    for (const auto& ver : cube_model->mesh()->vertices) {
 
-//        Log(ver.to_string());
-//        Endl;
-//        Log((cube_model->view_matrix() * ver).to_string());
+    for (unsigned int i = 0; i < cube_model->mesh()->vertices.size(); i++) {
+        const auto ver = cube_model->mesh()->vertices[i];
+        const auto nor = cube_model->mesh()->normals[i];
+        auto transformed_ver = (cube_model->view_matrix() * ver);
+        auto transfotmed_nor = (cube_model->view_matrix().multiply_by_normal(nor));
 
-        draw_box(cube_model->view_matrix() * ver);
+        draw_box(transformed_ver);
+        draw_box(transfotmed_nor + transformed_ver);
     }
-
-}
+ }
 
 void TestScene::set_vector(const Vector4& vec) {
     auto angle = vec.w;

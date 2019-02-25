@@ -41,6 +41,8 @@ class TestScene : public scene::Scene {
 
 public:
 
-    void set_vector(const Vector4&);
+    void set_vector(const Vector3&);
+    void set_x_angle(float);
+    void set_y_angle(float);
 
 };

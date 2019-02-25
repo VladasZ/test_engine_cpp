@@ -52,10 +52,10 @@ void TestScene::setup() {
     floor = new scene::Plane({ 20, 20 });
     //add_object(floor);
 
-    hor_plane = new scene::Plane({ 20, 20 });
+    hor_plane = new scene::Plane({ 1, 1 });
     add_object(hor_plane);
 
-    ver_plane = new scene::Plane({ 20, 20 });
+    ver_plane = new scene::Plane({ 1, 1 });
     add_object(ver_plane);
 }
 
@@ -72,27 +72,5 @@ void TestScene::each_frame() {
     }
  }
 
-Vector3 TestScene::hor_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
-    return Matrix4::transform::model_look_at(basestation_orientation) * Vector3 { -cos(angle), 0, sin(angle) };
-}
 
-Vector3 TestScene::ver_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
-    return Matrix4::transform::model_look_at(basestation_orientation) * Vector3 { 0, -cos(angle), sin(angle) };
-}
 
-void TestScene::set_vector(const Vector4& vec) {
-    Info(vec.w);
-    cube_model->look_at(vec.vector3());
-    auto hor_plane_normal = hor_plane_normal_for_angle(vec.w, vec.vector3());
-    auto ver_plane_normal = ver_plane_normal_for_angle(vec.w, vec.vector3());
-
-    hor_plane_normal_vector->look_at(hor_plane_normal);
-    ver_plane_normal_vector->look_at(ver_plane_normal);
-
-    hor_plane->look_at(hor_plane_normal);
-    ver_plane->look_at(ver_plane_normal);
-
-    line_vector->look_at(ver_plane_normal.cross(hor_plane_normal));
-
-    indicator->set_position(vec.vector3());
-}

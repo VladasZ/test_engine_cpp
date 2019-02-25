@@ -17,24 +17,13 @@
 #include "TestEngine.hpp"
 #include "TexturedModel.hpp"
 #include "ModelImporter.hpp"
+#include "XYZSlidersView.hpp"
 #include "TestSlidersView.hpp"
 
 static TestScene* _scene;
 
 void create_ui() {
 
-    auto root_view = TestEngine::screen.root_view();
-
-    auto vec4_view = new Vec4SlidersView();
-    vec4_view->add_layout({ ui::Anchor::Width,  240 });
-    vec4_view->add_layout({ ui::Anchor::Height, 400 });
-    vec4_view->add_layout({ ui::Anchor::TR          });
-
-    vec4_view->on_change.subscribe([&](const Vector4& vector) {
-        _scene->set_vector(vector);
-    });
-
-    root_view->add_subview(vec4_view);
 }
 
 void test_geometry() {

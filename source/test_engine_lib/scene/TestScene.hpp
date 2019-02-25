@@ -28,6 +28,9 @@ class TestScene : public scene::Scene {
     void setup() override;
     void each_frame() override;
 
+    Vector3 horizontal_plane_normal_for_angle(float angle, const Vector3& basestation_orientation);
+
+
 public:
 
     void set_vector(const Vector4&);

@@ -18,10 +18,6 @@
 #include "TestEngine.hpp"
 #include "ModelImporter.hpp"
 
-static Vector3 up_vector_point;
-static Vector3 direction_vector_point;
-static Vector3 plane_normal;
-
 void TestScene::setup() {
 
     add_box({ 1.0f, 0, 0 });
@@ -40,13 +36,13 @@ void TestScene::setup() {
     cube_model->set_scale(0.1f);
 
     direction_vector = ModelImporter::import("Vector.blend");
-    add_object(direction_vector);
+   // add_object(direction_vector);
 
     plane_normal_vector = ModelImporter::import("Vector.blend");
     add_object(plane_normal_vector);
 
     up_vector = ModelImporter::import("Vector.blend");
-    add_object(up_vector);
+   // add_object(up_vector);
 
     indicator = new scene::Box(0.05f);
     add_object(indicator);
@@ -56,26 +52,6 @@ void TestScene::setup() {
 }
 
 void TestScene::each_frame() {
-    draw_box(up_vector_point       );
-    draw_box(direction_vector_point);
-    draw_box(plane_normal          );
-
-//    Endl;
-//    Endl;
-//    Endl;
-//    Logvar(cube_model->view_matrix().to_string());
-
-//    Vector3 ver = { 1, 1, 1 };
-//    Logvar(ver.to_string());
-//    ver = cube_model->view_matrix() * ver;
-//    Logvar(ver.to_string());
-
-//    draw_box(ver);
-//    Endl;
-//    Endl;
-//    Endl;
-//    Endl;
-//    Endl;
 
     for (unsigned int i = 0; i < cube_model->mesh()->vertices.size(); i++) {
         const auto ver = cube_model->mesh()->vertices[i];
@@ -83,38 +59,20 @@ void TestScene::each_frame() {
         auto transformed_ver = (cube_model->view_matrix() * ver);
         auto transfotmed_nor = (cube_model->view_matrix().multiply_by_normal(nor));
 
-        draw_box(transformed_ver);
-        draw_box(transfotmed_nor + transformed_ver);
+        draw_box(transformed_ver, 0.01f);
+        draw_box(transfotmed_nor + transformed_ver, 0.01f);
     }
  }
 
-void TestScene::set_vector(const Vector4& vec) {
-    auto angle = vec.w;
-    Logvar(angle);
+Vector3 TestScene::horizontal_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
+    Info(angle);
     //angle -= math::half_pi<float>;
-    Logvar(vec.to_string());
+    Vector3 direction_vector_point = { -cos(angle),  0, sin(angle) };
+    return Matrix4::transform::model_look_at(basestation_orientation) * direction_vector_point;
+}
 
-    //cube_model->look_at(vector.vector3());
-
-    Matrix4 transform = Matrix4::transform::model_look_at(vec.vector3());
-
-    cube_model->set_rotation_matrix(transform);
-
-    up_vector_point        = {           0, 1,          0 };
-    direction_vector_point = { -cos(angle), 0, sin(angle) };
-    plane_normal           = direction_vector_point.cross(up_vector_point);
-
-    up_vector_point        = transform * up_vector_point;
-    direction_vector_point = transform * direction_vector_point;
-    plane_normal           = transform * plane_normal;
-
-    up_vector          ->look_at(up_vector_point       );
-    direction_vector   ->look_at(direction_vector_point);
-    plane_normal_vector->look_at(plane_normal          );
-
-//        direction_vector   ->add_rotation(cube_model->rotation_matrix());
-//        up_vector          ->add_rotation(cube_model->rotation_matrix());
-//        plane_normal_vector->add_rotation(cube_model->rotation_matrix());
-
+void TestScene::set_vector(const Vector4& vec) {
+    cube_model->look_at(vec.vector3());
+    plane_normal_vector->look_at(horizontal_plane_normal_for_angle(vec.w, vec.vector3()));
     indicator->set_position(vec.vector3());
 }

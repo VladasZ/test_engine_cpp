@@ -27,6 +27,7 @@ void TestScene::setup() {
     camera->resolution = TestEngine::screen.size;
     camera->set_target({ 0, 0, 0 });
     camera->set_position({ 0.5, 0, 1 });
+    camera->flying_speed = 0.2f;
 
     add_object(new scene::Grid({ 10, 10, }, { 10, 10 }));
 
@@ -35,20 +36,27 @@ void TestScene::setup() {
     //cube_model->set_position({ 5, 5, 5 });
     cube_model->set_scale(0.1f);
 
-    direction_vector = ModelImporter::import("Vector.blend");
-   // add_object(direction_vector);
+    line_vector = ModelImporter::import("Vector.blend");
+    add_object(line_vector);
+    line_vector->set_scale({ 1, 1, 10 });
 
-    plane_normal_vector = ModelImporter::import("Vector.blend");
-    add_object(plane_normal_vector);
+    hor_plane_normal_vector = ModelImporter::import("Vector.blend");
+    add_object(hor_plane_normal_vector);
 
-    up_vector = ModelImporter::import("Vector.blend");
-   // add_object(up_vector);
+    ver_plane_normal_vector = ModelImporter::import("Vector.blend");
+    add_object(ver_plane_normal_vector);
 
     indicator = new scene::Box(0.05f);
     add_object(indicator);
 
     floor = new scene::Plane({ 20, 20 });
     //add_object(floor);
+
+    hor_plane = new scene::Plane({ 20, 20 });
+    add_object(hor_plane);
+
+    ver_plane = new scene::Plane({ 20, 20 });
+    add_object(ver_plane);
 }
 
 void TestScene::each_frame() {
@@ -64,15 +72,27 @@ void TestScene::each_frame() {
     }
  }
 
-Vector3 TestScene::horizontal_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
-    Info(angle);
-    //angle -= math::half_pi<float>;
-    Vector3 direction_vector_point = { -cos(angle),  0, sin(angle) };
-    return Matrix4::transform::model_look_at(basestation_orientation) * direction_vector_point;
+Vector3 TestScene::hor_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
+    return Matrix4::transform::model_look_at(basestation_orientation) * Vector3 { -cos(angle), 0, sin(angle) };
+}
+
+Vector3 TestScene::ver_plane_normal_for_angle(float angle, const Vector3& basestation_orientation) {
+    return Matrix4::transform::model_look_at(basestation_orientation) * Vector3 { 0, -cos(angle), sin(angle) };
 }
 
 void TestScene::set_vector(const Vector4& vec) {
+    Info(vec.w);
     cube_model->look_at(vec.vector3());
-    plane_normal_vector->look_at(horizontal_plane_normal_for_angle(vec.w, vec.vector3()));
+    auto hor_plane_normal = hor_plane_normal_for_angle(vec.w, vec.vector3());
+    auto ver_plane_normal = ver_plane_normal_for_angle(vec.w, vec.vector3());
+
+    hor_plane_normal_vector->look_at(hor_plane_normal);
+    ver_plane_normal_vector->look_at(ver_plane_normal);
+
+    hor_plane->look_at(hor_plane_normal);
+    ver_plane->look_at(ver_plane_normal);
+
+    line_vector->look_at(ver_plane_normal.cross(hor_plane_normal));
+
     indicator->set_position(vec.vector3());
 }

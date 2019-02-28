@@ -10,10 +10,12 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
-#include "Log.hpp"
-#include "Paths.hpp"
-#include "Model.hpp"
-#include "ModelImporter.hpp"
+#include            "Log.hpp"
+#include           "Mesh.hpp"
+#include          "Paths.hpp"
+#include          "Model.hpp"
+#include  "ModelImporter.hpp"
+#include "TexturedVertex.hpp"
 
 static Assimp::Importer _importer;
 
@@ -25,49 +27,47 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
                                               aiProcess_JoinIdenticalVertices  |
-                                              aiProcess_SortByPType);
+                                              aiProcess_SortByPType             );
 
     if (!scene) {
         Error(_importer.GetErrorString());
-        return nullptr;
+        return                    nullptr;
     }
 
-    auto mesh = scene->mMeshes[0];
+    auto mesh                    = scene->mMeshes[0];
     auto has_texture_coordinates = mesh->HasTextureCoords(0);
 
-    std::vector<Vector3> vertices;
-    std::vector<Vector3> normals;
-    std::vector<unsigned short> indices;
-    std::vector<Point> texture_coordinates;
+    scene::Mesh::IndicesArray indices;
 
-    Info(file);
-    Info(mesh->HasTextureCoords(0));
-    Logvar(scene->HasMaterials());
-
-    for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-        auto& vert = mesh->mVertices[i];
-        auto& norm = mesh->mNormals[i];
-        vertices.emplace_back(vert.x, vert.y, vert.z);
-        normals .emplace_back(norm.x, norm.y, norm.z);
-    }
+    Info  (file                     );
+    Info  (mesh->HasTextureCoords(0));
+    Logvar(scene->HasMaterials    ());
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-        auto& face = mesh->mFaces[i];
+        const auto& face = mesh->mFaces[i];
         for (unsigned int j = 0; j < face.mNumIndices; j++)
-            indices.push_back(static_cast<unsigned short>(face.mIndices[j]));
+            indices.push_back(static_cast<scene::Vertex::Index>(face.mIndices[j]));
     }
 
     if (image && has_texture_coordinates) {
-        for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-            auto& coord = mesh->mTextureCoords[0][i];
-            texture_coordinates.emplace_back(coord.x, 1 - coord.y);
-        }
+        scene::TexturedVertex::Array vertices;
 
-//        auto mesh = new scene::TexturedMesh(vertices, indices, texture_coordinates);
-//        mesh->normals = normals;
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+            vertices.emplace_back(mesh->mVertices        [i],
+                                  mesh->mNormals         [i],
+                          Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
 
-        return nullptr;// new scene::TexturedModel(image, mesh);
+        return new scene::Model(new scene::Mesh(std::move(vertices),
+                                                std::move(indices )),
+                                image);
     }
 
-    return nullptr;// new scene::Model(new scene::ColoredMesh(vertices, indices));
+    scene::ColoredVertex::Array vertices;
+
+    for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+        vertices.emplace_back(mesh->mVertices[i],
+                              mesh->mNormals [i]);
+
+    return new scene::Model(new scene::Mesh(std::move(vertices),
+                                            std::move(indices )));
 }

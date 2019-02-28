@@ -72,7 +72,7 @@ Buffer::Buffer(const scene::Mesh* mesh) {
     }
 
     if (mesh->is_colored()) {
-        _initialize(buffer_data, BufferConfiguration::_3_3_4, Shader::colored3D);
+        _initialize(buffer_data, BufferConfiguration::_3_3_4, Shader::diffuse_colored);
         return;
     }
 }

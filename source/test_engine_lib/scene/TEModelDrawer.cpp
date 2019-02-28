@@ -6,10 +6,13 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "GL.hpp"
-#include "Debug.hpp"
-#include "Shader.hpp"
-#include "Buffer.hpp"
+#include            "GL.hpp"
+#include         "Image.hpp"
+#include         "Scene.hpp"
+#include         "Debug.hpp"
+#include        "Shader.hpp"
+#include        "Buffer.hpp"
+#include    "PointLight.hpp"
 #include "TEModelDrawer.hpp"
 
 
@@ -28,12 +31,17 @@ void TEModelDrawer::_draw() const {
         GL(glDisable(GL_DEPTH_TEST));
 
     _buffer->bind();
-//    if (auto textured_model = dynamic_cast<const scene::TexturedModel*>(_model)) {
-//        textured_model->texture()->bind();
-//    } else if (_model->draw_mode() == scene::Model::DrawMode::Lines) {
+
+    Shader::diffuse_colored->use();
+
+//    if (_model->has_image())
+//        _model->image()->bind();
+//    else if (_model->draw_mode() == scene::Model::DrawMode::Lines)
 //        _buffer->shader()->set_uniform_color(Color::black);
-//    }
-    _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
+
+    Shader::diffuse_colored->set_mvp_matrix(_model->mvp_matrix());
+    Shader::diffuse_colored->set_model_matrix(_model->model_matrix());
+    Shader::diffuse_colored->set_light_position(_model->_scene->_light_sources.front()->position());
     _buffer->draw();
 
     if (_model->is_transparent)

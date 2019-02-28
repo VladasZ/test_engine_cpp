@@ -6,20 +6,24 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "GL.hpp"
-#include "Paths.hpp"
-#include "Debug.hpp"
-#include "Screen.hpp"
-#include "Shader.hpp"
+#include             "GL.hpp"
+#include          "Paths.hpp"
+#include          "Debug.hpp"
+#include         "Screen.hpp"
+#include         "Shader.hpp"
 #include "ShaderCompiler.hpp"
 
 
-Shader* Shader::ui;
-Shader* Shader::ui_texture;
+Shader* Shader::ui           ;
+Shader* Shader::ui_texture   ;
 Shader* Shader::ui_monochrome;
-Shader* Shader::simple3D;
-Shader* Shader::colored3D;
+
+Shader* Shader::  simple3D;
+Shader* Shader:: colored3D;
 Shader* Shader::textured3D;
+
+Shader* Shader::diffuse_colored;
+
 
 
 Shader::Shader(const std::string& name) {
@@ -36,12 +40,13 @@ unsigned int Shader::get_program_id() const {
 }
 
 void Shader::initialize() {
-    ui            = new Shader("ui");
-    ui_texture    = new Shader("ui_texture");
-    ui_monochrome = new Shader("ui_monochrome");
-    simple3D      = new Shader("simple3D");
-    colored3D     = new Shader("colored3D");
-    textured3D    = new Shader("textured3D");
+    ui              = new Shader("ui");
+    ui_texture      = new Shader("ui_texture");
+    ui_monochrome   = new Shader("ui_monochrome");
+    simple3D        = new Shader("simple3D");
+    colored3D       = new Shader("colored3D");
+    textured3D      = new Shader("textured3D");
+    diffuse_colored = new Shader("diffuse_colored");
 }
 
 void Shader::set_uniform_color(const Color& color) {
@@ -54,4 +59,17 @@ void Shader::set_mvp_matrix(const Matrix4& mvp) {
 	if (_mvp_matrix == -1)
         _mvp_matrix = glGetUniformLocation(_program, "mvp_matrix");
 	GL(glUniformMatrix4fv(_mvp_matrix, 1, false, &mvp.data[0][0]));
+}
+
+void Shader::set_model_matrix(const Matrix4& model_matrix) {
+    if (_model_matrix == -1)
+        _model_matrix = glGetUniformLocation(_program, "model_matrix");
+    GL(glUniformMatrix4fv(_model_matrix, 1, false, &model_matrix.data[0][0]));
+}
+
+void Shader::set_light_position(const Vector3& light_position) {
+
+    if (_light_position == -1)
+        _light_position = glGetUniformLocation(_program, "light_position");
+    GL(glUniformMatrix3fv(_light_position, 1, false, &light_position.x));
 }

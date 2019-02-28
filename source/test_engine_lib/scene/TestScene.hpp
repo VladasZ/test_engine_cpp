@@ -10,11 +10,15 @@
 
 #include "Scene.hpp"
 #include "Model.hpp"
+#include "PointLight.hpp"
 
 class TestScene : public scene::Scene {
 
+    scene::PointLight* light;
+
     scene::Model* cube;
-    scene::Model* plane;
+    scene::Model* floor;
+    scene::Model* wall;
 
     void setup() override;
     void each_frame() override;

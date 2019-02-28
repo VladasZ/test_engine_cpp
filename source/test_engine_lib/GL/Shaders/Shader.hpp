@@ -25,13 +25,13 @@ class Shader {
     
     unsigned int _program = 0;
     
-    int _uniform_color        = -1;
-    int _viewport_translation = -1;
-    int _uniform_position     = -1;
-    int _transform            = -1;
-    int _mvp_matrix           = -1;
-    int _model_matrix         = -1;
-    int _light_position       = -1;
+    int _uniform_color       ;
+    int _viewport_translation;
+    int _uniform_position    ;
+    int _transform           ;
+    int _mvp_matrix          ;
+    int _model_matrix        ;
+    int _light_position      ;
     
     static void initialize();
     
@@ -46,6 +46,8 @@ public:
     static Shader* textured3D;
 
     static Shader* diffuse_colored;
+
+    const std::string name;
 
     void use() const;
 

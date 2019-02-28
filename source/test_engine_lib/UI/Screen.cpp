@@ -13,36 +13,35 @@
 
 using namespace std;
 
-#include "ui.hpp"
-#include "GL.hpp"
-#include "Log.hpp"
-#include "Box.hpp"
-#include "Time.hpp"
-#include "Mesh.hpp"
-#include "Grid.hpp"
-#include "Input.hpp"
-#include "Paths.hpp"
-#include "Touch.hpp"
-#include "Event.hpp"
-#include "Scene.hpp"
-#include "System.hpp"
-#include "Camera.hpp"
-#include "Buffer.hpp"
-#include "Screen.hpp"
-#include "LogData.hpp"
-#include "Keyboard.hpp"
-#include "RootView.hpp"
-#include "TestEngine.hpp"
-#include "TEUIDrawer.hpp"
-#include "ColoredMesh.hpp"
-#include "ImageConfig.hpp"
-#include "GlobalEvents.hpp"
-#include "TEImageLoader.hpp"
-#include "ModelImporter.hpp"
-#include "DebugInfoView.hpp"
-#include "TESceneDrawer.hpp"
-#include "TEModelDrawer.hpp"
-#include "TestSlidersView.hpp"
+#include                  "ui.hpp"
+#include                  "GL.hpp"
+#include                 "Log.hpp"
+#include                 "Box.hpp"
+#include                "Time.hpp"
+#include                "Mesh.hpp"
+#include                "Grid.hpp"
+#include               "Input.hpp"
+#include               "Paths.hpp"
+#include               "Touch.hpp"
+#include               "Event.hpp"
+#include               "Scene.hpp"
+#include              "System.hpp"
+#include              "Camera.hpp"
+#include              "Buffer.hpp"
+#include              "Screen.hpp"
+#include             "LogData.hpp"
+#include            "Keyboard.hpp"
+#include            "RootView.hpp"
+#include          "TestEngine.hpp"
+#include          "TEUIDrawer.hpp"
+#include         "ImageConfig.hpp"
+#include        "GlobalEvents.hpp"
+#include       "TEImageLoader.hpp"
+#include       "ModelImporter.hpp"
+#include       "DebugInfoView.hpp"
+#include       "TESceneDrawer.hpp"
+#include       "TEModelDrawer.hpp"
+#include     "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
 void Screen::_initialize_gl() {
@@ -149,7 +148,7 @@ void Screen::initialize(const Size& size) {
 
 void Screen::update() {
 
-    GL::set_clear_color(Color::gray);
+    GL::set_clear_color(clear_color);
     GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     GL::set_viewport({ size });

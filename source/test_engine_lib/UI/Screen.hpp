@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "Size.hpp"
-#include "Debug.hpp"
-#include "Scene.hpp"
+#include     "Size.hpp"
+#include    "Debug.hpp"
+#include    "Scene.hpp"
 #include "RootView.hpp"
 
 struct GLFWwindow;
@@ -21,21 +21,23 @@ class Screen {
 
 private:
 
-    void _initialize_gl();
-    void _initialize_ui();
+    void _initialize_gl   ();
+    void _initialize_ui   ();
     void _initialize_scene();
     void _initialize_image();
 
-    scene::Scene* _scene = nullptr;
+    scene::Scene* _scene     = nullptr;
     te::RootView* _root_view = nullptr;
 
 public:
     
-    int FPS = 0;
+    int FPS          = 0;
     int frames_drawn = 0;
     
-    Size size;
+    Size size              ;
     Size display_resolution;
+
+    Color clear_color;
     
 #if GLFW
     GLFWwindow* glfw_window = nullptr;
@@ -55,8 +57,9 @@ public:
 
 public:
 
-    void set_scene(scene::Scene*);
-    scene::Scene* scene() const;
+    void      set_scene(scene::Scene*);
+    scene::Scene* scene() const       ;
+
     te::RootView* root_view() const;
 
 };

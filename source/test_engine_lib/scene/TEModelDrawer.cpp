@@ -10,7 +10,6 @@
 #include "Debug.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
-#include "TexturedModel.hpp"
 #include "TEModelDrawer.hpp"
 
 
@@ -29,11 +28,11 @@ void TEModelDrawer::_draw() const {
         GL(glDisable(GL_DEPTH_TEST));
 
     _buffer->bind();
-    if (auto textured_model = dynamic_cast<const scene::TexturedModel*>(_model)) {
-        textured_model->texture()->bind();
-    } else if (_model->draw_mode() == scene::Model::DrawMode::Lines) {
-        _buffer->shader()->set_uniform_color(Color::black);
-    }
+//    if (auto textured_model = dynamic_cast<const scene::TexturedModel*>(_model)) {
+//        textured_model->texture()->bind();
+//    } else if (_model->draw_mode() == scene::Model::DrawMode::Lines) {
+//        _buffer->shader()->set_uniform_color(Color::black);
+//    }
     _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
     _buffer->draw();
 

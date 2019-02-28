@@ -20,6 +20,3 @@ void GL::set_viewport(const Rect& rect) {
 void GL::set_clear_color(const Color& color) {
     glClearColor(color.r, color.g, color.b, color.a);
 }
-
-
-

@@ -31,8 +31,8 @@ public:
 
     static const BufferConfiguration _2;
     static const BufferConfiguration _2_2;
-    static const BufferConfiguration _3;
-    static const BufferConfiguration _3_2;
     static const BufferConfiguration _3_3;
-    static const BufferConfiguration _3_4;
+    static const BufferConfiguration _3_3_2;
+    static const BufferConfiguration _3_3_3;
+    static const BufferConfiguration _3_3_4;
 };

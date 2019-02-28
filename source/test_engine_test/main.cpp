@@ -15,7 +15,6 @@
 #include "TestScene.hpp"
 #include "ImageView.hpp"
 #include "TestEngine.hpp"
-#include "TexturedModel.hpp"
 #include "ModelImporter.hpp"
 #include "XYZSlidersView.hpp"
 #include "TestSlidersView.hpp"

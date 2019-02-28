@@ -55,9 +55,9 @@ void BufferConfiguration::set_pointers() const {
     }
 }
 
-const BufferConfiguration BufferConfiguration::_2   = { 2, 0, 0 };
-const BufferConfiguration BufferConfiguration::_2_2 = { 2, 2, 0 };
-const BufferConfiguration BufferConfiguration::_3   = { 3, 0, 0 };
-const BufferConfiguration BufferConfiguration::_3_2 = { 3, 2, 0 };
-const BufferConfiguration BufferConfiguration::_3_3 = { 3, 3, 0 };
-const BufferConfiguration BufferConfiguration::_3_4 = { 3, 4, 0 };
+const BufferConfiguration BufferConfiguration::_2     = { 2, 0, 0 };
+const BufferConfiguration BufferConfiguration::_2_2   = { 2, 2, 0 };
+const BufferConfiguration BufferConfiguration::_3_3   = { 3, 3, 0 };
+const BufferConfiguration BufferConfiguration::_3_3_2 = { 3, 3, 2 };
+const BufferConfiguration BufferConfiguration::_3_3_3 = { 3, 3, 3 };
+const BufferConfiguration BufferConfiguration::_3_3_4 = { 3, 3, 4 };

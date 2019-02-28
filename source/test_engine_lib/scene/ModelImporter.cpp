@@ -13,9 +13,6 @@
 #include "Log.hpp"
 #include "Paths.hpp"
 #include "Model.hpp"
-#include "ColoredMesh.hpp"
-#include "TexturedMesh.hpp"
-#include "TexturedModel.hpp"
 #include "ModelImporter.hpp"
 
 static Assimp::Importer _importer;
@@ -66,11 +63,11 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
             texture_coordinates.emplace_back(coord.x, 1 - coord.y);
         }
 
-        auto mesh = new scene::TexturedMesh(vertices, indices, texture_coordinates);
-        mesh->normals = normals;
+//        auto mesh = new scene::TexturedMesh(vertices, indices, texture_coordinates);
+//        mesh->normals = normals;
 
-        return new scene::TexturedModel(image, mesh);
+        return nullptr;// new scene::TexturedModel(image, mesh);
     }
 
-    return new scene::Model(new scene::ColoredMesh(vertices, indices));
+    return nullptr;// new scene::Model(new scene::ColoredMesh(vertices, indices));
 }

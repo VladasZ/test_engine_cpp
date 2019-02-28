@@ -6,10 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include <iostream>
-using namespace std;
-
-
 #include <cstring>
 
 #include "BufferData.hpp"
@@ -17,14 +13,14 @@ using namespace std;
 static const std::vector<GLushort> rect_indices = { 0, 1, 3, 2 };
 
 BufferData::BufferData(const std::vector<GLfloat>& vertices, const std::vector<GLushort>& indices)
-    : vertices(vertices), indices(indices) { }
+    : vertices_data(vertices), indices(indices) { }
 
 const char* BufferData::to_string(unsigned int new_line) const {
     static std::string string;
     string = "\n";
 
-    for (size_t i = 0; i < vertices.size(); i++) {
-        string += std::to_string(vertices[i]) + " ";
+    for (size_t i = 0; i < vertices_data.size(); i++) {
+        string += std::to_string(vertices_data[i]) + " ";
         if ((i + 1) % (new_line) == 0)
             string += "\n";
     }

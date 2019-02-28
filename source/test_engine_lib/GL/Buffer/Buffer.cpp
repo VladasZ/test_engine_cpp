@@ -14,8 +14,6 @@
 #include "Debug.hpp"
 #include "Buffer.hpp"
 #include "BufferData.hpp"
-#include "ColoredMesh.hpp"
-#include "TexturedMesh.hpp"
 #include "BufferConfiguration.hpp"
 
 void Buffer::_initialize(BufferData* data, const BufferConfiguration& configuration, Shader* shader) {
@@ -31,8 +29,8 @@ void Buffer::_initialize(BufferData* data, const BufferConfiguration& configurat
     GL(glGenBuffers(1, &vertex_buffer_object));
     GL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object));
     GL(glBufferData(GL_ARRAY_BUFFER,
-                    static_cast<uint16_t>(data->vertices.size() * sizeof(GLfloat)),
-                    data->vertices.data(),
+                    static_cast<uint16_t>(data->vertices_data.size() * sizeof(GLfloat)),
+                    data->vertices_data.data(),
                     GL_STATIC_DRAW));
 
     if (!data->indices.empty()) {
@@ -61,21 +59,22 @@ Buffer::Buffer(const std::vector<float>& vertices,
 
 Buffer::Buffer(const scene::Mesh* mesh) {
 
-    if (auto textured_mesh = dynamic_cast<const scene::TexturedMesh*>(mesh)) {
-        _initialize(new BufferData(textured_mesh->data, mesh->indices), BufferConfiguration::_3_2, Shader::textured3D);
+    auto buffer_data = new BufferData { { mesh->vertices_data(), mesh->vertices_data() + mesh->vertices_data_size() }, mesh->indices() };
+
+    if (mesh->is_textured()) {
+        _initialize(buffer_data, BufferConfiguration::_3_3_2, Shader::textured3D);
         return;
     }
 
-    if (auto colored_mesh = dynamic_cast<const scene::ColoredMesh*>(mesh)) {
-        _initialize(new BufferData(colored_mesh->data, mesh->indices), BufferConfiguration::_3_3, Shader::colored3D);
+    if (mesh->is_plain()) {
+        _initialize(buffer_data, BufferConfiguration::_3_3, Shader::simple3D);
         return;
     }
 
-    auto vertices =
-            std::vector<float>(reinterpret_cast<const float*>(mesh->vertices.data()),
-                               reinterpret_cast<const float*>(mesh->vertices.data()) + mesh->vertices.size() * 3);
-
-    _initialize(new BufferData(vertices, mesh->indices), BufferConfiguration::_3, Shader::simple3D);
+    if (mesh->is_colored()) {
+        _initialize(buffer_data, BufferConfiguration::_3_3_4, Shader::colored3D);
+        return;
+    }
 }
 
 Buffer::~Buffer() {
@@ -93,7 +92,7 @@ void Buffer::bind() const {
 
 void Buffer::draw() const {
     if (data->indices.empty()) {
-        GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(data->vertices.size())));
+        GL(glDrawArrays(draw_mode, 0, static_cast<GLsizei>(data->vertices_data.size())));
     } else {
         GL(glDrawElements(draw_mode, static_cast<GLsizei>(data->indices.size()), GL_UNSIGNED_SHORT, nullptr));
     }

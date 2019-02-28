@@ -40,6 +40,7 @@ void TEModelDrawer::_draw() const {
 //        _buffer->shader()->set_uniform_color(Color::black);
 
     Shader::diffuse_colored->set_mvp_matrix(_model->mvp_matrix());
+    Shader::diffuse_colored->set_model_matrix(_model->model_matrix());
     Shader::diffuse_colored->set_light_position(_model->_scene->_light_sources.front()->position());
     _buffer->draw();
 

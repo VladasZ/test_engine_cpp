@@ -9,9 +9,14 @@ out vec4 color;
 
 void main() {
 	vec3 light_vector = normalize(v_light_position - v_position);
-	color = v_color * dot(light_vector, v_normal);
-	color.g = v_color.g * 0.1f;
+	color = v_color;
+	vec4 ambient = v_color * 0.2;
+	vec3 diffuse = color.rgb * dot(light_vector, v_normal) * (1 / distance(v_position, v_light_position));
+
+	color.a = 1.0;
+	color.rgb = ambient.rgb + diffuse.rgb;
+
 	//color = v_color;
 	//color.a = 0.1;
-	//color.r = 1;//dot(light_vector, v_normal);
+	//color.r = 1;//dot(light_vector, v_qnormal);
 }

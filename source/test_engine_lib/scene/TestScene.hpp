@@ -17,8 +17,11 @@ class TestScene : public scene::Scene {
     scene::PointLight* light;
 
     scene::Model* cube;
+    scene::Model* monkey;
+
     scene::Model* floor;
-    scene::Model* wall;
+    scene::Model* x_wall;
+    scene::Model* y_wall;
 
     void setup() override;
     void each_frame() override;

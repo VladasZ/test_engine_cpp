@@ -45,7 +45,7 @@ using namespace std;
 #include "BufferConfiguration.hpp"
 
 void Screen::_initialize_gl() {
-#if GLFW
+#if DESKTOP_BUILD
     glfwInit();
     glfwWindowHint(GLFW_SAMPLES, 16); // 4x antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3

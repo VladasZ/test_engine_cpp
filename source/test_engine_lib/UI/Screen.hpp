@@ -39,7 +39,7 @@ public:
 
     Color clear_color;
     
-#if GLFW
+#if DESKTOP_BUILD
     GLFWwindow* glfw_window = nullptr;
 #endif
 

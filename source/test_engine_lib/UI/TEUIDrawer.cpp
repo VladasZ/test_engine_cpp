@@ -59,7 +59,7 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     image->unbind();
 }
 
-#ifdef UI_DESKTOP
+#if DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:

@@ -14,7 +14,7 @@
 #include "TestEngine.hpp"
 #include "GlobalEvents.hpp"
 
-#if GLFW
+#if DESKTOP_BUILD
 
 static void size_changed(GLFWwindow* window, int width, int height);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -53,7 +53,7 @@ void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
     );
 }
 
-#ifdef GLFW
+#if DESKTOP_BUILD
 
 static void size_changed(GLFWwindow* window, int width, int height) {
     TestEngine::screen.set_size({ static_cast<float>(width), static_cast<float>(height) });

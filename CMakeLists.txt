@@ -8,9 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(test_engine)
 
-add_definitions(-DGLFW=1)
 add_definitions(-DDEBUG=1)
-add_definitions(-DUI_DESKTOP=1)
 
 conan_basic_setup()
 

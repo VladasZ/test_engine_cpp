@@ -23,7 +23,7 @@ private:
 
 public:
 
-#ifdef UI_DESKTOP
+#if DESKTOP_BUILD
     void set_cursor_mode(ui::Mouse::CursorMode cursor_mode) override;
 #endif
 

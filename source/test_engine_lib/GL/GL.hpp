@@ -13,8 +13,8 @@
 
 #include "Matrix4.hpp"
 
-#ifdef IOS
-    #import <OpenGLES/ES3/gl.h>
+#if IOS_BUILD
+    #import <ES3/gl.h>
 #else
     #include <GL/glew.h>
     #include <GLFW/glfw3.h>

@@ -7,6 +7,7 @@
 //
 
 #include      "Image.hpp"
+#include     "Assets.hpp"
 #include     "Buffer.hpp"
 #include  "GLWrapper.hpp"
 #include "TestEngine.hpp"
@@ -18,11 +19,10 @@ TEUIDrawer::TEUIDrawer() {
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-//    Shader::ui->use();
-//    Shader::ui->set_uniform_color(color);
-//    Buffer::fullscreen->bind();
 
-//    Buffer::fullscreen->draw();
+    Assets::buffers->fullscreen->bind();
+    Assets::buffers->fullscreen->shader()->set_uniform_color(color);
+    Assets::buffers->fullscreen->draw();
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {

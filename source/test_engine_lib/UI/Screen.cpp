@@ -26,6 +26,7 @@ using namespace std;
 #include               "Touch.hpp"
 #include               "Event.hpp"
 #include               "Scene.hpp"
+#include              "Assets.hpp"
 #include              "System.hpp"
 #include              "Camera.hpp"
 #include              "Buffer.hpp"
@@ -48,6 +49,7 @@ using namespace std;
 
 void Screen::_initialize_gl() {
     GL::initialize(size);
+    Assets::initialize();
 }
 
 void Screen::_initialize_ui() {
@@ -63,6 +65,11 @@ void Screen::_initialize_ui() {
 
     _root_view = new te::RootView(Rect { Screen::size });
     _root_view->_setup();
+
+
+    auto view = new ui::View {{ 100, 100 }};
+    view->color = Color::green;
+    _root_view->add_subview(view);
 
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
@@ -115,7 +122,7 @@ void Screen::initialize(const Size& size) {
 
 void Screen::update() {
 
-    GL::set_clear_color(clear_color);
+    GL::set_clear_color(Color::gray);
     GL::clear();
 
     GL::set_viewport({ size });
@@ -145,6 +152,7 @@ void Screen::update() {
 
 void Screen::set_size(const Size& size) {
     Screen::size = size;
+    GL::screen_size = size;
     GL::set_viewport(size);
     GL::clear();
     Events::on_screen_size_change(size);

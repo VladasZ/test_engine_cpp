@@ -16,7 +16,6 @@
 using namespace std;
 
 #include                  "ui.hpp"
-#include                  "GL.hpp"
 #include                 "Log.hpp"
 #include                 "Box.hpp"
 #include                "Time.hpp"
@@ -34,6 +33,7 @@ using namespace std;
 #include             "LogData.hpp"
 #include            "Keyboard.hpp"
 #include            "RootView.hpp"
+#include           "GLWrapper.hpp"
 #include          "TestEngine.hpp"
 #include          "TEUIDrawer.hpp"
 #include         "ImageConfig.hpp"
@@ -47,42 +47,7 @@ using namespace std;
 #include "BufferConfiguration.hpp"
 
 void Screen::_initialize_gl() {
-#if DESKTOP_BUILD
-    glfwInit();
-    glfwWindowHint(GLFW_SAMPLES, 16); // 4x antialiasing
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
-#ifdef MAC_OS
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
-#endif
-
-    glfw_window = glfwCreateWindow(static_cast<int>(size.width),
-                                   static_cast<int>(size.height),
-                                   "Test Engine",
-                                   nullptr,
-                                   nullptr);
-
-    if (glfw_window == nullptr)
-        Fatal("GLFW window creation failed");
-
-    glfwMakeContextCurrent(glfw_window);
-    glfwSwapInterval(1); // Limit fps to 60
-    glewExperimental = GL_TRUE;
-
-    if (glewInit())
-        Fatal("Glew initialization failed");
-
-    auto mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    display_resolution = { static_cast<float>(mode->width), static_cast<float>(mode->height) };
-#endif
-
-    GL(glEnable(GL_DEPTH_TEST));
-    GL(glEnable(GL_BLEND));
-    GL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
-    Shader::initialize();
-    Buffer::initialize(display_resolution, size);
+    GL::initialize(size);
 }
 
 void Screen::_initialize_ui() {
@@ -151,18 +116,18 @@ void Screen::initialize(const Size& size) {
 void Screen::update() {
 
     GL::set_clear_color(clear_color);
-    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    GL::clear();
 
     GL::set_viewport({ size });
 
-    GL(glEnable(GL_DEPTH_TEST));
+    GL::enable_depth_test();
 
     if (_scene) {
         _scene->update();
         _scene->draw();
     }
 
-    GL(glDisable(GL_DEPTH_TEST));
+    GL::disable_depth_test();
 
     _root_view->_draw();
 
@@ -181,8 +146,7 @@ void Screen::update() {
 void Screen::set_size(const Size& size) {
     Screen::size = size;
     GL::set_viewport(size);
-    GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-    Buffer::window_size_changed(display_resolution, size);
+    GL::clear();
     Events::on_screen_size_change(size);
     _root_view->set_frame({ size });
     if (_scene)

@@ -6,61 +6,39 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
-#include "GL.hpp"
-#include "Image.hpp"
-#include "Buffer.hpp"
+#include      "Image.hpp"
+#include     "Buffer.hpp"
+#include  "GLWrapper.hpp"
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 
-#if DESKTOP_BUILD
-
-namespace cursor {
-static GLFWcursor* arrow;
-static GLFWcursor* text;
-static GLFWcursor* drag;
-static GLFWcursor* h_resize;
-static GLFWcursor* v_resize;
-}
-
-#endif
-
 TEUIDrawer::TEUIDrawer() {
-#if DESKTOP_BUILD
-    cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
-    cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
-#ifdef WIN32
-    cursor::drag     = glfwCreateStandardCursor(GLFW_HAND_CURSOR);
-#else
-	cursor::drag     = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
-#endif
-    cursor::h_resize = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
-    cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
-#endif
+
 }
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-    Shader::ui->use();
-    Shader::ui->set_uniform_color(color);
-    Buffer::fullscreen->bind();
+//    Shader::ui->use();
+//    Shader::ui->set_uniform_color(color);
+//    Buffer::fullscreen->bind();
 
-    Buffer::fullscreen->draw();
+//    Buffer::fullscreen->draw();
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;
 
-    image->bind();
-    Buffer::fullscreen_image->bind();
+//    image->bind();
+//    Buffer::fullscreen_image->bind();
 
-    if (image->is_monochrome())
-        Shader::ui_monochrome->use();
-    else
-        Shader::ui_texture->use();
+//    if (image->is_monochrome())
+//        Shader::ui_monochrome->use();
+//    else
+//        Shader::ui_texture->use();
 
-    GL::set_viewport(rect);
-    Buffer::fullscreen_image->draw();
+//    GL::set_viewport(rect);
+//    Buffer::fullscreen_image->draw();
 
     image->unbind();
 }
@@ -69,19 +47,19 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:
-        glfwSetCursor(TestEngine::screen.glfw_window, cursor::arrow);
+        GL::set_cursor_mode(GL::CursorMode::Arrow);
         break;
     case ui::Mouse::CursorMode::Text:
-        glfwSetCursor(TestEngine::screen.glfw_window, cursor::text);
+        GL::set_cursor_mode(GL::CursorMode::Text);
         break;
     case ui::Mouse::CursorMode::Drag:
-        glfwSetCursor(TestEngine::screen.glfw_window, cursor::drag);
+        GL::set_cursor_mode(GL::CursorMode::Drag);
         break;
     case ui::Mouse::CursorMode::HResize:
-        glfwSetCursor(TestEngine::screen.glfw_window, cursor::h_resize);
+        GL::set_cursor_mode(GL::CursorMode::HResize);
         break;
     case ui::Mouse::CursorMode::VResize:
-        glfwSetCursor(TestEngine::screen.glfw_window, cursor::v_resize);
+        GL::set_cursor_mode(GL::CursorMode::VResize);
         break;
     }
 }

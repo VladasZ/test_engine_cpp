@@ -18,5 +18,9 @@ public:
     static Screen screen;
 
     static void initialize(const Size& window_size);
+
+#if DESKTOP_BUILD
     static void start_main_loop(std::function<void()> on_frame_drawn);
+#endif
+
 };

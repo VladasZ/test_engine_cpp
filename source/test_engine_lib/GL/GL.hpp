@@ -14,7 +14,14 @@
 #include "Matrix4.hpp"
 
 #if IOS_BUILD
-    #import <ES3/gl.h>
+
+    #include <OpenGL/gl.h>
+
+#define glGenVertexArrays    glGenVertexArraysAPPLE
+#define glBindVertexArray    glBindVertexArrayAPPLE
+#define glDeleteVertexArrays glDeleteVertexArraysAPPLE
+
+
 #else
     #include <GL/glew.h>
     #include <GLFW/glfw3.h>

@@ -32,13 +32,19 @@ void TestEngine::initialize(const Size& window_size) {
 
     screen.initialize(window_size);
 
+#if DESKTOP_BUILD
+
     glfwSetKeyCallback        (screen.glfw_window, key_callback            );
     glfwSetScrollCallback     (screen.glfw_window, scroll_callback         );
     glfwSetCursorPosCallback  (screen.glfw_window, cursor_position_callback);
     glfwSetWindowSizeCallback (screen.glfw_window, size_changed            );
     glfwSetMouseButtonCallback(screen.glfw_window, mouse_button_callback   );
 
+#endif
+
 }
+
+#if DESKTOP_BUILD
 
 void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
     do {
@@ -52,8 +58,6 @@ void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
         glfwWindowShouldClose(screen.glfw_window) == 0
     );
 }
-
-#if DESKTOP_BUILD
 
 static void size_changed(GLFWwindow* window, int width, int height) {
     TestEngine::screen.set_size({ static_cast<float>(width), static_cast<float>(height) });

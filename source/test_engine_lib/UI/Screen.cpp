@@ -9,7 +9,9 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#if DESKTOP_BUILD
 #include "GLFW/glfw3native.h"
+#endif
 
 using namespace std;
 

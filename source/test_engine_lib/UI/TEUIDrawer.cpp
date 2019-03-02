@@ -12,6 +12,8 @@
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 
+#if DESKTOP_BUILD
+
 namespace cursor {
 static GLFWcursor* arrow;
 static GLFWcursor* text;
@@ -20,7 +22,10 @@ static GLFWcursor* h_resize;
 static GLFWcursor* v_resize;
 }
 
+#endif
+
 TEUIDrawer::TEUIDrawer() {
+#if DESKTOP_BUILD
     cursor::arrow    = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
     cursor::text     = glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);
 #ifdef WIN32
@@ -30,6 +35,7 @@ TEUIDrawer::TEUIDrawer() {
 #endif
     cursor::h_resize = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
     cursor::v_resize = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
+#endif
 }
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {

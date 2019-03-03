@@ -18,24 +18,9 @@ class TEImageBinder : public image::ImageBinder {
 
 public:
 
-    enum Filter {
-        Nearest,
-        Linear,
-        Bilinear,
-        Trilinear,
-        Default = Linear
-    };
-
-public:
-
     TEImageBinder(Image*);
     ~TEImageBinder() override;
 
-    void bind  () const override;
-    void unbind() const override;
-
-private:
-
-    void _set_filter(Filter filter);
+    void bind () const override;
 
 };

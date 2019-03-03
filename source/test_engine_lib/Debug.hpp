@@ -12,7 +12,7 @@
 
 #ifdef DEBUG
 
-#define DEBUG_VIEW
+#define DEBUG_VIEW true
 #define IMAGES_LOADING_OUTPUT false
 #define DRAW_DEBUG_FRAMES false
 

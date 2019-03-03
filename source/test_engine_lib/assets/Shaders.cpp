@@ -10,5 +10,7 @@
 #include "Shaders.hpp"
 
 Shaders::Shaders() {
-    ui = new gl::Shader(Paths::shaders_directory(), "ui");
+    ui            = new gl::Shader(Paths::shaders_directory(), "ui"           );
+    ui_texture    = new gl::Shader(Paths::shaders_directory(), "ui_texture"   );
+    ui_monochrome = new gl::Shader(Paths::shaders_directory(), "ui_monochrome");
 }

@@ -19,7 +19,6 @@ TEUIDrawer::TEUIDrawer() {
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-
     Assets::buffers->fullscreen->bind();
     Assets::buffers->fullscreen->shader()->set_uniform_color(color);
     Assets::buffers->fullscreen->draw();
@@ -28,19 +27,14 @@ void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;
+    image->bind();
 
-//    image->bind();
-//    Buffer::fullscreen_image->bind();
-
-//    if (image->is_monochrome())
-//        Shader::ui_monochrome->use();
-//    else
-//        Shader::ui_texture->use();
-
-//    GL::set_viewport(rect);
-//    Buffer::fullscreen_image->draw();
-
-    image->unbind();
+    Info("krekesh");
+    Assets::buffers->fullscreen_image->bind();
+    if (image->is_monochrome())
+         Assets::shaders->ui_monochrome->use();
+    GL::set_viewport(rect);
+    Assets::buffers->fullscreen_image->draw();
 }
 
 #if DESKTOP_BUILD

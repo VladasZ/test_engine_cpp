@@ -11,4 +11,5 @@
 void Assets::initialize() {
     shaders = new Shaders();
     buffers = new Buffers();
+    images  = new Images ();
 }

@@ -12,7 +12,9 @@
 
 struct Shaders {
 
-    gl::Shader* ui;
+    gl::Shader* ui           ;
+    gl::Shader* ui_texture   ;
+    gl::Shader* ui_monochrome;
 
     Shaders();
 };

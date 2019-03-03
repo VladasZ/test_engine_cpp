@@ -34,6 +34,7 @@ using namespace std;
 #include             "LogData.hpp"
 #include            "Keyboard.hpp"
 #include            "RootView.hpp"
+#include           "ImageView.hpp"
 #include           "GLWrapper.hpp"
 #include          "TestEngine.hpp"
 #include          "TEUIDrawer.hpp"
@@ -67,8 +68,9 @@ void Screen::_initialize_ui() {
     _root_view->_setup();
 
 
-    auto view = new ui::View {{ 100, 100 }};
-    view->color = Color::green;
+    auto view = new ui::ImageView {{ 100, 100 }};
+    view->set_image(Assets::images->cat);
+
     _root_view->add_subview(view);
 
 #ifdef DEBUG_VIEW
@@ -113,11 +115,14 @@ void Screen::_initialize_image() {
 
 void Screen::initialize(const Size& size) {
     Screen::size = size;
-    _initialize_gl();
     _initialize_image();
+    _initialize_gl();
     _initialize_ui();
     _initialize_scene();
     Screen::set_size(size);
+    GL::on_window_size_change.subscribe([&](Size size) {
+        Screen::set_size(size);
+    });
 }
 
 void Screen::update() {

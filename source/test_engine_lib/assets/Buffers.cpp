@@ -19,4 +19,7 @@ static const Rect fulscreen_rect = { -1, -1, 2, 2 };
 Buffers::Buffers() {
     fullscreen = new gl::Buffer(gl::BufferData::from_rect(fulscreen_rect), gl::BufferConfiguration::_2, Assets::shaders->ui);
     fullscreen->draw_mode = GL_TRIANGLE_STRIP;
+
+    fullscreen_image = new gl::Buffer(gl::BufferData::from_rect_to_image(fulscreen_rect), gl::BufferConfiguration::_2_2, Assets::shaders->ui_texture);
+    fullscreen_image->draw_mode = GL_TRIANGLE_STRIP;
 }

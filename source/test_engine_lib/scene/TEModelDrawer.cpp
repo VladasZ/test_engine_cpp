@@ -6,19 +6,38 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include         "Image.hpp"
-#include         "Scene.hpp"
-#include         "Debug.hpp"
-#include        "Shader.hpp"
-#include        "Buffer.hpp"
-#include    "PointLight.hpp"
-#include "TEModelDrawer.hpp"
+#include                "Mesh.hpp"
+#include               "Image.hpp"
+#include               "Scene.hpp"
+#include               "Debug.hpp"
+#include              "Assets.hpp"
+#include              "Shader.hpp"
+#include              "Buffer.hpp"
+#include          "PointLight.hpp"
+#include       "TEModelDrawer.hpp"
+#include "BufferConfiguration.hpp"
 
 
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
-    //_buffer = new Buffer(model->mesh());
-    //_buffer->draw_mode = model->draw_mode();
+
+    auto mesh = model->mesh();
+
+    std::vector<float> vertices { mesh->vertices_data(), mesh->vertices_data() + mesh->vertices_data_float_size() };
+
+    auto conf   = gl::BufferConfiguration::_3_3_2;
+    auto shader = Assets::shaders->textured3D;
+
+    if (mesh->is_colored()) {
+        conf   = gl::BufferConfiguration::_3_3_4;
+        shader = Assets::shaders->diffuse_colored;
+    } else if (mesh->is_plain()) {
+        conf   = gl::BufferConfiguration::_3_3;
+        shader = Assets::shaders->simple3D;
+    }
+
+    _buffer = new gl::Buffer(vertices, mesh->indices(), conf, shader);
+    _buffer->draw_mode = model->draw_mode();
 }
 
 TEModelDrawer::~TEModelDrawer() {
@@ -26,23 +45,19 @@ TEModelDrawer::~TEModelDrawer() {
 }
 
 void TEModelDrawer::_draw() const {
-//    if (_model->is_transparent)
-//        GL(glDisable(GL_DEPTH_TEST));
 
-//    _buffer->bind();
+    _buffer->bind();
 
-//    Shader::diffuse_colored->use();
+    _buffer->shader()->use();
 
-////    if (_model->has_image())
-////        _model->image()->bind();
-////    else if (_model->draw_mode() == scene::Model::DrawMode::Lines)
-////        _buffer->shader()->set_uniform_color(Color::black);
+    if (_model->has_image())
+        _model->image()->bind();
+    else if (_model->draw_mode() == scene::Model::DrawMode::Lines)
+        _buffer->shader()->set_uniform_color(Color::black);
 
-//    Shader::diffuse_colored->set_mvp_matrix(_model->mvp_matrix());
-//    Shader::diffuse_colored->set_model_matrix(_model->model_matrix());
-//    Shader::diffuse_colored->set_light_position(_model->_scene->_light_sources.front()->position());
-//    _buffer->draw();
+    _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
+    _buffer->shader()->set_model_matrix(_model->model_matrix());
+    _buffer->shader()->set_light_position(_model->_scene->_light_sources.front()->position());
+    _buffer->draw();
 
-//    if (_model->is_transparent)
-//        GL(glEnable(GL_DEPTH_TEST));
 }

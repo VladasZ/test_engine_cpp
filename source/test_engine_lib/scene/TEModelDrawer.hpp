@@ -10,11 +10,13 @@
 
 #include "Model.hpp"
 
+namespace gl {
 class Buffer;
+}
 
 class TEModelDrawer : public scene::Model::Drawer {
 
-    Buffer* _buffer;
+    gl::Buffer* _buffer;
 
 private:
     ~TEModelDrawer() override;

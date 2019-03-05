@@ -28,8 +28,6 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;
     image->bind();
-
-    Info("krekesh");
     Assets::buffers->fullscreen_image->bind();
     if (image->is_monochrome())
          Assets::shaders->ui_monochrome->use();

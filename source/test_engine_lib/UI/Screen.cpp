@@ -6,13 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
-#if DESKTOP_BUILD
-#include "GLFW/glfw3native.h"
-#endif
-
 using namespace std;
 
 #include                  "ui.hpp"
@@ -102,6 +95,26 @@ void Screen::_initialize_ui() {
 
         if (key == 'Q')
             _scene->camera->fly(scene::Flyable::Direction::Down);
+    });
+
+    GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state){
+        auto ui_button = ui::Mouse::Button::Left;
+        if      (button == GL::MouseButton::Right ) ui_button = ui::Mouse::Button::Right ;
+        else if (button == GL::MouseButton::Middle) ui_button = ui::Mouse::Button::Middle;
+        ui::input::mouse->set_button_state(ui_button, state == GL::ButtonState::Down ? ui::Mouse::ButtonState::Down : ui::Mouse::ButtonState::Up);
+    });
+
+    GL::on_cursor_moved.subscribe([&](Point position) {
+       ui::input::mouse->set_position(position);
+       Events::cursor_moved(position);
+    });
+
+    GL::on_scroll_moved.subscribe([&](Point position) {
+        _scene->camera->move_orbit(position / 50);
+    });
+
+    GL::on_key_pressed.subscribe([&](char key, unsigned int state) {
+        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
     });
 }
 

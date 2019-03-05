@@ -6,6 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "ui.hpp"
 #include "TestEngine.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"

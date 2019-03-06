@@ -17,6 +17,7 @@
 #include       "TEModelDrawer.hpp"
 #include "BufferConfiguration.hpp"
 
+using namespace gm;
 
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;

@@ -10,6 +10,8 @@
 
 #include "XYZSlidersView.hpp"
 
+using namespace gm;
+
 #define XYZ_SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
 
 XYZSlidersView::~XYZSlidersView() {

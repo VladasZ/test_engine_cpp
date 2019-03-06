@@ -26,5 +26,5 @@ class TestScene : public scene::Scene {
     void setup() override;
     void each_frame() override;
 
-    void set_vector(const Vector3&);
+    void set_vector(const gm::Vector3&);
 };

@@ -16,6 +16,6 @@
 struct Events {
     static inline Event<> frame_drawn;
     static inline Event<ui::Touch*> touch;
-    static inline Event<Point> cursor_moved;
-    static inline Event<Size> on_screen_size_change;
+    static inline Event<gm::Point> cursor_moved;
+    static inline Event<gm::Size> on_screen_size_change;
 };

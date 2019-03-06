@@ -13,6 +13,8 @@
 #include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 
+using namespace gm;
+
 TEUIDrawer::TEUIDrawer() {
 
 }

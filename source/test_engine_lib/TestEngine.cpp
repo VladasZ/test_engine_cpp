@@ -14,6 +14,8 @@
 #include   "TestEngine.hpp"
 #include "GlobalEvents.hpp"
 
+using namespace gm;
+
 Screen TestEngine::screen;
 
 void TestEngine::initialize(const Size& window_size) {

@@ -39,6 +39,8 @@
 #include     "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
+using namespace gm;
+
 void Screen::_initialize_gl() {
     GL::initialize(size);
     Assets::initialize();
@@ -102,12 +104,12 @@ void Screen::_initialize_ui() {
         ui::input::mouse->set_button_state(ui_button, state == GL::ButtonState::Down ? ui::Mouse::ButtonState::Down : ui::Mouse::ButtonState::Up);
     });
 
-    GL::on_cursor_moved.subscribe([&](Point position) {
+    GL::on_cursor_moved.subscribe([&](gm::Point position) {
        ui::input::mouse->set_position(position);
        Events::cursor_moved(position);
     });
 
-    GL::on_scroll_moved.subscribe([&](Point position) {
+    GL::on_scroll_moved.subscribe([&](gm::Point position) {
         _scene->camera->move_orbit(position / 50);
     });
 
@@ -124,21 +126,21 @@ void Screen::_initialize_image() {
     image::config::set_loader(new TEImageLoader());
 }
 
-void Screen::initialize(const Size& size) {
+void Screen::initialize(const gm::Size& size) {
     Screen::size = size;
     _initialize_image();
     _initialize_gl();
     _initialize_ui();
     _initialize_scene();
     Screen::set_size(size);
-    GL::on_window_size_change.subscribe([&](Size size) {
+    GL::on_window_size_change.subscribe([&](gm::Size size) {
         Screen::set_size(size);
     });
 }
 
 void Screen::update() {
 
-    GL::set_clear_color(Color::gray);
+    GL::set_clear_color(gm::Color::gray);
     GL::clear();
 
     GL::set_viewport({ size });
@@ -166,7 +168,7 @@ void Screen::update() {
     System::sleep(0.03f);
 }
 
-void Screen::set_size(const Size& size) {
+void Screen::set_size(const gm::Size& size) {
     Screen::size = size;
     GL::screen_size = size;
     GL::set_viewport(size);

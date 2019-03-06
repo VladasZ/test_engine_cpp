@@ -17,6 +17,8 @@
 #include  "ModelImporter.hpp"
 #include "TexturedVertex.hpp"
 
+using namespace gm;
+
 static Assimp::Importer _importer;
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {

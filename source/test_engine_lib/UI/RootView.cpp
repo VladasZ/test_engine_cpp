@@ -7,13 +7,12 @@
 //
 
 #include "RootView.hpp"
-#include "TestSlidersView.hpp"
 
+using namespace gm;
 using namespace te;
 
 void RootView::_setup() {
     color = Color::clear;
-    //add_subview(&TestSlidersView::view);
 }
 
 void RootView::_draw() {

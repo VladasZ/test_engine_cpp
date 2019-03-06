@@ -19,6 +19,8 @@
 #include    "TestEngine.hpp"
 #include "ModelImporter.hpp"
 
+using namespace gm;
+
 void TestScene::setup() {
 
     add_box({ 1.0f, 0, 0 });

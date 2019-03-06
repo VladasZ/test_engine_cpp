@@ -11,6 +11,8 @@
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
+using namespace gm;
+
 #ifdef DEBUG_VIEW
 
 void DebugInfoView::_setup() {

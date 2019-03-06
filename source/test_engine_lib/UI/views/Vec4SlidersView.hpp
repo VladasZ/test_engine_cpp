@@ -25,9 +25,9 @@ public:
     ~Vec4SlidersView() override;
 
     float multiplier = 1.0f;
-    Vector4 position;
+    gm::Vector4 position;
 
-    Event<Vector4> on_change;
+    Event<gm::Vector4> on_change;
 
 private:
 

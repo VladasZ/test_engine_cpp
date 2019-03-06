@@ -14,6 +14,8 @@
 
 #include "OpenGLHeaders.hpp"
 
+using namespace gm;
+
 static const Rect fulscreen_rect = { -1, -1, 2, 2 };
 
 Buffers::Buffers() {

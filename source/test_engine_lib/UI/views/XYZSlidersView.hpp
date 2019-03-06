@@ -24,9 +24,9 @@ public:
     ~XYZSlidersView() override;
 
     float multiplier = 1.0f;
-    Vector3 position;
+    gm::Vector3 position;
 
-    Event<Vector3> on_change;
+    Event<gm::Vector3> on_change;
 
 private:
 

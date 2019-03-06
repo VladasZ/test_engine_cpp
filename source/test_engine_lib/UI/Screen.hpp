@@ -34,10 +34,10 @@ public:
     int FPS          = 0;
     int frames_drawn = 0;
     
-    Size size              ;
-    Size display_resolution;
+    gm::Size size              ;
+    gm::Size display_resolution;
 
-    Color clear_color;
+    gm::Color clear_color;
     
 #if DESKTOP_BUILD
     GLFWwindow* glfw_window = nullptr;
@@ -49,11 +49,11 @@ public:
     
 public:
 
-    void initialize(const Size&);
+    void initialize(const gm::Size&);
         
     void update();
 
-    void set_size(const Size&);
+    void set_size(const gm::Size&);
 
 public:
 

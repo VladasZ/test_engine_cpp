@@ -18,8 +18,8 @@ public:
 
 private:
 
-    void fill_rect(const Rect& rect, const Color& color) override;
-    void draw_image_in_rect(Image*, const Rect&) override;
+    void fill_rect(const gm::Rect& rect, const gm::Color& color) override;
+    void draw_image_in_rect(Image*, const gm::Rect&) override;
 
 public:
 

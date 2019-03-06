@@ -19,6 +19,8 @@
 #include "XYZSlidersView.hpp"
 #include "TestSlidersView.hpp"
 
+using namespace gm;
+
 static TestScene* _scene;
 
 void create_ui() {

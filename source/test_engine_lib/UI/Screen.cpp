@@ -6,8 +6,6 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-using namespace std;
-
 #include                  "ui.hpp"
 #include                 "Log.hpp"
 #include                 "Box.hpp"

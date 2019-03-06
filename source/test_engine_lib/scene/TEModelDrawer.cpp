@@ -57,7 +57,8 @@ void TEModelDrawer::_draw() const {
 
     _buffer->shader()->set_mvp_matrix(_model->mvp_matrix());
     _buffer->shader()->set_model_matrix(_model->model_matrix());
-    _buffer->shader()->set_light_position(_model->_scene->_light_sources.front()->position());
+    if (_model->_scene->_light_sources.size())
+        _buffer->shader()->set_light_position(_model->_scene->_light_sources.front()->position());
     _buffer->draw();
 
 }

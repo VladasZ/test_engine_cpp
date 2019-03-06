@@ -18,7 +18,10 @@ add_definitions(-DDEBUG=1)
 conan_basic_setup()
 
 add_subdirectory(source/test_engine_lib)
-add_subdirectory(source/test_engine_test)
+
+if(DESKTOP_BUILD)
+  add_subdirectory(source/test_engine_test)
+endif()
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
   foreach(var ${GIT_DEPENDENCIES})

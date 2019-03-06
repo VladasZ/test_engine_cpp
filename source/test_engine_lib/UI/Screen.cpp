@@ -97,6 +97,8 @@ void Screen::_initialize_ui() {
             _scene->camera->fly(scene::Flyable::Direction::Down);
     });
 
+#if DESKTOP_BUILD
+
     GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state){
         auto ui_button = ui::Mouse::Button::Left;
         if      (button == GL::MouseButton::Right ) ui_button = ui::Mouse::Button::Right ;
@@ -116,6 +118,8 @@ void Screen::_initialize_ui() {
     GL::on_key_pressed.subscribe([&](char key, unsigned int state) {
         ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
     });
+
+#endif
 }
 
 void Screen::_initialize_scene() {

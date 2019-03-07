@@ -15,22 +15,22 @@ std::string Paths::assets_directory() {
 #elif defined (APPLE)
     return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/assets/";
 #else
-  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/assets/";
+  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/Assets/";
 #endif
 }
 
 std::string Paths::shaders_directory() {
-    return assets_directory() + "shaders/";
+    return assets_directory() + "Shaders/";
 }
 
 std::string Paths::images_directory() {
-    return assets_directory() + "images/";
+    return assets_directory() + "Images/";
 }
 
 std::string Paths::models_directory() {
-    return assets_directory() + "models/";
+    return assets_directory() + "Models/";
 }
 
 std::string Paths::fonts_directory() {
-    return assets_directory() + "fonts/";
+    return assets_directory() + "Fonts/";
 }

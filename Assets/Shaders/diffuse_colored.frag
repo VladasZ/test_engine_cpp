@@ -16,7 +16,4 @@ void main() {
 	color.a = 1.0;
 	color.rgb = ambient.rgb + diffuse.rgb;
 
-	//color = v_color;
-	//color.a = 0.1;
-	//color.r = 1;//dot(light_vector, v_qnormal);
 }

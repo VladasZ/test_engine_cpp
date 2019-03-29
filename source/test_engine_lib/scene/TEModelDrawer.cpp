@@ -24,7 +24,7 @@ TEModelDrawer::TEModelDrawer(scene::Model* model) {
 
     auto mesh = model->mesh();
 
-    std::vector<float> vertices { mesh->vertices_data(), mesh->vertices_data() + mesh->vertices_data_float_size() };
+    const std::vector<float> vertices = std::vector<float>( mesh->vertices_data(), mesh->vertices_data() + mesh->vertices_data_float_size());
 
     auto conf   = gl::BufferConfiguration::_3_3_2;
     auto shader = Assets::shaders->textured3D;

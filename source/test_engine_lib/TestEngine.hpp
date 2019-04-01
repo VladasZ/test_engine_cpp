@@ -17,7 +17,7 @@ public:
 
     static Screen screen;
 
-    static void initialize(const gm::Size& window_size = { });
+    static void initialize(const gm::Size& window_size = { 1000, 600 });
 
 #if DESKTOP_BUILD
     static void start_main_loop(std::function<void()> on_frame_drawn);

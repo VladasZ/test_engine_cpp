@@ -38,23 +38,19 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     GL::set_viewport(rect);
     Assets::buffers->fullscreen_image->draw();
 }
-#include "Log.hpp"
 
-void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect, const gm::Color& color) {
+void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
     auto buffer = static_cast<gl::Buffer*>(path->data());
 
-    Info(buffer->buffer_data()->to_string());
-    Info(color.to_string());
-
     buffer->bind();
-    buffer->shader()->set_uniform_color(color);
+    buffer->shader()->set_uniform_color(path->color());
     buffer->shader()->set_size(rect.size);
     buffer->draw();
 }
 
-ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path) {
-    return new ui::PathData(path, new gl::Buffer(path, Assets::shaders->ui_path));
+ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path, const gm::Color& color) {
+    return new ui::PathData(path, new gl::Buffer(path, Assets::shaders->ui_path), color);
 }
 
 #if DESKTOP_BUILD

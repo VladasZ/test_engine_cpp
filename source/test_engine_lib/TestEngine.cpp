@@ -6,12 +6,12 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include           "ui.hpp"
-#include        "Mouse.hpp"
-#include       "Camera.hpp"
-#include     "Keyboard.hpp"
-#include    "GLWrapper.hpp"
-#include   "TestEngine.hpp"
+#include "ui.hpp"
+#include "Mouse.hpp"
+#include "Camera.hpp"
+#include "Keyboard.hpp"
+#include "GLWrapper.hpp"
+#include "TestEngine.hpp"
 #include "GlobalEvents.hpp"
 
 using namespace gm;

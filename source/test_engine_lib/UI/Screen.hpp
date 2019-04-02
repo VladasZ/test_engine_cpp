@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include     "Size.hpp"
-#include    "Debug.hpp"
-#include    "Scene.hpp"
+#include "Size.hpp"
+#include "Debug.hpp"
+#include "Scene.hpp"
 #include "RootView.hpp"
 
 struct GLFWwindow;

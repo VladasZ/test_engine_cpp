@@ -28,6 +28,13 @@ void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     Assets::buffers->fullscreen->draw();
 }
 
+void TEUIDrawer::draw_rect(const gm::Rect& rect, const gm::Color& color) {
+    GL::set_viewport(rect);
+    Assets::buffers->fullscreen_outline->bind();
+    Assets::buffers->fullscreen_outline->shader()->set_uniform_color(color);
+    Assets::buffers->fullscreen_outline->draw();
+}
+
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;

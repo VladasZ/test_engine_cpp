@@ -14,6 +14,7 @@ struct Buffers {
 
     gl::Buffer* fullscreen;
     gl::Buffer* fullscreen_image;
+    gl::Buffer* fullscreen_outline;
 
     Buffers();
 };

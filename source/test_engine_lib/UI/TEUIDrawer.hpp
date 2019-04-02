@@ -19,6 +19,7 @@ public:
 private:
 
     void fill_rect(const gm::Rect&, const gm::Color&) override;
+    void draw_rect(const gm::Rect&, const gm::Color&) override;
     void draw_image_in_rect(Image*, const gm::Rect&) override;
     void draw_path_in_rect(ui::PathData*, const gm::Rect&) override;
 

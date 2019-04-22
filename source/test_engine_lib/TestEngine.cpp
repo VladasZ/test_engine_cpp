@@ -19,9 +19,7 @@ using namespace gm;
 Screen TestEngine::screen;
 
 void TestEngine::initialize(const Size& window_size) {
-
     std::srand(static_cast<unsigned int>(time(nullptr)));
-
     screen.initialize(window_size);
 }
 

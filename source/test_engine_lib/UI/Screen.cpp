@@ -6,37 +6,37 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
-#include                  "ui.hpp"
-#include                 "Log.hpp"
-#include                 "Box.hpp"
-#include                "Time.hpp"
-#include                "Mesh.hpp"
-#include                "Grid.hpp"
-#include               "Input.hpp"
-#include               "Paths.hpp"
-#include               "Touch.hpp"
-#include               "Event.hpp"
-#include               "Scene.hpp"
-#include              "Assets.hpp"
-#include              "System.hpp"
-#include              "Camera.hpp"
-#include              "Buffer.hpp"
-#include              "Screen.hpp"
-#include             "LogData.hpp"
-#include            "Keyboard.hpp"
-#include            "RootView.hpp"
-#include           "ImageView.hpp"
-#include           "GLWrapper.hpp"
-#include          "TestEngine.hpp"
-#include          "TEUIDrawer.hpp"
-#include         "ImageConfig.hpp"
-#include        "GlobalEvents.hpp"
-#include       "TEImageLoader.hpp"
-#include       "ModelImporter.hpp"
-#include       "DebugInfoView.hpp"
-#include       "TESceneDrawer.hpp"
-#include       "TEModelDrawer.hpp"
-#include     "TestSlidersView.hpp"
+#include "ui.hpp"
+#include "Log.hpp"
+#include "Box.hpp"
+#include "Time.hpp"
+#include "Mesh.hpp"
+#include "Grid.hpp"
+#include "Input.hpp"
+#include "Paths.hpp"
+#include "Touch.hpp"
+#include "Event.hpp"
+#include "Scene.hpp"
+#include "Assets.hpp"
+#include "System.hpp"
+#include "Camera.hpp"
+#include "Buffer.hpp"
+#include "Screen.hpp"
+#include "LogData.hpp"
+#include "Keyboard.hpp"
+#include "RootView.hpp"
+#include "ImageView.hpp"
+#include "GLWrapper.hpp"
+#include "TestEngine.hpp"
+#include "TEUIDrawer.hpp"
+#include "ImageConfig.hpp"
+#include "GlobalEvents.hpp"
+#include "TEImageLoader.hpp"
+#include "ModelImporter.hpp"
+#include "DebugInfoView.hpp"
+#include "TESceneDrawer.hpp"
+#include "TEModelDrawer.hpp"
+#include "TestSlidersView.hpp"
 #include "BufferConfiguration.hpp"
 
 using namespace gm;
@@ -97,7 +97,10 @@ void Screen::_initialize_ui() {
         auto ui_button = ui::Mouse::Button::Left;
         if      (button == GL::MouseButton::Right ) ui_button = ui::Mouse::Button::Right ;
         else if (button == GL::MouseButton::Middle) ui_button = ui::Mouse::Button::Middle;
-        ui::input::mouse->set_button_state(ui_button, state == GL::ButtonState::Down ? ui::Mouse::ButtonState::Down : ui::Mouse::ButtonState::Up);
+        ui::input::mouse->set_button_state(ui_button,
+                                           state == GL::ButtonState::Down ?
+                                               ui::Mouse::ButtonState::Down :
+                                               ui::Mouse::ButtonState::Up);
     });
 
     GL::on_cursor_moved.subscribe([&](gm::Point position) {

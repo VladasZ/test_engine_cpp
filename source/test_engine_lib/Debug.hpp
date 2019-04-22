@@ -12,7 +12,7 @@
 
 #ifdef DEBUG
 
-//#define DEBUG_VIEW
+#define DEBUG_VIEW
 #define IMAGES_LOADING_OUTPUT
 
 #endif

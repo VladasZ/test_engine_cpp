@@ -8,15 +8,15 @@
 
 #include "math.h"
 
-#include           "Box.hpp"
-#include          "Grid.hpp"
-#include          "Mesh.hpp"
-#include         "Image.hpp"
-#include         "Paths.hpp"
-#include         "Plane.hpp"
-#include        "Vector.hpp"
-#include     "TestScene.hpp"
-#include    "TestEngine.hpp"
+#include "Box.hpp"
+#include "Grid.hpp"
+#include "Mesh.hpp"
+#include "Image.hpp"
+#include "Paths.hpp"
+#include "Plane.hpp"
+#include "Vector.hpp"
+#include "TestScene.hpp"
+#include "TestEngine.hpp"
 #include "ModelImporter.hpp"
 
 using namespace gm;

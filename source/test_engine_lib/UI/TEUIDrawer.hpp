@@ -23,7 +23,8 @@ private:
     void draw_image_in_rect(Image*, const gm::Rect&) override;
     void draw_path_in_rect(ui::PathData*, const gm::Rect&) override;
 
-    virtual ui::PathData* initialize_path_data(gm::Path*, const gm::Color&) override;
+    ui::PathData* initialize_path_data(gm::Path*, const gm::Color&) override;
+    void free_path_data(ui::PathData*) override;
 
 public:
 

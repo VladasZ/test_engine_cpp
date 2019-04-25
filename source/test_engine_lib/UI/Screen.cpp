@@ -141,7 +141,7 @@ void Screen::initialize(const gm::Size& size) {
 
 void Screen::update() {
 
-    GL::set_clear_color(gm::Color::gray);
+    GL::set_clear_color(gm::Color::black);
     GL::clear();
 
     GL::set_viewport({ size });

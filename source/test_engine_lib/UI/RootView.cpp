@@ -12,7 +12,7 @@ using namespace gm;
 using namespace te;
 
 void RootView::_setup() {
-    color = Color::clear;
+    background_color = Color::clear;
 }
 
 void RootView::_draw() {

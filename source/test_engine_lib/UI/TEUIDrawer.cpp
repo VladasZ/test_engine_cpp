@@ -60,6 +60,10 @@ ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path, const gm::Color& 
     return new ui::PathData(path, new gl::Buffer(path, Assets::shaders->ui_path), color);
 }
 
+void TEUIDrawer::free_path_data(ui::PathData* data) {
+    delete static_cast<gl::Buffer*>(data->data());
+}
+
 #if DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {

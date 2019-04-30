@@ -31,8 +31,8 @@ private:
 
 public:
     
-    int FPS          = 0;
-    int frames_drawn = 0;
+    size_t FPS          = 0;
+    size_t frames_drawn = 0;
     
     gm::Size size              ;
     gm::Size display_resolution;

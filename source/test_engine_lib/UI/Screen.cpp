@@ -64,59 +64,6 @@ void Screen::_initialize_ui() {
     debug_view = new DebugInfoView({ 400, 108 });
     debug_view->_setup();
 #endif
-
-    ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
-
-        if (event == ui::Keyboard::Event::Up) {
-            _scene->camera->stop();
-            return;
-        }
-
-        if (key == 'W')
-            _scene->camera->fly(scene::Flyable::Direction::Forward);
-
-        if (key == 'S')
-            _scene->camera->fly(scene::Flyable::Direction::Back);
-
-        if (key == 'A')
-            _scene->camera->fly(scene::Flyable::Direction::Left);
-
-        if (key == 'D')
-            _scene->camera->fly(scene::Flyable::Direction::Right);
-
-        if (key == 'E')
-            _scene->camera->fly(scene::Flyable::Direction::Up);
-
-        if (key == 'Q')
-            _scene->camera->fly(scene::Flyable::Direction::Down);
-    });
-
-#if DESKTOP_BUILD
-
-    GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state){
-        auto ui_button = ui::Mouse::Button::Left;
-        if      (button == GL::MouseButton::Right ) ui_button = ui::Mouse::Button::Right ;
-        else if (button == GL::MouseButton::Middle) ui_button = ui::Mouse::Button::Middle;
-        ui::input::mouse->set_button_state(ui_button,
-                                           state == GL::ButtonState::Down ?
-                                               ui::Mouse::ButtonState::Down :
-                                               ui::Mouse::ButtonState::Up);
-    });
-
-    GL::on_cursor_moved.subscribe([&](gm::Point position) {
-       ui::input::mouse->set_position(position);
-       Events::cursor_moved(position);
-    });
-
-    GL::on_scroll_moved.subscribe([&](gm::Point position) {
-        _scene->camera->move_orbit(position / 50);
-    });
-
-    GL::on_key_pressed.subscribe([&](char key, unsigned int state) {
-        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
-    });
-
-#endif
 }
 
 void Screen::_initialize_scene() {
@@ -166,7 +113,7 @@ void Screen::update() {
     Screen::frames_drawn++;
     Events::frame_drawn();
     
-    System::sleep(0.03f);
+    System::sleep(0.015f);
 }
 
 void Screen::set_size(const gm::Size& size) {

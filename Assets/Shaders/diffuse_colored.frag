@@ -14,6 +14,6 @@ void main() {
 	vec3 diffuse = color.rgb * dot(light_vector, v_normal) * (1 / distance(v_position, v_light_position));
 
 	color.a = 1.0;
-	color.rgb = ambient.rgb + diffuse.rgb;
+	color.rgb = color.rgb;// ambient.rgb + diffuse.rgb;
 
 }

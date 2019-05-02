@@ -39,7 +39,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     auto mesh                    = scene->mMeshes[0];
     auto has_texture_coordinates = mesh->HasTextureCoords(0);
 
-    scene::Mesh::IndicesArray indices;
+    Vertex::Indices indices;
 
     Info  (file                     );
     Info  (mesh->HasTextureCoords(0));
@@ -48,11 +48,11 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
         const auto& face = mesh->mFaces[i];
         for (unsigned int j = 0; j < face.mNumIndices; j++)
-            indices.push_back(static_cast<scene::Vertex::Index>(face.mIndices[j]));
+            indices.push_back(static_cast<Vertex::Index>(face.mIndices[j]));
     }
 
     if (image && has_texture_coordinates) {
-        scene::TexturedVertex::Array vertices;
+        TexturedVertex::Array vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
             vertices.emplace_back(mesh->mVertices        [i],
@@ -64,7 +64,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                 image);
     }
 
-    scene::ColoredVertex::Array vertices;
+    ColoredVertex::Array vertices;
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         vertices.emplace_back(mesh->mVertices[i],

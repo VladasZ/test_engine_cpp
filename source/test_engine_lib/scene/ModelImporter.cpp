@@ -10,12 +10,11 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
-#include            "Log.hpp"
-#include           "Mesh.hpp"
-#include          "Paths.hpp"
-#include          "Model.hpp"
-#include  "ModelImporter.hpp"
-#include "TexturedVertex.hpp"
+#include "Log.hpp"
+#include "Mesh.hpp"
+#include "Paths.hpp"
+#include "Model.hpp"
+#include "ModelImporter.hpp"
 
 using namespace gm;
 
@@ -36,6 +35,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         return                    nullptr;
     }
 
+    auto meshes = std::vector<aiMesh*> { scene->mMeshes, scene->mMeshes + scene->mNumMeshes };
+
     auto mesh                    = scene->mMeshes[0];
     auto has_texture_coordinates = mesh->HasTextureCoords(0);
 
@@ -52,7 +53,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     }
 
     if (image && has_texture_coordinates) {
-        TexturedVertex::Array vertices;
+        Vertex::Array vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
             vertices.emplace_back(mesh->mVertices        [i],
@@ -64,7 +65,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                 image);
     }
 
-    ColoredVertex::Array vertices;
+    Vertex::Array vertices;
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         vertices.emplace_back(mesh->mVertices[i],

@@ -88,7 +88,7 @@ void Screen::initialize(const gm::Size& size) {
 
 void Screen::update() {
 
-    GL::set_clear_color(gm::Color::black);
+    GL::set_clear_color(clear_color);
     GL::clear();
 
     GL::set_viewport({ size });
@@ -113,7 +113,7 @@ void Screen::update() {
     Screen::frames_drawn++;
     Events::frame_drawn();
     
-    System::sleep(0.015f);
+    System::sleep(0.03f);
 }
 
 void Screen::set_size(const gm::Size& size) {

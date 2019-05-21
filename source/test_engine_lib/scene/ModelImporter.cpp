@@ -32,7 +32,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     if (!scene) {
         Error(_importer.GetErrorString());
-        return                    nullptr;
+        return nullptr;
     }
 
     auto meshes = std::vector<aiMesh*> { scene->mMeshes, scene->mMeshes + scene->mNumMeshes };
@@ -42,35 +42,40 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Vertex::Indices indices;
 
-    Info  (file                     );
-    Info  (mesh->HasTextureCoords(0));
-    Logvar(scene->HasMaterials    ());
+    Info(file);
+    Info(mesh->HasTextureCoords(0));
+    Logvar(scene->HasMaterials());
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
         const auto& face = mesh->mFaces[i];
-        for (unsigned int j = 0; j < face.mNumIndices; j++)
+        for (unsigned int j = 0; j < face.mNumIndices; j++) {
             indices.push_back(static_cast<Vertex::Index>(face.mIndices[j]));
+        }
     }
 
     if (image && has_texture_coordinates) {
         Vertex::Array vertices;
 
-        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
-            vertices.emplace_back(mesh->mVertices        [i],
-                                  mesh->mNormals         [i],
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+            vertices.emplace_back(mesh->mVertices[i],
+                                  mesh->mNormals[i],
                           Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
+        }
 
         return new scene::Model(new scene::Mesh(std::move(vertices),
-                                                std::move(indices )),
+                                                std::move(indices)),
                                 image);
     }
 
     Vertex::Array vertices;
 
-    for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+
+    for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         vertices.emplace_back(mesh->mVertices[i],
-                              mesh->mNormals [i]);
+                              mesh->mNormals[i]);
+    }
+
 
     return new scene::Model(new scene::Mesh(std::move(vertices),
-                                            std::move(indices )));
+                                            std::move(indices)));
 }

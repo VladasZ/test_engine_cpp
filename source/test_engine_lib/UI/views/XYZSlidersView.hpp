@@ -9,13 +9,12 @@
 #pragma once
 
 #include "Vector3.hpp"
+#include "XYZPack.hpp"
 #include "LabeledSliderView.hpp"
 
 class XYZSlidersView : public ui::View {
 
-    ui::LabeledSliderView* _x_slider = nullptr;
-    ui::LabeledSliderView* _y_slider = nullptr;
-    ui::LabeledSliderView* _z_slider = nullptr;
+    cu::XYZPack<ui::LabeledSliderView*> sliders = nullptr;
 
 public:
 

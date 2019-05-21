@@ -11,39 +11,40 @@
 #include "XYZSlidersView.hpp"
 
 using namespace gm;
+using namespace cu;
 
 #define XYZ_SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
 
 XYZSlidersView::~XYZSlidersView() {
-    delete  _x_slider;
-    delete  _y_slider;
-    delete  _z_slider;
+    delete  sliders.x;
+    delete  sliders.y;
+    delete  sliders.z;
 }
 
 void XYZSlidersView::_setup() {
-    _x_slider = new ui::LabeledSliderView();
-    _y_slider = new ui::LabeledSliderView();
-    _z_slider = new ui::LabeledSliderView();
+    sliders.x = new ui::LabeledSliderView();
+    sliders.y = new ui::LabeledSliderView();
+    sliders.z = new ui::LabeledSliderView();
 
-    add_subview({ _x_slider,
-                  _y_slider,
-                  _z_slider });
+    add_subview({ sliders.x,
+                  sliders.y,
+                  sliders.z });
 
-    _x_slider->set_caption("X");
-    _y_slider->set_caption("Y");
-    _z_slider->set_caption("Z");
+    sliders.x->set_caption("X");
+    sliders.y->set_caption("Y");
+    sliders.z->set_caption("Z");
 
-    _x_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.x->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.x, value);
         on_change(position);
     });
 
-    _y_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.y->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.y, value);
         on_change(position);
     });
 
-    _z_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.z->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.z, value);
         on_change(position);
     });
@@ -56,9 +57,9 @@ void XYZSlidersView::_layout() {
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;
 
-    _x_slider->set_frame({ width * 0 + margin * 0, 0, width, _frame.size.height });
-    _y_slider->set_frame({ width * 1 + margin * 1, 0, width, _frame.size.height });
-    _z_slider->set_frame({ width * 2 + margin * 1, 0, width, _frame.size.height });
+    sliders.x->set_frame({ width * 0 + margin * 0, 0, width, _frame.size.height });
+    sliders.y->set_frame({ width * 1 + margin * 1, 0, width, _frame.size.height });
+    sliders.z->set_frame({ width * 2 + margin * 1, 0, width, _frame.size.height });
 
     _layout_subviews();
 }

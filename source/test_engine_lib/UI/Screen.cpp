@@ -8,7 +8,6 @@
 
 #include "ui.hpp"
 #include "Log.hpp"
-#include "Box.hpp"
 #include "Time.hpp"
 #include "Mesh.hpp"
 #include "Grid.hpp"

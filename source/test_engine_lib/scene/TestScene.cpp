@@ -9,17 +9,16 @@
 #include "math.h"
 #include "ui.hpp"
 
-#include "Box.hpp"
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
 #include "Paths.hpp"
 #include "Plane.hpp"
-#include "Vector.hpp"
 #include "Keyboard.hpp"
 #include "GLWrapper.hpp"
 #include "TestScene.hpp"
 #include "TestEngine.hpp"
+#include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
 #include "ModelImporter.hpp"
 
@@ -52,7 +51,7 @@ void TestScene::setup() {
     y_wall->set_position({ 0, -5.0f, 0.0f });
     y_wall->look_at({ 0, 1, 0 });
 
-    add_object(new scene::Vector());
+    add_object(new scene::VectorModel());
 
     light = new scene::PointLight({ 1, 1, 1 });
     light->velocity = { 0.011f, 0, 0.0f };

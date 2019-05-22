@@ -1,10 +1,6 @@
 
 #include <math.h>
 
-#include "glm/glm.hpp"
-#include "glm/gtx/transform.hpp"
-
-#include "Box.hpp"
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Plane.hpp"

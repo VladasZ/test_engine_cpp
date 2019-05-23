@@ -1,6 +1,7 @@
 precision highp float;
 
 uniform vec4 uniform_color;
+uniform bool selected;
 
 in vec3 fragment_normal;
 
@@ -15,4 +16,7 @@ void main() {
 
   color.a = uniform_color.a;
   color.rgb = ambient + diffuse * 0.4;
+
+  if (selected)
+	color.rgb *= 4;
 }

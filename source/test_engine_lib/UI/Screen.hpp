@@ -53,6 +53,8 @@ public:
         
     void update();
 
+    void setup_input();
+
     void set_size(const gm::Size&);
 
 public:

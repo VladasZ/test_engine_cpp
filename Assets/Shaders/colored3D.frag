@@ -9,7 +9,7 @@ out vec4 color;
 
 void main() {
   
-  vec3 light_vector = normalize(vec3(1, 1, 1));
+  vec3 light_vector = normalize(vec3(1.0, 1.0, 1.0));
   
   vec3 ambient = uniform_color.rgb * 0.5;
   vec3 diffuse = uniform_color.rgb * dot(light_vector, fragment_normal);
@@ -18,5 +18,5 @@ void main() {
   color.rgb = ambient + diffuse * 0.4;
 
   if (selected)
-	color.rgb *= 4;
+	color.rgb *= 4.0;
 }

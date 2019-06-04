@@ -9,10 +9,16 @@
 #include "Paths.hpp"
 #include "System.hpp"
 
+#ifdef IOS_BUILD
+#include "CallObj.h"
+#endif
+
 std::string Paths::assets_directory() {
 #ifdef WINDOWS
     return "C:\\Users\\u.zakreuskis\\.deps\\test_engine\\assets\\";
-#elif defined (APPLE)
+#elif IOS_BUILD
+    return std::string() + objCWorkDirectoryPath() + "/Assets/";
+#elif APPLE
     return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/assets/";
 #else
   return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/Assets/";

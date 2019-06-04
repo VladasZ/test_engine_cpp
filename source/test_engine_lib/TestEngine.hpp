@@ -24,7 +24,9 @@ public:
     static void start_with_scene() {
         initialize();
         screen.set_scene(new SceneType());
+#if DESKTOP_BUILD
         start_main_loop(nullptr);
+#endif
     }
 
 #if DESKTOP_BUILD

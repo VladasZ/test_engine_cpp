@@ -8,7 +8,7 @@
 
 #import "OBJBridge.h"
 
-#if IOS
+#ifdef IOS_BUILD
 
 #import <UIKit/UIKit.h>
 
@@ -40,7 +40,7 @@ static UIViewController *topmostController() {
     
     NSString *messageString = [NSString stringWithUTF8String:message];
     
-#if IOS
+#ifdef IOS_BUILD
         
     UIAlertController *controller =
     [UIAlertController alertControllerWithTitle:nil

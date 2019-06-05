@@ -5,12 +5,12 @@ project(test_engine_test)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 
-
-set(SHADERS
+if(${IOS_BUILD})
+  set(SHADERS
   /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.frag
   /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.vert
   )
-
+endif()
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${SHADERS})
 

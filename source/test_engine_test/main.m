@@ -8,15 +8,12 @@
 
 #ifdef IOS_BUILD
 
-#import <UIKit/UIKit.h>
-
-@interface AppDelegate : UIResponder<UIApplicationDelegate> @end
+#import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
-
 
 #endif

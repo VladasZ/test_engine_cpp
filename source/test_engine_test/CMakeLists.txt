@@ -15,3 +15,21 @@ link_project_at_path(gl_wrapper      ${gl_wrapper_path} )
 link_project_at_path(test_engine_lib ${test_engine_path})
 
 conan_target_link_libraries(${PROJECT_NAME})
+
+find_library(UIKIT UIKit)
+find_library(GLKIT GLKit)
+find_library(OPEN_GLES OpenGLES)
+find_library(FOUNDATION Foundation)
+
+target_link_libraries(${PROJECT_NAME} ${UIKIT})
+target_link_libraries(${PROJECT_NAME} ${GLKIT})
+target_link_libraries(${PROJECT_NAME} ${FOUNDATION})
+target_link_libraries(${PROJECT_NAME} ${OPEN_GLES})
+
+set(MACOSX_BUNDLE "MACOSX_BUNDLE")
+set(MACOSX_BUNDLE_ID "MACOSX_BUNDLE_ID")
+set(MACOSX_BUNDLE_NAME "MACOSX_BUNDLE_NAME")
+set(MACOSX_BUNDLE_GUI_IDENTIFIER "MACOSX_BUNDLE_GUI_IDENTIFIER")
+
+
+

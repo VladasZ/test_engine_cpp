@@ -8,6 +8,12 @@ matrix:
             - pip3 install conan
           script:
             - python3 build.py --build
+        - os: osx
+          install:
+            - pip3 install gitpython
+            - pip3 install conan
+          script:
+            - python3 build.py --build --ios
 #        - os: linux
 #          sudo: required 
 #          dist: trusty

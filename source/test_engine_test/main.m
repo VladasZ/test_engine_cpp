@@ -9,14 +9,14 @@
 #ifdef IOS_BUILD
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
 
-#import "ios_main.h"
+@interface AppDelegate : UIResponder<UIApplicationDelegate> @end
 
-int ios_main() {
+int main(int argc, char * argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(0, malloc(1), nil, NSStringFromClass([AppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
+
 
 #endif

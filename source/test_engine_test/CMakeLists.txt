@@ -4,7 +4,15 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 project(test_engine_test)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
-add_executable(${PROJECT_NAME} ${SOURCE})
+
+
+set(SHADERS
+  /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.frag
+  /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.vert
+  )
+
+
+add_executable(${PROJECT_NAME} ${SOURCE} ${SHADERS})
 
 link_project_at_path(image           ${image_path}      )
 link_project_at_path(ui_lib          ${ui_path}         )
@@ -28,10 +36,11 @@ target_link_libraries(${PROJECT_NAME} ${GLKIT})
 target_link_libraries(${PROJECT_NAME} ${FOUNDATION})
 target_link_libraries(${PROJECT_NAME} ${OPEN_GLES})
 
-set(MACOSX_BUNDLE "MACOSX_BUNDLE")
-set(MACOSX_BUNDLE_ID "MACOSX_BUNDLE_ID")
-set(MACOSX_BUNDLE_NAME "MACOSX_BUNDLE_NAME")
-set(MACOSX_BUNDLE_GUI_IDENTIFIER "MACOSX_BUNDLE_GUI_IDENTIFIER")
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  MACOSX_BUNDLE TRUE
+  MACOSX_BUNDLE_GUI_IDENTIFIER org.cmake.${PROJECT_NAME}
+  RESOURCE "${SHADERS}"
+)
 
 endif()
 

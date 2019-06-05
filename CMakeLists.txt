@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(test_engine)
 
-message(${CMAKE_CXX_FLAGS})
-
 add_definitions(-DDEBUG=1)
 
 conan_basic_setup()

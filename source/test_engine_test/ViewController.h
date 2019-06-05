@@ -6,6 +6,8 @@
 //  Copyright © 2019 vz. All rights reserved.
 //
 
+#ifdef IOS_BUILD
+
 #define GLES_SILENCE_DEPRECATION
 
 #import <UIKit/UIKit.h>
@@ -16,3 +18,4 @@
 
 @end
 
+#endif

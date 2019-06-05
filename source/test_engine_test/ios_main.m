@@ -6,6 +6,8 @@
 //  Copyright © 2019 vz. All rights reserved.
 //
 
+#ifdef IOS_BUILD
+
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
@@ -16,3 +18,5 @@ int ios_main() {
         return UIApplicationMain(0, malloc(1), nil, NSStringFromClass([AppDelegate class]));
     }
 }
+
+#endif

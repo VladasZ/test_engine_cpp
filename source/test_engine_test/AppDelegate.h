@@ -6,6 +6,8 @@
 //  Copyright © 2019 vz. All rights reserved.
 //
 
+#ifdef IOS_BUILD
+
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -15,3 +17,4 @@
 
 @end
 
+#endif

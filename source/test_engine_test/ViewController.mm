@@ -6,6 +6,8 @@
 //  Copyright © 2019 vz. All rights reserved.
 //
 
+#ifdef IOS_BUILD
+
 #import "ViewController.h"
 #import "GLWrapper.hpp"
 #import "TestEngine.hpp"
@@ -49,3 +51,5 @@
 }
 
 @end
+
+#endif

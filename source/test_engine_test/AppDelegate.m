@@ -6,6 +6,8 @@
 //  Copyright © 2019 vz. All rights reserved.
 //
 
+#ifdef IOS_BUILD
+
 #import "AppDelegate.h"
 #import "ViewController.h"
 
@@ -27,3 +29,5 @@
 }
 
 @end
+
+#endif

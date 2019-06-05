@@ -8,9 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(test_engine)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
-
 message(${CMAKE_CXX_FLAGS})
 
 add_definitions(-DDEBUG=1)

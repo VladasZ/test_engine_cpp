@@ -10,7 +10,6 @@
 
 static const float width  = 400;
 static const float height = 280;
-static const float margin = 5;
 
 TestSlidersView TestSlidersView::view = TestSlidersView({ 0, 0, width, height });
 

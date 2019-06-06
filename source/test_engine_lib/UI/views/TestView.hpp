@@ -13,8 +13,6 @@
 
 class TestView : public ui::View {
 
-    ui::DrawingView* _drawing_view;
-
 public:
 
     using ui::View::View;

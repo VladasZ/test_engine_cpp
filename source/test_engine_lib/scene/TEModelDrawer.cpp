@@ -22,10 +22,16 @@ using namespace gm;
 
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
+
+    auto shader = Assets::shaders->colored3D;
+
+    if (model->has_image())
+        shader = Assets::shaders->textured3D;
+
     _buffer = new gl::Buffer(cu::array::convert<std::vector<float>>(model->mesh()->vertices()),
                              model->mesh()->indices(),
                              gl::BufferConfiguration::_3_3_2,
-                             Assets::shaders->colored3D);
+                             shader);
     _buffer->draw_mode = model->draw_mode();
 }
 

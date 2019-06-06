@@ -8,12 +8,20 @@
 
 #pragma once
 
-#include <string>
+#include <boost/filesystem.hpp>
 
-namespace Paths {
-    std::string assets_directory();
-    std::string shaders_directory();
-    std::string images_directory();
-    std::string models_directory();
-    std::string fonts_directory();
+namespace te {
+    
+    using Path = boost::filesystem::path;
+    
+    namespace Paths {
+        Path root();
+        Path assets();
+        Path shaders();
+        Path images();
+        Path models();
+        Path fonts();
+    };
+    
 };
+

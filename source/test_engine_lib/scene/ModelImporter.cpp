@@ -17,6 +17,7 @@
 #include "ModelImporter.hpp"
 
 using namespace gm;
+using namespace te;
 
 static Assimp::Importer _importer;
 
@@ -24,7 +25,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Info(std::string() + "Loading model: " + file);
 
-    const aiScene* scene = _importer.ReadFile(Paths::models_directory() + file,
+    const aiScene* scene = _importer.ReadFile((Paths::models() / file).string(),
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
                                               aiProcess_JoinIdenticalVertices  |

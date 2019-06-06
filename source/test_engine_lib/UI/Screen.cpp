@@ -39,6 +39,7 @@
 #include "BufferConfiguration.hpp"
 
 using namespace gm;
+using namespace te;
 
 void Screen::_initialize_gl() {
     GL::initialize(size);
@@ -48,7 +49,8 @@ void Screen::_initialize_gl() {
 void Screen::_initialize_ui() {
 
     ui::config::set_drawer(new TEUIDrawer());
-    ui::config::default_font = new ui::Font(Paths::fonts_directory() + "SF.otf");
+    ui::config::default_font =
+    new ui::Font((Paths::fonts() / "SF.otf").string());
 
     ui::Input::on_touch_event([](ui::Touch* touch) {
         Events::touch(touch);

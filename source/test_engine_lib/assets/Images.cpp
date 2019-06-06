@@ -9,6 +9,8 @@
 #include "Paths.hpp"
 #include "Images.hpp"
 
+using namespace te;
+
 Images::Images() {
-    cat = new Image(Paths::images_directory() + "cat.jpg");
+    cat = new Image((Paths::images() / "cat.jpg").string());
 }

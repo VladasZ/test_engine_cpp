@@ -25,12 +25,12 @@ public:
         initialize();
         screen.set_scene(new SceneType());
 #if DESKTOP_BUILD
-        start_main_loop(nullptr);
+        start_main_loop();
 #endif
     }
 
 #if DESKTOP_BUILD
-    static void start_main_loop(std::function<void()> on_frame_drawn);
+    static void start_main_loop(std::function<void()> on_frame_drawn = nullptr);
 #endif
 
 };

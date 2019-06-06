@@ -23,12 +23,11 @@
 #include "ModelImporter.hpp"
 
 using namespace gm;
+using namespace te;
 
 void TestScene::setup() {
 
-    add_box({ 1.0f, 0, 0 });
-    add_box({ 0, 1.2f, 0 });
-    add_box({ 0, 0, 1.0f });
+    position_manipulator->is_hidden = false;
 
     camera->set_target({ 0, 0, 0 });
     camera->set_position({ 1, 1, 1 });
@@ -37,7 +36,10 @@ void TestScene::setup() {
     add_object(monkey = ModelImporter::import("Monkey.blend"));
     monkey->set_position({ 2, 1, 1 });
 
-    add_object(cube = ModelImporter::import("textured_cube.blend", new Image(Paths::images_directory() + "cube_texture.png")));
+    cube = ModelImporter::import("textured_cube.blend",
+                                 new Image((Paths::images() / "cube_texture.png").string()));
+    
+    add_object(cube);
     cube->set_scale(0.1f);
 
     add_object(floor = new scene::Plane(Size { 200, 200 }));

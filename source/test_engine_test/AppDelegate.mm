@@ -19,13 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     [self setup];    
 }
 
 - (void)update {
     //TestEngine::screen.update();
-    GL::clear();
-    GL::set_clear_color(gm::Color::random());
 }
 
 - (void)setup {
@@ -42,8 +43,8 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     
-//    TestEngine::initialize({ static_cast<float>(view.frame.size.width),
-//        static_cast<float>(view.frame.size.height) });
+    TestEngine::initialize({ static_cast<float>(view.frame.size.width),
+        static_cast<float>(view.frame.size.height) });
     
     //TestEngine::screen.set_scene(new TestScene());
 }

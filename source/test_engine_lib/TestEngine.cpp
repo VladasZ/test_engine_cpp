@@ -18,7 +18,13 @@ using namespace gm;
 
 Screen TestEngine::screen;
 
+#include "Log.hpp"
+#include "Paths.hpp"
+
+using namespace te;
+
 void TestEngine::initialize(const Size& window_size) {
+    
     std::srand(static_cast<unsigned int>(time(nullptr)));
     screen.initialize(window_size);
 }

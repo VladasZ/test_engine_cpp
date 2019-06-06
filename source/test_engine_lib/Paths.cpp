@@ -13,30 +13,40 @@
 #include "CallObj.h"
 #endif
 
-std::string Paths::assets_directory() {
-#ifdef WINDOWS
-    return "C:\\Users\\u.zakreuskis\\.deps\\test_engine\\assets\\";
-#elif IOS_BUILD
-    return std::string() + objCWorkDirectoryPath() + "/Assets/";
+using namespace te;
+using namespace Paths;
+
+Path Paths::root() {
+#ifdef IOS_BUILD
+    return Path() / obj_c_work_directory_path();
+#elif WINDOWS
+    Path users = "C:/Users";
 #elif APPLE
-    return std::string() + "/Users/" + System::user_name() + "/.deps/test_engine/assets/";
+    Path users = "/Users";
 #else
-  return std::string() + "/home/" + System::user_name() + "/.deps/test_engine/Assets/";
+    Path users = "home";
+#endif
+#ifndef IOS_BUILD
+    return users / System::user_name() / ".deps/test_engine";
 #endif
 }
 
-std::string Paths::shaders_directory() {
-    return assets_directory() + "Shaders/";
+Path Paths::assets() {
+    return root() / "Assets";
 }
 
-std::string Paths::images_directory() {
-    return assets_directory() + "Images/";
+Path Paths::shaders() {
+    return assets() / "Shaders";
 }
 
-std::string Paths::models_directory() {
-    return assets_directory() + "Models/";
+Path Paths::images() {
+    return assets() / "Images";
 }
 
-std::string Paths::fonts_directory() {
-    return assets_directory() + "Fonts/";
+Path Paths::models() {
+    return assets() / "Models";
+}
+
+Path Paths::fonts() {
+    return assets() / "Fonts";
 }

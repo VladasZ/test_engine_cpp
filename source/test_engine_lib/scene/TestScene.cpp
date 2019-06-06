@@ -40,14 +40,14 @@ void TestScene::setup() {
     add_object(cube = ModelImporter::import("textured_cube.blend", new Image(Paths::images_directory() + "cube_texture.png")));
     cube->set_scale(0.1f);
 
-    add_object(floor = new scene::Plane({ 200, 200 }));
+    add_object(floor = new scene::Plane(Size { 200, 200 }));
     floor->set_position({ 0, 0, -1.0f });
 
-    add_object(x_wall = new scene::Plane({ 200, 200 }));
+    add_object(x_wall = new scene::Plane(Size { 200, 200 }));
     x_wall->set_position({ -5.0f, 0, 0.0f });
     x_wall->look_at({ 1, 0, 0 });
 
-    add_object(y_wall = new scene::Plane({ 200, 200 }));
+    add_object(y_wall = new scene::Plane(Size { 200, 200 }));
     y_wall->set_position({ 0, -5.0f, 0.0f });
     y_wall->look_at({ 0, 1, 0 });
 

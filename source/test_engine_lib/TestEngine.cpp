@@ -30,9 +30,6 @@ void TestEngine::initialize(const Size& window_size) {
     for (auto file : Paths::ls(Paths::root()))
         Info(file.string());
     
-    return;
-    
-
     std::srand(static_cast<unsigned int>(time(nullptr)));
     screen.initialize(window_size);
 }

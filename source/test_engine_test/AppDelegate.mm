@@ -18,15 +18,12 @@
 @interface Controller : GLKViewController @end @implementation Controller
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    
-    [self setup];    
+    [super viewDidLoad];    
+    [self setup];
 }
 
 - (void)update {
-    //TestEngine::screen.update();
+    TestEngine::screen.update();
 }
 
 - (void)setup {
@@ -46,7 +43,7 @@
     TestEngine::initialize({ static_cast<float>(view.frame.size.width),
         static_cast<float>(view.frame.size.height) });
     
-    //TestEngine::screen.set_scene(new TestScene());
+    TestEngine::screen.set_scene(new TestScene());
 }
 
 @end

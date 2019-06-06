@@ -113,8 +113,9 @@ void Screen::update() {
 
     Screen::frames_drawn++;
     Events::frame_drawn();
-    
+#ifndef IOS_BUILD
     System::sleep(0.03f);
+#endif
 }
 
 

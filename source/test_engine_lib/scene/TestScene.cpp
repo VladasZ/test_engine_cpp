@@ -36,11 +36,11 @@ void TestScene::setup() {
     add_object(monkey = ModelImporter::import("Monkey.blend"));
     monkey->set_position({ 2, 1, 1 });
 
-    cube = ModelImporter::import("textured_cube.blend",
-                                 new Image((Paths::images() / "cube_texture.png").string()));
-    
-    add_object(cube);
-    cube->set_scale(0.1f);
+//    cube = ModelImporter::import("textured_cube.blend",
+//                                 new Image((Paths::images() / "cube_texture.png").string()));
+//    
+//    add_object(cube);
+//    cube->set_scale(0.1f);
 
     add_object(floor = new scene::Plane(Size { 200, 200 }));
     floor->set_position({ 0, 0, -1.0f });
@@ -116,7 +116,6 @@ void TestScene::setup() {
 }
 
 void TestScene::each_frame() {
-    cube ->draw_normals();
     floor->draw_normals();
     //monkey->draw_normals();
     draw_box(light->position());

@@ -31,9 +31,12 @@ static UIViewController *topmostController() {
 
 @implementation OBJBridge
 
-+ (const char *) workDirectoryPath {
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    return [path UTF8String];
++ (NSString*) workDirectoryPath {
+    return [[NSBundle mainBundle] bundlePath];
+}
+
++ (NSArray<NSString*>*)ls:(const char*)path {
+    return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@(path) error:nil];
 }
 
 + (void)showAlert:(const char *)message {

@@ -10,7 +10,8 @@
 
 @interface OBJBridge : NSObject
 
-+ (const char*)workDirectoryPath;
++ (NSString*)workDirectoryPath;
++ (NSArray<NSString*>*)ls:(const char*)path;
 + (void)showAlert:(const char*)message;
 
 @end

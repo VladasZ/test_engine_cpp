@@ -13,6 +13,7 @@
 namespace te {
     
     using Path = boost::filesystem::path;
+    using PathsArray = std::vector<Path>;
     
     namespace Paths {
         Path root();
@@ -21,6 +22,8 @@ namespace te {
         Path images();
         Path models();
         Path fonts();
+        
+        PathsArray ls(Path = ".");
     };
     
 };

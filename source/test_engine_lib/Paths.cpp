@@ -10,7 +10,7 @@
 #include "System.hpp"
 
 #ifdef IOS_BUILD
-#include "CallObj.h"
+#include "CallObj.hpp"
 #endif
 
 using namespace te;
@@ -18,7 +18,7 @@ using namespace Paths;
 
 Path Paths::root() {
 #ifdef IOS_BUILD
-    return Path() / obj_c_work_directory_path();
+    return Path() / obj_c::work_directory_path;
 #elif WINDOWS
     Path users = "C:/Users";
 #elif APPLE
@@ -49,4 +49,13 @@ Path Paths::models() {
 
 Path Paths::fonts() {
     return assets() / "Fonts";
+}
+
+PathsArray Paths::ls(Path path) {
+#ifdef IOS_BUILD
+    const auto files = obj_c::ls(path.string());
+    return { files.begin(), files.end() };
+#else
+    return { "NOT IMPLEMENTED ON THIS PLATFORM" };
+#endif
 }

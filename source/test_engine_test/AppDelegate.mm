@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
+#import "Input.hpp"
 #import "GLWrapper.hpp"
 #import "TestEngine.hpp"
 #import "TestScene.hpp"
@@ -44,6 +45,43 @@
         static_cast<float>(view.frame.size.height) });
     
     TestEngine::screen.set_scene(new TestScene());
+    
+    GL::on_window_size_change(gm::Size { static_cast<float>(self.view.frame.size.width),
+                                         static_cast<float>(self.view.frame.size.height)
+    });
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    GL::on_window_size_change(gm::Size { static_cast<float>(self.view.frame.size.width),
+        static_cast<float>(self.view.frame.size.height)
+    });
+}
+
+- (ui::Touch*)te_touch_with_touch:(UITouch*)touch event:(ui::Touch::Event)event {
+    const auto touch_id = reinterpret_cast<ui::Touch::ID>(touch);
+    const auto ns_location = [touch locationInView:self.view];
+    const auto location = gm::Point { static_cast<float>(ns_location.x),
+                                      static_cast<float>(ns_location.y) };
+    return new ui::Touch(touch_id, location, event);
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    for (UITouch* touch in touches)
+        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    for (UITouch* touch in touches)
+        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    for (UITouch* touch in touches)
+        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
 }
 
 @end

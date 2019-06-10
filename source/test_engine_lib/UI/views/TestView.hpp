@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Button.hpp"
 #include "DrawingView.hpp"
 
 
@@ -16,7 +17,10 @@ class TestView : public ui::View {
 public:
 
     using ui::View::View;
+    
+    ui::Button* button;
 
     void _setup() override;
+    void _layout() override;
 
 };

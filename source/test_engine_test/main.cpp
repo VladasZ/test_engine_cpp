@@ -6,16 +6,7 @@
 #include "TestEngine.hpp"
 
 int main() {
-    
- 
-    TestEngine::initialize({ 1000, 680 });
-    
-    TestEngine::screen.root_view()->add_subview(new TestView({ 200, 200, 300, 300 }));
-    TestEngine::screen.set_scene(new TestScene());
-    
-    TestEngine::start_main_loop([&]{
-        
-    });
+    TestEngine::start_with_scene<TestScene>();
     return 0;
 }
 

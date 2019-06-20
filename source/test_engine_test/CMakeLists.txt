@@ -1,6 +1,11 @@
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
+
+if(${IOS_BUILD})
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "7.0" CACHE STRING "Minimum OS X deployment version")
+endif()
+
 project(test_engine_test)
 
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
@@ -43,7 +48,7 @@ target_link_libraries(${PROJECT_NAME} ${OPEN_GLES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
   MACOSX_BUNDLE TRUE
-  MACOSX_BUNDLE_GUI_IDENTIFIER org.cmake.${PROJECT_NAME}
+  MACOSX_BUNDLE_GUI_IDENTIFIER org.cmake.${PROJECT_NAME}d
   RESOURCE "${SHADERS}"
 )
 

@@ -6,6 +6,11 @@ include(${BUILD_SCRIPT_PATH})
 
 set(CMAKE_CXX_STANDARD 17)
 
+if(${IOS_BUILD})
+  set(DEPLOYMENT_TARGET "7.0")
+  #set(ENABLE_BITCODE 1)  
+endif()
+
 project(test_engine)
 
 add_definitions(-DDEBUG=1)

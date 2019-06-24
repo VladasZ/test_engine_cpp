@@ -5,8 +5,8 @@ os:
 
 install:
   - git submodule update --init --recursive  
-  - pip install conan
-  - pip install gitpython
+  - pip3 install conan
+  - pip3 install gitpython
   - py build.py --ide
   
 configuration:

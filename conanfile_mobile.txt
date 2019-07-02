@@ -8,8 +8,6 @@ Assimp/4.1.0@jacmoe/stable
 
 boost/1.70.0@conan/stable
 
-darwin-toolchain/1.0@theodelrieu/stable
-
 [generators]
 cmake
 

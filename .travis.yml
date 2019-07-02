@@ -17,6 +17,7 @@ matrix:
           script:
             - python3 build.py --build --ios
         - os: linux
+          name: Linux
           sudo: required 
           dist: trusty
           addons:
@@ -24,7 +25,7 @@ matrix:
                 sources:
                     - ubuntu-toolchain-r-test
                 packages:
-                    - g++-8
+                    - g++-
           install: 
             - sudo apt-get update
             - sudo apt-get install --reinstall binutils

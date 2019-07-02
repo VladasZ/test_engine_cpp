@@ -19,7 +19,7 @@ matrix:
         - os: linux
           name: Linux
           sudo: required 
-          dist: trusty
+          dist: xenial
           addons:
             apt:
                 sources:

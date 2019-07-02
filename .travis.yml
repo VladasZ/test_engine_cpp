@@ -29,6 +29,8 @@ matrix:
           install: 
             - sudo apt-get update
             - sudo apt-get install --reinstall binutils
+            - sudo binutils-config x86_64-pc-linux-gnu-2.29.1
+            - sudo binutils-config -l
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py
             - sudo pip install conan

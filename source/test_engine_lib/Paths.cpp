@@ -24,7 +24,7 @@ Path Paths::root() {
 #elif APPLE
     Path users = "/Users";
 #else
-    Path users = "home";
+    Path users = "/home";
 #endif
 #ifndef IOS_BUILD
     return users / System::user_name() / ".deps/test_engine";

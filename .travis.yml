@@ -27,11 +27,8 @@ matrix:
                    - gcc-8
                    - g++-8
          install: 
-#           - sudo apt-get update
-#           - sudo apt-get install --reinstall binutils
            - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
            - sudo python3 get-pip.py
            - sudo pip install conan
-#           - sudo pip install gitpython
          script: 
              - python3 build.py --build

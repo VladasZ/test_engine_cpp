@@ -2,20 +2,20 @@ language: cpp
 
 matrix:
     include:
-#        - os: osx
-#          name: macOS
-#          install:
-#            - pip3 install gitpython
-#            - pip3 install conan
-#          script:
-#            - python3 build.py --build
-#        - os: osx
-#          name: iOS
-#          install:
-#            - pip3 install gitpython
-#            - pip3 install conan
-#          script:
-#            - python3 build.py --build --ios
+        - os: osx
+          name: macOS
+          install:
+            - pip3 install gitpython
+            - pip3 install conan
+          script:
+            - python3 build.py --build
+        - os: osx
+          name: iOS
+          install:
+            - pip3 install gitpython
+            - pip3 install conan
+          script:
+            - python3 build.py --build --ios
         - os: linux
           name: Linux
           sudo: required 
@@ -27,10 +27,6 @@ matrix:
                 packages:
                     - g++-8
           install: 
-            - sudo apt-get update
-#            - sudo apt-get install --reinstall binutils
-#            - sudo binutils-config x86_64-pc-linux-gnu-2.29.1
-#            - sudo binutils-config -l
             - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             - sudo python3 get-pip.py
             - sudo pip install conan

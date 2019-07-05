@@ -47,7 +47,7 @@ void DebugInfoView::_setup() {
 });
 #endif
 
-	ui::Input::on_touch.subscribe([&](ui::Touch* touch) {
+    ui::Input::on_touch.subscribe([&](ui::Touch* touch) {
         _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
     });
 }

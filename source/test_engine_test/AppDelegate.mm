@@ -71,17 +71,17 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     for (UITouch* touch in touches)
-        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
+        ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     for (UITouch* touch in touches)
-        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
+        ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     for (UITouch* touch in touches)
-        ui::Input::touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
+        ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
 }
 
 @end

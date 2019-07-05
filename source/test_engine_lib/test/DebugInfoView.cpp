@@ -41,11 +41,13 @@ void DebugInfoView::_setup() {
         _fps_label->set_text(std::string() + "FPS: " + std::to_string(TestEngine::screen.FPS));
     });
 
-    Events::cursor_moved.subscribe([&](Point position){
-        _cursor_position_label->set_text(std::string() + "Cursor: " + position.to_string());
-    });
+#ifdef MOUSE
+	ui::Mouse::on_moved.subscribe([&](Point position) {
+		_cursor_position_label->set_text(std::string() + "Cursor: " + ui::Mouse::frame_shift.to_string());
+});
+#endif
 
-    Events::touch.subscribe([&](ui::Touch* touch){
+	ui::Input::on_touch.subscribe([&](ui::Touch* touch) {
         _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
     });
 }

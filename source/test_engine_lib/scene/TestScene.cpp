@@ -43,16 +43,20 @@ void TestScene::setup() {
 //    add_object(cube);
 //    cube->set_scale(0.1f);
 
-    add_object(floor = new scene::Plane(Size { 200, 200 }));
-    floor->set_position({ 0, 0, -1.0f });
+    add_object(walls.z = new scene::Plane(Size { 200, 200 }));
+	walls.z->set_position({ 0, 0, -1.0f });
 
-    add_object(x_wall = new scene::Plane(Size { 200, 200 }));
-    x_wall->set_position({ -5.0f, 0, 0.0f });
-    x_wall->look_at({ 1, 0, 0 });
+    add_object(walls.x = new scene::Plane(Size { 200, 200 }));
+	walls.x->set_position({ -5.0f, 0, 0.0f });
+	walls.x->look_at({ 1, 0, 0 });
 
-    add_object(y_wall = new scene::Plane(Size { 200, 200 }));
-    y_wall->set_position({ 0, -5.0f, 0.0f });
-    y_wall->look_at({ 0, 1, 0 });
+    add_object(walls.y = new scene::Plane(Size { 200, 200 }));
+	walls.y->set_position({ 0, -5.0f, 0.0f });
+	walls.y->look_at({ 0, 1, 0 });
+
+	walls.x->color = gm::Color::red;
+	walls.y->color = gm::Color::green;
+	walls.z->color = gm::Color::blue;
 
     add_object(new scene::VectorModel());
 
@@ -69,7 +73,6 @@ void TestScene::setup() {
 }
 
 void TestScene::each_frame() {
-    floor->draw_normals();
     //monkey->draw_normals();
     draw_box(light->position());
 }

@@ -10,6 +10,7 @@
 
 #include "Scene.hpp"
 #include "Model.hpp"
+#include "XYZPack.hpp"
 #include "PointLight.hpp"
 
 class TestScene : public scene::Scene {
@@ -19,9 +20,7 @@ class TestScene : public scene::Scene {
     scene::Model* cube;
     scene::Model* monkey;
 
-    scene::Model* floor;
-    scene::Model* x_wall;
-    scene::Model* y_wall;
+	cu::XYZPack<scene::Model*> walls;
 
     void setup() override;
     void each_frame() override;

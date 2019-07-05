@@ -52,10 +52,6 @@ void Screen::_initialize_ui() {
     ui::config::default_font =
     new ui::Font((Paths::fonts() / "SF.otf").string());
 
-    ui::Input::on_touch_event([](ui::Touch* touch) {
-        Events::touch(touch);
-    });
-
     _root_view = new te::RootView(Rect { Screen::size });
     _root_view->_setup();
 
@@ -111,7 +107,7 @@ void Screen::update() {
 
     Screen::frames_drawn++;
     Events::frame_drawn();
-#ifndef IOS_BUILD
+#ifdef MAC_OS
     System::sleep(0.03f);
 #endif
 }
@@ -159,7 +155,11 @@ void Screen::setup_input() {
 
     GL::on_cursor_moved.subscribe([&](gm::Point position) {
        ui::input::mouse->set_position(position);
-       Events::cursor_moved(position);
+	   if (ui::Mouse::button_state == ui::Mouse::ButtonState::Down && ui::Mouse::button == ui::Mouse::Button::Left) {
+		   auto shift = ui::Mouse::frame_shift;
+		   shift.invert();
+		   _scene->camera->move_orbit(shift / 200);
+	   }
     });
 
     GL::on_scroll_moved.subscribe([&](gm::Point position) {

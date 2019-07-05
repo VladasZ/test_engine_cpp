@@ -15,12 +15,12 @@ int main() {
 
     using StringLiteral = decltype ("spes");
 
-    Info((cu::is_string<StringLiteral>));
+    /*Info((cu::is_string<StringLiteral>));
 
 
     Info(cu::type_name<cu::ArrayType<StringLiteral>>);
-
-    return 0;
+*/
+  //  return 0;
 
     TestEngine::start_with_scene<TestScene>();
     return 0;

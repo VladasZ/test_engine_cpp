@@ -56,8 +56,6 @@ void Screen::_initialize_ui() {
         Events::touch(touch);
     });
 
-    Events::on_screen_size_change(display_resolution);
-
     _root_view = new te::RootView(Rect { Screen::size });
     _root_view->_setup();
 
@@ -191,6 +189,7 @@ void Screen::set_scene(scene::Scene* scene) {
     if (scene) {
         _scene = scene;
         _scene->setup();
+		_scene->camera->resolution = size;
     }
 }
 

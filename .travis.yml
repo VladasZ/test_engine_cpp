@@ -20,10 +20,10 @@ matrix:
           dist: xenial
           addons:
             apt:
-                # sources:
-                #     - ubuntu-toolchain-r-test
-                packages:
-                    - g++-7
+              # sources:
+              #   - ubuntu-toolchain-r-test
+              packages:
+                - g++-7
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script: 

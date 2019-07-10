@@ -4,7 +4,8 @@ os:
   - Visual Studio 2017
 
 install:
-  - git clone https://github.com/vladasz/deploy; py deploy/deploy.py
+  - git clone https://github.com/vladasz/deploy
+  - py deploy/deploy.py
   - py build.py --ide
   
 configuration:

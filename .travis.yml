@@ -20,8 +20,6 @@ matrix:
           dist: xenial
           addons:
             apt:
-                sources:
-                    - ubuntu-toolchain-r-test
                 packages:
                     - g++-7
           install: 

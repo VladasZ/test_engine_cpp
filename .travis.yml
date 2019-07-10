@@ -2,20 +2,20 @@ language: cpp
 
 matrix:
     include:
-        - os: osx
-          name: macOS
-          install:
-            - pip3 install gitpython
-            - pip3 install conan
-          script:
-            - python3 build.py --build
-        - os: osx
-          name: iOS
-          install:
-            - pip3 install gitpython
-            - pip3 install conan
-          script:
-            - python3 build.py --build --ios
+ #       - os: osx
+ #         name: macOS
+ #         install:
+ #           - pip3 install gitpython
+ #           - pip3 install conan
+ #         script:
+ #           - python3 build.py --build
+ #       - os: osx
+ #         name: iOS
+ #         install:
+ #           - pip3 install gitpython
+ #           - pip3 install conan
+ #         script:
+ #           - python3 build.py --build --ios
         - os: linux
           name: Linux
           sudo: required 
@@ -29,6 +29,7 @@ matrix:
           install: 
             - sudo apt update
             - sudo apt install python3-pip
+            - sudo apt-get install python3-setuptools
             - sudo pip3 install conan
             - sudo pip3 install gitpython
           script: 

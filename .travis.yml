@@ -5,29 +5,27 @@ matrix:
        - os: osx
          name: macOS
          install:
-           - git clone https://github.com/vladasz/deploy
-           - python3 deploy/deploy.py
+           - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
          script:
            - python3 build.py --build
- #       - os: osx
- #         name: iOS
- #         install:
- #           - pip3 install conan
- #         script:
- #           - python3 build.py --build --ios
-        # - os: linux
-        #   name: Linux
-        #   sudo: required 
-        #   dist: xenial
-        #   addons:
-        #     apt:
-        #         sources:
-        #             - ubuntu-toolchain-r-test
-        #         packages:
-        #             - g++-7
-        #   install:
-        #     - git clone https://github.com/vladasz/deploy
-        #     - python3 deploy/deploy.py
-        #   script: 
-        #     - python3 build.py --build
+       - os: osx
+         name: iOS
+         install:
+           - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+         script:
+           - python3 build.py --build --ios
+        - os: linux
+          name: Linux
+          sudo: required 
+          dist: xenial
+          addons:
+            apt:
+                # sources:
+                #     - ubuntu-toolchain-r-test
+                packages:
+                    - g++-7
+          install:
+            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+          script: 
+            - python3 build.py --build
               

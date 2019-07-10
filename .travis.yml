@@ -27,9 +27,9 @@ matrix:
                 packages:
                     - g++-8
           install: 
-            - sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            - sudo python3 get-pip.py
-            - sudo pip install conan
-            - sudo pip install gitpython
+            - sudo apt update
+            - sudo apt install python3-pip
+            - sudo pip3 install conan
+            - sudo pip3 install gitpython
           script: 
               - python3 build.py --build

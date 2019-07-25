@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(test_engine)
 
-add_definitions(-DDEBUG=1)
-
 conan_basic_setup()
 
 add_subdirectory(source/test_engine_lib)

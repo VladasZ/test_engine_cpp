@@ -9,7 +9,7 @@
 #include "Assets.hpp"
 
 void Assets::initialize() {
-    shaders = new Shaders();
+	images = new Images();
     buffers = new Buffers();
-    images  = new Images ();
+	shaders = new Shaders();
 }

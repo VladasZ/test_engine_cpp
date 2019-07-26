@@ -18,10 +18,16 @@ namespace te {
     namespace Paths {
         Path root();
         Path assets();
-        Path shaders();
         Path images();
         Path models();
         Path fonts();
+
+		namespace Shaders {
+			Path root();
+			Path ui();
+			Path sprites();
+			Path isometric();
+		}
         
         PathsArray ls(Path = ".");
     };

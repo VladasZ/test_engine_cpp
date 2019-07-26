@@ -18,19 +18,6 @@ public:
 
     static Screen screen;
 
-    static void initialize(const gm::Size& window_size = { 1000, 600 });
-
-    template<class SceneType>
-    static void start_with_scene() {
-        initialize();
-        screen.set_scene(new SceneType());
-#if DESKTOP_BUILD
-        start_main_loop();
-#endif
-    }
-
-#if DESKTOP_BUILD
-    static void start_main_loop(std::function<void()> on_frame_drawn = nullptr);
-#endif
+    static void start(const gm::Size& window_size = { 1000, 600 });
 
 };

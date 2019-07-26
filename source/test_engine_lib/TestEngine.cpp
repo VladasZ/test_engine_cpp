@@ -24,19 +24,18 @@ Screen TestEngine::screen;
 
 using namespace te;
 
-void TestEngine::initialize(const Size& window_size) {
+void TestEngine::start(const Size& window_size) {
     std::srand(static_cast<unsigned int>(time(nullptr)));
     screen.initialize(window_size);
 }
 
-#if DESKTOP_BUILD
+#ifdef DESKTOP_BUILD
 
-void TestEngine::start_main_loop(std::function<void()> on_frame_drawn) {
-    GL::start_main_loop([&]{
-        screen.update();
-        if (on_frame_drawn)
-            on_frame_drawn();
-    });
-}
+//void TestEngine::start_main_loop() {
+//	start();
+//    GL::start_main_loop([&]{
+//        screen.update();
+//    });
+//}
 
 #endif

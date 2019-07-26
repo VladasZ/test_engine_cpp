@@ -35,10 +35,6 @@ Path Paths::assets() {
     return root() / "Assets";
 }
 
-Path Paths::shaders() {
-    return assets() / "Shaders";
-}
-
 Path Paths::images() {
     return assets() / "Images";
 }
@@ -49,6 +45,21 @@ Path Paths::models() {
 
 Path Paths::fonts() {
     return assets() / "Fonts";
+}
+
+Path Paths::Shaders::root() {
+	return assets() / "Shaders";
+}
+Path Paths::Shaders::ui() {
+	return root() / "ui";
+}
+
+Path Paths::Shaders::sprites() {
+	return root() / "sprites";
+}
+
+Path Paths::Shaders::isometric() {
+	return root() / "isometric";
 }
 
 PathsArray Paths::ls(Path path) {

@@ -13,8 +13,7 @@
 #include "Shaders.hpp"
 
 struct Assets {
-
-    static inline Images * images ;
+    static inline Images* images;
     static inline Buffers* buffers;
     static inline Shaders* shaders;
 

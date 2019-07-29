@@ -10,6 +10,6 @@
 
 void Assets::initialize() {
 	images = new Images();
-    buffers = new Buffers();
 	shaders = new Shaders();
+    buffers = new Buffers();
 }

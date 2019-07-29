@@ -11,7 +11,6 @@
 #include "Buffer.hpp"
 #include "PathData.hpp"
 #include "GLWrapper.hpp"
-#include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 #include "BufferData.hpp"
 
@@ -64,7 +63,7 @@ void TEUIDrawer::free_path_data(ui::PathData* data) {
     delete static_cast<gl::Buffer*>(data->data());
 }
 
-#if DESKTOP_BUILD
+#ifdef DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
     case ui::Mouse::CursorMode::Arrow:

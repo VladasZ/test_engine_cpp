@@ -14,6 +14,6 @@
 #include "Event.hpp"
 
 struct Events {
-    static inline Event<> frame_drawn;
+    static inline Event<unsigned> frame_drawn;
     static inline Event<gm::Size> on_screen_size_change;
 };

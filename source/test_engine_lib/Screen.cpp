@@ -27,7 +27,6 @@
 #include "RootView.hpp"
 #include "ImageView.hpp"
 #include "GLWrapper.hpp"
-#include "TestEngine.hpp"
 #include "TEUIDrawer.hpp"
 #include "ImageConfig.hpp"
 #include "GlobalEvents.hpp"
@@ -43,18 +42,13 @@
 using namespace gm;
 using namespace te;
 
-void Screen::_initialize_gl() {
-	GL::initialize(size);
-	Assets::initialize();
-}
-
 void Screen::_initialize_ui() {
 
 	ui::config::set_drawer(new TEUIDrawer());
 	ui::config::default_font =
 		new ui::Font((Paths::fonts() / "SF.otf").string());
 
-	_root_view = new te::RootView(Rect{ Screen::size });
+	_root_view = new te::RootView({ Screen::size });
 	_root_view->_setup();
 
 #ifdef DEBUG_VIEW
@@ -63,32 +57,36 @@ void Screen::_initialize_ui() {
 #endif
 }
 
-void Screen::_initialize_sprites() {
-	sprites::config::set_drawer(new TESpriteDrawer());
-}
+Screen::Screen(const gm::Size& size) {
 
-void Screen::_initialize_scene() {
-	scene::config::set_drawer(new TESceneDrawer());
-}
+#ifdef DEBUG
+	static bool first = true;
+	if (first)
+		first = false;
+	else
+		Fatal("Only one instance of Screen class in supported currently");
+#endif
 
-void Screen::_initialize_image() {
 	image::config::set_loader(new TEImageLoader());
+	sprites::config::set_drawer(new TESpriteDrawer());
+	scene::config::set_drawer(new TESceneDrawer());
+
+	GL::initialize(size);
+
+	Assets::initialize();
+
+	_initialize_ui();
+
+	setup_input();
+
+	set_size(size);
+
+	GL::on_window_size_change.subscribe([&](gm::Size size) {
+		set_size(size);
+	});
 }
 
-void Screen::initialize(const gm::Size& size) {
-
-	std::srand(static_cast<unsigned int>(time(nullptr)));
-
-	Screen::size = size;
-	_initialize_image();
-	_initialize_gl();
-	_initialize_ui();
-	_initialize_sprites();
-	_initialize_scene();
-	Screen::set_size(size);
-	GL::on_window_size_change.subscribe([&](gm::Size size) {
-		Screen::set_size(size);
-	});
+void Screen::start_main_loop() {
 	GL::start_main_loop([&] {
 		update();
 	});
@@ -110,6 +108,11 @@ void Screen::update() {
 
 	GL::disable_depth_test();
 
+	if (_level) {
+		_level->update();
+		_level->draw();
+	}
+
 	_root_view->_draw();
 
 #ifdef DEBUG_VIEW
@@ -119,7 +122,8 @@ void Screen::update() {
 	FPS = 1000000000 / Time::interval();
 
 	Screen::frames_drawn++;
-	Events::frame_drawn();
+	Events::frame_drawn(FPS);
+
 #ifdef MAC_OS
 	System::sleep(0.03f);
 #endif
@@ -187,7 +191,7 @@ void Screen::setup_input() {
 }
 
 void Screen::set_size(const gm::Size& size) {
-	Screen::size = size;
+	this->size = size;
 	GL::screen_size = size;
 	GL::set_viewport(size);
 	GL::clear();
@@ -208,6 +212,14 @@ void Screen::set_scene(scene::Scene* scene) {
 
 scene::Scene* Screen::scene() const {
 	return _scene;
+}
+
+void Screen::set_level(sprites::Level* level) {
+	_level = level;
+}
+
+sprites::Level* Screen::level() const {
+	return _level;
 }
 
 te::RootView* Screen::root_view() const {

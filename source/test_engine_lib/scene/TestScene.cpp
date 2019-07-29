@@ -18,7 +18,6 @@
 #include "Keyboard.hpp"
 #include "GLWrapper.hpp"
 #include "TestScene.hpp"
-#include "TestEngine.hpp"
 #include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
 #include "ModelImporter.hpp"
@@ -67,9 +66,6 @@ void TestScene::setup() {
     
     auto test_view = new TestView();
     test_view->add_layout({ ui::Anchor::Background });
-    TestEngine::screen.root_view()->add_subview(test_view);
-    
-    TestEngine::screen.setup_input();
 }
 
 void TestScene::each_frame() {

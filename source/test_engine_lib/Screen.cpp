@@ -195,11 +195,13 @@ void Screen::set_size(const gm::Size& size) {
 	GL::screen_size = size;
 	GL::set_viewport(size);
 	GL::clear();
-	Events::on_screen_size_change(size);
+	Assets::shaders->sprite->use();
+	Assets::shaders->sprite->set_resolution(size);
 	_root_view->set_frame({ size });
 	if (_scene)
 		_scene->camera->resolution = size;
 	update();
+	Events::on_screen_size_change(size);
 }
 
 void Screen::set_scene(scene::Scene* scene) {

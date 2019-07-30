@@ -22,7 +22,6 @@ TEUIDrawer::TEUIDrawer() {
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-	Assets::buffers->fullscreen->bind();
 	Assets::shaders->ui->use();
 	Assets::shaders->ui->set_uniform_color(color);
     Assets::buffers->fullscreen->draw();
@@ -30,7 +29,6 @@ void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
 
 void TEUIDrawer::draw_rect(const gm::Rect& rect, const gm::Color& color) {
     GL::set_viewport(rect);
-	Assets::buffers->fullscreen_outline->bind();
 	Assets::shaders->ui->use();
 	Assets::shaders->ui->set_uniform_color(color);
     Assets::buffers->fullscreen_outline->draw();
@@ -39,8 +37,6 @@ void TEUIDrawer::draw_rect(const gm::Rect& rect, const gm::Color& color) {
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;
-    image->bind();
-	Assets::buffers->fullscreen_image->bind();
 
 	if (image->is_monochrome())
          Assets::shaders->ui_monochrome->use();
@@ -48,17 +44,16 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
 		Assets::shaders->ui_texture->use();
 
     GL::set_viewport(rect);
+	image->bind();
     Assets::buffers->fullscreen_image->draw();
 }
 
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
-    auto buffer = static_cast<gl::Buffer*>(path->data());
-    buffer->bind();
 	Assets::shaders->ui->use();
 	Assets::shaders->ui->set_uniform_color(path->color());
 	Assets::shaders->ui->set_size(rect.size);
-    buffer->draw();
+	static_cast<gl::Buffer*>(path->data())->draw();
 }
 
 ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path, const gm::Color& color) {

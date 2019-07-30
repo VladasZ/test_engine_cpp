@@ -9,7 +9,6 @@
 #include "Mesh.hpp"
 #include "Image.hpp"
 #include "Scene.hpp"
-#include "Debug.hpp"
 #include "Assets.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
@@ -36,8 +35,6 @@ TEModelDrawer::~TEModelDrawer() {
 
 void TEModelDrawer::_draw() const {
 
-    _buffer->bind();
-
 	auto shader = Assets::shaders->colored3D;
 
 	if (_model->has_image())
@@ -55,5 +52,4 @@ void TEModelDrawer::_draw() const {
 	shader->set_mvp_matrix(_model->mvp_matrix());
 
     _buffer->draw();
-
 }

@@ -10,9 +10,9 @@
 #include "TESpriteDrawer.hpp"
 
 void TESpriteDrawer::draw(sprites::Sprite* sprite) {
+	Assets::shaders->sprite->use();
+	Assets::shaders->sprite->set_size(sprite->size());
+	Assets::shaders->sprite->set_position(sprite->position());
 	sprite->image()->bind();
-	auto shader = Assets::shaders->sprite;
-	shader->use();
-	shader->set_size(sprite->size());
-//	Buffers::fullscreen_image->draw();
+	Assets::buffers->fullscreen_image->draw();
 }

@@ -22,15 +22,17 @@ TEUIDrawer::TEUIDrawer() {
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
-    Assets::buffers->fullscreen->bind();
-    Assets::buffers->fullscreen->shader()->set_uniform_color(color);
+	Assets::buffers->fullscreen->bind();
+	Assets::shaders->ui->use();
+	Assets::shaders->ui->set_uniform_color(color);
     Assets::buffers->fullscreen->draw();
 }
 
 void TEUIDrawer::draw_rect(const gm::Rect& rect, const gm::Color& color) {
     GL::set_viewport(rect);
-    Assets::buffers->fullscreen_outline->bind();
-    Assets::buffers->fullscreen_outline->shader()->set_uniform_color(color);
+	Assets::buffers->fullscreen_outline->bind();
+	Assets::shaders->ui->use();
+	Assets::shaders->ui->set_uniform_color(color);
     Assets::buffers->fullscreen_outline->draw();
 }
 
@@ -38,9 +40,13 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
     if (rect.size.is_negative())
         return;
     image->bind();
-    Assets::buffers->fullscreen_image->bind();
-    if (image->is_monochrome())
+	Assets::buffers->fullscreen_image->bind();
+
+	if (image->is_monochrome())
          Assets::shaders->ui_monochrome->use();
+	else
+		Assets::shaders->ui_texture->use();
+
     GL::set_viewport(rect);
     Assets::buffers->fullscreen_image->draw();
 }
@@ -48,15 +54,15 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
     auto buffer = static_cast<gl::Buffer*>(path->data());
-
     buffer->bind();
-    buffer->shader()->set_uniform_color(path->color());
-    buffer->shader()->set_size(rect.size);
+	Assets::shaders->ui->use();
+	Assets::shaders->ui->set_uniform_color(path->color());
+	Assets::shaders->ui->set_size(rect.size);
     buffer->draw();
 }
 
 ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path, const gm::Color& color) {
-    return new ui::PathData(path, new gl::Buffer(path, Assets::shaders->ui_path), color);
+    return new ui::PathData(path, new gl::Buffer(path), color);
 }
 
 void TEUIDrawer::free_path_data(ui::PathData* data) {

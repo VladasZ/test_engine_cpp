@@ -21,5 +21,7 @@ struct Shaders {
     gl::Shader* textured3D;
     gl::Shader* diffuse_colored;
 
+	gl::Shader* sprite;
+
     Shaders();
 };

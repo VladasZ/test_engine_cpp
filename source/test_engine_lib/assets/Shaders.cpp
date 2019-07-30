@@ -20,4 +20,6 @@ Shaders::Shaders() {
     colored3D       = new gl::Shader(Paths::Shaders::isometric().string(), "colored3D"      );
     textured3D      = new gl::Shader(Paths::Shaders::isometric().string(), "textured3D"     );
     diffuse_colored = new gl::Shader(Paths::Shaders::isometric().string(), "diffuse_colored");
+
+	sprite = new gl::Shader(Paths::Shaders::sprites().string(), "sprite");
 }

@@ -10,9 +10,11 @@
 #include "TESpriteDrawer.hpp"
 
 void TESpriteDrawer::draw(sprites::Sprite* sprite) {
+#ifdef DESKTOP_BUILD
 	Assets::shaders->sprite->use();
 	Assets::shaders->sprite->set_size(sprite->size);
 	Assets::shaders->sprite->set_position(sprite->position);
 	sprite->image()->bind();
 	Assets::buffers->fullscreen_image->draw();
+#endif
 }

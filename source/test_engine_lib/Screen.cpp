@@ -86,11 +86,13 @@ Screen::Screen(const gm::Size& size) {
 	});
 }
 
+#ifdef DESKTOP_BUILD
 void Screen::start_main_loop() {
 	GL::start_main_loop([&] {
 		update();
 	});
 }
+#endif
 
 void Screen::update() {
 

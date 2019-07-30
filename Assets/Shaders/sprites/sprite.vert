@@ -12,10 +12,10 @@ void main() {
   vec2 scale = vec2(size.x / resolution.x,
 					size.y / resolution.y);
 
-  vec2 position_scale = vec2(2 / resolution.x,
-							-2 / resolution.y);
+  vec2 position_scale = vec2(2.0 / resolution.x,
+							-2.0 / resolution.y);
 
-  vec2 scaled_pos = pos * scale + vec2(-1, 1);
+  vec2 scaled_pos = pos * scale + vec2(-1.0, 1.0);
 
   vec2 shift = position * position_scale;
   

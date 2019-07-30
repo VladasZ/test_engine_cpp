@@ -10,8 +10,9 @@ int main() {
 
 	screen.set_scene(new TestScene());
 	screen.set_level(new TestLevel());
-
+#ifdef DESKTOP_BUILD
 	screen.start_main_loop();
+#endif
     return 0;
 }
 

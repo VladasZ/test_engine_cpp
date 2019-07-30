@@ -12,19 +12,30 @@
 #import <GLKit/GLKit.h>
 
 #import "Input.hpp"
+#import "Screen.hpp"
 #import "GLWrapper.hpp"
-#import "TestEngine.hpp"
 #import "TestScene.hpp"
+#import "TestLevel.hpp"
+
+te::Screen* _screen;
 
 @interface Controller : GLKViewController @end @implementation Controller
 
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self setup];
+    
+    _screen = new te::Screen({ self.view.frame.size.width,
+                               self.view.frame.size.height
+    });
+    
+    _screen->set_scene(new TestScene());
+    _screen->set_level(new TestLevel());
+    
 }
 
 - (void)update {
-    TestEngine::screen.update();
+    _screen->update();
 }
 
 - (void)setup {
@@ -41,13 +52,7 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     
-    TestEngine::initialize({ static_cast<float>(view.frame.size.width),
-        static_cast<float>(view.frame.size.height) });
-    
-    TestEngine::screen.set_scene(new TestScene());
-    
-    GL::on_window_size_change(gm::Size { static_cast<float>(self.view.frame.size.width),
-                                         static_cast<float>(self.view.frame.size.height)
+    GL::on_window_size_change({ self.view.frame.size.width,                                          self.view.frame.size.height
     });
 }
 

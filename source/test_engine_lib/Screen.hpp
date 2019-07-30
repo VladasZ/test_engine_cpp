@@ -47,8 +47,9 @@ namespace te {
 	public:
 
 		Screen(const gm::Size&);
-
+#ifdef DESKTOP_BUILD
 		void start_main_loop();
+#endif
 
 		void update();
 

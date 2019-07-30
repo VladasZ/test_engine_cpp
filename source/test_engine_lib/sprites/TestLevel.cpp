@@ -6,14 +6,15 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Walker.hpp"
 #include "Assets.hpp"
 #include "TestLevel.hpp"
 
 using namespace sprites;
 
 TestLevel::TestLevel() {
-	auto sprite = new Sprite(Assets::images->cat);
-	sprite->set_position({ 100, 100 });
-	sprite->set_velocity({ 0.2, 0.1 });
+	auto sprite = new Walker(Assets::images->cat);
+	sprite->position = { 100, 100 };
+	//sprite->velocity = { 10, 30 };
 	add_sprite(sprite);
 }

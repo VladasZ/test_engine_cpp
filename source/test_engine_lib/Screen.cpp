@@ -127,7 +127,7 @@ void Screen::update() {
 	Events::frame_drawn(FPS);
 
 #ifdef MAC_OS
-	System::sleep(0.03f);
+    System::sleep(0.03f);
 #endif
 }
 

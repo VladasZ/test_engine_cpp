@@ -6,7 +6,7 @@
 #include "TestScene.hpp"
 
 int main() {
-	te::Screen screen({ 800, 800 });
+    te::Screen screen({ 1000, 680 });
 
 	screen.set_scene(new TestScene());
 	screen.set_level(new TestLevel());

@@ -41,12 +41,13 @@
 
 using namespace gm;
 using namespace te;
+using namespace cu;
 
 void Screen::_initialize_ui() {
 
 	ui::config::set_drawer(new TEUIDrawer());
 	ui::config::default_font =
-		new ui::Font((Paths::fonts() / "SF.otf").string());
+		new ui::Font(Paths::fonts() / "SF.otf");
 
 	_root_view = new te::RootView({ Screen::size });
 	_root_view->_setup();

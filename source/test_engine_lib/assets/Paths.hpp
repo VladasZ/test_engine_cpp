@@ -8,28 +8,23 @@
 
 #pragma once
 
-#include <boost/filesystem.hpp>
+#include "system/Path.hpp"
 
 namespace te {
     
-    using Path = boost::filesystem::path;
-    using PathsArray = std::vector<Path>;
-    
     namespace Paths {
-        Path root();
-        Path assets();
-        Path images();
-        Path models();
-        Path fonts();
+        cu::Path root();
+        cu::Path assets();
+        cu::Path images();
+        cu::Path models();
+        cu::Path fonts();
 
 		namespace Shaders {
-			Path root();
-			Path ui();
-			Path sprites();
-			Path isometric();
-		}
-        
-        PathsArray ls(Path = ".");
+			cu::Path root();
+			cu::Path ui();
+			cu::Path sprites();
+			cu::Path isometric();
+		}        
     };
     
 };

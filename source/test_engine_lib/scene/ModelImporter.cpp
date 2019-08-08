@@ -25,7 +25,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Info(std::string() + "Loading model: " + file);
 
-    const aiScene* scene = _importer.ReadFile((Paths::models() / file).string(),
+    const aiScene* scene = _importer.ReadFile(Paths::models() / file,
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
                                               aiProcess_JoinIdenticalVertices  |

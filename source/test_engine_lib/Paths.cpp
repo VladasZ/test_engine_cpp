@@ -13,6 +13,7 @@
 #include "CallObj.hpp"
 #endif
 
+using namespace cu;
 using namespace te;
 using namespace Paths;
 
@@ -27,7 +28,7 @@ Path Paths::root() {
     Path users = "/home";
 #endif
 #ifndef IOS_BUILD
-    return users / System::user_name() / ".deps/test_engine";
+    return users / cu::System::user_name() / ".deps/test_engine";
 #endif
 }
 
@@ -60,13 +61,4 @@ Path Paths::Shaders::sprites() {
 
 Path Paths::Shaders::isometric() {
 	return root() / "isometric";
-}
-
-PathsArray Paths::ls(Path path) {
-#ifdef IOS_BUILD
-    const auto files = obj_c::ls(path.string());
-    return { files.begin(), files.end() };
-#else
-    return { "NOT IMPLEMENTED ON THIS PLATFORM" };
-#endif
 }

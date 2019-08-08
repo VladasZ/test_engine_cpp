@@ -12,5 +12,5 @@
 using namespace te;
 
 Images::Images() {
-    cat = new Image((Paths::images() / "cat.jpg").string());
+    cat = new Image(Paths::images() / "cat.jpg");
 }

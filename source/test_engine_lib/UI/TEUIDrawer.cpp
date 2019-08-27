@@ -16,10 +16,6 @@
 
 using namespace gm;
 
-TEUIDrawer::TEUIDrawer() {
-
-}
-
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
 	Assets::shaders->ui->use();

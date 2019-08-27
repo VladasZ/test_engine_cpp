@@ -14,7 +14,7 @@ class TEUIDrawer : public ui::UIDrawer {
 
 public:
 
-    TEUIDrawer();
+    TEUIDrawer() = default;
 
 private:
 

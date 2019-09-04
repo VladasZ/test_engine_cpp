@@ -23,7 +23,7 @@ static Assimp::Importer _importer;
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
-    Info(std::string() + "Loading model: " + file);
+    Log(std::string() + "Loading model: " + file);
 
     const aiScene* scene = _importer.ReadFile(Paths::models() / file,
                                               aiProcess_CalcTangentSpace       |
@@ -32,7 +32,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                               aiProcess_SortByPType             );
 
     if (!scene) {
-        Error(_importer.GetErrorString());
+        _Error(_importer.GetErrorString());
         return nullptr;
     }
 
@@ -43,8 +43,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Vertex::Indices indices;
 
-    Info(file);
-    Info(mesh->HasTextureCoords(0));
+    Log(file);
+    Log(mesh->HasTextureCoords(0));
     Logvar(scene->HasMaterials());
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {

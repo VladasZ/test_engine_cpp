@@ -16,7 +16,7 @@ void TestView::_setup() {
     add_subview(button);
     
     button->on_press.subscribe([]{
-        Info("SOPOK");
+        Log("SOPOK");
     });
 }
 

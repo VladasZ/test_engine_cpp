@@ -16,3 +16,5 @@
 #define IMAGES_LOADING_OUTPUT
 
 #endif
+
+#define NO_FREETYPE

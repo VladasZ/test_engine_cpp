@@ -14,7 +14,7 @@ using namespace sprites;
 
 TestLevel::TestLevel() {
 	auto sprite = new Walker(Assets::images->cat);
-	sprite->position = { 100, 100 };
-    sprite->velocity = { 5, 15 };
+	sprite->position = { 0, 0 };
+    sprite->velocity = { 1, 1 };
     add_sprite(sprite);
 }

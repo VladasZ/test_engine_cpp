@@ -5,6 +5,7 @@
 
 #freetype/2.9.0@bincrafters/stable
 Assimp/4.1.0@jacmoe/stable
+darwin-toolchain/1.0.4@theodelrieu/stable
 
 [generators]
 cmake

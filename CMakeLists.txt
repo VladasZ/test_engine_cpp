@@ -13,7 +13,7 @@ project(test_engine)
 conan_basic_setup()
 
 add_subdirectory(source/test_engine_lib)
-if(NOT ${MOBILE_DEVICE_BUILD})
+if(NOT ${CONSOLE_BUILD})
 	add_subdirectory(source/test_engine_test)
 endif()
 

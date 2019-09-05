@@ -13,7 +13,9 @@ project(test_engine)
 conan_basic_setup()
 
 add_subdirectory(source/test_engine_lib)
-add_subdirectory(source/test_engine_test)
+if(NOT ${MOBILE_DEVICE_BUILD})
+	add_subdirectory(source/test_engine_test)
+endif()
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
   foreach(var ${GIT_DEPENDENCIES})

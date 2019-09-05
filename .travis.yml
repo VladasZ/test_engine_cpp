@@ -3,17 +3,23 @@ language: cpp
 matrix:
     include:
         - os: osx
+          name: iOS simulator
+          install:
+            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+          script:
+            - python3 build.py --build --ios
+        - os: osx
+          name: iOS device
+          install:
+            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+          script:
+            - python3 build.py --build --ios --device
+        - os: osx
           name: macOS
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build
-        - os: osx
-          name: iOS
-          install:
-            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          script:
-            - python3 build.py --build --ios
         - os: linux
           name: Linux
           sudo: required 

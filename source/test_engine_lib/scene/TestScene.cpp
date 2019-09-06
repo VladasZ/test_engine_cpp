@@ -73,6 +73,3 @@ void TestScene::each_frame() {
     draw_box(light->position());
     camera->set_position(camera->position() + gm::Vector3 { 0, 0, 0.001 });
 }
-
-
-

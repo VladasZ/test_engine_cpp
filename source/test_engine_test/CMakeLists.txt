@@ -6,18 +6,10 @@ project(test_engine_test)
 add_catalog_recursive(${PROJECT_SOURCE_DIR} / SOURCE)
 
 if(${IOS_BUILD})
-
-  file(GLOB SHADERS "/Users/vladas/.deps/test_engine/Assets")
-
-  # set(SHADERS
-  # /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.frag
-  # /Users/vladas/.deps/test_engine/Assets/Shaders/diffuse_colored.vert
-  # /Users/vladas/.deps/test_engine/Assets/Shaders/ui.frag
-  # /Users/vladas/.deps/test_engine/Assets/Shaders/ui.vert
-  #   )
+  file(GLOB ASSETS "/Users/vladas/.deps/test_engine/Assets")
 endif()
 
-add_executable(${PROJECT_NAME} ${SOURCE} ${SHADERS})
+add_executable(${PROJECT_NAME} ${SOURCE} ${ASSETS})
 
 link_project_at_path(image           ${image_path}      )
 link_project_at_path(ui_lib          ${ui_path}         )
@@ -45,7 +37,7 @@ target_link_libraries(${PROJECT_NAME} ${OPEN_GLES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
   MACOSX_BUNDLE TRUE
   MACOSX_BUNDLE_GUI_IDENTIFIER org.cmake.${PROJECT_NAME}d
-  RESOURCE "${SHADERS}"
+  RESOURCE "${ASSETS}"
 )
 
 endif()

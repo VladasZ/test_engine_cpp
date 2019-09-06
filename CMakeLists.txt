@@ -13,7 +13,7 @@ project(test_engine)
 conan_basic_setup()
 
 add_subdirectory(source/test_engine_lib)
-if(NOT ${CONSOLE_BUILD})
+if(NOT ${NEEDS_SIGNING})
 	add_subdirectory(source/test_engine_test)
 endif()
 

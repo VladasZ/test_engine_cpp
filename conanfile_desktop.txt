@@ -1,5 +1,5 @@
 #desktop
-#edit conanfile_mobile or conanfile_desktop
+#edit conanfile_${TARGET}
 
 [requires]
 
@@ -11,4 +11,3 @@ Assimp/4.1.0@jacmoe/stable
 
 [generators]
 cmake
-

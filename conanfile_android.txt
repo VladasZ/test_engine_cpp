@@ -1,0 +1,11 @@
+#android
+#edit conanfile_${TARGET}
+
+[requires]
+
+freetype/2.10.0@bincrafters/stable
+Assimp/4.1.0@jacmoe/stable
+android_ndk_installer/r16b@bincrafters/stable
+
+[generators]
+cmake

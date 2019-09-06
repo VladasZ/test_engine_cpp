@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
-@property UIWindow* w;
+    @property (nonatomic) UIWindow* window;
 @end
 
 #endif

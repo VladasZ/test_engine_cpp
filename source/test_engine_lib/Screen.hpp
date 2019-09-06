@@ -26,9 +26,11 @@ namespace te {
 
 		void _initialize_ui();
 
-		scene::Scene* _scene = nullptr;
-		te::RootView* _root_view = nullptr;
-		sprites::Level* _level = nullptr;
+		scene::Scene*   _scene = nullptr;
+        sprites::Level* _level = nullptr;
+        ui::View*       _view  = nullptr;
+
+        te::RootView* _root_view = nullptr;
 
 	public:
 
@@ -64,6 +66,9 @@ namespace te {
 
 		void set_level(sprites::Level*);
 		sprites::Level* level() const;
+        
+        void set_view(ui::View*);
+        ui::View* view() const;
 
 		te::RootView* root_view() const;
 

@@ -9,10 +9,14 @@
 #include "Log.hpp"
 #include "TestView.hpp"
 
+using namespace ui;
 
 void TestView::_setup() {
+
+    stick = new AnalogStickView();
+    add_subview(stick);
     
-    button = new ui::Button();
+    button = new Button();
     add_subview(button);
     
     button->on_press.subscribe([]{
@@ -22,6 +26,8 @@ void TestView::_setup() {
 
 void TestView::_layout() {
     View::_layout();
+
+    stick->set_center(_frame.size.center());
     
     button->set_frame({
         0,

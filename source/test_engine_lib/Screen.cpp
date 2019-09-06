@@ -189,6 +189,7 @@ void Screen::setup_input() {
 
 void Screen::set_size(const gm::Size& size) {
 	this->size = size;
+    Log(size.to_string());
 	GL::screen_size = size;
 	GL::set_viewport(size);
 	GL::clear();
@@ -219,6 +220,16 @@ void Screen::set_level(sprites::Level* level) {
 
 sprites::Level* Screen::level() const {
 	return _level;
+}
+
+void Screen::set_view(ui::View* view) {
+    view->add_layout(ui::Anchor::Background);
+    _root_view->add_subview(view);
+    _view = view;
+}
+
+ui::View* Screen::view() const {
+    return _view;
 }
 
 te::RootView* Screen::root_view() const {

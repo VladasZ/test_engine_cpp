@@ -71,6 +71,7 @@ void TestScene::setup() {
 void TestScene::each_frame() {
     //monkey->draw_normals();
     draw_box(light->position());
+    camera->set_position(camera->position() + gm::Vector3 { 0, 0, 0.001 });
 }
 
 

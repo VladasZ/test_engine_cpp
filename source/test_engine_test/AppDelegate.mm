@@ -11,8 +11,11 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
+#import "AppDelegate.h"
+
 #import "Input.hpp"
 #import "Screen.hpp"
+#import "TestView.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
@@ -26,12 +29,11 @@ te::Screen* _screen;
     [self setup];
     
     _screen = new te::Screen({ self.view.frame.size.width,
-                               self.view.frame.size.height
-    });
+                               self.view.frame.size.height });
     
     _screen->set_scene(new TestScene());
     _screen->set_level(new TestLevel());
-    
+    _screen->set_view(new TestView());
 }
 
 - (void)update {
@@ -52,25 +54,19 @@ te::Screen* _screen;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     
-    GL::on_window_size_change({ self.view.frame.size.width,                                          self.view.frame.size.height
-    });
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
+    GL::on_window_size_change({ self.view.frame.size.width,
+                                self.view.frame.size.height });
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    GL::on_window_size_change(gm::Size { static_cast<float>(self.view.frame.size.width),
-        static_cast<float>(self.view.frame.size.height)
-    });
+    GL::on_window_size_change({ self.view.frame.size.width,
+                                self.view.frame.size.height });
 }
 
 - (ui::Touch*)te_touch_with_touch:(UITouch*)touch event:(ui::Touch::Event)event {
     const auto touch_id = reinterpret_cast<ui::Touch::ID>(touch);
     const auto ns_location = [touch locationInView:self.view];
-    const auto location = gm::Point { static_cast<float>(ns_location.x),
-                                      static_cast<float>(ns_location.y) };
+    const auto location = gm::Point { ns_location.x, ns_location.y };
     return new ui::Touch(touch_id, location, event);
 }
 
@@ -91,10 +87,16 @@ te::Screen* _screen;
 
 @end
 
-#import "AppDelegate.h"
-@interface AppDelegate () @end @implementation AppDelegate
--(void)applicationDidFinishLaunching:(UIApplication *)application {
-_w = [UIWindow new]; _w.rootViewController = [Controller new]; [_w makeKeyAndVisible]; }
+@interface AppDelegate()
+
+@end
+
+@implementation AppDelegate
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    _window = [UIWindow new];
+    _window.rootViewController = [Controller new];
+    [_window makeKeyAndVisible];
+}
 @end
 
 #endif

@@ -12,7 +12,7 @@ int main() {
 	screen.set_scene(new TestScene());
 	screen.set_level(new TestLevel());
 	screen.set_view(new TestView());
-	
+
 #ifdef DESKTOP_BUILD
 	screen.start_main_loop();
 #endif

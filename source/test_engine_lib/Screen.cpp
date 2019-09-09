@@ -22,6 +22,7 @@
 #include "LogData.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
+#include "TestView.hpp"
 #include "GLWrapper.hpp"
 #include "TEUIDrawer.hpp"
 #include "ImageConfig.hpp"
@@ -128,6 +129,10 @@ void Screen::update() {
 
 
 void Screen::setup_input() {
+    
+    TestView::on_stick_move.subscribe([&](auto point){
+        _scene->camera->move_orbit(point / 200);
+    });
 
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 

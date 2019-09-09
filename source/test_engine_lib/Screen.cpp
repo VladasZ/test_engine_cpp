@@ -223,7 +223,6 @@ sprites::Level* Screen::level() const {
 }
 
 void Screen::set_view(ui::View* view) {
-    view->add_layout(ui::Anchor::Background);
     _root_view->add_subview(view);
     _view = view;
 }

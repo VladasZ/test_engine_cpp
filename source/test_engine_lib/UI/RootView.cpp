@@ -15,10 +15,6 @@ void RootView::_setup() {
     background_color = Color::clear;
 }
 
-void RootView::_draw() {
-    ui::View::_draw();
-}
-
 void RootView::_layout() {
     _calculate_absolute_frame();
     _layout_subviews();

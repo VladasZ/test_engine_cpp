@@ -30,7 +30,6 @@ void DebugInfoView::_setup() {
     };
 
     _stack_view->set_margin(5);
-    _stack_view->set_alignment(ui::Alignment::Left);
 
     add_subview(_stack_view);
 

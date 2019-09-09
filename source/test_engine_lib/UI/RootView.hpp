@@ -19,7 +19,6 @@ public:
     using View::View;
 
     void _setup() override;
-    void _draw() override;
 
 public:
 

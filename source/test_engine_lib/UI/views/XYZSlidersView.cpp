@@ -52,7 +52,6 @@ void XYZSlidersView::_setup() {
 
 void XYZSlidersView::_layout() {
     _calculate_absolute_frame();
-    _layout_constraints();
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;

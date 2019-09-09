@@ -60,7 +60,6 @@ void Vec4SlidersView::_setup() {
 
 void Vec4SlidersView::_layout() {
     _calculate_absolute_frame();
-    _layout_constraints();
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 4;

@@ -7,15 +7,11 @@
 //
 
 #include "math.h"
-#include "ui.hpp"
 
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
-#include "Paths.hpp"
 #include "Plane.hpp"
-#include "TestView.hpp"
-#include "Keyboard.hpp"
 #include "GLWrapper.hpp"
 #include "TestScene.hpp"
 #include "VectorModel.hpp"
@@ -23,7 +19,6 @@
 #include "ModelImporter.hpp"
 
 using namespace gm;
-using namespace te;
 
 void TestScene::setup() {
 
@@ -63,9 +58,6 @@ void TestScene::setup() {
     light->velocity = { 0.011f, 0, 0.0f };
 
     add_light(light);
-    
-    auto test_view = new TestView();
-    test_view->add_layout({ ui::Anchor::Background });
 }
 
 void TestScene::each_frame() {

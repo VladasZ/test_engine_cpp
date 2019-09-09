@@ -6,6 +6,7 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "Image.hpp"
 #include "Assets.hpp"
 #include "Buffer.hpp"
@@ -14,7 +15,9 @@
 #include "TEUIDrawer.hpp"
 #include "BufferData.hpp"
 
+using namespace ui;
 using namespace gm;
+using namespace gl;
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
@@ -23,7 +26,7 @@ void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     Assets::buffers->fullscreen->draw();
 }
 
-void TEUIDrawer::draw_rect(const gm::Rect& rect, const gm::Color& color) {
+void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
 	Assets::shaders->ui->use();
 	Assets::shaders->ui->set_uniform_color(color);
@@ -46,36 +49,38 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
 
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
-	Assets::shaders->ui->use();
-	Assets::shaders->ui->set_uniform_color(path->color());
-	Assets::shaders->ui->set_size(rect.size);
+	Assets::shaders->ui_path->use();
+	Assets::shaders->ui_path->set_uniform_color(path->color());
+	Assets::shaders->ui_path->set_size(rect.size);
 	static_cast<gl::Buffer*>(path->data())->draw();
 }
 
-ui::PathData* TEUIDrawer::initialize_path_data(gm::Path* path, const gm::Color& color) {
-    return new ui::PathData(path, new gl::Buffer(path), color);
+ui::PathData* TEUIDrawer::initialize_path_data(Path* path, const Color& color, PathData::DrawMode draw_mode) {
+    auto buffer = new gl::Buffer(path);
+    buffer->draw_mode = draw_mode == PathData::DrawMode::Outline ? GL::DrawMode::LineLoop : GL::DrawMode::TriangleFan;
+    return new ui::PathData(path, buffer, color);
 }
 
-void TEUIDrawer::free_path_data(ui::PathData* data) {
-    delete static_cast<gl::Buffer*>(data->data());
+void TEUIDrawer::free_path_data(PathData* data) {
+    delete static_cast<Buffer*>(data->data());
 }
 
 #ifdef DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
-    case ui::Mouse::CursorMode::Arrow:
+    case Mouse::CursorMode::Arrow:
         GL::set_cursor_mode(GL::CursorMode::Arrow);
         break;
-    case ui::Mouse::CursorMode::Text:
+    case Mouse::CursorMode::Text:
         GL::set_cursor_mode(GL::CursorMode::Text);
         break;
-    case ui::Mouse::CursorMode::Drag:
+    case Mouse::CursorMode::Drag:
         GL::set_cursor_mode(GL::CursorMode::Drag);
         break;
-    case ui::Mouse::CursorMode::HResize:
+    case Mouse::CursorMode::HResize:
         GL::set_cursor_mode(GL::CursorMode::HResize);
         break;
-    case ui::Mouse::CursorMode::VResize:
+    case Mouse::CursorMode::VResize:
         GL::set_cursor_mode(GL::CursorMode::VResize);
         break;
     }

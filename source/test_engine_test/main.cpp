@@ -11,11 +11,8 @@ int main() {
 
 	screen.set_scene(new TestScene());
 	screen.set_level(new TestLevel());
-
-	auto test_view = new TestView();
-	test_view->add_layout(ui::Anchor::Background);
-	screen.root_view()->add_subview(test_view);
-
+	screen.set_view(new TestView());
+	
 #ifdef DESKTOP_BUILD
 	screen.start_main_loop();
 #endif

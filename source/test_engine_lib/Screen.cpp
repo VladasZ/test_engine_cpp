@@ -130,10 +130,14 @@ void Screen::update() {
 
 void Screen::setup_input() {
     
-    TestView::on_stick_move.subscribe([&](auto point){
-        _scene->camera->move_orbit(point / 200);
+    TestView::on_left_stick_move.subscribe([&](auto point){
+        _scene->camera->velocity = point / 100;
     });
-
+    
+    TestView::on_right_stick_move.subscribe([&](auto point){
+        _scene->camera->orbit_velocity = point / 100;
+    });
+    
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
 		if (event == ui::Keyboard::Event::Up) {

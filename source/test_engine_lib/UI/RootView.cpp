@@ -8,11 +8,10 @@
 
 #include "RootView.hpp"
 
-using namespace gm;
 using namespace te;
 
 void RootView::_setup() {
-    background_color = Color::clear;
+    background_color = gm::Color::clear;
 }
 
 void RootView::_layout() {

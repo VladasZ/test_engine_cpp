@@ -7,20 +7,22 @@
 //
 
 #include "Log.hpp"
+#include "Time.hpp"
 #include "TestView.hpp"
 
 using namespace ui;
+using namespace gm;
 
 void TestView::_setup() {
     
     add_subview(left_stick = new AnalogStickView());
     left_stick->on_direction_change.subscribe([](auto point) {
-
+        TestView::on_left_stick_move(point);
     });
     
     add_subview(right_stick = new AnalogStickView());
     right_stick->on_direction_change.subscribe([](auto point) {
-        TestView::on_stick_move(point);
+        TestView::on_right_stick_move(point);
     });
     
     button = new Button();
@@ -34,12 +36,8 @@ void TestView::_setup() {
 
 void TestView::_layout() {
     
-    _frame = _superview->frame();
-    
-    View::_layout();
-    
-    right_stick->set_center(_frame.size.center());
-    
+    _frame = _superview->frame().with_zero_origin();
+        
     button->set_frame({
         0,
         _frame.size.height - 100,
@@ -47,7 +45,7 @@ void TestView::_layout() {
         100
     });
     
-    static const float margin = 20;
+    static const float margin = 40;
     
     left_stick->set_center({
         left_stick->frame().size.width / 2 + margin,
@@ -59,4 +57,5 @@ void TestView::_layout() {
         _frame.size.height - right_stick->frame().size.height / 2 - margin,
     });
     
+    View::_layout();
 }

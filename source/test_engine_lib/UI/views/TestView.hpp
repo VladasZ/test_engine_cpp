@@ -16,7 +16,8 @@ class TestView : public ui::View {
 
 public:
     
-    static inline Event<gm::Point> on_stick_move;
+    static inline Event<gm::Point> on_left_stick_move;
+    static inline Event<gm::Point> on_right_stick_move;
 
     using ui::View::View;
     

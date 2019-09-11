@@ -21,7 +21,8 @@ public:
     using ui::View::View;
     
     ui::Button* button;
-    ui::AnalogStickView* stick;
+    ui::AnalogStickView* left_stick;
+    ui::AnalogStickView* right_stick;
 
     void _setup() override;
     void _layout() override;

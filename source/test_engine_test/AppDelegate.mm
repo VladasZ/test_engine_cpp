@@ -53,6 +53,7 @@ te::Screen* _screen;
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
+    view.multipleTouchEnabled = true;
     
     GL::on_window_size_change({ self.view.frame.size.width,
                                 self.view.frame.size.height });
@@ -70,17 +71,17 @@ te::Screen* _screen;
     return new ui::Touch(touch_id, location, event);
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
 }
@@ -92,7 +93,7 @@ te::Screen* _screen;
 @end
 
 @implementation AppDelegate
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (void)applicationDidFinishLaunching:(UIApplication*)application {
     _window = [UIWindow new];
     _window.rootViewController = [Controller new];
     [_window makeKeyAndVisible];

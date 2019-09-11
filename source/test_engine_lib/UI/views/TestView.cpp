@@ -15,7 +15,7 @@ void TestView::_setup() {
     
     add_subview(left_stick = new AnalogStickView());
     left_stick->on_direction_change.subscribe([](auto point) {
-        Log(point.to_string());
+
     });
     
     add_subview(right_stick = new AnalogStickView());

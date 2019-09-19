@@ -13,6 +13,8 @@
 struct Images {
 
     Image* cat;
+    Image* palm;
+    Image* square;
 
     Images();
 };

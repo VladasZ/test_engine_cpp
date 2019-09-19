@@ -10,7 +10,7 @@
 
 #include "Log.hpp"
 
-//#define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 

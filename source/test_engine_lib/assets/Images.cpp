@@ -12,5 +12,7 @@
 using namespace te;
 
 Images::Images() {
-    cat = new Image(Paths::images() / "cat.jpg");
+    cat    = new Image(Paths::images() / "cat.jpg");
+    palm   = new Image(Paths::images() / "palm.png");
+    square = new Image(Paths::images() / "square.png");
 }

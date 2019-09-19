@@ -43,7 +43,7 @@ namespace te {
 		gm::Color clear_color;
 
 #ifdef DEBUG_VIEW
-		DebugInfoView* debug_view = nullptr;
+		static inline DebugInfoView* debug_view = nullptr;
 #endif
 
 	public:

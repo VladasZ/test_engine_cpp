@@ -5,6 +5,9 @@
 
 #freetype/2.10.0@bincrafters/stable
 Assimp/4.1.0@jacmoe/stable
+
+box2d/2.3.1@conan/stable
+
 darwin-toolchain/1.0.4@theodelrieu/stable
 
 [generators]

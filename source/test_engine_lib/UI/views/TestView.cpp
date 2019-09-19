@@ -8,6 +8,7 @@
 
 #include "Log.hpp"
 #include "Time.hpp"
+#include "Assets.hpp"
 #include "TestView.hpp"
 
 using namespace ui;
@@ -27,6 +28,9 @@ void TestView::_setup() {
     
     button = new Button();
     add_subview(button);
+    
+    image = new ImageView({ 0, 0, 100, 100 }, Assets::images->cat);
+    add_subview(image);
     
     button->on_press.subscribe([]{
         Log("SOPOK");

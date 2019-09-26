@@ -7,7 +7,6 @@
 //
 
 #include <test/DebugInfoView.hpp>
-#include "Box2D/Box2D.h"
 
 #include "Log.hpp"
 #include "Screen.hpp"
@@ -26,7 +25,6 @@ TestLevel::TestLevel() {
 
     floor = new Platform(Assets::images->square, { 20, 1 }, { 10, 2 });
     add_sprite(floor);
-
 
 }
 

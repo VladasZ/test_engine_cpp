@@ -16,8 +16,6 @@
 
 class TestLevel : public sprites::Level {
 
-    b2Body* box_body;
-
     sprites::Platform* floor;
     sprites::DynamicBody* box;
 
@@ -26,7 +24,6 @@ public:
 	TestLevel();
 
     void update() override;
-
 
 };
 

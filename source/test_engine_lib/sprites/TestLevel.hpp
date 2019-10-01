@@ -17,7 +17,8 @@
 class TestLevel : public sprites::Level {
 
     sprites::Platform* floor;
-    sprites::DynamicBody* box;
+	sprites::DynamicBody* box;
+	sprites::DynamicBody* box2;
 
 public:
 

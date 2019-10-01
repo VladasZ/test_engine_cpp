@@ -1,25 +1,48 @@
-layout (location = 0) in vec2 pos;
+layout (location = 0) in vec2 vertex_position;
 layout (location = 1) in vec2 in_tex_coord;
 
-uniform vec2 position;
+uniform vec2 sprite_position;
 uniform vec2 size; 
 uniform vec2 resolution;
+uniform float rotation = 0.2f;
 
 out vec2 tex_coord;
 
+
+mat4 rotation_matrix(in float angle) {
+    float cos_z = cos(angle);
+    float sin_z = sin(angle);
+    return mat4 (
+        cos_z, sin_z, 0, 0,
+       -sin_z, cos_z, 0, 0,
+            0,     0, 1, 0,
+            0,     0, 0, 1
+    );
+}
+
 void main() {
 
-  vec2 scale = vec2(size.x / resolution.x,
+  vec2 size_scale = vec2(size.x / resolution.x,
 					size.y / resolution.y);
 
   vec2 position_scale = vec2(2.0 / resolution.x,
 							 2.0 / resolution.y);
 
-  vec2 scaled_pos = pos * scale + vec2(-1.0, 1.0);
 
-  vec2 shift = position * position_scale;
+
+  vec2 shift = sprite_position * position_scale;
 
   shift.y -= 2.0;
+
+
+  vec2 scaled_pos = vertex_position * size_scale;
+
+
+  vec4 scaled_pos_vector = rotation_matrix(rotation) * vec4(scaled_pos, 0, 1);
+
+  scaled_pos = vec2(scaled_pos_vector.x, scaled_pos_vector.y);
+
+  scaled_pos += vec2(-1.0, 1.0);
   
   gl_Position = vec4(scaled_pos + shift, 1.0, 1.0);
   tex_coord = in_tex_coord;

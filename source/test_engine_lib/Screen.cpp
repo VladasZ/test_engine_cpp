@@ -44,7 +44,7 @@ void Screen::_initialize_ui() {
 	ui::config::default_font =
 		new ui::Font(Paths::fonts() / "SF.otf");
 
-	_root_view = new te::RootView({ Screen::size });
+	_root_view = new te::RootView(gm::Rect { Screen::size });
 	_root_view->_setup();
 
 #ifdef DEBUG_VIEW

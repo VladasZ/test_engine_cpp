@@ -20,6 +20,7 @@ struct Shaders {
     gl::Shader* colored3D;
     gl::Shader* textured3D;
     gl::Shader* diffuse_colored;
+    gl::Shader* fog;
 
 	gl::Shader* sprite;
 

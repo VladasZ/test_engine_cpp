@@ -40,7 +40,7 @@ namespace te {
 		static inline gm::Size size;
 		static inline gm::Size display_resolution;
 
-		gm::Color clear_color;
+		static inline gm::Color clear_color;
 
 #ifdef DEBUG_VIEW
 		static inline DebugInfoView* debug_view = nullptr;

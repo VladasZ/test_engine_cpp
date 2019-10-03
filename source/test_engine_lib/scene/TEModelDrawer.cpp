@@ -40,6 +40,8 @@ void TEModelDrawer::_draw() const {
 	if (_model->has_image())
 		shader = Assets::shaders->textured3D;
 
+	shader = Assets::shaders->fog;
+
 	shader->use();
 
     if (_model->has_image())

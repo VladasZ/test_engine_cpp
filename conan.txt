@@ -1,0 +1,5 @@
+freetype
+assimp
+glfw
+glew
+box2d

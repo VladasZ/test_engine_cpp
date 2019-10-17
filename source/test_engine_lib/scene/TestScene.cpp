@@ -28,8 +28,10 @@ void TestScene::setup() {
     camera->set_position({ 1, 1, 1 });
     camera->flying_speed = 0.2f;
 
+#ifndef NO_ASSIMP
     add_object(monkey = ModelImporter::import("Monkey.blend"));
     monkey->set_position({ 2, 1, 1 });
+#endif
 
 //    cube = ModelImporter::import("textured_cube.blend",
 //                                 new Image((Paths::images() / "cube_texture.png").string()));

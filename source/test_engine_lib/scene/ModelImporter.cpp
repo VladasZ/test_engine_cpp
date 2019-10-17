@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#ifndef NO_ASSIMP
+
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
@@ -80,3 +82,5 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     return new scene::Model(new scene::Mesh(std::move(vertices),
                                             std::move(indices)));
 }
+
+#endif

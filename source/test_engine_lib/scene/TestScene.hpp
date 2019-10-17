@@ -18,7 +18,9 @@ class TestScene : public scene::Scene {
     scene::PointLight* light;
 
     scene::Model* cube;
+#ifndef NO_ASSIMP
     scene::Model* monkey;
+#endif
 
 	cu::XYZPack<scene::Model*> walls;
 

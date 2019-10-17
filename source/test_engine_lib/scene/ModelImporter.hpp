@@ -8,6 +8,8 @@
 
 #pragma once
 
+#ifndef NO_ASSIMP
+
 #include <string>
 
 class Image;
@@ -21,3 +23,5 @@ public:
     [[nodiscard]]
     static scene::Model* import(const std::string&, Image* = nullptr);
 };
+
+#endif

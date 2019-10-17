@@ -10,8 +10,6 @@
 
 #include "Log.hpp"
 
-#define DEBUG
-
 #ifdef DEBUG
 
 #define DEBUG_VIEW

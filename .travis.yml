@@ -13,7 +13,7 @@ matrix:
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build --ios --device
+            - python3 build.py --build --ios --device --no-freetype
         - os: osx
           name: macOS
           install:

@@ -26,19 +26,19 @@ TestLevel::TestLevel() {
 	//box2 = new DynamicBody(Assets::images->palm, { 2, 2 }, { 4, 15 });
 	//add_sprite(box2);
 
-	for (unsigned i = 0; i < 5; i++) {
-		add_sprite(new DynamicBody(Assets::images->palm, { 5, 5 }, gm::Point { 4.0f + (float)i * 0.05f, 15.0f }));
-	}
-
-
-
-    floor = new Platform(Assets::images->square, { 20, 1 }, { 10, 2 });
-    add_sprite(floor);
-
-
-	add_sprite(new Platform(Assets::images->square, { 1, 20 }, { 20, 5 }));
-	add_sprite(new Platform(Assets::images->square, { 1, 20 }, {  0, 5 }));
-
+//	for (unsigned i = 0; i < 5; i++) {
+//		add_sprite(new DynamicBody(Assets::images->palm, { 5, 5 }, gm::Point { 4.0f + (float)i * 0.05f, 15.0f }));
+//	}
+//
+//
+//
+//    floor = new Platform(Assets::images->square, { 20, 1 }, { 10, 2 });
+//    add_sprite(floor);
+//
+//
+//	add_sprite(new Platform(Assets::images->square, { 1, 20 }, { 20, 5 }));
+//	add_sprite(new Platform(Assets::images->square, { 1, 20 }, {  0, 5 }));
+//
 
 }
 

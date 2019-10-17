@@ -4,7 +4,7 @@ layout (location = 1) in vec2 in_tex_coord;
 uniform vec2 sprite_position;
 uniform vec2 size; 
 uniform vec2 resolution;
-uniform float rotation = 0.2f;
+uniform float rotation;
 
 out vec2 tex_coord;
 

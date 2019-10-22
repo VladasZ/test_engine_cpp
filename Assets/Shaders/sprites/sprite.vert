@@ -8,7 +8,6 @@ uniform float rotation;
 
 out vec2 tex_coord;
 
-
 mat4 rotation_matrix(in float angle) {
     float cos_z = cos(angle);
     float sin_z = sin(angle);

@@ -12,15 +12,15 @@
 using namespace te;
 
 Shaders::Shaders() {
-    ui            = new gl::Shader(Paths::Shaders::ui(), "ui"           );
-    ui_path       = new gl::Shader(Paths::Shaders::ui(), "ui_path"      );
-    ui_texture    = new gl::Shader(Paths::Shaders::ui(), "ui_texture"   );
-    ui_monochrome = new gl::Shader(Paths::Shaders::ui(), "ui_monochrome");
+    ui            = new gl::Shader(Paths::Shaders::ui() / "ui"           );
+    ui_path       = new gl::Shader(Paths::Shaders::ui() / "ui_path"      );
+    ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );
+    ui_monochrome = new gl::Shader(Paths::Shaders::ui() / "ui_monochrome");
 
-    colored3D       = new gl::Shader(Paths::Shaders::isometric(), "colored3D"      );
-    textured3D      = new gl::Shader(Paths::Shaders::isometric(), "textured3D"     );
-    diffuse_colored = new gl::Shader(Paths::Shaders::isometric(), "diffuse_colored");
-    fog             = new gl::Shader(Paths::Shaders::isometric(), "fog"            );
+    colored3D       = new gl::Shader(Paths::Shaders::isometric() / "colored3D"      );
+    textured3D      = new gl::Shader(Paths::Shaders::isometric() / "textured3D"     );
+    diffuse_colored = new gl::Shader(Paths::Shaders::isometric() / "diffuse_colored");
+    fog             = new gl::Shader(Paths::Shaders::isometric() / "fog"            );
 
-	sprite = new gl::Shader(Paths::Shaders::sprites(), "sprite");
+	sprite = new gl::Shader(Paths::Shaders::sprites() / "sprite");
 }

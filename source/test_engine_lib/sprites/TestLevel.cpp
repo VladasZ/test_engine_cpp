@@ -41,5 +41,7 @@ TestLevel::TestLevel() {
 
 void TestLevel::update() {
     Level::update();
+#ifdef DEBUG
     te::Screen::debug_view->info_label->set_text(box->position().to_string());
+#endif
 }

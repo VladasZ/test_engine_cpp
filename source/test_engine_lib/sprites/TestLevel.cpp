@@ -27,7 +27,11 @@ TestLevel::TestLevel() {
 	add_sprite(box2);
 
 	for (unsigned i = 0; i < 5; i++) {
-		add_sprite(new DynamicBody(Assets::images->palm, { 5, 5 }, gm::Point { 4.0f + (float)i * 0.05f, 15.0f }));
+		add_sprite(new DynamicBody(Assets::images->palm, { 4, 4 }, gm::Point { 4.0f + (float)i * 0.05f, 15.0f }));
+	}
+
+	for (unsigned i = 0; i < 50; i++) {
+		add_sprite(new DynamicBody(Assets::images->palm, { 0.5, 0.5 }, gm::Point{ 4.0f + (float)i * 0.05f, 15.0f }));
 	}
 
 

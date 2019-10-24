@@ -57,10 +57,12 @@ Screen::Screen(const gm::Size& size) {
 
 #ifdef DEBUG
 	static bool first = true;
-	if (first)
+	if (first) {
 		first = false;
-	else
-		Fatal("Only one instance of Screen class in supported currently");
+	}
+	else {
+		Fatal("Only one instance of Screen class is supported currently");
+	}
 #endif
 
 	image::config::set_loader(new TEImageLoader());
@@ -198,7 +200,6 @@ void Screen::setup_input() {
 
 void Screen::set_size(const gm::Size& size) {
 	this->size = size;
-    Log(size.to_string());
 	GL::screen_size = size;
 	GL::set_viewport(size);
 	GL::clear();

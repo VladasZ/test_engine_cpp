@@ -15,6 +15,7 @@ void TESpriteDrawer::draw(sprites::Sprite* sprite) {
 	Assets::shaders->sprite->use();
 	Assets::shaders->sprite->set_size(sprite->size() * scale);
 	Assets::shaders->sprite->set_position(sprite->position() * scale);
+	Assets::shaders->sprite->set_rotation(sprite->rotation());
 	sprite->image()->bind();
 	Assets::buffers->fullscreen_image->draw();
 #endif

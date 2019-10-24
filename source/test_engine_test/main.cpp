@@ -14,6 +14,7 @@ int main() {
 
 		screen.set_scene(new EffectsScene());
 		screen.set_view(new TestView());
+		screen.set_level(new TestLevel());
 
 #ifdef DESKTOP_BUILD
 		screen.start_main_loop();

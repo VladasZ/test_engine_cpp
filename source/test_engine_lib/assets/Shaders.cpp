@@ -8,10 +8,14 @@
 
 #include "Paths.hpp"
 #include "Shaders.hpp"
+#include "ShaderCompiler.hpp"
 
 using namespace te;
 
 Shaders::Shaders() {
+
+	ShaderCompiler::includes_path = Paths::Shaders::include();
+
     ui            = new gl::Shader(Paths::Shaders::ui() / "ui"           );
     ui_path       = new gl::Shader(Paths::Shaders::ui() / "ui_path"      );
     ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );

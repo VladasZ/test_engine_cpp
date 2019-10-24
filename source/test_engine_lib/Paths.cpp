@@ -62,3 +62,7 @@ Path Paths::Shaders::sprites() {
 Path Paths::Shaders::isometric() {
 	return root() / "isometric";
 }
+
+Path Paths::Shaders::include() {
+	return root() / "include";
+}

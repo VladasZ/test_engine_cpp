@@ -38,7 +38,6 @@ namespace te {
 		unsigned frames_drawn = 0;
 
 		static inline gm::Size size;
-		static inline gm::Size display_resolution;
 
 		static inline gm::Color clear_color;
 

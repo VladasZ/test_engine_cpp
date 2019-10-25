@@ -200,7 +200,7 @@ void Screen::setup_input() {
 
 void Screen::set_size(const gm::Size& size) {
 	this->size = size;
-	GL::screen_size = size;
+	GL::window_size = size;
 	GL::set_viewport(size);
 	GL::clear();
 	Assets::shaders->sprite->use();

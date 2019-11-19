@@ -12,6 +12,7 @@
 #include "ImageView.hpp"
 #include "DrawingView.hpp"
 #include "AnalogStickView.hpp"
+#include "Vec4SlidersView.hpp"
 
 class TestView : public ui::View {
 
@@ -26,6 +27,8 @@ public:
     ui::ImageView* image;
     ui::AnalogStickView* left_stick;
     ui::AnalogStickView* right_stick;
+
+    static inline Vec4SlidersView* sliders = nullptr;
 
     void _setup() override;
     void _layout() override;

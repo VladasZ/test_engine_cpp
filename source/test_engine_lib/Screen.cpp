@@ -180,11 +180,11 @@ void Screen::setup_input() {
 
 	GL::on_cursor_moved.subscribe([&](gm::Point position) {
 		ui::input::mouse->set_position(position);
-		if (ui::Mouse::button_state == ui::Mouse::ButtonState::Down && ui::Mouse::button == ui::Mouse::Button::Left) {
-			auto shift = ui::Mouse::frame_shift;
-			shift.invert();
-			_scene->camera->move_orbit(shift / 200);
-		}
+//		if (ui::Mouse::button_state == ui::Mouse::ButtonState::Down && ui::Mouse::button == ui::Mouse::Button::Left) {
+//			auto shift = ui::Mouse::frame_shift;
+//			shift.invert();
+//			_scene->camera->move_orbit(shift / 200);
+//		}
 	});
 
 	GL::on_scroll_moved.subscribe([&](gm::Point position) {

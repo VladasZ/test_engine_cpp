@@ -24,6 +24,8 @@ class TestScene : public scene::Scene {
 
 	cu::XYZPack<scene::Model*> walls;
 
+	scene::BoxModel* marker_box;
+
     void setup() override;
     void each_frame() override;
 

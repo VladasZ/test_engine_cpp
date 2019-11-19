@@ -59,6 +59,15 @@ void TestScene::setup() {
     light = new scene::PointLight({ 1, 1, 1 });
     light->velocity = { 0.011f, 0, 0.0f };
 
+
+    auto vector1 = new scene::VectorModel();
+
+    add_object(vector1);
+
+    add_object(marker_box = new scene::BoxModel({ 1, 1, 1 }));
+
+
+
     add_light(light);
 }
 

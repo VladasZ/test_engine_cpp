@@ -34,6 +34,10 @@ void XYZSlidersView::_setup() {
     sliders.y->set_caption("Y");
     sliders.z->set_caption("Z");
 
+    sliders.x->set_slider_color(gm::Color::red);
+    sliders.y->set_slider_color(gm::Color::green);
+    sliders.z->set_slider_color(gm::Color::blue);
+
     sliders.x->slider_view->on_value_changed.subscribe([&](float value) {
         XYZ_SET_VALUE(position.x, value);
         on_change(position);

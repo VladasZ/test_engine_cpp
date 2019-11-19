@@ -18,7 +18,7 @@ void main() {
 	color.a = uniform_color.a;
 	color.rgb = ambient + diffuse * 0.4;
 
-	float fog_factor = distance(fragment_position / 15.0, vec3(0, 0, 0));
+	float fog_factor = distance(fragment_position / 50.0, vec3(0, 0, 0));
 
 	fog_factor = clamp(fog_factor, 0.0, 1.0);
 

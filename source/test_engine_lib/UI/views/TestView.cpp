@@ -29,8 +29,11 @@ void TestView::_setup() {
     button = new Button();
     add_subview(button);
     
-    image = new ImageView({ 0, 0, 100, 100 }, Assets::images->cat);
-    add_subview(image);
+//    image = new ImageView({ 0, 0, 200, 200 }, Assets::images->cat);
+//    add_subview(image);
+
+    sliders = new Vec4SlidersView();
+    add_subview(sliders);
     
     button->on_press.subscribe([]{
         Log("SOPOK");
@@ -60,6 +63,8 @@ void TestView::_layout() {
         _frame.size.width - right_stick->frame().size.width / 2 - margin,
         _frame.size.height - right_stick->frame().size.height / 2 - margin,
     });
+
+    sliders->set_frame({ 0, 100, 200, 300 });
     
     View::_layout();
 }

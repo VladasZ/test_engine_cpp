@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#ifndef NO_BOX2D
+
 #pragma once
 
 #include "SpriteDrawer.hpp"
@@ -13,3 +15,5 @@
 class TESpriteDrawer : public sprites::SpriteDrawer {
 	void draw(sprites::Sprite* sprite) override;
 };
+
+#endif

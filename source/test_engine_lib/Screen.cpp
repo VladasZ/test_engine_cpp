@@ -66,7 +66,9 @@ Screen::Screen(const gm::Size& size) {
 #endif
 
 	image::config::set_loader(new TEImageLoader());
+#ifndef NO_BOX2D
 	sprites::config::set_drawer(new TESpriteDrawer());
+#endif
 	scene::config::set_drawer(new TESceneDrawer());
 
 	GL::initialize(size);
@@ -107,11 +109,15 @@ void Screen::update() {
 	}
 
 	GL::disable_depth_test();
+    
+#ifndef NO_BOX2D
 
 	if (_level) {
 		_level->update();
 		_level->draw();
 	}
+    
+#endif
 
 	_root_view->_draw();
 
@@ -224,6 +230,7 @@ scene::Scene* Screen::scene() const {
 	return _scene;
 }
 
+#ifndef NO_BOX2D
 void Screen::set_level(sprites::Level* level) {
 	_level = level;
 }
@@ -231,6 +238,7 @@ void Screen::set_level(sprites::Level* level) {
 sprites::Level* Screen::level() const {
 	return _level;
 }
+#endif
 
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);

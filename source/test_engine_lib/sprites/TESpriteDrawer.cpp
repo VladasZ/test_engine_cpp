@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#ifndef NO_BOX2D
+
 #include "Assets.hpp"
 #include "Screen.hpp"
 #include "TESpriteDrawer.hpp"
@@ -22,3 +24,5 @@ void TESpriteDrawer::draw(sprites::Sprite* sprite) {
 	Assets::buffers->fullscreen_image->draw();
 #endif
 }
+
+#endif

@@ -67,9 +67,9 @@ void EffectsScene::setup() {
         Log(cos(vector.w / 2) * cos(vector.w / 2) + vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 
         glm::mat4 rot_mat = glm::toMat4(myQuat);
-
+#ifndef NO_ASSIMP
         monkey->set_rotation_matrix(gm::Matrix4(rot_mat));
-
+#endif
     });
 
 #ifndef NO_ASSIMP

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#ifndef NO_BOX2D
+
 #include "Box2D/Box2D.h"
 
 #include "Level.hpp"
@@ -28,3 +30,4 @@ public:
 
 };
 
+#endif

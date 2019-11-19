@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#ifndef NO_BOX2D
+
 #include <test/DebugInfoView.hpp>
 
 #include "Log.hpp"
@@ -51,3 +53,5 @@ void TestLevel::update() {
    // te::Screen::debug_view->info_label->set_text(box->position().to_string());
 #endif
 }
+
+#endif

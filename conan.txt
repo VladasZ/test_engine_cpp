@@ -2,4 +2,5 @@ freetype
 assimp
 glfw
 glew
+soil
 box2d

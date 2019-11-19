@@ -1,5 +1,4 @@
 ui
-soil
 image
 scene
 sprites

@@ -10,9 +10,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(test_engine)
 
+if(${NEEDS_CONAN})
 conan_basic_setup()
+endif()
 
 add_subdirectory(source/test_engine_lib)
+
 if(NOT ${NEEDS_SIGNING})
 	add_subdirectory(source/test_engine_test)
 endif()

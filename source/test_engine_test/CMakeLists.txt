@@ -20,7 +20,9 @@ link_project_at_path(scene_lib       ${scene_path}      )
 link_project_at_path(gl_wrapper      ${gl_wrapper_path} )
 link_project_at_path(test_engine_lib ${test_engine_path})
 
+if(${NEEDS_CONAN})
 conan_target_link_libraries(${PROJECT_NAME})
+endif()
 
 if(${IOS_BUILD})
 

@@ -17,6 +17,7 @@ matrix:
         - os: osx
           name: macOS
           install:
+            - brew update-reset
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build

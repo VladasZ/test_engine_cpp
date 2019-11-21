@@ -12,15 +12,9 @@ endif()
 add_executable(${PROJECT_NAME} ${SOURCE} ${ASSETS})
 
 link_conan_if_needed()
+link_deps()
 
-link_project_at_path(image           ${image_path}      )
-link_project_at_path(ui_lib          ${ui_path}         )
-link_project_at_path(sprites         ${sprites_path}    )
-link_project_at_path(geometry        ${geometry_path}   )
-link_project_at_path(cpp_utils       ${cpp_utils_path}  )
-link_project_at_path(scene_lib       ${scene_path}      )
-link_project_at_path(gl_wrapper      ${gl_wrapper_path} )
-link_project_at_path(test_engine_lib ${test_engine_path})
+link_project_at_path(test_engine ${test_engine_path})
 
 if(${IOS_BUILD})
 

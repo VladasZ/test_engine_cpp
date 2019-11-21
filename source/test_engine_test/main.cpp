@@ -1,5 +1,5 @@
 
-#ifndef IOS_BUILD
+#ifdef DESKTOP_BUILD
 
 #include "Screen.hpp"
 #include "TestView.hpp"
@@ -16,9 +16,7 @@ int main() {
         screen.set_scene(new EffectsScene());
 		screen.set_level(new TestLevel());
 
-#ifdef DESKTOP_BUILD
 		screen.start_main_loop();
-#endif
 	}
 	catch (...) {
 		Alert(what());

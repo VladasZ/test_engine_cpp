@@ -37,3 +37,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 )
 
 endif()
+
+if(${ANDROID_BUILD})
+target_link_libraries(${PROJECT_NAME} GLESv3)
+endif()
+

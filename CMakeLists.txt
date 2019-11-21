@@ -4,7 +4,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	include(build/build_tools_generated.cmake)
 endif()
 
-setup_project(test_engine)
+project(test_engine)
+
+setup_conan_if_needed()
+setup_deps()
 
 add_subdirectory(source/test_engine)
 

@@ -7,13 +7,13 @@ matrix:
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build --ios nf nb na ns
+            - python3 build.py --build --ios --no-conan
         - os: osx
           name: iOS device
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build --ios --device nf nb na ns
+            - python3 build.py --build --ios --device --no-conan
         - os: osx
           name: macOS
           install:

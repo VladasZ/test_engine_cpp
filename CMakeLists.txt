@@ -11,6 +11,6 @@ setup_deps()
 
 add_subdirectory(source/test_engine)
 
-if(DESKTOP_BUILD OR IOS_BUILD)
+if(NOT ${NEEDS_SIGNING})
 	add_subdirectory(source/test_engine_test)
 endif()

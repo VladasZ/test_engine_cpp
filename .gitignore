@@ -397,11 +397,9 @@ fastlane/readme.md
 
 log.txt
 
-utils/
-
 *#
-/cmake-build-debug
-/dep_build
+cmake-build-debug/
+dep_build/
 
 *.autosave
 *.blend1

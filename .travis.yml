@@ -65,4 +65,4 @@ matrix:
           script: 
             - python3 build.py --prepare --android --no-conan
             - cd android/
-            - ./gradlew assembleDebug
+            - ./gradlew assemble

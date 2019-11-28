@@ -2,23 +2,10 @@
 
 ### Build Status:
 
-#### Desktop:
+| macOS            | Linux            | Windows          | iOS Simulator    | iOS Device       | Android          |
+|------------------|------------------|------------------|------------------|------------------|------------------|
+|[![MAC][MAC1]][TR]|[![Lin][LIN1]][TR]|[![Win][WB1]][WB2]|[![iOS][IOS1]][TR]|[![iOS][IOS2]][TR]|[![AND][AND1]][TR]|
 
-| macOS               | Linux               |  Windows         |
-| ------------------- | --------------------| -----------------|
-|[![MAC][MAC1]][TRAV] | [![Lin][LIN1]][TRAV]|[![Win][WB1]][WB2]|
-
-#### iOS:
-
-| Simulator            | Device              |
-| ---------------------| ------------------- |
-| [![iOS][IOS1]][TRAV] |[![iOS][IOS2]][TRAV] |
-
-#### Android:
-
-|                      |
-| ---------------------|
-| [![iOS][AND1]][TRAV] |
 
 [WB1]: https://ci.appveyor.com/api/projects/status/ukmv5disdy3x00km?svg=true
 [WB2]: https://ci.appveyor.com/project/VladasZ/test-engine
@@ -29,7 +16,7 @@
 [LIN1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/4
 [AND1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/5
 
-[TRAV]: https://travis-ci.org/VladasZ/test_engine
+[TR]: https://travis-ci.org/VladasZ/test_engine
 
 My attempt to create a cross platform, OpenGL based game engine.
 

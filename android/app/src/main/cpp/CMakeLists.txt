@@ -14,3 +14,8 @@ link_project_at_path(test_engine ${test_engine_path})
 
 find_library(log-lib log)
 target_link_libraries(${PROJECT_NAME} ${log-lib})
+
+find_library(android-lib android)
+
+target_link_libraries(${PROJECT_NAME} ${android-lib})
+

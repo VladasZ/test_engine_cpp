@@ -35,12 +35,10 @@ TEModelDrawer::~TEModelDrawer() {
 
 void TEModelDrawer::_draw() const {
 
-	auto shader = Assets::shaders->colored3D;
+	gl::Shader* shader = Assets::shaders->colored3D;
 
 	if (_model->has_image())
 		shader = Assets::shaders->textured3D;
-
-	shader = Assets::shaders->fog;
 
 	shader->use();
 

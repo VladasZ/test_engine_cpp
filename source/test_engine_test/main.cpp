@@ -1,6 +1,7 @@
 
 #ifdef DESKTOP_BUILD
 
+#include "System.hpp"
 #include "Screen.hpp"
 #include "TestView.hpp"
 #include "TestLevel.hpp"
@@ -19,7 +20,7 @@ int main() {
 		screen.start_main_loop();
 	}
 	catch (...) {
-		Alert(what());
+		cu::System::alert(what());
 	}
  
 	return 0;

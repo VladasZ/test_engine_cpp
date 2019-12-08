@@ -34,8 +34,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                               aiProcess_SortByPType             );
 
     if (!scene) {
-        _Error(_importer.GetErrorString());
-        return nullptr;
+        Fatal(_importer.GetErrorString());
     }
 
     auto meshes = std::vector<aiMesh*> { scene->mMeshes, scene->mMeshes + scene->mNumMeshes };

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.view.MotionEvent;
+
 
 import android.content.res.AssetManager;
 
@@ -25,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         String dataPath = getFilesDir().getPath() + "/";
         asset_manager = getResources().getAssets();
 
+        Log.d("TestEngine", "lalalal");
+        Log.d("TestEngine", asset_manager.toString());
+
+
+        setAssetManager(asset_manager);
+
         Log.d("TestEngine", dataPath);
         Log.d("TestEngine", "lalalal");
 
@@ -33,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(stringFromJNI());
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
 
     public native String stringFromJNI();
+    public native void setAssetManager(AssetManager assManager);
+
 }

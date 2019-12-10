@@ -6,6 +6,9 @@
 //  Copyright © 2018 VladasZ. All rights reserved.
 //
 
+#include <vector>
+
+#include "Log.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
 
@@ -18,22 +21,34 @@ using namespace te;
 using namespace Paths;
 
 Path Paths::root() {
+
 #ifdef IOS_BUILD
     return Path() / obj_c::work_directory_path;
-#elif WINDOWS
+#elif ANDROID_BUILD
+    return "";
+#endif
+
+#ifdef DESKTOP_BUILD
+
+#ifdef WINDOWS
     Path users = "C:/Users";
 #elif APPLE
     Path users = "/Users";
 #else
     Path users = "/home";
 #endif
-#ifndef IOS_BUILD
+
     return users / cu::System::user_name() / ".deps/test_engine";
+
 #endif
 }
 
 Path Paths::assets() {
+#ifdef ANDROID_BUILD
+    return "";
+#else
     return root() / "Assets";
+#endif
 }
 
 Path Paths::images() {
@@ -66,3 +81,24 @@ Path Paths::Shaders::isometric() {
 Path Paths::Shaders::include() {
 	return root() / "include";
 }
+
+void Paths::dump() {
+    static const std::vector<Path> all = {
+            root(),
+            assets(),
+            images(),
+            models(),
+            fonts(),
+            Shaders::root(),
+            Shaders::ui(),
+            Shaders::sprites(),
+            Shaders::isometric(),
+            Shaders::include()
+    };
+
+    for(auto path : all) {
+        Log(path);
+    }
+
+}
+

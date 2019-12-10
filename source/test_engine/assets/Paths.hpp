@@ -26,6 +26,9 @@ namespace te {
 			cu::Path isometric();
 			cu::Path include();
 		}
+
+		void dump();
+
     };
     
 };

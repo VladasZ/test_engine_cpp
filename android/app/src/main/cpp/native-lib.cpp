@@ -6,6 +6,7 @@
 
 #include "File.hpp"
 #include "Paths.hpp"
+#include "Assets.hpp"
 #include "Screen.hpp"
 #include "System.hpp"
 #include "AndroidSystem.hpp"
@@ -27,6 +28,13 @@ Java_com_example_test_1engine_MainActivity_stringFromJNI(
     hello += file.to_string();
 
     hello += System::user_name();
+
+    auto path = Paths::Shaders::ui() / "ui.vert";
+
+    Log(path);
+
+    Log(File::read_to_string(path));
+
     return env->NewStringUTF(hello.c_str());
 }
 

@@ -6,3 +6,5 @@ uniform vec4 uniform_color;
 void main() {
   color = uniform_color;
 }
+
+KOKOOKOKOKO

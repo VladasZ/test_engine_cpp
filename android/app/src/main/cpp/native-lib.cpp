@@ -33,7 +33,6 @@ void start() {
 
     Log("Hello");
 
-
     GL::on_window_size_change({ 500,
                                 500 });
 
@@ -46,9 +45,7 @@ void start() {
 #endif
     _screen->set_view(new TestView());
 
-    while(true) {
-        _screen->update();
-    }
+    _screen->update();
 }
 
 

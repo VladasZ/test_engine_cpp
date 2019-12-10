@@ -130,6 +130,8 @@ void Screen::update() {
 	Screen::frames_drawn++;
 	Events::frame_drawn(FPS);
 
+	Log(FPS);
+
 }
 
 

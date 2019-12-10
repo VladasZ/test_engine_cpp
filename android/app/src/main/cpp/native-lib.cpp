@@ -1,5 +1,6 @@
 
 #include <string>
+#include <thread>
 
 #include <jni.h>
 #include <android/asset_manager_jni.h>
@@ -12,30 +13,53 @@
 #include "AndroidSystem.hpp"
 #include "ExceptionCatch.hpp"
 
+#import "Input.hpp"
+#import "Screen.hpp"
+#import "TestView.hpp"
+#import "GLWrapper.hpp"
+#import "TestScene.hpp"
+#import "TestLevel.hpp"
+
+te::Screen* _screen;
+
 using namespace cu;
 using namespace gm;
 using namespace te;
 
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_example_test_1engine_MainActivity_stringFromJNI(
+std::thread gl_thread;
+
+void start() {
+
+    Log("Hello");
+
+
+    GL::on_window_size_change({ 500,
+                                500 });
+
+    _screen = new te::Screen({ 500,
+                               500 });
+
+    _screen->set_scene(new TestScene());
+#ifndef NO_BOX2D
+    _screen->set_level(new TestLevel());
+#endif
+    _screen->set_view(new TestView());
+
+    while(true) {
+        _screen->update();
+    }
+}
+
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MainActivity_test(
         JNIEnv* env,
         jobject) {
     std::string hello;
 
-    auto file = File("Fonts/OpenSans.ttf");
+    gl_thread = std::thread(start);
 
-    hello += file.to_string();
-
-    hello += System::user_name();
-
-    auto path = Paths::Shaders::ui() / "ui.vert";
-
-    Log(path);
-
-    Log(File::read_to_string(path));
-
-    return env->NewStringUTF(hello.c_str());
 }
 
 extern "C" JNIEXPORT void JNICALL

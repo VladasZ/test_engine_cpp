@@ -20,20 +20,13 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_test_1engine_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject) {
-    std::string hello = "Hello from C++\n";
+    std::string hello;
 
-    Vector3 vec3 = { 1, 2, 3 };
+    auto file = File("Fonts/OpenSans.ttf");
 
-//
-    hello += Paths::Shaders::ui() + "\n";
-    hello += Paths::Shaders::ui() / "ko" / "sopok" / "\n";
-
-    auto file = File("ic_launcher_background.xml");
-
-    hello += file.size();
+    hello += file.to_string();
 
     hello += System::user_name();
-    hello += vec3.to_string();
     return env->NewStringUTF(hello.c_str());
 }
 

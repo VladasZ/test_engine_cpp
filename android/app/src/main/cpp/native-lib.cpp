@@ -28,9 +28,7 @@ using namespace te;
 
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_test_1engine_MyGLRenderer_setup(
-        JNIEnv* env,
-        jobject) {
+Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
     std::string hello;
 
 
@@ -51,27 +49,17 @@ Java_com_example_test_1engine_MyGLRenderer_setup(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_test_1engine_MyGLRenderer_update(
-        JNIEnv* env,
-        jobject) {
+Java_com_example_test_1engine_MyGLRenderer_update(JNIEnv* env, jobject) {
     _screen->update();
-
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_test_1engine_MyGLRenderer_setScreenSize(
-        JNIEnv* env,
-        jobject,
-        jint width,
-        jint height) {
+Java_com_example_test_1engine_MyGLRenderer_setScreenSize(JNIEnv* env, jobject, jint width, jint height) {
     _screen->set_size({ width, height });
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_test_1engine_MainActivity_setAssetManager(
-        JNIEnv* env,
-        jobject,
-        jobject asset_manager) {
+Java_com_example_test_1engine_MainActivity_setAssetManager(JNIEnv* env, jobject, jobject asset_manager) {
 
     AAssetManager* manager = nullptr;
     std::string error;
@@ -88,4 +76,22 @@ Java_com_example_test_1engine_MainActivity_setAssetManager(
     }
 
     AndroidSystem::set_asset_manager(manager);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MainActivity_touchBegan(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
+    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Began);
+    ui::Input::process_touch_event(touch);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MainActivity_touchMoved(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
+    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Moved);
+    ui::Input::process_touch_event(touch);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MainActivity_touchEnded(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
+    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Ended);
+    ui::Input::process_touch_event(touch);
 }

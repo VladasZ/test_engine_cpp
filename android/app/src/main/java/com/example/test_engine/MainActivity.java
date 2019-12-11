@@ -36,10 +36,35 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        int actionIndex = event.getActionIndex();
+        int actionId = event.getPointerId(actionIndex);
+        int actionMasked = event.getActionMasked();
+        switch (actionMasked){
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN:{
+                touchBegan(event.getX(actionIndex), event.getY(actionIndex), actionId);
+                return true;
+            }
+            case MotionEvent.ACTION_MOVE:{
+                for(int i = 0; i < event.getPointerCount(); i++){
+                    touchMoved(event.getX(i), event.getY(i), event.getPointerId(i));
+                }
+                return true;
+            }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP: {
+                touchEnded(event.getX(actionIndex), event.getY(actionIndex), actionId);
+                return true;
+            }
+        }
         return super.onTouchEvent(event);
     }
 
 
-    public native void setAssetManager(AssetManager assManager);
+    public native void setAssetManager(AssetManager assetManager);
+    public native void touchBegan(float x, float y, int id);
+    public native void touchMoved(float x, float y, int id);
+    public native void touchEnded(float x, float y, int id);
+
 
 }

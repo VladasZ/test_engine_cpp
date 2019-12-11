@@ -59,6 +59,15 @@ Java_com_example_test_1engine_MyGLRenderer_update(
 }
 
 extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MyGLRenderer_setScreenSize(
+        JNIEnv* env,
+        jobject,
+        jint width,
+        jint height) {
+    _screen->set_size({ width, height });
+}
+
+extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MainActivity_setAssetManager(
         JNIEnv* env,
         jobject,

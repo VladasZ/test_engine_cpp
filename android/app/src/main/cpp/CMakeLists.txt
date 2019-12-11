@@ -18,3 +18,5 @@ target_link_libraries(${PROJECT_NAME} ${log-lib})
 find_library(android-lib android)
 target_link_libraries(${PROJECT_NAME} ${android-lib})
 
+target_link_libraries(${PROJECT_NAME} EGL)
+

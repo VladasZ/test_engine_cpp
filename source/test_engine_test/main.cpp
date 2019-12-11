@@ -10,6 +10,9 @@
 
 int main() {
 
+	cu::System::alert("koo");
+
+
 	try {
 		te::Screen screen({ 1000, 680 });
 

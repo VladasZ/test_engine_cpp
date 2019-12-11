@@ -17,13 +17,9 @@ import android.content.res.AssetManager;
 
 public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
-
     private MyGLSurfaceView gLView;
 
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
+    static { System.loadLibrary("native-lib"); }
 
     private AssetManager asset_manager = null;
 
@@ -31,14 +27,11 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         gLView = new MyGLSurfaceView(this);
         setContentView(gLView);
 
-      //  asset_manager = getResources().getAssets();
-      //  setAssetManager(asset_manager);
-
-      //  test();
+        asset_manager = getResources().getAssets();
+        setAssetManager(asset_manager);
     }
 
     @Override
@@ -59,7 +52,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
 
-    public native void test();
     public native void setAssetManager(AssetManager assManager);
 
 }

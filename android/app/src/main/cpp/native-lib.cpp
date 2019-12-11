@@ -27,17 +27,20 @@ using namespace gm;
 using namespace te;
 
 
-std::thread gl_thread;
+extern "C" JNIEXPORT void JNICALL
+Java_com_example_test_1engine_MyGLRenderer_setup(
+        JNIEnv* env,
+        jobject) {
+    std::string hello;
 
-void start() {
 
     Log("Hello");
 
-    GL::on_window_size_change({ 500,
-                                500 });
+    GL::on_window_size_change({ 1000,
+                                1000 });
 
-    _screen = new te::Screen({ 500,
-                               500 });
+    _screen = new te::Screen({ 1000,
+                               1000 });
 
     _screen->set_scene(new TestScene());
 #ifndef NO_BOX2D
@@ -45,17 +48,13 @@ void start() {
 #endif
     _screen->set_view(new TestView());
 
-    _screen->update();
 }
 
-
 extern "C" JNIEXPORT void JNICALL
-Java_com_example_test_1engine_MainActivity_test(
+Java_com_example_test_1engine_MyGLRenderer_update(
         JNIEnv* env,
         jobject) {
-    std::string hello;
-
-    gl_thread = std::thread(start);
+    _screen->update();
 
 }
 

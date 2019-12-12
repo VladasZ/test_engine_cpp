@@ -79,10 +79,15 @@ Path Paths::Shaders::isometric() {
 }
 
 Path Paths::Shaders::include() {
-	return root() / "include";
+    return root() / "include";
+}
+
+Path Paths::Shaders::test() {
+    return root() / "test";
 }
 
 void Paths::dump() {
+
     static const std::vector<Path> all = {
             root(),
             assets(),
@@ -93,7 +98,8 @@ void Paths::dump() {
             Shaders::ui(),
             Shaders::sprites(),
             Shaders::isometric(),
-            Shaders::include()
+            Shaders::include(),
+            Shaders::test()
     };
 
     for(auto path : all) {

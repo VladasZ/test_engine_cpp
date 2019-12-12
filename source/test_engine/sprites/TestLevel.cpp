@@ -8,15 +8,13 @@
 
 #ifndef NO_BOX2D
 
-#include <test/DebugInfoView.hpp>
-
 #include "Log.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
 #include "TestLevel.hpp"
+#include "DebugInfoView.hpp"
 
-float world_width = 100.0f;
-
+static float world_width = 100.0f;
 
 using namespace sprites;
 

@@ -16,6 +16,8 @@ Shaders::Shaders() {
 
 	ShaderCompiler::includes_path = Paths::Shaders::include();
 
+	simple = new gl::Shader(Paths::Shaders::test() / "simple");
+
     ui            = new gl::Shader(Paths::Shaders::ui() / "ui"           );
     ui_path       = new gl::Shader(Paths::Shaders::ui() / "ui_path"      );
     ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );

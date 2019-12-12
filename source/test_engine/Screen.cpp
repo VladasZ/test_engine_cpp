@@ -34,6 +34,8 @@
 #include "TESpriteDrawer.hpp"
 #include "BufferConfiguration.hpp"
 
+#include "GLTest.hpp"
+
 using namespace gm;
 using namespace te;
 using namespace cu;
@@ -124,6 +126,8 @@ void Screen::update() {
 #ifdef DEBUG_VIEW
 	debug_view->_draw();
 #endif
+
+    te::Test::drawTriangle();
 
 	FPS = 1000000000 / Time::interval();
 

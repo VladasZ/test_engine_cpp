@@ -24,7 +24,8 @@ namespace te {
 			cu::Path ui();
 			cu::Path sprites();
 			cu::Path isometric();
-			cu::Path include();
+            cu::Path include();
+            cu::Path test();
 		}
 
 		void dump();

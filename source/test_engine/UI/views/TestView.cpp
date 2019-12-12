@@ -38,6 +38,12 @@ void TestView::_setup() {
     button->on_press.subscribe([]{
         Log("SOPOK");
     });
+
+    Input::on_touch.subscribe([&](Touch* touch) {
+       auto view = View::dummy({ 5, 5 });
+       view->set_center(touch->location);
+       add_subview(view);
+    });
     
 }
 

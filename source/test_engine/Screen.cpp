@@ -15,11 +15,9 @@
 #include "Touch.hpp"
 #include "Scene.hpp"
 #include "Assets.hpp"
-#include "System.hpp"
 #include "Camera.hpp"
 #include "Screen.hpp"
 #include "Sprites.hpp"
-#include "LogData.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
 #include "TestView.hpp"
@@ -33,8 +31,6 @@
 #include "TESceneDrawer.hpp"
 #include "TESpriteDrawer.hpp"
 #include "BufferConfiguration.hpp"
-
-#include "GLTest.hpp"
 
 using namespace gm;
 using namespace te;
@@ -126,8 +122,6 @@ void Screen::update() {
 #ifdef DEBUG_VIEW
 	debug_view->_draw();
 #endif
-
-    te::Test::drawTriangle();
 
 	FPS = 1000000000 / Time::interval();
 

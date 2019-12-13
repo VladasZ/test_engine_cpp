@@ -5,3 +5,4 @@ glew
 soil
 box2d
 glm
+glut

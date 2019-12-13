@@ -17,21 +17,30 @@ using namespace te;
 
 void Test::drawTriangle() {
 
-    GLfloat vVertices[] = { 0.0f,  0.5f, 0.0f,
-                           -0.5f, -0.5f, 0.0f,
-                            0.5f, -0.5f, 0.0f };
+//    GLfloat vVertices[] = { 0.0f,  0.5f, 0.0f,
+//                           -0.5f, -0.5f, 0.0f,
+//                            0.5f, -0.5f, 0.0f };
+//
+//    // Clear the color buffer
+//   // glClear(GL_COLOR_BUFFER_BIT);
+//    // Use the program object
+//
+//    Assets::shaders->simple->use();
+//
+//    //glUseProgram(userData->programObject);
+//    // Load the vertex data
+//    GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices));
+//    GL(glEnableVertexAttribArray(0));
+//    GL(glDrawArrays(GL_TRIANGLES, 0, 3));
 
-    // Clear the color buffer
-   // glClear(GL_COLOR_BUFFER_BIT);
-    // Use the program object
+    GL(glBegin(GL_QUADS)); // Start drawing a quad primitive
 
-    Assets::shaders->simple->use();
+    GL((-1.0f, -1.0f, 0.0f)); // The bottom left corner
+    GL(glVertex3f(-1.0f, 1.0f, 0.0f)); // The top left corner
+    GL(glVertex3f(1.0f, 1.0f, 0.0f)); // The top right corner
+    GL(glVertex3f(1.0f, -1.0f, 0.0f)); // The bottom right corner
 
-    //glUseProgram(userData->programObject);
-    // Load the vertex data
-    GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices));
-    GL(glEnableVertexAttribArray(0));
-    GL(glDrawArrays(GL_TRIANGLES, 0, 3));
+    GL(glEnd());
 
 }
 

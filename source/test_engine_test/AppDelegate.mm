@@ -30,9 +30,6 @@ te::Screen* _screen;
     [super viewDidLoad];    
     [self setup];
     
-    Log(glGetString(GL_SHADING_LANGUAGE_VERSION));
-    Log(glGetString(GL_VERSION));
-    
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
     
@@ -45,7 +42,7 @@ te::Screen* _screen;
 
 - (void)update {
     
-    GL::set_clear_color(Color::random());
+    GL::set_clear_color(Color::turquoise);
     GL::clear();
     
    // _screen->update();

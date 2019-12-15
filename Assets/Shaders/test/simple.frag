@@ -1,10 +1,10 @@
 precision mediump float;
 
-// #define IN varying
-// #define OUT
+#define IN varying
+#define OUT
 
-#define IN in
-#define OUT out
+// #define IN in
+// #define OUT out
 
 OUT vec4 color;
 

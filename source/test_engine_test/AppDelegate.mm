@@ -52,12 +52,16 @@ te::Screen* _screen;
     
     self.preferredFramesPerSecond = 60;
     
-#ifdef IPHONE_4S_BUILD
-    EAGLContext* context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-#else
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
-#endif
     
+    if (context == nil) {
+        context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        Log("kEAGLRenderingAPIOpenGLES2");
+    }
+    else {
+        Log("kEAGLRenderingAPIOpenGLES3");
+    }
+
     NSLog(@"%@", context);
     [EAGLContext setCurrentContext:context];
     GLKView* view = (GLKView*)self.view;

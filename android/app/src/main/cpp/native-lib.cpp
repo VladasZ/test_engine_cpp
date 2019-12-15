@@ -50,7 +50,9 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MyGLRenderer_update(JNIEnv* env, jobject) {
-    _screen->update();
+    //  _screen->update();
+    GL::set_clear_color(gm::Color::random());
+    GL::clear();
 }
 
 extern "C" JNIEXPORT void JNICALL

@@ -8,6 +8,7 @@
 
 #include "Paths.hpp"
 #include "Shaders.hpp"
+#include "GLWrapper.hpp"
 #include "ShaderCompiler.hpp"
 
 using namespace te;
@@ -18,22 +19,23 @@ Shaders::Shaders() {
 
     simple = new gl::Shader(Paths::Shaders::test() / "simple");
     
-#ifdef IPHONE_4S_BUILD
+    if (GL::is_gl2) {
+        
+        ui            = new gl::Shader(Paths::Shaders::test() / "simple");
+        ui_path       = new gl::Shader(Paths::Shaders::test() / "simple");
+        ui_texture    = new gl::Shader(Paths::Shaders::test() / "simple");
+        ui_monochrome = new gl::Shader(Paths::Shaders::test() / "simple");
 
-    ui            = new gl::Shader(Paths::Shaders::test() / "simple");
-    ui_path       = new gl::Shader(Paths::Shaders::test() / "simple");
-    ui_texture    = new gl::Shader(Paths::Shaders::test() / "simple");
-    ui_monochrome = new gl::Shader(Paths::Shaders::test() / "simple");
+        colored3D       = new gl::Shader(Paths::Shaders::test() / "simple");
+        textured3D      = new gl::Shader(Paths::Shaders::test() / "simple");
+        diffuse_colored = new gl::Shader(Paths::Shaders::test() / "simple");
+        fog             = new gl::Shader(Paths::Shaders::test() / "simple");
 
-    colored3D       = new gl::Shader(Paths::Shaders::test() / "simple");
-    textured3D      = new gl::Shader(Paths::Shaders::test() / "simple");
-    diffuse_colored = new gl::Shader(Paths::Shaders::test() / "simple");
-    fog             = new gl::Shader(Paths::Shaders::test() / "simple");
+        sprite = new gl::Shader(Paths::Shaders::test() / "simple");
+        
+        return;
+    }
 
-    sprite = new gl::Shader(Paths::Shaders::test() / "simple");
-    
-#else
-    
     ui            = new gl::Shader(Paths::Shaders::ui() / "ui"           );
     ui_path       = new gl::Shader(Paths::Shaders::ui() / "ui_path"      );
     ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );
@@ -45,8 +47,5 @@ Shaders::Shaders() {
     fog             = new gl::Shader(Paths::Shaders::isometric() / "fog"            );
 
     sprite = new gl::Shader(Paths::Shaders::sprites() / "sprite");
-    
-#endif
-    
+        
 }
-

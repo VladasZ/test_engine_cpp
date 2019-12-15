@@ -20,6 +20,8 @@
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
 
+using namespace gm;
+
 te::Screen* _screen;
 
 @interface Controller : GLKViewController @end @implementation Controller
@@ -27,6 +29,9 @@ te::Screen* _screen;
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self setup];
+    
+    Log(glGetString(GL_SHADING_LANGUAGE_VERSION));
+    Log(glGetString(GL_VERSION));
     
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
@@ -39,14 +44,22 @@ te::Screen* _screen;
 }
 
 - (void)update {
-    _screen->update();
+    
+    GL::set_clear_color(Color::random());
+    GL::clear();
+    
+   // _screen->update();
 }
 
 - (void)setup {
     
     self.preferredFramesPerSecond = 60;
     
+#ifdef IPHONE_4S_BUILD
+    EAGLContext* context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+#else
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+#endif
     
     NSLog(@"%@", context);
     [EAGLContext setCurrentContext:context];
@@ -73,17 +86,21 @@ te::Screen* _screen;
     return new ui::Touch(touch_id, location, event);
 }
 
-- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+- (void)touchesBegan:(NSSet<UITouch*>*)touches
+           withEvent:(UIEvent*)event {
+    Log("began");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
 }
 
 - (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+    Log("moved");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
 }
 
 - (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+    Log("ended");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
 }

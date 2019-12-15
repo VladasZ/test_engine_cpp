@@ -14,10 +14,26 @@ using namespace te;
 
 Shaders::Shaders() {
 
-	ShaderCompiler::includes_path = Paths::Shaders::include();
+    ShaderCompiler::includes_path = Paths::Shaders::include();
 
-	simple = new gl::Shader(Paths::Shaders::test() / "simple");
+    simple = new gl::Shader(Paths::Shaders::test() / "simple");
+    
+#ifdef IPHONE_4S_BUILD
 
+    ui            = new gl::Shader(Paths::Shaders::test() / "simple");
+    ui_path       = new gl::Shader(Paths::Shaders::test() / "simple");
+    ui_texture    = new gl::Shader(Paths::Shaders::test() / "simple");
+    ui_monochrome = new gl::Shader(Paths::Shaders::test() / "simple");
+
+    colored3D       = new gl::Shader(Paths::Shaders::test() / "simple");
+    textured3D      = new gl::Shader(Paths::Shaders::test() / "simple");
+    diffuse_colored = new gl::Shader(Paths::Shaders::test() / "simple");
+    fog             = new gl::Shader(Paths::Shaders::test() / "simple");
+
+    sprite = new gl::Shader(Paths::Shaders::test() / "simple");
+    
+#else
+    
     ui            = new gl::Shader(Paths::Shaders::ui() / "ui"           );
     ui_path       = new gl::Shader(Paths::Shaders::ui() / "ui_path"      );
     ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );
@@ -28,5 +44,9 @@ Shaders::Shaders() {
     diffuse_colored = new gl::Shader(Paths::Shaders::isometric() / "diffuse_colored");
     fog             = new gl::Shader(Paths::Shaders::isometric() / "fog"            );
 
-	sprite = new gl::Shader(Paths::Shaders::sprites() / "sprite");
+    sprite = new gl::Shader(Paths::Shaders::sprites() / "sprite");
+    
+#endif
+    
 }
+

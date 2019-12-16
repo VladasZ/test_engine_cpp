@@ -10,6 +10,8 @@ namespace te {
 
     namespace Test {
 
+        void gl3DrawTriangle();
+
         void drawTriangle();
 
     };

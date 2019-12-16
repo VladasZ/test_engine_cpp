@@ -134,11 +134,11 @@ void Screen::update() {
 void Screen::setup_input() {
     
     TestView::on_left_stick_move.subscribe([&](auto point){
-        _scene->camera->velocity = point / 100;
+       // _scene->camera->velocity = point / 100;
     });
     
     TestView::on_right_stick_move.subscribe([&](auto point){
-        _scene->camera->orbit_velocity = point / 100;
+       // _scene->camera->orbit_velocity = point / 100;
     });
     
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
@@ -189,7 +189,7 @@ void Screen::setup_input() {
 	});
 
 	GL::on_scroll_moved.subscribe([&](gm::Point position) {
-		_scene->camera->move_orbit(position / 50);
+		//_scene->camera->move_orbit(position / 50);
 	});
 
 	GL::on_key_pressed.subscribe([&](char key, unsigned int state) {

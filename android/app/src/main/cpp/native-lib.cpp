@@ -10,7 +10,9 @@
 #include "Assets.hpp"
 #include "Screen.hpp"
 #include "System.hpp"
+#include "GLDebug.hpp"
 #include "AndroidSystem.hpp"
+#include "OpenGLHeaders.hpp"
 #include "ExceptionCatch.hpp"
 
 #import "Input.hpp"
@@ -40,9 +42,9 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
     _screen = new te::Screen({ 1000,
                                1000 });
 
-    _screen->set_scene(new TestScene());
+   // _screen->set_scene(new TestScene());
 #ifndef NO_BOX2D
-    _screen->set_level(new TestLevel());
+   // _screen->set_level(new TestLevel());
 #endif
     _screen->set_view(new TestView());
 
@@ -50,9 +52,12 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MyGLRenderer_update(JNIEnv* env, jobject) {
-    //  _screen->update();
-    GL::set_clear_color(gm::Color::random());
-    GL::clear();
+      _screen->update();
+    //GL::set_clear_color(gm::Color::turquoise);
+   // GL::clear();
+    //GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+//    glBegin();
+//    glEnd();
 }
 
 extern "C" JNIEXPORT void JNICALL
@@ -71,10 +76,11 @@ Java_com_example_test_1engine_MainActivity_setAssetManager(JNIEnv* env, jobject,
     }
     catch (...) {
         error = what();
+        Fatal(error);
     }
 
     if (manager == nullptr) {
-        throw std::runtime_error("Failed to set asset manager.");
+        Fatal("Failed to get asset manager.");
     }
 
     AndroidSystem::set_asset_manager(manager);

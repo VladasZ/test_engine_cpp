@@ -14,6 +14,12 @@
 
 using namespace te;
 
+void gl3DrawTriangle() {
+    glClear(GL_COLOR_BUFFER_BIT);
+   // glBegin();
+
+}
+
 
 void Test::drawTriangle() {
 

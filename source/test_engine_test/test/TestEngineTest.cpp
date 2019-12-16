@@ -18,8 +18,8 @@ void test_engine_test() {
         te::Screen screen({ 1000, 680 });
 
         screen.set_view(new TestView());
-        screen.set_scene(new EffectsScene());
-        screen.set_level(new TestLevel());
+       // screen.set_scene(new EffectsScene());
+       // screen.set_level(new TestLevel());
 
         screen.start_main_loop();
     }

@@ -20,17 +20,16 @@ using namespace gm;
 using namespace gl;
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
-    GL::set_viewport(rect);
-	Assets::shaders->ui->use();
-	Assets::shaders->ui->set_uniform_color(color);
-    Assets::buffers->fullscreen->draw();
+    GL::scissor(rect, [&] {
+        GL::set_clear_color(color);
+        GL::clear();
+    });
 }
 
 void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
-    GL::set_viewport(rect);
-	Assets::shaders->ui->use();
-	Assets::shaders->ui->set_uniform_color(color);
-    Assets::buffers->fullscreen_outline->draw();
+    for (auto edge : rect.edges()) {
+        fill_rect(edge, color);
+    }
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {

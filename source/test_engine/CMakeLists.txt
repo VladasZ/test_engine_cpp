@@ -7,5 +7,6 @@ if(IOS_BUILD)
 endif()
 
 if(${ANDROID_BUILD})
+    target_link_libraries(${PROJECT_NAME} GLESv2)
     target_link_libraries(${PROJECT_NAME} GLESv3)
 endif()

@@ -15,7 +15,9 @@ using namespace ui;
 using namespace gm;
 
 void TestView::_setup() {
-    
+
+    add_subview(revolving_view = View::dummy());
+
     add_subview(left_stick = new AnalogStickView());
     left_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_left_stick_move(point);
@@ -71,6 +73,11 @@ void TestView::_layout() {
     });
 
     sliders->set_frame({ 0, 100, 200, 300 });
-    
+
+    static float angle = 0;
+    revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));
+    angle += 0.01;
+
+
     View::_layout();
 }

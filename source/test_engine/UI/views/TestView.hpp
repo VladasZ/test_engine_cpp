@@ -22,7 +22,9 @@ public:
     static inline Event<gm::Point> on_right_stick_move;
 
     using ui::View::View;
-    
+
+    ui::View* revolving_view;
+
     ui::Button* button;
     ui::ImageView* image;
     ui::AnalogStickView* left_stick;

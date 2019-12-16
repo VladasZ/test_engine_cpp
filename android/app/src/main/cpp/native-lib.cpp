@@ -31,10 +31,14 @@ using namespace te;
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
-    std::string hello;
 
+    static bool not_first_call = false;
 
-    Log("Hello");
+    if (not_first_call) {
+        return;
+    }
+
+    not_first_call = true;
 
     GL::on_window_size_change({ 1000,
                                 1000 });

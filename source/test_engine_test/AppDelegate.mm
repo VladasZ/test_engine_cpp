@@ -89,19 +89,16 @@ te::Screen* _screen;
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches
            withEvent:(UIEvent*)event {
-    Log("began");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
 }
 
 - (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-    Log("moved");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
 }
 
 - (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-    Log("ended");
     for (UITouch* touch in touches)
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
 }

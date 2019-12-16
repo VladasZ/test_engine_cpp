@@ -26,9 +26,9 @@ void XYZSlidersView::_setup() {
     sliders.y = new ui::LabeledSliderView();
     sliders.z = new ui::LabeledSliderView();
 
-    add_subview({ sliders.x,
-                  sliders.y,
-                  sliders.z });
+    add_subviews({ sliders.x,
+                   sliders.y,
+                   sliders.z });
 
     sliders.x->set_caption("X");
     sliders.y->set_caption("Y");

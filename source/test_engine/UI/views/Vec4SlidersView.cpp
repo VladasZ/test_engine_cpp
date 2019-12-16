@@ -25,10 +25,10 @@ void Vec4SlidersView::_setup() {
     _z_slider = new ui::LabeledSliderView();
     _w_slider = new ui::LabeledSliderView();
 
-    add_subview({ _x_slider,
-                  _y_slider,
-                  _z_slider,
-                  _w_slider });
+    add_subviews({ _x_slider,
+                   _y_slider,
+                   _z_slider,
+                   _w_slider });
 
     _x_slider->set_caption("X");
     _y_slider->set_caption("Y");

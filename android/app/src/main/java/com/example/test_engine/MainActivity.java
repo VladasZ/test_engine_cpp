@@ -12,6 +12,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.view.MotionEvent;
 
+import android.util.Log;
+
 
 import android.content.res.AssetManager;
 
@@ -43,7 +45,7 @@ public class MainActivity extends Activity {
         int actionIndex = event.getActionIndex();
         int actionId = event.getPointerId(actionIndex);
         int actionMasked = event.getActionMasked();
-        switch (actionMasked){
+        switch (actionMasked) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:{
                 touchBegan(event.getX(actionIndex), event.getY(actionIndex), actionId);

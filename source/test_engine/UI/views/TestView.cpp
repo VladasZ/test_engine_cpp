@@ -38,6 +38,9 @@ void TestView::_setup() {
 
     sliders = new Vec4SlidersView();
     add_subview(sliders);
+
+    switcher = new Switch();
+    add_subview(switcher);
     
     button->on_press.subscribe([] {
         Log("SOPOK");
@@ -74,6 +77,14 @@ void TestView::_layout() {
     revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));
     angle += 0.01;
 
+    auto switcher_size = 100.0f;
+
+    switcher->set_frame({
+        _frame.size.width - switcher_size - 20,
+        20,
+        switcher_size,
+        switcher_size / 2
+    });
 
     View::_layout();
 }

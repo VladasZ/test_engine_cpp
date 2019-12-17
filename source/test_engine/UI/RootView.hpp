@@ -24,6 +24,9 @@ public:
 
     void _layout() override;
 
+
+    static void set_draw_touches(bool);
+
 };
 
 }

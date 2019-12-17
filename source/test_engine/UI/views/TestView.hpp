@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Button.hpp"
+#include "Switch.hpp"
 #include "ImageView.hpp"
 #include "DrawingView.hpp"
 #include "AnalogStickView.hpp"
@@ -25,7 +26,9 @@ public:
 
     ui::View* revolving_view;
 
+
     ui::Button* button;
+    ui::Switch* switcher;
     ui::ImageView* image;
     ui::AnalogStickView* left_stick;
     ui::AnalogStickView* right_stick;

@@ -41,10 +41,6 @@ te::Screen* _screen;
 }
 
 - (void)update {
-    
-    //GL::set_clear_color(Color::turquoise);
-   // GL::clear();
-    
     _screen->update();
 }
 

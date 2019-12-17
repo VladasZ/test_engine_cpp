@@ -30,3 +30,7 @@ void RootView::_layout() {
     _calculate_absolute_frame();
     _layout_subviews();
 }
+
+void RootView::set_draw_touches(bool) {
+
+}

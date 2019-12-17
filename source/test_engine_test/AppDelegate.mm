@@ -33,9 +33,9 @@ te::Screen* _screen;
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
     
-   // _screen->set_scene(new TestScene());
+    _screen->set_scene(new TestScene());
 #ifndef NO_BOX2D
-   // _screen->set_level(new TestLevel());
+    _screen->set_level(new TestLevel());
 #endif
     _screen->set_view(new TestView());
 }

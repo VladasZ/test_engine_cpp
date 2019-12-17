@@ -9,8 +9,10 @@
 #include "Log.hpp"
 #include "Time.hpp"
 #include "Assets.hpp"
+#include "Dispatch.hpp"
 #include "TestView.hpp"
 
+using namespace cu;
 using namespace ui;
 using namespace gm;
 
@@ -37,7 +39,7 @@ void TestView::_setup() {
     sliders = new Vec4SlidersView();
     add_subview(sliders);
     
-    button->on_press.subscribe([]{
+    button->on_press.subscribe([] {
         Log("SOPOK");
     });
 

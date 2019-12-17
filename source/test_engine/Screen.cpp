@@ -18,6 +18,7 @@
 #include "Camera.hpp"
 #include "Screen.hpp"
 #include "Sprites.hpp"
+#include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
 #include "TestView.hpp"
@@ -93,6 +94,8 @@ void Screen::start_main_loop() {
 #endif
 
 void Screen::update() {
+
+    Dispatch::execute_tasks();
 
 	GL::set_clear_color(clear_color);
 	GL::clear();

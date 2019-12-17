@@ -11,6 +11,7 @@
 #include "Screen.hpp"
 #include "System.hpp"
 #include "GLDebug.hpp"
+#include "Dispatch.hpp"
 #include "AndroidSystem.hpp"
 #include "OpenGLHeaders.hpp"
 #include "ExceptionCatch.hpp"
@@ -92,18 +93,21 @@ Java_com_example_test_1engine_MainActivity_setAssetManager(JNIEnv* env, jobject,
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MainActivity_touchBegan(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
-    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Began);
-    ui::Input::process_touch_event(touch);
+    cu::Dispatch::on_main([=]{
+        ui::Input::process_touch_event(new ui::Touch(id, {x, y}, ui::Touch::Began));
+    });
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MainActivity_touchMoved(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
-    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Moved);
-    ui::Input::process_touch_event(touch);
+    cu::Dispatch::on_main([=]{
+        ui::Input::process_touch_event(new ui::Touch(id, {x, y}, ui::Touch::Moved));
+    });
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MainActivity_touchEnded(JNIEnv *env, jobject, jfloat x, jfloat y, jint id) {
-    auto touch = new ui::Touch(id, {x, y}, ui::Touch::Ended);
-    ui::Input::process_touch_event(touch);
+    cu::Dispatch::on_main([=]{
+        ui::Input::process_touch_event(new ui::Touch(id, {x, y}, ui::Touch::Ended));
+    });
 }

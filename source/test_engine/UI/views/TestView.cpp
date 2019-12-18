@@ -11,6 +11,7 @@
 #include "Assets.hpp"
 #include "Dispatch.hpp"
 #include "TestView.hpp"
+#include "RootView.hpp"
 
 using namespace cu;
 using namespace ui;
@@ -41,6 +42,10 @@ void TestView::_setup() {
 
     switcher = new Switch();
     add_subview(switcher);
+
+    switcher->on_value_changed.subscribe([](bool value) {
+        te::RootView::set_draw_touches(value);
+    });
     
     button->on_press.subscribe([] {
         Log("SOPOK");

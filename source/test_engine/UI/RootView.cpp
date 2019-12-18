@@ -16,14 +16,13 @@ using namespace ui;
 void RootView::_setup() {
     background_color = gm::Color::clear;
 
-#ifdef DRAW_TOUCHES
     Input::on_touch.subscribe([&](Touch* touch) {
+        if (!_draw_touches) return;
         auto view = View::dummy({ 5, 5 });
         view->set_center(touch->location);
         add_subview(view);
+        _touch_views.push_back(view);
     });
-#endif
-
 }
 
 void RootView::_layout() {
@@ -31,6 +30,12 @@ void RootView::_layout() {
     _layout_subviews();
 }
 
-void RootView::set_draw_touches(bool) {
-
+void RootView::set_draw_touches(bool value) {
+    _draw_touches = value;
+    if (!value) {
+        for (auto view : _touch_views) {
+            view->remove_from_superview();
+        }
+        _touch_views.clear();
+    }
 }

@@ -74,5 +74,11 @@ void TestScene::setup() {
 void TestScene::each_frame() {
     //monkey->draw_normals();
     draw_box(light->position());
-    camera->set_position(camera->position() + gm::Vector3 { 0, 0, 0.001f });
+    
+    static float camera_angle = 0.0f;
+    
+    auto point = Point::on_circle(6, camera_angle, {});
+    
+    camera->set_position({ point.x, point.y, 0.0f });
+    camera_angle += 0.01f;
 }

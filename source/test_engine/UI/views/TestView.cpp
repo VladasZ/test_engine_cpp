@@ -19,6 +19,9 @@ using namespace gm;
 
 void TestView::_setup() {
 
+    button = new Button();
+    add_subview(button);
+
     add_subview(revolving_view = View::dummy());
 
     add_subview(left_stick = new AnalogStickView());
@@ -30,12 +33,9 @@ void TestView::_setup() {
     right_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_right_stick_move(point);
     });
-    
-    button = new Button();
-    add_subview(button);
-    
-//    image = new ImageView({ 0, 0, 200, 200 }, Assets::images->cat);
-//    add_subview(image);
+
+    image = new ImageView({ 60, 80 }, Assets::images->cat);
+    add_subview(image);
 
     sliders = new Vec4SlidersView();
     add_subview(sliders);
@@ -47,8 +47,8 @@ void TestView::_setup() {
         te::RootView::set_draw_touches(value);
     });
     
-    button->on_press.subscribe([] {
-        Log("SOPOK");
+    button->on_press.subscribe([&] {
+        button->background_color = Color::random();
     });
 
 }
@@ -90,6 +90,8 @@ void TestView::_layout() {
         switcher_size,
         switcher_size / 2
     });
+
+    image->set_center({ _frame.size.width / 2, _frame.size.height - 100 });
 
     View::_layout();
 }

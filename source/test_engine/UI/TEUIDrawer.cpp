@@ -33,25 +33,26 @@ void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
-    if (rect.size.is_negative())
-        return;
+    if (rect.size.is_negative()) return;
 
-	if (image->is_monochrome())
-         Assets::shaders->ui_monochrome->use();
-	else
-		Assets::shaders->ui_texture->use();
+    if (image->is_monochrome()) {
+        Assets::shaders->ui_monochrome->use();
+    }
+    else {
+        Assets::shaders->ui_texture->use();
+    }
 
     GL::set_viewport(rect);
-	image->bind();
+    image->bind();
     Assets::buffers->fullscreen_image->draw();
 }
 
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
-	Assets::shaders->ui_path->use();
-	Assets::shaders->ui_path->set_uniform_color(path->color());
-	Assets::shaders->ui_path->set_size(rect.size);
-	static_cast<gl::Buffer*>(path->data())->draw();
+    Assets::shaders->ui_path->use();
+    Assets::shaders->ui_path->set_uniform_color(path->color());
+    Assets::shaders->ui_path->set_size(rect.size);
+    static_cast<gl::Buffer*>(path->data())->draw();
 }
 
 ui::PathData* TEUIDrawer::initialize_path_data(Path* path, const Color& color, PathData::DrawMode draw_mode) {
@@ -67,21 +68,21 @@ void TEUIDrawer::free_path_data(PathData* data) {
 #ifdef DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
-    case Mouse::CursorMode::Arrow:
-        GL::set_cursor_mode(GL::CursorMode::Arrow);
-        break;
-    case Mouse::CursorMode::Text:
-        GL::set_cursor_mode(GL::CursorMode::Text);
-        break;
-    case Mouse::CursorMode::Drag:
-        GL::set_cursor_mode(GL::CursorMode::Drag);
-        break;
-    case Mouse::CursorMode::HResize:
-        GL::set_cursor_mode(GL::CursorMode::HResize);
-        break;
-    case Mouse::CursorMode::VResize:
-        GL::set_cursor_mode(GL::CursorMode::VResize);
-        break;
+        case Mouse::CursorMode::Arrow:
+            GL::set_cursor_mode(GL::CursorMode::Arrow);
+            break;
+        case Mouse::CursorMode::Text:
+            GL::set_cursor_mode(GL::CursorMode::Text);
+            break;
+        case Mouse::CursorMode::Drag:
+            GL::set_cursor_mode(GL::CursorMode::Drag);
+            break;
+        case Mouse::CursorMode::HResize:
+            GL::set_cursor_mode(GL::CursorMode::HResize);
+            break;
+        case Mouse::CursorMode::VResize:
+            GL::set_cursor_mode(GL::CursorMode::VResize);
+            break;
     }
 }
 #endif

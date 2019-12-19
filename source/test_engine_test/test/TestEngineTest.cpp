@@ -7,6 +7,7 @@
 #include "TestView.hpp"
 #include "GLWrapper.hpp"
 #include "TestLevel.hpp"
+#include "TestScene.hpp"
 #include "EffectsScene.hpp"
 #include "OpenGLHeaders.hpp"
 #include "ExceptionCatch.hpp"
@@ -15,11 +16,11 @@
 void test_engine_test() {
 
     try {
-        te::Screen screen({ 1000, 680 });
+        te::Screen screen({ 800, 800 });
 
         screen.set_view(new TestView());
-       // screen.set_scene(new EffectsScene());
-       // screen.set_level(new TestLevel());
+        screen.set_scene(new TestScene());
+        screen.set_level(new TestLevel());
 
         screen.start_main_loop();
     }

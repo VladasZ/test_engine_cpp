@@ -14,7 +14,9 @@ struct Images {
 
     Image* cat;
     Image* palm;
+    Image* round;
     Image* square;
+    Image* scale_test;
 
     Images();
 };

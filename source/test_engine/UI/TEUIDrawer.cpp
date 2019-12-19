@@ -19,17 +19,26 @@ using namespace ui;
 using namespace gm;
 using namespace gl;
 
+//#define GL2
+
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::scissor(rect, [&] {
         GL::set_clear_color(color);
         GL::clear();
-    });
+        });
 }
 
 void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
+#ifdef GL2
     for (auto edge : rect.edges()) {
         fill_rect(edge, color);
     }
+#else
+    GL::set_viewport(rect);
+    Assets::shaders->ui->use();
+    Assets::shaders->ui->set_uniform_color(color);
+    Assets::buffers->fullscreen_outline->draw();
+#endif
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
@@ -68,21 +77,21 @@ void TEUIDrawer::free_path_data(PathData* data) {
 #ifdef DESKTOP_BUILD
 void TEUIDrawer::set_cursor_mode(ui::Mouse::CursorMode cursor_mode) {
     switch (cursor_mode) {
-        case Mouse::CursorMode::Arrow:
-            GL::set_cursor_mode(GL::CursorMode::Arrow);
-            break;
-        case Mouse::CursorMode::Text:
-            GL::set_cursor_mode(GL::CursorMode::Text);
-            break;
-        case Mouse::CursorMode::Drag:
-            GL::set_cursor_mode(GL::CursorMode::Drag);
-            break;
-        case Mouse::CursorMode::HResize:
-            GL::set_cursor_mode(GL::CursorMode::HResize);
-            break;
-        case Mouse::CursorMode::VResize:
-            GL::set_cursor_mode(GL::CursorMode::VResize);
-            break;
+    case Mouse::CursorMode::Arrow:
+        GL::set_cursor_mode(GL::CursorMode::Arrow);
+        break;
+    case Mouse::CursorMode::Text:
+        GL::set_cursor_mode(GL::CursorMode::Text);
+        break;
+    case Mouse::CursorMode::Drag:
+        GL::set_cursor_mode(GL::CursorMode::Drag);
+        break;
+    case Mouse::CursorMode::HResize:
+        GL::set_cursor_mode(GL::CursorMode::HResize);
+        break;
+    case Mouse::CursorMode::VResize:
+        GL::set_cursor_mode(GL::CursorMode::VResize);
+        break;
     }
 }
 #endif

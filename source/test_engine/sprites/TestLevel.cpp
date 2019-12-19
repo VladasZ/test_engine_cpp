@@ -20,7 +20,7 @@ using namespace sprites;
 
 TestLevel::TestLevel() {
 
-    box = new DynamicBody(Assets::images->palm, { 1, 5 }, { 3, 10 });
+    box = new DynamicBody(Assets::images->scale_test, { 1, 2 }, { 3, 10 });
     add_sprite(box);
 
     box->add_rotation(0.1);

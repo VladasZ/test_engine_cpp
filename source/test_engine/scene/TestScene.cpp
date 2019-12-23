@@ -69,6 +69,5 @@ void TestScene::setup() {
 }
 
 void TestScene::each_frame() {
-    monkey->draw_normals();
     draw_box(light->position());
 }

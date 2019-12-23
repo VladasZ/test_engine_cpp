@@ -180,6 +180,10 @@ void Screen::setup_input() {
 
 #if DESKTOP_BUILD
 
+	ui::Input::on_right_button_drag.subscribe([&](ui::Touch* touch) {
+		_scene->camera->move_orbit(touch->location / 100000);
+	});
+
 	GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state) {
 		auto ui_button = ui::Mouse::Button::Left;
 		if (button == GL::MouseButton::Right) ui_button = ui::Mouse::Button::Right;

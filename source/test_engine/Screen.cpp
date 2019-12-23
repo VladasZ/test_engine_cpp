@@ -181,13 +181,21 @@ void Screen::setup_input() {
 #if DESKTOP_BUILD
 
 	ui::Input::on_right_button_drag.subscribe([&](ui::Touch* touch) {
-		_scene->camera->move_orbit(touch->location / 100000);
+		static ui::Touch::ID prev_id = -1;
+		if (touch->id == prev_id) {
+			_scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
+		}
+		prev_id = touch->id;
 	});
 
 	GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state) {
 		auto ui_button = ui::Mouse::Button::Left;
-		if (button == GL::MouseButton::Right) ui_button = ui::Mouse::Button::Right;
-		else if (button == GL::MouseButton::Middle) ui_button = ui::Mouse::Button::Middle;
+		if (button == GL::MouseButton::Right) {
+			ui_button = ui::Mouse::Button::Right;
+		}
+		else if (button == GL::MouseButton::Middle) {
+			ui_button = ui::Mouse::Button::Middle;
+		}
 		ui::input::mouse->set_button_state(ui_button,
 			state == GL::ButtonState::Down ?
 			ui::Mouse::ButtonState::Down :
@@ -196,11 +204,6 @@ void Screen::setup_input() {
 
 	GL::on_cursor_moved.subscribe([&](gm::Point position) {
 		ui::input::mouse->set_position(position);
-//		if (ui::Mouse::button_state == ui::Mouse::ButtonState::Down && ui::Mouse::button == ui::Mouse::Button::Left) {
-//			auto shift = ui::Mouse::frame_shift;
-//			shift.invert();
-//			_scene->camera->move_orbit(shift / 200);
-//		}
 	});
 
 	GL::on_scroll_moved.subscribe([&](gm::Point position) {

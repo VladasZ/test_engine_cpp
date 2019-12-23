@@ -16,11 +16,11 @@
 void test_engine_test() {
 
     try {
-        te::Screen screen({ 800, 800 });
+        te::Screen screen({ 1200, 800 });
 
         screen.set_view(new TestView());
         screen.set_scene(new TestScene());
-        screen.set_level(new TestLevel());
+       // screen.set_level(new TestLevel());
 
         screen.start_main_loop();
     }

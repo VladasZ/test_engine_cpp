@@ -59,26 +59,16 @@ void TestScene::setup() {
     light = new scene::PointLight({ 1, 1, 1 });
     light->velocity = { 0.011f, 0, 0.0f };
 
-
     auto vector1 = new scene::VectorModel();
 
     add_object(vector1);
 
     add_object(marker_box = new scene::BoxModel({ 1, 1, 1 }));
 
-
-
     add_light(light);
 }
 
 void TestScene::each_frame() {
-    //monkey->draw_normals();
+    monkey->draw_normals();
     draw_box(light->position());
-    
-    static float camera_angle = 0.0f;
-    
-    auto point = Point::on_circle(6, camera_angle, {});
-    
-    camera->set_position({ point.x, point.y, 0.0f });
-    camera_angle += 0.01f;
 }

@@ -24,6 +24,8 @@ void TestView::_setup() {
 
     add_subview(revolving_view = View::dummy());
 
+
+#ifndef DESKTOP_BUILD
     add_subview(left_stick = new AnalogStickView());
     left_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_left_stick_move(point);
@@ -33,6 +35,7 @@ void TestView::_setup() {
     right_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_right_stick_move(point);
     });
+#endif
 
     image = new ImageView({ 60, 80 }, Assets::images->cat);
     add_subview(image);
@@ -66,6 +69,8 @@ void TestView::_layout() {
     
     static const float margin = 40;
     
+
+#ifndef DESKTOP_BUILD
     left_stick->set_center({
         left_stick->frame().size.width / 2 + margin,
         _frame.size.height - left_stick->frame().size.height / 2 - margin,
@@ -75,6 +80,7 @@ void TestView::_layout() {
         _frame.size.width - right_stick->frame().size.width / 2 - margin,
         _frame.size.height - right_stick->frame().size.height / 2 - margin,
     });
+#endif
 
     sliders->set_frame({ 0, 100, 200, 300 });
 

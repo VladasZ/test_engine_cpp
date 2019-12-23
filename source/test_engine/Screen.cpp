@@ -135,7 +135,8 @@ void Screen::update() {
 
 
 void Screen::setup_input() {
-    
+
+#ifndef DESKTOP_BUILD
     TestView::on_left_stick_move.subscribe([&](auto point){
        // _scene->camera->velocity = point / 100;
     });
@@ -143,6 +144,7 @@ void Screen::setup_input() {
     TestView::on_right_stick_move.subscribe([&](auto point){
        // _scene->camera->orbit_velocity = point / 100;
     });
+#endif
     
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
@@ -151,23 +153,29 @@ void Screen::setup_input() {
 			return;
 		}
 
-		if (key == 'W')
+		if (key == 'W') {
 			_scene->camera->fly(scene::Flyable::Direction::Forward);
+		}
 
-		if (key == 'S')
+		if (key == 'S') {
 			_scene->camera->fly(scene::Flyable::Direction::Back);
+		}
 
-		if (key == 'A')
+		if (key == 'A') {
 			_scene->camera->fly(scene::Flyable::Direction::Left);
+		}
 
-		if (key == 'D')
+		if (key == 'D') {
 			_scene->camera->fly(scene::Flyable::Direction::Right);
+		}
 
-		if (key == 'E')
+		if (key == 'E') {
 			_scene->camera->fly(scene::Flyable::Direction::Up);
+		}
 
-		if (key == 'Q')
+		if (key == 'Q') {
 			_scene->camera->fly(scene::Flyable::Direction::Down);
+		}
 	});
 
 #if DESKTOP_BUILD
@@ -192,7 +200,8 @@ void Screen::setup_input() {
 	});
 
 	GL::on_scroll_moved.subscribe([&](gm::Point position) {
-		//_scene->camera->move_orbit(position / 50);
+		_scene->camera->zoom(position.y);
+		Log(position.to_string());
 	});
 
 	GL::on_key_pressed.subscribe([&](char key, unsigned int state) {

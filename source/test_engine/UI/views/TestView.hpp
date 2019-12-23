@@ -18,10 +18,7 @@
 class TestView : public ui::View {
 
 public:
-    
-    static inline Event<gm::Point> on_left_stick_move;
-    static inline Event<gm::Point> on_right_stick_move;
-
+   
     using ui::View::View;
 
     ui::View* revolving_view;
@@ -30,8 +27,14 @@ public:
     ui::Button* button;
     ui::Switch* switcher;
     ui::ImageView* image;
+
+#ifndef DESKTOP_BUILD
+    static inline Event<gm::Point> on_left_stick_move;
+    static inline Event<gm::Point> on_right_stick_move;
+
     ui::AnalogStickView* left_stick;
     ui::AnalogStickView* right_stick;
+#endif
 
     static inline Vec4SlidersView* sliders = nullptr;
 

@@ -16,7 +16,7 @@
 void test_engine_test() {
 
     try {
-        te::Screen screen({ 1200, 800 });
+        te::Screen screen({ 800, 680 });
 
         screen.set_view(new TestView());
         screen.set_scene(new TestScene());

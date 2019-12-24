@@ -41,6 +41,7 @@ Shaders::Shaders() {
     ui_texture    = new gl::Shader(Paths::Shaders::ui() / "ui_texture"   );
     ui_monochrome = new gl::Shader(Paths::Shaders::ui() / "ui_monochrome");
 
+    simple3D        = new gl::Shader(Paths::Shaders::isometric() / "simple3D"       );
     colored3D       = new gl::Shader(Paths::Shaders::isometric() / "colored3D"      );
     textured3D      = new gl::Shader(Paths::Shaders::isometric() / "textured3D"     );
     diffuse_colored = new gl::Shader(Paths::Shaders::isometric() / "diffuse_colored");

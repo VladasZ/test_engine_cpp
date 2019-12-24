@@ -29,8 +29,8 @@ void TestScene::setup() {
     camera->flying_speed = 0.2f;
 
 #ifndef NO_ASSIMP
-    add_object(monkey = ModelImporter::import("Monkey.blend"));
-    monkey->set_position({ 2, 1, 1 });
+   // add_object(monkey = ModelImporter::import("Monkey.blend"));
+   // monkey->set_position({ 2, 1, 1 });
 #endif
 
 //    cube = ModelImporter::import("textured_cube.blend",
@@ -43,11 +43,11 @@ void TestScene::setup() {
 	walls.z->set_position({ 0, 0, -1.0f });
 
     add_object(walls.x = new scene::Plane(Size { 200, 200 }));
-	walls.x->set_position({ -5.0f, 0, 0.0f });
+	walls.x->set_position({ -20.0f, 0, 0.0f });
 	walls.x->look_at({ 1, 0, 0 });
 
     add_object(walls.y = new scene::Plane(Size { 200, 200 }));
-	walls.y->set_position({ 0, -5.0f, 0.0f });
+	walls.y->set_position({ 0, -20.0f, 0.0f });
 	walls.y->look_at({ 0, 1, 0 });
 
 	walls.x->color = gm::Color::red;

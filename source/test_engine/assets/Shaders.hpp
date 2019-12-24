@@ -19,6 +19,7 @@ struct Shaders {
     gl::Shader* ui_texture;
     gl::Shader* ui_monochrome;
 
+    gl::Shader* simple3D;
     gl::Shader* colored3D;
     gl::Shader* textured3D;
     gl::Shader* diffuse_colored;

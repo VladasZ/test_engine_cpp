@@ -130,18 +130,19 @@ void Screen::update() {
 
 	Screen::frames_drawn++;
 	Events::frame_drawn(FPS);
-	
+
+	System::sleep(0.03f);
 }
 
 
 void Screen::setup_input() {
 
 #ifndef DESKTOP_BUILD
-    TestView::on_left_stick_move.subscribe([&](auto point){
+    TestView::on_left_stick_move.subscribe([&](auto point) {
        // _scene->camera->velocity = point / 100;
     });
     
-    TestView::on_right_stick_move.subscribe([&](auto point){
+    TestView::on_right_stick_move.subscribe([&](auto point) {
        // _scene->camera->orbit_velocity = point / 100;
     });
 #endif
@@ -208,7 +209,6 @@ void Screen::setup_input() {
 
 	GL::on_scroll_moved.subscribe([&](gm::Point position) {
 		_scene->camera->zoom(position.y);
-		Log(position.to_string());
 	});
 
 	GL::on_key_pressed.subscribe([&](char key, unsigned int state) {

@@ -38,8 +38,6 @@ public:
 
 };
 
-constexpr auto cats_age = mapping::Property("age", &Cat::height);
-
 constexpr auto CatsInfo = mapping::ClassInfo(
         "Cat",
         std::make_tuple(
@@ -47,24 +45,47 @@ constexpr auto CatsInfo = mapping::ClassInfo(
                 mapping::Property("height", &Cat::height)
                 ));
 
-constexpr auto DogsInfo = mapping::ClassInfo(
-        "Dog",
-        std::make_tuple(
-                mapping::Property("height", &Dog::height)
-        ));
+//constexpr auto DogsInfo = mapping::ClassInfo(
+//        "Dog",
+//        std::make_tuple(
+//                mapping::Property("height", &Dog::height)
+//        ));
 
 
-constexpr auto mapper = mapping::Mapper(std::make_tuple(CatsInfo, DogsInfo));
+//constexpr auto mapper = mapping::Mapper(std::make_tuple(CatsInfo, DogsInfo));
+//
+//
+constexpr auto speec = std::make_tuple(11, 23, 35, 49.4);
+
+constexpr auto get_val() {
+    int result = 0;
+    cu::iterate_tuple(speec, [&](auto val) {
+        if (val > 20 && val < 40) {
+            result = val;
+        }
+    });
+    return result;
+}
+
+constexpr auto spik = get_val();
 
 int main() {
 
-    Log(CatsInfo.to_string());
-    Log(mapper.to_string());
 
+    static_assert(spik > 20);
 
-    if constexpr (mapper.exists<Cat>()) {
-        
-    }
+//
+//    Log(CatsInfo.to_string());
+//    Log(mapper.to_string());
+//
+//    Log(get_val());
+//
+//
+//
+//
+//    if constexpr (mapper.exists<Cat>()) {
+//
+//    }
 
     return 0;
 }

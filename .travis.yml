@@ -38,7 +38,7 @@ matrix:
           install: 
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script: 
-            - python3 build.py --build
+            - python3 build.py --build --no-box2d
 
         - os: linux
           name: Android

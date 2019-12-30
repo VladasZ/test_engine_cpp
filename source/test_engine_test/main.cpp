@@ -43,7 +43,7 @@ constexpr auto CatsInfo = mapping::ClassInfo(
         std::make_tuple(
                 mapping::Property("age",    &Cat::age   ),
                 mapping::Property("height", &Cat::height)
-                ));
+        ));
 
 //constexpr auto DogsInfo = mapping::ClassInfo(
 //        "Dog",
@@ -71,8 +71,9 @@ constexpr auto spik = get_val();
 
 int main() {
 
+    test_engine_test();
 
-    static_assert(spik > 20);
+    //  static_assert(spik > 20);
 
 //
 //    Log(CatsInfo.to_string());

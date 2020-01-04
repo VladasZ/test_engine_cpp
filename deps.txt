@@ -1,7 +1,4 @@
 ui
-image
 scene
 sprites
-geometry
-cpp_utils
 gl_wrapper

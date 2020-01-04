@@ -1,17 +1,11 @@
 
 #ifdef DESKTOP_BUILD
 
-#include "GLTest.hpp"
 #include "System.hpp"
 #include "Screen.hpp"
 #include "TestView.hpp"
-#include "GLWrapper.hpp"
-#include "TestLevel.hpp"
 #include "TestScene.hpp"
-#include "EffectsScene.hpp"
-#include "OpenGLHeaders.hpp"
 #include "ExceptionCatch.hpp"
-#include "TestEngineTest.hpp"
 
 void test_engine_test() {
 

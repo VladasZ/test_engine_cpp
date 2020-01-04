@@ -226,8 +226,12 @@ void Screen::set_size(const gm::Size& size) {
 	Assets::shaders->sprite->use();
 	Assets::shaders->sprite->set_resolution(size);
 	_root_view->set_frame({ size });
-	if (_scene)
-		_scene->camera->resolution = size;
+	if (_view) {
+        _view->set_frame({ size });
+    }
+	if (_scene) {
+        _scene->camera->resolution = size;
+    }
 	update();
 	Events::on_screen_size_change(size);
 }
@@ -257,6 +261,7 @@ sprites::Level* Screen::level() const {
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);
     _view = view;
+    _view->set_frame({ size });
 }
 
 ui::View* Screen::view() const {

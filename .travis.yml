@@ -8,7 +8,7 @@ matrix:
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build --ios --no-ios-exe
+            - python3 build.py --build --ios --no-conan --no-ios-exe
         
         - os: osx
           name: iOS device

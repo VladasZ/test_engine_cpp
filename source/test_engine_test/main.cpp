@@ -37,41 +37,129 @@ namespace gm {
 namespace ui {
 
     MAKE_CLASS_INFO(View, std::tuple(
-            MAKE_PROPERTY("color", &View::background_color),
-            MAKE_PROPERTY("frame", &View::_frame)
+            MAKE_PROPERTY("color",    &View::background_color)
+            , MAKE_PROPERTY("frame",    &View::_frame)
+            //  , MAKE_PROPERTY("subviews", &View::_subviews)
     ));
 
 }
 
+
+class TestMember { public:
+    int c = 0, d = 0;
+    std::string to_string() const { return std::string() + VarString(c) + " " + VarString(d); }
+};
+
+class TestClass {
+public:
+
+    int a = 1;
+    int b = 1;
+    char lett = 1;
+
+    std::vector<int> int_vector;
+
+    std::vector<TestMember> members;
+    std::vector<TestMember*> members_pointers;
+
+    TestMember* member_pointer = nullptr;
+
+    TestClass() = default;
+    ~TestClass() {
+        if (member_pointer != nullptr) {
+            delete member_pointer;
+        }
+        for (auto mem : members_pointers) {
+            delete mem;
+        }
+    }
+
+    std::string to_string() const { return VarString(a) + " " + VarString(b) + " " + VarString(lett) + " " + VarString(member_pointer->to_string());
+    }
+};
+
+MAKE_CLASS_INFO(TestMember, std::tuple(
+          MAKE_PROPERTY("a", &TestMember::c)
+        , MAKE_PROPERTY("b", &TestMember::d)
+));
+
+MAKE_CLASS_INFO(TestClass, std::tuple(
+          MAKE_PROPERTY("a",                &TestClass::a)
+        , MAKE_PROPERTY("b",                &TestClass::b)
+        , MAKE_PROPERTY("lett",             &TestClass::lett)
+        , MAKE_PROPERTY("int_vector",       &TestClass::int_vector)
+        , MAKE_PROPERTY("member_pointer",   &TestClass::member_pointer)
+        , MAKE_PROPERTY("members",          &TestClass::members)
+        , MAKE_PROPERTY("members_pointers", &TestClass::members_pointers)
+));
+
 MAKE_MAPPER(
 
-        gm::InfoOfColor,
-        gm::InfoOfPoint,
-        gm::InfoOfSize,
-        gm::InfoOfRect,
+//          gm::InfoOfColor
+//        , gm::InfoOfPoint
+//        , gm::InfoOfSize
+//        , gm::InfoOfRect
+//
+//        , ui::InfoOfView
 
-        ui::InfoOfView
+        InfoOfTestMember,
+        InfoOfTestClass
 
-        );
+);
 
 constexpr auto json_mapper = mapping::JSONMapper<mapper>();
 
+TestClass cl;
 
-constexpr gm::Color test { 1, 2, 3 };
-constexpr gm::Color test2 { 1, 2, 3 };
+template <class T, class ValueType = typename T::value_type>
+constexpr bool is_array() {
+    return true;
+}
 
-static_assert(mapper.is_equals(test, test2));
+template <class T>
+constexpr bool is_array(std::enable_if_t<std::is_integral_v<T>> = nullptr) {
+    return false;
+}
+
+using ValueType = std::vector<int>::value_type;
+
+//static_assert(is_defined<std::vector<int>>);
+//
+//static_assert(is_defined<int::value_type>);
 
 int main() {
-    //test_engine_test();
-
-    View view;
-
-    view.background_color = gm::Color::gray;
-    view._frame = { 1, 2, 3, 4 };
 
 
-    json_mapper.test(view);
+    cl.a = 10;
+    cl.b = 20;
+    cl.lett = 'A';
+    cl.member_pointer = new TestMember();
+    cl.member_pointer->c = 30;
+    cl.member_pointer->d = 40;
+
+    cl.int_vector = { 44, 55, 66 };
+
+    cl.members.push_back({ 1, 2 });
+    cl.members.push_back({ 3, 4 });
+
+    cl.members_pointers.push_back(new TestMember { 5, 6 });
+    cl.members_pointers.push_back(new TestMember { 7, 8 });
+
+    mapper.get_property(&TestClass::int_vector, [&](const auto& property) {
+        Log(property.to_string());
+    });
+
+    mapper.get_property(&TestClass::members, [&](const auto& property) {
+        Log(property.to_string());
+    });
+
+    mapper.get_property(&TestClass::members_pointers, [&](const auto& property) {
+       Log(property.to_string());
+    });
+
+  //  for (int i = 0; i < 5; i++) {
+        json_mapper.test(cl);
+  //  }
 
 
     return 0;

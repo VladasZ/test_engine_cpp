@@ -20,6 +20,7 @@ using namespace gm;
 void TestView::_setup() {
 
     button = new Button();
+    button->set_caption("Button");
     add_subview(button);
 
     add_subview(revolving_view = View::dummy());
@@ -37,11 +38,11 @@ void TestView::_setup() {
     });
 #endif
 
-//    image = new ImageView({ 60, 80 }, Assets::images->cat);
-//    add_subview(image);
+    image = new ImageView({ 60, 80 }, Assets::images->cat);
+    add_subview(image);
 
-//    sliders = new Vec4SlidersView();
-//    add_subview(sliders);
+    sliders = new Vec4SlidersView();
+    add_subview(sliders);
 
     switcher = new Switch();
     add_subview(switcher);

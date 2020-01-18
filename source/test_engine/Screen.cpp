@@ -146,7 +146,7 @@ void Screen::setup_input() {
        // _scene->camera->orbit_velocity = point / 100;
     });
 #endif
-    
+
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
 		if (event == ui::Keyboard::Event::Up) {

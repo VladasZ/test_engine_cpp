@@ -1,14 +1,15 @@
 
 #ifdef DESKTOP_BUILD
 
-#include "View.hpp"
+#include "GMMapping.hpp"
+#include "UIMapping.hpp"
+
+
+#include "Screen.hpp"
 #include "TestView.hpp"
 #include "JsonMapper.hpp"
 #include "TestMappingModels.hpp"
 #include "TestEngineTest.hpp"
-
-#include "GMMapping.hpp"
-#include "UIMapping.hpp"
 
 using namespace ui;
 using namespace mapping;
@@ -27,44 +28,30 @@ MAKE_MAPPER(te_mapper,
             gm::InfoOfSize,
             gm::InfoOfRect,
 
-            ui::InfoOfView
+            ui::InfoOfView,
+            ui::InfoOfLabel
 
 );
 
 constexpr auto json_mapper = mapping::JSONMapper<te_mapper>();
 
+auto view = new View();
+auto label = new Label();
+
 int main() {
 
-    ui::View* view = new View();
 
-    ui::View* subview = new ui::View();
-    subview->add_subview(new ui::View());
-    subview->add_subview(new ui::View());
-    subview->add_subview(new ui::View());
-    subview->add_subview(new ui::View());
+    json_mapper.print(view);
+    json_mapper.print(label);
 
-    subview->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->add_subview(new ui::View());
+    return 0;
 
-    subview->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->add_subview(new ui::View());
 
-    subview->_subviews.back()->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->_subviews.back()->add_subview(new ui::View());
-    subview->_subviews.back()->_subviews.back()->_subviews.back()->add_subview(new ui::View());
+    auto screen = new te::Screen({1000, 1000});
+    screen->clear_color = gm::Color::gray;
+    screen->set_view(new TestView());
+    screen->start_main_loop();
 
-    view->add_subview(subview);
-    view->add_subview(subview);
-    view->add_subview(subview);
-    view->add_subview(subview);
-
-    while(true) {
-        json_mapper.test(view);
-    }
 
     return 0;
 }

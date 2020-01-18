@@ -31,11 +31,7 @@ namespace ui {
 
 
     MAKE_CLASS_INFO(Label,
-      MAKE_PROPERTY("frame",                    &Label::_frame)
-    , MAKE_PROPERTY("subviews",                 &Label::_subviews)
-    , MAKE_PROPERTY("color",                    &Label::background_color)
-    , MAKE_PROPERTY("user_interaction_enabled", &Label::_user_interaction_enabled)
-    , MAKE_PROPERTY("text",                     &Label::_text)
+            MAKE_PROPERTY("text",                     &Label::_text)
     );
 
 }

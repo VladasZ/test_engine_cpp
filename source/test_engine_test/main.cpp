@@ -36,7 +36,7 @@ MAKE_MAPPER(te_mapper,
 
 constexpr auto json_mapper = mapping::JSONMapper<te_mapper>();
 
-auto view = new View();
+auto view  = new View();
 auto label = new Label();
 
 
@@ -48,9 +48,16 @@ static_assert(std::is_base_of_v<a, c>);
 
 int main() {
 
+    label->_text = "alala";
+
+
 //
     json_mapper.print(view);
     json_mapper.print(label);
+
+    while(true) {
+        json_mapper.test(label);
+    }
 
     return 0;
 

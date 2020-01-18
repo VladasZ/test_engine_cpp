@@ -28,7 +28,8 @@ MAKE_MAPPER(te_mapper,
             gm::InfoOfSize,
             gm::InfoOfRect,
 
-            ui::InfoOfView,
+            ui::InfoOfView
+            ,
             ui::InfoOfLabel
 
 );
@@ -38,9 +39,16 @@ constexpr auto json_mapper = mapping::JSONMapper<te_mapper>();
 auto view = new View();
 auto label = new Label();
 
+
+class a {};
+class b : a {};
+class c : b {};
+
+static_assert(std::is_base_of_v<a, c>);
+
 int main() {
 
-
+//
     json_mapper.print(view);
     json_mapper.print(label);
 

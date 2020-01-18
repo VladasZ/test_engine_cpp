@@ -5,6 +5,7 @@
 #include "UIMapping.hpp"
 
 
+
 #include "Screen.hpp"
 #include "TestView.hpp"
 #include "JsonMapper.hpp"
@@ -28,9 +29,9 @@ MAKE_MAPPER(te_mapper,
             gm::InfoOfSize,
             gm::InfoOfRect,
 
-            ui::InfoOfView
-            ,
-            ui::InfoOfLabel
+            ui::InfoOfView,
+            ui::InfoOfLabel,
+            ui::InfoOfFont
 
 );
 
@@ -49,10 +50,10 @@ static_assert(std::is_base_of_v<a, c>);
 int main() {
 
     label->_text = "alala";
-
+    label->_font = new Font();
 
 //
-    json_mapper.print(view);
+//    json_mapper.print(view);
     json_mapper.print(label);
 
     while(true) {

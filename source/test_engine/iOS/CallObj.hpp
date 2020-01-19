@@ -8,15 +8,17 @@
 
 #pragma once
 
+#ifdef APPLE
+
 #include <string>
 #include <vector>
 
 namespace obj_c {
-    
-    using strings = std::vector<std::string>;
-    
+
     extern const std::string work_directory_path;
     
     void show_alert(const std::string& message);
-    strings ls(const std::string& path);
+    std::vector<std::string> ls(const std::string& path);
 }
+
+#endif

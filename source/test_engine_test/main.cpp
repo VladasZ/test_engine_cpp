@@ -49,18 +49,18 @@ static_assert(std::is_base_of_v<a, c>);
 
 int main() {
 
-    label->_text = "alala";
-    label->_font = new Font();
+//    label->_text = "alala";
+//    label->_font = new Font();
 
 //
 //    json_mapper.print(view);
-    json_mapper.print(label);
-
-    while(true) {
-        json_mapper.test(label);
-    }
-
-    return 0;
+//    json_mapper.print(label);
+//
+//    while(true) {
+//        json_mapper.test(label);
+//    }
+//
+//    return 0;
 
 
     auto screen = new te::Screen({1000, 1000});

@@ -6,6 +6,8 @@
 //  Copyright © 2017 VladasZ. All rights reserved.
 //
 
+#ifdef APPLE
+
 #include "CallObj.hpp"
 #include "OBJBridge.h"
 
@@ -18,9 +20,12 @@ void obj_c::show_alert(const string& message) {
     [OBJBridge showAlert:message.c_str()];
 }
 
-strings obj_c::ls(const std::string& path) {
+vector<string> obj_c::ls(const string& path) {
     strings result;
-    for (NSString* file in [OBJBridge ls:path.c_str()])
+    for (NSString* file in [OBJBridge ls:path.c_str()]) {
         result.push_back([file UTF8String]);
+    }
     return result;
 }
+
+#endif

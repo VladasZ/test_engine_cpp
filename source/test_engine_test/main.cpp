@@ -64,21 +64,10 @@ int main() {
 //
 //    return 0;
 
-
-    std::thread([]{
-        cu::System::alert("Koo");
-    }).detach();
-
-
-    while(true) {
-        Log("hello");
-    }
-
-
-//    auto screen = new te::Screen({1000, 1000});
-//    screen->clear_color = gm::Color::gray;
-//    screen->set_view(new TestView());
-//    screen->start_main_loop();
+    auto screen = new te::Screen({1000, 1000});
+    screen->clear_color = gm::Color::gray;
+    screen->set_view(new TestView());
+    screen->start_main_loop();
 
 
     return 0;

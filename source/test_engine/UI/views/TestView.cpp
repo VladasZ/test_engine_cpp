@@ -8,6 +8,7 @@
 
 #include "Log.hpp"
 #include "Time.hpp"
+#include "System.hpp"
 #include "Assets.hpp"
 #include "Dispatch.hpp"
 #include "TestView.hpp"
@@ -52,6 +53,7 @@ void TestView::_setup() {
     });
     
     button->on_press.subscribe([&] {
+        cu::System::alert("Hellou");
         button->background_color = Color::random();
     });
 

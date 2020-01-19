@@ -47,6 +47,8 @@ class c : b {};
 
 static_assert(std::is_base_of_v<a, c>);
 
+#include <thread>
+
 int main() {
 
 //    label->_text = "alala";
@@ -63,10 +65,20 @@ int main() {
 //    return 0;
 
 
-    auto screen = new te::Screen({1000, 1000});
-    screen->clear_color = gm::Color::gray;
-    screen->set_view(new TestView());
-    screen->start_main_loop();
+    std::thread([]{
+        cu::System::alert("Koo");
+    }).detach();
+
+
+    while(true) {
+        Log("hello");
+    }
+
+
+//    auto screen = new te::Screen({1000, 1000});
+//    screen->clear_color = gm::Color::gray;
+//    screen->set_view(new TestView());
+//    screen->start_main_loop();
 
 
     return 0;

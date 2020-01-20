@@ -131,7 +131,7 @@ void Screen::update() {
 	Screen::frames_drawn++;
 	Events::frame_drawn(FPS);
 
-	System::sleep(0.03f);
+	//System::sleep(0.03f);
 }
 
 
@@ -148,6 +148,10 @@ void Screen::setup_input() {
 #endif
 
 	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+
+	    if (_scene == nullptr) {
+            return;;
+	    }
 
 		if (event == ui::Keyboard::Event::Up) {
 			_scene->camera->stop();

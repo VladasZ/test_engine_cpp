@@ -61,6 +61,7 @@ void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     Assets::shaders->ui_path->use();
     Assets::shaders->ui_path->set_uniform_color(path->color());
     Assets::shaders->ui_path->set_size(rect.size);
+    static_cast<gl::Buffer*>(path->data())->draw_mode = GL::DrawMode::LineStrip;
     static_cast<gl::Buffer*>(path->data())->draw();
 }
 

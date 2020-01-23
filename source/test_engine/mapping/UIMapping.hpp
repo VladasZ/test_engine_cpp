@@ -21,6 +21,13 @@ static_assert(false, "Mapping headers must be included only once.");
 #define UNPRIVATE_HEADER "Label.hpp"
 #include "MappingUnprivate.hpp"
 
+#define UNPRIVATE_HEADER "Button.hpp"
+#include "MappingUnprivate.hpp"
+
+#define UNPRIVATE_HEADER "Switch.hpp"
+#include "MappingUnprivate.hpp"
+
+
 #include "Mapper.hpp"
 
 
@@ -41,6 +48,14 @@ namespace ui {
     MAKE_CLASS_INFO(Label,
                     MAKE_PROPERTY("font", &Label::_font),
                     MAKE_PROPERTY("text", &Label::_text)
+    );
+
+    MAKE_CLASS_INFO(Button,
+                    MAKE_PROPERTY("caption_label", &Button::_caption_label)
+    );
+
+    MAKE_CLASS_INFO(Switch,
+                    MAKE_PROPERTY("is_selected", &Switch::_is_selected)
     );
 
 }

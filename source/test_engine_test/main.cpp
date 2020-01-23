@@ -9,8 +9,9 @@
 #include "Screen.hpp"
 #include "TestView.hpp"
 #include "JsonMapper.hpp"
-#include "TestMappingModels.hpp"
+#include "JsonUnpacker.hpp"
 #include "TestEngineTest.hpp"
+#include "TestMappingModels.hpp"
 
 using namespace ui;
 using namespace mapping;
@@ -19,6 +20,21 @@ MAKE_CLASS_INFO(Simple,
                 MAKE_PROPERTY("a", &Simple::a)
 );
 
+class TestPackView : public View {
+
+public:
+
+    using View::View;
+
+    View*  some_view  = new View ({  10,  11,  12,  13 });
+    Label* some_label = new Label({ 100, 200, 300, 400 });
+
+};
+
+MAKE_CLASS_INFO(TestPackView,
+                MAKE_PROPERTY("some_view",  &TestPackView::some_view),
+                MAKE_PROPERTY("some_label", &TestPackView::some_label)
+        );
 
 MAKE_MAPPER(te_mapper,
 
@@ -31,38 +47,28 @@ MAKE_MAPPER(te_mapper,
 
             ui::InfoOfView,
             ui::InfoOfLabel,
-            ui::InfoOfFont
+            ui::InfoOfFont,
+
+            InfoOfTestPackView
 
 );
 
 constexpr auto json_mapper = mapping::JSONMapper<te_mapper>();
 
+constexpr auto json_unpacker = mapping::JsonUnpacker<ui::View, json_mapper>();
+
 auto view  = new View();
 auto label = new Label();
 
-
-class a {};
-class b : a {};
-class c : b {};
-
-static_assert(std::is_base_of_v<a, c>);
-
-#include <thread>
+auto pack_view = new TestPackView();
 
 int main() {
 
-//    label->_text = "alala";
-//    label->_font = new Font();
+    pack_view->some_label->_text = "spes";
 
-//
-//    json_mapper.print(view);
-//    json_mapper.print(label);
-//
-//    while(true) {
-//        json_mapper.test(label);
-//    }
-//
-//    return 0;
+    Log(json_unpacker.pack_to_json_string(pack_view));
+
+    return 0;
 
     auto screen = new te::Screen({1000, 1000});
     screen->clear_color = gm::Color::gray;

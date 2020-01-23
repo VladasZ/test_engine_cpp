@@ -23,7 +23,6 @@ public:
 
     ui::View* revolving_view;
 
-
     ui::Button* button;
     ui::Switch* switcher;
     ui::ImageView* image;

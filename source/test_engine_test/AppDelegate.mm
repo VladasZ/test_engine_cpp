@@ -13,6 +13,7 @@
 
 #import "AppDelegate.h"
 
+#import "Log.hpp"
 #import "Input.hpp"
 #import "Screen.hpp"
 #import "TestView.hpp"

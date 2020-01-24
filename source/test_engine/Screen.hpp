@@ -13,10 +13,13 @@
 #include "Level.hpp"
 #include "Scene.hpp"
 #include "RootView.hpp"
+#include "DebugInfoView.hpp"
+
 
 #ifdef DEBUG_VIEW
 class DebugInfoView;
 #endif
+
 
 namespace te {
 

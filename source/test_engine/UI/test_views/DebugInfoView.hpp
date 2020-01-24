@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "Debug.hpp"
+#define DEBUG_VIEW
 
 #ifdef DEBUG_VIEW
 

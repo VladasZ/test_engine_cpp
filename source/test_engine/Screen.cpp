@@ -28,7 +28,6 @@
 #include "GlobalEvents.hpp"
 #include "TEImageLoader.hpp"
 #include "ModelImporter.hpp"
-#include "DebugInfoView.hpp"
 #include "TESceneDrawer.hpp"
 #include "TESpriteDrawer.hpp"
 #include "BufferConfiguration.hpp"

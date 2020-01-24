@@ -62,11 +62,16 @@ auto label = new Label();
 
 auto pack_view = new TestPackView();
 
+TestClass test;
+
 int main() {
 
     pack_view->some_label->_text = "spes";
 
     Log(json_unpacker.pack_to_json_string(pack_view));
+
+
+    Log(json_mapper.to_json_string(test));
 
     return 0;
 

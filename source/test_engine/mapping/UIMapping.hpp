@@ -11,25 +11,22 @@ static_assert(false, "Mapping headers must be included only once.");
 #endif
 #define UI_MAPPING_HEADER
 
+#define protected public
+#define private public
 
-#define UNPRIVATE_HEADER "View.hpp"
-#include "MappingUnprivate.hpp"
+#include "Label.hpp"
+#include "Button.hpp"
+#include "Switch.hpp"
+#include "ImageView.hpp"
 
-#define UNPRIVATE_HEADER "Font.hpp"
-#include "MappingUnprivate.hpp"
-
-#define UNPRIVATE_HEADER "Label.hpp"
-#include "MappingUnprivate.hpp"
-
-#define UNPRIVATE_HEADER "Button.hpp"
-#include "MappingUnprivate.hpp"
-
-#define UNPRIVATE_HEADER "Switch.hpp"
-#include "MappingUnprivate.hpp"
-
+#undef protected
+#undef private
 
 #include "Mapper.hpp"
 
+
+MAKE_CLASS_INFO(Image,
+                MAKE_PROPERTY("path", &Image::_path));
 
 namespace ui {
 
@@ -56,6 +53,11 @@ namespace ui {
 
     MAKE_CLASS_INFO(Switch,
                     MAKE_PROPERTY("is_selected", &Switch::_is_selected)
+    );
+
+    MAKE_CLASS_INFO(ImageView,
+                    MAKE_PROPERTY("content_mode", &ImageView::_content_mode),
+                    MAKE_PROPERTY("image",        &ImageView::_image)
     );
 
 }

@@ -45,9 +45,12 @@ MAKE_MAPPER(te_mapper,
             gm::InfoOfSize,
             gm::InfoOfRect,
 
+            InfoOfImage,
+
             ui::InfoOfView,
             ui::InfoOfLabel,
             ui::InfoOfFont,
+            ui::InfoOfImageView,
 
             InfoOfTestPackView
 
@@ -64,14 +67,16 @@ auto pack_view = new TestPackView();
 
 TestClass test;
 
+
+ImageView* image_view = new ImageView({ 1, 2, 3, 4 });
+
 int main() {
 
-    pack_view->some_label->_text = "spes";
 
-    Log(json_unpacker.pack_to_json_string(pack_view));
+    image_view->set_image(new Image("lalal"));
 
-
-    Log(json_mapper.to_json_string(test));
+    while(true)
+    json_mapper.test(image_view);
 
     return 0;
 

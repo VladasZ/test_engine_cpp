@@ -1,5 +1,4 @@
 ui
 scene
 sprites
-mapping
 gl_wrapper

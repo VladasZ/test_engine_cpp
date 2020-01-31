@@ -6,6 +6,8 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
+#ifndef WINDOWS_BUILD
+
 #ifdef UI_MAPPING_HEADER
 static_assert(false, "Mapping headers must be included only once.");
 #endif
@@ -23,6 +25,7 @@ static_assert(false, "Mapping headers must be included only once.");
 #undef private
 
 #include "Mapper.hpp"
+
 
 
 MAKE_CLASS_INFO(Image,
@@ -61,3 +64,5 @@ namespace ui {
     );
 
 }
+
+#endif

@@ -8,12 +8,15 @@
 
 #pragma once
 
+#ifndef WINDOWS_BUILD
+
 #include "Rect.hpp"
 #include "Color.hpp"
 #include "Mapper.hpp"
 
 
 namespace gm {
+
 
     MAKE_CLASS_INFO(Color,
             MAKE_PROPERTY("r", &Color::r),
@@ -37,4 +40,7 @@ namespace gm {
             MAKE_PROPERTY("size",   &Rect::size)
     );
 
+
 }
+
+#endif

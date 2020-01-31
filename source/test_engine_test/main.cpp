@@ -16,6 +16,8 @@
 using namespace ui;
 using namespace mapping;
 
+#ifndef WINDOWS_BUILD
+
 MAKE_CLASS_INFO(Simple,
                 MAKE_PROPERTY("a", &Simple::a)
 );
@@ -69,6 +71,8 @@ TestClass test;
 
 
 ImageView* image_view = new ImageView({ 1, 2, 3, 4 });
+
+#endif
 
 int main() {
 

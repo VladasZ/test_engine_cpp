@@ -72,14 +72,6 @@ ImageView* image_view = new ImageView({ 1, 2, 3, 4 });
 
 int main() {
 
-
-    image_view->set_image(new Image("lalal"));
-
-    while(true)
-    json_mapper.test(image_view);
-
-    return 0;
-
     auto screen = new te::Screen({1000, 1000});
     screen->clear_color = gm::Color::gray;
     screen->set_view(new TestView());

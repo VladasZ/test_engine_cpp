@@ -28,7 +28,7 @@
 using namespace gm;
 using namespace te;
 
-void EffectsScene::setup() {
+void EffectsScene::_setup() {
     
     Screen::clear_color = Color::light_gray;
     

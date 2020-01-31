@@ -128,7 +128,7 @@ void Screen::update() {
 	FPS = 1000000000 / Time::interval();
 
 	Screen::frames_drawn++;
-	Events::frame_drawn(FPS);
+	Events::frame_drawn();
 
 	//System::sleep(0.03f);
 }
@@ -242,7 +242,7 @@ void Screen::set_size(const gm::Size& size) {
 void Screen::set_scene(scene::Scene* scene) {
 	if (scene) {
 		_scene = scene;
-		_scene->setup();
+        _scene->_setup();
 		_scene->camera->resolution = size;
 	}
 }

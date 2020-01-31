@@ -26,7 +26,7 @@ class EffectsScene : public scene::Scene {
 	scene::VectorModel* vector_model;
 
 
-    void setup() override;
+    void _setup() override;
     void each_frame() override;
 
 };

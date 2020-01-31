@@ -20,7 +20,7 @@
 
 using namespace gm;
 
-void TestScene::setup() {
+void TestScene::_setup() {
 
     position_manipulator->is_hidden = false;
 

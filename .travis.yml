@@ -44,7 +44,7 @@ matrix:
           name: Android
           language: android
           sudo: required 
-          dist: bionic
+          dist: xenial
           components:
             
             - build-tools-26.0.2

@@ -44,19 +44,12 @@ matrix:
           name: Android
           language: android
           sudo: required 
-          dist: xenial
+          dist: bionic
           components:
-            
             - build-tools-26.0.2
             - android-26
-
-            - tools
-            - platform-tools
-
-            - extra-google-google_play_services
-            - extra-google-m2repository
-            - extra-android-m2repository
-            - addon-google_apis-google-26
+            - extra
+            - add-on
 
             - sys-img-armeabi-v7a-android-26
             - sys-img-armeabi-v7a-android-17

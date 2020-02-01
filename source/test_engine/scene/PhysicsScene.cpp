@@ -29,6 +29,8 @@ void PhysicsScene::_setup() {
     ground->set_position({ 0, 0, -56 });
     ball->set_position({ 2, 2, 20 });
 
+#ifdef USING_BULLET3D
+
     ground->rigidBody = new RigidBody(ground->position(), 100, 0, RigidBody::Shape::Box);
     ball->rigidBody = new RigidBody(ball->position(), 1, 1, RigidBody::Shape::Sphere);
 
@@ -42,5 +44,7 @@ void PhysicsScene::_setup() {
             }
         }
     }
+
+#endif
 
 }

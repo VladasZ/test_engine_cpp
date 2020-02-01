@@ -6,6 +6,8 @@
 
 #include "Screen.hpp"
 #include "TestView.hpp"
+#include "TestScene.hpp"
+#include "PhysicsScene.hpp"
 #include "TestEngineTest.hpp"
 
 using namespace ui;
@@ -13,9 +15,10 @@ using namespace ui;
 
 int main() {
 
-    auto screen = new te::Screen({1000, 1000});
+    auto screen = new te::Screen({1000, 680});
     screen->clear_color = gm::Color::gray;
     screen->set_view(new TestView());
+    screen->set_scene(new PhysicsScene());
     screen->start_main_loop();
 
 

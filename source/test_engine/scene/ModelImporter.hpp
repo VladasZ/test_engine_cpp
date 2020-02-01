@@ -12,7 +12,7 @@
 
 #include <string>
 
-class Image;
+#include "Image.hpp"
 
 namespace scene {
 class Model;

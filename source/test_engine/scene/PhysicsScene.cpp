@@ -22,17 +22,13 @@ void PhysicsScene::_setup() {
 
     add_object(new Grid({ 200, 200 }, { 20, 20 }));
     add_object(ground = new BoxModel(100));
-    add_object(ball = ModelImporter::import("Sphere.blend"));
-
     camera->set_position({ 30, 10, 50 });
 
     ground->set_position({ 0, 0, -56 });
-    ball->set_position({ 2, 2, 20 });
 
 #ifdef USING_BULLET3D
 
     ground->rigidBody = new RigidBody(ground->position(), 100, 0, RigidBody::Shape::Box);
-    ball->rigidBody = new RigidBody(ball->position(), 1, 1, RigidBody::Shape::Sphere);
 
     for (int x = -5; x < 5; x++) {
         for (int y = -5; y < 5; y++) {

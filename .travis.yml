@@ -28,7 +28,7 @@ matrix:
         - os: linux
           name: Linux
           sudo: required 
-          dist: xenial
+          dist: bionic
           addons:
             apt:
                 sources:    

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#ifndef WINDOWS_BUILD
+#ifdef USING_MAPPING
 
 #include "Rect.hpp"
 #include "Color.hpp"

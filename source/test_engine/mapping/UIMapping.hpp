@@ -6,7 +6,7 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#ifndef WINDOWS_BUILD
+#ifdef USING_MAPPING
 
 #ifdef UI_MAPPING_HEADER
 static_assert(false, "Mapping headers must be included only once.");

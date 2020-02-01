@@ -22,22 +22,25 @@ void PhysicsScene::_setup() {
 
     add_object(new Grid({ 200, 200 }, { 20, 20 }));
     add_object(ground = new BoxModel(100));
-    add_object(box = new BoxModel(2));
+    add_object(ball = ModelImporter::import("Sphere.blend"));
 
-//    auto sphere = ModelImporter::import("Sphere.blend",
-//                                 new Image((Paths::images() / "cube_texture.png")));
-//
-//    add_object(sphere);
+    camera->set_position({ 30, 10, 50 });
 
-    ground->set_position({ 0, -56, 0 });
-    box->set_position({ 2, 10, 0 });
+    ground->set_position({ 0, 0, -56 });
+    ball->set_position({ 2, 2, 20 });
 
-    Physics3D::init();
+    ground->rigidBody = new RigidBody(ground->position(), 100, 0, RigidBody::Shape::Box);
+    ball->rigidBody = new RigidBody(ball->position(), 1, 1, RigidBody::Shape::Sphere);
 
-    Events::frame_drawn.subscribe([&] {
-        Physics3D::update();
-        ground->set_position(Physics3D::ground_position);
-        box->set_position(Physics3D::box_position);
-    });
+    for (int x = -5; x < 5; x++) {
+        for (int y = -5; y < 5; y++) {
+            for (int z = 0; z < 10; z++) {
+                auto ball = ModelImporter::import("Sphere.blend");
+                ball->set_position({x * 2.0f, y * 2.0f, z * 2.0f });
+                ball->rigidBody = new RigidBody(ball->position(), 2, 1, RigidBody::Shape::Sphere);
+                add_object(ball);
+            }
+        }
+    }
 
 }

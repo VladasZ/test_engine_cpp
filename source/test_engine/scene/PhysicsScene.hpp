@@ -17,7 +17,7 @@ class PhysicsScene : public scene::Scene {
 private:
 
     scene::BoxModel* ground = nullptr;
-    scene::BoxModel* box = nullptr;
+    scene::Model* ball = nullptr;
 
 
 protected:

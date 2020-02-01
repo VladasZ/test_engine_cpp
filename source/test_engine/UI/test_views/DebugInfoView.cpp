@@ -7,6 +7,7 @@
 //
 
 #include "ui.hpp"
+#include "Screen.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
@@ -33,10 +34,10 @@ void DebugInfoView::_setup() {
 
     add_subview(_stack_view);
 
-    Events::frame_drawn.subscribe([&] (float FPS) {
+    Events::frame_drawn.subscribe([&] {
         static int frames_drawn = 0;
         _frames_drawn_label->set_text(std::string() + "Frames drawn: " + std::to_string(++frames_drawn));
-        _fps_label->set_text(std::string() + "FPS: " + std::to_string(FPS));
+        _fps_label->set_text(std::string() + "FPS: " + std::to_string(te::Screen::FPS));
     });
 
 #ifdef MOUSE

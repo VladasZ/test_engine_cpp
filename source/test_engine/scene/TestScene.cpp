@@ -29,15 +29,9 @@ void TestScene::_setup() {
     camera->flying_speed = 0.2f;
 
 #ifdef USING_ASSIMP
-   // add_object(monkey = ModelImporter::import("Monkey.blend"));
-   // monkey->set_position({ 2, 1, 1 });
+    add_object(monkey = ModelImporter::import("Monkey.blend"));
+    monkey->set_position({ 2, 1, 1 });
 #endif
-
-//    cube = ModelImporter::import("textured_cube.blend",
-//                                 new Image((Paths::images() / "cube_texture.png").string()));
-//    
-//    add_object(cube);
-//    cube->set_scale(0.1f);
 
     add_object(walls.z = new scene::Plane(Size { 200, 200 }));
 	walls.z->set_position({ 0, 0, -1.0f });

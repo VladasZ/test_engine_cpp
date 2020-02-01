@@ -8,6 +8,8 @@
 
 #ifdef USING_ASSIMP
 
+#include <unordered_map>
+
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
@@ -20,10 +22,17 @@
 
 using namespace gm;
 using namespace te;
+using namespace scene;
 
 static Assimp::Importer _importer;
 
+static std::unordered_map<std::string, Mesh*> cache;
+
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
+
+    if (cache.find(file) != cache.end()) {
+        return new scene::Model(cache[file]);
+    }
 
     Log(std::string() + "Loading model: " + file);
 
@@ -61,12 +70,12 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
             vertices.emplace_back(mesh->mVertices[i],
                                   mesh->mNormals[i],
-                          Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
+                                  Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
         }
 
-        return new scene::Model(new scene::Mesh(std::move(vertices),
-                                                std::move(indices)),
-                                image);
+        return new Model(new Mesh(std::move(vertices),
+                                  std::move(indices)),
+                         image);
     }
 
     Vertex::Array vertices;
@@ -77,9 +86,12 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                               mesh->mNormals[i]);
     }
 
+    auto parsed_mesh = new scene::Mesh(std::move(vertices),
+                                       std::move(indices));
 
-    return new scene::Model(new scene::Mesh(std::move(vertices),
-                                            std::move(indices)));
+    cache[file] = parsed_mesh;
+
+    return new scene::Model(parsed_mesh);
 }
 
 #endif

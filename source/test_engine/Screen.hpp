@@ -39,8 +39,8 @@ namespace te {
 
 	public:
 
-		unsigned FPS = 0;
-		unsigned frames_drawn = 0;
+		static inline unsigned FPS = 0;
+        static inline unsigned frames_drawn = 0;
 
 		static inline gm::Size size;
 

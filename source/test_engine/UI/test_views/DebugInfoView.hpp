@@ -8,7 +8,7 @@
 
 #pragma once
 
-//#define DEBUG_VIEW
+#define DEBUG_VIEW
 
 #ifdef DEBUG_VIEW
 

@@ -30,7 +30,7 @@ namespace te {
 		void _initialize_ui();
 
 		scene::Scene*   _scene = nullptr;
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
         sprites::Level* _level = nullptr;
 #endif
         ui::View*       _view  = nullptr;
@@ -68,7 +68,7 @@ namespace te {
 		void set_scene(scene::Scene*);
 		scene::Scene* scene() const;
 
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
 		void set_level(sprites::Level*);
 		sprites::Level* level() const;
 #endif

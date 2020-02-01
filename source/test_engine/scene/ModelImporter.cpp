@@ -6,7 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
 
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>

@@ -6,7 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
 
 #include "Assets.hpp"
 #include "Screen.hpp"

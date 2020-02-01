@@ -8,7 +8,7 @@
 
 #pragma once
 
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
 
 #include <string>
 

@@ -18,7 +18,7 @@ class TestScene : public scene::Scene {
     scene::PointLight* light;
 
     scene::Model* cube;
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
     scene::Model* monkey;
 #endif
 

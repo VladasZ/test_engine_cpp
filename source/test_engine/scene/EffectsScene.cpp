@@ -72,14 +72,14 @@ void EffectsScene::_setup() {
         
         glm::mat4 rot_mat = glm::toMat4(myQuat);
         
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
         monkey->set_rotation_matrix(gm::Matrix4(rot_mat));
 #endif
     });
     
 #endif
     
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
     add_object(monkey = ModelImporter::import("Monkey.blend"));
     //  monkey->set_scale(0.1f);
 #endif

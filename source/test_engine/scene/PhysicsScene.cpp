@@ -24,10 +24,10 @@ void PhysicsScene::_setup() {
     add_object(ground = new BoxModel(100));
     add_object(box = new BoxModel(2));
 
-    auto sphere = ModelImporter::import("textured_cube.blend",
-                                 new Image((Paths::images() / "cube_texture.png")));
-
-    add_object(sphere);
+//    auto sphere = ModelImporter::import("Sphere.blend",
+//                                 new Image((Paths::images() / "cube_texture.png")));
+//
+//    add_object(sphere);
 
     ground->set_position({ 0, -56, 0 });
     box->set_position({ 2, 10, 0 });

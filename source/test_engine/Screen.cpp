@@ -64,7 +64,7 @@ Screen::Screen(const gm::Size& size) {
 #endif
 
 	image::config::set_loader(new TEImageLoader());
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
 	sprites::config::set_drawer(new TESpriteDrawer());
 #endif
 	scene::config::set_drawer(new TESceneDrawer());
@@ -110,7 +110,7 @@ void Screen::update() {
 
 	GL::disable_depth_test();
     
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
 
 	if (_level) {
 		_level->update();
@@ -251,7 +251,7 @@ scene::Scene* Screen::scene() const {
 	return _scene;
 }
 
-#ifndef NO_BOX2D
+#ifdef USING_BOX2D
 void Screen::set_level(sprites::Level* level) {
 	_level = level;
 }

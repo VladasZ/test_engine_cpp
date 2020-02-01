@@ -15,7 +15,7 @@
 
 class EffectsScene : public scene::Scene {
 
-#ifndef NO_ASSIMP
+#ifdef USING_ASSIMP
     scene::Model* monkey;
 #endif
 

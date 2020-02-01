@@ -45,6 +45,8 @@ matrix:
           language: android
           sudo: required 
           dist: xenial
+          python:
+            - "3.5"
           components:
             
             - build-tools-26.0.2

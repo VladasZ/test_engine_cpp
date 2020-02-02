@@ -86,6 +86,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                               mesh->mNormals[i]);
     }
 
+    Log(mesh->mNumVertices);
+
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));
 

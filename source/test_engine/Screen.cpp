@@ -94,8 +94,6 @@ void Screen::start_main_loop() {
 
 void Screen::update() {
 
-    Dispatch::execute_tasks();
-
 	GL::set_clear_color(clear_color);
 	GL::clear();
 
@@ -104,7 +102,7 @@ void Screen::update() {
 	GL::enable_depth_test();
 
 	if (_scene) {
-		_scene->update();
+		_scene->update(frame_time);
 		_scene->draw();
 	}
 
@@ -125,12 +123,15 @@ void Screen::update() {
 	debug_view->_draw();
 #endif
 
-	FPS = 1000000000 / Time::interval();
+	frame_time = Time::interval() / 1000000000.0f;
+	FPS = 1.0f / frame_time;
 
-	Screen::frames_drawn++;
+    Screen::frames_drawn++;
 	Events::frame_drawn();
 
-	//System::sleep(0.03f);
+    Dispatch::execute_tasks();
+
+    //System::sleep(0.03f);
 }
 
 

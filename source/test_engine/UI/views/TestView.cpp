@@ -70,7 +70,7 @@ void TestView::_layout() {
 
     _frame = _superview->frame().with_zero_origin();
 
-    button->frame =
+    button->edit_frame() =
             { 0,
               _frame.size.height - 100,
               100,
@@ -92,7 +92,7 @@ void TestView::_layout() {
     });
 #endif
 
-    sliders->frame = { 0, 100, 200, 300 };
+    sliders->edit_frame() = {0, 100, 200, 300 };
 
     static float angle = 0;
     revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));
@@ -100,7 +100,7 @@ void TestView::_layout() {
 
     auto switcher_size = 100.0f;
 
-    switcher->frame =
+    switcher->edit_frame() =
             { _frame.size.width - switcher_size - 20,
               20,
               switcher_size,

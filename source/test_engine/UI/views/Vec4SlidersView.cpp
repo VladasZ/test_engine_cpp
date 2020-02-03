@@ -69,10 +69,10 @@ void Vec4SlidersView::_layout() {
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 4;
 
-    _x_slider->frame = { width * 0 + margin * 0, 0, width, _frame.size.height };
-    _y_slider->frame = { width * 1 + margin * 1, 0, width, _frame.size.height };
-    _z_slider->frame = { width * 2 + margin * 1, 0, width, _frame.size.height };
-    _w_slider->frame = { width * 3 + margin * 1, 0, width, _frame.size.height };
+    _x_slider->edit_frame() = {width * 0 + margin * 0, 0, width, _frame.size.height };
+    _y_slider->edit_frame() = {width * 1 + margin * 1, 0, width, _frame.size.height };
+    _z_slider->edit_frame() = {width * 2 + margin * 1, 0, width, _frame.size.height };
+    _w_slider->edit_frame() = {width * 3 + margin * 1, 0, width, _frame.size.height };
 
     _layout_subviews();
 }

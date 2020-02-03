@@ -35,7 +35,7 @@ void EffectsScene::_setup() {
     position_manipulator->is_hidden = false;
     
     camera->set_target({ 0, 0, 0 });
-    camera->position = { 1, 1, 1 };
+    camera->edit_position() = {1, 1, 1 };
     camera->flying_speed = 0.2f;
     
 #ifdef USING_CONAN

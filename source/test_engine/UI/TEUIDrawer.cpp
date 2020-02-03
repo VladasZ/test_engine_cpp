@@ -41,11 +41,12 @@ void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
 #endif
 }
 
-void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect) {
+void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect, const gm::Color& color) {
     if (rect.size.is_negative()) return;
 
     if (image->is_monochrome()) {
         Assets::shaders->ui_monochrome->use();
+        Assets::shaders->ui_monochrome->set_uniform_color(color);
     }
     else {
         Assets::shaders->ui_texture->use();

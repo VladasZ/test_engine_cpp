@@ -79,9 +79,9 @@ Screen::Screen(const gm::Size& size) {
 
 	set_size(size);
 
-	GL::on_window_size_change.subscribe([&](gm::Size size) {
+	GL::on_window_size_change = [&](gm::Size size) {
 		set_size(size);
-	});
+	};
 }
 
 #ifdef DESKTOP_BUILD
@@ -138,16 +138,16 @@ void Screen::update() {
 void Screen::setup_input() {
 
 #ifndef DESKTOP_BUILD
-    TestView::on_left_stick_move.subscribe([&](auto point) {
+    TestView::on_left_stick_move = [&](auto point) {
        // _scene->camera->velocity = point / 100;
-    });
+    };
     
-    TestView::on_right_stick_move.subscribe([&](auto point) {
+    TestView::on_right_stick_move = [&](auto point) {
        // _scene->camera->orbit_velocity = point / 100;
-    });
+    };
 #endif
 
-	ui::Keyboard::on_key_event.subscribe([&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+	ui::Keyboard::on_key_event = [&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
 	    if (_scene == nullptr) {
             return;;
@@ -181,19 +181,19 @@ void Screen::setup_input() {
 		if (key == 'Q') {
 			_scene->camera->fly(scene::Flyable::Direction::Down);
 		}
-	});
+	};
 
 #if DESKTOP_BUILD
 
-	ui::Input::on_right_button_drag.subscribe([&](ui::Touch* touch) {
+	ui::Input::on_right_button_drag = [&](ui::Touch* touch) {
 		static ui::Touch::ID prev_id = -1;
 		if (touch->id == prev_id) {
 			_scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
 		}
 		prev_id = touch->id;
-	});
+	};
 
-	GL::on_mouse_key_pressed.subscribe([&](GL::MouseButton button, GL::ButtonState state) {
+	GL::on_mouse_key_pressed = [&](GL::MouseButton button, GL::ButtonState state) {
 		auto ui_button = ui::Mouse::Button::Left;
 		if (button == GL::MouseButton::Right) {
 			ui_button = ui::Mouse::Button::Right;
@@ -205,19 +205,19 @@ void Screen::setup_input() {
 			state == GL::ButtonState::Down ?
 			ui::Mouse::ButtonState::Down :
 			ui::Mouse::ButtonState::Up);
-	});
+	};
 
-	GL::on_cursor_moved.subscribe([&](gm::Point position) {
+	GL::on_cursor_moved = [&](gm::Point position) {
 		ui::input::mouse->set_position(position);
-	});
+	};
 
-	GL::on_scroll_moved.subscribe([&](gm::Point position) {
+	GL::on_scroll_moved = [&](gm::Point position) {
 		_scene->camera->zoom(position.y);
-	});
+	};
 
-	GL::on_key_pressed.subscribe([&](char key, unsigned int state) {
+	GL::on_key_pressed = [&](char key, unsigned int state) {
 		ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
-	});
+	};
 
 #endif
 }

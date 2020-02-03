@@ -38,20 +38,20 @@ void XYZSlidersView::_setup() {
     sliders.y->set_slider_color(gm::Color::green);
     sliders.z->set_slider_color(gm::Color::blue);
 
-    sliders.x->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.x->slider_view->on_value_changed = [&](float value) {
         XYZ_SET_VALUE(position.x, value);
         on_change(position);
-    });
+    };
 
-    sliders.y->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.y->slider_view->on_value_changed = [&](float value) {
         XYZ_SET_VALUE(position.y, value);
         on_change(position);
-    });
+    };
 
-    sliders.z->slider_view->on_value_changed.subscribe([&](float value) {
+    sliders.z->slider_view->on_value_changed = [&](float value) {
         XYZ_SET_VALUE(position.z, value);
         on_change(position);
-    });
+    };
 }
 
 void XYZSlidersView::_layout() {

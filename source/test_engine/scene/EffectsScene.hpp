@@ -27,6 +27,5 @@ class EffectsScene : public scene::Scene {
 
 
     void _setup() override;
-    void each_frame() override;
 
 };

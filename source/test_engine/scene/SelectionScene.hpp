@@ -15,7 +15,7 @@ class SelectionScene : public scene::Scene {
 
 public:
 
-    static inline SelectionScene* instance;
+    static inline SelectionScene* instance = nullptr;
 
 private:
 

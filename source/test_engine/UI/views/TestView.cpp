@@ -29,14 +29,14 @@ void TestView::_setup() {
 
 #ifndef DESKTOP_BUILD
     add_subview(left_stick = new AnalogStickView());
-    left_stick->on_direction_change.subscribe([](auto point) {
+    left_stick->on_direction_change = [](auto point) {
         TestView::on_left_stick_move(point);
-    });
+    };
 
     add_subview(right_stick = new AnalogStickView());
-    right_stick->on_direction_change.subscribe([](auto point) {
+    right_stick->on_direction_change = [](auto point) {
         TestView::on_right_stick_move(point);
-    });
+    };
 #endif
 
     image = new ImageView({ 60, 80 }, Assets::images->cat);
@@ -48,20 +48,27 @@ void TestView::_setup() {
     switcher = new Switch();
     add_subview(switcher);
 
-    switcher->on_value_changed.subscribe([](bool value) {
+    switcher->on_value_changed = [](bool value) {
         te::RootView::set_draw_touches(value);
-    });
+    };
 
-    button->on_press.subscribe([&] {
+    button->on_press = [&] {
         cu::System::alert("Hellou");
         button->background_color = Color::random();
-    });
-
+    };
 
     enable_user_interaction();
 
-    on_touch = [&](Touch* touch) {
-        SelectionScene::instance->select_model(touch->location);
+    on_touch = [](Touch* touch) {
+        if (touch->is_began()
+#ifdef DESKTOP_BUILD
+            && touch->is_left_click()
+#endif
+        ) {
+            if (SelectionScene::instance) {
+                SelectionScene::instance->select_model(touch->location);
+            }
+        }
     };
 
 }

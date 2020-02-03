@@ -21,6 +21,7 @@
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
 #import "PhysicsScene.hpp"
+#import "SelectionScene.hpp"
 
 using namespace gm;
 
@@ -35,7 +36,7 @@ te::Screen* _screen;
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
     
-    _screen->set_scene(new PhysicsScene());
+    _screen->set_scene(new SelectionScene());
 #ifdef USING_BOX2D
     _screen->set_level(new TestLevel());
 #endif

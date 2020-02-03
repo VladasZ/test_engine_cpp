@@ -7,6 +7,7 @@
 //
 
 #include "Grid.hpp"
+#include "GlobalEvents.hpp"
 #include "SelectionScene.hpp"
 
 using namespace gm;
@@ -19,10 +20,12 @@ void SelectionScene::_setup() {
     add_object(new Grid());
     add_object(box1 = new BoxModel(1));
     add_object(box2 = new BoxModel(1));
-//    box2->position = [] (auto& position) {
-//        position.y = 2;
-//    };
 
-   // box2.edi
+    box1->color = Color::light_blue;
+    box2->color = Color::light_blue;
+
+    box2->edit_position().y = 2;
+
+    add_box(box1->bounding_box);
 
 }

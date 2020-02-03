@@ -17,6 +17,7 @@ void main() {
   color.a = uniform_color.a;
   color.rgb = ambient + diffuse * 0.4;
 
-  if (selected)
-	color.rgb *= 4.0;
+  if (selected) {
+    color.rgb *= 2.0;
+  }
 }

@@ -42,25 +42,25 @@ void Vec4SlidersView::_setup() {
 
     _w_slider->slider_view->multiplier = 2.0f;
 
-    _x_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    _x_slider->slider_view->on_value_changed = [&](float value) {
         SET_VALUE(position.x, value);
         on_change(position);
-    });
+    };
 
-    _y_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    _y_slider->slider_view->on_value_changed = [&](float value) {
         SET_VALUE(position.y, value);
         on_change(position);
-    });
+    };
 
-    _z_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    _z_slider->slider_view->on_value_changed = [&](float value) {
         SET_VALUE(position.z, value);
         on_change(position);
-    });
+    };
 
-    _w_slider->slider_view->on_value_changed.subscribe([&](float value) {
+    _w_slider->slider_view->on_value_changed = [&](float value) {
         SET_VALUE(position.w, value);
         on_change(position);
-    });
+    };
 }
 
 void Vec4SlidersView::_layout() {

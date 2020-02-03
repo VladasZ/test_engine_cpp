@@ -61,7 +61,3 @@ void TestScene::_setup() {
 
     add_light(light);
 }
-
-void TestScene::each_frame() {
-    draw_box(light->position());
-}

@@ -86,7 +86,3 @@ void EffectsScene::_setup() {
     
     
 }
-
-void EffectsScene::each_frame() {
-    
-}

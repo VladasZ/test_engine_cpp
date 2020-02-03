@@ -16,13 +16,13 @@ using namespace ui;
 void RootView::_setup() {
     background_color = gm::Color::clear;
 
-    Input::on_touch.subscribe([&](Touch* touch) {
+    Input::on_touch = [&](Touch* touch) {
         if (!_draw_touches) return;
         auto view = View::dummy({ 5, 5 });
         view->set_center(touch->location);
         add_subview(view);
         _touch_views.push_back(view);
-    });
+    };
 }
 
 void RootView::_layout() {

@@ -27,7 +27,6 @@ class TestScene : public scene::Scene {
 	scene::BoxModel* marker_box;
 
     void _setup() override;
-    void each_frame() override;
 
     void set_vector(const gm::Vector3&);
 };

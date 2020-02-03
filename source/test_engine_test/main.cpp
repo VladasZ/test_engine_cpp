@@ -16,7 +16,7 @@ using namespace ui;
 
 int main() {
 
-    auto screen = new te::Screen({1000, 680});
+    auto screen = new te::Screen({2000, 1680});
     screen->clear_color = gm::Color::gray;
     screen->set_view(new TestView());
     screen->set_scene(new SelectionScene());

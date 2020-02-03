@@ -60,9 +60,9 @@ void XYZSlidersView::_layout() {
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;
 
-    sliders.x->set_frame({ width * 0 + margin * 0, 0, width, _frame.size.height });
-    sliders.y->set_frame({ width * 1 + margin * 1, 0, width, _frame.size.height });
-    sliders.z->set_frame({ width * 2 + margin * 1, 0, width, _frame.size.height });
+    sliders.x->frame = { width * 0 + margin * 0, 0, width, _frame.size.height };
+    sliders.y->frame = { width * 1 + margin * 1, 0, width, _frame.size.height };
+    sliders.z->frame = { width * 2 + margin * 1, 0, width, _frame.size.height };
 
     _layout_subviews();
 }

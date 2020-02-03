@@ -32,7 +32,7 @@ void TestView::_setup() {
     left_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_left_stick_move(point);
     });
-    
+
     add_subview(right_stick = new AnalogStickView());
     right_stick->on_direction_change.subscribe([](auto point) {
         TestView::on_right_stick_move(point);
@@ -51,41 +51,48 @@ void TestView::_setup() {
     switcher->on_value_changed.subscribe([](bool value) {
         te::RootView::set_draw_touches(value);
     });
-    
+
     button->on_press.subscribe([&] {
         cu::System::alert("Hellou");
         button->background_color = Color::random();
     });
 
+
+    enable_user_interaction();
+
+    on_touch = [&](Touch* touch) {
+        SelectionScene::instance->select_model(touch->location);
+    };
+
 }
 
 void TestView::_layout() {
-    
+
     _frame = _superview->frame().with_zero_origin();
-        
-    button->set_frame({
-        0,
-        _frame.size.height - 100,
-        100,
-        100
-    });
-    
+
+    button->frame =
+            { 0,
+              _frame.size.height - 100,
+              100,
+              100
+            };
+
     static const float margin = 40;
-    
+
 
 #ifndef DESKTOP_BUILD
     left_stick->set_center({
         left_stick->frame().size.width / 2 + margin,
         _frame.size.height - left_stick->frame().size.height / 2 - margin,
     });
-    
+
     right_stick->set_center({
         _frame.size.width - right_stick->frame().size.width / 2 - margin,
         _frame.size.height - right_stick->frame().size.height / 2 - margin,
     });
 #endif
 
-    sliders->set_frame({ 0, 100, 200, 300 });
+    sliders->frame = { 0, 100, 200, 300 };
 
     static float angle = 0;
     revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));
@@ -93,12 +100,12 @@ void TestView::_layout() {
 
     auto switcher_size = 100.0f;
 
-    switcher->set_frame({
-        _frame.size.width - switcher_size - 20,
-        20,
-        switcher_size,
-        switcher_size / 2
-    });
+    switcher->frame =
+            { _frame.size.width - switcher_size - 20,
+              20,
+              switcher_size,
+              switcher_size / 2
+            };
 
     image->set_center({ _frame.size.width / 2, _frame.size.height - 100 });
 

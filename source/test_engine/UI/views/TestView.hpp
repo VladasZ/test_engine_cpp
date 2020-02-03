@@ -12,6 +12,7 @@
 #include "Switch.hpp"
 #include "ImageView.hpp"
 #include "DrawingView.hpp"
+#include "SelectionScene.hpp"
 #include "AnalogStickView.hpp"
 #include "Vec4SlidersView.hpp"
 

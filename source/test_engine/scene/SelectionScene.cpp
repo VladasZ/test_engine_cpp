@@ -21,11 +21,9 @@ void SelectionScene::_setup() {
     add_object(box1 = new BoxModel(1));
     add_object(box2 = new BoxModel(1));
 
-    box1->color = Color::light_blue;
-    box2->color = Color::light_blue;
+    box1->color = Color::light_blue.with_alpha(0.2f);
+    box2->color = Color::light_blue.with_alpha(0.2f);
 
     box2->edit_position().y = 2;
-
-    add_box(box1->bounding_box);
 
 }

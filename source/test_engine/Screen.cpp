@@ -119,6 +119,8 @@ void Screen::update() {
 
 	_root_view->_draw();
 
+    GL::set_viewport({ size });
+
 #ifdef DEBUG_VIEW
 	debug_view->_draw();
 #endif

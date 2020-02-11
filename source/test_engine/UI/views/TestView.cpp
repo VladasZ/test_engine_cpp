@@ -20,6 +20,17 @@ using namespace gm;
 
 void TestView::_setup() {
 
+    add_subview(object_info_view = new ObjectInfoView());
+
+    object_info_view->edit_frame() =
+            { 300,
+              300,
+              300,
+              300
+            };
+
+    object_info_view->enable_resize();
+
     button = new Button();
     button->set_caption("Button");
     add_subview(button);
@@ -43,7 +54,10 @@ void TestView::_setup() {
     add_subview(image);
 
     sliders = new Vec4SlidersView();
+    sliders->edit_frame() = { 0, 100, 200, 300 };
     add_subview(sliders);
+
+    sliders->enable_resize();
 
     switcher = new Switch();
     add_subview(switcher);
@@ -57,7 +71,7 @@ void TestView::_setup() {
         button->background_color = Color::random();
     };
 
-    enable_user_interaction();
+    enable_touch();
 
     on_touch = [](Touch* touch) {
         if (touch->is_began()
@@ -66,7 +80,13 @@ void TestView::_setup() {
 #endif
         ) {
             if (SelectionScene::instance) {
-                SelectionScene::instance->select_model(touch->location);
+                auto model = SelectionScene::instance->select_model(touch->location);
+                if (model != nullptr) {
+                    object_info_view->set_object(model);
+                }
+                else {
+                    object_info_view->clear();
+                }
             }
         }
     };
@@ -98,8 +118,6 @@ void TestView::_layout() {
         _frame.size.height - right_stick->frame().size.height / 2 - margin,
     });
 #endif
-
-    sliders->edit_frame() = {0, 100, 200, 300 };
 
     static float angle = 0;
     revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));

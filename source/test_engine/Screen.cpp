@@ -14,6 +14,7 @@
 #include "Paths.hpp"
 #include "Touch.hpp"
 #include "Scene.hpp"
+#include "Input.hpp"
 #include "Assets.hpp"
 #include "Camera.hpp"
 #include "Screen.hpp"

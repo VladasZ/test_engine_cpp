@@ -1,35 +1,35 @@
 //
-//  XYZSlidersView.hpp
+//  ObjectInfoView.hpp
 //  TestEngine
 //
-//  Created by Vladas Zakrevskis on 1/30/2019.
-//  Copyright © 2019 VladasZ. All rights reserved.
+//  Created by Vladas Zakrevskis on 11/02/2020.
+//  Copyright © 2020 VladasZ. All rights reserved.
 //
 
 #pragma once
 
-#include "Vector3.hpp"
-#include "XYZPack.hpp"
-#include "LabeledSliderView.hpp"
+#include "Model.hpp"
+#include "CaptionLabel.hpp"
+#include "ViewResizer.hpp"
 
-class XYZSlidersView : public ui::View {
+class ObjectInfoView : public ui::View {
 
-    cu::XYZPack<ui::LabeledSliderView*> sliders = nullptr;
+protected:
+
+    ui::CaptionLabel* _id_label;
 
 public:
 
     using View::View;
 
-    ~XYZSlidersView() override;
+    void set_object(scene::Model*);
 
-    float multiplier = 1.0f;
-    gm::Vector3 position;
+    void clear();
 
-    Event<gm::Vector3> on_change;
-
-private:
+protected:
 
     void _setup() override;
     void _layout() override;
+
 };
 

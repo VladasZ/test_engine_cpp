@@ -1,68 +1,48 @@
 //
-//  XYZSlidersView.cpp
+//  ObjectInfoView.cpp
 //  TestEngine
 //
-//  Created by Vladas Zakrevskis on 1/30/2019.
-//  Copyright © 2019 VladasZ. All rights reserved.
+//  Created by Vladas Zakrevskis on 11/02/2020.
+//  Copyright © 2020 VladasZ. All rights reserved.
 //
 
 #include "Log.hpp"
 
-#include "XYZSlidersView.hpp"
+#include "MetaHelpers.hpp"
+#include "ObjectInfoView.hpp"
 
 using namespace gm;
 using namespace cu;
+using namespace ui;
 
-#define XYZ_SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
+void ObjectInfoView::set_object(scene::Model* model) {
 
-XYZSlidersView::~XYZSlidersView() {
-    delete  sliders.x;
-    delete  sliders.y;
-    delete  sliders.z;
+    if (model == nullptr) {
+        _id_label->set_text("");
+        return;
+    }
+
+    _id_label->set_text(cu::Log::to_string(model));
 }
 
-void XYZSlidersView::_setup() {
-    sliders.x = new ui::LabeledSliderView();
-    sliders.y = new ui::LabeledSliderView();
-    sliders.z = new ui::LabeledSliderView();
-
-    add_subviews({ sliders.x,
-                   sliders.y,
-                   sliders.z });
-
-    sliders.x->set_caption("X");
-    sliders.y->set_caption("Y");
-    sliders.z->set_caption("Z");
-
-    sliders.x->set_slider_color(gm::Color::red);
-    sliders.y->set_slider_color(gm::Color::green);
-    sliders.z->set_slider_color(gm::Color::blue);
-
-    sliders.x->slider_view->on_value_changed = [&](float value) {
-        XYZ_SET_VALUE(position.x, value);
-        on_change(position);
-    };
-
-    sliders.y->slider_view->on_value_changed = [&](float value) {
-        XYZ_SET_VALUE(position.y, value);
-        on_change(position);
-    };
-
-    sliders.z->slider_view->on_value_changed = [&](float value) {
-        XYZ_SET_VALUE(position.z, value);
-        on_change(position);
-    };
+void ObjectInfoView::clear() {
+    set_object(nullptr);
 }
 
-void XYZSlidersView::_layout() {
+void ObjectInfoView::_setup() {
+    add_subview(_id_label = new CaptionLabel());
+    _id_label->set_caption("Model: ");
+}
+
+void ObjectInfoView::_layout() {
     _calculate_absolute_frame();
 
-    static const float margin = 4;
-    const float width = (_frame.size.width - margin * 2) / 3;
-
-    sliders.x->edit_frame() = {width * 0 + margin * 0, 0, width, _frame.size.height };
-    sliders.y->edit_frame() = {width * 1 + margin * 1, 0, width, _frame.size.height };
-    sliders.z->edit_frame() = {width * 2 + margin * 1, 0, width, _frame.size.height };
+    _id_label->edit_frame() =
+            { 0,
+              0,
+              _frame.size.width,
+              24
+            };
 
     _layout_subviews();
 }

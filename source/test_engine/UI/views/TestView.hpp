@@ -12,6 +12,7 @@
 #include "Switch.hpp"
 #include "ImageView.hpp"
 #include "DrawingView.hpp"
+#include "ObjectInfoView.hpp"
 #include "SelectionScene.hpp"
 #include "AnalogStickView.hpp"
 #include "Vec4SlidersView.hpp"
@@ -21,6 +22,8 @@ class TestView : public ui::View {
 public:
    
     using ui::View::View;
+
+    static inline ObjectInfoView* object_info_view = nullptr;
 
     ui::View* revolving_view;
 

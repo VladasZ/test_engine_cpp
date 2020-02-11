@@ -57,8 +57,6 @@ void TestView::_setup() {
     sliders->edit_frame() = { 0, 100, 200, 300 };
     add_subview(sliders);
 
-    sliders->enable_resize();
-
     switcher = new Switch();
     add_subview(switcher);
 

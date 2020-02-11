@@ -18,6 +18,7 @@ protected:
 
     ui::CaptionLabel* _id_label;
     ui::CaptionLabel* _position_label;
+    ui::CaptionLabel* _bounding_box_label;
 
 public:
 

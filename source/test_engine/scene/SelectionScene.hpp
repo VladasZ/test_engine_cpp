@@ -10,6 +10,7 @@
 
 #include "Scene.hpp"
 #include "BoxModel.hpp"
+#include "PositionManipulator.hpp"
 
 class SelectionScene : public scene::Scene {
 
@@ -18,6 +19,8 @@ public:
     static inline SelectionScene* instance = nullptr;
 
 private:
+
+    scene::PositionManipulator* test_manip = nullptr;
 
     scene::BoxModel* box1 = nullptr;
     scene::BoxModel* box2 = nullptr;

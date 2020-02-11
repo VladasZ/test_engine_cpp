@@ -19,10 +19,13 @@ void ObjectInfoView::set_object(scene::Model* model) {
 
     if (model == nullptr) {
         _id_label->set_text("");
+        _position_label->set_text("");
         return;
     }
 
     _id_label->set_text(cu::Log::to_string(model));
+    _position_label->set_text(model->position().to_string());
+
 }
 
 void ObjectInfoView::clear() {
@@ -32,17 +35,12 @@ void ObjectInfoView::clear() {
 void ObjectInfoView::_setup() {
     add_subview(_id_label = new CaptionLabel());
     _id_label->set_caption("Model: ");
+
+    add_subview(_position_label = new CaptionLabel());
+    _position_label->set_caption("Position: ");
 }
 
 void ObjectInfoView::_layout() {
-    _calculate_absolute_frame();
-
-    _id_label->edit_frame() =
-            { 0,
-              0,
-              _frame.size.width,
-              24
-            };
-
+    StackView::_layout();
     _layout_subviews();
 }

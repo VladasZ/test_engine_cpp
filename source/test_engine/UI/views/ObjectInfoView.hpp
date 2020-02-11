@@ -9,18 +9,19 @@
 #pragma once
 
 #include "Model.hpp"
+#include "StackView.hpp"
 #include "CaptionLabel.hpp"
-#include "ViewResizer.hpp"
 
-class ObjectInfoView : public ui::View {
+class ObjectInfoView : public ui::StackView {
 
 protected:
 
     ui::CaptionLabel* _id_label;
+    ui::CaptionLabel* _position_label;
 
 public:
 
-    using View::View;
+    using StackView::StackView;
 
     void set_object(scene::Model*);
 
@@ -32,4 +33,3 @@ protected:
     void _layout() override;
 
 };
-

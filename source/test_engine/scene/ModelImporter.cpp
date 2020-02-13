@@ -68,8 +68,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         Vertex::Array vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-            vertices.emplace_back(mesh->mVertices[i],
-                                  mesh->mNormals[i],
+            vertices.emplace_back(Vector3(mesh->mVertices[i]),
+                                  Vector3(mesh->mNormals[i]),
                                   Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
         }
 
@@ -82,8 +82,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-        vertices.emplace_back(mesh->mVertices[i],
-                              mesh->mNormals[i]);
+        vertices.emplace_back(Vector3(mesh->mVertices[i]),
+                              Vector3(mesh->mNormals[i]));
     }
 
     Log(mesh->mNumVertices);

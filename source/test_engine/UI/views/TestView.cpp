@@ -78,7 +78,15 @@ void TestView::_setup() {
 #endif
         ) {
             if (SelectionScene::instance) {
-                auto model = SelectionScene::instance->select_model(touch->location);
+
+                auto ray = SelectionScene::instance->camera->cast_ray(touch->location);
+
+                auto axis = SelectionScene::instance->select_axis(ray);
+
+                Log((int)axis);
+
+                auto model = SelectionScene::instance->select_model(ray);
+
                 if (model != nullptr) {
                     object_info_view->set_object(model);
                 }

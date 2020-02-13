@@ -27,14 +27,20 @@ using namespace gm;
 
 te::Screen* _screen;
 
-@interface Controller : GLKViewController @end @implementation Controller
+@interface Controller : GLKViewController
+
+@end
+
+@implementation Controller
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
     [self setup];
     
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
+
+    _screen->clear_color = gm::Color::gray;
     
     _screen->set_scene(new SelectionScene());
 #ifdef USING_BOX2D
@@ -86,20 +92,22 @@ te::Screen* _screen;
     return new ui::Touch(touch_id, location, event);
 }
 
-- (void)touchesBegan:(NSSet<UITouch*>*)touches
-           withEvent:(UIEvent*)event {
-    for (UITouch* touch in touches)
+- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+    for (UITouch* touch in touches) {
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Began]);
+    }
 }
 
 - (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-    for (UITouch* touch in touches)
+    for (UITouch* touch in touches) {
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Moved]);
+    }
 }
 
 - (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-    for (UITouch* touch in touches)
+    for (UITouch* touch in touches) {
         ui::Input::process_touch_event([self te_touch_with_touch:touch event:ui::Touch::Ended]);
+    }
 }
 
 @end
@@ -117,3 +125,4 @@ te::Screen* _screen;
 @end
 
 #endif
+

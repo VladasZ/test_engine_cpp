@@ -41,7 +41,7 @@ void Screen::_initialize_ui() {
 
 	ui::config::set_drawer(new TEUIDrawer());
 	ui::config::default_font =
-		new ui::Font(Paths::fonts() / "SF.otf");
+		new ui::Font(Paths::fonts() / "DroidSansMono.ttf");
 
 	_root_view = new te::RootView(gm::Rect { Screen::size });
 	_root_view->_setup();

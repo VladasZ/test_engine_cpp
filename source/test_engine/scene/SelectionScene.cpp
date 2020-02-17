@@ -7,6 +7,7 @@
 //
 
 #include "Grid.hpp"
+#include "TestView.hpp"
 #include "GlobalEvents.hpp"
 #include "SelectionScene.hpp"
 
@@ -16,6 +17,8 @@ using namespace scene;
 void SelectionScene::_setup() {
 
     instance = this;
+
+    view = new TestView();
 
     add_object(new Grid());
     add_object(box1 = new BoxModel(1));

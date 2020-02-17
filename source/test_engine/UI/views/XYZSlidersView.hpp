@@ -10,26 +10,29 @@
 
 #include "Vector3.hpp"
 #include "XYZPack.hpp"
+#include "RangeConversion.hpp"
 #include "LabeledSliderView.hpp"
 
-class XYZSlidersView : public ui::View {
+namespace te {
 
-    cu::XYZPack<ui::LabeledSliderView*> sliders = nullptr;
+    class XYZSlidersView : public ui::View {
 
-public:
+    public:
 
-    using View::View;
+        cu::XYZPack<ui::LabeledSliderView*> sliders = nullptr;
 
-    ~XYZSlidersView() override;
+        using View::View;
 
-    float multiplier = 1.0f;
-    gm::Vector3 position;
+        ~XYZSlidersView() override;
 
-    Event<gm::Vector3> on_change;
+        gm::Vector3 position;
 
-private:
+        Event<gm::Vector3> on_change;
 
-    void _setup() override;
-    void _layout() override;
-};
+    private:
 
+        void _setup() override;
+        void _layout() override;
+    };
+
+}

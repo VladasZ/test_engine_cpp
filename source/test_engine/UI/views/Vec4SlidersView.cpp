@@ -40,8 +40,6 @@ void Vec4SlidersView::_setup() {
     _z_slider->set_slider_color(gm::Color::blue);
     _w_slider->set_slider_color(gm::Color::turquoise);
 
-    _w_slider->slider_view->multiplier = 2.0f;
-
     _x_slider->slider_view->on_value_changed = [&](float value) {
         SET_VALUE(position.x, value);
         on_change(position);

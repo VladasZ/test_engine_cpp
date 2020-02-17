@@ -248,6 +248,9 @@ void Screen::set_scene(scene::Scene* scene) {
 		_scene = scene;
         _scene->_setup();
 		_scene->camera->resolution = size;
+		if (scene->view) {
+		    set_view(scene->view);
+		}
 	}
 }
 

@@ -11,14 +11,15 @@
 #include "System.hpp"
 #include "Assets.hpp"
 #include "Dispatch.hpp"
-#include "TestView.hpp"
 #include "RootView.hpp"
+#include "SelectionView.hpp"
 
 using namespace cu;
 using namespace ui;
 using namespace gm;
 
-void TestView::_setup() {
+
+void SelectionView::_setup() {
 
     add_subview(object_info_view = new ObjectInfoView());
 
@@ -36,19 +37,6 @@ void TestView::_setup() {
     add_subview(button);
 
     add_subview(revolving_view = View::dummy());
-
-
-#ifndef DESKTOP_BUILD
-    add_subview(left_stick = new AnalogStickView());
-    left_stick->on_direction_change = [](auto point) {
-        TestView::on_left_stick_move(point);
-    };
-
-    add_subview(right_stick = new AnalogStickView());
-    right_stick->on_direction_change = [](auto point) {
-        TestView::on_right_stick_move(point);
-    };
-#endif
 
     image = new ImageView({ 60, 80 }, Assets::images->cat);
     add_subview(image);
@@ -72,6 +60,41 @@ void TestView::_setup() {
     enable_touch();
 
     on_touch = [](Touch* touch) {
+
+        static Axis selected_axis = Axis::None;
+
+        if (touch->is_ended()) {
+            selected_axis = Axis::None;
+            return;
+        }
+
+        if (touch->is_moved() && selected_axis != Axis::None) {
+
+            auto ray = SelectionScene::instance->camera->cast_ray(touch->location);
+            auto selected_model = SelectionScene::instance->selected_model;
+
+            auto& position = selected_model->position();
+
+            auto axis_vector = selected_model->position();
+            axis_vector.set_axis(selected_axis, position.get_axis(selected_axis) + 1.0f);
+
+            Ray axis_ray { position, axis_vector };
+
+            Log(axis_ray);
+
+          //  axis_ray.set_axis()
+
+            auto point = ray.spes(axis_ray).second;
+
+            selected_model->edit_position() = point;
+            SelectionScene::instance->position_manipulator->edit_position() = point;
+
+            object_info_view->set_object(selected_model);
+
+            Logvar(point);
+
+        }
+
         if (touch->is_began()
 #ifdef DESKTOP_BUILD
             && touch->is_left_click()
@@ -83,7 +106,10 @@ void TestView::_setup() {
 
                 auto axis = SelectionScene::instance->select_axis(ray);
 
-                Log((int)axis);
+                if (axis != Axis::None) {
+                    selected_axis = axis;
+                    return;;
+                }
 
                 auto model = SelectionScene::instance->select_model(ray);
 
@@ -99,7 +125,7 @@ void TestView::_setup() {
 
 }
 
-void TestView::_layout() {
+void SelectionView::_layout() {
 
     _frame = _superview->frame().with_zero_origin();
 
@@ -109,21 +135,6 @@ void TestView::_layout() {
               100,
               100
             };
-
-    static const float margin = 40;
-
-
-#ifndef DESKTOP_BUILD
-    left_stick->set_center({
-        left_stick->frame().size.width / 2 + margin,
-        _frame.size.height - left_stick->frame().size.height / 2 - margin,
-    });
-
-    right_stick->set_center({
-        _frame.size.width - right_stick->frame().size.width / 2 - margin,
-        _frame.size.height - right_stick->frame().size.height / 2 - margin,
-    });
-#endif
 
     static float angle = 0;
     revolving_view->set_center(Point::on_circle(200, angle, { 300, 300 }));

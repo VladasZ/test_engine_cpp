@@ -18,10 +18,10 @@
 
 #import "Input.hpp"
 #import "Screen.hpp"
-#import "TestView.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
+#import "SelectionView.hpp"
 
 te::Screen* _screen;
 
@@ -51,7 +51,7 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
 #ifndef NO_BOX2D
    // _screen->set_level(new TestLevel());
 #endif
-    _screen->set_view(new TestView());
+    _screen->set_view(new SelectionView());
 
 }
 

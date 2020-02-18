@@ -23,7 +23,7 @@
 #include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
 #include "ModelImporter.hpp"
-#include "TestView.hpp"
+#include "SelectionView.hpp"
 
 using namespace gm;
 using namespace te;

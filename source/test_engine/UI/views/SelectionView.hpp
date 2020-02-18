@@ -17,7 +17,7 @@
 #include "AnalogStickView.hpp"
 #include "Vec4SlidersView.hpp"
 
-class TestView : public ui::View {
+class SelectionView : public ui::View {
 
 public:
    
@@ -30,14 +30,6 @@ public:
     ui::Button* button;
     ui::Switch* switcher;
     ui::ImageView* image;
-
-#ifndef DESKTOP_BUILD
-    static inline Event<gm::Point> on_left_stick_move;
-    static inline Event<gm::Point> on_right_stick_move;
-
-    ui::AnalogStickView* left_stick;
-    ui::AnalogStickView* right_stick;
-#endif
 
     static inline Vec4SlidersView* sliders = nullptr;
 

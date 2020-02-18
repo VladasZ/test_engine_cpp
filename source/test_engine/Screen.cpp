@@ -22,7 +22,7 @@
 #include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
-#include "TestView.hpp"
+#include "SelectionView.hpp"
 #include "GLWrapper.hpp"
 #include "TEUIDrawer.hpp"
 #include "ImageConfig.hpp"
@@ -119,8 +119,10 @@ void Screen::update() {
     
 #endif
 
-	_root_view->_draw();
-
+    if (_root_view) {
+        _root_view->_draw();
+    }
+    
     GL::set_viewport({ size });
 
 #ifdef DEBUG_VIEW
@@ -140,16 +142,6 @@ void Screen::update() {
 
 
 void Screen::setup_input() {
-
-#ifndef DESKTOP_BUILD
-    TestView::on_left_stick_move = [&](auto point) {
-       // _scene->camera->velocity = point / 100;
-    };
-    
-    TestView::on_right_stick_move = [&](auto point) {
-       // _scene->camera->orbit_velocity = point / 100;
-    };
-#endif
 
 	ui::Keyboard::on_key_event = [&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 

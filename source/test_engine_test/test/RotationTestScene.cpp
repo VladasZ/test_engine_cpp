@@ -31,27 +31,21 @@ void RotationTestScene::_setup() {
     add_object(vector = new VectorModel());
 
     Events::screen_did_appear = [&] {
-        RotationTestView::sliders->sliders.z->slider_view->conversion.converted_minimum = -gm::math::pi<float>;
-        RotationTestView::sliders->sliders.z->slider_view->conversion.converted_maximum =  gm::math::pi<float>;
-
+        RotationTestView::sliders->sliders = [&](ui::LabeledSliderView* slider) {
+            slider->slider_view->conversion.converted_minimum = -gm::math::pi<float>;
+            slider->slider_view->conversion.converted_maximum =  gm::math::pi<float>;
+        };
     };
-
 
     RotationTestView::sliders->on_change = [&](Vector3 vec) {
 
-        Vector4 vec4 = vec;
-        Logvar(vec);
-        Logvar(vec4);
-        vec4.normalize();
-        Logvar(vec4);
-        auto quat = Vector4::transform::quaternion_rotating_y(vec.z);
-        Logvar(quat);
-        Logvar(vec.z);
-        Logvar(quat.length());
-        Separator;
+        auto quat_x = Vector4::transform::quaternion_rotating_x(vec.x);
+        auto quat_y = Vector4::transform::quaternion_rotating_y(vec.y);
+        auto quat_z = Vector4::transform::quaternion_rotating_z(vec.z);
 
+        auto result_quat = quat_x * quat_y * quat_z;
 
-        vector->set_rotation(quat);
+        vector->set_rotation(result_quat);
     };
 
 }

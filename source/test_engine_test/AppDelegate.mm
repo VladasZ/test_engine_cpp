@@ -42,7 +42,7 @@ te::Screen* _screen;
 
     _screen->clear_color = gm::Color::gray;
     
-    _screen->set_scene(new te::RotationTestScene());
+    _screen->set_scene(new SelectionScene());
 #ifdef USING_BOX2D
     _screen->set_level(new TestLevel());
 #endif

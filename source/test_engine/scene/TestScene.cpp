@@ -11,7 +11,7 @@
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
-#include "Plane.hpp"
+#include "PlaneModel.hpp"
 #include "GLWrapper.hpp"
 #include "TestScene.hpp"
 #include "VectorModel.hpp"
@@ -33,14 +33,14 @@ void TestScene::_setup() {
     monkey->edit_position() = {2, 1, 1 };
 #endif
 
-    add_object(walls.z = new scene::Plane(Size { 200, 200 }));
+    add_object(walls.z = new scene::PlaneModel(Size {200, 200 }));
     walls.z->edit_position() = {0, 0, -1.0f };
 
-    add_object(walls.x = new scene::Plane(Size { 200, 200 }));
+    add_object(walls.x = new scene::PlaneModel(Size {200, 200 }));
     walls.x->edit_position() = {-20.0f, 0, 0.0f };
 	walls.x->look_at({ 1, 0, 0 });
 
-    add_object(walls.y = new scene::Plane(Size { 200, 200 }));
+    add_object(walls.y = new scene::PlaneModel(Size {200, 200 }));
     walls.y->edit_position() = {0, -20.0f, 0.0f };
 	walls.y->look_at({ 0, 1, 0 });
 

@@ -15,7 +15,7 @@
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
-#include "Plane.hpp"
+#include "PlaneModel.hpp"
 #include "Paths.hpp"
 #include "Screen.hpp"
 #include "GLWrapper.hpp"

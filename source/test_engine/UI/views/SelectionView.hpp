@@ -14,8 +14,7 @@
 #include "DrawingView.hpp"
 #include "ObjectInfoView.hpp"
 #include "SelectionScene.hpp"
-#include "AnalogStickView.hpp"
-#include "Vec4SlidersView.hpp"
+
 
 class SelectionView : public ui::View {
 
@@ -23,7 +22,7 @@ public:
    
     using ui::View::View;
 
-    static inline ObjectInfoView* object_info_view = nullptr;
+    ObjectInfoView* object_info_view = nullptr;
 
     ui::View* revolving_view;
 
@@ -31,7 +30,7 @@ public:
     ui::Switch* switcher;
     ui::ImageView* image;
 
-    static inline Vec4SlidersView* sliders = nullptr;
+    ~SelectionView();
 
     void _setup() override;
     void _layout() override;

@@ -31,7 +31,7 @@ TEModelDrawer::TEModelDrawer(scene::Model* model) {
 }
 
 TEModelDrawer::~TEModelDrawer() {
-
+    delete _buffer;
 }
 
 void TEModelDrawer::_draw() const {

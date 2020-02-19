@@ -26,13 +26,13 @@ using namespace scene;
 
 static Assimp::Importer _importer;
 
-static std::unordered_map<std::string, Mesh*> cache;
+//static std::unordered_map<std::string, Mesh*> cache;
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
-    if (cache.find(file) != cache.end()) {
-        return new scene::Model(cache[file]);
-    }
+//    if (cache.find(file) != cache.end()) {
+//        return new scene::Model(cache[file]);
+//    }
 
     Log(std::string() + "Loading model: " + file);
 
@@ -91,7 +91,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));
 
-    cache[file] = parsed_mesh;
+   // cache[file] = parsed_mesh;
 
     return new scene::Model(parsed_mesh);
 }

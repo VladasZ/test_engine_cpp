@@ -15,13 +15,14 @@
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
 
-
 #ifdef DEBUG_VIEW
 class DebugInfoView;
 #endif
 
 
 namespace te {
+
+    class SceneSelectionView;
 
 	class Screen {
 
@@ -35,9 +36,9 @@ namespace te {
 #endif
         ui::View*       _view  = nullptr;
 
-        te::RootView* _root_view = nullptr;
+        RootView* _root_view = nullptr;
 
-	public:
+    public:
 
         static inline float FPS = 0;
         static inline float frame_time = 0;
@@ -46,6 +47,10 @@ namespace te {
 		static inline gm::Size size;
 
 		static inline gm::Color clear_color;
+
+		static inline Screen* current = nullptr;
+
+        SceneSelectionView* scene_selection_view = nullptr;
 
 #ifdef DEBUG_VIEW
 		static inline DebugInfoView* debug_view = nullptr;

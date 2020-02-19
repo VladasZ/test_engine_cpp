@@ -27,7 +27,7 @@ public:
     float multiplier = 1.0f;
     gm::Vector4 position;
 
-    Event<gm::Vector4> on_change;
+    cu::Event<gm::Vector4> on_change;
 
 private:
 

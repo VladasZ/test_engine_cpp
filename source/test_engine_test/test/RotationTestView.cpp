@@ -11,7 +11,7 @@
 using namespace te;
 
 void RotationTestView::_setup() {
-    add_subview(sliders);
+    add_subview(sliders = new XYZSlidersView);
     sliders->edit_frame() = { 180, 280 };
 }
 

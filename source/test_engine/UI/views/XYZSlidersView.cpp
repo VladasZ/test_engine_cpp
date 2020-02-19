@@ -16,9 +16,7 @@ using namespace cu;
 
 
 XYZSlidersView::~XYZSlidersView() {
-    delete sliders.x;
-    delete sliders.y;
-    delete sliders.z;
+
 }
 
 void XYZSlidersView::_setup() {

@@ -31,6 +31,7 @@
 #include "ModelImporter.hpp"
 #include "TESceneDrawer.hpp"
 #include "TESpriteDrawer.hpp"
+#include "SceneSelectionView.hpp"
 #include "BufferConfiguration.hpp"
 
 using namespace gm;
@@ -43,8 +44,12 @@ void Screen::_initialize_ui() {
 	ui::config::default_font =
 		new ui::Font(Paths::fonts() / "DroidSansMono.ttf");
 
-	_root_view = new te::RootView(gm::Rect { Screen::size });
+	_root_view = new RootView(gm::Rect { Screen::size });
 	_root_view->_setup();
+
+	scene_selection_view = new SceneSelectionView();
+	scene_selection_view->set_caption("Scene");
+	_root_view->add_subview(scene_selection_view);
 
 #ifdef DEBUG_VIEW
 	debug_view = new DebugInfoView({ 400, 108 });
@@ -53,6 +58,8 @@ void Screen::_initialize_ui() {
 }
 
 Screen::Screen(const gm::Size& size) {
+
+    current = this;
 
 #ifdef DEBUG
 	static bool first = true;
@@ -96,7 +103,9 @@ void Screen::start_main_loop() {
 
 void Screen::update() {
 
-	GL::set_clear_color(clear_color);
+    Dispatch::execute_tasks();
+
+    GL::set_clear_color(clear_color);
 	GL::clear();
 
 	GL::set_viewport({ size });
@@ -120,6 +129,7 @@ void Screen::update() {
 #endif
 
     if (_root_view) {
+	    scene_selection_view->place_br({ 280, 28 });
         _root_view->_draw();
     }
     
@@ -134,8 +144,6 @@ void Screen::update() {
 
     Screen::frames_drawn++;
 	Events::frame_drawn();
-
-    Dispatch::execute_tasks();
 
     //System::sleep(0.03f);
 }
@@ -237,14 +245,22 @@ void Screen::set_size(const gm::Size& size) {
 }
 
 void Screen::set_scene(scene::Scene* scene) {
-	if (scene) {
-		_scene = scene;
-        _scene->_setup();
-		_scene->camera->resolution = size;
-		if (scene->view) {
-		    set_view(scene->view);
-		}
-	}
+    Dispatch::on_main([=] {
+        if (_scene) {
+            if (_scene->view) {
+                _view = nullptr;
+            }
+            delete _scene;
+        }
+        if (scene) {
+            _scene = scene;
+            scene->_setup();
+            _scene->camera->resolution = size;
+            if (scene->view) {
+                set_view(scene->view);
+            }
+        }
+    });
 }
 
 scene::Scene* Screen::scene() const {
@@ -264,7 +280,7 @@ sprites::Level* Screen::level() const {
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);
     _view = view;
-	_view->edit_frame() = {size };
+	_view->edit_frame() = { size };
 }
 
 ui::View* Screen::view() const {

@@ -22,8 +22,10 @@
 #import "PhysicsScene.hpp"
 #import "SelectionScene.hpp"
 #import "RotationTestScene.hpp"
+#import "SceneSelectionView.hpp"
 
 using namespace gm;
+using namespace te;
 
 te::Screen* _screen;
 
@@ -40,6 +42,10 @@ te::Screen* _screen;
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
 
+    _screen->scene_selection_view->add_scene<PhysicsScene>();
+    _screen->scene_selection_view->add_scene<SelectionScene>();
+    _screen->scene_selection_view->add_scene<RotationTestScene>();
+    
     _screen->clear_color = gm::Color::gray;
     
     _screen->set_scene(new SelectionScene());

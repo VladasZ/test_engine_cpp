@@ -14,7 +14,7 @@ namespace te {
 
     public:
 
-        static inline XYZSlidersView* sliders = new XYZSlidersView();
+        static inline XYZSlidersView* sliders;
 
     protected:
 

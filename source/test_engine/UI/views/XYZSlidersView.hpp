@@ -27,7 +27,7 @@ namespace te {
 
         gm::Vector3 position;
 
-        Event<gm::Vector3> on_change;
+        cu::Event<gm::Vector3> on_change;
 
     private:
 

@@ -37,15 +37,15 @@ void RotationTestScene::_setup() {
         };
     };
 
-    RotationTestView::sliders->on_change = [&](Vector3 vec) {
-
-        auto quat_x = Vector4::transform::quaternion_rotating_x(vec.x);
-        auto quat_y = Vector4::transform::quaternion_rotating_y(vec.y);
-        auto quat_z = Vector4::transform::quaternion_rotating_z(vec.z);
-
-        auto result_quat = quat_x * quat_y * quat_z;
-
-        vector->set_rotation(result_quat);
-    };
+//    RotationTestView::sliders->on_change = [&](Vector3 vec) {
+//
+//        auto quat_x = Vector4::transform::quaternion_rotating_x(vec.x);
+//        auto quat_y = Vector4::transform::quaternion_rotating_y(vec.y);
+//        auto quat_z = Vector4::transform::quaternion_rotating_z(vec.z);
+//
+//        auto result_quat = quat_x * quat_y * quat_z;
+//
+//        vector->set_rotation(result_quat);
+//    };
 
 }

@@ -13,13 +13,11 @@
 #define SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
 
 Vec4SlidersView::~Vec4SlidersView() {
-    delete  _x_slider;
-    delete  _y_slider;
-    delete  _z_slider;
-    delete  _w_slider;
+
 }
 
 void Vec4SlidersView::_setup() {
+
     _x_slider = new ui::LabeledSliderView();
     _y_slider = new ui::LabeledSliderView();
     _z_slider = new ui::LabeledSliderView();

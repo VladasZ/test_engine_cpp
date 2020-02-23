@@ -29,12 +29,12 @@ void PhysicsScene::_setup() {
 #ifdef USING_BULLET3D
 
     ground->add_rigid_body(100, 0, RigidBody::Shape::Box);
-
-    auto box = ModelImporter::import("Sphere.blend");
-    box->set_scale(10);
-    box->edit_position() = { 0, 0, 1000 };
-    box->add_rigid_body(20, 1000, RigidBody::Shape::Sphere);
-    add_object(box);
+//
+//    auto box = ModelImporter::import("Sphere.blend");
+//    box->set_scale(10);
+//    box->edit_position() = { 0, 0, 1000 };
+//    box->add_rigid_body(20, 1000, RigidBody::Shape::Sphere);
+//    add_object(box);
 
     static const int size = 3;
 

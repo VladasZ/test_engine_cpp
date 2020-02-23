@@ -40,20 +40,20 @@ using namespace cu;
 
 void Screen::_initialize_ui() {
 
-	ui::config::set_drawer(new TEUIDrawer());
-	ui::config::default_font =
-         //   new ui::Font(Paths::fonts() / "DroidSansMono.ttf");
-        new ui::Font(Paths::fonts() / "SF.otf");
+    ui::config::set_drawer(new TEUIDrawer());
+    ui::config::default_font =
+            //   new ui::Font(Paths::fonts() / "DroidSansMono.ttf");
+            new ui::Font(Paths::fonts() / "SF.otf");
 
-	_root_view = new RootView(gm::Rect { Screen::size });
-	_root_view->_setup();
+    _root_view = new RootView(gm::Rect { Screen::size });
+    _root_view->_setup();
 
-	scene_selection_view = new SceneSelectionView();
-	scene_selection_view->set_caption("Scene");
-	_root_view->add_subview(scene_selection_view);
+    scene_selection_view = new SceneSelectionView();
+    scene_selection_view->set_caption("Scene");
+    _root_view->add_subview(scene_selection_view);
 
 #ifdef DEBUG_VIEW
-	debug_view = new DebugInfoView({ 400, 108 });
+    debug_view = new DebugInfoView({ 400, 108 });
 	debug_view->_setup();
 #endif
 }
@@ -63,42 +63,42 @@ Screen::Screen(const gm::Size& size) {
     current = this;
 
 #ifdef DEBUG
-	static bool first = true;
-	if (first) {
-		first = false;
-	}
-	else {
-		Fatal("Only one instance of Screen class is supported currently");
-	}
+    static bool first = true;
+    if (first) {
+        first = false;
+    }
+    else {
+        Fatal("Only one instance of Screen class is supported currently");
+    }
 #endif
 
-	image::config::set_loader(new TEImageLoader());
+    image::config::set_loader(new TEImageLoader());
 #ifdef USING_BOX2D
-	sprites::config::set_drawer(new TESpriteDrawer());
+    sprites::config::set_drawer(new TESpriteDrawer());
 #endif
-	scene::config::set_drawer(new TESceneDrawer());
+    scene::config::set_drawer(new TESceneDrawer());
 
-	GL::initialize(size);
+    GL::initialize(size);
 
-	Assets::initialize();
+    Assets::initialize();
 
-	_initialize_ui();
+    _initialize_ui();
 
-	setup_input();
+    setup_input();
 
-	set_size(size);
+    set_size(size);
 
-	GL::on_window_size_change = [&](gm::Size size) {
-		set_size(size);
-	};
+    GL::on_window_size_change = [&](gm::Size size) {
+        set_size(size);
+    };
 }
 
 #ifdef DESKTOP_BUILD
 void Screen::start_main_loop() {
     Events::screen_did_appear();
-	GL::start_main_loop([&] {
-		update();
-	});
+    GL::start_main_loop([&] {
+        update();
+    });
 }
 #endif
 
@@ -107,44 +107,44 @@ void Screen::update() {
     Dispatch::execute_tasks();
 
     GL::set_clear_color(clear_color);
-	GL::clear();
+    GL::clear();
 
-	GL::set_viewport({ size });
+    GL::set_viewport({ size });
 
-	GL::enable_depth_test();
+    GL::enable_depth_test();
 
-	if (_scene) {
-		_scene->update(frame_time);
-		_scene->draw();
-	}
+    if (_scene) {
+        _scene->update(frame_time);
+        _scene->draw();
+    }
 
-	GL::disable_depth_test();
-    
+    GL::disable_depth_test();
+
 #ifdef USING_BOX2D
 
-	if (_level) {
-		_level->update();
-		_level->draw();
-	}
-    
+    if (_level) {
+        _level->update();
+        _level->draw();
+    }
+
 #endif
 
     if (_root_view) {
-	    scene_selection_view->place_br({ 280, 28 });
+        scene_selection_view->place_br({ 280, 28 });
         _root_view->_draw();
     }
-    
+
     GL::set_viewport({ size });
 
 #ifdef DEBUG_VIEW
-	debug_view->_draw();
+    debug_view->_draw();
 #endif
 
-	frame_time = Time::interval() / 1000000000.0f;
-	FPS = 1.0f / frame_time;
+    frame_time = Time::interval() / 1000000000.0f;
+    FPS = 1.0f / frame_time;
 
     Screen::frames_drawn++;
-	Events::frame_drawn();
+    Events::frame_drawn();
 
     //System::sleep(0.03f);
 }
@@ -152,97 +152,97 @@ void Screen::update() {
 
 void Screen::setup_input() {
 
-	ui::Keyboard::on_key_event = [&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+    ui::Keyboard::on_key_event = [&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
 
-	    if (_scene == nullptr) {
+        if (_scene == nullptr) {
             return;;
-	    }
+        }
 
-		if (event == ui::Keyboard::Event::Up) {
-			_scene->camera->stop();
-			return;
-		}
+        if (event == ui::Keyboard::Event::Up) {
+            _scene->camera->stop();
+            return;
+        }
 
-		if (key == 'W') {
-			_scene->camera->fly(scene::Flyable::Direction::Forward);
-		}
+        if (key == 'W') {
+            _scene->camera->fly(scene::Flyable::Direction::Forward);
+        }
 
-		if (key == 'S') {
-			_scene->camera->fly(scene::Flyable::Direction::Back);
-		}
+        if (key == 'S') {
+            _scene->camera->fly(scene::Flyable::Direction::Back);
+        }
 
-		if (key == 'A') {
-			_scene->camera->fly(scene::Flyable::Direction::Left);
-		}
+        if (key == 'A') {
+            _scene->camera->fly(scene::Flyable::Direction::Left);
+        }
 
-		if (key == 'D') {
-			_scene->camera->fly(scene::Flyable::Direction::Right);
-		}
+        if (key == 'D') {
+            _scene->camera->fly(scene::Flyable::Direction::Right);
+        }
 
-		if (key == 'E') {
-			_scene->camera->fly(scene::Flyable::Direction::Up);
-		}
+        if (key == 'E') {
+            _scene->camera->fly(scene::Flyable::Direction::Up);
+        }
 
-		if (key == 'Q') {
-			_scene->camera->fly(scene::Flyable::Direction::Down);
-		}
-	};
+        if (key == 'Q') {
+            _scene->camera->fly(scene::Flyable::Direction::Down);
+        }
+    };
 
 #if DESKTOP_BUILD
 
-	ui::Input::on_right_button_drag = [&](ui::Touch* touch) {
-		static ui::Touch::ID prev_id = -1;
-		if (touch->id == prev_id) {
-			_scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
-		}
-		prev_id = touch->id;
-	};
+    ui::Input::on_right_button_drag = [&](ui::Touch* touch) {
+        static ui::Touch::ID prev_id = -1;
+        if (touch->id == prev_id) {
+            _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
+        }
+        prev_id = touch->id;
+    };
 
-	GL::on_mouse_key_pressed = [&](GL::MouseButton button, GL::ButtonState state) {
-		auto ui_button = ui::Mouse::Button::Left;
-		if (button == GL::MouseButton::Right) {
-			ui_button = ui::Mouse::Button::Right;
-		}
-		else if (button == GL::MouseButton::Middle) {
-			ui_button = ui::Mouse::Button::Middle;
-		}
-		ui::input::mouse->set_button_state(ui_button,
-			state == GL::ButtonState::Down ?
-			ui::Mouse::ButtonState::Down :
-			ui::Mouse::ButtonState::Up);
-	};
+    GL::on_mouse_key_pressed = [&](GL::MouseButton button, GL::ButtonState state) {
+        auto ui_button = ui::Mouse::Button::Left;
+        if (button == GL::MouseButton::Right) {
+            ui_button = ui::Mouse::Button::Right;
+        }
+        else if (button == GL::MouseButton::Middle) {
+            ui_button = ui::Mouse::Button::Middle;
+        }
+        ui::input::mouse->set_button_state(ui_button,
+                                           state == GL::ButtonState::Down ?
+                                           ui::Mouse::ButtonState::Down :
+                                           ui::Mouse::ButtonState::Up);
+    };
 
-	GL::on_cursor_moved = [&](gm::Point position) {
-		ui::input::mouse->set_position(position);
-	};
+    GL::on_cursor_moved = [&](gm::Point position) {
+        ui::input::mouse->set_position(position);
+    };
 
-	GL::on_scroll_moved = [&](gm::Point position) {
-		_scene->camera->zoom(position.y);
-	};
+    GL::on_scroll_moved = [&](gm::Point position) {
+        _scene->camera->zoom(position.y);
+    };
 
-	GL::on_key_pressed = [&](char key, unsigned int state) {
-		ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
-	};
+    GL::on_key_pressed = [&](char key, unsigned int state) {
+        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
+    };
 
 #endif
 }
 
 void Screen::set_size(const gm::Size& size) {
-	this->size = size;
-	GL::window_size = size;
-	GL::set_viewport(size);
-	GL::clear();
-	Assets::shaders->sprite->use();
-	Assets::shaders->sprite->set_resolution(size);
-	_root_view->edit_frame() = {size };
-	if (_view) {
-		_view->edit_frame() = {size };
+    this->size = size;
+    GL::window_size = size;
+    GL::set_viewport(size);
+    GL::clear();
+    Assets::shaders->sprite->use();
+    Assets::shaders->sprite->set_resolution(size);
+    _root_view->edit_frame() = {size };
+    if (_view) {
+        _view->edit_frame() = {size };
     }
-	if (_scene) {
+    if (_scene) {
         _scene->camera->resolution = size;
     }
-	update();
-	Events::on_screen_size_change(size);
+    update();
+    Events::on_screen_size_change(size);
 }
 
 void Screen::set_scene(scene::Scene* scene) {
@@ -265,23 +265,23 @@ void Screen::set_scene(scene::Scene* scene) {
 }
 
 scene::Scene* Screen::scene() const {
-	return _scene;
+    return _scene;
 }
 
 #ifdef USING_BOX2D
 void Screen::set_level(sprites::Level* level) {
-	_level = level;
+    _level = level;
 }
 
 sprites::Level* Screen::level() const {
-	return _level;
+    return _level;
 }
 #endif
 
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);
     _view = view;
-	_view->edit_frame() = { size };
+    _view->edit_frame() = { size };
 }
 
 ui::View* Screen::view() const {
@@ -289,5 +289,5 @@ ui::View* Screen::view() const {
 }
 
 te::RootView* Screen::root_view() const {
-	return _root_view;
+    return _root_view;
 }

@@ -27,6 +27,7 @@ void WorldScene::_setup() {
     auto mountain_dir = Paths::downloads();
 
     Logvar(System::pwd());
+    Logvar(System::pwd().ls());
     Logvar(Paths::downloads());
     Logvar(Paths::downloads().ls());
     

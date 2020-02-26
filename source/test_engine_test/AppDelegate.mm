@@ -19,6 +19,7 @@
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
+#import "WorldScene.hpp"
 #import "PhysicsScene.hpp"
 #import "SelectionScene.hpp"
 #import "RotationTestScene.hpp"
@@ -42,13 +43,14 @@ te::Screen* _screen;
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });
 
+    _screen->scene_selection_view->add_scene<WorldScene>();
     _screen->scene_selection_view->add_scene<PhysicsScene>();
     _screen->scene_selection_view->add_scene<SelectionScene>();
     _screen->scene_selection_view->add_scene<RotationTestScene>();
     
     _screen->clear_color = gm::Color::gray;
     
-    _screen->set_scene(new SelectionScene());
+    _screen->set_scene(new WorldScene());
 #ifdef USING_BOX2D
     _screen->set_level(new TestLevel());
 #endif

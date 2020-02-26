@@ -21,25 +21,13 @@ using namespace te;
 using namespace Paths;
 
 Path Paths::root() {
-
 #ifdef IOS_BUILD
     return Path() / obj_c::work_directory_path;
 #elif ANDROID_BUILD
     return "";
 #endif
-
 #ifdef DESKTOP_BUILD
-
-#ifdef WINDOWS
-    Path users = "C:/Users";
-#elif APPLE
-    Path users = "/Users";
-#else
-    Path users = "/home";
-#endif
-
-    return users / cu::System::user_name() / ".deps/test_engine";
-
+    return System::home() / ".deps/test_engine";
 #endif
 }
 
@@ -61,6 +49,10 @@ Path Paths::models() {
 
 Path Paths::fonts() {
     return assets() / "Fonts";
+}
+
+Path Paths::downloads() {
+    return System::home() / "Downloads";
 }
 
 Path Paths::Shaders::root() {
@@ -107,4 +99,3 @@ void Paths::dump() {
     }
 
 }
-

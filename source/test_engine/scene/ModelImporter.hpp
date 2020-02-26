@@ -15,12 +15,11 @@
 #include "Image.hpp"
 
 namespace scene {
-class Model;
+    class Model;
 }
 
 class ModelImporter {
 public:
-    [[nodiscard]]
     static scene::Model* import(const std::string&, Image* = nullptr);
 };
 

@@ -50,6 +50,7 @@ void Screen::_initialize_ui() {
 
     scene_selection_view = new SceneSelectionView();
     scene_selection_view->set_caption("Scene");
+    scene_selection_view->edit_frame() = { 280, 28 };
     _root_view->add_subview(scene_selection_view);
 
 #ifdef DEBUG_VIEW
@@ -130,7 +131,7 @@ void Screen::update() {
 #endif
 
     if (_root_view) {
-        scene_selection_view->place_br({ 280, 28 });
+        scene_selection_view->place_br();
         _root_view->_draw();
     }
 

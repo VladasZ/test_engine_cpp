@@ -19,6 +19,8 @@ namespace te {
         cu::Path models();
         cu::Path fonts();
 
+        cu::Path downloads();
+
 		namespace Shaders {
 			cu::Path root();
 			cu::Path ui();

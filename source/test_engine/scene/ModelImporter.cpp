@@ -91,7 +91,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));
 
-   // cache[file] = parsed_mesh;
+    // cache[file] = parsed_mesh;
 
     return new scene::Model(parsed_mesh);
 }

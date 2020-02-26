@@ -32,10 +32,8 @@ void SelectionView::_setup() {
     object_info_view->edit_frame() = { 400, 80 };
     object_info_view->enable_resize();
 
-    button = new Button();
+    init_view(button, { 100, 100 });
     button->set_caption("Button");
-    button->edit_frame() = { 100, 100 };
-    add_subview(button);
 
     add_subview(revolving_view = View::dummy());
 

@@ -4,6 +4,7 @@
 #include "Screen.hpp"
 #include "System.hpp"
 #include "TestScene.hpp"
+#include "WorldScene.hpp"
 #include "PhysicsScene.hpp"
 #include "SelectionScene.hpp"
 #include "ExceptionCatch.hpp"
@@ -19,10 +20,11 @@ int main() {
     try {
         auto screen = new te::Screen({ 1000, 680 });
         screen->clear_color = gm::Color::gray;
+        screen->scene_selection_view->add_scene<WorldScene>();
         screen->scene_selection_view->add_scene<PhysicsScene>();
         screen->scene_selection_view->add_scene<SelectionScene>();
         screen->scene_selection_view->add_scene<RotationTestScene>();
-        screen->set_scene(new SelectionScene());
+        screen->set_scene(new WorldScene());
         screen->start_main_loop();
     }
     catch(...) {

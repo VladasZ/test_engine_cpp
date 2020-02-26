@@ -24,7 +24,12 @@ void WorldScene::_setup() {
 
     add_object(new Grid());
 
-//    auto mountain_dir = Paths::downloads() / "ter";
+    auto mountain_dir = Paths::downloads();
+
+    Logvar(System::pwd());
+    Logvar(Paths::downloads());
+    Logvar(Paths::downloads().ls());
+    
 //    auto mountain_file = mountain_dir / "Terrain_001.obj";
 //
 //    Logvar(Paths::downloads().ls());

@@ -18,26 +18,12 @@ using namespace te;
 RangeConversion conv;
 
 void WorldView::_setup() {
+
     init_view(testView, { 300, 300 });
     init_view(sliders,  { 200, 400 });
 
     testView->clips = true;
-
-    conv.converted_minimum = -500;
-    conv.converted_maximum = 500;
-
-
-    sliders->sliders.x->slider_view->on_value_changed = [&](float value) {
-        auto co = conv.convert(value);
-        Log(co);
-        testView->content_offset.x = co;
-    };
-
-    sliders->sliders.y->slider_view->on_value_changed = [&](float value) {
-        auto co = conv.convert(value);
-        Log(co);
-        testView->content_offset.y = co;
-    };
+    testView->content_size = { 300, 600 };
 
 }
 

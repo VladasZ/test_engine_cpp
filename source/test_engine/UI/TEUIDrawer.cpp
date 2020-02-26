@@ -22,10 +22,10 @@ using namespace gl;
 //#define GL2
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
-    GL::scissor_begin(rect);
-    GL::set_clear_color(color);
-    GL::clear();
-    GL::scissor_end();
+    GL::set_viewport(rect);
+    Assets::shaders->ui->use();
+    Assets::shaders->ui->set_uniform_color(color);
+    Assets::buffers->fullscreen->draw();
 }
 
 void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {

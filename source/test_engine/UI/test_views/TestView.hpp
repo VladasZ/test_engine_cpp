@@ -11,10 +11,12 @@
 #include "View.hpp"
 #include "Label.hpp"
 #include "ImageView.hpp"
+#include "ScrollView.hpp"
+
 
 namespace te {
 
-    class TestView : public ui::View {
+    class TestView : public ui::ScrollView {
 
     public:
 
@@ -22,7 +24,7 @@ namespace te {
         ui::Label* label;
         ui::ImageView* image_view;
 
-        using View::View;
+        using ScrollView::ScrollView;
 
         void _setup() override;
         void _layout() override;

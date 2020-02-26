@@ -1,5 +1,5 @@
 //
-//  WorldView.hpp
+//  ScrollTestView.hpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 26/02/20.
@@ -8,17 +8,21 @@
 
 #pragma once
 
+#include <source/ui/BasicViews/StackView.hpp>
 #include "View.hpp"
 #include "TestView.hpp"
-#include "XYZSlidersView.hpp"
+#include "FoldableView.hpp"
 
 namespace te {
 
-    class WorldView : public ui::View {
+    class ScrollTestView : public ui::View {
     public:
 
+        ui::Label* fold_caption_label;
+        ui::StackView* folded_stack_view;
+
+        ui::FoldableView* foldableView;
         TestView* testView;
-        XYZSlidersView* sliders;
 
         using View::View;
 

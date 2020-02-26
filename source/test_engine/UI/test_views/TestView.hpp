@@ -10,6 +10,7 @@
 
 #include "View.hpp"
 #include "Label.hpp"
+#include "Button.hpp"
 #include "ImageView.hpp"
 #include "ScrollView.hpp"
 
@@ -22,6 +23,7 @@ namespace te {
 
         ui::View* view;
         ui::Label* label;
+        ui::Button* button;
         ui::ImageView* image_view;
 
         using ScrollView::ScrollView;

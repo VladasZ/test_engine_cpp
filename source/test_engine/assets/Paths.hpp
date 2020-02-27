@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "system/Path.hpp"
+#include "Path.hpp"
 
 namespace te {
     

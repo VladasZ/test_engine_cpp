@@ -20,6 +20,7 @@
 #include "Model.hpp"
 #include "ModelImporter.hpp"
 
+using namespace cu;
 using namespace gm;
 using namespace te;
 using namespace scene;
@@ -36,7 +37,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Log(std::string() + "Loading model: " + file);
 
-    const aiScene* scene = _importer.ReadFile(Paths::models() / file,
+    const aiScene* scene = _importer.ReadFile(Paths::models() / Path(file),
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
                                               aiProcess_JoinIdenticalVertices  |

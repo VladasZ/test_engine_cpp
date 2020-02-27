@@ -25,6 +25,28 @@ void te::TestView::_setup() {
     button->on_press = [&] { button->background_color = gm::Color::random(); };
     image_view->set_image(Assets::images->cat);
 
+
+    fold_caption_label = new Label({ 100, 50 });
+    fold_caption_label->set_text("Fold");
+
+    folded_stack_view = new StackView({ 50, 0, 200, 5000 });
+
+    for (int i = 0; i < 100; i++) {
+        auto lobel = new Label({ 300, 50 });
+        lobel->set_text(std::to_string(i) + " lobel");
+        folded_stack_view->add_subview(lobel);
+    }
+
+    add_subview(foldableView = new FoldableView(fold_caption_label, folded_stack_view));
+
+    foldableView->on_folded = [&] (bool folded) {
+        content_size.height = foldableView->frame().max_y();
+        _needs_layout = true;
+        if (folded) {
+            content_offset = { };
+        }
+    };
+
 }
 
 void te::TestView::_layout() {
@@ -34,6 +56,7 @@ void te::TestView::_layout() {
     label->place_at_center();
     button->place_br(30);
     image_view->place_bl();
+    foldableView->edit_frame().origin = { };
 
     _layout_subviews();
 

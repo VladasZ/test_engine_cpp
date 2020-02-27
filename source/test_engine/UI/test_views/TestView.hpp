@@ -11,8 +11,10 @@
 #include "View.hpp"
 #include "Label.hpp"
 #include "Button.hpp"
+#include "StackView.hpp"
 #include "ImageView.hpp"
 #include "ScrollView.hpp"
+#include "FoldableView.hpp"
 
 
 namespace te {
@@ -20,6 +22,10 @@ namespace te {
     class TestView : public ui::ScrollView {
 
     public:
+
+        ui::Label* fold_caption_label;
+        ui::StackView* folded_stack_view;
+        ui::FoldableView* foldableView;
 
         ui::View* view;
         ui::Label* label;

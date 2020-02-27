@@ -23,6 +23,8 @@ void WorldScene::_setup() {
     view = new ScrollTestView();
 
     add_object(new Grid());
+    
+#ifdef DESKTOP_BUILD
 
     auto mountain_dir = Paths::downloads();
 
@@ -30,6 +32,8 @@ void WorldScene::_setup() {
     Logvar(System::pwd().ls());
     Logvar(Paths::downloads());
     Logvar(Paths::downloads().ls());
+    
+#endif
     
 //    auto mountain_file = mountain_dir / "Terrain_001.obj";
 //

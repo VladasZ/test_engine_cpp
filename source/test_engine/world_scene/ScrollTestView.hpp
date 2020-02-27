@@ -18,10 +18,6 @@ namespace te {
     class ScrollTestView : public ui::View {
     public:
 
-        ui::Label* fold_caption_label;
-        ui::StackView* folded_stack_view;
-
-        ui::FoldableView* foldableView;
         TestView* testView;
 
         using View::View;

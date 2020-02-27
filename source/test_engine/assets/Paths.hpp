@@ -12,25 +12,26 @@
 
 namespace te {
     
-    namespace Paths {
-        cu::Path root();
-        cu::Path assets();
-        cu::Path images();
-        cu::Path models();
-        cu::Path fonts();
+    struct Paths {
 
-        cu::Path downloads();
+        static cu::Path root;
+        static cu::Path assets;
+        static cu::Path images;
+        static cu::Path models;
+        static cu::Path fonts;
 
-		namespace Shaders {
-			cu::Path root();
-			cu::Path ui();
-			cu::Path sprites();
-			cu::Path isometric();
-            cu::Path include();
-            cu::Path test();
-		}
+        static cu::Path downloads;
 
-		void dump();
+        struct Shaders {
+			static cu::Path root;
+            static cu::Path ui;
+            static cu::Path sprites;
+            static cu::Path isometric;
+            static cu::Path include;
+            static cu::Path test;
+		};
+
+		static void dump();
 
     };
     

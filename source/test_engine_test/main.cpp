@@ -18,7 +18,7 @@ using namespace te;
 int main() {
 
     try {
-        auto screen = new te::Screen({ 1000, 680 });
+        auto screen = new te::Screen({ 1000, 800 });
         screen->clear_color = gm::Color::gray;
         screen->scene_selection_view->add_scene<WorldScene>();
         screen->scene_selection_view->add_scene<PhysicsScene>();

@@ -18,80 +18,48 @@
 
 using namespace cu;
 using namespace te;
-using namespace Paths;
 
-Path Paths::root() {
+
+Path Paths::root = [] {
 #ifdef IOS_BUILD
     return Path() / obj_c::work_directory_path;
 #elif ANDROID_BUILD
     return "";
 #endif
 #ifdef DESKTOP_BUILD
-    return System::home() / ".deps/test_engine";
+    return System::home / ".deps/test_engine";
 #endif
-}
+}();
 
-Path Paths::assets() {
-#ifdef ANDROID_BUILD
-    return "";
-#else
-    return root() / "Assets";
-#endif
-}
+Path Paths::assets = SystemInfo::is_android ?  "" : (root / "Assets");
 
-Path Paths::images() {
-    return assets() / "Images";
-}
+Path Paths::images = assets / "Images";
+Path Paths::models = assets / "Models";
+Path Paths::fonts  = assets / "Fonts";
+Path Paths::downloads = System::home / "Downloads";
 
-Path Paths::models() {
-    return assets() / "Models";
-}
+Path Paths::Shaders::root = assets / "Shaders";
 
-Path Paths::fonts() {
-    return assets() / "Fonts";
-}
-
-Path Paths::downloads() {
-    return System::home() / "Downloads";
-}
-
-Path Paths::Shaders::root() {
-	return assets() / "Shaders";
-}
-Path Paths::Shaders::ui() {
-	return root() / "ui";
-}
-
-Path Paths::Shaders::sprites() {
-	return root() / "sprites";
-}
-
-Path Paths::Shaders::isometric() {
-	return root() / "isometric";
-}
-
-Path Paths::Shaders::include() {
-    return root() / "include";
-}
-
-Path Paths::Shaders::test() {
-    return root() / "test";
-}
+Path Paths::Shaders::ui        = root / "ui";
+Path Paths::Shaders::sprites   = root / "sprites";
+Path Paths::Shaders::isometric = root / "isometric";
+Path Paths::Shaders::include   = root / "include";
+Path Paths::Shaders::test      = root / "test";
 
 void Paths::dump() {
 
     static const std::vector<Path> all = {
-            root(),
-            assets(),
-            images(),
-            models(),
-            fonts(),
-            Shaders::root(),
-            Shaders::ui(),
-            Shaders::sprites(),
-            Shaders::isometric(),
-            Shaders::include(),
-            Shaders::test()
+            root,
+            assets,
+            images,
+            models,
+            fonts,
+            Shaders::root,
+            Shaders::ui,
+            Shaders::sprites,
+            Shaders::isometric,
+            Shaders::include,
+            Shaders::test
     };
 
     for(auto path : all) {

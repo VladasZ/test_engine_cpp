@@ -8,19 +8,23 @@
 
 #pragma once
 
-#include <source/ui/BasicViews/StackView.hpp>
 #include "View.hpp"
 #include "TestView.hpp"
+#include "StackView.hpp"
 #include "FoldableView.hpp"
+#include "FileManagerView.hpp"
 
 namespace te {
 
     class ScrollTestView : public ui::View {
     public:
 
-        TestView* testView;
+        TestView* test_view;
+        FileManagerView* file_manager;
 
         using View::View;
+
+    protected:
 
         void _setup() override;
         void _layout() override;

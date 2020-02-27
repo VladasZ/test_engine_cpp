@@ -18,6 +18,7 @@
 #include "Mesh.hpp"
 #include "Paths.hpp"
 #include "Model.hpp"
+#include "StringUtils.hpp"
 #include "ModelImporter.hpp"
 
 using namespace cu;
@@ -37,7 +38,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Log(std::string() + "Loading model: " + file);
 
-    const aiScene* scene = _importer.ReadFile(Paths::models() / Path(file),
+    const aiScene* scene = _importer.ReadFile(file,
                                               aiProcess_CalcTangentSpace       |
                                               aiProcess_Triangulate            |
                                               aiProcess_JoinIdenticalVertices  |
@@ -47,6 +48,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         Fatal(_importer.GetErrorString());
     }
 
+    Logvar(scene->mNumMeshes);
+
     auto meshes = std::vector<aiMesh*> { scene->mMeshes, scene->mMeshes + scene->mNumMeshes };
 
     auto mesh                    = scene->mMeshes[0];
@@ -54,9 +57,39 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Vertex::Indices indices;
 
-    Log(file);
-    Log(mesh->HasTextureCoords(0));
+    Logvar(file);
+    Logvar(scene->mNumMaterials);
+    Logvar(mesh->HasTextureCoords(0));
     Logvar(scene->HasMaterials());
+    Logvar(scene->HasTextures());
+
+    Logvar(mesh->mMaterialIndex);
+
+
+    auto material = scene->mMaterials[mesh->mMaterialIndex];
+
+    Logvar(material->GetTextureCount(aiTextureType_DIFFUSE));
+
+    aiString texturePath;
+
+    auto result = material->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
+
+    std::string texture_path = texturePath.C_Str();
+
+    Logvar(texture_path);
+
+
+    cu::String::drop_first(texture_path);
+
+    auto tex_index = std::stoi(texture_path);
+
+    auto texture = scene->mTextures[tex_index];
+
+    Logvar(texture->mWidth);
+    Logvar(texture->mHeight);
+
+    Logvar(tex_index);
+
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
         const auto& face = mesh->mFaces[i];

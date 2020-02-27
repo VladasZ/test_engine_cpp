@@ -19,14 +19,14 @@ RangeConversion conv;
 
 void ScrollTestView::_setup() {
 
-    init_view(testView, { 200, 300 });
-
-    testView->clips = true;
+    init_view(test_view, { 200, 300 });
+    init_view(file_manager, { 300, 400 });
 
 }
 
 void ScrollTestView::_layout() {
     _calculate_absolute_frame();
-    testView->place_at_center();
+    test_view->edit_frame().origin = { };
+    file_manager->place_bl();
     _layout_subviews();
 }

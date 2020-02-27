@@ -26,26 +26,24 @@ void WorldScene::_setup() {
     
 #ifdef DESKTOP_BUILD
 
-    auto mountain_dir = Paths::downloads();
+    auto mountain_dir = Paths::downloads / "note";
 
     Logvar(System::pwd());
     Logvar(System::pwd().ls());
-    Logvar(Paths::downloads());
-    Logvar(Paths::downloads().ls());
-    
+    Logvar(Paths::downloads);
+    Logvar(Paths::downloads.ls());
+
+    auto mountain_file = mountain_dir / "notebook.blend";
+
+    Logvar(Paths::downloads.ls());
+    Logvar(mountain_file);
+    Logvar(mountain_dir.ls());
+
+    auto mon_model = ModelImporter::import(mountain_file);
+
+    add_object(mon_model);
+
 #endif
-    
-//    auto mountain_file = mountain_dir / "Terrain_001.obj";
-//
-//    Logvar(Paths::downloads().ls());
-//    Logvar(mountain_file);
-//    Logvar(mountain_dir.ls());
-//
-//    auto mon_model = ModelImporter::import(mountain_file);
-//
-//    add_object(mon_model);
-//
-//    Logvar(mountain_file.ls());
 
 }
 

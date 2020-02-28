@@ -25,6 +25,7 @@ void FileManagerView::set_path(const Path& path) {
     _stack_view->remove_all_subviews();
 
     _path = path;
+    _path.trim_relative();
 
     auto ls = _path.ls();
 
@@ -36,8 +37,11 @@ void FileManagerView::set_path(const Path& path) {
         label->set_text(file.file_name());
         label->add_subview(button);
         _stack_view->add_subview(label);
-        button->on_press = [&] {
+        button->on_press = [=] {
             Log(file);
+            if (file.is_directory()) {
+                set_path(file);
+            }
         };
     }
 

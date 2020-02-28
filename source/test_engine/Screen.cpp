@@ -22,21 +22,23 @@
 #include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
-#include "SelectionView.hpp"
 #include "GLWrapper.hpp"
 #include "TEUIDrawer.hpp"
 #include "ImageConfig.hpp"
 #include "GlobalEvents.hpp"
+#include "SelectionView.hpp"
 #include "TEImageLoader.hpp"
 #include "ModelImporter.hpp"
 #include "TESceneDrawer.hpp"
 #include "TESpriteDrawer.hpp"
+#include "ExceptionCatch.hpp"
 #include "SceneSelectionView.hpp"
 #include "BufferConfiguration.hpp"
 
 using namespace gm;
 using namespace te;
 using namespace cu;
+
 
 void Screen::_initialize_ui() {
 
@@ -98,7 +100,12 @@ Screen::Screen(const gm::Size& size) {
 void Screen::start_main_loop() {
     Events::screen_did_appear();
     GL::start_main_loop([&] {
-        update();
+        try {
+            update();
+        }
+        catch(...) {
+            cu::System::alert(what());
+        }
     });
 }
 #endif

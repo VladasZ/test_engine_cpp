@@ -1,6 +1,7 @@
 
 #ifdef DESKTOP_BUILD
 
+#include "Paths.hpp"
 #include "Screen.hpp"
 #include "System.hpp"
 #include "TestScene.hpp"
@@ -18,6 +19,7 @@ using namespace te;
 int main() {
 
     try {
+        Paths::dump();
         auto screen = new te::Screen({ 1000, 800 });
         screen->clear_color = gm::Color::gray;
         screen->scene_selection_view->add_scene<WorldScene>();

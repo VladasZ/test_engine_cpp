@@ -4,4 +4,6 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	include(build/build_tools_generated.cmake)
 endif()
 
+set(CMAKE_CXX_STANDARD 17)
+
 setup_project(test_engine)

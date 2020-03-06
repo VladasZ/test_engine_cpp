@@ -27,7 +27,9 @@ Path Paths::root = [] {
     return "";
 #endif
 #ifdef DESKTOP_BUILD
-    return System::home / ".deps/test_engine";
+    Logvar(System::home);
+    Logvar(System::home() / ".deps/test_engine");
+    return System::home() / ".deps/test_engine";
 #endif
 }();
 
@@ -36,7 +38,7 @@ Path Paths::assets = SystemInfo::is_android ?  "" : (root / "Assets");
 Path Paths::images = assets / "Images";
 Path Paths::models = assets / "Models";
 Path Paths::fonts  = assets / "Fonts";
-Path Paths::downloads = System::home / "Downloads";
+Path Paths::downloads = System::home() / "Downloads";
 
 Path Paths::Shaders::root = assets / "Shaders";
 
@@ -48,22 +50,20 @@ Path Paths::Shaders::test      = root / "test";
 
 void Paths::dump() {
 
-    static const std::vector<Path> all = {
-            root,
-            assets,
-            images,
-            models,
-            fonts,
-            Shaders::root,
-            Shaders::ui,
-            Shaders::sprites,
-            Shaders::isometric,
-            Shaders::include,
-            Shaders::test
-    };
+    Logvar(System::user_name);
+    Logvar(System::home);
+    Logvar(System::home() / ".deps/test_engine");
 
-    for(auto path : all) {
-        Log(path);
-    }
+    Logvar(root);
+    Logvar(assets);
+    Logvar(images);
+    Logvar(models);
+    Logvar(fonts);
+    Logvar(Shaders::root);
+    Logvar(Shaders::ui);
+    Logvar(Shaders::sprites);
+    Logvar(Shaders::isometric);
+    Logvar(Shaders::include);
+    Logvar(Shaders::test);
 
 }

@@ -28,20 +28,20 @@ void WorldScene::_setup() {
 
     auto mountain_dir = Paths::downloads / "note";
 
-    Logvar(System::pwd());
-    Logvar(System::pwd().ls());
-    Logvar(Paths::downloads);
-    Logvar(Paths::downloads.ls());
+    //Logvar(System::pwd());
+    //Logvar(System::pwd().ls());
+    //Logvar(Paths::downloads);
+    //Logvar(Paths::downloads.ls());
 
-    auto mountain_file = mountain_dir / "notebook.blend";
+    //auto mountain_file = mountain_dir / "notebook.blend";
 
-    Logvar(Paths::downloads.ls());
-    Logvar(mountain_file);
-    Logvar(mountain_dir.ls());
+    //Logvar(Paths::downloads.ls());
+    //Logvar(mountain_file);
+    //Logvar(mountain_dir.ls());
 
-    auto mon_model = ModelImporter::import(mountain_file);
+    //auto mon_model = ModelImporter::import(mountain_file);
 
-    add_object(mon_model);
+    //add_object(mon_model);
 
 #endif
 

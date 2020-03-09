@@ -27,8 +27,6 @@ Path Paths::root = [] {
     return "";
 #endif
 #ifdef DESKTOP_BUILD
-    Logvar(System::home);
-    Logvar(System::home() / ".deps/test_engine");
     return System::home() / ".deps/test_engine";
 #endif
 }();

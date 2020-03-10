@@ -1,6 +1,6 @@
 # TestEngine
 
-### Build Status:
+### Supported platforms:
 
 | macOS            | Linux            | Windows          | iOS Simulator    | iOS Device       | Android          |
 |------------------|------------------|------------------|------------------|------------------|------------------|
@@ -21,3 +21,22 @@
 My attempt to create a cross platform, OpenGL based game engine.
 
 Inspired by Cross++: https://github.com/maxon887/Cross .
+
+#### Scene module:
+- Objects hierarchy and subobjects
+- Objects manipulation: scale, rotation, translation
+- Models import using assimp
+
+![Scene](https://i.imgur.com/wndtmaR.png)
+- Rigid body physics support using bullet3
+
+![Physics](https://i.imgur.com/CdYa14K.gif)
+
+#### UI module:
+- Subviews and layout sustem
+- Cross platform touch system with multitouch support
+- Rendering custom fonts using FreeType
+- Buttons, Sliders, Stack views, Image views and Switches support
+- Scroll view support
+
+![Scroll view](https://i.imgur.com/jjkcViF.gif)

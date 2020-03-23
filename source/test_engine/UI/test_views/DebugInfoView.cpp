@@ -7,6 +7,7 @@
 //
 
 #include "ui.hpp"
+#include "Input.hpp"
 #include "Screen.hpp"
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
@@ -34,21 +35,21 @@ void DebugInfoView::_setup() {
 
     add_subview(_stack_view);
 
-    Events::frame_drawn.subscribe([&] {
+    Events::frame_drawn = [&] {
         static int frames_drawn = 0;
         _frames_drawn_label->set_text(std::string() + "Frames drawn: " + std::to_string(++frames_drawn));
         _fps_label->set_text(std::string() + "FPS: " + std::to_string(te::Screen::FPS));
-    });
+    };
 
 #ifdef MOUSE
-	ui::Mouse::on_moved.subscribe([&](Point position) {
+	ui::Mouse::on_moved = [&](Point position) {
 		_cursor_position_label->set_text(std::string() + "Cursor: " + ui::Mouse::frame_shift.to_string());
-});
+    };
 #endif
 
-    ui::Input::on_touch.subscribe([&](ui::Touch* touch) {
+    ui::Input::on_touch = [&](ui::Touch* touch) {
         _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
-    });
+    };
 }
 
 void DebugInfoView::_draw() {
@@ -58,9 +59,7 @@ void DebugInfoView::_draw() {
 void DebugInfoView::_layout() {
     _calculate_absolute_frame();
 
-    _stack_view->edit_frame([&](Rect& frame){
-       frame.size = this->_frame.size;
-    });
+    _stack_view->edit_frame().size = _frame.size;
 
     _layout_subviews();
 }

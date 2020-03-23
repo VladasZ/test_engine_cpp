@@ -7,6 +7,7 @@
 //
 
 #include "Log.hpp"
+#include "Bluetooth.hpp"
 #include "ScrollTestView.hpp"
 #include "RangeConversion.hpp"
 
@@ -21,7 +22,9 @@ void ScrollTestView::_setup() {
 
     init_view(test_view, { 200, 300 });
     init_view(file_manager, { 300, 400 });
-
+    
+    Bluetooth::test_peripheral();
+    
 }
 
 void ScrollTestView::_layout() {

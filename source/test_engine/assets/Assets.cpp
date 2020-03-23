@@ -11,8 +11,6 @@
 
 
 void Assets::initialize() {
-    te::Paths::dump();
-
     images = new Images();
 	shaders = new Shaders();
     buffers = new Buffers();

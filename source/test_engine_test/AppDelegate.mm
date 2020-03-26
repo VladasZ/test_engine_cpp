@@ -16,6 +16,7 @@
 #import "Log.hpp"
 #import "Input.hpp"
 #import "Screen.hpp"
+#import "Bluetooth.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
@@ -54,6 +55,9 @@ te::Screen* _screen;
 #ifdef USING_BOX2D
     _screen->set_level(new TestLevel());
 #endif
+    
+    cu::Bluetooth::test_central();
+    //cu::Bluetooth::test_peripheral();
 }
 
 - (void)update {

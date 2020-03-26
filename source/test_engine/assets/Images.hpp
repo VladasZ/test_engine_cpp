@@ -18,5 +18,9 @@ struct Images {
     Image* square;
     Image* scale_test;
 
+    Image* file;
+    Image* image;
+    Image* folder;
+
     Images();
 };

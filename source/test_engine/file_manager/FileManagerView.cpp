@@ -6,6 +6,7 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "Label.hpp"
 #include "Button.hpp"
 #include "FileManagerView.hpp"

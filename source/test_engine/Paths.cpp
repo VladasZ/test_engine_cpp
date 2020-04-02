@@ -11,6 +11,7 @@
 #include "Log.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
+#include "SystemInfo.hpp"
 
 #ifdef IOS_BUILD
 #include "CallObj.hpp"

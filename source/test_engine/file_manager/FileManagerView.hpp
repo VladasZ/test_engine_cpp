@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Image.hpp"
 #include "StackView.hpp"
 #include "ScrollView.hpp"
 
@@ -33,6 +34,10 @@ namespace te {
 
         void  _setup() override;
         void _layout() override;
+
+    public:
+
+        static Image* image_for_extension(const std::string& extension);
 
     };
 

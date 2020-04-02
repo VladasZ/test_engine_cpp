@@ -18,4 +18,8 @@ Images::Images() {
     round      = new Image(Paths::images / "round.png");
     square     = new Image(Paths::images / "square.png");
     scale_test = new Image(Paths::images / "scale_test.png");
+
+    file   = new Image(Paths::images / "file.png");
+    image  = new Image(Paths::images / "image.png");
+    folder = new Image(Paths::images / "folder.png");
 }

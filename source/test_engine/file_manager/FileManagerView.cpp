@@ -8,6 +8,7 @@
 
 #include "Log.hpp"
 #include "Label.hpp"
+#include "Assets.hpp"
 #include "Button.hpp"
 #include "FileManagerView.hpp"
 
@@ -59,4 +60,10 @@ void FileManagerView::_layout() {
     _calculate_absolute_frame();
     content_size.height = _stack_view->frame().size.height;
     ScrollView::_layout();
+}
+
+Image* FileManagerView::image_for_extension(const std::string& extension) {
+    if (extension.empty())  return Assets::images->folder;
+    if (extension == "png") return Assets::images->image;
+                            return Assets::images->file;
 }

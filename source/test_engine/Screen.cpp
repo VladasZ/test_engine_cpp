@@ -18,7 +18,6 @@
 #include "Assets.hpp"
 #include "Camera.hpp"
 #include "Screen.hpp"
-#include "Sprites.hpp"
 #include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
@@ -76,9 +75,7 @@ Screen::Screen(const gm::Size& size) {
 #endif
 
     image::config::set_loader(new TEImageLoader());
-#ifdef USING_BOX2D
-    sprites::config::set_drawer(new TESpriteDrawer());
-#endif
+
     scene::config::set_drawer(new TESceneDrawer());
 
     GL::initialize(size);
@@ -129,12 +126,10 @@ void Screen::update() {
     GL::disable_depth_test();
 
 #ifdef USING_BOX2D
-
-    if (_level) {
-        _level->update();
-        _level->draw();
-    }
-
+//    if (_level) {
+//        _level->update();
+//        _level->draw();
+//    }
 #endif
 
     if (_root_view) {
@@ -277,13 +272,13 @@ scene::Scene* Screen::scene() const {
 }
 
 #ifdef USING_BOX2D
-void Screen::set_level(sprites::Level* level) {
-    _level = level;
-}
-
-sprites::Level* Screen::level() const {
-    return _level;
-}
+//void Screen::set_level(sprites::Level* level) {
+//    _level = level;
+//}
+//
+//sprites::Level* Screen::level() const {
+//    return _level;
+//}
 #endif
 
 void Screen::set_view(ui::View* view) {

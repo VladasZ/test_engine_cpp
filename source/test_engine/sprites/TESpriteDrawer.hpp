@@ -10,10 +10,10 @@
 
 #pragma once
 
-#include "SpriteDrawer.hpp"
-
-class TESpriteDrawer : public sprites::SpriteDrawer {
-	void draw(sprites::Sprite* sprite) override;
-};
+//#include "SpriteDrawer.hpp"
+//
+//class TESpriteDrawer : public sprites::SpriteDrawer {
+//	void draw(sprites::Sprite* sprite) override;
+//};
 
 #endif

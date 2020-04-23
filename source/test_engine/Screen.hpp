@@ -10,7 +10,6 @@
 
 #include "Size.hpp"
 #include "Debug.hpp"
-#include "Level.hpp"
 #include "Scene.hpp"
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
@@ -31,9 +30,7 @@ namespace te {
 		void _initialize_ui();
 
 		scene::Scene*   _scene = nullptr;
-#ifdef USING_BOX2D
-        sprites::Level* _level = nullptr;
-#endif
+
         ui::View*       _view  = nullptr;
 
         RootView* _root_view = nullptr;
@@ -73,11 +70,6 @@ namespace te {
 
 		void set_scene(scene::Scene*);
 		scene::Scene* scene() const;
-
-#ifdef USING_BOX2D
-		void set_level(sprites::Level*);
-		sprites::Level* level() const;
-#endif
         
         void set_view(ui::View*);
         ui::View* view() const;

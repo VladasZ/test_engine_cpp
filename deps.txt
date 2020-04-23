@@ -1,4 +1,3 @@
 ui
 scene
-sprites
 gl_wrapper

@@ -10,6 +10,7 @@
 
 #include "Vec4SlidersView.hpp"
 
+
 class TestSlidersView : public ui::View {
 
     using View::View;
@@ -22,5 +23,6 @@ public:
 
 private:
 
-    void _setup() override;
+    void setup() override;
+
 };

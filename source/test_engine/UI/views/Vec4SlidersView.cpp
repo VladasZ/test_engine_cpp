@@ -12,21 +12,15 @@
 
 #define SET_VALUE(var, val) var = (-1 + val * 2 * multiplier);
 
-Vec4SlidersView::~Vec4SlidersView() {
 
-}
+Vec4SlidersView::~Vec4SlidersView() { }
 
-void Vec4SlidersView::_setup() {
+void Vec4SlidersView::setup() {
 
-    _x_slider = new ui::LabeledSliderView();
-    _y_slider = new ui::LabeledSliderView();
-    _z_slider = new ui::LabeledSliderView();
-    _w_slider = new ui::LabeledSliderView();
-
-    add_subviews({ _x_slider,
-                   _y_slider,
-                   _z_slider,
-                   _w_slider });
+    init_view(_x_slider);
+    init_view(_y_slider);
+    init_view(_z_slider);
+    init_view(_w_slider);
 
     _x_slider->set_caption("X");
     _y_slider->set_caption("Y");
@@ -59,8 +53,7 @@ void Vec4SlidersView::_setup() {
     };
 }
 
-void Vec4SlidersView::_layout() {
-    _calculate_absolute_frame();
+void Vec4SlidersView::layout_subviews() {
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 4;
@@ -70,5 +63,4 @@ void Vec4SlidersView::_layout() {
     _z_slider->edit_frame() = {width * 2 + margin * 1, 0, width, _frame.size.height };
     _w_slider->edit_frame() = {width * 3 + margin * 1, 0, width, _frame.size.height };
 
-    _layout_subviews();
 }

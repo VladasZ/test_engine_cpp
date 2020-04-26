@@ -12,11 +12,12 @@
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
-using namespace gm;
-
 #ifdef DEBUG_VIEW
 
-void DebugInfoView::_setup() {
+using namespace ui;
+
+
+void DebugInfoView::setup() {
 
     _stack_view = new ui::StackView();
 
@@ -52,16 +53,8 @@ void DebugInfoView::_setup() {
     };
 }
 
-void DebugInfoView::_draw() {
-    ui::View::_draw();
-}
-
-void DebugInfoView::_layout() {
-    _calculate_absolute_frame();
-
+void DebugInfoView::layout_subviews() {
     _stack_view->edit_frame().size = _frame.size;
-
-    _layout_subviews();
 }
 
 #endif

@@ -15,6 +15,7 @@
 #include "Label.hpp"
 #include "StackView.hpp"
 
+
 class DebugInfoView : public ui::View {
 
 private:
@@ -36,12 +37,11 @@ public:
 
 public:
 
-    void _setup() override;
-    void _draw() override;
+    void setup() override;
 
 protected:
 
-    void _layout() override;
+    void layout_subviews() override;
 
 };
 

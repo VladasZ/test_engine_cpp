@@ -12,6 +12,7 @@
 #include "StackView.hpp"
 #include "CaptionLabel.hpp"
 
+
 class ObjectInfoView : public ui::StackView {
 
 protected:
@@ -30,7 +31,6 @@ public:
 
 protected:
 
-    void _setup() override;
-    void _layout() override;
+    void setup() override;
 
 };

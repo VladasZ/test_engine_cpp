@@ -20,14 +20,13 @@ const cu::Path& te::PathView::path() const {
     return _path;
 }
 
-void te::PathView::_setup() {
+void te::PathView::setup() {
     Logvar(_frame);
     init_view(_label);
     init_view(_image);
 }
 
-void te::PathView::_layout() {
-    _calculate_absolute_frame();
+void te::PathView::layout_subviews() {
 
     static const float margin = 5;
 
@@ -50,7 +49,6 @@ void te::PathView::_layout() {
               image_size
             };
 
-    _layout_subviews();
 }
 
 gm::Rect& te::PathView::edit_frame() {

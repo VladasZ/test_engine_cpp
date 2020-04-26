@@ -13,7 +13,8 @@
 using namespace te;
 using namespace ui;
 
-void RootView::_setup() {
+
+void RootView::setup() {
     background_color = gm::Color::clear;
 
     Input::on_touch = [&](Touch* touch) {
@@ -23,11 +24,6 @@ void RootView::_setup() {
         add_subview(view);
         _touch_views.push_back(view);
     };
-}
-
-void RootView::_layout() {
-    _calculate_absolute_frame();
-    _layout_subviews();
 }
 
 void RootView::set_draw_touches(bool value) {

@@ -15,11 +15,9 @@ using namespace gm;
 using namespace cu;
 
 
-XYZSlidersView::~XYZSlidersView() {
+XYZSlidersView::~XYZSlidersView() { }
 
-}
-
-void XYZSlidersView::_setup() {
+void XYZSlidersView::setup() {
 
     for (auto& slider : sliders) {
         add_subview(slider = new ui::LabeledSliderView());
@@ -49,8 +47,7 @@ void XYZSlidersView::_setup() {
     };
 }
 
-void XYZSlidersView::_layout() {
-    _calculate_absolute_frame();
+void XYZSlidersView::layout_subviews() {
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;
@@ -59,5 +56,4 @@ void XYZSlidersView::_layout() {
     sliders.y->edit_frame() = { width * 1 + margin * 1, 0, width, _frame.size.height };
     sliders.z->edit_frame() = { width * 2 + margin * 1, 0, width, _frame.size.height };
 
-    _layout_subviews();
 }

@@ -12,12 +12,12 @@ using namespace ui;
 using namespace te;
 
 
-void WorldView::_setup() {
+void WorldView::setup() {
+    init_view(test_view, { 200, 200 });
     init_view(file_manager, { 300, 400 });
 }
 
-void WorldView::_layout() {
-    _calculate_absolute_frame();
+void WorldView::layout_subviews() {
     file_manager->place_bl();
-    _layout_subviews();
+    test_view->place_at_center();
 }

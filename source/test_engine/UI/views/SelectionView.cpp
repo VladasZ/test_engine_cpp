@@ -6,8 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "Log.hpp"
-#include "Time.hpp"
 #include "System.hpp"
 #include "Assets.hpp"
 #include "Screen.hpp"
@@ -17,7 +15,6 @@
 
 using namespace cu;
 using namespace ui;
-using namespace gm;
 using namespace scene;
 
 
@@ -26,7 +23,7 @@ SelectionView::~SelectionView() {
     te::Screen::current->scene()->on_model_moved.unsubscribe(this);
 }
 
-void SelectionView::_setup() {
+void SelectionView::setup() {
 
     add_subview(object_info_view = new ObjectInfoView());
     object_info_view->edit_frame() = { 400, 80 };
@@ -62,8 +59,7 @@ void SelectionView::_setup() {
 
 }
 
-void SelectionView::_layout() {
-    _calculate_absolute_frame();
+void SelectionView::layout_subviews() {
 
     button->place_bl();
 
@@ -77,5 +73,4 @@ void SelectionView::_layout() {
 
     object_info_view->stick_to(button, gm::Edge::Right, 10);
 
-    View::_layout();
 }

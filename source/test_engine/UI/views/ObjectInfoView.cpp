@@ -7,13 +7,12 @@
 //
 
 #include "Log.hpp"
-
 #include "MetaHelpers.hpp"
 #include "ObjectInfoView.hpp"
 
-using namespace gm;
 using namespace cu;
 using namespace ui;
+
 
 void ObjectInfoView::set_object(scene::Model* model) {
 
@@ -33,7 +32,7 @@ void ObjectInfoView::clear() {
     set_object(nullptr);
 }
 
-void ObjectInfoView::_setup() {
+void ObjectInfoView::setup() {
     add_subview(_id_label = new CaptionLabel());
     _id_label->set_caption("Model: ");
 
@@ -42,9 +41,4 @@ void ObjectInfoView::_setup() {
 
     add_subview(_bounding_box_label = new CaptionLabel());
     _bounding_box_label->set_caption("Bounding: ");
-}
-
-void ObjectInfoView::_layout() {
-    StackView::_layout();
-    _layout_subviews();
 }

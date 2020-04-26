@@ -10,27 +10,24 @@
 
 #include "View.hpp"
 
+
 namespace te {
 
-class RootView : public ui::View {
+    class RootView : public ui::View {
 
+        static inline bool _draw_touches = false;
+        static inline ui::View::Array _touch_views;
 
-    static inline bool _draw_touches = false;
-    static inline ui::View::Array _touch_views;
+    public:
 
-public:
+        using View::View;
 
-    using View::View;
+        void setup() override;
 
-    void _setup() override;
+    public:
 
-public:
+        static void set_draw_touches(bool);
 
-    void _layout() override;
-
-
-    static void set_draw_touches(bool);
-
-};
+    };
 
 }

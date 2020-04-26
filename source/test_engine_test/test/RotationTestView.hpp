@@ -8,6 +8,7 @@
 
 #include "XYZSlidersView.hpp"
 
+
 namespace te {
 
     class RotationTestView : public ui::View {
@@ -18,8 +19,7 @@ namespace te {
 
     protected:
 
-        void _setup() override;
-        void _layout() override;
+        void setup() override;
 
     };
 

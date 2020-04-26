@@ -11,6 +11,7 @@
 #include "Vector4.hpp"
 #include "LabeledSliderView.hpp"
 
+
 class Vec4SlidersView : public ui::View {
 
     ui::LabeledSliderView* _x_slider = nullptr;
@@ -31,7 +32,8 @@ public:
 
 private:
 
-    void _setup() override;
-    void _layout() override;
+    void setup() override;
+    void layout_subviews() override;
+
 };
 

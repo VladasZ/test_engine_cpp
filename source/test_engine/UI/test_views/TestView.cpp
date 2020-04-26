@@ -11,9 +11,10 @@
 
 using namespace ui;
 
-void te::TestView::_setup() {
 
-    ScrollView::_setup();
+void te::TestView::setup() {
+
+    ScrollView::setup();
 
     init_view(view,       { 100, 100 });
     init_view(label,      { 100, 100 });
@@ -41,7 +42,6 @@ void te::TestView::_setup() {
 
     foldableView->on_folded = [&] (bool folded) {
         content_size.height = foldableView->frame().max_y();
-        _needs_layout = true;
         if (folded) {
             content_offset = { };
         }
@@ -49,8 +49,9 @@ void te::TestView::_setup() {
 
 }
 
-void te::TestView::_layout() {
-    _calculate_absolute_frame();
+void te::TestView::layout_subviews() {
+
+    ScrollView::layout_subviews();
 
     view->place_tr(30);
     label->place_at_center();
@@ -58,7 +59,4 @@ void te::TestView::_layout() {
     image_view->place_bl();
     foldableView->edit_frame().origin = { };
 
-    _layout_subviews();
-
-    ScrollView::_layout();
 }

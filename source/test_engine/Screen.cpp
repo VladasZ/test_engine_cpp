@@ -47,7 +47,7 @@ void Screen::_initialize_ui() {
             new ui::Font(Paths::fonts / "SF.otf");
 
     _root_view = new RootView(gm::Rect { Screen::size });
-    _root_view->_setup();
+    _root_view->setup();
 
     scene_selection_view = new SceneSelectionView();
     scene_selection_view->set_caption("Scene");
@@ -56,7 +56,7 @@ void Screen::_initialize_ui() {
 
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
-	debug_view->_setup();
+	debug_view->setup();
 #endif
 }
 

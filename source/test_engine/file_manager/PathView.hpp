@@ -32,10 +32,10 @@ namespace te {
 
     protected:
 
-        void _setup() override;
-        void _layout() override;
+        void setup() override;
+        void layout_subviews() override;
 
-        gm::Rect & edit_frame() override;
+        gm::Rect& edit_frame() override;
 
 
     };

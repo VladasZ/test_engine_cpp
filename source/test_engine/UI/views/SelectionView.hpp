@@ -19,7 +19,7 @@
 class SelectionView : public ui::View {
 
 public:
-   
+
     using ui::View::View;
 
     ObjectInfoView* object_info_view = nullptr;
@@ -32,7 +32,9 @@ public:
 
     ~SelectionView();
 
-    void _setup() override;
-    void _layout() override;
+protected:
+
+    void setup() override;
+    void layout_subviews() override;
 
 };

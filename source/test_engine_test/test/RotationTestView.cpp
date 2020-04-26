@@ -10,14 +10,7 @@
 
 using namespace te;
 
-void RotationTestView::_setup() {
-    add_subview(sliders = new XYZSlidersView);
-    sliders->edit_frame() = { 180, 280 };
+
+void RotationTestView::setup() {
+    init_view(sliders, { 180, 280 });
 }
-
-void RotationTestView::_layout() {
-    _calculate_absolute_frame();
-
-    _layout_subviews();
-}
-

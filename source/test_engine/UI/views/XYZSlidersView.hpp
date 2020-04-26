@@ -13,6 +13,7 @@
 #include "RangeConversion.hpp"
 #include "LabeledSliderView.hpp"
 
+
 namespace te {
 
     class XYZSlidersView : public ui::View {
@@ -31,8 +32,9 @@ namespace te {
 
     private:
 
-        void _setup() override;
-        void _layout() override;
+        void setup() override;
+        void layout_subviews() override;
+
     };
 
 }

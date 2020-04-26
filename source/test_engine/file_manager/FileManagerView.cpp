@@ -15,7 +15,6 @@
 
 using namespace cu;
 using namespace te;
-using namespace gm;
 using namespace ui;
 
 
@@ -46,16 +45,15 @@ void FileManagerView::set_path(const Path& path) {
     _stack_view->edit_frame().size.height = cell_height * ls.size();
 }
 
-void FileManagerView::_setup() {
-    ScrollView::_setup();
+void FileManagerView::setup() {
+    ScrollView::setup();
     init_view(_stack_view);
     set_path(System::pwd());
 }
 
-void FileManagerView::_layout() {
-    _calculate_absolute_frame();
+void FileManagerView::layout_subviews() {
+    ScrollView::layout_subviews();
     content_size.height = _stack_view->frame().size.height;
-    ScrollView::_layout();
 }
 
 Image* FileManagerView::image_for_extension(const std::string& extension) {

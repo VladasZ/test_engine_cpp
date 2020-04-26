@@ -52,6 +52,5 @@ void te::PathView::layout_subviews() {
 }
 
 gm::Rect& te::PathView::edit_frame() {
-    Log();
     return View::edit_frame();
 }

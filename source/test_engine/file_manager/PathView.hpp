@@ -20,7 +20,6 @@ namespace te {
         cu::Path _path;
 
         ui::Label* _label;
-        ui::Button* _button;
         ui::ImageView* _image;
 
     public:
@@ -35,6 +34,9 @@ namespace te {
 
         void _setup() override;
         void _layout() override;
+
+        gm::Rect & edit_frame() override;
+
 
     };
 

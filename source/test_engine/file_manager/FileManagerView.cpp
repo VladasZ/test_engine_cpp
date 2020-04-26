@@ -10,6 +10,7 @@
 #include "Label.hpp"
 #include "Assets.hpp"
 #include "Button.hpp"
+#include "PathView.hpp"
 #include "FileManagerView.hpp"
 
 using namespace cu;
@@ -19,6 +20,7 @@ using namespace ui;
 
 
 void FileManagerView::set_path(const Path& path) {
+
     if (!path.is_directory()) {
         Log("Not a dir");
         return;
@@ -33,18 +35,12 @@ void FileManagerView::set_path(const Path& path) {
 
     Size size = { _frame.size.width, cell_height };
 
+    Logvar(size);
+
     for (auto file : ls) {
-        auto label = new Label(size);
-        auto button = new Button(size);
-        label->set_text(file.file_name());
-        label->add_subview(button);
-        _stack_view->add_subview(label);
-        button->on_press = [=] {
-            Log(file);
-            if (file.is_directory()) {
-                set_path(file);
-            }
-        };
+        auto view = new PathView(size);
+        _stack_view->add_subview(view);
+        view->set_path(file);
     }
 
     _stack_view->edit_frame().size.height = cell_height * ls.size();

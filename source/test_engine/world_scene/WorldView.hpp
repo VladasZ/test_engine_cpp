@@ -1,5 +1,5 @@
 //
-//  ScrollTestView.hpp
+//  WorldView.hpp
 //  TestEngine
 //
 //  Created by Vladas Zakrevskis on 26/02/20.
@@ -8,18 +8,14 @@
 
 #pragma once
 
-#include "View.hpp"
-#include "TestView.hpp"
-#include "StackView.hpp"
-#include "FoldableView.hpp"
 #include "FileManagerView.hpp"
+
 
 namespace te {
 
-    class ScrollTestView : public ui::View {
+    class WorldView : public ui::View {
     public:
 
-        TestView* test_view;
         FileManagerView* file_manager;
 
         using View::View;

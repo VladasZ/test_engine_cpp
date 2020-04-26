@@ -9,7 +9,7 @@
 #include "Grid.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
-#include "ScrollTestView.hpp"
+#include "WorldView.hpp"
 #include "WorldScene.hpp"
 #include "ModelImporter.hpp"
 
@@ -20,7 +20,7 @@ using namespace scene;
 
 void WorldScene::_setup() {
 
-    view = new ScrollTestView();
+    view = new WorldView();
 
     add_object(new Grid());
     

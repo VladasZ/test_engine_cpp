@@ -2,6 +2,13 @@ language: cpp
 
 matrix:
     include:
+        - os: windows
+         name: Windows MinGW
+         install:
+           - git clone https://github.com/vladasz/deploy
+           - py deploy/deploy.py
+         script:
+           - py build.py --build
         
         - os: osx
           name: iOS simulator

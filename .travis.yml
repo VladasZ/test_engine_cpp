@@ -5,8 +5,7 @@ matrix:
 
         - os: windows
           before_install:
-            - choco install python3 --params "/InstallDir:C:\\peten"
-            - ls C:\\peten
+            - choco install python3 --params "/InstallDir:C:\\python3"
             - C:\\python3\\python.exe --version
           install:
             - git clone https://github.com/vladasz/deploy

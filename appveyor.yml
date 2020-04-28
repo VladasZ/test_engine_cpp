@@ -6,7 +6,8 @@ os:
 install:
   - git clone https://github.com/vladasz/deploy
   - py deploy/deploy.py
-  - py build.py --ide --no-soil
+  - py build.py --build
+  - py build.py --clean --ide --no-soil
   
 configuration:
   - Release

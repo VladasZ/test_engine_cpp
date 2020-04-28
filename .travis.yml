@@ -7,12 +7,12 @@ matrix:
           before_install:
             - choco install python3 --params "/InstallDir:C:\\peten"
             - ls C:\\peten
-            - C:\\peten\\python.exe --version
+            - C:\\python3\\python.exe --version
           install:
             - git clone https://github.com/vladasz/deploy
-            - python3 deploy/deploy.py
+            - C:\\python3\\python.exe deploy/deploy.py
           script:
-            - python3 build.py --build
+            - C:\\python3\\python.exe build.py --build
 #
 #        - os: osx
 #          name: iOS simulator

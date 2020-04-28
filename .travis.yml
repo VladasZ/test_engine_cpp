@@ -8,8 +8,10 @@ matrix:
             - choco install python3 --params "/InstallDir:C:\\python3"
             - ls C:\\python3\\
             - C:\\python3\\python.exe --version
-            - choco install pip3 --params "/InstallDir:C:\\pip3"
-            - ls C:\\pip3\\
+#            - choco install pip3 --params "/InstallDir:C:\\pip3"
+#            - ls C:\\pip3\\
+            - choco install pip --params "/InstallDir:C:\\pip"
+            - ls C:\\pip\\
           install:
             - git clone https://github.com/vladasz/deploy
             - C:\\python3\\python.exe deploy/deploy.py

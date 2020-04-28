@@ -15,7 +15,7 @@ matrix:
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build --ios --device --no-conan --no-ios-exe
+            - python3 build.py --build --ios --device --no-freetype --no-assimp --no-bullet3 --no-ios-exe
 
         - os: osx
           name: macOS

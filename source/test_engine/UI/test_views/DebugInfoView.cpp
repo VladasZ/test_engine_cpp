@@ -19,22 +19,15 @@ using namespace ui;
 
 void DebugInfoView::setup() {
 
-    _stack_view = new ui::StackView();
-
-    _fps_label             = new ui::Label();
-    _frames_drawn_label    = new ui::Label();
-    _cursor_position_label = new ui::Label();
-    _touch_state_label     = new ui::Label();
-    info_label             = new ui::Label();
-
-    for (auto label : { _fps_label, _frames_drawn_label, _cursor_position_label, _touch_state_label, info_label }) {
-        label->resize_to_fit_text();
-        _stack_view->add_subview(label);
-    };
+    init_view(_stack_view);
 
     _stack_view->set_margin(5);
 
-    add_subview(_stack_view);
+    _stack_view->init_view(_fps_label);
+    _stack_view->init_view(_frames_drawn_label);
+    _stack_view->init_view(_cursor_position_label);
+    _stack_view->init_view(_touch_state_label);
+    _stack_view->init_view(info_label);
 
     Events::frame_drawn = [&] {
         static int frames_drawn = 0;

@@ -34,8 +34,6 @@ void FileManagerView::set_path(const Path& path) {
 
     Size size = { _frame.size.width, cell_height };
 
-    Logvar(size);
-
     for (auto file : ls) {
         auto view = new PathView(size);
         _stack_view->add_subview(view);

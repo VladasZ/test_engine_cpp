@@ -22,7 +22,7 @@ const cu::Path& te::PathView::path() const {
 
 void te::PathView::setup() {
     Logvar(_frame);
-    init_view(_label);
+    init_view(_label, { _frame.size });
     init_view(_image);
 }
 
@@ -32,9 +32,6 @@ void te::PathView::layout_subviews() {
 
     auto image_size = _frame.size.height - margin * 2;
 
-    Logvar(_frame);
-
-
     _image->edit_frame() =
             { margin,
               margin,
@@ -42,12 +39,7 @@ void te::PathView::layout_subviews() {
               image_size
             };
 
-    _label->edit_frame() =
-            { _image->frame().max_x() + margin,
-              margin,
-              _frame.size.width - _image->frame().max_x() + margin,
-              image_size
-            };
+    _label->edit_frame().origin.x = _image->frame().max_x() + margin;
 
 }
 

@@ -6,7 +6,7 @@ matrix:
         - os: windows
           before_install:
             - choco install python3
-            - python3 --version
+            - ls C:\ProgramData\chocolatey\bin
           install:
             - git clone https://github.com/vladasz/deploy
             - python3 deploy/deploy.py

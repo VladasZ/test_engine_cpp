@@ -2,6 +2,7 @@ language: cpp
 
 matrix:
     include:
+
         - os: windows
          name: Windows MinGW
          install:
@@ -34,7 +35,6 @@ matrix:
         
         - os: linux
           name: Linux
-          sudo: required 
           dist: bionic
           addons:
             apt:
@@ -45,42 +45,4 @@ matrix:
           install: 
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script: 
-            - python3 build.py --build --no-box2d
-
-        - os: linux
-          name: Android
-          language: android
-          sudo: required 
-          dist: xenial
-          python:
-            - "3.5"
-          components:
-            
-            - build-tools-26.0.2
-            - android-26
-
-            - tools
-            - platform-tools
-
-            - extra-google-google_play_services
-            - extra-google-m2repository
-            - extra-android-m2repository
-            - addon-google_apis-google-26
-
-            - sys-img-armeabi-v7a-android-26
-            - sys-img-armeabi-v7a-android-17
-
-            - sys-img-x86-android-26
-
-          before_install:
-            - echo y | sdkmanager "ndk-bundle"
-            - echo y | sdkmanager "cmake;3.6.4111459"
-            - echo y | sdkmanager "cmake;3.10.2.4988404"
-            - echo y | sdkmanager "lldb;3.1"
-            - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-          install: 
-            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          script: 
-            - python3 build.py --prepare --android --no-conan
-            - cd android/
-            - ./gradlew assemble
+            - python3 build.py --build

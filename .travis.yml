@@ -7,8 +7,6 @@ matrix:
           name: Windows MinGW
           before_install:
             - python --version
-            - python3 --version
-            - py --version
             - choco install python3
             - python --version
             - python3 --version

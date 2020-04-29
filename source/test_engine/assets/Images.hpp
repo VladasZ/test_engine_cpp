@@ -22,5 +22,10 @@ struct Images {
     Image* image;
     Image* folder;
 
+    Image* up;
+    Image* down;
+    Image* left;
+    Image* right;
+
     Images();
 };

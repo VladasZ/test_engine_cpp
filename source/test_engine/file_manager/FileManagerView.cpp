@@ -9,9 +9,9 @@
 #include "Log.hpp"
 #include "Label.hpp"
 #include "Assets.hpp"
-#include "Button.hpp"
 #include "PathView.hpp"
 #include "FileManagerView.hpp"
+#include "FileManagerTopPanel.hpp"
 
 using namespace cu;
 using namespace te;
@@ -40,17 +40,31 @@ void FileManagerView::set_path(const Path& path) {
         view->set_path(file);
     }
 
-    _stack_view->edit_frame().size.height = cell_height * ls.size();
 }
 
 void FileManagerView::setup() {
     ScrollView::setup();
+    init_view(_top_panel);
     init_view(_stack_view);
     set_path(System::pwd());
+
+    _top_panel->on_press_up_button = [] {
+        Ping;
+    };
+
 }
 
 void FileManagerView::layout_subviews() {
     ScrollView::layout_subviews();
+
+    _top_panel->edit_frame() = { _frame.size.width, cell_height };
+
+    auto& stack_frame = _stack_view->edit_frame();
+
+    stack_frame.size.height = cell_height * _stack_view->subviews().size();
+    stack_frame.size.width = _frame.size.width;
+    stack_frame.origin.y = cell_height;
+
     content_size.height = _stack_view->frame().size.height;
 }
 

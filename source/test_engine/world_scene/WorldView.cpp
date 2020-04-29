@@ -13,18 +13,8 @@ using namespace te;
 
 
 void WorldView::setup() {
-    init_view(test_label, { 500, 100 });
     init_view(test_view, { 200, 200 });
     init_view(file_manager, { 300, 400 });
-
-    std::string spes;
-
-    for (char i = 0; i < 127; i++) {
-        spes += i;
-    }
-
-    test_label->set_text(spes);
-
 }
 
 void WorldView::layout_subviews() {

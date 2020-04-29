@@ -18,7 +18,6 @@ namespace te {
     class WorldView : public ui::View {
     public:
 
-        ui::Label* test_label;
         TestView* test_view;
         FileManagerView* file_manager;
 

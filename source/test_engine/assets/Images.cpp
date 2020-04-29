@@ -22,4 +22,9 @@ Images::Images() {
     file   = new Image(Paths::images / "file.png");
     image  = new Image(Paths::images / "image.png");
     folder = new Image(Paths::images / "folder.png");
+
+    up    = new Image(Paths::images / "up.png");
+    down  = new Image(Paths::images / "down.png");
+    left  = new Image(Paths::images / "left.png");
+    right = new Image(Paths::images / "right.png");
 }

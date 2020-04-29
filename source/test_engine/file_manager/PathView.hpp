@@ -35,9 +35,6 @@ namespace te {
         void setup() override;
         void layout_subviews() override;
 
-        gm::Rect& edit_frame() override;
-
-
     };
 
 }

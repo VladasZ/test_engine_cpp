@@ -15,11 +15,14 @@
 
 namespace te {
 
+    class FileManagerTopPanel;
+
     class FileManagerView : public ui::ScrollView {
 
     private:
 
         cu::Path _path;
+        FileManagerTopPanel* _top_panel;
         ui::StackView* _stack_view;
 
     public:

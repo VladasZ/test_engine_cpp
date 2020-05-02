@@ -16,25 +16,18 @@
 
 #include "Log.hpp"
 #include "Mesh.hpp"
-#include "Paths.hpp"
 #include "Model.hpp"
 #include "StringUtils.hpp"
 #include "ModelImporter.hpp"
 
 using namespace cu;
 using namespace gm;
-using namespace te;
 using namespace scene;
 
 static Assimp::Importer _importer;
 
-//static std::unordered_map<std::string, Mesh*> cache;
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
-
-//    if (cache.find(file) != cache.end()) {
-//        return new scene::Model(cache[file]);
-//    }
 
     Log(std::string() + "Loading model: " + file);
 
@@ -102,8 +95,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         Vertex::Array vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-            vertices.emplace_back(Vector3(mesh->mVertices[i]),
-                                  Vector3(mesh->mNormals[i]),
+            vertices.emplace_back(Vector3::force_create(mesh->mVertices[i]),
+                                  Vector3::force_create(mesh->mNormals[i]),
                                   Point { mesh->mTextureCoords[0][i].x, 1 - mesh->mTextureCoords[0][i].y });
         }
 
@@ -116,16 +109,14 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
 
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-        vertices.emplace_back(Vector3(mesh->mVertices[i]),
-                              Vector3(mesh->mNormals[i]));
+        vertices.emplace_back(Vector3::force_create(mesh->mVertices[i]),
+                              Vector3::force_create(mesh->mNormals[i]));
     }
 
     Log(mesh->mNumVertices);
 
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));
-
-    // cache[file] = parsed_mesh;
 
     return new scene::Model(parsed_mesh);
 }

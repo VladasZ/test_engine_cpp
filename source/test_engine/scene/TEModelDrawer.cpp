@@ -14,7 +14,6 @@
 #include "Shader.hpp"
 #include "Buffer.hpp"
 #include "GLWrapper.hpp"
-#include "ArrayUtils.hpp"
 #include "PointLight.hpp"
 #include "BufferData.hpp"
 #include "TEModelDrawer.hpp"
@@ -30,11 +29,7 @@ TEModelDrawer::TEModelDrawer(scene::Model* model) {
 
     const Vertex::Array& vertices = model->mesh()->vertices();
 
-    Logvar(vertices.size());
-    Logvar(sizeof(Vertex));
-
     ArrayView<Float> vertices_data { vertices.front().data(), vertices.size() * sizeof(Vertex) };
-
 
     _buffer = new gl::Buffer(new BufferData(vertices_data, model->mesh()->indices()),
                              gl::BufferConfiguration::_3_3_2);

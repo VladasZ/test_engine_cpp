@@ -25,10 +25,7 @@ using namespace gl;
 
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
-
-    _buffer = new gl::Buffer(model->mesh()->vertices(), model->mesh()->indices(),
-                             gl::BufferConfiguration::_3_3_2);
-
+    _buffer = new gl::Buffer(gl::BufferConfiguration::_3_3_2, model->mesh()->vertices(), model->mesh()->indices());
     _buffer->draw_mode = model->draw_mode();
 }
 

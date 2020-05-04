@@ -66,7 +66,7 @@ void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
 }
 
 ui::PathData* TEUIDrawer::initialize_path_data(PointsPath* path, const Color& color, PathData::DrawMode draw_mode) {
-    auto buffer = new gl::Buffer(path->points(), path->size(), gl::BufferConfiguration::_2);
+    auto buffer = new gl::Buffer(gl::BufferConfiguration::_2, path->points());
     buffer->draw_mode = draw_mode == PathData::DrawMode::Outline ? GL::DrawMode::LineLoop : GL::DrawMode::TriangleFan;
     return new ui::PathData(path, buffer, color);
 }

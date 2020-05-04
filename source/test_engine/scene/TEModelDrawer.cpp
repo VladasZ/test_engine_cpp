@@ -6,6 +6,7 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
 #include "Scene.hpp"
@@ -15,16 +16,27 @@
 #include "GLWrapper.hpp"
 #include "ArrayUtils.hpp"
 #include "PointLight.hpp"
+#include "BufferData.hpp"
 #include "TEModelDrawer.hpp"
 #include "BufferConfiguration.hpp"
 
+using namespace cu;
 using namespace gm;
+using namespace gl;
+
 
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
 
-    _buffer = new gl::Buffer(cu::array::convert<std::vector<float>>(model->mesh()->vertices()),
-                             model->mesh()->indices(),
+    const Vertex::Array& vertices = model->mesh()->vertices();
+
+    Logvar(vertices.size());
+    Logvar(sizeof(Vertex));
+
+    ArrayView<Float> vertices_data { vertices.front().data(), vertices.size() * sizeof(Vertex) };
+
+
+    _buffer = new gl::Buffer(new BufferData(vertices_data, model->mesh()->indices()),
                              gl::BufferConfiguration::_3_3_2);
 
     _buffer->draw_mode = model->draw_mode();

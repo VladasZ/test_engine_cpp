@@ -33,7 +33,7 @@ Buffers::Buffers() {
 
     fullscreen = new gl::Buffer(new BufferData(fullscreen_vertices, rect_indices), gl::BufferConfiguration::_2);
     fullscreen->draw_mode = GL::DrawMode::TriangleStrip;
-    
+
     static const vector<Float> image_vertices = {
             rect.origin.x,                   rect.origin.y,                    0.0f,  1.0f, //|- |
             rect.origin.x,                   rect.size.height + rect.origin.y, 0.0f,  0.0f, //|_ |

@@ -15,7 +15,6 @@
 #include "Buffer.hpp"
 #include "GLWrapper.hpp"
 #include "PointLight.hpp"
-#include "BufferData.hpp"
 #include "TEModelDrawer.hpp"
 #include "BufferConfiguration.hpp"
 
@@ -27,7 +26,7 @@ using namespace gl;
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
 
-    _buffer = new gl::Buffer(new BufferData(model->mesh()->vertices(), model->mesh()->indices()),
+    _buffer = new gl::Buffer(model->mesh()->vertices(), model->mesh()->indices(),
                              gl::BufferConfiguration::_3_3_2);
 
     _buffer->draw_mode = model->draw_mode();

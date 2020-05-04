@@ -10,7 +10,6 @@
 #include "Vertex.hpp"
 #include "Buffers.hpp"
 #include "GLWrapper.hpp"
-#include "BufferData.hpp"
 #include "BufferConfiguration.hpp"
 
 using namespace gm;
@@ -31,7 +30,7 @@ Buffers::Buffers() {
             rect.size.width + rect.origin.x, rect.origin.y
     };
 
-    fullscreen = new gl::Buffer(new BufferData(fullscreen_vertices, rect_indices), gl::BufferConfiguration::_2);
+    fullscreen = new gl::Buffer(fullscreen_vertices, rect_indices, gl::BufferConfiguration::_2);
     fullscreen->draw_mode = GL::DrawMode::TriangleStrip;
 
     static const vector<Float> image_vertices = {
@@ -41,7 +40,7 @@ Buffers::Buffers() {
             rect.size.width + rect.origin.x, rect.origin.y,                    1.0f,  1.0f  //| -|
     };
 
-    fullscreen_image = new gl::Buffer(new BufferData(image_vertices, rect_indices), gl::BufferConfiguration::_2_2);
+    fullscreen_image = new gl::Buffer(image_vertices, rect_indices, gl::BufferConfiguration::_2_2);
     fullscreen_image->draw_mode = GL::DrawMode::TriangleStrip;
 
     static const std::vector<Float> outline_vertices = {
@@ -51,7 +50,7 @@ Buffers::Buffers() {
             rect.size.width + rect.origin.x, rect.origin.y
     };
 
-    fullscreen_outline = new gl::Buffer(new BufferData(outline_vertices, indices), gl::BufferConfiguration::_2);
+    fullscreen_outline = new gl::Buffer(outline_vertices, indices, gl::BufferConfiguration::_2);
     fullscreen_outline->draw_mode = GL::DrawMode::LineLoop;
 
 }

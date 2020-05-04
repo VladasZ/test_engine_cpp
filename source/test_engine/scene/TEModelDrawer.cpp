@@ -27,11 +27,7 @@ using namespace gl;
 TEModelDrawer::TEModelDrawer(scene::Model* model) {
     _model = model;
 
-    const Vertex::Array& vertices = model->mesh()->vertices();
-
-    ArrayView<Float> vertices_data { vertices.front().data(), vertices.size() * sizeof(Vertex) };
-
-    _buffer = new gl::Buffer(new BufferData(vertices_data, model->mesh()->indices()),
+    _buffer = new gl::Buffer(new BufferData(model->mesh()->vertices(), model->mesh()->indices()),
                              gl::BufferConfiguration::_3_3_2);
 
     _buffer->draw_mode = model->draw_mode();

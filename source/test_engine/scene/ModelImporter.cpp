@@ -69,19 +69,19 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     std::string texture_path = texturePath.C_Str();
 
-    Logvar(texture_path);
+    //Logvar(texture_path);
 
 
-    cu::String::drop_first(texture_path);
+    //cu::String::drop_first(texture_path);
 
-    auto tex_index = std::stoi(texture_path);
-
-    auto texture = scene->mTextures[tex_index];
-
-    Logvar(texture->mWidth);
-    Logvar(texture->mHeight);
-
-    Logvar(tex_index);
+//    auto tex_index = std::stoi(texture_path);
+//
+//    auto texture = scene->mTextures[tex_index];
+//
+//    Logvar(texture->mWidth);
+//    Logvar(texture->mHeight);
+//
+//    Logvar(tex_index);
 
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {

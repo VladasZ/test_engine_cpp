@@ -40,6 +40,8 @@ void FileManagerView::set_path(const Path& path) {
         view->set_path(file);
     }
 
+    _top_panel->set_path(path);
+
 }
 
 void FileManagerView::setup() {

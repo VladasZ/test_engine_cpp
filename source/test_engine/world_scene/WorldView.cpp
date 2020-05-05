@@ -14,7 +14,7 @@ using namespace te;
 
 void WorldView::setup() {
     init_view(test_view, { 200, 200 });
-    init_view(file_manager, { 300, 400 });
+    init_view(file_manager, { 800, 400 });
 }
 
 void WorldView::layout_subviews() {

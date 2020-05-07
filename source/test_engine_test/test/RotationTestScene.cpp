@@ -32,8 +32,8 @@ void RotationTestScene::_setup() {
 
     Events::screen_did_appear = [&] {
         RotationTestView::sliders->sliders = [&](ui::LabeledSliderView* slider) {
-            slider->slider_view->conversion.converted_minimum = -gm::math::pi<float>;
-            slider->slider_view->conversion.converted_maximum =  gm::math::pi<float>;
+            slider->slider_view->conversion.target_min = -gm::math::pi<float>;
+            slider->slider_view->conversion.target_max =  gm::math::pi<float>;
         };
     };
 

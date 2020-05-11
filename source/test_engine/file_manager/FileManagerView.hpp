@@ -40,7 +40,7 @@ namespace te {
 
     public:
 
-        static Image* image_for_extension(const std::string& extension);
+        static Image* icon_for_path(const cu::Path&);
 
     };
 

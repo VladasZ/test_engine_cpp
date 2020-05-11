@@ -20,9 +20,12 @@ namespace te {
         cu::Path _path;
 
         ui::Label* _label;
+        ui::Button* _button;
         ui::ImageView* _image;
 
     public:
+
+        cu::Event<> on_press;
 
         using View::View;
 

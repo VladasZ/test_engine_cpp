@@ -13,7 +13,7 @@
 
 void te::PathView::set_path(const cu::Path& path) {
     _label->set_text(path.file_name());
-    _image->set_image(FileManagerView::image_for_extension(path.extension()));
+    _image->set_image(FileManagerView::icon_for_path(path));
 }
 
 const cu::Path& te::PathView::path() const {
@@ -22,7 +22,9 @@ const cu::Path& te::PathView::path() const {
 
 void te::PathView::setup() {
     init_view(_label, { _frame.size });
+    init_view(_button);
     init_view(_image);
+    _button->on_press.link(on_press);
 }
 
 void te::PathView::layout_subviews() {
@@ -30,6 +32,8 @@ void te::PathView::layout_subviews() {
     static const float margin = 5;
 
     auto image_size = _frame.size.height - margin * 2;
+
+    _button->place_as_background();
 
     _image->edit_frame() =
             { margin,

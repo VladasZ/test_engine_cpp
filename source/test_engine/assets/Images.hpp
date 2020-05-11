@@ -19,6 +19,8 @@ struct Images {
     Image* scale_test;
 
     Image* file;
+    Image* text;
+    Image* cmake;
     Image* image;
     Image* folder;
 

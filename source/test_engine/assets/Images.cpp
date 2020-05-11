@@ -20,8 +20,11 @@ Images::Images() {
     scale_test = new Image(Paths::images / "scale_test.png");
 
     file   = new Image(Paths::images / "file.png");
+    text   = new Image(Paths::images / "text.png");
+    cmake  = new Image(Paths::images / "cmake.png");
     image  = new Image(Paths::images / "image.png");
     folder = new Image(Paths::images / "folder.png");
+
 
     up    = new Image(Paths::images / "up.png");
     down  = new Image(Paths::images / "down.png");

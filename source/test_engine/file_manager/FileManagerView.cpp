@@ -33,11 +33,21 @@ void FileManagerView::set_path(const Path& path) {
 
     Size size = { _frame.size.width, cell_height };
 
-    for (const auto& file : _path.ls()) {
+    auto ls =  _path.ls();
+
+    Logvar(ls.size());
+
+    for (const auto& file : ls) {
         auto view = new PathView(size);
         _stack_view->add_subview(view);
         view->set_path(file);
-
+        Logvar(view->path());
+        view->on_press = [&] {
+            Logvar(view->path());
+            if (view->path().is_directory()) {
+                set_path(view->path());
+            }
+        };
     }
 
     _top_panel->set_path(path);

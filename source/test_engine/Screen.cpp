@@ -49,11 +49,6 @@ void Screen::_initialize_ui() {
     _root_view = new RootView(gm::Rect { Screen::size });
     _root_view->setup();
 
-//    scene_selection_view = new SceneSelectionView();
-//    scene_selection_view->set_caption("Scene");
-//    scene_selection_view->edit_frame() = { 280, 28 };
-//    _root_view->add_subview(scene_selection_view);
-
 #ifdef DEBUG_VIEW
     debug_view = new DebugInfoView({ 400, 108 });
 	debug_view->setup();
@@ -248,6 +243,19 @@ void Screen::set_size(const gm::Size& size) {
     }
     update();
     Events::on_screen_size_change(size);
+}
+
+void Screen::add_scene(scene::Scene * scene) {
+
+    if (scene_selection_view == nullptr) {
+        scene_selection_view = new SceneSelectionView();
+        scene_selection_view->set_caption("Scene");
+        scene_selection_view->edit_frame() = { 280, 28 };
+        _root_view->add_subview(scene_selection_view);
+    }
+
+    //scene_selection_view->add_scene<>()
+
 }
 
 void Screen::set_scene(scene::Scene* scene) {

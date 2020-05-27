@@ -47,7 +47,11 @@ namespace te {
 
 		static inline Screen* current = nullptr;
 
+    private:
+
         SceneSelectionView* scene_selection_view = nullptr;
+
+    public:
 
 #ifdef DEBUG_VIEW
 		static inline DebugInfoView* debug_view = nullptr;
@@ -65,6 +69,8 @@ namespace te {
 		void setup_input();
 
 		void set_size(const gm::Size&);
+
+		void add_scene(scene::Scene*);
 
 	public:
 

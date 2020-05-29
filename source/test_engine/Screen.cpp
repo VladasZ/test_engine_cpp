@@ -37,6 +37,7 @@
 using namespace gm;
 using namespace te;
 using namespace cu;
+using namespace std;
 
 
 void Screen::_initialize_ui() {
@@ -91,14 +92,7 @@ Screen::Screen(const gm::Size& size) {
 #ifdef DESKTOP_BUILD
 void Screen::start_main_loop() {
     Events::screen_did_appear();
-    GL::start_main_loop([&] {
-        try {
-            update();
-        }
-        catch(...) {
-            cu::System::alert(what());
-        }
-    });
+    GL::start_main_loop(bind(&Screen::update, this));
 }
 #endif
 

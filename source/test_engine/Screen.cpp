@@ -1,4 +1,4 @@
-//
+    //
 //  Window.cpp
 //  TestEngine
 //
@@ -25,18 +25,15 @@
 #include "TEUIDrawer.hpp"
 #include "ImageConfig.hpp"
 #include "GlobalEvents.hpp"
-#include "SelectionView.hpp"
 #include "TEImageLoader.hpp"
-#include "ModelImporter.hpp"
 #include "TESceneDrawer.hpp"
-#include "TESpriteDrawer.hpp"
 #include "ExceptionCatch.hpp"
 #include "SceneSelectionView.hpp"
-#include "BufferConfiguration.hpp"
 
 using namespace gm;
 using namespace te;
 using namespace cu;
+using namespace ui;
 using namespace std;
 
 
@@ -146,10 +143,10 @@ void Screen::update() {
 
 void Screen::setup_input() {
 
-    ui::Keyboard::on_key_event = [&](ui::Keyboard::Key key, ui::Keyboard::Event event) {
+    ui::Keyboard::on_key_event = [&](ui::Key key, ui::Keyboard::Event event) {
 
         if (_scene == nullptr) {
-            return;;
+            return;
         }
 
         if (event == ui::Keyboard::Event::Up) {
@@ -214,8 +211,8 @@ void Screen::setup_input() {
         _scene->camera->zoom(position.y);
     };
 
-    GL::on_key_pressed = [&](char key, unsigned int state) {
-        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Event>(state));
+    GL::on_key_pressed = [&](char key, unsigned mod, unsigned state) {
+        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Mod>(mod), static_cast<ui::Keyboard::Event>(state));
     };
 
 #endif

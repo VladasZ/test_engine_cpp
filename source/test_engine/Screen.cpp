@@ -211,7 +211,7 @@ void Screen::setup_input() {
         _scene->camera->zoom(position.y);
     };
 
-    GL::on_key_pressed = [&](char key, unsigned mod, unsigned state) {
+    GL::on_key_pressed = [&](auto key, auto mod, auto state) {
         ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Mod>(mod), static_cast<ui::Keyboard::Event>(state));
     };
 

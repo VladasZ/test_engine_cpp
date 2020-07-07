@@ -8,8 +8,6 @@
 
 #pragma once
 
-#define DEBUG_VIEW
-
 #ifdef DEBUG_VIEW
 
 #include "Label.hpp"

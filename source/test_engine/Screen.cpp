@@ -132,7 +132,7 @@ void Screen::update() {
     debug_view->_draw();
 #endif
 
-    frame_time = Time::interval() / 1000000000.0f;
+    frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
     FPS = 1.0f / frame_time;
 
     Screen::frames_drawn++;

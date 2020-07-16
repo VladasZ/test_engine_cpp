@@ -6,10 +6,10 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "Debug.hpp"
 #include "Image.hpp"
 #include "TEImageBinder.hpp"
 #include "GLTextureLoader.hpp"
+
 
 TEImageBinder::TEImageBinder(Image* image) {
     _id = gl::TextureLoader::load(image->data(), { image->width(), image->height() }, image->channels());

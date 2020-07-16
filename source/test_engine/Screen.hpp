@@ -9,7 +9,6 @@
 #pragma once
 
 #include "Size.hpp"
-#include "Debug.hpp"
 #include "Scene.hpp"
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"

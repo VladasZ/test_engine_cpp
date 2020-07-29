@@ -4,6 +4,10 @@ os:
   - Visual Studio 2019
 
 install:
+  - py --version
+  - python -- version
+  - python3 --version
+  - py3 --version
   - git clone https://github.com/vladasz/deploy
   - py deploy/deploy.py
   - py build.py --clean --prepare --ide --debug --vs19

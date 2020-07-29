@@ -6,7 +6,7 @@ os:
 install:
   - git clone https://github.com/vladasz/deploy
   - py deploy/deploy.py
-  - py build.py --clean --ide --debug
+  - py build.py --clean --prepare --ide --debug
   
 configuration:
   - Release

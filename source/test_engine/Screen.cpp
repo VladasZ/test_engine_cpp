@@ -89,8 +89,8 @@ Screen::Screen(const gm::Size& size) {
 #ifdef DESKTOP_BUILD
 void Screen::start_main_loop() {
     Events::screen_did_appear();
-    GL::start_main_loop(std::bind(&Screen::update, this));
-    GL::start_main_loop(bind(&Screen::update, this));
+    GL::start_main_loop([=] { update(); });
+    GL::start_main_loop([=] { update(); });
 }
 #endif
 

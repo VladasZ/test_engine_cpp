@@ -8,6 +8,7 @@
 
 #ifdef IOS_BUILD
 
+
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
@@ -26,6 +27,7 @@
 #import "RotationTestScene.hpp"
 #import "SceneSelectionView.hpp"
 
+using namespace cu;
 using namespace gm;
 using namespace te;
 
@@ -40,6 +42,13 @@ te::Screen* _screen;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+    
+    
+    auto root = Path("").ls();
+    
+    for (auto path : root) {
+        Logvar(path);
+    }
     
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });

@@ -6,6 +6,4 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 
-set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
-
 setup_project(test_engine)

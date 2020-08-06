@@ -18,7 +18,7 @@ int main() {
 
     auto screen = new te::Screen({ 1000, 800 });
     screen->clear_color = gm::Color::gray;
-    screen->set_scene(new WorldScene());
+    screen->set_scene(new WorldScene);
     screen->start_main_loop();
 
     return 0;

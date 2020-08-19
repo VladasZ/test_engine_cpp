@@ -22,7 +22,7 @@ using namespace ui;
 void FileManagerView::set_path(const Path& path) {
 
     if (!path.is_directory()) {
-        Log("Not a dir");
+        Log << "Not a dir";
         return;
     }
 

@@ -29,7 +29,7 @@ static Assimp::Importer _importer;
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
-    Log(std::string() + "Loading model: " + file);
+    Log << "Loading model:" << file;
 
     const aiScene* scene = _importer.ReadFile(file,
                                               aiProcess_CalcTangentSpace       |
@@ -113,7 +113,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                               Vector3::force_create(mesh->mNormals[i]));
     }
 
-    Log(mesh->mNumVertices);
+    Log << mesh->mNumVertices;
 
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));

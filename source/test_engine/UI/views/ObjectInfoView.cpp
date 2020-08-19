@@ -23,7 +23,7 @@ void ObjectInfoView::set_object(scene::Model* model) {
         return;
     }
 
-    _id_label->set_text(cu::Log::to_string(model));
+    _id_label->set_text(cu::log::to_string(model));
     _position_label->set_text(model->absolute_position().to_string());
     _bounding_box_label->set_text(model->bounding_box.to_string());
 }

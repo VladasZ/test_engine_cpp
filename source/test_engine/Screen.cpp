@@ -120,9 +120,6 @@ void Screen::update() {
 #endif
 
     if (_root_view) {
-        if (scene_selection_view) {
-            scene_selection_view->place_br();
-        }
         _root_view->_draw();
     }
 
@@ -237,36 +234,21 @@ void Screen::set_size(const gm::Size& size) {
     Events::on_screen_size_change(size);
 }
 
-void Screen::add_scene(scene::Scene * scene) {
-
-    if (scene_selection_view == nullptr) {
-        scene_selection_view = new SceneSelectionView();
-        scene_selection_view->set_caption("Scene");
-        scene_selection_view->edit_frame() = { 280, 28 };
-        _root_view->add_subview(scene_selection_view);
-    }
-
-    //scene_selection_view->add_scene<>()
-
-}
-
 void Screen::set_scene(scene::Scene* scene) {
-    Dispatch::on_main([=] {
-        if (_scene) {
-            if (_scene->view) {
-                _view = nullptr;
-            }
-            delete _scene;
+    if (_scene) {
+        if (_scene->view) {
+            _view = nullptr;
         }
-        if (scene) {
-            _scene = scene;
-            scene->_setup();
-            _scene->camera->resolution = size;
-            if (scene->view) {
-                set_view(scene->view);
-            }
+        delete _scene;
+    }
+    if (scene) {
+        _scene = scene;
+        scene->_setup();
+        _scene->camera->resolution = size;
+        if (scene->view) {
+            set_view(scene->view);
         }
-    });
+    }
 }
 
 scene::Scene* Screen::scene() const {

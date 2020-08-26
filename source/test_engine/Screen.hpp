@@ -46,10 +46,6 @@ namespace te {
 
 		static inline Screen* current = nullptr;
 
-    private:
-
-        SceneSelectionView* scene_selection_view = nullptr;
-
     public:
 
 #ifdef DEBUG_VIEW

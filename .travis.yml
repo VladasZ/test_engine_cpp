@@ -27,13 +27,11 @@ matrix:
 
         - os: linux
           name: Linux
-          dist: bionic
+          dist: focal
           addons:
             apt:
                 sources:
                     - ubuntu-toolchain-r-test
-                packages:
-                    - g++-7
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:

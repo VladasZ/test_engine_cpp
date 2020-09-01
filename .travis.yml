@@ -28,10 +28,6 @@ matrix:
         - os: linux
           name: Linux
           dist: focal
-          addons:
-            apt:
-                sources:
-                    - ubuntu-toolchain-r-test
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:

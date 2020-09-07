@@ -13,11 +13,20 @@ using namespace te;
 
 
 void WorldView::setup() {
-    init_view(test_view, { 200, 200 });
-    init_view(file_manager, { 800, 400 });
+    init_view(test_view, { 200, 300 });
+    Rect rect(100, 400, 100, 100);
+    square = new View(rect);
+    add_subview(square);
+    square->background_color = Color::random();
+    rect.origin.y = 100;
+    change_color_button = new Button(rect);
+    add_subview(change_color_button);
+    change_color_button->on_press = [this]{
+        std::cout << "Hello" << std::endl;
+        square->background_color = Color::random();
+    };
 }
 
 void WorldView::layout_subviews() {
-    file_manager->place_bl();
-    test_view->place_at_center();
+    test_view->place_br();
 }

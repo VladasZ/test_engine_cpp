@@ -67,7 +67,7 @@ void SelectionView::layout_subviews() {
 
     static float angle = 0;
     revolving_view->set_center(Point::on_circle(100, angle, { 200, 200 }));
-    angle += 0.01;
+    angle += 0.01f;
 
     image->place_at_bottom(100);
 

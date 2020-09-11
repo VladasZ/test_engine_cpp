@@ -53,8 +53,9 @@ void Screen::_initialize_ui() {
 #endif
 }
 
-Screen::Screen(const gm::Size& size) {
+Screen::Screen(const gm::Size& _size) {
 
+	size = _size;
     current = this;
 
 #ifdef DEBUG
@@ -81,8 +82,8 @@ Screen::Screen(const gm::Size& size) {
 
     set_size(size);
 
-    GL::on_window_size_change = [&](gm::Size size) {
-        set_size(size);
+    GL::on_window_size_change = [&](gm::Size _size) {
+        set_size(_size);
     };
 }
 
@@ -177,10 +178,10 @@ void Screen::setup_input() {
         }
     };
 
-#if DESKTOP_BUILD
+#ifdef DESKTOP_BUILD
 
     ui::Input::on_right_button_drag = [&](ui::Touch* touch) {
-        static ui::Touch::ID prev_id = -1;
+        static ui::Touch::ID prev_id = ui::Touch::no_id;
         if (touch->id == prev_id) {
             _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
         }
@@ -216,8 +217,8 @@ void Screen::setup_input() {
 #endif
 }
 
-void Screen::set_size(const gm::Size& size) {
-    this->size = size;
+void Screen::set_size(const gm::Size& _size) {
+    size = _size;
     GL::window_size = size;
     GL::set_viewport(size);
     GL::clear();

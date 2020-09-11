@@ -68,8 +68,6 @@ void EffectsScene::_setup() {
         
         auto myQuat = glm::quat(cos(vector.w / 2), vec.x, vec.y, vec.z);
         
-        Log(cos(vector.w / 2) * cos(vector.w / 2) + vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-        
         glm::mat4 rot_mat = glm::toMat4(myQuat);
         
 #ifdef USING_ASSIMP

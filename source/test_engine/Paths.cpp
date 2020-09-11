@@ -11,6 +11,7 @@
 #include "Log.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
+#include "Platform.hpp"
 #include "SystemInfo.hpp"
 
 #ifdef IOS_BUILD
@@ -26,8 +27,7 @@ Path Paths::root = [] {
     return Path() / obj_c::work_directory_path;
 #elif ANDROID_BUILD
     return "";
-#endif
-#ifdef DESKTOP_BUILD
+#elif DESKTOP_BUILD
     return System::home() / ".deps/test_engine";
 #endif
 }();

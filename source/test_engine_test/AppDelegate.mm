@@ -73,16 +73,16 @@ te::Screen* _screen;
     
     if (context == nil) {
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-        Log("kEAGLRenderingAPIOpenGLES2");
+        Log << "kEAGLRenderingAPIOpenGLES2";
     }
     else {
-        Log("kEAGLRenderingAPIOpenGLES3");
+        Log << "kEAGLRenderingAPIOpenGLES3";
     }
 
     NSLog(@"%@", context);
     [EAGLContext setCurrentContext:context];
     GLKView* view = (GLKView*)self.view;
-    view.context = context;
+    view .context = context;
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;

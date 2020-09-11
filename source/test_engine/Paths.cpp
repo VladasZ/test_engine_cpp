@@ -24,7 +24,8 @@ using namespace te;
 
 Path Paths::root = [] {
 #ifdef IOS_BUILD
-    return Path() / obj_c::work_directory_path;
+    Logvar(obj_c::worara());
+    return Path() / obj_c::worara();
 #elif ANDROID_BUILD
     return "";
 #elif DESKTOP_BUILD

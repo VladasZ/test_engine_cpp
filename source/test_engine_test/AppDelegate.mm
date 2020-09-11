@@ -16,6 +16,7 @@
 
 #import "Log.hpp"
 #import "Input.hpp"
+#import "Paths.hpp"
 #import "Screen.hpp"
 #import "Bluetooth.hpp"
 #import "GLWrapper.hpp"
@@ -43,6 +44,7 @@ te::Screen* _screen;
     [super viewDidLoad];
     [self setup];
     
+    Paths::dump();
     
     auto root = Path("").ls();
     

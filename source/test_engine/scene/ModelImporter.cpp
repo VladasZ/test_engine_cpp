@@ -20,8 +20,9 @@ using namespace cu;
 using namespace gm;
 using namespace scene;
 
+#ifdef USING_ASSIMP
 static Assimp::Importer _importer;
-
+#endif
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
@@ -30,9 +31,9 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
     Log << "Loading model:" << file;
 
     const aiScene* scene = _importer.ReadFile(file,
-                                              aiProcess_CalcTangentSpace       |
-                                              aiProcess_Triangulate            |
-                                              aiProcess_JoinIdenticalVertices  |
+                                              aiProcess_CalcTangentSpace      |
+                                              aiProcess_Triangulate           |
+                                              aiProcess_JoinIdenticalVertices |
                                               aiProcess_SortByPType             );
 
     if (!scene) {

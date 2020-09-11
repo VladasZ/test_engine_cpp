@@ -6,17 +6,14 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "math.h"
-
 #include "Grid.hpp"
 #include "Mesh.hpp"
 #include "Image.hpp"
 #include "PlaneModel.hpp"
-#include "GLWrapper.hpp"
 #include "TestScene.hpp"
 #include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
-#include "ModelImporter.hpp"
+
 
 using namespace gm;
 
@@ -27,11 +24,6 @@ void TestScene::_setup() {
     camera->set_target({ 0, 0, 0 });
     camera->edit_position() = {1, 1, 1 };
     camera->flying_speed = 0.2f;
-
-#ifdef USING_ASSIMP
-    add_object(monkey = ModelImporter::import("Monkey.blend"));
-    monkey->edit_position() = {2, 1, 1 };
-#endif
 
     add_object(walls.z = new scene::PlaneModel(Size {200, 200 }));
     walls.z->edit_position() = {0, 0, -1.0f };

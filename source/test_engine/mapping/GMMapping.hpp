@@ -40,7 +40,6 @@ namespace gm {
             MAKE_PROPERTY("size",   &Rect::size)
     );
 
-
 }
 
 #endif

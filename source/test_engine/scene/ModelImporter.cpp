@@ -6,13 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#ifdef USING_ASSIMP
-
 #include <unordered_map>
-
-#include <assimp/scene.h>
-#include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
+#include <AssimpInclude.hpp>
 
 #include "Log.hpp"
 #include "Mesh.hpp"
@@ -29,6 +24,8 @@ static Assimp::Importer _importer;
 
 
 scene::Model* ModelImporter::import(const std::string& file, Image* image) {
+
+#ifdef USING_ASSIMP
 
     Log << "Loading model:" << file;
 
@@ -70,21 +67,6 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     std::string texture_path = texturePath.C_Str();
 
-    //Logvar(texture_path);
-
-
-    //cu::String::drop_first(texture_path);
-
-//    auto tex_index = std::stoi(texture_path);
-//
-//    auto texture = scene->mTextures[tex_index];
-//
-//    Logvar(texture->mWidth);
-//    Logvar(texture->mHeight);
-//
-//    Logvar(tex_index);
-
-
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
         const auto& face = mesh->mFaces[i];
         for (unsigned int j = 0; j < face.mNumIndices; j++) {
@@ -120,6 +102,8 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                                        std::move(indices));
 
     return new scene::Model(parsed_mesh);
-}
 
+#else
+    return nullptr;
 #endif
+}

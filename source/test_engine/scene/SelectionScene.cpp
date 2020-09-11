@@ -7,7 +7,6 @@
 //
 
 #include "Grid.hpp"
-#include "Paths.hpp"
 #include "SelectionView.hpp"
 #include "ModelImporter.hpp"
 #include "SelectionScene.hpp"
@@ -34,10 +33,5 @@ void SelectionScene::_setup() {
     test_manip->edit_position() = { 3, 3, 0 };
 
     box2->edit_position().y = 2;
-
-#ifdef USING_ASSIMP
-    auto monkey = ModelImporter::import(te::Paths::models / "monkey.blend");
-    add_object(monkey);
-#endif
 
 }

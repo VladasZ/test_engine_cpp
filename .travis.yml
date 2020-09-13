@@ -29,6 +29,7 @@ matrix:
           name: Linux
           dist: focal
           install:
+            - sudo apt-get install libgl1-mesa-dri
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build

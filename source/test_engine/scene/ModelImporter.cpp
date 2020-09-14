@@ -64,7 +64,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     aiString texturePath;
 
-    auto result = material->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
+//    auto result = material->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
 
     std::string texture_path = texturePath.C_Str();
 

@@ -44,13 +44,13 @@ te::Screen* _screen;
     [super viewDidLoad];
     [self setup];
     
-    Paths::dump();
-    
-    auto root = Path("").ls();
-    
-    for (auto path : root) {
-        Logvar(path);
-    }
+//    Paths::dump();
+//
+//    auto root = Path("").ls();
+//
+//    for (auto path : root) {
+//        Logvar(path);
+//    }
     
     _screen = new te::Screen({ self.view.frame.size.width,
                                self.view.frame.size.height });

@@ -47,7 +47,7 @@ void XYZSlidersView::setup() {
     };
 }
 
-void XYZSlidersView::layout_subviews() {
+void XYZSlidersView::layout() {
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;

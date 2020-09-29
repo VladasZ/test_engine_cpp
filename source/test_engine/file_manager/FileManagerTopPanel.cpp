@@ -27,7 +27,7 @@ void FileManagerTopPanel::setup() {
 
 }
 
-void FileManagerTopPanel::layout_subviews() {
+void FileManagerTopPanel::layout() {
 
     static Float margin = 5;
 

@@ -19,8 +19,6 @@ void SelectionScene::_setup() {
 
     instance = this;
 
-    view = new SelectionView();
-
     add_object(new Grid());
     add_object(box1 = new BoxModel(1));
     add_object(box2 = new BoxModel(1));

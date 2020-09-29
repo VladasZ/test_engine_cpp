@@ -30,7 +30,7 @@ void PathView::setup() {
     _button->on_press.link(on_press);
 }
 
-void PathView::layout_subviews() {
+void PathView::layout() {
 
     static const float margin = 5;
 

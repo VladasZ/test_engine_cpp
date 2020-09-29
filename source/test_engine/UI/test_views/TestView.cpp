@@ -49,9 +49,9 @@ void te::TestView::setup() {
 
 }
 
-void te::TestView::layout_subviews() {
+void te::TestView::layout() {
 
-    ScrollView::layout_subviews();
+    ScrollView::layout();
 
     view->place_tr(30);
     label->place_at_center();

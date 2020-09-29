@@ -59,7 +59,7 @@ void SelectionView::setup() {
 
 }
 
-void SelectionView::layout_subviews() {
+void SelectionView::layout() {
 
     button->place_bl();
 

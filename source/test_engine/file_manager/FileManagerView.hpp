@@ -36,7 +36,7 @@ namespace te {
         void set_path(const cu::Path& path);
 
         void setup() override;
-        void layout_subviews() override;
+        void layout() override;
 
     public:
 

@@ -20,8 +20,6 @@ using namespace scene;
 
 void WorldScene::_setup() {
 
-    view = new WorldView();
-
     add_object(new Grid());
     
 #ifdef DESKTOP_BUILD

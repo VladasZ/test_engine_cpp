@@ -17,7 +17,7 @@ void WorldView::setup() {
     init_view(file_manager, { 800, 400 });
 }
 
-void WorldView::layout_subviews() {
+void WorldView::layout() {
     file_manager->place_bl();
     test_view->place_at_center();
 }

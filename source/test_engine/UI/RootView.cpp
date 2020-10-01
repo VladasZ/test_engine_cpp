@@ -24,6 +24,8 @@ void RootView::setup() {
         add_subview(view);
         _touch_views.push_back(view);
     };
+
+    _superview = this;
 }
 
 void RootView::set_draw_touches(bool value) {

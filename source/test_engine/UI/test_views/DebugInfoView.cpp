@@ -12,7 +12,6 @@
 #include "GlobalEvents.hpp"
 #include "DebugInfoView.hpp"
 
-#ifdef DEBUG_VIEW
 
 using namespace ui;
 
@@ -44,10 +43,10 @@ void DebugInfoView::setup() {
     ui::Input::on_touch = [&](ui::Touch* touch) {
         _touch_state_label->set_text(std::string() + "Touch state: " + touch->event_string());
     };
+
+	_superview = this;
 }
 
-void DebugInfoView::layout_subviews() {
+void DebugInfoView::layout() {
     _stack_view->edit_frame().size = _frame.size;
 }
-
-#endif

@@ -14,10 +14,6 @@
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
 
-#ifdef DEBUG_VIEW
-class DebugInfoView;
-#endif
-
 
 namespace te {
 
@@ -49,9 +45,7 @@ namespace te {
 
     public:
 
-#ifdef DEBUG_VIEW
 		static inline DebugInfoView* debug_view = nullptr;
-#endif
 
 	public:
 
@@ -65,8 +59,6 @@ namespace te {
 		void setup_input();
 
 		void set_size(const gm::Size&);
-
-		void add_scene(scene::Scene*);
 
 	public:
 

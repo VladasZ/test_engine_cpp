@@ -47,10 +47,8 @@ void Screen::_initialize_ui() {
     _root_view = new RootView(gm::Rect { Screen::size });
     _root_view->setup();
 
-#ifdef DEBUG_VIEW
-    debug_view = new DebugInfoView({ 400, 108 });
-	debug_view->setup();
-#endif
+    //debug_view = new DebugInfoView({ 400, 108 });
+	//debug_view->setup();
 }
 
 Screen::Screen(const gm::Size& _size) {
@@ -125,10 +123,10 @@ void Screen::update() {
     }
 
     GL::set_viewport({ size });
-
-#ifdef DEBUG_VIEW
-    debug_view->_draw();
-#endif
+	
+	if (debug_view) {
+		debug_view->_draw();
+	}
 
     frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
     FPS = 1.0f / frame_time;

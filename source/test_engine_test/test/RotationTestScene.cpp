@@ -20,8 +20,6 @@ using namespace scene;
 
 void RotationTestScene::_setup() {
 
-    view = new RotationTestView();
-
     add_object(new Grid());
 
     auto manip = new PositionManipulator();

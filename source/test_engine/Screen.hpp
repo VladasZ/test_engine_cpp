@@ -10,14 +10,13 @@
 
 #include "Size.hpp"
 #include "Scene.hpp"
+#include "Level.hpp"
 #include "Platform.hpp"
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
 
 
 namespace te {
-
-    class SceneSelectionView;
 
 	class Screen {
 
@@ -28,6 +27,8 @@ namespace te {
 		scene::Scene*   _scene = nullptr;
 
         ui::View*       _view  = nullptr;
+
+        sprite::Level* _level = nullptr;
 
         RootView* _root_view = nullptr;
 
@@ -67,6 +68,9 @@ namespace te {
         
         void set_view(ui::View*);
         ui::View* view() const;
+
+        void set_level(sprite::Level*);
+        sprite::Level* level() const;
 
 		te::RootView* root_view() const;
 

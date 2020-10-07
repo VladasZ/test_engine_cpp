@@ -13,12 +13,13 @@
 #include "Mesh.hpp"
 #include "Model.hpp"
 #include "StringUtils.hpp"
+#include "ForceConvert.hpp"
 #include "ModelImporter.hpp"
-#include "ForceInitializable.hpp"
 
 using namespace cu;
 using namespace gm;
 using namespace scene;
+
 
 #ifdef USING_ASSIMP
 static Assimp::Importer _importer;

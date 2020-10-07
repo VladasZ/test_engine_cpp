@@ -1,4 +1,4 @@
-    //
+//
 //  Window.cpp
 //  TestEngine
 //
@@ -18,6 +18,7 @@
 #include "Assets.hpp"
 #include "Camera.hpp"
 #include "Screen.hpp"
+#include "Sprites.hpp"
 #include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
@@ -27,8 +28,7 @@
 #include "GlobalEvents.hpp"
 #include "TEImageLoader.hpp"
 #include "TESceneDrawer.hpp"
-#include "ExceptionCatch.hpp"
-#include "SceneSelectionView.hpp"
+#include "TESpriteDrawer.hpp"
 
 using namespace gm;
 using namespace te;
@@ -44,16 +44,18 @@ void Screen::_initialize_ui() {
             //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
             new ui::Font(Paths::fonts / "SF.otf");
 
+    sprite::config::set_drawer(new TESpriteDrawer());
+
     _root_view = new RootView(gm::Rect { Screen::size });
     _root_view->setup();
 
     //debug_view = new DebugInfoView({ 400, 108 });
-	//debug_view->setup();
+    //debug_view->setup();
 }
 
 Screen::Screen(const gm::Size& _size) {
 
-	size = _size;
+    size = _size;
     current = this;
 
 #ifdef DEBUG
@@ -100,7 +102,7 @@ void Screen::update() {
     GL::set_clear_color(clear_color);
     GL::clear();
 
-    GL::set_viewport({ size });
+    GL::set_viewport(size);
 
     GL::enable_depth_test();
 
@@ -111,22 +113,20 @@ void Screen::update() {
 
     GL::disable_depth_test();
 
-#ifdef USING_BOX2D
-//    if (_level) {
-//        _level->update();
-//        _level->draw();
-//    }
-#endif
+    if (_level) {
+        _level->update();
+        _level->draw();
+    }
 
     if (_root_view) {
         _root_view->_draw();
     }
 
     GL::set_viewport({ size });
-	
-	if (debug_view) {
-		debug_view->_draw();
-	}
+
+    if (debug_view) {
+        debug_view->_draw();
+    }
 
     frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
     FPS = 1.0f / frame_time;
@@ -222,9 +222,9 @@ void Screen::set_size(const gm::Size& _size) {
     GL::clear();
     Assets::shaders->sprite->use();
     Assets::shaders->sprite->set_resolution(size);
-    _root_view->edit_frame() = {size };
+    _root_view->edit_frame() = size;
     if (_view) {
-        _view->edit_frame() = {size };
+        _view->edit_frame() = size;
     }
     if (_scene) {
         _scene->camera->resolution = size;
@@ -248,20 +248,18 @@ scene::Scene* Screen::scene() const {
     return _scene;
 }
 
-#ifdef USING_BOX2D
-//void Screen::set_level(sprites::Level* level) {
-//    _level = level;
-//}
-//
-//sprites::Level* Screen::level() const {
-//    return _level;
-//}
-#endif
-
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);
     _view = view;
     _view->edit_frame() = { size };
+}
+
+void Screen::set_level(sprite::Level* level) {
+    _level = level;
+}
+
+sprite::Level *Screen::level() const {
+    return _level;
 }
 
 ui::View* Screen::view() const {

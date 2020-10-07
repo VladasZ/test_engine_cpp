@@ -8,26 +8,21 @@
 
 #pragma once
 
-//#ifdef USING_BOX2D
-//
-//#include "Box2D/Box2D.h"
-//
-//#include "Level.hpp"
-//#include "Platform.hpp"
-//#include "DynamicBody.hpp"
-//
-//class TestLevel : public sprites::Level {
-//
-//    sprites::Platform* floor;
-//	sprites::DynamicBody* box;
-//	sprites::DynamicBody* box2;
-//
-//public:
-//
-//	TestLevel();
-//
-//    void update() override;
-//
-//};
-//
-//#endif
+#include "Level.hpp"
+#include "DynamicBody.hpp"
+#include "sprites/Platform.hpp"
+
+
+class TestLevel : public sprite::Level {
+
+    sprite::Platform* floor;
+	sprite::DynamicBody* box;
+	sprite::DynamicBody* box2;
+
+public:
+
+	TestLevel();
+
+    void update() override;
+
+};

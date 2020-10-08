@@ -8,7 +8,10 @@
 
 #pragma once
 
-#include "Level.hpp"
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "DynamicBody.hpp"
 #include "sprites/Platform.hpp"
 
@@ -26,3 +29,5 @@ public:
     void update() override;
 
 };
+
+#endif

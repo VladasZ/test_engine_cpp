@@ -18,7 +18,6 @@
 #include "Assets.hpp"
 #include "Camera.hpp"
 #include "Screen.hpp"
-#include "Sprites.hpp"
 #include "Dispatch.hpp"
 #include "Keyboard.hpp"
 #include "RootView.hpp"
@@ -44,7 +43,9 @@ void Screen::_initialize_ui() {
             //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
             new ui::Font(Paths::fonts / "SF.otf");
 
+#ifdef USING_SPRITES
     sprite::config::set_drawer(new TESpriteDrawer());
+#endif
 
     _root_view = new RootView(gm::Rect { Screen::size });
     _root_view->setup();
@@ -113,10 +114,12 @@ void Screen::update() {
 
     GL::disable_depth_test();
 
+#ifdef USING_SPRITES
     if (_level) {
         _level->update();
         _level->draw();
     }
+#endif
 
     if (_root_view) {
         _root_view->_draw();
@@ -254,6 +257,7 @@ void Screen::set_view(ui::View* view) {
     _view->edit_frame() = { size };
 }
 
+#ifdef USING_SPRITES
 void Screen::set_level(sprite::Level* level) {
     _level = level;
 }
@@ -261,6 +265,7 @@ void Screen::set_level(sprite::Level* level) {
 sprite::Level *Screen::level() const {
     return _level;
 }
+#endif
 
 ui::View* Screen::view() const {
     return _view;

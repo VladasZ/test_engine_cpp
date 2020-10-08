@@ -6,6 +6,10 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "Log.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
@@ -47,3 +51,5 @@ TestLevel::TestLevel() {
 void TestLevel::update() {
     Level::update();
 }
+
+#endif

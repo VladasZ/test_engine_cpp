@@ -10,10 +10,10 @@
 
 #include "Size.hpp"
 #include "Scene.hpp"
-#include "Level.hpp"
 #include "Platform.hpp"
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
+#include "SpritesInclude.hpp"
 
 
 namespace te {
@@ -28,7 +28,9 @@ namespace te {
 
         ui::View*       _view  = nullptr;
 
-        sprite::Level* _level = nullptr;
+#ifdef USING_SPRITES
+		sprite::Level* _level = nullptr;
+#endif
 
         RootView* _root_view = nullptr;
 
@@ -69,8 +71,10 @@ namespace te {
         void set_view(ui::View*);
         ui::View* view() const;
 
+#ifdef USING_SPRITES
         void set_level(sprite::Level*);
         sprite::Level* level() const;
+#endif
 
 		te::RootView* root_view() const;
 

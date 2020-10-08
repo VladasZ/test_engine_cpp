@@ -8,9 +8,15 @@
 
 #pragma once
 
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "SpriteDrawer.hpp"
 
 
 class TESpriteDrawer : public sprite::SpriteDrawer {
 	void draw(sprite::Sprite* sprite) override;
 };
+
+#endif

@@ -6,6 +6,10 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "Assets.hpp"
 #include "TESpriteDrawer.hpp"
 
@@ -20,3 +24,5 @@ void TESpriteDrawer::draw(sprite::Sprite* sprite) {
 	sprite->image()->bind();
 	Assets::buffers->fullscreen_image->draw();
 }
+
+#endif

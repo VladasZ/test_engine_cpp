@@ -31,6 +31,7 @@ matrix:
           install:
             - sudo apt update
             - sudo apt upgrade
+            - sudo apt install xorg-dev
             - sudo apt install libglu1-mesa-dev
             - sudo apt install libgl1-mesa-dri
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py

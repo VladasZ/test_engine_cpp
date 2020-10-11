@@ -18,6 +18,7 @@
 #import "Input.hpp"
 #import "Paths.hpp"
 #import "Screen.hpp"
+#import "TestView.hpp"
 #import "Bluetooth.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
@@ -57,7 +58,8 @@ te::Screen* _screen;
     
     _screen->clear_color = gm::Color::gray;
     
-    _screen->set_scene(new WorldScene());
+    _screen->set_view(new TestView());
+    _screen->set_scene(new TestScene());
 
 //    cu::Bluetooth::test_central();
     //cu::Bluetooth::test_peripheral();

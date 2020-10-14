@@ -9,6 +9,7 @@ link_and_include_deps(${PROJECT_NAME})
 
 add_subdirectory(${test_engine_PATH} "${test_engine_PATH}/dep_build")
 link_project_at_path(test_engine ${test_engine_PATH})
+link_from(test_engine)
 
 find_library(log-lib log)
 target_link_libraries(${PROJECT_NAME} ${log-lib})

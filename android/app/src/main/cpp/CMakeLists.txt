@@ -16,3 +16,9 @@ target_link_libraries(${PROJECT_NAME} ${log-lib})
 
 find_library(android-lib android)
 target_link_libraries(${PROJECT_NAME} ${android-lib})
+
+find_library(EGL GLESv2 GLESv3)
+
+#target_link_libraries(${PROJECT_NAME} GLESv2)
+
+target_link_libraries(${PROJECT_NAME} EGL GLESv2 GLESv3)

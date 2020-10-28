@@ -8,12 +8,7 @@
 
 #pragma once
 
-#include "SpritesInclude.hpp"
-
-#ifdef USING_SPRITES
-
 #include "DynamicBody.hpp"
-#include "sprites/Platform.hpp"
 
 
 class TestLevel : public sprite::Level {
@@ -29,5 +24,3 @@ public:
     void update() override;
 
 };
-
-#endif

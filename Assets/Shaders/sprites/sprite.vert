@@ -16,7 +16,19 @@ void main() {
   mat4 rotation_matrix = rotation_z_matrix(-rotation);
 
   gl_Position = vec4(vertex_position.xy, 0.0, 1.0);
+
+  gl_Position.x *= size.x;
+  gl_Position.y *= size.y;
+
   gl_Position = gl_Position * rotation_matrix;
+
+  gl_Position.xy += position;
+
+  gl_Position.x *= resolution.y / resolution.x;
+
+  float scale = size.y / resolution.y;
+
+  gl_Position.xy *= scale;
 
   tex_coord = in_tex_coord;
 }

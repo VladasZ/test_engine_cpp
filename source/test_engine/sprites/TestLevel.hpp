@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include "BoxInclude.hpp"
+
+#ifdef USING_BOX2D
+
 #include "DynamicBody.hpp"
 
 
@@ -24,3 +28,5 @@ public:
     void update() override;
 
 };
+
+#endif

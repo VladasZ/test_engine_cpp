@@ -6,9 +6,12 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "TestLevel.hpp"
+
+#ifdef USING_BOX2D
+
 #include "Screen.hpp"
 #include "Assets.hpp"
-#include "TestLevel.hpp"
 
 using namespace sprite;
 
@@ -44,3 +47,5 @@ TestLevel::TestLevel() {
 void TestLevel::update() {
     Level::update();
 }
+
+#endif

@@ -12,6 +12,8 @@
 
 #ifdef USING_BOX2D
 
+#include "Level.hpp"
+#include "Platform.hpp"
 #include "DynamicBody.hpp"
 
 

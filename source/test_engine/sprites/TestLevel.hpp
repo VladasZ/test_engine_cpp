@@ -8,27 +8,23 @@
 
 #pragma once
 
-#include "BoxInclude.hpp"
-
-#ifdef USING_BOX2D
-
 #include "Level.hpp"
 #include "Platform.hpp"
 #include "DynamicBody.hpp"
 
 
-class TestLevel : public sprite::Level {
+namespace te {
 
-    sprite::Platform* floor;
-	sprite::DynamicBody* box;
-	sprite::DynamicBody* box2;
+	class TestLevel : public sprite::Level {
 
-public:
+		sprite::DynamicBody* box;
 
-	TestLevel();
+	public:
 
-    void update() override;
+		TestLevel();
 
-};
+		void update() override;
 
-#endif
+	};
+
+}

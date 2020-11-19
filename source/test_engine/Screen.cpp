@@ -231,8 +231,8 @@ void Screen::set_size(const gm::Size& _size) {
     if (_scene) {
         _scene->camera->resolution = size;
     }
-    update();
     Events::on_screen_size_change(size);
+    update();
 }
 
 void Screen::set_scene(scene::Scene* scene) {

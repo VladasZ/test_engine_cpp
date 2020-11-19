@@ -17,6 +17,9 @@ namespace te {
 
 	class TestLevel : public sprite::Level {
 
+	    sprite::Platform* floor;
+        sprite::Platform* right;
+        sprite::Platform* left;
 		sprite::DynamicBody* box;
 
 	public:

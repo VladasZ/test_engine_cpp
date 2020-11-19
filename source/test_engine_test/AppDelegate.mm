@@ -58,9 +58,11 @@ te::Screen* _screen;
     
     _screen->clear_color = gm::Color::gray;
     
-    _screen->set_view(new TestView());
-    _screen->set_scene(new TestScene());
+//    _screen->set_view(new TestView);
+//    _screen->set_scene(new TestScene);
 
+    _screen->set_level(new TestLevel);
+    
 //    cu::Bluetooth::test_central();
     //cu::Bluetooth::test_peripheral();
 }

@@ -17,7 +17,7 @@ using namespace sprite;
 
 TestLevel::TestLevel() {
 
-   // set_gravity(0);
+    //set_gravity(0);
 
     box = new DynamicBody(Assets::images->scale_test, { 0, 0 }, { 5, 10 });
     add_sprite(box);
@@ -26,8 +26,7 @@ TestLevel::TestLevel() {
     for (int i = 0; i < 100; i++) {
         add_sprite(new DynamicBody(Assets::images->scale_test, { 0, i }, { 1, 2 }));
     }
-
-
+    
     add_sprite(new DynamicBody(Assets::images->scale_test, { 10, 0 }, { 10, 20 }));
     _sprites.back()->add_rotation(-0.1f);
 

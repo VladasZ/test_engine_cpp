@@ -21,11 +21,11 @@ void main() {
 
     gl_Position *= rotation_z_matrix(-rotation);
 
-    gl_Position.xy += position * 2;
+    gl_Position.xy += position * 2.0;
 
     gl_Position.x *= resolution.y / resolution.x;
 
-    float scale = resolution.y / 10;
+    float scale = resolution.y / 10.0;
     gl_Position.xy /= scale;
 
     tex_coord = in_tex_coord;

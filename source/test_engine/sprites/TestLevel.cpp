@@ -12,6 +12,7 @@
 #include "TestLevel.hpp"
 
 using namespace te;
+using namespace gm;
 using namespace sprite;
 
 
@@ -24,7 +25,7 @@ TestLevel::TestLevel() {
     add_sprite(box);
     box->add_rotation(0.1f);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 200; i++) {
         add_sprite(new DynamicBody({ 0, i }, { 1, 2 }));
         _sprites.back()->color = gm::Color::random();
     }
@@ -58,4 +59,23 @@ TestLevel::TestLevel() {
 
 void TestLevel::update() {
     Level::update();
+}
+
+void TestLevel::setup() {
+
+    control_pad->on_up = [this] {
+        unit->jump();
+    };
+
+    control_pad->on_left = [this] {
+        unit->add_impulse({ -unit->mass() * 10, 0 });
+    };
+
+    control_pad->on_right = [this] {
+        unit->add_impulse({  unit->mass() * 10, 0 });
+    };
+
+    control_pad->on_press = [](Direction dir) {
+        Log << (int)dir;
+    };
 }

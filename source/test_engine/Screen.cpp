@@ -258,6 +258,7 @@ void Screen::set_view(ui::View* view) {
 #ifdef USING_SPRITES
 void Screen::set_level(sprite::Level* level) {
     _level = level;
+    _level->setup();
 }
 
 sprite::Level *Screen::level() const {

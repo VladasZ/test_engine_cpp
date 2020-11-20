@@ -10,26 +10,30 @@
 
 #include "Unit.hpp"
 #include "Level.hpp"
-#include "Platform.hpp"
+#include "ControlPad.hpp"
 #include "DynamicBody.hpp"
+#include "sprites/Platform.hpp"
 
 
 namespace te {
 
 	class TestLevel : public sprite::Level {
 
-	    sprite::Platform* floor;
-        sprite::Platform* right;
-        sprite::Platform* left;
-		sprite::DynamicBody* box;
+	    sprite::Platform* floor = nullptr;
+        sprite::Platform* right = nullptr;
+        sprite::Platform* left = nullptr;
+		sprite::DynamicBody* box = nullptr;
 
-		sprite::Unit* unit;
+		sprite::Unit* unit = nullptr;
 
 	public:
+
+		ui::ControlPad* control_pad = nullptr;
 
 		TestLevel();
 
 		void update() override;
+		void setup() override;
 
 	};
 

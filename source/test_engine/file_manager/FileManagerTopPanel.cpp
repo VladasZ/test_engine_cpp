@@ -23,7 +23,7 @@ void FileManagerTopPanel::setup() {
     init_view(_path_label);
 
     _up_button->set_image(Assets::images->up);
-    _up_button->on_press.link(on_press_up_button);
+    _up_button->on_press = [this] { on_press_up_button(); };
 
 }
 

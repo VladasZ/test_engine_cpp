@@ -50,6 +50,10 @@ TestLevel::TestLevel() {
     left->set_image(Assets::images->square);
     add_sprite(left);
 
+    unit = new Unit({ 0, 0 }, { 17.0 / 4.0, 28.0 / 4.0 });
+    unit->set_image(Assets::images->frisk);
+    add_sprite(unit);
+    unit->fix_rotation(true);
 }
 
 void TestLevel::update() {

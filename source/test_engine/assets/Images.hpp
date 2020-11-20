@@ -29,5 +29,7 @@ struct Images {
     Image* left;
     Image* right;
 
+    Image* frisk;
+
     Images();
 };

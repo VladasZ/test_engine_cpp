@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Unit.hpp"
 #include "Level.hpp"
 #include "Platform.hpp"
 #include "DynamicBody.hpp"
@@ -21,6 +22,8 @@ namespace te {
         sprite::Platform* right;
         sprite::Platform* left;
 		sprite::DynamicBody* box;
+
+		sprite::Unit* unit;
 
 	public:
 

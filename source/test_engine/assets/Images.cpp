@@ -30,4 +30,7 @@ Images::Images() {
     down  = new Image(Paths::images / "down.png");
     left  = new Image(Paths::images / "left.png");
     right = new Image(Paths::images / "right.png");
+
+    frisk = new Image(Paths::images / "frisk.png");
+
 }

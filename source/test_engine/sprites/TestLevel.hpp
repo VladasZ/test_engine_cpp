@@ -10,9 +10,9 @@
 
 #include "Unit.hpp"
 #include "Level.hpp"
+#include "Platform.hpp"
 #include "ControlPad.hpp"
 #include "DynamicBody.hpp"
-#include "sprites/Platform.hpp"
 
 
 namespace te {

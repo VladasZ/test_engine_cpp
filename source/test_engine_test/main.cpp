@@ -18,10 +18,12 @@ using namespace te;
 
 int main() {
 
+    Log << "Hello";
+
     auto screen = new te::Screen({ 1000, 800 });
     screen->clear_color = gm::Color::gray;
-//    screen->set_view(new TestView);
-//    screen->set_scene(new TestScene);
+    //screen->set_view(new TestView);
+    //screen->set_scene(new TestScene);
     screen->set_level(new TestLevel);
     screen->start_main_loop();
 

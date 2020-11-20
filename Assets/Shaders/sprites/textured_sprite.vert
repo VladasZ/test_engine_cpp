@@ -2,12 +2,15 @@
 #include "transforms.glsl"
 
 layout (location = 0) in vec2 vertex_position;
+layout (location = 1) in vec2 in_tex_coord;
 
 uniform vec2 size;
 uniform vec2 position;
 uniform float rotation;
 
 uniform vec2 resolution;
+
+out vec2 tex_coord;
 
 void main() {
 
@@ -24,4 +27,6 @@ void main() {
 
     float scale = resolution.y / 10.0;
     gl_Position.xy /= scale;
+
+    tex_coord = in_tex_coord;
 }

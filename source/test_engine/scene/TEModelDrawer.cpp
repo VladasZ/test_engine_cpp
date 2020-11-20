@@ -50,11 +50,11 @@ void TEModelDrawer::_draw() const {
         _model->image()->bind();
     }
     else if (_model->draw_mode() == scene::Model::DrawMode::Lines) {
-        shader->set_uniform_color(Color::black);
+        shader->set_color(Color::black);
     }
 
 	shader->set_selected(_model->is_selected);
-	shader->set_uniform_color(_model->color);
+	shader->set_color(_model->color);
 	shader->set_mvp_matrix(_model->mvp_matrix());
 
 	if (!_model->respects_depth_buffer) {

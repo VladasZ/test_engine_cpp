@@ -8,7 +8,7 @@ out vec3 fragment_normal;
 out vec3 fragment_position;
 
 void main() {
-  gl_Position = mvp_matrix * vec4(position, 1.0);
-  fragment_normal = normal;
-  fragment_position = gl_Position.xyz;
+    gl_Position = mvp_matrix * vec4(position, 1.0);
+    fragment_normal = normal;
+    fragment_position = gl_Position.xyz;
 }

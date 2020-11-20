@@ -13,6 +13,7 @@
 
 using namespace te;
 
+
 Shaders::Shaders() {
 
     ShaderCompiler::includes_path = Paths::Shaders::include;
@@ -31,8 +32,9 @@ Shaders::Shaders() {
         diffuse_colored = new gl::Shader(Paths::Shaders::test / "simple");
         fog             = new gl::Shader(Paths::Shaders::test / "simple");
 
-        sprite = new gl::Shader(Paths::Shaders::test / "simple");
-        
+        sprite          = new gl::Shader(Paths::Shaders::test / "simple");
+        textured_sprite = new gl::Shader(Paths::Shaders::test / "simple");
+
         return;
     }
 
@@ -47,6 +49,15 @@ Shaders::Shaders() {
     diffuse_colored = new gl::Shader(Paths::Shaders::isometric / "diffuse_colored");
     fog             = new gl::Shader(Paths::Shaders::isometric / "fog"            );
 
-    sprite = new gl::Shader(Paths::Shaders::sprites / "sprite");
-        
+    sprite          = new gl::Shader(Paths::Shaders::sprites / "sprite");
+    textured_sprite = new gl::Shader(Paths::Shaders::sprites / "textured_sprite");
+
+}
+
+void Shaders::set_screen_resolution(const gm::Size& size) {
+    sprite->use();
+    sprite->set_resolution(size);
+
+    textured_sprite->use();
+    textured_sprite->set_resolution(size);
 }

@@ -222,8 +222,7 @@ void Screen::set_size(const gm::Size& _size) {
     GL::window_size = size;
     GL::set_viewport(size);
     GL::clear();
-    Assets::shaders->sprite->use();
-    Assets::shaders->sprite->set_resolution(size);
+    Assets::shaders->set_screen_resolution(size);
     _root_view->edit_frame() = size;
     if (_view) {
         _view->edit_frame() = size;

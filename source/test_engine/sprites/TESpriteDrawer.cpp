@@ -10,18 +10,36 @@
 
 #ifdef USING_SPRITES
 
+#include "Log.hpp"
 #include "Assets.hpp"
 #include "TESpriteDrawer.hpp"
 
 
 void TESpriteDrawer::draw(sprite::Sprite* sprite) {
-    static const float scale = 1.0f;
-    Assets::shaders->sprite->use();
-    Assets::shaders->sprite->set_size(sprite->size() * scale);
-    Assets::shaders->sprite->set_position(sprite->position() * scale);
-    Assets::shaders->sprite->set_rotation(sprite->rotation());
-    sprite->image()->bind();
-    Assets::buffers->fullscreen_image->draw();
+
+    gl::Shader* shader = nullptr;
+
+    if (sprite->has_image()) {
+        shader = Assets::shaders->textured_sprite;
+    }
+    else {
+        shader = Assets::shaders->sprite;
+    }
+
+    shader->use();
+    shader->set_size(sprite->size());
+    shader->set_position(sprite->position());
+    shader->set_rotation(sprite->rotation());
+
+    if (sprite->has_image()) {
+        sprite->image()->bind();
+        Assets::buffers->fullscreen_image->draw();
+    }
+    else {
+        shader->set_color(sprite->color);
+        Assets::buffers->fullscreen->draw();
+    }
+
 }
 
 #endif

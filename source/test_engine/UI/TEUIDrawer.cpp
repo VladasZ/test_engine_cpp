@@ -23,7 +23,7 @@ using namespace gl;
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
     GL::set_viewport(rect);
     Assets::shaders->ui->use();
-    Assets::shaders->ui->set_uniform_color(color);
+    Assets::shaders->ui->set_color(color);
     Assets::buffers->fullscreen->draw();
 }
 
@@ -35,7 +35,7 @@ void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
 #else
     GL::set_viewport(rect);
     Assets::shaders->ui->use();
-    Assets::shaders->ui->set_uniform_color(color);
+    Assets::shaders->ui->set_color(color);
     Assets::buffers->fullscreen_outline->draw();
 #endif
 }
@@ -45,7 +45,7 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect, const gm::Co
 
     if (image->is_monochrome()) {
         Assets::shaders->ui_monochrome->use();
-        Assets::shaders->ui_monochrome->set_uniform_color(color);
+        Assets::shaders->ui_monochrome->set_color(color);
     }
     else {
         Assets::shaders->ui_texture->use();
@@ -59,7 +59,7 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect, const gm::Co
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
     GL::set_viewport(rect);
     Assets::shaders->ui_path->use();
-    Assets::shaders->ui_path->set_uniform_color(path->color());
+    Assets::shaders->ui_path->set_color(path->color());
     Assets::shaders->ui_path->set_size(rect.size);
     static_cast<gl::Buffer*>(path->data())->draw_mode = GL::DrawMode::LineStrip;
     static_cast<gl::Buffer*>(path->data())->draw();

@@ -10,7 +10,7 @@
 
 #include "Size.hpp"
 #include "Scene.hpp"
-#include "Platform.hpp"
+#include "Target.hpp"
 #include "RootView.hpp"
 #include "DebugInfoView.hpp"
 #include "SpritesInclude.hpp"

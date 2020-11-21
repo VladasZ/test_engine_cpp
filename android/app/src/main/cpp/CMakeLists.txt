@@ -3,7 +3,11 @@ cmake_minimum_required(VERSION 3.9.2 FATAL_ERROR)
 project(native-lib)
 include(build_tools_generated.cmake)
 
+conan_basic_setup()
+
 add_library(${PROJECT_NAME} SHARED native-lib.cpp)
+
+conan_target_link_libraries(${PROJECT_NAME})
 
 link_and_include_deps(${PROJECT_NAME})
 
@@ -22,3 +26,4 @@ find_library(EGL GLESv2 GLESv3)
 #target_link_libraries(${PROJECT_NAME} GLESv2)
 
 target_link_libraries(${PROJECT_NAME} EGL GLESv2 GLESv3)
+

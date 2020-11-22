@@ -18,12 +18,13 @@
 
 #import "Input.hpp"
 #import "Screen.hpp"
+#import "TestView.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
 #import "SelectionView.hpp"
 
-te::Screen* _screen;
+static te::Screen* _screen = nullptr;
 
 using namespace cu;
 using namespace gm;
@@ -41,28 +42,25 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
 
     not_first_call = true;
 
-    GL::on_window_size_change({ 1000,
-                                1000 });
+    GL::on_window_size_change({ 500,
+                                500 });
 
-    _screen = new te::Screen({ 1000,
-                               1000 });
+    _screen = new te::Screen({ 500,
+                               500 });
 
-   // _screen->set_scene(new TestScene());
-#ifndef NO_BOX2D
-   // _screen->set_level(new TestLevel());
-#endif
-    _screen->set_view(new SelectionView());
+    _screen->clear_color = gm::Color::gray;
+
+    //_screen->set_scene(new TestScene);
+    _screen->set_level(new TestLevel);
+    _screen->set_view(new TestView);
+
+    _screen->set_size({ 500, 500 });
 
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_example_test_1engine_MyGLRenderer_update(JNIEnv* env, jobject) {
-      _screen->update();
-    //GL::set_clear_color(gm::Color::turquoise);
-   // GL::clear();
-    //GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-//    glBegin();
-//    glEnd();
+    _screen->update();
 }
 
 extern "C" JNIEXPORT void JNICALL

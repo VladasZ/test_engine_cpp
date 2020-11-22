@@ -23,14 +23,14 @@ namespace te {
 
     public:
 
-        ui::Label* fold_caption_label;
-        ui::StackView* folded_stack_view;
-        ui::FoldableView* foldableView;
+        ui::Label* fold_caption_label = nullptr;
+        ui::StackView* folded_stack_view = nullptr;
+        ui::FoldableView* foldableView = nullptr;
 
-        ui::View* view;
-        ui::Label* label;
-        ui::Button* button;
-        ui::ImageView* image_view;
+        ui::View* view = nullptr;
+        ui::Label* label = nullptr;
+        ui::Button* button = nullptr;
+        ui::ImageView* image_view = nullptr;
 
         using ScrollView::ScrollView;
 

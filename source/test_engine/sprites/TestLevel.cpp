@@ -63,19 +63,19 @@ void TestLevel::update() {
 
 void TestLevel::setup() {
 
-    control_pad->on_up = [this] {
-        unit->jump();
-    };
-
-    control_pad->on_left = [this] {
-        unit->add_impulse({ -unit->mass() * 10, 0 });
-    };
-
-    control_pad->on_right = [this] {
-        unit->add_impulse({  unit->mass() * 10, 0 });
-    };
-
-    control_pad->on_press = [](Direction dir) {
-        Log << (int)dir;
-    };
+//    control_pad->on_up = [this] {
+//        unit->jump();
+//    };
+//
+//    control_pad->on_left = [this] {
+//        unit->add_impulse({ -unit->mass() * 10, 0 });
+//    };
+//
+//    control_pad->on_right = [this] {
+//        unit->add_impulse({  unit->mass() * 10, 0 });
+//    };
+//
+//    control_pad->on_press = [](Direction dir) {
+//        Log << (int)dir;
+//    };
 }

@@ -18,26 +18,6 @@ Shaders::Shaders() {
 
     ShaderCompiler::includes_path = Paths::Shaders::include;
 
-    simple = new gl::Shader(Paths::Shaders::test / "simple");
-    
-    if (GL::is_gl2) {
-        
-        ui            = new gl::Shader(Paths::Shaders::test / "simple");
-        ui_path       = new gl::Shader(Paths::Shaders::test / "simple");
-        ui_texture    = new gl::Shader(Paths::Shaders::test / "simple");
-        ui_monochrome = new gl::Shader(Paths::Shaders::test / "simple");
-
-        colored3D       = new gl::Shader(Paths::Shaders::test / "simple");
-        textured3D      = new gl::Shader(Paths::Shaders::test / "simple");
-        diffuse_colored = new gl::Shader(Paths::Shaders::test / "simple");
-        fog             = new gl::Shader(Paths::Shaders::test / "simple");
-
-        sprite          = new gl::Shader(Paths::Shaders::test / "simple");
-        textured_sprite = new gl::Shader(Paths::Shaders::test / "simple");
-
-        return;
-    }
-
     ui            = new gl::Shader(Paths::Shaders::ui / "ui"           );
     ui_path       = new gl::Shader(Paths::Shaders::ui / "ui_path"      );
     ui_texture    = new gl::Shader(Paths::Shaders::ui / "ui_texture"   );

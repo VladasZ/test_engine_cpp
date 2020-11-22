@@ -41,7 +41,7 @@ void Screen::_initialize_ui() {
     ui::config::set_drawer(new TEUIDrawer());
     ui::config::default_font =
             //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
-            new ui::Font(Paths::fonts / "SF.otf");
+            new ui::Font(Paths::fonts / "SF.otf", 80);
 
 #ifdef USING_SPRITES
     sprite::config::set_drawer(new TESpriteDrawer());

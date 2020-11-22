@@ -40,21 +40,32 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
         return;
     }
 
+    Log << "Helloyy";
+
     not_first_call = true;
+    try {
+        GL::on_window_size_change({ 500,
+                                    500 });
 
-    GL::on_window_size_change({ 500,
-                                500 });
+        _screen = new te::Screen({ 500,
+                                   500 });
 
-    _screen = new te::Screen({ 500,
-                               500 });
+        _screen->clear_color = gm::Color::gray;
 
-    _screen->clear_color = gm::Color::gray;
+        //_screen->set_scene(new TestScene);
+        _screen->set_level(new TestLevel);
+        _screen->set_view(new TestView);
 
-    //_screen->set_scene(new TestScene);
-    _screen->set_level(new TestLevel);
-    _screen->set_view(new TestView);
+        _screen->set_size({ 500, 500 });
 
-    _screen->set_size({ 500, 500 });
+    }
+    catch(...) {
+
+        auto error = cu::what();
+
+        Fatal(error);
+    }
+
 
 }
 

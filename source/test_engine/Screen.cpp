@@ -41,7 +41,7 @@ void Screen::_initialize_ui() {
     ui::config::set_drawer(new TEUIDrawer());
     ui::config::default_font =
             //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
-            new ui::Font(Paths::fonts / "SF.otf", 80);
+            new ui::Font(Paths::fonts / "SF.otf");
 
 #ifdef USING_SPRITES
     sprite::config::set_drawer(new TESpriteDrawer());
@@ -113,9 +113,12 @@ void Screen::update() {
 
     GL::disable_depth_test();
 
+    frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
+    FPS = 1.0f / frame_time;
+
 #ifdef USING_SPRITES
     if (_level) {
-        _level->update();
+        _level->update(frame_time);
         _level->draw();
     }
 #endif
@@ -129,9 +132,6 @@ void Screen::update() {
     if (debug_view) {
         debug_view->_draw();
     }
-
-    frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
-    FPS = 1.0f / frame_time;
 
     Screen::frames_drawn++;
     Events::frame_drawn();

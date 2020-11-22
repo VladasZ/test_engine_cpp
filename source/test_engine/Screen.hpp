@@ -26,19 +26,19 @@ namespace te {
 
 		scene::Scene*   _scene = nullptr;
 
-        ui::View*       _view  = nullptr;
+		ui::View*       _view  = nullptr;
 
 #ifdef USING_SPRITES
 		sprite::Level* _level = nullptr;
 #endif
 
-        RootView* _root_view = nullptr;
+		RootView* _root_view = nullptr;
 
-    public:
+	public:
 
-        static inline float FPS = 0;
-        static inline float frame_time = 0;
-        static inline unsigned frames_drawn = 0;
+		static inline float FPS = 0;
+		static inline float frame_time = 0;
+		static inline unsigned frames_drawn = 0;
 
 		static inline gm::Size size;
 
@@ -46,7 +46,7 @@ namespace te {
 
 		static inline Screen* current = nullptr;
 
-    public:
+	public:
 
 		static inline DebugInfoView* debug_view = nullptr;
 
@@ -67,13 +67,13 @@ namespace te {
 
 		void set_scene(scene::Scene*);
 		scene::Scene* scene() const;
-        
-        void set_view(ui::View*);
-        ui::View* view() const;
+
+		void set_view(ui::View*);
+		ui::View* view() const;
 
 #ifdef USING_SPRITES
-        void set_level(sprite::Level*);
-        sprite::Level* level() const;
+		void set_level(sprite::Level*);
+		sprite::Level* level() const;
 #endif
 
 		te::RootView* root_view() const;

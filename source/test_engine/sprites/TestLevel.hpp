@@ -28,11 +28,8 @@ namespace te {
 
 	public:
 
-		ui::ControlPad* control_pad = nullptr;
-
 		TestLevel();
 
-		void update() override;
 		void setup() override;
 
 	};

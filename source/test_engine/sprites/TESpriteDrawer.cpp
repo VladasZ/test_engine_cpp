@@ -10,7 +10,6 @@
 
 #ifdef USING_SPRITES
 
-#include "Log.hpp"
 #include "Assets.hpp"
 #include "TESpriteDrawer.hpp"
 

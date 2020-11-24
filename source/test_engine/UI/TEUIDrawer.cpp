@@ -18,26 +18,23 @@ using namespace ui;
 using namespace gm;
 using namespace gl;
 
-//#define GL2
+
+static void set_viewport(const Rect& rect) {
+    GL::set_viewport(rect * GL::render_scale);
+}
 
 void TEUIDrawer::fill_rect(const Rect& rect, const Color& color) {
-    GL::set_viewport(rect);
+    set_viewport(rect);
     Assets::shaders->ui->use();
     Assets::shaders->ui->set_color(color);
     Assets::buffers->fullscreen->draw();
 }
 
 void TEUIDrawer::draw_rect(const Rect& rect, const Color& color) {
-#ifdef GL2
-    for (auto edge : rect.edges()) {
-        fill_rect(edge, color);
-    }
-#else
-    GL::set_viewport(rect);
+    set_viewport(rect);
     Assets::shaders->ui->use();
     Assets::shaders->ui->set_color(color);
     Assets::buffers->fullscreen_outline->draw();
-#endif
 }
 
 void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect, const gm::Color& color) {
@@ -51,13 +48,13 @@ void TEUIDrawer::draw_image_in_rect(Image* image, const Rect& rect, const gm::Co
         Assets::shaders->ui_texture->use();
     }
 
-    GL::set_viewport(rect);
+    set_viewport(rect);
     image->bind();
     Assets::buffers->fullscreen_image->draw();
 }
 
 void TEUIDrawer::draw_path_in_rect(ui::PathData* path, const gm::Rect& rect) {
-    GL::set_viewport(rect);
+    set_viewport(rect);
     Assets::shaders->ui_path->use();
     Assets::shaders->ui_path->set_color(path->color());
     Assets::shaders->ui_path->set_size(rect.size);

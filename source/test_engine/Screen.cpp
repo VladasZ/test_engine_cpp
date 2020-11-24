@@ -47,7 +47,7 @@ void Screen::_initialize_ui() {
     sprite::config::set_drawer(new TESpriteDrawer());
 #endif
 
-    _root_view = new RootView(gm::Rect { Screen::size });
+    _root_view = new RootView();
     _root_view->setup();
 
     //debug_view = new DebugInfoView({ 400, 108 });
@@ -223,9 +223,9 @@ void Screen::set_size(const gm::Size& _size) {
     GL::set_viewport(size);
     GL::clear();
     Assets::shaders->set_screen_resolution(size);
-    _root_view->edit_frame() = size;
+    _root_view->edit_frame() = size / GL::render_scale;
     if (_view) {
-        _view->edit_frame() = size;
+        _view->edit_frame() = size / GL::render_scale;
     }
     if (_scene) {
         _scene->camera->resolution = size;
@@ -252,7 +252,7 @@ scene::Scene* Screen::scene() const {
 void Screen::set_view(ui::View* view) {
     _root_view->add_subview(view);
     _view = view;
-    _view->edit_frame() = { size };
+    _view->edit_frame() = _root_view->frame();
 }
 
 #ifdef USING_SPRITES

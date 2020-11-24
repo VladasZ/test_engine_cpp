@@ -15,7 +15,7 @@ namespace te {
 
     class RootView : public ui::View {
 
-        static inline bool _draw_touches = true;
+        static inline bool _draw_touches;
         static inline ui::View::Array _touch_views;
 
     public:

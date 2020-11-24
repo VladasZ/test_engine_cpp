@@ -19,7 +19,6 @@
 #import "Paths.hpp"
 #import "Screen.hpp"
 #import "TestView.hpp"
-#import "Bluetooth.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"

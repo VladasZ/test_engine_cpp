@@ -14,6 +14,13 @@
 #include "TESpriteDrawer.hpp"
 
 
+void TESpriteDrawer::set_camera_position(const gm::Point& pos) {
+    Assets::shaders->textured_sprite->use();
+    Assets::shaders->textured_sprite->set_camera_position(pos);
+    Assets::shaders->sprite->use();
+    Assets::shaders->sprite->set_camera_position(pos);
+}
+
 void TESpriteDrawer::draw(sprite::Sprite* sprite) {
 
     gl::Shader* shader = nullptr;

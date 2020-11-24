@@ -16,6 +16,7 @@
 
 
 class TESpriteDrawer : public sprite::SpriteDrawer {
+	void set_camera_position(const gm::Point&) override;
 	void draw(sprite::Sprite* sprite) override;
 };
 

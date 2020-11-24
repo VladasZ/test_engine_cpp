@@ -7,6 +7,7 @@ layout (location = 1) in vec2 in_tex_coord;
 uniform vec2 size;
 uniform vec2 position;
 uniform float rotation;
+uniform vec2 camera_position;
 
 uniform vec2 resolution;
 
@@ -21,7 +22,7 @@ void main() {
 
     gl_Position *= rotation_z_matrix(-rotation);
 
-    gl_Position.xy += position * 2.0;
+    gl_Position.xy += (position - camera_position) * 2.0;
 
     gl_Position.x *= resolution.y / resolution.x;
 

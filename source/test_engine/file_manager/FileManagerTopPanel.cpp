@@ -29,7 +29,7 @@ void FileManagerTopPanel::setup() {
 
 void FileManagerTopPanel::layout() {
 
-    static Float margin = 5;
+    static float margin = 5;
 
     auto button_size = _frame.size.height - margin * 2;
 

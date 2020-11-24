@@ -24,9 +24,9 @@ namespace te {
 
 		void _initialize_ui();
 
-		scene::Scene*   _scene = nullptr;
+		scene::Scene* _scene = nullptr;
 
-		ui::View*       _view  = nullptr;
+		ui::View* _view  = nullptr;
 
 #ifdef USING_SPRITES
 		sprite::Level* _level = nullptr;
@@ -36,9 +36,9 @@ namespace te {
 
 	public:
 
-		static inline float FPS = 0;
+		static inline int FPS = 0;
 		static inline float frame_time = 0;
-		static inline unsigned frames_drawn = 0;
+		static inline int frames_drawn = 0;
 
 		static inline gm::Size size;
 

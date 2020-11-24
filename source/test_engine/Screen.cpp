@@ -81,7 +81,7 @@ Screen::Screen(const gm::Size& _size) {
 
     setup_input();
 
-    set_size(size);
+    set_size(size * GL::render_scale);
 
     GL::on_window_size_change = [&](gm::Size _size) {
         set_size(_size);

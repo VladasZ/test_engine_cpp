@@ -17,7 +17,7 @@ using namespace ui;
 void RootView::setup() {
     background_color = gm::Color::clear;
 
-    _draw_touches = true;
+    _draw_touches = false;
 
     Input::on_touch = [&](Touch* touch) {
         if (!_draw_touches) return;

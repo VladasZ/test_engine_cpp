@@ -24,6 +24,8 @@ namespace te {
 
 	public:
 
+		cu::Event<const gm::Point&> on_tap;
+
 		TeLevel(ui::ControlPad*, ui::AnalogStickView*);
 
 	protected:
@@ -33,7 +35,6 @@ namespace te {
 	private:
 
 		void setup_controls();
-
 
 	};
 

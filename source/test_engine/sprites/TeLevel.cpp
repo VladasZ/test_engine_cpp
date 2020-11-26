@@ -7,6 +7,7 @@
 //
 
 
+#include "Input.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
 #include "TeLevel.hpp"
@@ -44,7 +45,6 @@ void TeLevel::setup_controls() {
         _player->add_impulse(point * (_player->mass() * 10));
     };
 
-
     Keyboard::on_key_pressed = [this](Key key) {
 
         if (key == 'A') {
@@ -55,10 +55,26 @@ void TeLevel::setup_controls() {
         }
         else if (key == ' ') {
             _player->jump();
-            ;
         }
 
     };
 
-}
+    Input::on_tap = [this](const Point& pos) {
 
+        static Point converted_pos;
+        converted_pos = pos;
+        converted_pos.x -= Screen::size.width / 2;
+        converted_pos.y -= Screen::size.height / 2;
+        converted_pos.y = -converted_pos.y;
+        converted_pos /= 10;
+        converted_pos += _player->position();
+
+        on_tap(converted_pos);
+
+    };
+
+    on_tap = [this](const Point& pos) {
+        add_box(pos, { 1, 1 });
+    };
+
+}

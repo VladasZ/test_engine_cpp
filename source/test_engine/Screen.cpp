@@ -83,7 +83,7 @@ Screen::Screen(const gm::Size& _size) {
 
     set_size(size * GL::render_scale);
 
-    GL::on_window_size_change = [&](gm::Size _size) {
+    GL::on_window_size_change = [this](gm::Size _size) {
         set_size(_size);
     };
 }
@@ -91,7 +91,7 @@ Screen::Screen(const gm::Size& _size) {
 #ifdef DESKTOP_BUILD
 void Screen::start_main_loop() {
     Events::screen_did_appear();
-    GL::start_main_loop([=] { update(); });
+    GL::start_main_loop([this] { update(); });
 }
 #endif
 
@@ -142,7 +142,7 @@ void Screen::update() {
 
 void Screen::setup_input() {
 
-    ui::Keyboard::on_key_event = [&](ui::Key key, ui::Keyboard::Event event) {
+    ui::Keyboard::on_key_event = [this](ui::Key key, ui::Keyboard::Event event) {
 
         if (_scene == nullptr) {
             return;
@@ -180,7 +180,7 @@ void Screen::setup_input() {
 
 #ifdef DESKTOP_BUILD
 
-    ui::Input::on_right_button_drag = [&](ui::Touch* touch) {
+    ui::Input::on_right_button_drag = [this](ui::Touch* touch) {
         static ui::Touch::ID prev_id = ui::Touch::no_id;
         if (touch->id == prev_id) {
             _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
@@ -188,7 +188,7 @@ void Screen::setup_input() {
         prev_id = touch->id;
     };
 
-    GL::on_mouse_key_pressed = [&](GL::MouseButton button, GL::ButtonState state) {
+    GL::on_mouse_key_pressed = [](GL::MouseButton button, GL::ButtonState state) {
         auto ui_button = ui::Mouse::Button::Left;
         if (button == GL::MouseButton::Right) {
             ui_button = ui::Mouse::Button::Right;
@@ -202,15 +202,15 @@ void Screen::setup_input() {
                                            ui::Mouse::ButtonState::Up);
     };
 
-    GL::on_cursor_moved = [&](gm::Point position) {
+    GL::on_cursor_moved = [](gm::Point position) {
         ui::input::mouse->set_position(position);
     };
 
-    GL::on_scroll_moved = [&](gm::Point position) {
+    GL::on_scroll_moved = [this](gm::Point position) {
         _scene->camera->zoom(position.y);
     };
 
-    GL::on_key_pressed = [&](auto key, auto mod, auto state) {
+    GL::on_key_pressed = [](auto key, auto mod, auto state) {
         ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Mod>(mod), static_cast<ui::Keyboard::Event>(state));
     };
 

@@ -42,6 +42,7 @@ void TeLevel::setup_controls() {
     };
 
     stick->on_direction_change = [this](Point point) {
+        point.invert_y();
         _player->add_impulse(point * (_player->mass() * 10));
     };
 

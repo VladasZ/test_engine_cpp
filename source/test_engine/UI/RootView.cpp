@@ -22,7 +22,7 @@ void RootView::setup() {
     Input::on_touch = [&](Touch* touch) {
         if (!_draw_touches) return;
         auto view = View::dummy({ 5, 5 });
-        view->set_center(touch->location);
+        view->set_center(touch->position);
         add_subview(view);
         _touch_views.push_back(view);
     };

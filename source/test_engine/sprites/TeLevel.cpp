@@ -60,22 +60,32 @@ void TeLevel::setup_controls() {
 
     };
 
-    Input::on_tap = [this](const Point& pos) {
+    Input::on_ui_free_touch = [this](Touch* touch) {
 
-        static Point converted_pos;
-        converted_pos = pos;
-        converted_pos.x -= Screen::size.width / 2;
-        converted_pos.y -= Screen::size.height / 2;
-        converted_pos.y = -converted_pos.y;
-        converted_pos /= 10;
-        converted_pos += _player->position();
+        Point pos = touch->position;
+        pos.x -= Screen::size.width / 2;
+        pos.y -= Screen::size.height / 2;
+        pos.y = -pos.y;
+        pos /= 10;
+        pos += _player->position();
 
-        on_tap(converted_pos);
+        auto sprite_touch = touch->clone();
+        sprite_touch->position = pos;
+
+        on_touch(sprite_touch);
+
+        delete sprite_touch;
 
     };
 
-    on_tap = [this](const Point& pos) {
-        add_box(pos, { 1, 1 });
+    on_touch = [this](Touch* touch) {
+        if (touch->is_began()) {
+            add_box(touch->position, { 1, 1 });
+        }
     };
+
+    //on_tap = [this](const Point& pos) {
+    //    add_box(pos, { 1, 1 });
+    //};
 
 }

@@ -24,7 +24,7 @@ namespace te {
 
 	public:
 
-		cu::Event<const gm::Point&> on_tap;
+		cu::Event<ui::Touch*> on_touch;
 
 		TeLevel(ui::ControlPad*, ui::AnalogStickView*);
 

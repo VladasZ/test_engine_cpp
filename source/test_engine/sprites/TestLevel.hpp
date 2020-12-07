@@ -8,9 +8,14 @@
 
 #pragma once
 
+
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
+#include "Body.hpp"
 #include "Unit.hpp"
 #include "Level.hpp"
-#include "Platform.hpp"
 #include "ControlPad.hpp"
 #include "DynamicBody.hpp"
 
@@ -19,9 +24,9 @@ namespace te {
 
 	class TestLevel : public sprite::Level {
 
-	    sprite::Platform* floor = nullptr;
-        sprite::Platform* right = nullptr;
-        sprite::Platform* left = nullptr;
+	    sprite::Body* floor = nullptr;
+        sprite::Body* right = nullptr;
+        sprite::Body* left = nullptr;
 		sprite::DynamicBody* box = nullptr;
 
 		sprite::Unit* unit = nullptr;
@@ -35,3 +40,5 @@ namespace te {
 	};
 
 }
+
+#endif

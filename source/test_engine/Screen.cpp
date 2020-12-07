@@ -113,7 +113,7 @@ void Screen::update() {
 
     GL::disable_depth_test();
 
-    frame_time = Time<nanoseconds>::interval() / 1000000000.0f;
+    frame_time = Time::interval() / 1000000000.0f;
     FPS = 1.0f / frame_time;
 
 #ifdef USING_SPRITES

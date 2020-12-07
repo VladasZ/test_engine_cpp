@@ -6,10 +6,12 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "TestLevel.hpp"
+
+#ifdef USING_SPRITES
 
 #include "Screen.hpp"
 #include "Assets.hpp"
-#include "TestLevel.hpp"
 
 using namespace te;
 using namespace gm;
@@ -39,15 +41,15 @@ TestLevel::TestLevel() {
     _sprites.back()->add_rotation(-0.1f);
 
 
-	floor = new Platform(gm::Point { 0, -20 }, gm::Size { 100.0f, 1 });
+	floor = new Body(gm::Point { 0, -20 }, gm::Size { 100.0f, 1 });
     floor->set_image(Assets::images->square);
 	add_sprite(floor);
 
-    right = new Platform(gm::Point { 40, -20 }, gm::Size { 1, 100.0 });
+    right = new Body(gm::Point { 40, -20 }, gm::Size { 1, 100.0 });
     right->set_image(Assets::images->square);
     add_sprite(right);
 
-    left = new Platform(gm::Point { -40, -20 }, gm::Size { 1, 100.0 });
+    left = new Body(gm::Point { -40, -20 }, gm::Size { 1, 100.0 });
     left->set_image(Assets::images->square);
     add_sprite(left);
 
@@ -60,3 +62,5 @@ TestLevel::TestLevel() {
 void TestLevel::setup() {
 
 }
+
+#endif

@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "Level.hpp"
 #include "ControlPad.hpp"
 #include "AnalogStickView.hpp"
@@ -39,3 +43,5 @@ namespace te {
 	};
 
 }
+
+#endif

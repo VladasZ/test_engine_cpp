@@ -7,10 +7,13 @@
 //
 
 
+#include "TeLevel.hpp"
+
+#ifdef USING_SPRITES
+
 #include "Input.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
-#include "TeLevel.hpp"
 #include "Keyboard.hpp"
 
 using namespace te;
@@ -89,3 +92,5 @@ void TeLevel::setup_controls() {
     //};
 
 }
+
+#endif

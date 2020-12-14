@@ -82,9 +82,21 @@ void TeLevel::setup_controls() {
     };
 
     on_touch = [this](Touch* touch) {
-        if (touch->is_began()) {
-            add_box(touch->position, { 1, 1 });
+
+        if (!touch->is_began()) return;
+
+        if (selected_sprite) {
+            selected_sprite->is_selected = false;
+            selected_sprite = nullptr;
         }
+
+        for (auto sprite : _sprites) {
+            if (sprite->contains(touch->position)) {
+                sprite->is_selected = true;
+                selected_sprite = sprite;
+            }
+        }
+
     };
 
     //on_tap = [this](const Point& pos) {

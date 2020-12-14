@@ -23,6 +23,7 @@ namespace te {
 
 	protected:
 
+		sprite::Sprite* selected_sprite = nullptr;
 		ui::ControlPad* control_pad = nullptr;
 		ui::AnalogStickView* stick = nullptr;
 

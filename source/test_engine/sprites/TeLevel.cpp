@@ -85,16 +85,21 @@ void TeLevel::setup_controls() {
 
         if (!touch->is_began()) return;
 
+        add_box(touch->position);
+
         if (selected_sprite) {
             selected_sprite->is_selected = false;
             selected_sprite = nullptr;
         }
 
+        Log << touch->position;
+
         for (auto sprite : _sprites) {
-            if (sprite->contains(touch->position)) {
-                sprite->is_selected = true;
-                selected_sprite = sprite;
-            }
+            if (!sprite->contains(touch->position)) continue;
+            sprite->is_selected = true;
+            selected_sprite = sprite;
+            Log << sprite;
+            break;
         }
 
     };

@@ -25,7 +25,6 @@ TestLevel::TestLevel() {
     box = new DynamicBody({ 0, 0 }, { 5, 10 });
     box->set_image(Assets::images->scale_test);
     add_sprite(box);
-    box->add_rotation(0.1f);
 
     for (int i = 0; i < 200; i++) {
         add_sprite(new DynamicBody({ 0, i }, { 1, 2 }));
@@ -34,11 +33,9 @@ TestLevel::TestLevel() {
     
     add_sprite(new DynamicBody({ 10, 0 }, { 10, 20 }));
     _sprites.back()->set_image(Assets::images->scale_test);
-    _sprites.back()->add_rotation(-0.1f);
 
     add_sprite(new DynamicBody({ -10, 0 }, { 2.5, 5.0 }));
     _sprites.back()->set_image(Assets::images->scale_test);
-    _sprites.back()->add_rotation(-0.1f);
 
 
 	floor = new Body(gm::Point { 0, -20 }, gm::Size { 100.0f, 1 });

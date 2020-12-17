@@ -13,9 +13,9 @@
 
 class TestSlidersView : public ui::View {
 
-    using View::View;
-
 public:
+
+	using View::View;
 
     Vec4SlidersView* _rotation_view = nullptr;
 

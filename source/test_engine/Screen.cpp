@@ -43,6 +43,8 @@ void Screen::_initialize_ui() {
             //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
             new ui::Font(Paths::fonts / "SF.otf");
 
+	ui::config::default_font = ui::config::default_font->with_size(24);
+
 #ifdef USING_SPRITES
     sprite::config::set_drawer(new TESpriteDrawer());
 #endif

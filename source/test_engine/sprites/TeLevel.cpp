@@ -101,10 +101,6 @@ void TeLevel::setup_controls() {
 
     };
 
-    //on_tap = [this](const Point& pos) {
-    //    add_box(pos, { 1, 1 });
-    //};
-
 }
 
 #endif

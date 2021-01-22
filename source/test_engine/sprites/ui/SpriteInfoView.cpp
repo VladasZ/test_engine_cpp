@@ -6,8 +6,11 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#include "GlobalEvents.hpp"
 #include "SpriteInfoView.hpp"
+
+#ifdef USING_SPRITES
+
+#include "GlobalEvents.hpp"
 
 using namespace te;
 using namespace ui;
@@ -40,5 +43,7 @@ void SpriteInfoView::setup() {
 }
 
 void SpriteInfoView::layout() {
-    place_ver(id_label, position_label, size_label);
+    place.ver(id_label, position_label, size_label);
 }
+
+#endif

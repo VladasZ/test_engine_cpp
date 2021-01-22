@@ -36,7 +36,7 @@ void PathView::layout() {
 
     auto image_size = _frame.size.height - margin * 2;
 
-    _button->place_as_background();
+    _button->place.as_background();
 
     _image->edit_frame() =
             { margin,

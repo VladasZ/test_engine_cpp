@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
 #include "Sprite.hpp"
 #include "CaptionLabel.hpp"
 
@@ -40,3 +44,5 @@ namespace te {
     };
 
 }
+
+#endif

@@ -18,6 +18,6 @@ void WorldView::setup() {
 }
 
 void WorldView::layout() {
-    file_manager->place_bl();
-    test_view->place_at_center();
+    file_manager->place.bl();
+    test_view->place.at_center();
 }

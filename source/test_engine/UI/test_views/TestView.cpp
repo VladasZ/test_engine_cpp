@@ -53,10 +53,10 @@ void te::TestView::layout() {
 
     ScrollView::layout();
 
-    view->place_tr(30);
-    label->place_at_center();
-    button->place_br(30);
-    image_view->place_bl();
+    view->place.tr(30);
+    label->place.at_center();
+    button->place.br(30);
+    image_view->place.bl();
     foldableView->edit_frame().origin = { };
 
 }

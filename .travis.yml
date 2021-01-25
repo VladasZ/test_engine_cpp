@@ -5,6 +5,7 @@ matrix:
 
         - os: osx
           name: iOS simulator
+          osx_image: xcode12.2
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
@@ -12,6 +13,7 @@ matrix:
 
         - os: osx
           name: iOS device
+          osx_image: xcode12.2
           install:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
@@ -19,6 +21,7 @@ matrix:
 
         - os: osx
           name: macOS
+          osx_image: xcode12.2
           install:
             - brew update-reset
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py

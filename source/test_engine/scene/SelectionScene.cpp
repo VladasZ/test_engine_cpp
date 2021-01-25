@@ -15,7 +15,7 @@ using namespace gm;
 using namespace scene;
 
 
-void SelectionScene::_setup() {
+void SelectionScene::setup() {
 
     instance = this;
 

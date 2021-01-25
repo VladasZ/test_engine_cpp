@@ -14,10 +14,10 @@
 #include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
 
-
 using namespace gm;
 
-void TestScene::_setup() {
+
+void TestScene::setup() {
 
     position_manipulator->is_hidden = false;
 

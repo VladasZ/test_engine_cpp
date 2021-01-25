@@ -185,6 +185,9 @@ void Screen::setup_input() {
     ui::Input::on_ui_free_touch = [this](ui::Touch* touch) {
         if (!_scene) return;
         if (!touch->is_moved()) return;
+#ifdef DESKTOP_BUILD
+        if (!touch->is_right_click()) return;
+#endif
         static ui::Touch::ID prev_id = ui::Touch::no_id;
         if (touch->id == prev_id) {
             _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
@@ -241,10 +244,11 @@ void Screen::set_size(const gm::Size& _size) {
 void Screen::set_scene(scene::Scene* scene) {
     if (_scene) {
         delete _scene;
+        _scene = nullptr;
     }
     if (scene) {
         _scene = scene;
-        scene->_setup();
+        scene->setup();
         _scene->camera->resolution = size;
     }
 }

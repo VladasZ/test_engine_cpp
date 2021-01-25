@@ -10,13 +10,14 @@
 
 #include "Scene.hpp"
 
+
 namespace te {
 
     class WorldScene : public scene::Scene {
 
     public:
 
-        void _setup() override;
+        void setup() override;
 
     };
 

@@ -18,7 +18,7 @@ using namespace te;
 using namespace scene;
 
 
-void WorldScene::_setup() {
+void WorldScene::setup() {
 
     add_object(new Grid());
     

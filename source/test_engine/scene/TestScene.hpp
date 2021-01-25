@@ -24,6 +24,6 @@ class TestScene : public scene::Scene {
 
 	scene::BoxModel* marker_box;
 
-    void _setup() override;
+    void setup() override;
 
 };

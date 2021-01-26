@@ -7,6 +7,8 @@ matrix:
           name: iOS simulator
           osx_image: xcode12.2
           install:
+            - brew update-reset
+            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build --ios --no-conan --no-ios-exe
@@ -15,6 +17,8 @@ matrix:
           name: iOS device
           osx_image: xcode12.2
           install:
+            - brew update-reset
+            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build --ios --device --no-conan --no-ios-exe
@@ -24,6 +28,7 @@ matrix:
           osx_image: xcode12.2
           install:
             - brew update-reset
+            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build

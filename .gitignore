@@ -399,7 +399,8 @@ log.txt
 
 *#
 cmake-build-debug/
-dep_build/
+/dep_build_*
+/build_*
 
 *.autosave
 *.blend1

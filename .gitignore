@@ -399,7 +399,7 @@ log.txt
 
 *#
 cmake-build-debug/
-/dep_build_*
+*dep_build*
 /build_*
 
 *.autosave

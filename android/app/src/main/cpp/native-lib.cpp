@@ -7,6 +7,7 @@
 
 #include "File.hpp"
 #include "Paths.hpp"
+#include "Touch.hpp"
 #include "Assets.hpp"
 #include "Screen.hpp"
 #include "System.hpp"
@@ -22,6 +23,7 @@
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
+#import "TestScreen.hpp"
 #import "SelectionView.hpp"
 
 static te::Screen* _screen = nullptr;
@@ -47,14 +49,7 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
         GL::on_window_size_change({ 500,
                                     500 });
 
-        _screen = new te::Screen({ 500,
-                                   500 });
-
-        _screen->clear_color = gm::Color::gray;
-
-        //_screen->set_scene(new TestScene);
-        _screen->set_level(new TestLevel);
-        _screen->set_view(new TestView);
+        _screen = new te::TestScreen();
 
         _screen->set_size({ 500, 500 });
 

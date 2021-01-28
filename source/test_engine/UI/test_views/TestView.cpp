@@ -8,6 +8,7 @@
 
 #include "Assets.hpp"
 #include "TestView.hpp"
+#include "GamepadView.hpp"
 
 using namespace ui;
 
@@ -47,6 +48,8 @@ void te::TestView::setup() {
         }
     };
 
+    init_view(gamepad, { 400, 400 });
+
 }
 
 void te::TestView::layout() {
@@ -58,5 +61,8 @@ void te::TestView::layout() {
     button->place.br(30);
     image_view->place.bl();
     foldableView->edit_frame().origin = { };
+
+    gamepad->place.at_bottom();
+    gamepad->place.center_hor();
 
 }

@@ -17,6 +17,10 @@
 #include "FoldableView.hpp"
 
 
+namespace ui {
+    class GamepadView;
+}
+
 namespace te {
 
     class TestView : public ui::ScrollView {
@@ -31,6 +35,8 @@ namespace te {
         ui::Label* label = nullptr;
         ui::Button* button = nullptr;
         ui::ImageView* image_view = nullptr;
+
+        ui::GamepadView* gamepad = nullptr;
 
         using ScrollView::ScrollView;
 

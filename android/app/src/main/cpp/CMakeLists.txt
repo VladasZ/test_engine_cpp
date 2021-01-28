@@ -5,11 +5,11 @@ include(build_tools_generated.cmake)
 
 set(PROJECT_NAME native-lib)
 
-conan_basic_setup()
+#conan_basic_setup()
 
 add_library(native-lib SHARED native-lib.cpp)
 
-conan_target_link_libraries(native-lib)
+#conan_target_link_libraries(native-lib)
 
 link_and_include_deps(native-lib)
 

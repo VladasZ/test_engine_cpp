@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 
 #import "Log.hpp"
+#import "Touch.hpp"
 #import "Input.hpp"
 #import "Paths.hpp"
 #import "Screen.hpp"
@@ -22,6 +23,7 @@
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
+#import "TestScreen.hpp"
 #import "WorldScene.hpp"
 #import "PhysicsScene.hpp"
 #import "SelectionScene.hpp"
@@ -43,27 +45,7 @@ te::Screen* _screen;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-    
-//    Paths::dump();
-//
-//    auto root = Path("").ls();
-//
-//    for (auto path : root) {
-//        Logvar(path);
-//    }
-    
-    _screen = new te::Screen({ self.view.frame.size.width,
-                               self.view.frame.size.height });
-    
-    _screen->clear_color = gm::Color::gray;
-    
-//    _screen->set_view(new TestView);
-//    _screen->set_scene(new TestScene);
-
-    _screen->set_level(new TestLevel);
-    
-//    cu::Bluetooth::test_central();
-    //cu::Bluetooth::test_peripheral();
+    _screen = new te::TestScreen();
 }
 
 - (void)update {
@@ -103,10 +85,10 @@ te::Screen* _screen;
 }
 
 - (ui::Touch*)te_touch_with_touch:(UITouch*)touch event:(ui::Touch::Event)event {
-    const auto touch_id = reinterpret_cast<ui::Touch::ID>(touch);
+    const auto touch_id = reinterpret_cast<long long>(touch);
     const auto ns_location = [touch locationInView:self.view];
     const auto location = gm::Point { ns_location.x, ns_location.y };
-    return new ui::Touch(touch_id, location, event);
+    return new ui::Touch((int)touch_id, location, event);
 }
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {

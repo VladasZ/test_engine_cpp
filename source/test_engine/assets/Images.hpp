@@ -8,10 +8,12 @@
 
 #pragma once
 
-#include "Image.hpp"
+
+class Image;
 
 struct Images {
 
+    Image* ak;
     Image* cat;
     Image* palm;
     Image* round;

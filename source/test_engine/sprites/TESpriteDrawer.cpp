@@ -10,6 +10,7 @@
 
 #ifdef USING_SPRITES
 
+#include "Image.hpp"
 #include "Assets.hpp"
 #include "TESpriteDrawer.hpp"
 
@@ -38,7 +39,7 @@ void TESpriteDrawer::draw(sprite::Sprite* sprite) {
     shader->set_rotation(sprite->rotation());
     shader->set_selected(sprite->is_selected);
 
-    //shader->set_flip(sprite->direction == gm::Direction::Left);
+    shader->set_flip(sprite->direction() == gm::Direction::Left);
 
     if (sprite->has_image()) {
         sprite->image()->bind();

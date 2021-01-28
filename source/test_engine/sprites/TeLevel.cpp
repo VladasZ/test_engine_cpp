@@ -8,6 +8,8 @@
 
 #include "Mouse.hpp"
 #include "Input.hpp"
+#include "Touch.hpp"
+#include "Player.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
 #include "TeLevel.hpp"

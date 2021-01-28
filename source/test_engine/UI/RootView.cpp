@@ -8,6 +8,7 @@
 
 #include "ui.hpp"
 #include "Input.hpp"
+#include "Touch.hpp"
 #include "RootView.hpp"
 
 using namespace te;
@@ -19,7 +20,7 @@ void RootView::setup() {
 
     _draw_touches = false;
 
-    Input::on_touch = [&](Touch* touch) {
+    Input::on_touch = [this](Touch* touch) {
         if (!_draw_touches) return;
         auto view = View::dummy({ 5, 5 });
         view->place.set_center(touch->position);

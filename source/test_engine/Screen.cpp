@@ -188,7 +188,7 @@ void Screen::setup_input() {
 #ifdef DESKTOP_BUILD
         if (!touch->is_right_click()) return;
 #endif
-        static ui::Touch::ID prev_id = ui::Touch::no_id;
+        static int prev_id = ui::Touch::no_id;
         if (touch->id == prev_id) {
             _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
         }

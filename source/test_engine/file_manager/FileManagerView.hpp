@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Image.hpp"
 #include "StackView.hpp"
 #include "ScrollView.hpp"
 
+class Image;
 
 namespace te {
 

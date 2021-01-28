@@ -7,12 +7,14 @@
 //
 
 #include "Paths.hpp"
+#include "Image.hpp"
 #include "Images.hpp"
 
 using namespace te;
 
 
 Images::Images() {
+    ak         = new Image(Paths::images / "ak.png");
     cat        = new Image(Paths::images / "cat.jpg");
     palm       = new Image(Paths::images / "palm.png");
     round      = new Image(Paths::images / "round.png");

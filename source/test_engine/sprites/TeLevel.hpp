@@ -8,12 +8,9 @@
 
 #pragma once
 
-#include "SpritesInclude.hpp"
-
-#ifdef USING_SPRITES
-
 #include "Level.hpp"
 #include "ControlPad.hpp"
+#include "SpritesInclude.hpp"
 #include "AnalogStickView.hpp"
 
 
@@ -41,8 +38,14 @@ namespace te {
 
 		void setup_controls();
 
+	protected:
+
+		gm::Point convert_touch(const gm::Point&) override;
+
+#ifdef DESKTOP_BUILD
+		gm::Point mouse_position() override;
+#endif
+
 	};
 
 }
-
-#endif

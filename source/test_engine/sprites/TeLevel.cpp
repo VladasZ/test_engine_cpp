@@ -6,14 +6,11 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-
-#include "TeLevel.hpp"
-
-#ifdef USING_SPRITES
-
+#include "Mouse.hpp"
 #include "Input.hpp"
 #include "Screen.hpp"
 #include "Assets.hpp"
+#include "TeLevel.hpp"
 #include "Keyboard.hpp"
 
 using namespace te;
@@ -65,15 +62,8 @@ void TeLevel::setup_controls() {
 
     Input::on_ui_free_touch = [this](Touch* touch) {
 
-        Point pos = touch->position;
-        pos.x -= Screen::size.width / 2;
-        pos.y -= Screen::size.height / 2;
-        pos.y = -pos.y;
-        pos /= 10;
-        pos += _player->position();
-
         auto sprite_touch = touch->clone();
-        sprite_touch->position = pos;
+        sprite_touch->position = convert_touch(touch->position);
 
         on_touch(sprite_touch);
 
@@ -85,7 +75,7 @@ void TeLevel::setup_controls() {
 
         if (!touch->is_began()) return;
 
-        //add_box(touch->position);
+        add_box(touch->position);
 
         if (selected_sprite) {
             selected_sprite->is_selected = false;
@@ -103,4 +93,18 @@ void TeLevel::setup_controls() {
 
 }
 
+gm::Point TeLevel::convert_touch(const gm::Point& touch) {
+    Point pos = touch;
+    pos.x -= Screen::size.width / 2;
+    pos.y -= Screen::size.height / 2;
+    pos.y = -pos.y;
+    pos /= 10;
+    pos += _player->position();
+    return pos;
+}
+
+#ifdef DESKTOP_BUILD
+gm::Point TeLevel::mouse_position() {
+    return { };
+}
 #endif

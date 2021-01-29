@@ -14,7 +14,7 @@
 using namespace te;
 
 
-TestScreen::TestScreen() : Screen({ 1000, 800 }) {
+TestScreen::TestScreen(const gm::Size& size) : Screen(size) {
     clear_color = gm::Color::gray;
     set_view(new TestView);
     set_scene(new PhysicsScene);

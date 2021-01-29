@@ -45,7 +45,10 @@ te::Screen* _screen;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-    _screen = new te::TestScreen();
+    _screen = new te::TestScreen({ self.view.frame.size.width,
+                                self.view.frame.size.height });
+    GL::on_window_size_change({ self.view.frame.size.width,
+                                self.view.frame.size.height });
 }
 
 - (void)update {
@@ -74,9 +77,6 @@ te::Screen* _screen;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.multipleTouchEnabled = true;
-    
-    GL::on_window_size_change({ self.view.frame.size.width,
-                                self.view.frame.size.height });
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

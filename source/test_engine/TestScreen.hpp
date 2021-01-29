@@ -17,7 +17,7 @@ namespace te {
 
 	public:
 
-		TestScreen();
+		TestScreen(const gm::Size&);
 
 	};
 

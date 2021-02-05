@@ -17,7 +17,7 @@ using namespace scene;
 
 void ResearchScene::setup() {
     add_object(new Grid({ 200, 200 }, { 20, 20 }));
-    
+
     add_object(vector_a = new VectorModel);
     add_object(vector_b = new VectorModel);
     add_object(vector_c = new VectorModel);

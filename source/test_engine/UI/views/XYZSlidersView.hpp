@@ -30,6 +30,8 @@ namespace te {
 
         cu::Event<gm::Vector3> on_change;
 
+        void set_range(float min, float max);
+
     private:
 
         void setup() override;

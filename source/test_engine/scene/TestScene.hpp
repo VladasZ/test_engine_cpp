@@ -14,16 +14,20 @@
 #include "PointLight.hpp"
 
 
-class TestScene : public scene::Scene {
+namespace te {
 
-    scene::PointLight* light;
+	class TestScene : public scene::Scene {
 
-    scene::Model* cube;
+		scene::PointLight *light;
 
-	cu::XYZPack<scene::Model*> walls;
+		scene::Model *cube;
 
-	scene::BoxModel* marker_box;
+		cu::XYZPack<scene::Model *> walls;
 
-    void setup() override;
+		scene::BoxModel *marker_box;
 
-};
+		void setup() override;
+
+	};
+
+}

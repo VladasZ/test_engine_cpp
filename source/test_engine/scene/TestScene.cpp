@@ -14,6 +14,7 @@
 #include "VectorModel.hpp"
 #include "GlobalEvents.hpp"
 
+using namespace te;
 using namespace gm;
 
 

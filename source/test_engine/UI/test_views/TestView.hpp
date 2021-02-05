@@ -36,7 +36,7 @@ namespace te {
         ui::Button* button = nullptr;
         ui::ImageView* image_view = nullptr;
 
-        ui::GamepadView* gamepad = nullptr;
+        ui::GamepadView* gamepad_view = nullptr;
 
         using ScrollView::ScrollView;
 

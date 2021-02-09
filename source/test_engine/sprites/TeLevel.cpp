@@ -97,10 +97,12 @@ void TeLevel::setup_controls() {
 
 gm::Point TeLevel::convert_touch(const gm::Point& touch) {
     Point pos = touch;
-    pos.x -= Screen::size.width / 2;
-    pos.y -= Screen::size.height / 2;
+    auto size = Screen::size / Screen::render_scale();
+    pos.x -= size.width / 2;
+    pos.y -= size.height / 2;
     pos.y = -pos.y;
     pos /= 10;
+    pos *= Screen::render_scale();
     pos += _player->position();
     return pos;
 }

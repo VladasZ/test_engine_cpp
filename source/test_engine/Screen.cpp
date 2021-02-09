@@ -56,6 +56,10 @@ void Screen::_initialize_ui() {
     //debug_view->setup();
 }
 
+float Screen::render_scale() {
+    return GL::render_scale;
+}
+
 Screen::Screen(const gm::Size& _size) {
 
     size = _size;
@@ -210,7 +214,7 @@ void Screen::setup_input() {
     };
 
     GL::on_cursor_moved = [](gm::Point position) {
-        ui::input::mouse->set_position(position);
+        ui::input::mouse->set_position(position * GL::render_scale);
     };
 
     GL::on_scroll_moved = [this](gm::Point position) {

@@ -46,6 +46,8 @@ namespace te {
 
 		static inline Screen* current = nullptr;
 
+		static float render_scale();
+
 	public:
 
 		static inline DebugInfoView* debug_view = nullptr;

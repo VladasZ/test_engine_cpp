@@ -49,7 +49,7 @@ Java_com_example_test_1engine_MyGLRenderer_setup(JNIEnv* env, jobject) {
         GL::on_window_size_change({ 500,
                                     500 });
 
-        _screen = new te::TestScreen();
+        _screen = new te::TestScreen({ 500, 500 });
 
         _screen->set_size({ 500, 500 });
 

@@ -6,7 +6,6 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#include "Mouse.hpp"
 #include "Input.hpp"
 #include "Touch.hpp"
 #include "Player.hpp"
@@ -19,6 +18,9 @@ using namespace te;
 using namespace ui;
 using namespace gm;
 using namespace sprite;
+
+
+static Point _mouse_position;
 
 
 TeLevel::TeLevel(ui::ControlPad* pad, ui::AnalogStickView* stick) : control_pad(pad), stick(stick) {
@@ -62,15 +64,15 @@ void TeLevel::setup_controls() {
 
     };
 
+    Input::on_hover_moved = [this](const gm::Point& position) {
+        _mouse_position = convert_touch(position);
+    };
+
     Input::on_ui_free_touch = [this](Touch* touch) {
-
         auto sprite_touch = touch->clone();
-        sprite_touch->position = convert_touch(touch->position);
-
+        sprite_touch->position = _mouse_position;
         on_touch(sprite_touch);
-
         delete sprite_touch;
-
     };
 
     on_touch = [this](Touch* touch) {
@@ -102,13 +104,12 @@ gm::Point TeLevel::convert_touch(const gm::Point& touch) {
     pos.y -= size.height / 2;
     pos.y = -pos.y;
     pos /= 10;
-    pos *= Screen::render_scale();
     pos += _player->position();
     return pos;
 }
 
 #ifdef DESKTOP_BUILD
 gm::Point TeLevel::mouse_position() {
-    return { };
+    return _mouse_position;
 }
 #endif

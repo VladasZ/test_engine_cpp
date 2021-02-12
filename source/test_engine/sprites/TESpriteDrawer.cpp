@@ -12,14 +12,15 @@
 
 #include "Image.hpp"
 #include "Assets.hpp"
+#include "GLWrapper.hpp"
 #include "TESpriteDrawer.hpp"
 
 
 void TESpriteDrawer::set_camera_position(const gm::Point& pos) {
     Assets::shaders->textured_sprite->use();
-    Assets::shaders->textured_sprite->set_camera_position(pos);
+    Assets::shaders->textured_sprite->set_camera_position(pos * GL::render_scale);
     Assets::shaders->sprite->use();
-    Assets::shaders->sprite->set_camera_position(pos);
+    Assets::shaders->sprite->set_camera_position(pos * GL::render_scale);
 }
 
 void TESpriteDrawer::draw(sprite::Sprite* sprite) {
@@ -34,8 +35,8 @@ void TESpriteDrawer::draw(sprite::Sprite* sprite) {
     }
 
     shader->use();
-    shader->set_size(sprite->size());
-    shader->set_position(sprite->position());
+    shader->set_size(sprite->size() * GL::render_scale);
+    shader->set_position(sprite->position() * GL::render_scale);
     shader->set_rotation(sprite->rotation());
     shader->set_selected(sprite->is_selected);
 

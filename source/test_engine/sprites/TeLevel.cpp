@@ -64,9 +64,11 @@ void TeLevel::setup_controls() {
 
     };
 
+#ifdef MOUSE
     Input::on_hover_moved = [this](const gm::Point& position) {
         _mouse_position = convert_touch(position);
     };
+#endif
 
     Input::on_ui_free_touch = [this](Touch* touch) {
         auto sprite_touch = touch->clone();

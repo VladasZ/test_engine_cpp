@@ -81,6 +81,7 @@ void TeLevel::setup_controls() {
 
         if (!touch->is_began()) return;
 
+        on_click(touch->position);
         add_box(touch->position);
 
         if (selected_sprite) {

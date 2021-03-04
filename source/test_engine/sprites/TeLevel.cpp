@@ -23,6 +23,10 @@ using namespace sprite;
 static Point _mouse_position;
 
 
+TeLevel::TeLevel() {
+
+}
+
 TeLevel::TeLevel(ui::ControlPad* pad, ui::AnalogStickView* stick) : control_pad(pad), stick(stick) {
 
 }
@@ -33,22 +37,26 @@ void TeLevel::setup() {
 
 void TeLevel::setup_controls() {
 
-    control_pad->on_up = [this] {
-        _player->jump();
-    };
+    if (control_pad) {
+        control_pad->on_up = [this] {
+            _player->jump();
+        };
 
-    control_pad->on_left = [this] {
-        _player->go_left();
-    };
+        control_pad->on_left = [this] {
+            _player->go_left();
+        };
 
-    control_pad->on_right = [this] {
-        _player->go_right();
-    };
+        control_pad->on_right = [this] {
+            _player->go_right();
+        };
+    }
 
-    stick->on_direction_change = [this](Point point) {
-        point.invert_y();
-        _player->add_impulse(point * (_player->mass() * 10));
-    };
+    if (stick) {
+        stick->on_direction_change = [this](Point point) {
+            point.invert_y();
+            _player->add_impulse(point * (_player->mass() * 10));
+        };
+    }
 
     Keyboard::on_key_pressed = [this](Key key) {
 

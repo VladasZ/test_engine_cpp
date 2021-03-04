@@ -28,6 +28,7 @@ namespace te {
 
 		cu::Event<ui::Touch*> on_touch;
 
+		TeLevel();
 		TeLevel(ui::ControlPad*, ui::AnalogStickView*);
 
 	protected:

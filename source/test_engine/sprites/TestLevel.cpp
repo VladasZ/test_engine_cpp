@@ -37,7 +37,6 @@ TestLevel::TestLevel() {
     add_sprite(new DynamicBody({ -10, 0 }, { 2.5, 5.0 }));
     _sprites.back()->set_image(Assets::images->scale_test);
 
-
 	floor = new Body(gm::Point { 0, -20 }, gm::Size { 100.0f, 1 });
     floor->set_image(Assets::images->square);
 	add_sprite(floor);

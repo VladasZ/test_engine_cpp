@@ -412,3 +412,5 @@ deploy/
 
 build_tools_generated.cmake
 graphviz/
+
+.vscode

@@ -29,7 +29,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
 #ifdef USING_ASSIMP
 
-    Log << "Loading model:" << file;
+   // Log << "Loading model:" << file;
 
     const aiScene* scene = _importer.ReadFile(file,
                                               aiProcess_CalcTangentSpace      |
@@ -41,7 +41,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
         Fatal(_importer.GetErrorString());
     }
 
-    Logvar(scene->mNumMeshes);
+  //  Logvar(scene->mNumMeshes);
 
     auto meshes = std::vector<aiMesh*> { scene->mMeshes, scene->mMeshes + scene->mNumMeshes };
 
@@ -50,18 +50,17 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
 
     Vertex::Indices indices;
 
-    Logvar(file);
-    Logvar(scene->mNumMaterials);
-    Logvar(mesh->HasTextureCoords(0));
-    Logvar(scene->HasMaterials());
-    Logvar(scene->HasTextures());
-
-    Logvar(mesh->mMaterialIndex);
-
+//    Logvar(file);
+//    Logvar(scene->mNumMaterials);
+//    Logvar(mesh->HasTextureCoords(0));
+//    Logvar(scene->HasMaterials());
+//    Logvar(scene->HasTextures());
+//
+//    Logvar(mesh->mMaterialIndex);
 
     auto material = scene->mMaterials[mesh->mMaterialIndex];
 
-    Logvar(material->GetTextureCount(aiTextureType_DIFFUSE));
+  //  Logvar(material->GetTextureCount(aiTextureType_DIFFUSE));
 
     aiString texturePath;
 
@@ -97,7 +96,7 @@ scene::Model* ModelImporter::import(const std::string& file, Image* image) {
                               cu::cast<Vector3>(mesh->mNormals[i]));
     }
 
-    Log << mesh->mNumVertices;
+    //Log << mesh->mNumVertices;
 
     auto parsed_mesh = new scene::Mesh(std::move(vertices),
                                        std::move(indices));

@@ -59,11 +59,11 @@ namespace te {
 		void start_main_loop();
 #endif
 
-		void update();
+		void update() const;
 
 		void setup_input();
 
-		void set_size(const gm::Size&);
+		void set_size(const gm::Size&) const;
 
 	public:
 

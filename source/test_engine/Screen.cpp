@@ -101,7 +101,7 @@ void Screen::start_main_loop() {
 }
 #endif
 
-void Screen::update() {
+void Screen::update() const {
 
     Dispatch::execute_tasks();
 
@@ -228,7 +228,7 @@ void Screen::setup_input() {
 #endif
 }
 
-void Screen::set_size(const gm::Size& _size) {
+void Screen::set_size(const gm::Size& _size) const {
     size = _size;
     GL::window_size = size;
     GL::set_viewport(size);

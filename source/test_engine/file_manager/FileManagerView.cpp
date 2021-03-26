@@ -7,7 +7,7 @@
 //
 
 #include "Log.hpp"
-#include "Label.hpp"
+#include "System.hpp"
 #include "Assets.hpp"
 #include "PathView.hpp"
 #include "StringUtils.hpp"

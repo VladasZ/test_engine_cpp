@@ -60,7 +60,7 @@ matrix:
           script:
             - python3 build.py --build
 
-        - os: osx
+        - os: windows
           name: Windows
           install:
             - py --version

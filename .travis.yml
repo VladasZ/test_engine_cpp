@@ -66,6 +66,7 @@ matrix:
             - "3.5"
           install:
             - python --version
+            - python3 --version
             - py --version
             - git clone https://github.com/vladasz/deploy
             - py deploy/deploy.py

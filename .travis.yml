@@ -62,6 +62,8 @@ matrix:
 
         - os: windows
           name: Windows
+          python:
+            - "3.5"
           install:
             - py --version
             - git clone https://github.com/vladasz/deploy

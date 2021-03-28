@@ -59,3 +59,13 @@ matrix:
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build
+
+        - os: osx
+          name: Windows
+          install:
+            - py --version
+            - git clone https://github.com/vladasz/deploy
+            - py deploy/deploy.py
+          script:
+            - py build.py --prepare --ide
+            - devenv YourSolution.sln /Build

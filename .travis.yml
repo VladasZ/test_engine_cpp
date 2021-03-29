@@ -62,8 +62,6 @@ matrix:
 
         - os: windows
           name: Windows
-          python:
-            - "3.5"
           install:
             - python --version
             - python3 --version

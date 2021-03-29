@@ -64,7 +64,6 @@ matrix:
           name: Windows
           install:
             - choco install python3
-            - ls C:\Python39
             - C:\Python39\python3
             - python --version
             - python3 --version

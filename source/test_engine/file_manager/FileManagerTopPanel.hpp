@@ -28,7 +28,7 @@ namespace te {
 
         cu::Event<> on_press_up_button;
 
-        void set_path(const cu::Path&);
+        void set_path(const cu::Path&) const;
 
     private:
 

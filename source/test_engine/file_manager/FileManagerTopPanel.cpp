@@ -14,7 +14,7 @@ using namespace ui;
 using namespace te;
 
 
-void FileManagerTopPanel::set_path(const Path& path) {
+void FileManagerTopPanel::set_path(const Path& path) const{
     _path_label->set_text(path);
 }
 

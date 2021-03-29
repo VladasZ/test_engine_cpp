@@ -62,9 +62,8 @@ matrix:
 
         - os: windows
           name: Windows
-          language: python
-          python: 3.7
           install:
+            - choco install python3
             - python --version
             - python3 --version
             - py --version

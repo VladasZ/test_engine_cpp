@@ -60,16 +60,16 @@ matrix:
           script:
             - python3 build.py --build
 
-        - os: windows
-          name: Windows
-          install:
-            - choco install python3
-            - C:\Python39\python3
-            - python --version
-            - python3 --version
-            - py --version
-            - git clone https://github.com/vladasz/deploy
-            - py deploy/deploy.py
-          script:
-            - py build.py --prepare --ide
-            - devenv YourSolution.sln /Build
+#        - os: windows
+#          name: Windows
+#          install:
+#            - choco install python3
+#            - C:\Python39\python3
+#            - python --version
+#            - python3 --version
+#            - py --version
+#            - git clone https://github.com/vladasz/deploy
+#            - py deploy/deploy.py
+#          script:
+#            - py build.py --prepare --ide
+#            - devenv YourSolution.sln /Build

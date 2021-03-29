@@ -16,7 +16,7 @@
 [LIN1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/4
 [AND1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/5
 
-[TR]: https://travis-ci.org/VladasZ/test_engine
+[TR]: https://travis-ci.com/VladasZ/test_engine
 
 My attempt to create a cross platform, OpenGL based game engine.
 

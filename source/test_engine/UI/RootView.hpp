@@ -16,15 +16,13 @@ namespace te {
     class RootView : public ui::View {
 
         static inline bool _draw_touches;
-        static inline ui::View::Array _touch_views;
+        static inline Array _touch_views;
 
     public:
 
         using View::View;
 
         void setup() override;
-
-    public:
 
         static void set_draw_touches(bool);
 

@@ -39,15 +39,13 @@ using namespace std;
 void Screen::_initialize_ui() {
 
     ui::config::set_drawer(new TEUIDrawer());
-    ui::config::default_font =
-            //   new ui::Font(Paths::fonts / "DroidSansMono.ttf");
-            new ui::Font(Paths::fonts / "SF.otf", 24);
+    ui::config::default_font = new Font(Paths::fonts / "SF.otf", 24);
 
 #ifdef USING_SPRITES
-    sprite::config::set_drawer(new TESpriteDrawer());
+    sprite::config::set_drawer(new TESpriteDrawer);
 #endif
 
-    _root_view = new RootView();
+    _root_view = new RootView;
     _root_view->setup();
 
     //debug_view = new DebugInfoView({ 400, 108 });
@@ -90,6 +88,15 @@ Screen::Screen(const gm::Size& _size) {
     GL::on_window_size_change = [this](gm::Size _size) {
         set_size(_size);
     };
+}
+
+Screen::~Screen() {
+	delete _scene;
+#ifdef USING_SPRITES
+	delete _level;
+#endif
+
+	delete _root_view;
 }
 
 #ifdef DESKTOP_BUILD
@@ -137,7 +144,7 @@ void Screen::update() const {
         debug_view->_draw();
     }
 
-    Screen::frames_drawn++;
+    frames_drawn++;
     Events::frame_drawn();
 
     //System::sleep(0.03f);
@@ -146,7 +153,7 @@ void Screen::update() const {
 
 void Screen::setup_input() {
 
-    ui::Keyboard::on_key_event = [this](ui::Key key, ui::Keyboard::Event event) {
+    ui::Keyboard::on_key_event = [this](Key key, Keyboard::Event event) {
 
         if (_scene == nullptr) {
             return;
@@ -184,13 +191,11 @@ void Screen::setup_input() {
 
 #ifdef DESKTOP_BUILD
 
-    ui::Input::on_ui_free_touch = [this](ui::Touch* touch) {
+    ui::Input::on_ui_free_touch = [this](Touch* touch) {
         if (!_scene) return;
         if (!touch->is_moved()) return;
-#ifdef DESKTOP_BUILD
         if (!touch->is_right_click()) return;
-#endif
-        static int prev_id = ui::Touch::no_id;
+        static int prev_id = Touch::no_id;
         if (touch->id == prev_id) {
             _scene->camera->move_orbit((ui::Mouse::frame_shift) / 200);
         }
@@ -198,29 +203,31 @@ void Screen::setup_input() {
     };
 
     GL::on_mouse_key_pressed = [](GL::MouseButton button, GL::ButtonState state) {
-        auto ui_button = ui::Mouse::Button::Left;
+        auto ui_button = Mouse::Button::Left;
         if (button == GL::MouseButton::Right) {
-            ui_button = ui::Mouse::Button::Right;
+            ui_button = Mouse::Button::Right;
         }
         else if (button == GL::MouseButton::Middle) {
-            ui_button = ui::Mouse::Button::Middle;
+            ui_button = Mouse::Button::Middle;
         }
-        ui::input::mouse->set_button_state(ui_button,
+        input::mouse->set_button_state(ui_button,
                                            state == GL::ButtonState::Down ?
-                                           ui::Mouse::ButtonState::Down :
-                                           ui::Mouse::ButtonState::Up);
+                                           Mouse::ButtonState::Down :
+                                           Mouse::ButtonState::Up);
     };
 
     GL::on_cursor_moved = [](gm::Point position) {
-        ui::input::mouse->set_position(position * GL::render_scale);
+        input::mouse->set_position(position * GL::render_scale);
     };
 
     GL::on_scroll_moved = [this](gm::Point position) {
-        _scene->camera->zoom(position.y);
+    	if (_scene) {
+    		_scene->camera->zoom(position.y);	
+    	}
     };
 
     GL::on_key_pressed = [](auto key, auto mod, auto state) {
-        ui::Keyboard::add_key_event(key, static_cast<ui::Keyboard::Mod>(mod), static_cast<ui::Keyboard::Event>(state));
+        Keyboard::add_key_event(key, static_cast<Keyboard::Mod>(mod), static_cast<Keyboard::Event>(state));
     };
 
 #endif
@@ -259,7 +266,7 @@ scene::Scene* Screen::scene() const {
     return _scene;
 }
 
-void Screen::set_view(ui::View* view) {
+void Screen::set_view(View* view) {
     _root_view->add_subview(view);
     _view = view;
     _view->edit_frame() = _root_view->frame();
@@ -276,10 +283,10 @@ sprite::Level *Screen::level() const {
 }
 #endif
 
-ui::View* Screen::view() const {
+View* Screen::view() const {
     return _view;
 }
 
-te::RootView* Screen::root_view() const {
+RootView* Screen::root_view() const {
     return _root_view;
 }

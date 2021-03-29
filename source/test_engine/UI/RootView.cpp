@@ -6,7 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "ui.hpp"
 #include "Input.hpp"
 #include "Touch.hpp"
 #include "RootView.hpp"

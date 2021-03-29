@@ -20,8 +20,6 @@ namespace te {
 
 	class Screen {
 
-	private:
-
 		void _initialize_ui();
 
 		scene::Scene* _scene = nullptr;
@@ -55,6 +53,8 @@ namespace te {
 	public:
 
 		Screen(const gm::Size&);
+		~Screen();
+		
 #ifdef DESKTOP_BUILD
 		void start_main_loop();
 #endif

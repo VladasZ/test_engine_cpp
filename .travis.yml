@@ -64,6 +64,7 @@ matrix:
           name: Windows
           install:
             - choco install python3
+            - refreshenv
             - python --version
             - python3 --version
             - py --version

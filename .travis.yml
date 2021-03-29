@@ -27,8 +27,8 @@ matrix:
           name: macOS
           osx_image: xcode12.2
           install:
-            - brew update-reset
-            - brew install premake
+#            - brew update-reset
+#            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build

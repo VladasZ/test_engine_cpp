@@ -6,7 +6,6 @@ if (NOT EXISTS ${DEPS_DIR}/build_tools)
 endif()
 include(${DEPS_DIR}/build_tools/utils.cmake)
 
-
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	include(build/build_tools_generated.cmake)
 endif()

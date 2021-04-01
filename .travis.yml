@@ -23,15 +23,15 @@ matrix:
           script:
             - python3 build.py --build --ios --device --no-conan --no-ios-exe
 
-        - os: osx
-          name: macOS
-          osx_image: xcode12.2
-          install:
-#            - brew update-reset
-#            - brew install premake
-            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          script:
-            - python3 build.py --build
+#         - os: osx
+#           name: macOS
+#           osx_image: xcode12.2
+#           install:
+# #            - brew update-reset
+# #            - brew install premake
+#             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+#           script:
+#             - python3 build.py --build
 
         - os: linux
           name: Linux

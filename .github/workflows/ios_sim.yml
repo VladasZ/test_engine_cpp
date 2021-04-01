@@ -1,4 +1,4 @@
-name: Mac
+name: iOS Simulator
 
 on:
   push:
@@ -17,4 +17,4 @@ jobs:
       - name: Build
         run: |
           git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          python3 build.py --build
+          python3 build.py --build --ios --no-conan --no-ios-exe

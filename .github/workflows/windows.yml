@@ -2,9 +2,9 @@ name: Windows
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -16,4 +16,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: windows
         run: |
-          cargo build --verbose
+          py --version
+          git clone https://github.com/vladasz/deploy
+          py deploy/deploy.py
+          py build.py --prepare --ide --debug --vs19
+          msbuild project.sln build/test_engine.sln

@@ -14,7 +14,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build
+      - name: iOS Simulator
         run: |
           git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           python3 build.py --build --ios --no-conan --no-ios-exe

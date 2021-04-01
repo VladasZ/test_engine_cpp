@@ -20,5 +20,7 @@ jobs:
           git clone https://github.com/vladasz/deploy
           py deploy/deploy.py
           ls
-          py ../build.py --prepare --ide --debug --vs19
+          git clone https://github.com/vladasz/test_engine
+          cd test_engine
+          py build.py --prepare --ide --debug --vs19
           msbuild build/test_engine.sln

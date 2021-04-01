@@ -17,4 +17,4 @@ jobs:
       - name: iOS Device
         run: |
           git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          python3 build.py --build --ios --device --no-conan --no-ios-exe
+          python3 build.py --build --ios --device --no-ios-exe

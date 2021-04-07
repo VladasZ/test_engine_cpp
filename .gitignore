@@ -398,7 +398,7 @@ fastlane/readme.md
 log.txt
 
 *#
-cmake-build-debug/
+cmake-build-*/
 *dep_build*
 /build_*
 

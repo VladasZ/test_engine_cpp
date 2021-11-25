@@ -1,3 +1,7 @@
+# [DEPRECATED]
+In favor of Rust:crab: : https://github.com/vlasdasz/test_engine
+
+
 # TestEngine
 
 ### Supported platforms:

@@ -5,7 +5,13 @@
 #include "ResearchScreen.hpp"
 
 int main() {
-	te::TestScreen({ 1000, 800 }).start_main_loop();
+
+    auto screen = new te::Screen({ 1000, 600 });
+    screen->clear_color = gm::Color::gray;
+    screen->set_scene(new WorldScene);
+    screen->start_main_loop();
+
+    return 0;
 }
 
 #endif

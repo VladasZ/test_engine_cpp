@@ -10,8 +10,7 @@
 
 #include "Label.hpp"
 #include "TestView.hpp"
-#include "FileManagerView.hpp"
-
+#include "Button.hpp"
 
 namespace te {
 
@@ -19,7 +18,8 @@ namespace te {
     public:
 
         TestView* test_view;
-        FileManagerView* file_manager;
+        ui::View* square;
+        ui::Button* change_color_button;
 
         using View::View;
 

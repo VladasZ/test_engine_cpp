@@ -53,7 +53,7 @@ void Vec4SlidersView::setup() {
     };
 }
 
-void Vec4SlidersView::layout_subviews() {
+void Vec4SlidersView::layout() {
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 4;

@@ -12,6 +12,7 @@
 #include "Buffers.hpp"
 #include "Shaders.hpp"
 
+
 struct Assets {
     static inline Images* images;
     static inline Buffers* buffers;

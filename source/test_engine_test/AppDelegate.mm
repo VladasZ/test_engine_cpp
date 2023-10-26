@@ -15,12 +15,15 @@
 #import "AppDelegate.h"
 
 #import "Log.hpp"
+#import "Touch.hpp"
 #import "Input.hpp"
+#import "Paths.hpp"
 #import "Screen.hpp"
-#import "Bluetooth.hpp"
+#import "TestView.hpp"
 #import "GLWrapper.hpp"
 #import "TestScene.hpp"
 #import "TestLevel.hpp"
+#import "TestScreen.hpp"
 #import "WorldScene.hpp"
 #import "PhysicsScene.hpp"
 #import "SelectionScene.hpp"
@@ -42,23 +45,10 @@ te::Screen* _screen;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-    
-    
-    auto root = Path("").ls();
-    
-    for (auto path : root) {
-        Logvar(path);
-    }
-    
-    _screen = new te::Screen({ self.view.frame.size.width,
-                               self.view.frame.size.height });
-    
-    _screen->clear_color = gm::Color::gray;
-    
-    _screen->set_scene(new WorldScene());
-
-//    cu::Bluetooth::test_central();
-    //cu::Bluetooth::test_peripheral();
+    _screen = new te::TestScreen({ self.view.frame.size.width,
+                                self.view.frame.size.height });
+    GL::on_window_size_change({ self.view.frame.size.width,
+                                self.view.frame.size.height });
 }
 
 - (void)update {
@@ -73,23 +63,20 @@ te::Screen* _screen;
     
     if (context == nil) {
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-        Log("kEAGLRenderingAPIOpenGLES2");
+        Log << "kEAGLRenderingAPIOpenGLES2";
     }
     else {
-        Log("kEAGLRenderingAPIOpenGLES3");
+        Log << "kEAGLRenderingAPIOpenGLES3";
     }
 
     NSLog(@"%@", context);
     [EAGLContext setCurrentContext:context];
     GLKView* view = (GLKView*)self.view;
-    view.context = context;
+    view .context = context;
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.multipleTouchEnabled = true;
-    
-    GL::on_window_size_change({ self.view.frame.size.width,
-                                self.view.frame.size.height });
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -98,10 +85,10 @@ te::Screen* _screen;
 }
 
 - (ui::Touch*)te_touch_with_touch:(UITouch*)touch event:(ui::Touch::Event)event {
-    const auto touch_id = reinterpret_cast<ui::Touch::ID>(touch);
+    const auto touch_id = reinterpret_cast<long long>(touch);
     const auto ns_location = [touch locationInView:self.view];
     const auto location = gm::Point { ns_location.x, ns_location.y };
-    return new ui::Touch(touch_id, location, event);
+    return new ui::Touch((int)touch_id, location, event);
 }
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {

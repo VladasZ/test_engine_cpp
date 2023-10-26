@@ -1,55 +1,62 @@
-////
-////  TestLevel.cpp
-////  TestEngine
-////
-////  Created by Vladas Zakrevskis on 7/30/19.
-////  Copyright © 2019 VladasZ. All rights reserved.
-////
 //
-//#ifdef USING_BOX2D
+//  TestLevel.cpp
+//  TestEngine
 //
-//#include "Log.hpp"
-//#include "Screen.hpp"
-//#include "Assets.hpp"
-//#include "TestLevel.hpp"
-//#include "DebugInfoView.hpp"
+//  Created by Vladas Zakrevskis on 7/30/19.
+//  Copyright © 2019 VladasZ. All rights reserved.
 //
-//static float world_width = 100.0f;
-//
-//using namespace sprites;
-//
-//TestLevel::TestLevel() {
-//
-//    box = new DynamicBody(Assets::images->scale_test, { 1, 2 }, { 3, 10 });
-//    add_sprite(box);
-//
-//    box->add_rotation(0.1);
-//
-////	box2 = new DynamicBody(Assets::images->palm, { 2, 2 }, { 4, 15 });
-////	add_sprite(box2);
-//
-////	for (unsigned i = 0; i < 5; i++) {
-////		add_sprite(new DynamicBody(Assets::images->palm, { 5, 1 }, gm::Point { 4.0f + (float)i * 0.05f, 15.0f }));
-////	}
-////
-////	for (unsigned i = 0; i < 50; i++) {
-////		add_sprite(new DynamicBody(Assets::images->palm, { 0.5, 0.5 }, gm::Point{ 4.0f + (float)i * 0.05f, 15.0f }));
-////	}
-////
-////
-////    floor = new Platform(Assets::images->square, gm::Size { 20.0f, 0.1f }, gm::Point { 10, 2 });
-////    add_sprite(floor);
-////
-////	add_sprite(new Platform(Assets::images->square, { 0.1f, 20.0f }, { 20, 5 }));
-////	add_sprite(new Platform(Assets::images->square, { 0.1f, 20.0f }, {  0, 5 }));
-//
-//}
-//
-//void TestLevel::update() {
-//    Level::update();
-//#ifdef DEBUG
-//   // te::Screen::debug_view->info_label->set_text(box->position().to_string());
-//#endif
-//}
-//
-//#endif
+
+#include "TestLevel.hpp"
+
+#ifdef USING_SPRITES
+
+#include "Screen.hpp"
+#include "Assets.hpp"
+
+using namespace te;
+using namespace gm;
+using namespace sprite;
+
+
+TestLevel::TestLevel() {
+
+    //set_gravity(0);
+
+    box = new DynamicBody({ 0, 0 }, { 5, 10 });
+    box->set_image(Assets::images->scale_test);
+    add_sprite(box);
+
+    for (int i = 0; i < 200; i++) {
+        add_sprite(new DynamicBody({ 0, i }, { 1, 2 }));
+        _sprites.back()->color = gm::Color::random();
+    }
+    
+    add_sprite(new DynamicBody({ 10, 0 }, { 10, 20 }));
+    _sprites.back()->set_image(Assets::images->scale_test);
+
+    add_sprite(new DynamicBody({ -10, 0 }, { 2.5, 5.0 }));
+    _sprites.back()->set_image(Assets::images->scale_test);
+
+	floor = new Body(gm::Point { 0, -20 }, gm::Size { 100.0f, 1 });
+    floor->set_image(Assets::images->square);
+	add_sprite(floor);
+
+    right = new Body(gm::Point { 40, -20 }, gm::Size { 1, 100.0 });
+    right->set_image(Assets::images->square);
+    add_sprite(right);
+
+    left = new Body(gm::Point { -40, -20 }, gm::Size { 1, 100.0 });
+    left->set_image(Assets::images->square);
+    add_sprite(left);
+
+    unit = new Unit({ 0, 0 }, { 17.0 / 4.0, 28.0 / 4.0 });
+    unit->set_image(Assets::images->frisk);
+    add_sprite(unit);
+    unit->fix_rotation(true);
+}
+
+void TestLevel::setup() {
+
+}
+
+#endif

@@ -9,6 +9,7 @@
 #include "Scene.hpp"
 #include "VectorModel.hpp"
 
+
 namespace te {
 
     class RotationTestScene : public scene::Scene {
@@ -17,7 +18,7 @@ namespace te {
 
         scene::VectorModel* vector;
 
-        void _setup() override;
+        void setup() override;
     };
 
 }

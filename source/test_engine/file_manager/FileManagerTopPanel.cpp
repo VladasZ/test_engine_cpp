@@ -14,7 +14,7 @@ using namespace ui;
 using namespace te;
 
 
-void FileManagerTopPanel::set_path(const Path& path) {
+void FileManagerTopPanel::set_path(const Path& path) const{
     _path_label->set_text(path);
 }
 
@@ -23,13 +23,13 @@ void FileManagerTopPanel::setup() {
     init_view(_path_label);
 
     _up_button->set_image(Assets::images->up);
-    _up_button->on_press.link(on_press_up_button);
+    _up_button->on_press = [this] { on_press_up_button(); };
 
 }
 
-void FileManagerTopPanel::layout_subviews() {
+void FileManagerTopPanel::layout() {
 
-    static Float margin = 5;
+    static float margin = 5;
 
     auto button_size = _frame.size.height - margin * 2;
 

@@ -7,6 +7,6 @@ uniform mat4 mvp_matrix;
 out vec3 fragment_normal;
 
 void main() {
-  gl_Position = mvp_matrix * vec4(position, 1.0);
-  fragment_normal = normal;
+    gl_Position = mvp_matrix * vec4(position, 1.0);
+    fragment_normal = normal;
 }

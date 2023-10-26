@@ -1,10 +1,13 @@
 precision highp float;
 
-out vec4 color;
-in vec2 tex_coord;
+uniform vec4 color;
+uniform bool selected;
 
-uniform sampler2D in_texture;
+out vec4 out_color;
 
 void main() {
-  color = texture(in_texture, tex_coord);
+    out_color = color;
+    if (selected) {
+        out_color.rgb *= 2.0;
+    }
 }

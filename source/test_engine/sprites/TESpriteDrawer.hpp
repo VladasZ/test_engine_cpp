@@ -6,14 +6,18 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#ifdef USING_BOX2D
-
 #pragma once
 
-//#include "SpriteDrawer.hpp"
-//
-//class TESpriteDrawer : public sprites::SpriteDrawer {
-//	void draw(sprites::Sprite* sprite) override;
-//};
+#include "SpritesInclude.hpp"
+
+#ifdef USING_SPRITES
+
+#include "SpriteDrawer.hpp"
+
+
+class TESpriteDrawer : public sprite::SpriteDrawer {
+	void set_camera_position(const gm::Point&) override;
+	void draw(sprite::Sprite* sprite) override;
+};
 
 #endif

@@ -8,8 +8,6 @@
 
 #pragma once
 
-#ifdef USING_ASSIMP
-
 #include <string>
 
 #include "Image.hpp"
@@ -22,5 +20,3 @@ class ModelImporter {
 public:
     static scene::Model* import(const std::string&, Image* = nullptr);
 };
-
-#endif

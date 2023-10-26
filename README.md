@@ -1,22 +1,30 @@
+# [DEPRECATED]
+In favor of Rust:crab: : https://github.com/vlasdasz/test_engine
+
+
 # TestEngine
 
 ### Supported platforms:
 
-| macOS            | Linux            | Windows          | iOS Simulator    | iOS Device       | Android          |
-|------------------|------------------|------------------|------------------|------------------|------------------|
-|[![MAC][MAC1]][TR]|[![Lin][LIN1]][TR]|[![Win][WB1]][WB2]|[![iOS][IOS1]][TR]|[![iOS][IOS2]][TR]|[![AND][AND1]][TR]|
+[MAC1]: https://github.com/vladasz/test_engine/actions/workflows/mac.yml/badge.svg
+[LIN1]: https://github.com/vladasz/test_engine/actions/workflows/linux.yml/badge.svg
+[WIN1]: https://github.com/vladasz/test_engine/actions/workflows/windows.yml/badge.svg
+[IOSS1]: https://github.com/vladasz/test_engine/actions/workflows/ios_sim.yml/badge.svg
+[IOSD1]: https://github.com/vladasz/test_engine/actions/workflows/ios_dev.yml/badge.svg
+
+[LMAC]: https://github.com/VladasZ/test_engine/actions/workflows/mac.yml
+[LLIN]: https://github.com/VladasZ/test_engine/actions/workflows/linux.yml
+[LWIN]: https://github.com/VladasZ/test_engine/actions/workflows/windows.yml
+[LIOSS]: https://github.com/VladasZ/test_engine/actions/workflows/ios_sim.yml
+[LIOSD]: https://github.com/VladasZ/test_engine/actions/workflows/ios_dev.yml
+
+[![MAC][MAC1]][LMAC]
+[![Lin][LIN1]][LLIN]
+[![Win][WIN1]][LWIN]
+[![IOSS][IOSS1]][LIOSS]
+[![IOSD][IOSD1]][LIOSD]
 
 
-[WB1]: https://ci.appveyor.com/api/projects/status/ukmv5disdy3x00km?svg=true
-[WB2]: https://ci.appveyor.com/project/VladasZ/test-engine
-
-[IOS1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/1
-[IOS2]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/2
-[MAC1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/3
-[LIN1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/4
-[AND1]: https://travis-matrix-badges.herokuapp.com/repos/VladasZ/test_engine/branches/master/5
-
-[TR]: https://travis-ci.org/VladasZ/test_engine
 
 My attempt to create a cross platform, OpenGL based game engine.
 

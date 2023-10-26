@@ -21,6 +21,8 @@ public:
     TEImageBinder(Image*);
     ~TEImageBinder() override;
 
+    int id() const override;
+
     void bind () const override;
 
 };

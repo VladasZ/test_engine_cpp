@@ -27,16 +27,16 @@ void PathView::setup() {
     init_view(_label, { _frame.size });
     init_view(_button);
     init_view(_image);
-    _button->on_press.link(on_press);
+    _button->on_press = [this] { on_press(); };
 }
 
-void PathView::layout_subviews() {
+void PathView::layout() {
 
     static const float margin = 5;
 
     auto image_size = _frame.size.height - margin * 2;
 
-    _button->place_as_background();
+    _button->place.as_background();
 
     _image->edit_frame() =
             { margin,

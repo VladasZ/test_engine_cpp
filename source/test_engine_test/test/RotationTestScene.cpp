@@ -18,9 +18,7 @@ using namespace gm;
 using namespace scene;
 
 
-void RotationTestScene::_setup() {
-
-    view = new RotationTestView();
+void RotationTestScene::setup() {
 
     add_object(new Grid());
 

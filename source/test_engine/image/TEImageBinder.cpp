@@ -19,6 +19,10 @@ TEImageBinder::~TEImageBinder() {
     gl::TextureLoader::free(_id);
 }
 
+int TEImageBinder::id() const {
+    return _id;
+}
+
 void TEImageBinder::bind() const {
     gl::TextureLoader::bind(_id);
 }

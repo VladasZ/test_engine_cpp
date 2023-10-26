@@ -12,8 +12,6 @@
 
 struct Shaders {
 
-    gl::Shader* simple;
-    
     gl::Shader* ui;
     gl::Shader* ui_path;
     gl::Shader* ui_texture;
@@ -26,6 +24,10 @@ struct Shaders {
     gl::Shader* fog;
 
 	gl::Shader* sprite;
-    
+    gl::Shader* textured_sprite;
+
     Shaders();
+
+    void set_screen_resolution(const gm::Size&);
+
 };

@@ -10,25 +10,26 @@
 
 #include "Path.hpp"
 
+
 namespace te {
     
     struct Paths {
 
-        static cu::Path root;
-        static cu::Path assets;
-        static cu::Path images;
-        static cu::Path models;
-        static cu::Path fonts;
+        static const cu::Path root;
+        static const cu::Path assets;
+        static const cu::Path images;
+        static const cu::Path models;
+        static const cu::Path fonts;
 
-        static cu::Path downloads;
+        static const cu::Path downloads;
 
         struct Shaders {
-			static cu::Path root;
-            static cu::Path ui;
-            static cu::Path sprites;
-            static cu::Path isometric;
-            static cu::Path include;
-            static cu::Path test;
+			static const cu::Path root;
+            static const cu::Path ui;
+            static const cu::Path sprites;
+            static const cu::Path isometric;
+            static const cu::Path include;
+            static const cu::Path test;
 		};
 
 		static void dump();

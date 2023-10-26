@@ -8,7 +8,6 @@
 
 #pragma once
 
-#ifdef DEBUG_VIEW
 
 #include "Label.hpp"
 #include "StackView.hpp"
@@ -39,8 +38,6 @@ public:
 
 protected:
 
-    void layout_subviews() override;
+    void layout() override;
 
 };
-
-#endif

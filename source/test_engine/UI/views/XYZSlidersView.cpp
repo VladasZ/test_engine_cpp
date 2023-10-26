@@ -7,29 +7,37 @@
 //
 
 #include "Log.hpp"
-
 #include "XYZSlidersView.hpp"
+
 
 using namespace te;
 using namespace gm;
 using namespace cu;
+using namespace ui;
 
 
 XYZSlidersView::~XYZSlidersView() { }
 
+void XYZSlidersView::set_range(float min, float max) {
+    for (auto view : sliders) {
+        view->slider_view->conversion.set_target_min(min);
+        view->slider_view->conversion.set_target_max(max);
+    }
+}
+
 void XYZSlidersView::setup() {
 
     for (auto& slider : sliders) {
-        add_subview(slider = new ui::LabeledSliderView());
+        add_subview(slider = new LabeledSliderView);
     }
 
     sliders.x->set_caption("X");
     sliders.y->set_caption("Y");
     sliders.z->set_caption("Z");
 
-    sliders.x->set_slider_color(gm::Color::red);
-    sliders.y->set_slider_color(gm::Color::green);
-    sliders.z->set_slider_color(gm::Color::blue);
+    sliders.x->set_slider_color(Color::red);
+    sliders.y->set_slider_color(Color::green);
+    sliders.z->set_slider_color(Color::blue);
 
     sliders.x->slider_view->on_value_changed = [&](float value) {
         position.x = value;
@@ -47,7 +55,7 @@ void XYZSlidersView::setup() {
     };
 }
 
-void XYZSlidersView::layout_subviews() {
+void XYZSlidersView::layout() {
 
     static const float margin = 4;
     const float width = (_frame.size.width - margin * 2) / 3;

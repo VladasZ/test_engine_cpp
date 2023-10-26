@@ -7,7 +7,7 @@
 //
 
 #include "Log.hpp"
-#include "Label.hpp"
+#include "System.hpp"
 #include "Assets.hpp"
 #include "PathView.hpp"
 #include "StringUtils.hpp"
@@ -66,8 +66,8 @@ void FileManagerView::setup() {
 
 }
 
-void FileManagerView::layout_subviews() {
-    ScrollView::layout_subviews();
+void FileManagerView::layout() {
+    ScrollView::layout();
 
     _top_panel->edit_frame() = { _frame.size.width, cell_height };
 

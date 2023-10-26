@@ -1,15 +1,15 @@
 precision highp float;
 
-uniform vec4 uniform_color;
+uniform vec4 color;
 uniform bool selected;
 
-out vec4 color;
+out vec4 out_color;
 
 void main() {
 
-  color = uniform_color;
+    out_color = color;
 
-  if (selected) {
-    color.rgb *= 4.0;
-  }
+    if (selected) {
+        out_color.rgb *= 4.0;
+    }
 }

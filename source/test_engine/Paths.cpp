@@ -11,6 +11,7 @@
 #include "Log.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
+#include "Target.hpp"
 #include "SystemInfo.hpp"
 
 #ifdef IOS_BUILD
@@ -21,31 +22,30 @@ using namespace cu;
 using namespace te;
 
 
-Path Paths::root = [] {
+const Path Paths::root = [] {
 #ifdef IOS_BUILD
-    return Path() / obj_c::work_directory_path;
+    return Path() / obj_c::work_directory_path();
 #elif ANDROID_BUILD
     return "";
-#endif
-#ifdef DESKTOP_BUILD
+#elif DESKTOP_BUILD
     return System::home() / ".deps/test_engine";
 #endif
 }();
 
-Path Paths::assets = SystemInfo::is_android ?  "" : (root / "Assets");
+const Path Paths::assets = SystemInfo::is_android ?  "" : (root / "Assets");
 
-Path Paths::images = assets / "Images";
-Path Paths::models = assets / "Models";
-Path Paths::fonts  = assets / "Fonts";
-Path Paths::downloads = System::home() / "Downloads";
+const Path Paths::images = assets / "Images";
+const Path Paths::models = assets / "Models";
+const Path Paths::fonts  = assets / "Fonts";
+const Path Paths::downloads = System::home() / "Downloads";
 
-Path Paths::Shaders::root = assets / "Shaders";
+const Path Paths::Shaders::root = assets / "Shaders";
 
-Path Paths::Shaders::ui        = root / "ui";
-Path Paths::Shaders::sprites   = root / "sprites";
-Path Paths::Shaders::isometric = root / "isometric";
-Path Paths::Shaders::include   = root / "include";
-Path Paths::Shaders::test      = root / "test";
+const Path Paths::Shaders::ui        = root / "ui";
+const Path Paths::Shaders::sprites   = root / "sprites";
+const Path Paths::Shaders::isometric = root / "isometric";
+const Path Paths::Shaders::include   = root / "include";
+const Path Paths::Shaders::test      = root / "test";
 
 void Paths::dump() {
 

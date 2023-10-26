@@ -398,8 +398,9 @@ fastlane/readme.md
 log.txt
 
 *#
-cmake-build-debug/
-dep_build/
+cmake-build-*/
+*dep_build*
+/build_*
 
 *.autosave
 *.blend1
@@ -411,3 +412,5 @@ deploy/
 
 build_tools_generated.cmake
 graphviz/
+
+.vscode

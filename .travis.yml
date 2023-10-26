@@ -5,30 +5,71 @@ matrix:
 
         - os: osx
           name: iOS simulator
+          osx_image: xcode12.2
           install:
+            - brew update-reset
+            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build --ios --no-conan --no-ios-exe
 
         - os: osx
           name: iOS device
-          install:
-            - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
-          script:
-            - python3 build.py --build --ios --device --no-freetype --no-assimp --no-bullet3 --no-ios-exe
-
-        - os: osx
-          name: macOS
+          osx_image: xcode12.2
           install:
             - brew update-reset
+            - brew install premake
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
-            - python3 build.py --build
+            - python3 build.py --build --ios --device --no-conan --no-ios-exe
+
+#         - os: osx
+#           name: macOS
+#           osx_image: xcode12.2
+#           install:
+# #            - brew update-reset
+# #            - brew install premake
+#             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
+#           script:
+#             - python3 build.py --build
 
         - os: linux
           name: Linux
           dist: focal
           install:
+            - sudo apt update
+            - sudo apt install xorg-dev
+            - sudo apt install libglu1-mesa-dev
+            - sudo apt install libgl1-mesa-dri
+            - sudo apt install libgl1-mesa-dev
+            - sudo apt install libx11-xcb-dev
+            - sudo apt install libxcb-render0-dev
+            - sudo apt install libxcb-render-util0-dev
+            - sudo apt install libxcb-xkb-dev
+            - sudo apt install libxcb-icccm4-dev
+            - sudo apt install libxcb-image0-dev
+            - sudo apt install libxcb-keysyms1-dev
+            - sudo apt install libxcb-randr0-dev
+            - sudo apt install libxcb-shape0-dev
+            - sudo apt install libxcb-sync-dev
+            - sudo apt install libxcb-xfixes0-dev
+            - sudo apt install libxcb-xinerama0-dev
+            - sudo apt install libglu1-mesa-dev
+            - pip install Mako
             - git clone https://github.com/vladasz/deploy; python3 deploy/deploy.py
           script:
             - python3 build.py --build
+
+#        - os: windows
+#          name: Windows
+#          install:
+#            - choco install python3
+#            - C:\Python39\python3
+#            - python --version
+#            - python3 --version
+#            - py --version
+#            - git clone https://github.com/vladasz/deploy
+#            - py deploy/deploy.py
+#          script:
+#            - py build.py --prepare --ide
+#            - devenv YourSolution.sln /Build

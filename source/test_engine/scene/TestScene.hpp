@@ -13,20 +13,21 @@
 #include "XYZPack.hpp"
 #include "PointLight.hpp"
 
-class TestScene : public scene::Scene {
 
-    scene::PointLight* light;
+namespace te {
 
-    scene::Model* cube;
-#ifdef USING_ASSIMP
-    scene::Model* monkey;
-#endif
+	class TestScene : public scene::Scene {
 
-	cu::XYZPack<scene::Model*> walls;
+		scene::PointLight *light;
 
-	scene::BoxModel* marker_box;
+		scene::Model *cube;
 
-    void _setup() override;
+		cu::XYZPack<scene::Model *> walls;
 
-    void set_vector(const gm::Vector3&);
-};
+		scene::BoxModel *marker_box;
+
+		void setup() override;
+
+	};
+
+}

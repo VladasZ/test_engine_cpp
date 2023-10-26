@@ -36,7 +36,7 @@ namespace te {
     protected:
 
         void setup() override;
-        void layout_subviews() override;
+        void layout() override;
 
     };
 

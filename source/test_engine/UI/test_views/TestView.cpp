@@ -8,6 +8,9 @@
 
 #include "Assets.hpp"
 #include "TestView.hpp"
+#include "GLWrapper.hpp"
+#include "GamepadView.hpp"
+
 
 using namespace ui;
 
@@ -47,16 +50,41 @@ void te::TestView::setup() {
         }
     };
 
+    init_view(gamepad_view, { 400, 400 });
+
+    GL::on_gamepad_update = [this](const GL::GamepadData& gamepad) {
+        gamepad_view->left_stick->set_direction(gamepad.left_stick);
+        gamepad_view->right_stick->set_direction(gamepad.right_stick);
+
+        static constexpr auto color_from_bool = [](bool val) {
+            return val ? gm::Color::blue : gm::Color::clear;
+        };
+
+        gamepad_view->a->background_color = color_from_bool(gamepad.a);
+        gamepad_view->b->background_color = color_from_bool(gamepad.b);
+        gamepad_view->x->background_color = color_from_bool(gamepad.x);
+        gamepad_view->y->background_color = color_from_bool(gamepad.y);
+
+        gamepad_view->up->background_color    = color_from_bool(gamepad.up);
+        gamepad_view->down->background_color  = color_from_bool(gamepad.down);
+        gamepad_view->left->background_color  = color_from_bool(gamepad.left);
+        gamepad_view->right->background_color = color_from_bool(gamepad.right);
+
+    };
+
 }
 
-void te::TestView::layout_subviews() {
+void te::TestView::layout() {
 
-    ScrollView::layout_subviews();
+    ScrollView::layout();
 
-    view->place_tr(30);
-    label->place_at_center();
-    button->place_br(30);
-    image_view->place_bl();
+    view->place.tr(30);
+    label->place.at_center();
+    button->place.br(30);
+    image_view->place.bl();
     foldableView->edit_frame().origin = { };
+
+    gamepad_view->place.at_bottom();
+    gamepad_view->place.center_hor();
 
 }

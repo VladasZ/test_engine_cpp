@@ -6,8 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "ui.hpp"
 #include "Input.hpp"
+#include "Touch.hpp"
 #include "RootView.hpp"
 
 using namespace te;
@@ -17,13 +17,17 @@ using namespace ui;
 void RootView::setup() {
     background_color = gm::Color::clear;
 
-    Input::on_touch = [&](Touch* touch) {
+    _draw_touches = false;
+
+    Input::on_touch = [this](Touch* touch) {
         if (!_draw_touches) return;
         auto view = View::dummy({ 5, 5 });
-        view->set_center(touch->location);
+        view->place.set_center(touch->position);
         add_subview(view);
         _touch_views.push_back(view);
     };
+
+    _superview = this;
 }
 
 void RootView::set_draw_touches(bool value) {

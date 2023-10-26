@@ -59,18 +59,18 @@ void SelectionView::setup() {
 
 }
 
-void SelectionView::layout_subviews() {
+void SelectionView::layout() {
 
-    button->place_bl();
+    button->place.bl();
 
-    switcher->place_tr(10);
+    switcher->place.tr(10);
 
     static float angle = 0;
-    revolving_view->set_center(Point::on_circle(100, angle, { 200, 200 }));
-    angle += 0.01;
+    revolving_view->place.set_center(Point::on_circle(100, angle, { 200, 200 }));
+    angle += 0.01f;
 
-    image->place_at_bottom(100);
+    image->place.at_bottom(100);
 
-    object_info_view->stick_to(button, gm::Edge::Right, 10);
+    object_info_view->place.to(button, gm::Edge::Right, 10);
 
 }

@@ -15,17 +15,12 @@
 
 class EffectsScene : public scene::Scene {
 
-#ifdef USING_ASSIMP
-    scene::Model* monkey;
-#endif
-
     scene::Model* cube;
 
 	scene::Model* floor;
 
 	scene::VectorModel* vector_model;
 
-
-    void _setup() override;
+    void setup() override;
 
 };

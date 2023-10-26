@@ -29,4 +29,5 @@ void WorldView::setup() {
 
 void WorldView::layout_subviews() {
     test_view->place_br();
+    test_view->place.at_center();
 }

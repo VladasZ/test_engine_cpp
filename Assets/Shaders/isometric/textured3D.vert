@@ -7,6 +7,6 @@ uniform mat4 mvp_matrix;
 out vec2 v_uv;
 
 void main() {
-  gl_Position = mvp_matrix * vec4(position, 1.0);
-  v_uv = uv;
+    gl_Position = mvp_matrix * vec4(position, 1.0);
+    v_uv = uv;
 }

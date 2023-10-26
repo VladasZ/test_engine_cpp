@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "Image.hpp"
 #include "StackView.hpp"
 #include "ScrollView.hpp"
 
+class Image;
 
 namespace te {
 
@@ -36,7 +36,7 @@ namespace te {
         void set_path(const cu::Path& path);
 
         void setup() override;
-        void layout_subviews() override;
+        void layout() override;
 
     public:
 

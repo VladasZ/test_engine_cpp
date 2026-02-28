@@ -1,0 +1,8 @@
+target("test_game")
+    set_kind("binary")
+    -- add_packages("rapidfuzz", "glaze", "cli11")
+    add_deps("test_engine_lib")
+    set_targetdir("$(projectdir)/build")
+    add_includedirs(".")
+    add_files("**.cpp")
+    add_headerfiles("**.hpp")

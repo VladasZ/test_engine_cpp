@@ -8,24 +8,21 @@
 
 #pragma once
 
-#include "View.hpp"
-
+#include "ui/basic/View.hpp"
 
 namespace te {
 
-    class RootView : public ui::View {
+class RootView : public ui::View {
 
-        static inline bool _draw_touches;
-        static inline Array _touch_views;
+  static inline bool _draw_touches;
+  static inline Array _touch_views;
 
-    public:
+public:
+  using View::View;
 
-        using View::View;
+  void setup() override;
 
-        void setup() override;
+  static void set_draw_touches(bool);
+};
 
-        static void set_draw_touches(bool);
-
-    };
-
-}
+} // namespace te

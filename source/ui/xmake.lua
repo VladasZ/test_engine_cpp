@@ -1,0 +1,7 @@
+target("ui_lib")
+    set_kind("static")
+    -- add_packages("rapidfuzz", "glaze", "cli11")
+    add_includedirs("./**")
+    add_includedirs("include", { public = true })
+    add_files("**.cpp|Main.cpp")
+    add_headerfiles("**.hpp")

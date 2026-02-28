@@ -6,42 +6,39 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#include "Grid.hpp"
+#include "WorldScene.hpp"
+#include "ModelImporter.hpp"
 #include "Paths.hpp"
 #include "System.hpp"
 #include "WorldView.hpp"
-#include "WorldScene.hpp"
-#include "ModelImporter.hpp"
+#include "shapes/Grid.hpp"
 
 using namespace cu;
 using namespace te;
 using namespace scene;
 
-
 void WorldScene::setup() {
 
-    add_object(new Grid());
-    
+  add_object(new Grid());
+
 #ifdef DESKTOP_BUILD
 
-    auto mountain_dir = Paths::downloads / "note";
+  auto mountain_dir = Paths::downloads / "note";
 
-    //Logvar(System::pwd());
-    //Logvar(System::pwd().ls());
-    //Logvar(Paths::downloads);
-    //Logvar(Paths::downloads.ls());
+  // Logvar(System::pwd());
+  // Logvar(System::pwd().ls());
+  // Logvar(Paths::downloads);
+  // Logvar(Paths::downloads.ls());
 
-    //auto mountain_file = mountain_dir / "notebook.blend";
+  // auto mountain_file = mountain_dir / "notebook.blend";
 
-    //Logvar(Paths::downloads.ls());
-    //Logvar(mountain_file);
-    //Logvar(mountain_dir.ls());
+  // Logvar(Paths::downloads.ls());
+  // Logvar(mountain_file);
+  // Logvar(mountain_dir.ls());
 
-    //auto mon_model = ModelImporter::import(mountain_file);
+  // auto mon_model = ModelImporter::import(mountain_file);
 
-    //add_object(mon_model);
+  // add_object(mon_model);
 
 #endif
-
 }
-

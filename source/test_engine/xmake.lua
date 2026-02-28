@@ -1,0 +1,7 @@
+target("test_engine_lib")
+    set_kind("static")
+    -- add_packages("rapidfuzz", "glaze", "cli11")
+    add_deps("scene_lib", "ui_lib", "cpp_utils_lib")
+    add_includedirs(".")
+    add_files("**.cpp|Main.cpp")
+    add_headerfiles("**.hpp")

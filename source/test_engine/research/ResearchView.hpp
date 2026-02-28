@@ -8,27 +8,20 @@
 
 #pragma once
 
-#include "XYZSlidersView.hpp"
-
-
 namespace te {
 
-	class ResearchView : public ui::View {
+class ResearchView : public ui::View {
 
-	public:
+public:
+  using View::View;
 
-		using View::View;
+protected:
+  void setup() override;
+  void layout() override;
 
-	protected:
+public:
+  static inline XYZSlidersView *vector_a = nullptr;
+  static inline XYZSlidersView *vector_b = nullptr;
+};
 
-		void setup() override;
-		void layout() override;
-
-	public:
-
-		static inline XYZSlidersView* vector_a = nullptr;
-		static inline XYZSlidersView* vector_b = nullptr;
-
-	};
-
-}
+} // namespace te

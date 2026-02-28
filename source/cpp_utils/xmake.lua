@@ -1,0 +1,6 @@
+target("cpp_utils_lib")
+    set_kind("static")
+    -- add_packages("rapidfuzz", "glaze", "cli11")
+    add_includedirs(".", "./filesystem", "./misc", "./logs", "./system", "./stl", "./iOS", "./meta", "./deps")
+    add_files("**.cpp|Main.cpp")
+    add_headerfiles("**.hpp")
